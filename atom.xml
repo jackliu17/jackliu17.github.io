@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-09T00:14:53.000Z</updated>
+  <updated>2016-03-09T00:23:19.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,132 +20,73 @@
     <link href="http://jackliu17.github.io/2016/03/09/Git%E6%9C%AC%E5%9C%B0%E6%93%8D%E4%BD%9C/"/>
     <id>http://jackliu17.github.io/2016/03/09/Git本地操作/</id>
     <published>2016-03-08T22:34:11.000Z</published>
-    <updated>2016-03-09T00:14:53.000Z</updated>
+    <updated>2016-03-09T00:23:19.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;Git-安装与简单配置&quot;&gt;&lt;a href=&quot;#Git-安装与简单配置&quot; class=&quot;headerlink&quot; title=&quot;Git 安装与简单配置&quot;&gt;&lt;/a&gt;Git 安装与简单配置&lt;/h2&gt;&lt;p&gt;配置或者修改git用户名 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --global user.name Jackliu17&lt;/code&gt; &lt;/p&gt;
-&lt;p&gt;配置git用户邮箱&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --global user.email jackliu.mel@gmail.com&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查询git帮助&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --help&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加git 用户&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --global --add user.name eoe&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除git用户&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --global --unset user.name eoe&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查询git当前用户&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config user.name&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查询git当前所有用户信息&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git config --list --global&lt;/code&gt;&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;Git安装与简单配置&quot;&gt;&lt;a href=&quot;#Git安装与简单配置&quot; class=&quot;headerlink&quot; title=&quot;Git安装与简单配置&quot;&gt;&lt;/a&gt;Git安装与简单配置&lt;/h2&gt;&lt;p&gt;配置或者修改git用户名&lt;br&gt;&lt;code&gt;$ git config --global user.name Jackliu17&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;配置git用户邮箱&lt;br&gt;&lt;code&gt;$ git config --global user.email jackliu.mel@gmail.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查询git帮助&lt;br&gt;&lt;code&gt;$ git config --help&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;添加git用户&lt;br&gt;&lt;code&gt;$ git config --global --add user.name eoe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除git用户&lt;br&gt;&lt;code&gt;$ git config --global --unset user.name eoe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查询git当前用户&lt;br&gt;&lt;code&gt;$ git config user.name&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查询git当前所有用户信息&lt;br&gt;&lt;code&gt;$ git config --list --global&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Git基本的工作流程&quot;&gt;&lt;a href=&quot;#Git基本的工作流程&quot; class=&quot;headerlink&quot; title=&quot;Git基本的工作流程&quot;&gt;&lt;/a&gt;Git基本的工作流程&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/Git1.png&quot; alt=&quot;1&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/2.png&quot; alt=&quot;2&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/3.png&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
-&lt;p&gt;创建仓库，有两个方法，如下&lt;/p&gt;
+&lt;p&gt;创建仓库，有两个方法，如下  &lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git init&lt;/code&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;git clone&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Mac OSX 下创建两个文件&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ touch a&lt;/code&gt;&lt;br&gt;&lt;code&gt;$ touch b&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;工作区提交到暂存区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git add a b （只添加这两个文件）&lt;/code&gt;&lt;br&gt;&lt;code&gt;git add -A   (添加整个工作区)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看暂存区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;提交到历史记录区(m为所标注的信息)&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git commit -m &amp;quot;Initial commit&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除工作区和暂存区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git rm a&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;只删除暂存区，不删除工作区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git rm --cached a&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;将文件a命名为文件c （一系列的组合，在工作区中操作，也在暂存区中修改）&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git mv a c&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Mac OSX 下创建两个文件&lt;br&gt;&lt;code&gt;$ touch a&lt;/code&gt;&lt;br&gt;&lt;code&gt;$ touch b&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;工作区提交到暂存区&lt;br&gt;&lt;code&gt;git add a b （只添加这两个文件）&lt;/code&gt;&lt;br&gt;&lt;code&gt;git add -A   (添加整个工作区)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看暂存区&lt;br&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;提交到历史记录区(m为所标注的信息)&lt;br&gt;&lt;code&gt;git commit -m &amp;quot;Initial commit&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除工作区和暂存区&lt;br&gt;&lt;code&gt;git rm a&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;只删除暂存区，不删除工作区&lt;br&gt;&lt;code&gt;git rm --cached a&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将文件a命名为文件c （一系列的组合，在工作区中操作，也在暂存区中修改）&lt;br&gt;&lt;code&gt;git mv a c&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;编写.gitignore文件，指出哪些文件是可以不用被git的&lt;br&gt;.gitignore (省略)&lt;/p&gt;
-&lt;p&gt;##Git本地分支与合并&lt;/p&gt;
-&lt;p&gt;###简单的分支操作&lt;/p&gt;
-&lt;p&gt;添加test分支&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git branch test&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;切换到test分支&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git checkout test&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看在什么分支&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;###查看commit的情况&lt;/p&gt;
-&lt;p&gt;为查看长命令设置个短标识“lol”&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git config --global alias.lol &amp;quot;log --oneline --decorate --graph --all&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看commit的情况&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git  lol&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;###查看tag的情况&lt;/p&gt;
-&lt;p&gt;为某个commit设置个标签&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git tag &amp;quot;v0&amp;quot; c8f9030&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看有什么标签&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git tag&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看某标签的具体情况&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git show v0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;###有关checkout分支的详述&lt;/p&gt;
-&lt;p&gt;以checkout进入某commit点，实际上是以该点重新分支fix_v0，&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git checkout v0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;所以还有后续命令,以该点创建一个分支&lt;/p&gt;
-&lt;p&gt; &lt;code&gt;git checkout -b fix_v0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;###有关stash&lt;/p&gt;
-&lt;p&gt;当checkout切换分支时，要先提交或者stash暂存区的东西,否则会被覆盖&lt;br&gt;将工作区和暂存区的东西先藏起来，以免切换分支的时候被覆盖&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash save -a &amp;quot;stash1&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看有哪些stash&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash list&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;将stash的东西还原出来，根据索引号，同时stash list中会删除&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash pop --index stash@{0}&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;将stash的东西还原出来，根据索引号，同时stash list依然保存&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash apply --index stash@{0}&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除某个stash&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash drop stash@{0}&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除全部stash&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git stash clear&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;###合并分支&lt;/p&gt;
-&lt;p&gt;先切换到master分支下，再合并需要的分支&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git master&lt;/code&gt;&lt;br&gt;&lt;code&gt;git merge test_merge&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如果是fast-forward，那是不需要修改文件的合并，不重叠的融合&lt;/p&gt;
+&lt;h2 id=&quot;Git本地分支与合并&quot;&gt;&lt;a href=&quot;#Git本地分支与合并&quot; class=&quot;headerlink&quot; title=&quot;Git本地分支与合并&quot;&gt;&lt;/a&gt;Git本地分支与合并&lt;/h2&gt;&lt;h3 id=&quot;简单的分支操作&quot;&gt;&lt;a href=&quot;#简单的分支操作&quot; class=&quot;headerlink&quot; title=&quot;简单的分支操作&quot;&gt;&lt;/a&gt;简单的分支操作&lt;/h3&gt;&lt;p&gt;添加test分支&lt;br&gt;&lt;code&gt;git branch test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;切换到test分支&lt;br&gt;&lt;code&gt;git checkout test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看在什么分支&lt;br&gt;&lt;code&gt;git status&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;查看commit的情况&quot;&gt;&lt;a href=&quot;#查看commit的情况&quot; class=&quot;headerlink&quot; title=&quot;查看commit的情况&quot;&gt;&lt;/a&gt;查看commit的情况&lt;/h3&gt;&lt;p&gt;为查看长命令设置个短标识“lol”&lt;br&gt;&lt;code&gt;git config --global alias.lol &amp;quot;log --oneline --decorate --graph --all&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看commit的情况&lt;br&gt;&lt;code&gt;git  lol&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;查看tag的情况&quot;&gt;&lt;a href=&quot;#查看tag的情况&quot; class=&quot;headerlink&quot; title=&quot;查看tag的情况&quot;&gt;&lt;/a&gt;查看tag的情况&lt;/h3&gt;&lt;p&gt;为某个commit设置个标签&lt;br&gt;&lt;code&gt;git tag &amp;quot;v0&amp;quot; c8f9030&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看有什么标签&lt;br&gt;&lt;code&gt;git tag&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看某标签的具体情况&lt;br&gt;&lt;code&gt;git show v0&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;有关checkout分支的详述&quot;&gt;&lt;a href=&quot;#有关checkout分支的详述&quot; class=&quot;headerlink&quot; title=&quot;有关checkout分支的详述&quot;&gt;&lt;/a&gt;有关checkout分支的详述&lt;/h3&gt;&lt;p&gt;以checkout进入某commit点，实际上是以该点重新分支fix_v0，&lt;br&gt;&lt;code&gt;git checkout v0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;所以还有后续命令,以该点创建一个分支&lt;br&gt; &lt;code&gt;git checkout -b fix_v0&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;有关stash&quot;&gt;&lt;a href=&quot;#有关stash&quot; class=&quot;headerlink&quot; title=&quot;有关stash&quot;&gt;&lt;/a&gt;有关stash&lt;/h3&gt;&lt;p&gt;当checkout切换分支时，要先提交或者stash暂存区的东西,否则会被覆盖&lt;br&gt;将工作区和暂存区的东西先藏起来，以免切换分支的时候被覆盖&lt;br&gt;&lt;code&gt;git stash save -a &amp;quot;stash1&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看有哪些stash&lt;br&gt;&lt;code&gt;git stash list&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将stash的东西还原出来，根据索引号，同时stash list中会删除&lt;br&gt;&lt;code&gt;git stash pop --index stash@{0}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将stash的东西还原出来，根据索引号，同时stash list依然保存&lt;br&gt;&lt;code&gt;git stash apply --index stash@{0}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除某个stash&lt;br&gt;&lt;code&gt;git stash drop stash@{0}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除全部stash&lt;br&gt;&lt;code&gt;git stash clear&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;合并分支&quot;&gt;&lt;a href=&quot;#合并分支&quot; class=&quot;headerlink&quot; title=&quot;合并分支&quot;&gt;&lt;/a&gt;合并分支&lt;/h3&gt;&lt;p&gt;先切换到master分支下，再合并需要的分支&lt;br&gt;&lt;code&gt;git master&lt;/code&gt;&lt;br&gt;&lt;code&gt;git merge test_merge&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果是fast-forward，那是不需要修改文件的合并，不重叠的融合  &lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/5.png&quot; alt=&quot;5&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/6.png&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如果是有冲突的合并，用如下命令取消&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git merge --abort&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;或者是先编辑相冲突的内容，然后再add —&amp;gt; commit,这个commit 是两个merge的commit&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git add master.txt&lt;/code&gt;&lt;br&gt;&lt;code&gt;git commit -m &amp;quot;Test merge&amp;quot;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/4.png&quot; alt=&quot;4&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/9.png&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/7.png&quot; alt=&quot;7&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/8.png&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
-&lt;p&gt;##查看与对比历史记录&lt;/p&gt;
-&lt;p&gt;查看某个commit的详情&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git show HEAD&lt;/code&gt;&lt;br&gt;&lt;code&gt;git show 16e9e16&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如果某个commit是merge commit &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git show master^&lt;/code&gt;(显示merge中的两个commit中的第一副提交)&lt;br&gt;&lt;code&gt;git show master^2&lt;/code&gt; (显示merge中的两个commit中的第二副提交)&lt;/p&gt;
-&lt;p&gt;用show可以显示commit ,tag 的相关信息，查看某标签的具体情况&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git show v0&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看历史详情，用键盘上下翻页，q退出&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git log&lt;/code&gt; （有很多参数）&lt;/p&gt;
-&lt;p&gt;比较工作区和暂存区的差别&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git diff&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;比较历史记录区和暂存区的差别&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git diff --cached&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;比较哪个单词是差异，用颜色标注出来&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git diff --color-words&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;##撤销修改&lt;/p&gt;
-&lt;p&gt;撤销工作区的修改，用暂存区的内容覆盖工作区的内容&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git checkout -- master.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;用某个commit覆盖工作区和暂存区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git checkout INITIAL_COMMIT -- master.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;撤销暂存区的修改&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git reset master.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;用某个commit覆盖暂存区，而不是工作区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git reset INITIAL_COMMIT -- master.txt&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;撤销当前的提交,这也是一个新的提交&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git revert HEAD&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;指向某个commit，并用它还原工作区和暂存区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git reset --hard test&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;指向某个commit，还原暂存区，不还原工作区&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git reset --mixed test&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;指向某个commit&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;git reset --soft test&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;##Vim的编辑命令&lt;br&gt;编辑vim后，按esc键 + :wq 就是保存，不保存就不用加w&lt;/p&gt;
-&lt;p&gt;##Mac command line&lt;br&gt;&lt;code&gt;$ clear&lt;/code&gt; (清楚屏幕上的所有东西)&lt;/p&gt;
+&lt;p&gt;如果是有冲突的合并，用如下命令取消&lt;br&gt;&lt;code&gt;git merge --abort&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;或者是先编辑相冲突的内容，然后再add —&amp;gt; commit,这个commit 是两个merge的commit&lt;br&gt;&lt;code&gt;git add master.txt&lt;/code&gt;&lt;br&gt;&lt;code&gt;git commit -m &amp;quot;Test merge&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/4.png&quot; alt=&quot;4&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/9.png&quot; alt=&quot;9&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/7.png&quot; alt=&quot;7&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/8.png&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;查看与对比历史记录&quot;&gt;&lt;a href=&quot;#查看与对比历史记录&quot; class=&quot;headerlink&quot; title=&quot;查看与对比历史记录&quot;&gt;&lt;/a&gt;查看与对比历史记录&lt;/h2&gt;&lt;p&gt;查看某个commit的详情&lt;br&gt;&lt;code&gt;git show HEAD&lt;/code&gt;&lt;br&gt;&lt;code&gt;git show 16e9e16&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果某个commit是merge commit&lt;br&gt;&lt;code&gt;git show master^&lt;/code&gt;(显示merge中的两个commit中的第一副提交)&lt;br&gt;&lt;code&gt;git show master^2&lt;/code&gt; (显示merge中的两个commit中的第二副提交)&lt;/p&gt;
+&lt;p&gt;用show可以显示commit ,tag 的相关信息，查看某标签的具体情况&lt;br&gt;&lt;code&gt;git show v0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看历史详情，用键盘上下翻页，q退出&lt;br&gt;&lt;code&gt;git log&lt;/code&gt; （有很多参数）&lt;/p&gt;
+&lt;p&gt;比较工作区和暂存区的差别&lt;br&gt;&lt;code&gt;git diff&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;比较历史记录区和暂存区的差别&lt;br&gt;&lt;code&gt;git diff --cached&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;比较哪个单词是差异，用颜色标注出来&lt;br&gt;&lt;code&gt;git diff --color-words&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;撤销修改&quot;&gt;&lt;a href=&quot;#撤销修改&quot; class=&quot;headerlink&quot; title=&quot;撤销修改&quot;&gt;&lt;/a&gt;撤销修改&lt;/h2&gt;&lt;p&gt;撤销工作区的修改，用暂存区的内容覆盖工作区的内容&lt;br&gt;&lt;code&gt;git checkout -- master.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;用某个commit覆盖工作区和暂存区&lt;br&gt;&lt;code&gt;git checkout INITIAL_COMMIT -- master.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;撤销暂存区的修改&lt;br&gt;&lt;code&gt;git reset master.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;用某个commit覆盖暂存区，而不是工作区&lt;br&gt;&lt;code&gt;git reset INITIAL_COMMIT -- master.txt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;撤销当前的提交,这也是一个新的提交&lt;br&gt;&lt;code&gt;git revert HEAD&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;指向某个commit，并用它还原工作区和暂存区&lt;br&gt;&lt;code&gt;git reset --hard test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;指向某个commit，还原暂存区，不还原工作区&lt;br&gt;&lt;code&gt;git reset --mixed test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;指向某个commit&lt;br&gt;&lt;code&gt;git reset --soft test&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Vim的编辑命令&quot;&gt;&lt;a href=&quot;#Vim的编辑命令&quot; class=&quot;headerlink&quot; title=&quot;Vim的编辑命令&quot;&gt;&lt;/a&gt;Vim的编辑命令&lt;/h2&gt;&lt;p&gt;编辑vim后，按esc键 + :wq 就是保存，不保存就不用加w&lt;/p&gt;
+&lt;h2 id=&quot;Mac-command-line&quot;&gt;&lt;a href=&quot;#Mac-command-line&quot; class=&quot;headerlink&quot; title=&quot;Mac command line&quot;&gt;&lt;/a&gt;Mac command line&lt;/h2&gt;&lt;p&gt;&lt;code&gt;$ clear&lt;/code&gt; (清楚屏幕上的所有东西)&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;Git-安装与简单配置&quot;&gt;&lt;a href=&quot;#Git-安装与简单配置&quot; class=&quot;headerlink&quot; title=&quot;Git 安装与简单配置&quot;&gt;&lt;/a&gt;Git 安装与简单配置&lt;/h2&gt;&lt;p&gt;配置或者修改git用户名 &lt;/p&gt;
-&lt;p&gt;&lt;code&gt;$ git c
+      &lt;h2 id=&quot;Git安装与简单配置&quot;&gt;&lt;a href=&quot;#Git安装与简单配置&quot; class=&quot;headerlink&quot; title=&quot;Git安装与简单配置&quot;&gt;&lt;/a&gt;Git安装与简单配置&lt;/h2&gt;&lt;p&gt;配置或者修改git用户名&lt;br&gt;&lt;code&gt;$ git config --g
     
     </summary>
     
