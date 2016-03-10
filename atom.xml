@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-10T08:18:47.000Z</updated>
+  <updated>2016-03-10T11:05:49.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift中的字符串和集合</title>
+    <link href="http://jackliu17.github.io/2016/03/10/Swift%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E9%9B%86%E5%90%88/"/>
+    <id>http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/</id>
+    <published>2016-03-10T08:26:25.000Z</published>
+    <updated>2016-03-10T11:05:49.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;p&gt;Swift中的字符串是结构体，而NSString中的字符串是Class&lt;/p&gt;
+&lt;h2 id=&quot;字符类型及表现形式&quot;&gt;&lt;a href=&quot;#字符类型及表现形式&quot; class=&quot;headerlink&quot; title=&quot;字符类型及表现形式&quot;&gt;&lt;/a&gt;字符类型及表现形式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var s:Character = &amp;quot;美&amp;quot;
+var quote1 = &amp;quot;\&amp;apos;&amp;quot;
+var quote2 = &amp;quot;\u{22}&amp;quot;
+println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;单个字符来指定字符常量，如“A”，“9”&lt;/li&gt;
+&lt;li&gt;转义字符表示特殊字符常量，如”\n”,”\t”&lt;/li&gt;
+&lt;li&gt;使用\u{n}的Unicode形式，n代表一个1~8位的十六进制&lt;/li&gt;
+&lt;li&gt;必须用双引号包起来&lt;/li&gt;
+&lt;li&gt;Swift中的每一个字符代表了一个可扩展字母集&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;字符串的创建&quot;&gt;&lt;a href=&quot;#字符串的创建&quot; class=&quot;headerlink&quot; title=&quot;字符串的创建&quot;&gt;&lt;/a&gt;字符串的创建&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//创建方法1：直接赋值
+var str1 = &amp;quot;Jike&amp;quot;
+//创建方法2：构造函数
+var str2 = String()
+
+//创建多个重复字符的字符串
+var str3 = String(count:4,repeatedValue:Character(&amp;quot;a&amp;quot;))
+var strRep = String(count:4,repeatedValue:UnicodeScalar(&amp;quot;xxxxx&amp;quot;)) //使用unicode
+println(strRep)
+
+//判断字符串是否为空
+println(str3.isEmpty)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字符串的拼接&quot;&gt;&lt;a href=&quot;#字符串的拼接&quot; class=&quot;headerlink&quot; title=&quot;字符串的拼接&quot;&gt;&lt;/a&gt;字符串的拼接&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//拼接方式1.
+var str4 = str1 + &amp;quot;College&amp;quot;
+str1 += &amp;quot;Hello&amp;quot;
+println(str4)
+
+//拼接方式2.
+let char:Character = &amp;quot;!&amp;quot;
+str1.append(char)
+println(str1)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字符串的字符数量&quot;&gt;&lt;a href=&quot;#字符串的字符数量&quot; class=&quot;headerlink&quot; title=&quot;字符串的字符数量&quot;&gt;&lt;/a&gt;字符串的字符数量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;println(&amp;quot;str3 has \(countElements(str3)) characters&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量&lt;/li&gt;
+&lt;li&gt;Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样&lt;/li&gt;
+&lt;li&gt;Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;字符串比较&quot;&gt;&lt;a href=&quot;#字符串比较&quot; class=&quot;headerlink&quot; title=&quot;字符串比较&quot;&gt;&lt;/a&gt;字符串比较&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let quotation = &amp;quot;We are the same&amp;quot;
+let sameQuotation = &amp;quot;We are the same&amp;quot;
+if quotation == sameQuotation {
+println(&amp;quot;These are the same&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;检查字符串是否有特定的前缀后缀&quot;&gt;&lt;a href=&quot;#检查字符串是否有特定的前缀后缀&quot; class=&quot;headerlink&quot; title=&quot;检查字符串是否有特定的前缀后缀&quot;&gt;&lt;/a&gt;检查字符串是否有特定的前缀后缀&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var food = [&amp;quot;Fruits:apple&amp;quot;,
+&amp;quot;Fruits : orange&amp;quot;,
+&amp;quot;Fruits : banana&amp;quot;,
+&amp;quot;Vegetables: tomato&amp;quot;,
+&amp;quot;Vegetables: potato&amp;quot;]
+
+for fry in food{
+if fru.hasPrefix(&amp;quot;Fruits&amp;quot;){
+   println(fru)
+}
+
+if fru.hasSuffix(&amp;quot;o&amp;quot;){
+   println(fru)
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swift中的数组&quot;&gt;&lt;a href=&quot;#Swift中的数组&quot; class=&quot;headerlink&quot; title=&quot;Swift中的数组&quot;&gt;&lt;/a&gt;Swift中的数组&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;p&gt;Swift中的字符串是结构体，而NSString中的字符串是Class&lt;/p&gt;
+&lt;h2 id=&quot;字符类型及表现形式&quot;&gt;&lt;a href
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Swift语言基础</title>

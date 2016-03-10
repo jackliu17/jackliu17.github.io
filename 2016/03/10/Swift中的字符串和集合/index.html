@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="swift,iOS," />
 
 
 
@@ -61,16 +61,28 @@
 
 
 
-<meta name="description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
+字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+var quote1 = &amp;quot;\&amp;apos;&amp;quot;
+var quote2 = &amp;quot;\u{22}&amp;quot;
+println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
 <meta property="og:type" content="article">
-<meta property="og:title" content="今天">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/04/今天/index.html">
+<meta property="og:title" content="Swift中的字符串和集合">
+<meta property="og:url" content="http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
-<meta property="og:updated_time" content="2016-03-04T06:50:31.000Z">
+<meta property="og:description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
+字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+var quote1 = &amp;quot;\&amp;apos;&amp;quot;
+var quote2 = &amp;quot;\u{22}&amp;quot;
+println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
+<meta property="og:updated_time" content="2016-03-10T11:05:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今天">
-<meta name="twitter:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="twitter:title" content="Swift中的字符串和集合">
+<meta name="twitter:description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
+字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+var quote1 = &amp;quot;\&amp;apos;&amp;quot;
+var quote2 = &amp;quot;\u{22}&amp;quot;
+println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
 
 
 
@@ -88,7 +100,7 @@
   };
 </script>
 
-  <title> 今天 | Cowboy Tech </title>
+  <title> Swift中的字符串和集合 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +242,7 @@
             
             
               
-                今天
+                Swift中的字符串和集合
               
             
           </h1>
@@ -242,19 +254,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
+            <time itemprop="dateCreated" datetime="2016-03-10T19:26:25+11:00" content="2016-03-10">
+              2016-03-10
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
+                <a href="/2016/03/10/Swift中的字符串和集合/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/10/Swift中的字符串和集合/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,8 +307,67 @@
       
 
       
-        <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
+        <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>Swift中的字符串是结构体，而NSString中的字符串是Class</p>
+<h2 id="字符类型及表现形式"><a href="#字符类型及表现形式" class="headerlink" title="字符类型及表现形式"></a>字符类型及表现形式</h2><pre><code>var s:Character = &quot;美&quot;
+var quote1 = &quot;\&apos;&quot;
+var quote2 = &quot;\u{22}&quot;
+println(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
+</code></pre><ol>
+<li>单个字符来指定字符常量，如“A”，“9”</li>
+<li>转义字符表示特殊字符常量，如”\n”,”\t”</li>
+<li>使用\u{n}的Unicode形式，n代表一个1~8位的十六进制</li>
+<li>必须用双引号包起来</li>
+<li>Swift中的每一个字符代表了一个可扩展字母集</li>
+</ol>
+<h2 id="字符串的创建"><a href="#字符串的创建" class="headerlink" title="字符串的创建"></a>字符串的创建</h2><pre><code>//创建方法1：直接赋值
+var str1 = &quot;Jike&quot;
+//创建方法2：构造函数
+var str2 = String()
 
+//创建多个重复字符的字符串
+var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
+var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
+println(strRep)
+
+//判断字符串是否为空
+println(str3.isEmpty)
+</code></pre><h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><pre><code>//拼接方式1.
+var str4 = str1 + &quot;College&quot;
+str1 += &quot;Hello&quot;
+println(str4)
+
+//拼接方式2.
+let char:Character = &quot;!&quot;
+str1.append(char)
+println(str1)
+</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>println(&quot;str3 has \(countElements(str3)) characters&quot;)
+</code></pre><ol>
+<li>通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量</li>
+<li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样</li>
+<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定</li>
+</ol>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
+let sameQuotation = &quot;We are the same&quot;
+if quotation == sameQuotation {
+println(&quot;These are the same&quot;)
+}
+</code></pre><h2 id="检查字符串是否有特定的前缀后缀"><a href="#检查字符串是否有特定的前缀后缀" class="headerlink" title="检查字符串是否有特定的前缀后缀"></a>检查字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
+&quot;Fruits : orange&quot;,
+&quot;Fruits : banana&quot;,
+&quot;Vegetables: tomato&quot;,
+&quot;Vegetables: potato&quot;]
+
+for fry in food{
+if fru.hasPrefix(&quot;Fruits&quot;){
+   println(fru)
+}
+
+if fru.hasSuffix(&quot;o&quot;){
+   println(fru)
+}
+
+}
+</code></pre><h1 id="Swift中的数组"><a href="#Swift中的数组" class="headerlink" title="Swift中的数组"></a>Swift中的数组</h1>
       
     </div>
 
@@ -289,18 +379,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/03/10/Swift语言基础/" rel="next" title="Swift语言基础">
+                <i class="fa fa-chevron-left"></i> Swift语言基础
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/09/Git本地操作/" rel="prev" title="Git本地操作">
-                Git本地操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,7 +530,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符类型及表现形式"><span class="nav-number">1.1.</span> <span class="nav-text">字符类型及表现形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的创建"><span class="nav-number">1.2.</span> <span class="nav-text">字符串的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的拼接"><span class="nav-number">1.3.</span> <span class="nav-text">字符串的拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的字符数量"><span class="nav-number">1.4.</span> <span class="nav-text">字符串的字符数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串比较"><span class="nav-number">1.5.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查字符串是否有特定的前缀后缀"><span class="nav-number">1.6.</span> <span class="nav-text">检查字符串是否有特定的前缀后缀</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中的数组"><span class="nav-number">2.</span> <span class="nav-text">Swift中的数组</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -690,9 +788,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/04/今天/';
-      var disqus_title = '今天';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/04/今天/';
+      var disqus_identifier = '2016/03/10/Swift中的字符串和集合/';
+      var disqus_title = 'Swift中的字符串和集合';
+      var disqus_url = 'http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
