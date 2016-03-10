@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-10T08:15:18.000Z</updated>
+  <updated>2016-03-10T08:16:22.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/03/10/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
     <id>http://jackliu17.github.io/2016/03/10/Swift语言基础/</id>
     <published>2016-03-10T05:22:51.000Z</published>
-    <updated>2016-03-10T08:15:18.000Z</updated>
+    <updated>2016-03-10T08:16:22.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;常量和变量&quot;&gt;&lt;a href=&quot;#常量和变量&quot; class=&quot;headerlink&quot; title=&quot;常量和变量&quot;&gt;&lt;/a&gt;常量和变量&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var str = &amp;quot;Hello&amp;quot;  
 var name = &amp;quot;Lucky&amp;quot;    
@@ -110,7 +110,7 @@ let a = 20
 let b = a &amp;amp;/ 0
 let c = a &amp;amp;% 0
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;位运算符&quot;&gt;&lt;a href=&quot;#位运算符&quot; class=&quot;headerlink&quot; title=&quot;位运算符&quot;&gt;&lt;/a&gt;位运算符&lt;/h2&gt;&lt;p&gt;&amp;amp; 按位与&lt;br&gt;|  或&lt;br&gt;^  异或&lt;br&gt;~  取反&lt;br&gt;&amp;lt;&amp;lt; 左位移&lt;br&gt;右位移 &amp;gt;&amp;gt;   &lt;/p&gt;
-&lt;h2 id=&quot;扩展后的赋值运算符&quot;&gt;&lt;a href=&quot;#扩展后的赋值运算符&quot; class=&quot;headerlink&quot; title=&quot;扩展后的赋值运算符&quot;&gt;&lt;/a&gt;扩展后的赋值运算符&lt;/h2&gt;&lt;h1 id=&quot;运算符-“-”-对于-x-y-等价于-x-x-y&quot;&gt;&lt;a href=&quot;#运算符-“-”-对于-x-y-等价于-x-x-y&quot; class=&quot;headerlink&quot; title=&quot;运算符 “+= ” 对于 x+=y 等价于 x = x+y  &quot;&gt;&lt;/a&gt;运算符 “+= ” 对于 x+=y 等价于 x = x+y  &lt;/h1&gt;&lt;p&gt;*=&lt;br&gt;/=&lt;br&gt;&amp;amp;=&lt;br&gt;|=  &lt;/p&gt;
+&lt;h2 id=&quot;扩展后的赋值运算符&quot;&gt;&lt;a href=&quot;#扩展后的赋值运算符&quot; class=&quot;headerlink&quot; title=&quot;扩展后的赋值运算符&quot;&gt;&lt;/a&gt;扩展后的赋值运算符&lt;/h2&gt;&lt;p&gt;-=&lt;br&gt;*=&lt;br&gt;/=&lt;br&gt;&amp;amp;=&lt;br&gt;|=&lt;br&gt;运算符 “+= ” 对于 x+=y 等价于 x = x+y    &lt;/p&gt;
 &lt;h2 id=&quot;区间运算符&quot;&gt;&lt;a href=&quot;#区间运算符&quot; class=&quot;headerlink&quot; title=&quot;区间运算符&quot;&gt;&lt;/a&gt;区间运算符&lt;/h2&gt;&lt;p&gt;a..&amp;lt;b (包含a,但不包含b)&lt;br&gt;a…b（包含a,也包含b）&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for a in 0..&amp;lt;10&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for a in 0...10&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
