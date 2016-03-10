@@ -395,15 +395,22 @@ let a = 20
 let b = a &amp;/ 0
 let c = a &amp;% 0
 </code></pre><h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>&amp; 按位与<br>|  或<br>^  异或<br>~  取反<br>&lt;&lt; 左位移<br>右位移 &gt;&gt;   </p>
-<h2 id="扩展后的赋值运算符"><a href="#扩展后的赋值运算符" class="headerlink" title="扩展后的赋值运算符"></a>扩展后的赋值运算符</h2><h1 id="对于-x-y-等价于-x-x-y"><a href="#对于-x-y-等价于-x-x-y" class="headerlink" title="+= 对于 x+=y 等价于 x = x+y  "></a>+= 对于 x+=y 等价于 x = x+y  </h1><p>*=<br>/=<br>&amp;=<br>|=  </p>
+<h2 id="扩展后的赋值运算符"><a href="#扩展后的赋值运算符" class="headerlink" title="扩展后的赋值运算符"></a>扩展后的赋值运算符</h2><h1 id="gt-对于-x-y-等价于-x-x-y"><a href="#gt-对于-x-y-等价于-x-x-y" class="headerlink" title="&gt; += 对于 x+=y 等价于 x = x+y  "></a>&gt; += 对于 x+=y 等价于 x = x+y  </h1><p>*=<br>/=<br>&amp;=<br>|=  </p>
 <h2 id="区间运算符"><a href="#区间运算符" class="headerlink" title="区间运算符"></a>区间运算符</h2><p>a..&lt;b (包含a,但不包含b)<br>a…b（包含a,也包含b）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for a in 0..&lt;10&#123;</span><br><span class="line">println(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for a in 0...10&#123;</span><br><span class="line">println(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="比较运算符，结果为BOOL值"><a href="#比较运算符，结果为BOOL值" class="headerlink" title="比较运算符，结果为BOOL值"></a>比较运算符，结果为BOOL值</h2><p>=== 特征相等运算符<br>!== 特征不等运算符  </p>
-<pre><code>var c= a === b //只有a和b指向的类型实例相同时，c为true
-</code></pre><h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>&amp;&amp; 与<br>|| 或<br>!  非</p>
+<h2 id="比较运算符，结果为BOOL值"><a href="#比较运算符，结果为BOOL值" class="headerlink" title="比较运算符，结果为BOOL值"></a>比较运算符，结果为BOOL值</h2><p><code>var c= a === b //只有a和b指向的类型实例相同时，c为true</code></p>
+<ol>
+<li>=== 特征相等运算符  </li>
+<li>!== 特征不等运算符  </li>
+</ol>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>&amp;&amp; 与<br>|| 或<br>!  非</p>
 <h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 5</span><br><span class="line">var b = 3</span><br><span class="line">var str = a &gt; b ? &quot;a大于b&quot;:&quot;a小于b&quot; //如果条件成立就执行?后的，否则就执行:后的</span><br></pre></td></tr></table></figure>
-<h2 id="空合并运算符-a-b"><a href="#空合并运算符-a-b" class="headerlink" title="空合并运算符 a??b"></a>空合并运算符 a??b</h2><p>将对可选类型a进行空判断，如果a包含一个值就进行解封<br>否则就返回一个默认值b<br>默认值b的类型必须要和a存储值的类型保持一致  </p>
+<h2 id="空合并运算符-a-b"><a href="#空合并运算符-a-b" class="headerlink" title="空合并运算符 a??b"></a>空合并运算符 a??b</h2><ol>
+<li>将对可选类型a进行空判断，如果a包含一个值就进行解封</li>
+<li>否则就返回一个默认值b  </li>
+<li>默认值b的类型必须要和a存储值的类型保持一致  </li>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let words = &quot;hello&quot;</span><br><span class="line">var say: String? = &quot;jike&quot; </span><br><span class="line">var content = say ?? words</span><br><span class="line">println(content)</span><br></pre></td></tr></table></figure>
 <h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>语句的条件执行体必须放在花括号中</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var age = 30</span><br><span class="line">if age &gt; 20 &#123;</span><br><span class="line">  println(“年龄大于20岁”)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  println(&quot;年龄小于20岁&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
