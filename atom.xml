@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-11T04:30:16.000Z</updated>
+  <updated>2016-03-11T07:01:09.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,21 +20,16 @@
     <link href="http://jackliu17.github.io/2016/03/11/Swift%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85/"/>
     <id>http://jackliu17.github.io/2016/03/11/Swift中的函数和闭包/</id>
     <published>2016-03-11T01:38:16.000Z</published>
-    <updated>2016-03-11T04:30:16.000Z</updated>
+    <updated>2016-03-11T07:01:09.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h1&gt;&lt;h2 id=&quot;定义和调用函数&quot;&gt;&lt;a href=&quot;#定义和调用函数&quot; class=&quot;headerlink&quot; title=&quot;定义和调用函数&quot;&gt;&lt;/a&gt;定义和调用函数&lt;/h2&gt;&lt;p&gt;fun 函数名（形参列表）-&amp;gt; 返回值类型 {&lt;br&gt;//可执行语句组成的函数&lt;br&gt;}&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 两个参数
-
-func sayHello(personName:String)-&amp;gt; String {
+&lt;h3 id=&quot;两个参数&quot;&gt;&lt;a href=&quot;#两个参数&quot; class=&quot;headerlink&quot; title=&quot;两个参数&quot;&gt;&lt;/a&gt;两个参数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func sayHello(personName:String)-&amp;gt; String {
 
   return &amp;quot;Hello ,&amp;quot; + personName + &amp;quot;!&amp;quot;
 }
 
 println(sayHello(&amp;quot;Anna&amp;quot;))
-
-//没有参数
-
-func sayHellloWorld() -&amp;gt; String{
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;没有参数&quot;&gt;&lt;a href=&quot;#没有参数&quot; class=&quot;headerlink&quot; title=&quot;没有参数&quot;&gt;&lt;/a&gt;没有参数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func sayHellloWorld() -&amp;gt; String{
 
 return &amp;quot;Hello world!&amp;quot;
 }
@@ -65,18 +60,18 @@ return width * height
 }
 
 println (area(width:3.4,height:4.7)) //width和height为外部函数名
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;可变参数&quot;&gt;&lt;a href=&quot;#可变参数&quot; class=&quot;headerlink&quot; title=&quot;可变参数&quot;&gt;&lt;/a&gt;可变参数&lt;/h3&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;可变参数&quot;&gt;&lt;a href=&quot;#可变参数&quot; class=&quot;headerlink&quot; title=&quot;可变参数&quot;&gt;&lt;/a&gt;可变参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sum(numbers:Int...)-&amp;gt;Int &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var total: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for num in numbers &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   total += num&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(total)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;return total&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sum(1,3,4,5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
 &lt;li&gt;在参数类型后面添加…表示该参数可以接受多个参数值&lt;/li&gt;
-&lt;li&gt;一个函数当中只有一个可变参数,并且位于列表的最后&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sum(numbers:Int...)-&amp;gt;Int &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var total: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for num in numbers &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   total += num&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(total)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;return total&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sum(1,3,4,5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
+&lt;li&gt;一个函数当中只有一个可变参数,并且位于列表的最后&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h3&gt;&lt;ol&gt;
+&lt;h3 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; func sayHi(msg:String, name:String=&amp;quot;Lily&amp;quot;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;, name:&amp;quot;Tom&amp;quot;) //如果传入了，就使用传入的新值&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//忽略默认值的外部参数名，添加下划线&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     func sayHi(msg:String, _name:String=&amp;quot;Lily&amp;quot;)&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      println (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     sayHi(&amp;quot;Welcome to our city&amp;quot;,&amp;quot;Tom&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
 &lt;li&gt;带有默认值的参数是有外部参数名的&lt;/li&gt;
 &lt;li&gt;添加下划线就可以忽略&lt;/li&gt;
 &lt;li&gt;如果函数里有可变参数也有默认参数，可变参数放在最后面，默认参数出现在次后面&lt;/li&gt;
 &lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; func sayHi(msg:String, name:String=&amp;quot;Lily&amp;quot;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;, name:&amp;quot;Tom&amp;quot;) //如果传入了，就使用传入的新值&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//忽略默认值的外部参数名，添加下划线&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     func sayHi(msg:String, _name:String=&amp;quot;Lily&amp;quot;)&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      println (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     sayHi(&amp;quot;Welcome to our city&amp;quot;,&amp;quot;Tom&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;常量形参数和变量形参&quot;&gt;&lt;a href=&quot;#常量形参数和变量形参&quot; class=&quot;headerlink&quot; title=&quot;常量形参数和变量形参&quot;&gt;&lt;/a&gt;常量形参数和变量形参&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//这里的形参是个变量，如果去掉var就是个常量
 func factorial(var number:Int) -&amp;gt; Int{
 var result:Int = 1
@@ -101,9 +96,192 @@ println(“交换之后结果为:a =\(a),b= \(b)”)
 &lt;li&gt;In-out参数就是强制传递变量的指针&lt;/li&gt;
 &lt;li&gt;只能传入变量作为实参&lt;/li&gt;
 &lt;li&gt;输入输出不能带有默认值&lt;/li&gt;
-&lt;li&gt;如果你用关键字inout标记了一个参数，这个参数不能再用var或者let去标记&lt;h2 id=&quot;函数返回值&quot;&gt;&lt;a href=&quot;#函数返回值&quot; class=&quot;headerlink&quot; title=&quot;函数返回值&quot;&gt;&lt;/a&gt;函数返回值&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;如果你用关键字inout标记了一个参数，这个参数不能再用var或者let去标记&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;函数类型&quot;&gt;&lt;a href=&quot;#函数类型&quot; class=&quot;headerlink&quot; title=&quot;函数类型&quot;&gt;&lt;/a&gt;函数类型&lt;/h2&gt;&lt;h2 id=&quot;递归函数&quot;&gt;&lt;a href=&quot;#递归函数&quot; class=&quot;headerlink&quot; title=&quot;递归函数&quot;&gt;&lt;/a&gt;递归函数&lt;/h2&gt;&lt;h2 id=&quot;函数重载&quot;&gt;&lt;a href=&quot;#函数重载&quot; class=&quot;headerlink&quot; title=&quot;函数重载&quot;&gt;&lt;/a&gt;函数重载&lt;/h2&gt;&lt;h2 id=&quot;嵌套函数&quot;&gt;&lt;a href=&quot;#嵌套函数&quot; class=&quot;headerlink&quot; title=&quot;嵌套函数&quot;&gt;&lt;/a&gt;嵌套函数&lt;/h2&gt;&lt;h1 id=&quot;闭包&quot;&gt;&lt;a href=&quot;#闭包&quot; class=&quot;headerlink&quot; title=&quot;闭包&quot;&gt;&lt;/a&gt;闭包&lt;/h1&gt;</content>
+&lt;h2 id=&quot;函数返回值&quot;&gt;&lt;a href=&quot;#函数返回值&quot; class=&quot;headerlink&quot; title=&quot;函数返回值&quot;&gt;&lt;/a&gt;函数返回值&lt;/h2&gt;&lt;h3 id=&quot;void&quot;&gt;&lt;a href=&quot;#void&quot; class=&quot;headerlink&quot; title=&quot;void&quot;&gt;&lt;/a&gt;void&lt;/h3&gt;&lt;p&gt;没有指定返回类型的函数总返回void,在swift中，void可以理解为空元组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func sayHi2(){
+println(&amp;quot;welcome&amp;quot;)
+}
+sayHi2()
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;多个返回值&quot;&gt;&lt;a href=&quot;#多个返回值&quot; class=&quot;headerlink&quot; title=&quot;多个返回值&quot;&gt;&lt;/a&gt;多个返回值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func area(width:Double,height:Double)-&amp;gt;(Double,Double){
+var s = width * height
+var c = (width + height) * 2
+return (s,c)
+}
+println(area(3.1, 3.4))
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;函数类型&quot;&gt;&lt;a href=&quot;#函数类型&quot; class=&quot;headerlink&quot; title=&quot;函数类型&quot;&gt;&lt;/a&gt;函数类型&lt;/h2&gt;&lt;h3 id=&quot;函数变量&quot;&gt;&lt;a href=&quot;#函数变量&quot; class=&quot;headerlink&quot; title=&quot;函数变量&quot;&gt;&lt;/a&gt;函数变量&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func addTwoInts(a:Int,b:Int)-&amp;gt;Int{
+
+return a+b
+}
+
+func multiplyTwoInts(a:Int,b:Int)-&amp;gt;Int{
+
+return a*b
+}
+
+var mathFunction:(Int,Int) -&amp;gt; Int = multiplyTwoInts
+println(&amp;quot;Result:\(mathFunction(2,3))&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;函数作为参数&quot;&gt;&lt;a href=&quot;#函数作为参数&quot; class=&quot;headerlink&quot; title=&quot;函数作为参数&quot;&gt;&lt;/a&gt;函数作为参数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func printMathResult(mathFunctioin:(Int,Int)-&amp;gt;Int,a:Int,b:Int){
+
+println(&amp;quot;Result:\(mathFunction(a,b))&amp;quot;)
+}
+
+printMathResult(multiplyTwoInts,3,5)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;函数类型作为返回值类型&quot;&gt;&lt;a href=&quot;#函数类型作为返回值类型&quot; class=&quot;headerlink&quot; title=&quot;函数类型作为返回值类型&quot;&gt;&lt;/a&gt;函数类型作为返回值类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func squre(num:Int) -&amp;gt;Int{
+
+return num * num
+}
+
+func cube(num:Int) -&amp;gt;Int{
+
+return num * num * num
+}
+
+func getMathFunc (#type: String)-&amp;gt; (Int) -&amp;gt;Int {
+switch (type){
+   case &amp;quot;squre&amp;quot;:
+   return squre
+default:
+   return cube
+}
+}
+
+var mathFunc = getMathFunc(type:&amp;quot;other&amp;quot;)
+println(mathFunc(5))
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;函数重载&quot;&gt;&lt;a href=&quot;#函数重载&quot; class=&quot;headerlink&quot; title=&quot;函数重载&quot;&gt;&lt;/a&gt;函数重载&lt;/h2&gt;&lt;p&gt;形参和返回值不一样的同名函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//1.
+func test(){
+println(&amp;quot;无参数的test()函数&amp;quot;)
+}
+
+//2.
+func test (msg: String){
+println(&amp;quot;重载的test()函数\(msg)&amp;quot;)
+}
+
+//3.
+func test(msg: String) -&amp;gt; String {
+println(&amp;quot;重载的test()函数\(msg),带返回值&amp;quot;)
+return &amp;quot;test&amp;quot;
+}
+
+//4.
+func test(#msg: String){
+  println (&amp;quot;重载的test函数，外部参数为\(msg)&amp;quot;)
+}
+
+//调用1
+test()
+
+//调用4
+var result:Void = test(msg:&amp;quot;Jike&amp;quot;)
+
+//调用3
+var result2: String = test(&amp;quot;Welcome , Geek&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;嵌套函数&quot;&gt;&lt;a href=&quot;#嵌套函数&quot; class=&quot;headerlink&quot; title=&quot;嵌套函数&quot;&gt;&lt;/a&gt;嵌套函数&lt;/h2&gt;&lt;p&gt;函数体内部所定义的函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func getMathFunc(#type: String) -&amp;gt; (Int) -&amp;gt;Int{
+
+func squre (num:Int) -&amp;gt; Int{
+
+return num * num
+}
+
+func cube (num:Int) -&amp;gt;Int{
+
+return num * num * num
+}
+
+switch(type){
+
+   case &amp;quot;squre&amp;quot;
+   return squre
+default:
+   return cube
+}
+
+}
+
+var mathFunc = getMathFunc (type:&amp;quot;squre&amp;quot;)
+println(mathFunc(4)) //outcome is 16
+
+var mathFunc2 = getMathFunc (type:&amp;quot;other&amp;quot;)
+println(mathFunc(4)) //outcome is 64
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;闭包表达式&quot;&gt;&lt;a href=&quot;#闭包表达式&quot; class=&quot;headerlink&quot; title=&quot;闭包表达式&quot;&gt;&lt;/a&gt;闭包表达式&lt;/h1&gt;&lt;h2 id=&quot;闭包的写法&quot;&gt;&lt;a href=&quot;#闭包的写法&quot; class=&quot;headerlink&quot; title=&quot;闭包的写法&quot;&gt;&lt;/a&gt;闭包的写法&lt;/h2&gt;&lt;p&gt;{ （形参列表）-&amp;gt; 返回值类型 in&lt;br&gt;   可执行表达式&lt;br&gt;}&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func getMathFunc(#type: String) -&amp;gt; (Int) -&amp;gt;Int{
+
+func squre (num:Int) -&amp;gt; Int{
+
+return num * num
+}
+
+func cube (num:Int) -&amp;gt;Int{
+
+return num * num * num
+}
+
+switch(type){
+
+   case &amp;quot;squre&amp;quot;
+   return { (num: Int) -&amp;gt; Int in
+      return num * num
+   }
+default:
+   return { (num:Int) -&amp;gt; Int in
+      return num * num * num
+
+   }
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;闭包的应用&quot;&gt;&lt;a href=&quot;#闭包的应用&quot; class=&quot;headerlink&quot; title=&quot;闭包的应用&quot;&gt;&lt;/a&gt;闭包的应用&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var mathFunc = getMathFunc(type: &amp;quot;squre&amp;quot;)
+println(mathFunc(5)) //outcome is 25
+mathFunc = getMathFunc (type: &amp;quot;other&amp;quot;)
+println(mathFunc(5)) //outcome is 125
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;利用上下文推断类型&quot;&gt;&lt;a href=&quot;#利用上下文推断类型&quot; class=&quot;headerlink&quot; title=&quot;利用上下文推断类型&quot;&gt;&lt;/a&gt;利用上下文推断类型&lt;/h2&gt;&lt;p&gt;Swift可以推断闭包的形参类型和返回值类型&lt;br&gt;函数和闭包是统一的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var squre:(Int) -&amp;gt; Int = {(num) in return num * num}
+println(squre(3))   //outcome is 9
+
+//因为可以推断，所以小括号也是可以省略的
+var squre:(Int) -&amp;gt; Int = {num in return num * num}
+println(squre(3))   //outcome is 9
+
+//省略形参名，通过$0,$1...来引用第一个，第二个参数
+var squre:(Int) -&amp;gt; Int = {$0 * $0}
+println(squre(3))  //out come is 9
+
+var result: Int = {
+
+var result = 1
+for i in 1...$1{
+   result *= $0
+}
+return result
+}(4,3)
+println(result) //outcome is 64
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;尾随闭包&quot;&gt;&lt;a href=&quot;#尾随闭包&quot; class=&quot;headerlink&quot; title=&quot;尾随闭包&quot;&gt;&lt;/a&gt;尾随闭包&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;func someFunction(num:Int, fn:(Int) -&amp;gt;()){
+
+}
+
+someFunctioin (20,{})
+
+//使用尾随闭包调用函数的格式，将小括号提前
+someFunction(20){}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;捕获上下文中的变量或者常量&quot;&gt;&lt;a href=&quot;#捕获上下文中的变量或者常量&quot; class=&quot;headerlink&quot; title=&quot;捕获上下文中的变量或者常量&quot;&gt;&lt;/a&gt;捕获上下文中的变量或者常量&lt;/h2&gt;&lt;p&gt;闭包可以访问或者修改其所在上下文中的变量或常量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func makeArr(ele:String) -&amp;gt; () -&amp;gt; [String]{
+
+//创建一个不包含任何元素的数组
+var arr: [String] = []
+func addElement() -&amp;gt;[String]{
+
+//向arr数组中添加一个元素
+arr.append(ele)
+
+return arr
+}
+
+return addElement
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
