@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-10T11:05:49.000Z</updated>
+  <updated>2016-03-11T01:33:25.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/03/10/Swift%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E9%9B%86%E5%90%88/"/>
     <id>http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/</id>
     <published>2016-03-10T08:26:25.000Z</published>
-    <updated>2016-03-10T11:05:49.000Z</updated>
+    <updated>2016-03-11T01:33:25.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;p&gt;Swift中的字符串是结构体，而NSString中的字符串是Class&lt;/p&gt;
 &lt;h2 id=&quot;字符类型及表现形式&quot;&gt;&lt;a href=&quot;#字符类型及表现形式&quot; class=&quot;headerlink&quot; title=&quot;字符类型及表现形式&quot;&gt;&lt;/a&gt;字符类型及表现形式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var s:Character = &amp;quot;美&amp;quot;
@@ -80,9 +80,95 @@ if fru.hasPrefix(&amp;quot;Fruits&amp;quot;){
 if fru.hasSuffix(&amp;quot;o&amp;quot;){
    println(fru)
 }
-
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swift中的数组&quot;&gt;&lt;a href=&quot;#Swift中的数组&quot; class=&quot;headerlink&quot; title=&quot;Swift中的数组&quot;&gt;&lt;/a&gt;Swift中的数组&lt;/h1&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swift中的数组&quot;&gt;&lt;a href=&quot;#Swift中的数组&quot; class=&quot;headerlink&quot; title=&quot;Swift中的数组&quot;&gt;&lt;/a&gt;Swift中的数组&lt;/h1&gt;&lt;h2 id=&quot;数组的创建&quot;&gt;&lt;a href=&quot;#数组的创建&quot; class=&quot;headerlink&quot; title=&quot;数组的创建&quot;&gt;&lt;/a&gt;数组的创建&lt;/h2&gt;&lt;h3 id=&quot;方式1&quot;&gt;&lt;a href=&quot;#方式1&quot; class=&quot;headerlink&quot; title=&quot;方式1.&quot;&gt;&lt;/a&gt;方式1.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var myArr = Array&amp;lt;String&amp;gt;()  
+var num = Array&amp;lt;Int&amp;gt;(count:3,repeatedValue:1)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方式2&quot;&gt;&lt;a href=&quot;#方式2&quot; class=&quot;headerlink&quot; title=&quot;方式2.&quot;&gt;&lt;/a&gt;方式2.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var someInts = [Int]()
+var arr:[Int]=[1,2,3]
+var threeDoubles = [Double](count:3, repeatedValue:0.0)
+var food = [&amp;quot;apple&amp;quot;,&amp;quot;orange&amp;quot;,&amp;quot;bnana&amp;quot;]
+println(food[3])
+println(food.count)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;AnyObject-and-Any&quot;&gt;&lt;a href=&quot;#AnyObject-and-Any&quot; class=&quot;headerlink&quot; title=&quot;AnyObject and Any&quot;&gt;&lt;/a&gt;AnyObject and Any&lt;/h3&gt;&lt;p&gt;Swift中有两种特殊的object:  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Any:表示任何数据类型&lt;/li&gt;
+&lt;li&gt;AnyObject:表示任何对象&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//因为数组里的数据不一样，这里的数组是AnyObject&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var shoppingList = [&amp;quot;Eggs&amp;quot;,123,true] &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    for item in shoppingList &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      println(item)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for fruit in food&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fruit = &amp;quot;good&amp;quot; //error, fruit默认是let类型&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;数组的可变性&quot;&gt;&lt;a href=&quot;#数组的可变性&quot; class=&quot;headerlink&quot; title=&quot;数组的可变性&quot;&gt;&lt;/a&gt;数组的可变性&lt;/h2&gt;&lt;h3 id=&quot;添加&quot;&gt;&lt;a href=&quot;#添加&quot; class=&quot;headerlink&quot; title=&quot;添加&quot;&gt;&lt;/a&gt;添加&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//1. 用append()在数组尾部添加
+food.append(&amp;quot;Vegetables:mushroom&amp;quot;)
+
+//2. 通过加法添加数组元素
+food += [&amp;quot;pineapple&amp;quot;,&amp;quot;pity&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;替换&quot;&gt;&lt;a href=&quot;#替换&quot; class=&quot;headerlink&quot; title=&quot;替换&quot;&gt;&lt;/a&gt;替换&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;food[0...2] = [&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;]
+//从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;插入&quot;&gt;&lt;a href=&quot;#插入&quot; class=&quot;headerlink&quot; title=&quot;插入&quot;&gt;&lt;/a&gt;插入&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;food.insert(&amp;quot;Meat&amp;quot;,atIndex:0)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;删除某一项&quot;&gt;&lt;a href=&quot;#删除某一项&quot; class=&quot;headerlink&quot; title=&quot;删除某一项&quot;&gt;&lt;/a&gt;删除某一项&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;food.removeAtIndex(0)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;删除最后一项&quot;&gt;&lt;a href=&quot;#删除最后一项&quot; class=&quot;headerlink&quot; title=&quot;删除最后一项&quot;&gt;&lt;/a&gt;删除最后一项&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;food.removeLast()
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;删除所有&quot;&gt;&lt;a href=&quot;#删除所有&quot; class=&quot;headerlink&quot; title=&quot;删除所有&quot;&gt;&lt;/a&gt;删除所有&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;food.removeAll(keepCapacity:false)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;字典&quot;&gt;&lt;a href=&quot;#字典&quot; class=&quot;headerlink&quot; title=&quot;字典&quot;&gt;&lt;/a&gt;字典&lt;/h1&gt;&lt;h2 id=&quot;声明&quot;&gt;&lt;a href=&quot;#声明&quot; class=&quot;headerlink&quot; title=&quot;声明&quot;&gt;&lt;/a&gt;声明&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//Dictionary&amp;lt;KeyType,valueType&amp;gt;
+var dic1: Dictionary&amp;lt;String,String&amp;gt;
+
+//[KeyType:valueType]
+var scores:[String:Int]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建&quot;&gt;&lt;a href=&quot;#创建&quot; class=&quot;headerlink&quot; title=&quot;创建&quot;&gt;&lt;/a&gt;创建&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;dic1 = Dictionary&amp;lt;String,String&amp;gt;()
+scores = Dictionary&amp;lt;String,Int&amp;gt;(minimumCapacity;5)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;空字典&quot;&gt;&lt;a href=&quot;#空字典&quot; class=&quot;headerlink&quot; title=&quot;空字典&quot;&gt;&lt;/a&gt;空字典&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var emptyDic:[String:Double] = [:] 
+println(emptyDic.isEmpty)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字典的使用&quot;&gt;&lt;a href=&quot;#字典的使用&quot; class=&quot;headerlink&quot; title=&quot;字典的使用&quot;&gt;&lt;/a&gt;字典的使用&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型
+var person = [&amp;quot;age&amp;quot;:18,&amp;quot;name&amp;quot;:&amp;quot;Tom&amp;quot;,&amp;quot;身高&amp;quot;:178]
+
+//这样会报错，因为是将NSObject转为int
+var height:Int? = person[&amp;quot;身高&amp;quot;]  
+if height != nil {
+   println(height!)
+}
+
+//以下才正确
+var person = [&amp;quot;age&amp;quot;:18,&amp;quot;name&amp;quot;:&amp;quot;Tom&amp;quot;,&amp;quot;身高&amp;quot;:&amp;quot;178&amp;quot;]
+
+var height:String? = person[&amp;quot;身高&amp;quot;]  
+if height != nil {
+   println(height!)
+}
+
+println(person[&amp;quot;age&amp;quot;])
+
+//不存才的key，返回为nil
+println(person[&amp;quot;weight&amp;quot;])
+
+//对该值重新赋值
+person[&amp;quot;name&amp;quot;] = &amp;quot;Jack&amp;quot;
+
+//对不存在的key设置value,字典将会添加k-v对
+person[&amp;quot;weight&amp;quot;] = 90
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;数组是有序的，字典是无序的&lt;/li&gt;
+&lt;li&gt;通过常量或者变量决定字典是否可变&lt;/li&gt;
+&lt;li&gt;如果没有显示数据类型声明，字典就会根据值进行推断&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;字典的替换&quot;&gt;&lt;a href=&quot;#字典的替换&quot; class=&quot;headerlink&quot; title=&quot;字典的替换&quot;&gt;&lt;/a&gt;字典的替换&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;该方法返回更新值之前的原值&lt;/li&gt;
+&lt;li&gt;键不存在对应值的时候设置值&lt;/li&gt;
+&lt;li&gt;键存在时更新已存在的值&lt;/li&gt;
+&lt;li&gt;键不存在时，不发生替换，不返回任何东西&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;if let oldName = person.updateValue(&amp;quot;Lucky&amp;quot;,forKey:&amp;quot;name&amp;quot;){
+   println(&amp;quot;原来的值是:\(oldName)&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字典的遍历&quot;&gt;&lt;a href=&quot;#字典的遍历&quot; class=&quot;headerlink&quot; title=&quot;字典的遍历&quot;&gt;&lt;/a&gt;字典的遍历&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//使用元组
+for (key,value) in person{
+ println(&amp;quot;\(key):\(value)&amp;quot;)
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字典的删除&quot;&gt;&lt;a href=&quot;#字典的删除&quot; class=&quot;headerlink&quot; title=&quot;字典的删除&quot;&gt;&lt;/a&gt;字典的删除&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//移除单个值
+person.removeValueForKey(&amp;quot;name&amp;quot;)
+
+//移除所有值
+person.removeAll(keepCapacity:false)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字典键和值的取出&quot;&gt;&lt;a href=&quot;#字典键和值的取出&quot; class=&quot;headerlink&quot; title=&quot;字典键和值的取出&quot;&gt;&lt;/a&gt;字典键和值的取出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let keysArr = [String](person.keys)
+let valueArr = [String](person.values)
+println(valuesArr)
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
