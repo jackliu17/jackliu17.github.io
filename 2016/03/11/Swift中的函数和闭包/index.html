@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,swift," />
 
 
 
@@ -61,16 +61,40 @@
 
 
 
-<meta name="description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="description" content="函数定义和调用函数fun 函数名（形参列表）-&amp;gt; 返回值类型 {//可执行语句组成的函数}
+// 两个参数
+
+func sayHello(personName:String)-&amp;gt; String {
+
+  return &amp;quot;Hello ,&amp;quot; + personName + &amp;quot;!&amp;quot;
+}
+
+println(sayHello(&amp;quot;Anna&amp;quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="今天">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/04/今天/index.html">
+<meta property="og:title" content="Swift中的函数和闭包">
+<meta property="og:url" content="http://jackliu17.github.io/2016/03/11/Swift中的函数和闭包/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
-<meta property="og:updated_time" content="2016-03-04T06:50:31.000Z">
+<meta property="og:description" content="函数定义和调用函数fun 函数名（形参列表）-&amp;gt; 返回值类型 {//可执行语句组成的函数}
+// 两个参数
+
+func sayHello(personName:String)-&amp;gt; String {
+
+  return &amp;quot;Hello ,&amp;quot; + personName + &amp;quot;!&amp;quot;
+}
+
+println(sayHello(&amp;quot;Anna&amp;quot;">
+<meta property="og:updated_time" content="2016-03-11T04:30:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今天">
-<meta name="twitter:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="twitter:title" content="Swift中的函数和闭包">
+<meta name="twitter:description" content="函数定义和调用函数fun 函数名（形参列表）-&amp;gt; 返回值类型 {//可执行语句组成的函数}
+// 两个参数
+
+func sayHello(personName:String)-&amp;gt; String {
+
+  return &amp;quot;Hello ,&amp;quot; + personName + &amp;quot;!&amp;quot;
+}
+
+println(sayHello(&amp;quot;Anna&amp;quot;">
 
 
 
@@ -88,7 +112,7 @@
   };
 </script>
 
-  <title> 今天 | Cowboy Tech </title>
+  <title> Swift中的函数和闭包 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +254,7 @@
             
             
               
-                今天
+                Swift中的函数和闭包
               
             
           </h1>
@@ -242,19 +266,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:16+11:00" content="2016-03-11">
+              2016-03-11
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
+                <a href="/2016/03/11/Swift中的函数和闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift中的函数和闭包/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,8 +319,88 @@
       
 
       
-        <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
+        <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="定义和调用函数"><a href="#定义和调用函数" class="headerlink" title="定义和调用函数"></a>定义和调用函数</h2><p>fun 函数名（形参列表）-&gt; 返回值类型 {<br>//可执行语句组成的函数<br>}</p>
+<pre><code>// 两个参数
 
+func sayHello(personName:String)-&gt; String {
+
+  return &quot;Hello ,&quot; + personName + &quot;!&quot;
+}
+
+println(sayHello(&quot;Anna&quot;))
+
+//没有参数
+
+func sayHellloWorld() -&gt; String{
+
+return &quot;Hello world!&quot;
+}
+</code></pre><h2 id="函数形参和实参"><a href="#函数形参和实参" class="headerlink" title="函数形参和实参"></a>函数形参和实参</h2><pre><code>func max(x:Int, y:Int)-&gt;Int { //这里的xy就是形参
+
+return x&gt;y ? x:y  
+
+}
+
+println(max(3,5)) //这里的3，5是实参
+</code></pre><h3 id="局部参数"><a href="#局部参数" class="headerlink" title="局部参数"></a>局部参数</h3><p>width,height 不能在调用函数时使用，这是局部参数</p>
+<pre><code>func area(width:Double, height:Double)-&gt;Double{
+
+return width * height     
+}
+
+println(4.5,3.4) //不能传入width, height
+</code></pre><h3 id="外部参数名"><a href="#外部参数名" class="headerlink" title="外部参数名"></a>外部参数名</h3><pre><code>func area (宽 width:Double ,高 height:Double ) -&gt;Double {
+
+return width * height
+}
+
+println (area(宽:3.4,高:4.7)) //宽和高为外部函数名
+</code></pre><h3 id="以-代替外部参数名"><a href="#以-代替外部参数名" class="headerlink" title="以#代替外部参数名"></a>以#代替外部参数名</h3><p>如果外部参数名和局部参数一样的话，只需要在局部参数前加 #</p>
+<pre><code>func area (#width:Double ,#height:Double ) -&gt;Double {
+
+return width * height
+}
+
+println (area(width:3.4,height:4.7)) //width和height为外部函数名
+</code></pre><h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><ol>
+<li>在参数类型后面添加…表示该参数可以接受多个参数值</li>
+<li>一个函数当中只有一个可变参数,并且位于列表的最后<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func sum(numbers:Int...)-&gt;Int &#123;</span><br><span class="line">var total: Int = 0</span><br><span class="line">for num in numbers &#123;</span><br><span class="line">   total += num</span><br><span class="line">&#125;</span><br><span class="line">println(total)</span><br><span class="line">return total</span><br><span class="line">&#125;</span><br><span class="line">sum(1,3,4,5)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><ol>
+<li>带有默认值的参数是有外部参数名的</li>
+<li>添加下划线就可以忽略</li>
+<li>如果函数里有可变参数也有默认参数，可变参数放在最后面，默认参数出现在次后面</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> func sayHi(msg:String, name:String=&quot;Lily&quot;)&#123;</span><br><span class="line"> println (&quot;\(name),\(msg)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;, name:&quot;Tom&quot;) //如果传入了，就使用传入的新值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//忽略默认值的外部参数名，添加下划线</span><br><span class="line">     func sayHi(msg:String, _name:String=&quot;Lily&quot;)&#123; </span><br><span class="line">      println (&quot;\(name),\(msg)&quot;)</span><br><span class="line">     &#125;</span><br><span class="line">     sayHi(&quot;Welcome to our city&quot;,&quot;Tom&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="常量形参数和变量形参"><a href="#常量形参数和变量形参" class="headerlink" title="常量形参数和变量形参"></a>常量形参数和变量形参</h3><pre><code>//这里的形参是个变量，如果去掉var就是个常量
+func factorial(var number:Int) -&gt; Int{
+var result:Int = 1
+while number &gt; 1 {
+  result = result * number
+  number--
+}
+return result
+}
+println(factorial(3))
+</code></pre><h3 id="In-out形参"><a href="#In-out形参" class="headerlink" title="In-out形参"></a>In-out形参</h3><pre><code>func swap (inout a:Int, inout b:Int){
+let tmp = a
+a = b
+b = tmp
+}
+
+var a:Int = 1
+var b:Int = 3
+swap(&amp;a,&amp;b)
+println(“交换之后结果为:a =\(a),b= \(b)”)
+</code></pre><ol>
+<li>In-out参数就是强制传递变量的指针</li>
+<li>只能传入变量作为实参</li>
+<li>输入输出不能带有默认值</li>
+<li>如果你用关键字inout标记了一个参数，这个参数不能再用var或者let去标记<h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2></li>
+</ol>
+<h2 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h2><h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><h2 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h2><h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1>
       
     </div>
 
@@ -289,18 +412,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/03/10/Swift中的字符串和集合/" rel="next" title="Swift中的字符串和集合">
+                <i class="fa fa-chevron-left"></i> Swift中的字符串和集合
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/09/Git本地操作/" rel="prev" title="Git本地操作">
-                Git本地操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,7 +563,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义和调用函数"><span class="nav-number">1.1.</span> <span class="nav-text">定义和调用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数形参和实参"><span class="nav-number">1.2.</span> <span class="nav-text">函数形参和实参</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#局部参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">局部参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部参数名"><span class="nav-number">1.2.2.</span> <span class="nav-text">外部参数名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以-代替外部参数名"><span class="nav-number">1.2.3.</span> <span class="nav-text">以#代替外部参数名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变参数"><span class="nav-number">1.2.4.</span> <span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">1.2.5.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量形参数和变量形参"><span class="nav-number">1.2.6.</span> <span class="nav-text">常量形参数和变量形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-out形参"><span class="nav-number">1.2.7.</span> <span class="nav-text">In-out形参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数返回值"><span class="nav-number">1.3.</span> <span class="nav-text">函数返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数类型"><span class="nav-number">1.4.</span> <span class="nav-text">函数类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#递归函数"><span class="nav-number">1.5.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数重载"><span class="nav-number">1.6.</span> <span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套函数"><span class="nav-number">1.7.</span> <span class="nav-text">嵌套函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">2.</span> <span class="nav-text">闭包</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -690,9 +821,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/04/今天/';
-      var disqus_title = '今天';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/04/今天/';
+      var disqus_identifier = '2016/03/11/Swift中的函数和闭包/';
+      var disqus_title = 'Swift中的函数和闭包';
+      var disqus_url = 'http://jackliu17.github.io/2016/03/11/Swift中的函数和闭包/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
