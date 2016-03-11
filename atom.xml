@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-11T07:01:09.000Z</updated>
+  <updated>2016-03-11T11:03:48.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,11 +16,131 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Swift面向对象基础(上)</title>
+    <link href="http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/"/>
+    <id>http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/</id>
+    <published>2016-03-11T07:06:33.000Z</published>
+    <updated>2016-03-11T11:03:48.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;面向对象的核心：类和对象&lt;/li&gt;
+&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
+&lt;li&gt;Swift可以定义枚举，结构体，和类三种面向对象的类型&lt;/li&gt;
+&lt;li&gt;支持定义存储属性，计算属性，方法，下标，构造器和嵌套类型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h1&gt;&lt;h2 id=&quot;枚举定义&quot;&gt;&lt;a href=&quot;#枚举定义&quot; class=&quot;headerlink&quot; title=&quot;枚举定义&quot;&gt;&lt;/a&gt;枚举定义&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;用于管理一组有限的值的集合&lt;/li&gt;
+&lt;li&gt;支持计算属性&lt;/li&gt;
+&lt;li&gt;支持实例方法和类方法&lt;/li&gt;
+&lt;li&gt;支持定义构造器来完成初始化&lt;/li&gt;
+&lt;li&gt;支持扩展和协议&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;枚举语法&quot;&gt;&lt;a href=&quot;#枚举语法&quot; class=&quot;headerlink&quot; title=&quot;枚举语法&quot;&gt;&lt;/a&gt;枚举语法&lt;/h2&gt;&lt;p&gt;enum 枚举名 {&lt;br&gt;  //使用case关键字列出所有枚举值&lt;br&gt;  //枚举的其他成员&lt;/p&gt;
+&lt;p&gt;}&lt;/p&gt;
+&lt;h2 id=&quot;定义枚举&quot;&gt;&lt;a href=&quot;#定义枚举&quot; class=&quot;headerlink&quot; title=&quot;定义枚举&quot;&gt;&lt;/a&gt;定义枚举&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//方法1
+enum Season {
+   case Spring
+   case Summer
+   case Fall
+   case Winter
+}
+
+//方法2
+enum Season2 {
+   case Spring, Summer, Fall, Winter
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用枚举声明变量&quot;&gt;&lt;a href=&quot;#使用枚举声明变量&quot; class=&quot;headerlink&quot; title=&quot;使用枚举声明变量&quot;&gt;&lt;/a&gt;使用枚举声明变量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var weather: Season
+weather = .Summer
+println(weather)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;枚举值和switch语句&quot;&gt;&lt;a href=&quot;#枚举值和switch语句&quot; class=&quot;headerlink&quot; title=&quot;枚举值和switch语句&quot;&gt;&lt;/a&gt;枚举值和switch语句&lt;/h2&gt;&lt;p&gt;switch中的case没有覆盖枚举的所有值，必须添加default语句&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var chooseDay = Season.Fall
+
+switch(chooseDay){
+case .Spring:
+  println(&amp;quot;This is spring&amp;quot;)
+case .Summer:
+  println(&amp;quot;This is summer&amp;quot;)
+
+default:
+  println(&amp;quot;At home&amp;quot;)
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;原始值&quot;&gt;&lt;a href=&quot;#原始值&quot; class=&quot;headerlink&quot; title=&quot;原始值&quot;&gt;&lt;/a&gt;原始值&lt;/h2&gt;&lt;p&gt;enum 枚举名：原始值类型{&lt;br&gt;   case 枚举值 = 原始值&lt;br&gt;}&lt;/p&gt;
+&lt;h3 id=&quot;整型的枚举&quot;&gt;&lt;a href=&quot;#整型的枚举&quot; class=&quot;headerlink&quot; title=&quot;整型的枚举&quot;&gt;&lt;/a&gt;整型的枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//可以自动推断，不用每个都赋予原始值
+enum Weekday: Int{
+  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;字符串枚举&quot;&gt;&lt;a href=&quot;#字符串枚举&quot; class=&quot;headerlink&quot; title=&quot;字符串枚举&quot;&gt;&lt;/a&gt;字符串枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//必须每个都赋予原始值，因为不能自动推断
+enum Season3: Character{
+  case Spring = &amp;quot;春天&amp;quot;
+  case Summer = &amp;quot;夏天&amp;quot;
+  case Fall = &amp;quot;秋天&amp;quot;
+  case Winter = &amp;quot;冬天&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取原始值&quot;&gt;&lt;a href=&quot;#获取原始值&quot; class=&quot;headerlink&quot; title=&quot;获取原始值&quot;&gt;&lt;/a&gt;获取原始值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;println(Weekday.Fri.rawvalue)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取枚举值&quot;&gt;&lt;a href=&quot;#获取枚举值&quot; class=&quot;headerlink&quot; title=&quot;获取枚举值&quot;&gt;&lt;/a&gt;获取枚举值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var mySeason = Season3(rawValue:&amp;quot;春天&amp;quot;)
+if mySeason != nil {
+  switch(mySeason!){ //不为空才能进行强制解析
+  case .Spring:
+    println(&amp;quot;春天不是读书天&amp;quot;)
+  case .Summer:
+    println(&amp;quot;夏天炎炎正好眠&amp;quot;)
+  case .Fall , .Winter:
+    println(&amp;quot;秋多蚊蝇冬日冷&amp;quot;)
+  default:
+    println(&amp;quot;读书只好等明年&amp;quot;)
+
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;关联值&quot;&gt;&lt;a href=&quot;#关联值&quot; class=&quot;headerlink&quot; title=&quot;关联值&quot;&gt;&lt;/a&gt;关联值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;enum Planet {
+case Earth(weight: Double , name:String)
+case Mars (density: Double, name: String, weight:Double)
+case Venus(Double, String)
+case Saturn
+case Neptune
+}
+
+var p1 = Planet.Earth(weight:1.0, name:&amp;quot;地球&amp;quot;)
+var p2 = Planet.Venus(0.815,&amp;quot;金星&amp;quot;)
+var p3 = Planet.Mars(density:3.95, name:&amp;quot;火星&amp;quot;,weight:0.1)
+
+switch (p3){
+//将关联值绑定到变量或者常量来提取
+case Planet.Earth(var weight , var name):
+   println(&amp;quot;此行星的名字为:\(name),质量相当于\(weight)个地球&amp;quot;)
+
+//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
+case let Planet.Mars(density:d, name:n, weight:w):
+   println(&amp;quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&amp;quot;)
+default:
+   break
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;面向对象的核心：类和对象&lt;/li&gt;
+&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Swift中的函数和闭包</title>
     <link href="http://jackliu17.github.io/2016/03/11/Swift%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85/"/>
     <id>http://jackliu17.github.io/2016/03/11/Swift中的函数和闭包/</id>
     <published>2016-03-11T01:38:16.000Z</published>
-    <updated>2016-03-11T07:01:09.000Z</updated>
+    <updated>2016-03-11T07:06:03.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h1&gt;&lt;h2 id=&quot;定义和调用函数&quot;&gt;&lt;a href=&quot;#定义和调用函数&quot; class=&quot;headerlink&quot; title=&quot;定义和调用函数&quot;&gt;&lt;/a&gt;定义和调用函数&lt;/h2&gt;&lt;p&gt;fun 函数名（形参列表）-&amp;gt; 返回值类型 {&lt;br&gt;//可执行语句组成的函数&lt;br&gt;}&lt;/p&gt;
 &lt;h3 id=&quot;两个参数&quot;&gt;&lt;a href=&quot;#两个参数&quot; class=&quot;headerlink&quot; title=&quot;两个参数&quot;&gt;&lt;/a&gt;两个参数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func sayHello(personName:String)-&amp;gt; String {

@@ -238,6 +238,214 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/11/Swift面向对象基础(上)/" itemprop="url">
+                  Swift面向对象基础(上)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T18:06:33+11:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/Swift面向对象基础(上)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift面向对象基础(上)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向对象的特点"><a href="#面向对象的特点" class="headerlink" title="面向对象的特点"></a>面向对象的特点</h1><ol>
+<li>面向对象的核心：类和对象</li>
+<li>面向对象编程的三大特征：封装，继承，和多态</li>
+<li>Swift可以定义枚举，结构体，和类三种面向对象的类型</li>
+<li>支持定义存储属性，计算属性，方法，下标，构造器和嵌套类型</li>
+</ol>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h2 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h2><ol>
+<li>用于管理一组有限的值的集合</li>
+<li>支持计算属性</li>
+<li>支持实例方法和类方法</li>
+<li>支持定义构造器来完成初始化</li>
+<li>支持扩展和协议</li>
+</ol>
+<h2 id="枚举语法"><a href="#枚举语法" class="headerlink" title="枚举语法"></a>枚举语法</h2><p>enum 枚举名 {<br>  //使用case关键字列出所有枚举值<br>  //枚举的其他成员</p>
+<p>}</p>
+<h2 id="定义枚举"><a href="#定义枚举" class="headerlink" title="定义枚举"></a>定义枚举</h2><pre><code>//方法1
+enum Season {
+   case Spring
+   case Summer
+   case Fall
+   case Winter
+}
+
+//方法2
+enum Season2 {
+   case Spring, Summer, Fall, Winter
+}
+</code></pre><h2 id="使用枚举声明变量"><a href="#使用枚举声明变量" class="headerlink" title="使用枚举声明变量"></a>使用枚举声明变量</h2><pre><code>var weather: Season
+weather = .Summer
+println(weather)
+</code></pre><h2 id="枚举值和switch语句"><a href="#枚举值和switch语句" class="headerlink" title="枚举值和switch语句"></a>枚举值和switch语句</h2><p>switch中的case没有覆盖枚举的所有值，必须添加default语句</p>
+<pre><code>var chooseDay = Season.Fall
+
+switch(chooseDay){
+case .Spring:
+  println(&quot;This is spring&quot;)
+case .Summer:
+  println(&quot;This is summer&quot;)
+
+default:
+  println(&quot;At home&quot;)
+
+}
+</code></pre><h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><p>enum 枚举名：原始值类型{<br>   case 枚举值 = 原始值<br>}</p>
+<h3 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h3><pre><code>//可以自动推断，不用每个都赋予原始值
+enum Weekday: Int{
+  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
+
+}
+</code></pre><h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><pre><code>//必须每个都赋予原始值，因为不能自动推断
+enum Season3: Character{
+  case Spring = &quot;春天&quot;
+  case Summer = &quot;夏天&quot;
+  case Fall = &quot;秋天&quot;
+  case Winter = &quot;冬天&quot;
+}
+</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>println(Weekday.Fri.rawvalue)
+</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春天&quot;)
+if mySeason != nil {
+  switch(mySeason!){ //不为空才能进行强制解析
+  case .Spring:
+    println(&quot;春天不是读书天&quot;)
+  case .Summer:
+    println(&quot;夏天炎炎正好眠&quot;)
+  case .Fall , .Winter:
+    println(&quot;秋多蚊蝇冬日冷&quot;)
+  default:
+    println(&quot;读书只好等明年&quot;)
+
+  }
+}
+</code></pre><h3 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h3><pre><code>enum Planet {
+case Earth(weight: Double , name:String)
+case Mars (density: Double, name: String, weight:Double)
+case Venus(Double, String)
+case Saturn
+case Neptune
+}
+
+var p1 = Planet.Earth(weight:1.0, name:&quot;地球&quot;)
+var p2 = Planet.Venus(0.815,&quot;金星&quot;)
+var p3 = Planet.Mars(density:3.95, name:&quot;火星&quot;,weight:0.1)
+
+switch (p3){
+//将关联值绑定到变量或者常量来提取
+case Planet.Earth(var weight , var name):
+   println(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
+
+//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
+case let Planet.Mars(density:d, name:n, weight:w):
+   println(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
+default:
+   break
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/11/Swift中的函数和闭包/" itemprop="url">
                   Swift中的函数和闭包
                 </a>
@@ -1262,106 +1470,14 @@ let c = a &amp;% 0
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/04/今天/" itemprop="url">
-                  今天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1400,7 +1516,7 @@ let c = a &amp;% 0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
