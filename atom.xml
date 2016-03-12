@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-12T01:02:04.000Z</updated>
+  <updated>2016-03-12T06:40:15.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,246 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift面向对象基础（中）</title>
+    <link href="http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
+    <id>http://jackliu17.github.io/2016/03/12/Swift面向对象基础（中）/</id>
+    <published>2016-03-12T01:04:36.000Z</published>
+    <updated>2016-03-12T06:40:15.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;存储属性和计算属性&quot;&gt;&lt;a href=&quot;#存储属性和计算属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性和计算属性&quot;&gt;&lt;/a&gt;存储属性和计算属性&lt;/h1&gt;&lt;h2 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;存储在类，结构体里的变量或者常量&lt;/li&gt;
+&lt;li&gt;实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举&lt;/li&gt;
+&lt;li&gt;所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定&lt;/li&gt;
+&lt;li&gt;可选类型的存储属性可以不指定初始值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;结构体中实例存储属性的规则&quot;&gt;&lt;a href=&quot;#结构体中实例存储属性的规则&quot; class=&quot;headerlink&quot; title=&quot;结构体中实例存储属性的规则&quot;&gt;&lt;/a&gt;结构体中实例存储属性的规则&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange {
+var start: Int
+//定义常量存储属性，可以不指定初始值
+let length:Int
+}
+
+var len = LengthRange(start:9, length:3)
+//通过构造器参数完成实例存储属性的初始化
+println(&amp;quot;len的起点为\(en.start),长度为\(en.length)&amp;quot;)
+
+
+len.start = 2
+len.length = 4 //这个会报错，因为是常量，常量是不能修改的
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;程序为所有的实例存储属性指定了初始值，且没有构造器，则系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。&lt;/li&gt;
+&lt;li&gt;没有初始值和构造器，系统提供一个初始化所有实例存储属性的构造器。   &lt;/li&gt;
+&lt;li&gt;有构造器，则程序必须为结构体中的所有存储属性提供初始值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;结构体常量与实例属性&quot;&gt;&lt;a href=&quot;#结构体常量与实例属性&quot; class=&quot;headerlink&quot; title=&quot;结构体常量与实例属性&quot;&gt;&lt;/a&gt;结构体常量与实例属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange2{
+var start: Int
+var length:Int
+}
+
+let len2 = LengthRange(start:1, length:5)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;延迟存储属性&quot;&gt;&lt;a href=&quot;#延迟存储属性&quot; class=&quot;headerlink&quot; title=&quot;延迟存储属性&quot;&gt;&lt;/a&gt;延迟存储属性&lt;/h2&gt;&lt;p&gt;第一次被调用时才会被计算初始值的属性，用lazy修饰符&lt;/p&gt;
+&lt;h2 id=&quot;计算属性&quot;&gt;&lt;a href=&quot;#计算属性&quot; class=&quot;headerlink&quot; title=&quot;计算属性&quot;&gt;&lt;/a&gt;计算属性&lt;/h2&gt;&lt;h3 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var计算属性名:属性类型{
+get{
+//get方法执行体，该方法一定要有返回值
+}
+
+set(形参名){
+setter方法执行体，该方法一定不能有返回值
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;例子1&quot;&gt;&lt;a href=&quot;#例子1&quot; class=&quot;headerlink&quot; title=&quot;例子1&quot;&gt;&lt;/a&gt;例子1&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class User{
+var first:String = &amp;quot;&amp;quot;
+var last:String = &amp;quot;&amp;quot;
+
+//定义计算属性
+var fullName:String{
+
+//定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
+gett{
+   return first + &amp;quot;-&amp;quot; + last
+}
+
+//定义计算属性的setter方法
+//该setter方法将负责改变该实例的first,last两个存储属性
+set (newValue){
+  var names = newValue.componentsSeparateByString(&amp;quot;-&amp;quot;)
+  self.first = names[0]
+  self.last = names [1]
+}
+
+}
+
+init(first:String, last:String){
+   self.first = first
+   self.last = last
+}
+
+}
+
+
+let s = User(first:&amp;quot;极客&amp;quot;，last:&amp;quot;Hello&amp;quot;)
+println(s.fullName) //结果是：极客-Hello
+
+
+s.fullName = &amp;quot;极客-学院&amp;quot;
+println(s.first)  //outcome is 极客
+println(s.last)   //结果是 学院
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;例子2-只读属性&quot;&gt;&lt;a href=&quot;#例子2-只读属性&quot; class=&quot;headerlink&quot; title=&quot;例子2 只读属性&quot;&gt;&lt;/a&gt;例子2 只读属性&lt;/h3&gt;&lt;p&gt;无需set部分，可以省略get和花括号&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class User{
+var first:String = &amp;quot;&amp;quot;
+var last:String = &amp;quot;&amp;quot;
+
+//定义计算属性
+var fullName:String{
+
+//定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
+   return first + &amp;quot;-&amp;quot; + last
+
+}
+
+init(first:String, last:String){
+   self.first = first
+   self.last = last
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;属性观察者&quot;&gt;&lt;a href=&quot;#属性观察者&quot; class=&quot;headerlink&quot; title=&quot;属性观察者&quot;&gt;&lt;/a&gt;属性观察者&lt;/h2&gt;&lt;h3 id=&quot;语法-1&quot;&gt;&lt;a href=&quot;#语法-1&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var 计算属性名：属性类型 = 初始值 {
+  willSet (newValue){
+  //属性即将被赋值之前自动调用的方法
+
+  }
+
+  didSet(oldValue){
+  //属性被赋值完成之后自动调用的方法
+
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：willSet和didSet后面的参数名都可以身略&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;除了延迟存储属性之外的所有存储属性（包括实例存储属性和类型存储属性）&lt;/li&gt;
+&lt;li&gt;可通过重载方式为继承得到的属性（包括存储属性和计算属性）添加属性观察者。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Person {
+  //定义存储属性
+  var name: String = &amp;quot;&amp;quot;{
+    willSet{
+      if(countElements(newValue)&amp;gt;6)||(countElements(newValue)&amp;lt;2){
+        println(&amp;quot;您设置的人名\(newValue)不符合要求，请重新设置！&amp;quot;)
+      }else{
+        println(&amp;quot;人名设置符合要求，设置成功&amp;quot;)
+      }
+    }
+
+    didSet{
+        println(&amp;quot;人名设置完成，被修改的原名为：\(oldValue)&amp;quot;)
+    }
+  }
+
+  var age: Int = 0{
+
+      willSet{
+
+        if newValue&amp;gt;100 || newValue &amp;lt;0{
+
+           println(&amp;quot;您设置的年龄\(newValue)不符合要求，请重新设置！&amp;quot;)
+
+        }else{
+
+           println(&amp;quot;年龄设置符合要求，设置成功&amp;quot;)
+
+        }
+      }
+
+      didSet {
+
+           println(&amp;quot;年龄设置完成，被修改的年龄为：\(oldValue)&amp;quot;)
+
+      }
+  }
+}
+
+var p = Person()
+p.age = 999  //不成功的设置
+p.age = 10 // 成功的设置
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swift中的方法&quot;&gt;&lt;a href=&quot;#Swift中的方法&quot; class=&quot;headerlink&quot; title=&quot;Swift中的方法&quot;&gt;&lt;/a&gt;Swift中的方法&lt;/h1&gt;&lt;h2 id=&quot;方法的所属性&quot;&gt;&lt;a href=&quot;#方法的所属性&quot; class=&quot;headerlink&quot; title=&quot;方法的所属性&quot;&gt;&lt;/a&gt;方法的所属性&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;定义方法需要在类型（枚举，结构体，类）里下定义，不能独立定义&lt;/li&gt;
+&lt;li&gt;方法要么属于该类型本身，要么是该类型的一个实例&lt;/li&gt;
+&lt;li&gt;不能独立执行方法，执行方法必须使用类型或实例作为调用者&lt;/li&gt;
+&lt;li&gt;枚举，结构体中方法使用static修饰，类中用class修饰，都属于类型方法，否则的话属于实例方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;将方法转换为函数&quot;&gt;&lt;a href=&quot;#将方法转换为函数&quot; class=&quot;headerlink&quot; title=&quot;将方法转换为函数&quot;&gt;&lt;/a&gt;将方法转换为函数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class SomeClass {
+
+func test() {
+  println(&amp;quot;==test 方法==&amp;quot;)
+}
+
+class func bar(#msg:String) {
+  println(&amp;quot;==bar类型方法==，传入的参数为:\(msg)&amp;quot;)
+}
+}
+
+var sc = SomeClass()     //创建实例
+var f1:()-&amp;gt;()=sc.test    //将sc的test方法分离成函数
+
+var f2:(String) -&amp;gt; Void = SomeClass.bar    //将sc的bar方法分离成函数
+f1()    //等价于sc.test()
+f2(&amp;quot;极客&amp;quot;)  //等价于SomeClass.bar(msg:&amp;quot;Geek&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;方法的外部形参名&quot;&gt;&lt;a href=&quot;#方法的外部形参名&quot; class=&quot;headerlink&quot; title=&quot;方法的外部形参名&quot;&gt;&lt;/a&gt;方法的外部形参名&lt;/h2&gt;&lt;p&gt;默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Person {
+
+   var name:String
+
+   init(name:String){
+
+     self.name = name
+
+   }
+
+   func eat (food:String, _drink:String, cigarette:String){
+
+     println(&amp;quot;\(self.name)吃着\(food),喝着\(drink),抽着\(cigarette)&amp;quot;)
+
+   }
+}
+
+var p = Person(name:&amp;quot;Tom&amp;quot;)
+p.eat(&amp;quot;烤鸭&amp;quot;，“啤酒”，cigarette:&amp;quot;雪茄&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的可变方法&quot;&gt;&lt;a href=&quot;#值类型的可变方法&quot; class=&quot;headerlink&quot; title=&quot;值类型的可变方法&quot;&gt;&lt;/a&gt;值类型的可变方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct JKRect {
+  var x: Int
+  var y: Int
+  var width:Int
+  var height:Int
+  mutating func moveByX(x:Int,y:Int){
+    self.x += x
+    self.y += y
+  }
+}
+
+var rect = JKRect(x:20, y:12, width:200, height:300)   //创建实例
+rect.moveByX(100, y:90)   //调用mutating方法，该方法可以改变rect实例的存储属性
+println(“rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)”)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;将mutating关键字放在func之前，即将该方法声明为可变方法&lt;/li&gt;
+&lt;li&gt;常量类型的结构体，枚举是不可变的&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;存储属性和计算属性&quot;&gt;&lt;a href=&quot;#存储属性和计算属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性和计算属性&quot;&gt;&lt;/a&gt;存储属性和计算属性&lt;/h1&gt;&lt;h2 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerli
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+  </entry>
   
   <entry>
     <title>Swift面向对象基础(上)</title>
