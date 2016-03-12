@@ -523,7 +523,125 @@ println(“rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)�
 <li>将mutating关键字放在func之前，即将该方法声明为可变方法</li>
 <li>常量类型的结构体，枚举是不可变的</li>
 </ol>
+<h1 id="属性和方法的统一"><a href="#属性和方法的统一" class="headerlink" title="属性和方法的统一"></a>属性和方法的统一</h1><p>使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法</p>
+<pre><code>func factorial(n:Int) -&gt; Int {
+var result = 1
+for i in 1...n {
+   result *= i
+}
+return result 
+}
 
+struct SomeStruct {
+var info:() -&gt; Void = {
+  println(&quot;info方法&quot;)
+}
+
+//将全局函数作为fact存储属性的初始值
+static var fact:(Int) -&gt; Int = factorial
+}
+
+var sc = SomeStruct()
+//调用info方法
+sc.info()  //outcome is info方法
+
+//使用闭包对sc对象的info赋值，相当于重新定义sc的info方法
+sc.info = {
+  println(&quot;另外一个闭包&quot;)
+}
+
+sc.info()  //outcome is 另外一个闭包
+
+var n = 6
+
+//调用fact方法，执行的是阶乘 
+println(&quot;\(n)的阶乘是：\(SomeStruct.fact(6))&quot;) //Outcome is 720
+
+//使用闭包对SomeStruct的fact赋值，相当于重新定义SomeStruct的fact方法
+
+SomeStruct.fact = {
+  var result = 1
+  for i in 1...$0 {
+     result += i
+  }
+  return result
+}
+
+//再次调用fact方法，执行的是累加
+println(&quot;\(n)的累加的和是:\(SomeStruct.fact(6))&quot;) //outcome is 22
+</code></pre><h1 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h1><ol>
+<li>所有的Swift类型（枚举，类，结构体）都支持定义下标</li>
+<li>同一个类型可以定义多个下标</li>
+<li>通过下标的形参列表或者返回值类型来区分不同的下标</li>
+<li>同一类型中定义多个不同的下标被称为下标重载</li>
+</ol>
+<h2 id="下标的基本用法"><a href="#下标的基本用法" class="headerlink" title="下标的基本用法"></a>下标的基本用法</h2><pre><code>Subscripe(形参列表) -&gt;下标返回值类型 {
+
+get {
+  //getter方法执行体，该方法必须有返回值
+}
+
+set(形参名){
+  //setter方法执行体，该方法不能有返回值
+}
+}
+</code></pre><h2 id="下标语法格式说明"><a href="#下标语法格式说明" class="headerlink" title="下标语法格式说明"></a>下标语法格式说明</h2><ol>
+<li>形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值</li>
+<li>下标的返回值类型：可以是任何有效的类型</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>struct JKRect2{
+  var x:Int
+  var y:Int
+  var width:Int
+  var height:Int
+
+  //定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
+
+  subscript(index:Int) -&gt;Int {
+
+    get{
+        switch(index){
+        case 0:
+           return self.x
+        case 1:
+           return self.y
+        case 2:
+           return self.width
+        case 3:
+           return self.height
+        default:
+           println(&quot;不支持该索引值&quot;)
+           return 0
+        }
+    }
+
+    set{
+         switch(index){
+         case 0:
+            self.x = newValue
+         case 1:
+            self.y = newValue
+         case 2:
+            self.width = newValue
+         case 3:
+            self.height = newValue
+         default:
+            println(&quot;不支持该索引值&quot;)
+         }
+    }
+  }
+}
+
+//创建实例
+var rect2 = JKRect2(x:20,y:12,width:200,height:300)
+
+//通过下标进行赋值
+rect2[0] = 40
+rect2[1] = 67
+
+//通过下标访问rect的属性
+println(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&quot;)
+</code></pre>
           
         
       

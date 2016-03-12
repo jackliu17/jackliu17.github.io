@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-12T06:40:15.000Z</updated>
+  <updated>2016-03-12T11:25:37.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
     <id>http://jackliu17.github.io/2016/03/12/Swift面向对象基础（中）/</id>
     <published>2016-03-12T01:04:36.000Z</published>
-    <updated>2016-03-12T06:40:15.000Z</updated>
+    <updated>2016-03-12T11:25:37.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;存储属性和计算属性&quot;&gt;&lt;a href=&quot;#存储属性和计算属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性和计算属性&quot;&gt;&lt;/a&gt;存储属性和计算属性&lt;/h1&gt;&lt;h2 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;存储在类，结构体里的变量或者常量&lt;/li&gt;
@@ -238,7 +238,125 @@ println(“rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)�
 &lt;li&gt;将mutating关键字放在func之前，即将该方法声明为可变方法&lt;/li&gt;
 &lt;li&gt;常量类型的结构体，枚举是不可变的&lt;/li&gt;
 &lt;/ol&gt;
-</content>
+&lt;h1 id=&quot;属性和方法的统一&quot;&gt;&lt;a href=&quot;#属性和方法的统一&quot; class=&quot;headerlink&quot; title=&quot;属性和方法的统一&quot;&gt;&lt;/a&gt;属性和方法的统一&lt;/h1&gt;&lt;p&gt;使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func factorial(n:Int) -&amp;gt; Int {
+var result = 1
+for i in 1...n {
+   result *= i
+}
+return result 
+}
+
+struct SomeStruct {
+var info:() -&amp;gt; Void = {
+  println(&amp;quot;info方法&amp;quot;)
+}
+
+//将全局函数作为fact存储属性的初始值
+static var fact:(Int) -&amp;gt; Int = factorial
+}
+
+var sc = SomeStruct()
+//调用info方法
+sc.info()  //outcome is info方法
+
+//使用闭包对sc对象的info赋值，相当于重新定义sc的info方法
+sc.info = {
+  println(&amp;quot;另外一个闭包&amp;quot;)
+}
+
+sc.info()  //outcome is 另外一个闭包
+
+var n = 6
+
+//调用fact方法，执行的是阶乘 
+println(&amp;quot;\(n)的阶乘是：\(SomeStruct.fact(6))&amp;quot;) //Outcome is 720
+
+//使用闭包对SomeStruct的fact赋值，相当于重新定义SomeStruct的fact方法
+
+SomeStruct.fact = {
+  var result = 1
+  for i in 1...$0 {
+     result += i
+  }
+  return result
+}
+
+//再次调用fact方法，执行的是累加
+println(&amp;quot;\(n)的累加的和是:\(SomeStruct.fact(6))&amp;quot;) //outcome is 22
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;下标&quot;&gt;&lt;a href=&quot;#下标&quot; class=&quot;headerlink&quot; title=&quot;下标&quot;&gt;&lt;/a&gt;下标&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;所有的Swift类型（枚举，类，结构体）都支持定义下标&lt;/li&gt;
+&lt;li&gt;同一个类型可以定义多个下标&lt;/li&gt;
+&lt;li&gt;通过下标的形参列表或者返回值类型来区分不同的下标&lt;/li&gt;
+&lt;li&gt;同一类型中定义多个不同的下标被称为下标重载&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;下标的基本用法&quot;&gt;&lt;a href=&quot;#下标的基本用法&quot; class=&quot;headerlink&quot; title=&quot;下标的基本用法&quot;&gt;&lt;/a&gt;下标的基本用法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Subscripe(形参列表) -&amp;gt;下标返回值类型 {
+
+get {
+  //getter方法执行体，该方法必须有返回值
+}
+
+set(形参名){
+  //setter方法执行体，该方法不能有返回值
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;下标语法格式说明&quot;&gt;&lt;a href=&quot;#下标语法格式说明&quot; class=&quot;headerlink&quot; title=&quot;下标语法格式说明&quot;&gt;&lt;/a&gt;下标语法格式说明&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值&lt;/li&gt;
+&lt;li&gt;下标的返回值类型：可以是任何有效的类型&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct JKRect2{
+  var x:Int
+  var y:Int
+  var width:Int
+  var height:Int
+
+  //定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
+
+  subscript(index:Int) -&amp;gt;Int {
+
+    get{
+        switch(index){
+        case 0:
+           return self.x
+        case 1:
+           return self.y
+        case 2:
+           return self.width
+        case 3:
+           return self.height
+        default:
+           println(&amp;quot;不支持该索引值&amp;quot;)
+           return 0
+        }
+    }
+
+    set{
+         switch(index){
+         case 0:
+            self.x = newValue
+         case 1:
+            self.y = newValue
+         case 2:
+            self.width = newValue
+         case 3:
+            self.height = newValue
+         default:
+            println(&amp;quot;不支持该索引值&amp;quot;)
+         }
+    }
+  }
+}
+
+//创建实例
+var rect2 = JKRect2(x:20,y:12,width:200,height:300)
+
+//通过下标进行赋值
+rect2[0] = 40
+rect2[1] = 67
+
+//通过下标访问rect的属性
+println(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
