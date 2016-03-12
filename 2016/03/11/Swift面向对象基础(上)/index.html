@@ -93,7 +93,7 @@ Swift可以定义枚举，结构体，和类三种面向对象的类型
 支持扩展和协议
 
 枚举语法enum 枚举名 {  //使用case关键字列出所有枚举值  /">
-<meta property="og:updated_time" content="2016-03-11T11:03:48.000Z">
+<meta property="og:updated_time" content="2016-03-12T01:02:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础(上)">
 <meta name="twitter:description" content="面向对象的特点
@@ -428,7 +428,126 @@ case let Planet.Mars(density:d, name:n, weight:w):
 default:
    break
 }
-</code></pre>
+</code></pre><h1 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h1><ol>
+<li>这两个非常相似</li>
+<li>主要区别在于结构体和枚举不支持继承，只有类才有继承</li>
+<li>结构体和枚举是值类型</li>
+<li>类是引用类型</li>
+<li>只有类的实例可以称为对象</li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><pre><code>[修饰符]class类名 {
+零到多个构造器
+零到多个属性
+零到多个方法
+零到多个下标
+}
+修饰符可以是private ,public, internal,final
+
+class Person {
+var name: String = &quot;Jack&quot;
+var age: Int = 0
+func say(content: String)
+{
+   println(content)
+}
+}
+</code></pre><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><pre><code>[修饰符]struct 结构体名 {
+
+}
+修饰符可以是private , public, internal
+
+struct Dog{
+
+var name: String
+var age: Int
+func run(){
+
+println(&quot;\(name)在奔跑&quot;)
+}
+}
+</code></pre><h3 id="定义属性的语法"><a href="#定义属性的语法" class="headerlink" title="定义属性的语法"></a>定义属性的语法</h3><pre><code>[修饰符]var或者let 存储属性:类型名字 = 初始值
+</code></pre><h3 id="定义构造器语法"><a href="#定义构造器语法" class="headerlink" title="定义构造器语法"></a>定义构造器语法</h3><pre><code>[修饰符]init(形参列表){
+//零到多条可执行语句组成的构造器执行体
+}
+</code></pre><h3 id="定义方法的语法"><a href="#定义方法的语法" class="headerlink" title="定义方法的语法"></a>定义方法的语法</h3><pre><code>[修饰符]func 方法名(形参列表) -&gt;返回值类型 {
+//零到多条可执行语句
+}
+</code></pre><h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><h3 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h3><pre><code>var p: Person
+p = Person() //等价于 var p = Person()
+println(p.name)
+p.say(“Hello world”)
+</code></pre><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><pre><code>var dog = Dog(name:&quot;Wangcai&quot;, age:2)
+println(dog.name)
+dog.run()
+</code></pre><h2 id="值类型与引用类型"><a href="#值类型与引用类型" class="headerlink" title="值类型与引用类型"></a>值类型与引用类型</h2><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>var p2 =p
+p2.name = &quot;Rose&quot;
+println(p.name)
+</code></pre><ol>
+<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
+<li>如果一个引用更改了，那对象里的值也会更改。</li>
+</ol>
+<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><pre><code>var dog2 = dog
+dog2.name = &quot;snoopy&quot;
+println(dog2.name)
+println(dog.name)
+</code></pre><ol>
+<li>值对象是要复制的</li>
+<li>每个值对象的更改，不会影响其他对象的更改</li>
+<li>因此枚举和结构体是没有继承的  </li>
+</ol>
+<h3 id="引用类型的比较"><a href="#引用类型的比较" class="headerlink" title="引用类型的比较"></a>引用类型的比较</h3><pre><code>class User {
+var name: String
+var age: Int
+init(name: String, age: Int){
+  self.name = name
+  self.age = age
+}
+}
+
+var u1 = User(name:&quot;Han&quot;,age:32)
+var U2 = User(name:&quot;Han&quot;,age:32)
+//虽然传递的值是一样，但是是创建了两个对象
+
+println(u1===u2) //u1与u2引用的不是同一对象,结果是false
+println(u1!==u2) //结果是true
+
+var u3 = u1
+println(u3===u1) //结果是true
+</code></pre><ul>
+<li>=== 这个不能用于值类型的判断</li>
+</ul>
+<h3 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h3><h4 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h4><pre><code>class Dog {  
+  func jump(){
+    println(&quot;正在执行jump方法&quot;)
+  }
+  func run(){
+  self.jump()
+     println(&quot;正在执行run方法&quot;)
+  }
+}
+</code></pre><h4 id="构造器中的self代表该构造器正在初始化的实例"><a href="#构造器中的self代表该构造器正在初始化的实例" class="headerlink" title="构造器中的self代表该构造器正在初始化的实例"></a>构造器中的self代表该构造器正在初始化的实例</h4><pre><code>class Person {
+    var name: String = &quot;&quot;
+    var age: Int = 2
+
+    init(name:String, age:Int){
+    self.name = name
+    self.age = age
+    }
+
+    func info(){
+    println(“我的名字是:\(name)年龄是:\(age)”)
+    }
+}
+
+var person = Person(name:&quot;Lily&quot;,age:10)
+person.info()
+</code></pre><h3 id="类和结构体的选择"><a href="#类和结构体的选择" class="headerlink" title="类和结构体的选择"></a>类和结构体的选择</h3><ol>
+<li>结构体的主要目的是用于封装少量相关的简单数据</li>
+<li>如果需要在传递参数或者赋值时自动复制副本，使用结构体</li>
+<li>明确该类型无须继承另一个已有的类或被其他类继承</li>
+<li>注意，大部分时候，程序应该自定义类而不是自定义结构体。</li>
+</ol>
+
       
     </div>
 
@@ -591,7 +710,7 @@ default:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">2.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举定义"><span class="nav-number">2.1.</span> <span class="nav-text">枚举定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举语法"><span class="nav-number">2.2.</span> <span class="nav-text">枚举语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义枚举"><span class="nav-number">2.3.</span> <span class="nav-text">定义枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用枚举声明变量"><span class="nav-number">2.4.</span> <span class="nav-text">使用枚举声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举值和switch语句"><span class="nav-number">2.5.</span> <span class="nav-text">枚举值和switch语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始值"><span class="nav-number">2.6.</span> <span class="nav-text">原始值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型的枚举"><span class="nav-number">2.6.1.</span> <span class="nav-text">整型的枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串枚举"><span class="nav-number">2.6.2.</span> <span class="nav-text">字符串枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取原始值"><span class="nav-number">2.6.3.</span> <span class="nav-text">获取原始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取枚举值"><span class="nav-number">2.6.4.</span> <span class="nav-text">获取枚举值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联值"><span class="nav-number">2.6.5.</span> <span class="nav-text">关联值</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">2.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举定义"><span class="nav-number">2.1.</span> <span class="nav-text">枚举定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举语法"><span class="nav-number">2.2.</span> <span class="nav-text">枚举语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义枚举"><span class="nav-number">2.3.</span> <span class="nav-text">定义枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用枚举声明变量"><span class="nav-number">2.4.</span> <span class="nav-text">使用枚举声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举值和switch语句"><span class="nav-number">2.5.</span> <span class="nav-text">枚举值和switch语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始值"><span class="nav-number">2.6.</span> <span class="nav-text">原始值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型的枚举"><span class="nav-number">2.6.1.</span> <span class="nav-text">整型的枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串枚举"><span class="nav-number">2.6.2.</span> <span class="nav-text">字符串枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取原始值"><span class="nav-number">2.6.3.</span> <span class="nav-text">获取原始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取枚举值"><span class="nav-number">2.6.4.</span> <span class="nav-text">获取枚举值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联值"><span class="nav-number">2.6.5.</span> <span class="nav-text">关联值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构体"><span class="nav-number">3.</span> <span class="nav-text">类和结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">3.1.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体"><span class="nav-number">3.1.2.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义属性的语法"><span class="nav-number">3.1.3.</span> <span class="nav-text">定义属性的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义构造器语法"><span class="nav-number">3.1.4.</span> <span class="nav-text">定义构造器语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义方法的语法"><span class="nav-number">3.1.5.</span> <span class="nav-text">定义方法的语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建实例"><span class="nav-number">3.2.</span> <span class="nav-text">创建实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">结构体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型与引用类型"><span class="nav-number">3.3.</span> <span class="nav-text">值类型与引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型"><span class="nav-number">3.3.1.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值类型"><span class="nav-number">3.3.2.</span> <span class="nav-text">值类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型的比较"><span class="nav-number">3.3.3.</span> <span class="nav-text">引用类型的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#self关键字"><span class="nav-number">3.3.4.</span> <span class="nav-text">self关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法中的self代表该方法的调用者"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">方法中的self代表该方法的调用者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造器中的self代表该构造器正在初始化的实例"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">构造器中的self代表该构造器正在初始化的实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类和结构体的选择"><span class="nav-number">3.3.5.</span> <span class="nav-text">类和结构体的选择</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-11T11:03:48.000Z</updated>
+  <updated>2016-03-12T01:02:04.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/"/>
     <id>http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/</id>
     <published>2016-03-11T07:06:33.000Z</published>
-    <updated>2016-03-11T11:03:48.000Z</updated>
+    <updated>2016-03-12T01:02:04.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;面向对象的核心：类和对象&lt;/li&gt;
@@ -116,7 +116,126 @@ case let Planet.Mars(density:d, name:n, weight:w):
 default:
    break
 }
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;类和结构体&quot;&gt;&lt;a href=&quot;#类和结构体&quot; class=&quot;headerlink&quot; title=&quot;类和结构体&quot;&gt;&lt;/a&gt;类和结构体&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;这两个非常相似&lt;/li&gt;
+&lt;li&gt;主要区别在于结构体和枚举不支持继承，只有类才有继承&lt;/li&gt;
+&lt;li&gt;结构体和枚举是值类型&lt;/li&gt;
+&lt;li&gt;类是引用类型&lt;/li&gt;
+&lt;li&gt;只有类的实例可以称为对象&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;h3 id=&quot;类&quot;&gt;&lt;a href=&quot;#类&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]class类名 {
+零到多个构造器
+零到多个属性
+零到多个方法
+零到多个下标
+}
+修饰符可以是private ,public, internal,final
+
+class Person {
+var name: String = &amp;quot;Jack&amp;quot;
+var age: Int = 0
+func say(content: String)
+{
+   println(content)
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体&quot;&gt;&lt;a href=&quot;#结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]struct 结构体名 {
+
+}
+修饰符可以是private , public, internal
+
+struct Dog{
+
+var name: String
+var age: Int
+func run(){
+
+println(&amp;quot;\(name)在奔跑&amp;quot;)
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义属性的语法&quot;&gt;&lt;a href=&quot;#定义属性的语法&quot; class=&quot;headerlink&quot; title=&quot;定义属性的语法&quot;&gt;&lt;/a&gt;定义属性的语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var或者let 存储属性:类型名字 = 初始值
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义构造器语法&quot;&gt;&lt;a href=&quot;#定义构造器语法&quot; class=&quot;headerlink&quot; title=&quot;定义构造器语法&quot;&gt;&lt;/a&gt;定义构造器语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]init(形参列表){
+//零到多条可执行语句组成的构造器执行体
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义方法的语法&quot;&gt;&lt;a href=&quot;#定义方法的语法&quot; class=&quot;headerlink&quot; title=&quot;定义方法的语法&quot;&gt;&lt;/a&gt;定义方法的语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]func 方法名(形参列表) -&amp;gt;返回值类型 {
+//零到多条可执行语句
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建实例&quot;&gt;&lt;a href=&quot;#创建实例&quot; class=&quot;headerlink&quot; title=&quot;创建实例&quot;&gt;&lt;/a&gt;创建实例&lt;/h2&gt;&lt;h3 id=&quot;类-1&quot;&gt;&lt;a href=&quot;#类-1&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p: Person
+p = Person() //等价于 var p = Person()
+println(p.name)
+p.say(“Hello world”)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体-1&quot;&gt;&lt;a href=&quot;#结构体-1&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog = Dog(name:&amp;quot;Wangcai&amp;quot;, age:2)
+println(dog.name)
+dog.run()
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型与引用类型&quot;&gt;&lt;a href=&quot;#值类型与引用类型&quot; class=&quot;headerlink&quot; title=&quot;值类型与引用类型&quot;&gt;&lt;/a&gt;值类型与引用类型&lt;/h2&gt;&lt;h3 id=&quot;引用类型&quot;&gt;&lt;a href=&quot;#引用类型&quot; class=&quot;headerlink&quot; title=&quot;引用类型&quot;&gt;&lt;/a&gt;引用类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p2 =p
+p2.name = &amp;quot;Rose&amp;quot;
+println(p.name)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;内存里的对象可以有多个引用，即多个引用变量指向同一个对象&lt;/li&gt;
+&lt;li&gt;如果一个引用更改了，那对象里的值也会更改。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;值类型&quot;&gt;&lt;a href=&quot;#值类型&quot; class=&quot;headerlink&quot; title=&quot;值类型&quot;&gt;&lt;/a&gt;值类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog2 = dog
+dog2.name = &amp;quot;snoopy&amp;quot;
+println(dog2.name)
+println(dog.name)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;值对象是要复制的&lt;/li&gt;
+&lt;li&gt;每个值对象的更改，不会影响其他对象的更改&lt;/li&gt;
+&lt;li&gt;因此枚举和结构体是没有继承的  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;引用类型的比较&quot;&gt;&lt;a href=&quot;#引用类型的比较&quot; class=&quot;headerlink&quot; title=&quot;引用类型的比较&quot;&gt;&lt;/a&gt;引用类型的比较&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class User {
+var name: String
+var age: Int
+init(name: String, age: Int){
+  self.name = name
+  self.age = age
+}
+}
+
+var u1 = User(name:&amp;quot;Han&amp;quot;,age:32)
+var U2 = User(name:&amp;quot;Han&amp;quot;,age:32)
+//虽然传递的值是一样，但是是创建了两个对象
+
+println(u1===u2) //u1与u2引用的不是同一对象,结果是false
+println(u1!==u2) //结果是true
+
+var u3 = u1
+println(u3===u1) //结果是true
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;=== 这个不能用于值类型的判断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;self关键字&quot;&gt;&lt;a href=&quot;#self关键字&quot; class=&quot;headerlink&quot; title=&quot;self关键字&quot;&gt;&lt;/a&gt;self关键字&lt;/h3&gt;&lt;h4 id=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;a href=&quot;#方法中的self代表该方法的调用者&quot; class=&quot;headerlink&quot; title=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;/a&gt;方法中的self代表该方法的调用者&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;class Dog {  
+  func jump(){
+    println(&amp;quot;正在执行jump方法&amp;quot;)
+  }
+  func run(){
+  self.jump()
+     println(&amp;quot;正在执行run方法&amp;quot;)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;a href=&quot;#构造器中的self代表该构造器正在初始化的实例&quot; class=&quot;headerlink&quot; title=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;/a&gt;构造器中的self代表该构造器正在初始化的实例&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;class Person {
+    var name: String = &amp;quot;&amp;quot;
+    var age: Int = 2
+
+    init(name:String, age:Int){
+    self.name = name
+    self.age = age
+    }
+
+    func info(){
+    println(“我的名字是:\(name)年龄是:\(age)”)
+    }
+}
+
+var person = Person(name:&amp;quot;Lily&amp;quot;,age:10)
+person.info()
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;类和结构体的选择&quot;&gt;&lt;a href=&quot;#类和结构体的选择&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的选择&quot;&gt;&lt;/a&gt;类和结构体的选择&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;结构体的主要目的是用于封装少量相关的简单数据&lt;/li&gt;
+&lt;li&gt;如果需要在传递参数或者赋值时自动复制副本，使用结构体&lt;/li&gt;
+&lt;li&gt;明确该类型无须继承另一个已有的类或被其他类继承&lt;/li&gt;
+&lt;li&gt;注意，大部分时候，程序应该自定义类而不是自定义结构体。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
     
     <summary type="html">
     
