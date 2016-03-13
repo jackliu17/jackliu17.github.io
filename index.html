@@ -238,6 +238,142 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/13/Swift中的继承和多态/" itemprop="url">
+                  Swift中的继承和多态
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T15:16:20+11:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/Swift中的继承和多态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift中的继承和多态/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="继承的特点"><a href="#继承的特点" class="headerlink" title="继承的特点"></a>继承的特点</h2><ol>
+<li>单继承，每个子类只有一个直接父类，与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。可以有多个间接父类</li>
+<li>子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写</li>
+<li>swift的类并不是从一个通用的基类继承而来的</li>
+<li>override修饰被重写的部分</li>
+<li>final修饰的类不能被继承，属性，方法和下标不能被重写</li>
+</ol>
+<h2 id="父类的继承"><a href="#父类的继承" class="headerlink" title="父类的继承"></a>父类的继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;  </span><br><span class="line">    var weight = 0.0</span><br><span class="line">    func info()&#123;</span><br><span class="line">        print(&quot;我是一个水果，重\(weight)g!&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var name:String!</span><br><span class="line">    func taste()&#123;</span><br><span class="line">    print(&quot;\(name)吃起来很好吃&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = Apple()</span><br><span class="line">//Apple本身没有weight属性</span><br><span class="line">//因为Apple的父类有weight属性，也可以访问Apple实例的weight属性</span><br><span class="line">a.weight = 56</span><br><span class="line">a.name = &quot;红富士&quot;</span><br><span class="line">//调用Apple实例的info方法</span><br><span class="line">a.info()</span><br><span class="line">a.taste()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Bird&#123;</span><br><span class="line">    //Bird类的fly()方法</span><br><span class="line">    func fly()&#123;</span><br><span class="line">    print(&quot;我在天空里自由自在的飞翔&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich:Bird &#123;</span><br><span class="line">    //重写Bird类的fly()方法</span><br><span class="line">    override func fly() &#123;</span><br><span class="line">        print(&quot;我只能在地上奔跑...&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//执行Ostrich实例的fly()方法，将输出....</span><br><span class="line">os.fly()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的属性"><a href="#重写父类的属性" class="headerlink" title="重写父类的属性"></a>重写父类的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;</span><br><span class="line">    //重写Bird类的speed属性</span><br><span class="line">    override var speed:Double&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;正在访问被重写的属性&quot;)</span><br><span class="line">        return super.speed</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">        super.speed = newValue * newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写属性观察者"><a href="#重写属性观察者" class="headerlink" title="重写属性观察者"></a>重写属性观察者</h2><ol>
+<li>不要同时添加set和didSet</li>
+<li>不要给常量存储属性和只读计算属性添加属性观察者 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;    </span><br><span class="line">    //重写Bird类的speed属性,添加属性观察者  </span><br><span class="line">    override var speed:Double&#123;    </span><br><span class="line">        didSet&#123;</span><br><span class="line">        //属性值被改变完成后，将会自动执行该方法</span><br><span class="line">            print(&quot;改变之前的speed为:\(oldValue)&quot;)</span><br><span class="line">            super.speed *= speed</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的下标"><a href="#重写父类的下标" class="headerlink" title="重写父类的下标"></a>重写父类的下标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">    subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;父类的下标的get方法&quot;)</span><br><span class="line">        return idx + 10</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Sub:Base &#123;</span><br><span class="line">    //重写Base类的下标</span><br><span class="line">    override subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">            print(&quot;重写后的下标的get方法&quot;)</span><br><span class="line">            print(&quot;通过super访问被重写之前的下标:\(super[idx])&quot;)</span><br><span class="line">            return idx * idx</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">            print(&quot;重写后的下标的setter方法，传入的参数值为:\(newValue)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var base = Base()</span><br><span class="line">print(base[7]) //输出17</span><br><span class="line">//创建Sub实例</span><br><span class="line">var sub = Sub()</span><br><span class="line">print(sub[7]) //输出49</span><br><span class="line">sub[7] = 90</span><br></pre></td></tr></table></figure>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><ol>
+<li>Swift引用变量有两个类型:编译时类型，运行时类型，编译器只认编译时类型</li>
+<li>编译时类型由声明该变量时使用类型决定</li>
+<li>运行时类型由实际赋予该变量的实例决定</li>
+<li>多态:相同类型的变量，调用同一个方法时呈现出多种不同的行为特征。也就是编译时类型和运行时类型不一样</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/13/Swift面向对象基础（下）/" itemprop="url">
                   Swift面向对象基础（下）
                 </a>
@@ -1724,266 +1860,6 @@ return addElement
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/10/Swift中的字符串和集合/" itemprop="url">
-                  Swift中的字符串和集合
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T19:26:25+11:00" content="2016-03-10">
-              2016-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/Swift中的字符串和集合/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/10/Swift中的字符串和集合/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>Swift中的字符串是结构体，而NSString中的字符串是Class</p>
-<h2 id="字符类型及表现形式"><a href="#字符类型及表现形式" class="headerlink" title="字符类型及表现形式"></a>字符类型及表现形式</h2><pre><code>var s:Character = &quot;美&quot;
-var quote1 = &quot;\&apos;&quot;
-var quote2 = &quot;\u{22}&quot;
-println(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
-</code></pre><ol>
-<li>单个字符来指定字符常量，如“A”，“9”</li>
-<li>转义字符表示特殊字符常量，如”\n”,”\t”</li>
-<li>使用\u{n}的Unicode形式，n代表一个1~8位的十六进制</li>
-<li>必须用双引号包起来</li>
-<li>Swift中的每一个字符代表了一个可扩展字母集</li>
-</ol>
-<h2 id="字符串的创建"><a href="#字符串的创建" class="headerlink" title="字符串的创建"></a>字符串的创建</h2><pre><code>//创建方法1：直接赋值
-var str1 = &quot;Jike&quot;
-//创建方法2：构造函数
-var str2 = String()
-
-//创建多个重复字符的字符串
-var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
-var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
-println(strRep)
-
-//判断字符串是否为空
-println(str3.isEmpty)
-</code></pre><h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><pre><code>//拼接方式1.
-var str4 = str1 + &quot;College&quot;
-str1 += &quot;Hello&quot;
-println(str4)
-
-//拼接方式2.
-let char:Character = &quot;!&quot;
-str1.append(char)
-println(str1)
-</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>println(&quot;str3 has \(countElements(str3)) characters&quot;)
-</code></pre><ol>
-<li>通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量</li>
-<li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样</li>
-<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定</li>
-</ol>
-<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
-let sameQuotation = &quot;We are the same&quot;
-if quotation == sameQuotation {
-println(&quot;These are the same&quot;)
-}
-</code></pre><h2 id="检查字符串是否有特定的前缀后缀"><a href="#检查字符串是否有特定的前缀后缀" class="headerlink" title="检查字符串是否有特定的前缀后缀"></a>检查字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
-&quot;Fruits : orange&quot;,
-&quot;Fruits : banana&quot;,
-&quot;Vegetables: tomato&quot;,
-&quot;Vegetables: potato&quot;]
-
-for fry in food{
-if fru.hasPrefix(&quot;Fruits&quot;){
-   println(fru)
-}
-
-if fru.hasSuffix(&quot;o&quot;){
-   println(fru)
-}
-}
-</code></pre><h1 id="Swift中的数组"><a href="#Swift中的数组" class="headerlink" title="Swift中的数组"></a>Swift中的数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
-var num = Array&lt;Int&gt;(count:3,repeatedValue:1)
-</code></pre><h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2."></a>方式2.</h3><pre><code>var someInts = [Int]()
-var arr:[Int]=[1,2,3]
-var threeDoubles = [Double](count:3, repeatedValue:0.0)
-var food = [&quot;apple&quot;,&quot;orange&quot;,&quot;bnana&quot;]
-println(food[3])
-println(food.count)
-</code></pre><h3 id="AnyObject-and-Any"><a href="#AnyObject-and-Any" class="headerlink" title="AnyObject and Any"></a>AnyObject and Any</h3><p>Swift中有两种特殊的object:  </p>
-<ol>
-<li>Any:表示任何数据类型</li>
-<li>AnyObject:表示任何对象</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//因为数组里的数据不一样，这里的数组是AnyObject</span><br><span class="line">var shoppingList = [&quot;Eggs&quot;,123,true] </span><br><span class="line">    for item in shoppingList &#123;</span><br><span class="line">      println(item)</span><br><span class="line">&#125;     </span><br><span class="line">for fruit in food&#123;</span><br><span class="line">    fruit = &quot;good&quot; //error, fruit默认是let类型</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre><code>//1. 用append()在数组尾部添加
-food.append(&quot;Vegetables:mushroom&quot;)
-
-//2. 通过加法添加数组元素
-food += [&quot;pineapple&quot;,&quot;pity&quot;]
-</code></pre><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
-//从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
-</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code>food.insert(&quot;Meat&quot;,atIndex:0)
-</code></pre><h3 id="删除某一项"><a href="#删除某一项" class="headerlink" title="删除某一项"></a>删除某一项</h3><pre><code>food.removeAtIndex(0)
-</code></pre><h3 id="删除最后一项"><a href="#删除最后一项" class="headerlink" title="删除最后一项"></a>删除最后一项</h3><pre><code>food.removeLast()
-</code></pre><h3 id="删除所有"><a href="#删除所有" class="headerlink" title="删除所有"></a>删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><pre><code>//Dictionary&lt;KeyType,valueType&gt;
-var dic1: Dictionary&lt;String,String&gt;
-
-//[KeyType:valueType]
-var scores:[String:Int]
-</code></pre><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><pre><code>dic1 = Dictionary&lt;String,String&gt;()
-scores = Dictionary&lt;String,Int&gt;(minimumCapacity;5)
-</code></pre><h2 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h2><pre><code>var emptyDic:[String:Double] = [:] 
-println(emptyDic.isEmpty)
-</code></pre><h2 id="字典的使用"><a href="#字典的使用" class="headerlink" title="字典的使用"></a>字典的使用</h2><pre><code>//这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型
-var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:178]
-
-//这样会报错，因为是将NSObject转为int
-var height:Int? = person[&quot;身高&quot;]  
-if height != nil {
-   println(height!)
-}
-
-//以下才正确
-var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
-
-var height:String? = person[&quot;身高&quot;]  
-if height != nil {
-   println(height!)
-}
-
-println(person[&quot;age&quot;])
-
-//不存才的key，返回为nil
-println(person[&quot;weight&quot;])
-
-//对该值重新赋值
-person[&quot;name&quot;] = &quot;Jack&quot;
-
-//对不存在的key设置value,字典将会添加k-v对
-person[&quot;weight&quot;] = 90
-</code></pre><ol>
-<li>数组是有序的，字典是无序的</li>
-<li>通过常量或者变量决定字典是否可变</li>
-<li>如果没有显示数据类型声明，字典就会根据值进行推断</li>
-</ol>
-<h2 id="字典的替换"><a href="#字典的替换" class="headerlink" title="字典的替换"></a>字典的替换</h2><ol>
-<li>该方法返回更新值之前的原值</li>
-<li>键不存在对应值的时候设置值</li>
-<li>键存在时更新已存在的值</li>
-<li>键不存在时，不发生替换，不返回任何东西</li>
-</ol>
-<pre><code>if let oldName = person.updateValue(&quot;Lucky&quot;,forKey:&quot;name&quot;){
-   println(&quot;原来的值是:\(oldName)&quot;)
-}
-</code></pre><h2 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h2><pre><code>//使用元组
-for (key,value) in person{
- println(&quot;\(key):\(value)&quot;)
-} 
-</code></pre><h2 id="字典的删除"><a href="#字典的删除" class="headerlink" title="字典的删除"></a>字典的删除</h2><pre><code>//移除单个值
-person.removeValueForKey(&quot;name&quot;)
-
-//移除所有值
-person.removeAll(keepCapacity:false)
-</code></pre><h2 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h2><pre><code>let keysArr = [String](person.keys)
-let valueArr = [String](person.values)
-println(valuesArr)
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -2030,7 +1906,7 @@ println(valuesArr)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

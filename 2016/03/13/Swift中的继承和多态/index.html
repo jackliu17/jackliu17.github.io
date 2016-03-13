@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="swift,iOS," />
 
 
 
@@ -61,38 +61,37 @@
 
 
 
-<meta name="description" content="Git安装与简单配置配置或者修改git用户名$ git config --global user.name Jack 
-配置git用户邮箱$ git config --global user.email XXXXXX@gmail.com
-查询git帮助$ git config --help
-添加git用户$ git config --global --add user.name eoe
-删除git">
+<meta name="description" content="继承继承的特点
+单继承，每个子类只有一个直接父类，与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。可以有多个间接父类
+子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写
+swift的类并不是从一个通用的基类继承而来的
+override修饰被重写的部分
+final修饰的类不能被继承，属性，方法和下标不能被重写
+
+父类的继承12345678910111213141516">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git本地操作">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/09/Git本地操作/index.html">
+<meta property="og:title" content="Swift中的继承和多态">
+<meta property="og:url" content="http://jackliu17.github.io/2016/03/13/Swift中的继承和多态/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Git安装与简单配置配置或者修改git用户名$ git config --global user.name Jack 
-配置git用户邮箱$ git config --global user.email XXXXXX@gmail.com
-查询git帮助$ git config --help
-添加git用户$ git config --global --add user.name eoe
-删除git">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/Git1.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/3.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/5.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/6.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/4.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/9.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/7.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/8.png">
-<meta property="og:updated_time" content="2016-03-09T00:30:57.000Z">
+<meta property="og:description" content="继承继承的特点
+单继承，每个子类只有一个直接父类，与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。可以有多个间接父类
+子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写
+swift的类并不是从一个通用的基类继承而来的
+override修饰被重写的部分
+final修饰的类不能被继承，属性，方法和下标不能被重写
+
+父类的继承12345678910111213141516">
+<meta property="og:updated_time" content="2016-03-13T06:02:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git本地操作">
-<meta name="twitter:description" content="Git安装与简单配置配置或者修改git用户名$ git config --global user.name Jack 
-配置git用户邮箱$ git config --global user.email XXXXXX@gmail.com
-查询git帮助$ git config --help
-添加git用户$ git config --global --add user.name eoe
-删除git">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/Git1.png">
+<meta name="twitter:title" content="Swift中的继承和多态">
+<meta name="twitter:description" content="继承继承的特点
+单继承，每个子类只有一个直接父类，与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。可以有多个间接父类
+子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写
+swift的类并不是从一个通用的基类继承而来的
+override修饰被重写的部分
+final修饰的类不能被继承，属性，方法和下标不能被重写
+
+父类的继承12345678910111213141516">
 
 
 
@@ -110,7 +109,7 @@
   };
 </script>
 
-  <title> Git本地操作 | Cowboy Tech </title>
+  <title> Swift中的继承和多态 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +251,7 @@
             
             
               
-                Git本地操作
+                Swift中的继承和多态
               
             
           </h1>
@@ -264,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T09:34:11+11:00" content="2016-03-09">
-              2016-03-09
+            <time itemprop="dateCreated" datetime="2016-03-13T15:16:20+11:00" content="2016-03-13">
+              2016-03-13
             </time>
           </span>
 
@@ -294,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/09/Git本地操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/09/Git本地操作/" itemprop="commentsCount"></span>
+                <a href="/2016/03/13/Swift中的继承和多态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift中的继承和多态/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -317,66 +316,28 @@
       
 
       
-        <h2 id="Git安装与简单配置"><a href="#Git安装与简单配置" class="headerlink" title="Git安装与简单配置"></a>Git安装与简单配置</h2><p>配置或者修改git用户名<br><code>$ git config --global user.name Jack</code> </p>
-<p>配置git用户邮箱<br><code>$ git config --global user.email XXXXXX@gmail.com</code></p>
-<p>查询git帮助<br><code>$ git config --help</code></p>
-<p>添加git用户<br><code>$ git config --global --add user.name eoe</code></p>
-<p>删除git用户<br><code>$ git config --global --unset user.name eoe</code></p>
-<p>查询git当前用户<br><code>$ git config user.name</code></p>
-<p>查询git当前所有用户信息<br><code>$ git config --list --global</code></p>
-<h2 id="Git基本的工作流程"><a href="#Git基本的工作流程" class="headerlink" title="Git基本的工作流程"></a>Git基本的工作流程</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Git1.png" alt="1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/2.png" alt="2"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/3.png" alt="3"></p>
-<p>创建仓库，有两个方法，如下  </p>
-<ul>
-<li><code>git init</code>  </li>
-<li><code>git clone</code></li>
-</ul>
-<p>Mac OSX 下创建两个文件<br><code>$ touch a</code><br><code>$ touch b</code></p>
-<p>工作区提交到暂存区<br><code>git add a b （只添加这两个文件）</code><br><code>git add -A   (添加整个工作区)</code></p>
-<p>查看暂存区<br><code>git status</code></p>
-<p>提交到历史记录区(m为所标注的信息)<br><code>git commit -m &quot;Initial commit&quot;</code></p>
-<p>删除工作区和暂存区<br><code>git rm a</code></p>
-<p>只删除暂存区，不删除工作区<br><code>git rm --cached a</code></p>
-<p>将文件a命名为文件c （一系列的组合，在工作区中操作，也在暂存区中修改）<br><code>git mv a c</code></p>
-<p>编写.gitignore文件，指出哪些文件是可以不用被git的<br>.gitignore (省略)</p>
-<h2 id="Git本地分支与合并"><a href="#Git本地分支与合并" class="headerlink" title="Git本地分支与合并"></a>Git本地分支与合并</h2><h3 id="简单的分支操作"><a href="#简单的分支操作" class="headerlink" title="简单的分支操作"></a>简单的分支操作</h3><p>添加test分支<br><code>git branch test</code></p>
-<p>切换到test分支<br><code>git checkout test</code></p>
-<p>查看在什么分支<br><code>git status</code></p>
-<h3 id="查看commit的情况"><a href="#查看commit的情况" class="headerlink" title="查看commit的情况"></a>查看commit的情况</h3><p>为查看长命令设置个短标识“lol”<br><code>git config --global alias.lol &quot;log --oneline --decorate --graph --all&quot;</code></p>
-<p>查看commit的情况<br><code>git  lol</code></p>
-<h3 id="查看tag的情况"><a href="#查看tag的情况" class="headerlink" title="查看tag的情况"></a>查看tag的情况</h3><p>为某个commit设置个标签<br><code>git tag &quot;v0&quot; c8f9030</code></p>
-<p>查看有什么标签<br><code>git tag</code></p>
-<p>查看某标签的具体情况<br><code>git show v0</code></p>
-<h3 id="有关checkout分支的详述"><a href="#有关checkout分支的详述" class="headerlink" title="有关checkout分支的详述"></a>有关checkout分支的详述</h3><p>以checkout进入某commit点，实际上是以该点重新分支fix_v0，<br><code>git checkout v0</code></p>
-<p>所以还有后续命令,以该点创建一个分支<br> <code>git checkout -b fix_v0</code></p>
-<h3 id="有关stash"><a href="#有关stash" class="headerlink" title="有关stash"></a>有关stash</h3><p>当checkout切换分支时，要先提交或者stash暂存区的东西,否则会被覆盖<br>将工作区和暂存区的东西先藏起来，以免切换分支的时候被覆盖<br><code>git stash save -a &quot;stash1&quot;</code></p>
-<p>查看有哪些stash<br><code>git stash list</code></p>
-<p>将stash的东西还原出来，根据索引号，同时stash list中会删除<br><code>git stash pop --index stash@{0}</code></p>
-<p>将stash的东西还原出来，根据索引号，同时stash list依然保存<br><code>git stash apply --index stash@{0}</code></p>
-<p>删除某个stash<br><code>git stash drop stash@{0}</code></p>
-<p>删除全部stash<br><code>git stash clear</code></p>
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>先切换到master分支下，再合并需要的分支<br><code>git master</code><br><code>git merge test_merge</code></p>
-<p>如果是fast-forward，那是不需要修改文件的合并，不重叠的融合  </p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/5.png" alt="5"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/6.png" alt="6"></p>
-<p>如果是有冲突的合并，用如下命令取消<br><code>git merge --abort</code></p>
-<p>或者是先编辑相冲突的内容，然后再add —&gt; commit,这个commit 是两个merge的commit<br><code>git add master.txt</code><br><code>git commit -m &quot;Test merge&quot;</code></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/4.png" alt="4"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/9.png" alt="9"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/7.png" alt="7"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/8.png" alt="8"></p>
-<h2 id="查看与对比历史记录"><a href="#查看与对比历史记录" class="headerlink" title="查看与对比历史记录"></a>查看与对比历史记录</h2><p>查看某个commit的详情<br><code>git show HEAD</code><br><code>git show 16e9e16</code></p>
-<p>如果某个commit是merge commit<br><code>git show master^</code>(显示merge中的两个commit中的第一副提交)<br><code>git show master^2</code> (显示merge中的两个commit中的第二副提交)</p>
-<p>用show可以显示commit ,tag 的相关信息，查看某标签的具体情况<br><code>git show v0</code></p>
-<p>查看历史详情，用键盘上下翻页，q退出<br><code>git log</code> （有很多参数）</p>
-<p>比较工作区和暂存区的差别<br><code>git diff</code></p>
-<p>比较历史记录区和暂存区的差别<br><code>git diff --cached</code></p>
-<p>比较哪个单词是差异，用颜色标注出来<br><code>git diff --color-words</code></p>
-<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>撤销工作区的修改，用暂存区的内容覆盖工作区的内容<br><code>git checkout -- master.txt</code></p>
-<p>用某个commit覆盖工作区和暂存区<br><code>git checkout INITIAL_COMMIT -- master.txt</code></p>
-<p>撤销暂存区的修改<br><code>git reset master.txt</code></p>
-<p>用某个commit覆盖暂存区，而不是工作区<br><code>git reset INITIAL_COMMIT -- master.txt</code></p>
-<p>撤销当前的提交,这也是一个新的提交<br><code>git revert HEAD</code></p>
-<p>指向某个commit，并用它还原工作区和暂存区<br><code>git reset --hard test</code></p>
-<p>指向某个commit，还原暂存区，不还原工作区<br><code>git reset --mixed test</code></p>
-<p>指向某个commit<br><code>git reset --soft test</code></p>
-<h2 id="Vim的编辑命令"><a href="#Vim的编辑命令" class="headerlink" title="Vim的编辑命令"></a>Vim的编辑命令</h2><p>编辑vim后，按esc键 + :wq 就是保存，不保存就不用加w</p>
-<h2 id="Mac-command-line"><a href="#Mac-command-line" class="headerlink" title="Mac command line"></a>Mac command line</h2><p><code>$ clear</code> (清楚屏幕上的所有东西)</p>
+        <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="继承的特点"><a href="#继承的特点" class="headerlink" title="继承的特点"></a>继承的特点</h2><ol>
+<li>单继承，每个子类只有一个直接父类，与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。可以有多个间接父类</li>
+<li>子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写</li>
+<li>swift的类并不是从一个通用的基类继承而来的</li>
+<li>override修饰被重写的部分</li>
+<li>final修饰的类不能被继承，属性，方法和下标不能被重写</li>
+</ol>
+<h2 id="父类的继承"><a href="#父类的继承" class="headerlink" title="父类的继承"></a>父类的继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;  </span><br><span class="line">    var weight = 0.0</span><br><span class="line">    func info()&#123;</span><br><span class="line">        print(&quot;我是一个水果，重\(weight)g!&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var name:String!</span><br><span class="line">    func taste()&#123;</span><br><span class="line">    print(&quot;\(name)吃起来很好吃&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = Apple()</span><br><span class="line">//Apple本身没有weight属性</span><br><span class="line">//因为Apple的父类有weight属性，也可以访问Apple实例的weight属性</span><br><span class="line">a.weight = 56</span><br><span class="line">a.name = &quot;红富士&quot;</span><br><span class="line">//调用Apple实例的info方法</span><br><span class="line">a.info()</span><br><span class="line">a.taste()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Bird&#123;</span><br><span class="line">    //Bird类的fly()方法</span><br><span class="line">    func fly()&#123;</span><br><span class="line">    print(&quot;我在天空里自由自在的飞翔&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich:Bird &#123;</span><br><span class="line">    //重写Bird类的fly()方法</span><br><span class="line">    override func fly() &#123;</span><br><span class="line">        print(&quot;我只能在地上奔跑...&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//执行Ostrich实例的fly()方法，将输出....</span><br><span class="line">os.fly()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的属性"><a href="#重写父类的属性" class="headerlink" title="重写父类的属性"></a>重写父类的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;</span><br><span class="line">    //重写Bird类的speed属性</span><br><span class="line">    override var speed:Double&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;正在访问被重写的属性&quot;)</span><br><span class="line">        return super.speed</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">        super.speed = newValue * newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写属性观察者"><a href="#重写属性观察者" class="headerlink" title="重写属性观察者"></a>重写属性观察者</h2><ol>
+<li>不要同时添加set和didSet</li>
+<li>不要给常量存储属性和只读计算属性添加属性观察者 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;    </span><br><span class="line">    //重写Bird类的speed属性,添加属性观察者  </span><br><span class="line">    override var speed:Double&#123;    </span><br><span class="line">        didSet&#123;</span><br><span class="line">        //属性值被改变完成后，将会自动执行该方法</span><br><span class="line">            print(&quot;改变之前的speed为:\(oldValue)&quot;)</span><br><span class="line">            super.speed *= speed</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的下标"><a href="#重写父类的下标" class="headerlink" title="重写父类的下标"></a>重写父类的下标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">    subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;父类的下标的get方法&quot;)</span><br><span class="line">        return idx + 10</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Sub:Base &#123;</span><br><span class="line">    //重写Base类的下标</span><br><span class="line">    override subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">            print(&quot;重写后的下标的get方法&quot;)</span><br><span class="line">            print(&quot;通过super访问被重写之前的下标:\(super[idx])&quot;)</span><br><span class="line">            return idx * idx</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">            print(&quot;重写后的下标的setter方法，传入的参数值为:\(newValue)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var base = Base()</span><br><span class="line">print(base[7]) //输出17</span><br><span class="line">//创建Sub实例</span><br><span class="line">var sub = Sub()</span><br><span class="line">print(sub[7]) //输出49</span><br><span class="line">sub[7] = 90</span><br></pre></td></tr></table></figure>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><ol>
+<li>Swift引用变量有两个类型:编译时类型，运行时类型，编译器只认编译时类型</li>
+<li>编译时类型由声明该变量时使用类型决定</li>
+<li>运行时类型由实际赋予该变量的实例决定</li>
+<li>多态:相同类型的变量，调用同一个方法时呈现出多种不同的行为特征。也就是编译时类型和运行时类型不一样</li>
+</ol>
 
       
     </div>
@@ -391,7 +352,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag">#Git</a>
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -400,17 +363,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/04/今天/" rel="next" title="今天">
-                <i class="fa fa-chevron-left"></i> 今天
+              <a href="/2016/03/13/Swift面向对象基础（下）/" rel="next" title="Swift面向对象基础（下）">
+                <i class="fa fa-chevron-left"></i> Swift面向对象基础（下）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/10/Swift语言基础/" rel="prev" title="Swift语言基础">
-                Swift语言基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -542,7 +501,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git安装与简单配置"><span class="nav-number">1.</span> <span class="nav-text">Git安装与简单配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git基本的工作流程"><span class="nav-number">2.</span> <span class="nav-text">Git基本的工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git本地分支与合并"><span class="nav-number">3.</span> <span class="nav-text">Git本地分支与合并</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的分支操作"><span class="nav-number">3.1.</span> <span class="nav-text">简单的分支操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看commit的情况"><span class="nav-number">3.2.</span> <span class="nav-text">查看commit的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看tag的情况"><span class="nav-number">3.3.</span> <span class="nav-text">查看tag的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有关checkout分支的详述"><span class="nav-number">3.4.</span> <span class="nav-text">有关checkout分支的详述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有关stash"><span class="nav-number">3.5.</span> <span class="nav-text">有关stash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并分支"><span class="nav-number">3.6.</span> <span class="nav-text">合并分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看与对比历史记录"><span class="nav-number">4.</span> <span class="nav-text">查看与对比历史记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销修改"><span class="nav-number">5.</span> <span class="nav-text">撤销修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim的编辑命令"><span class="nav-number">6.</span> <span class="nav-text">Vim的编辑命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac-command-line"><span class="nav-number">7.</span> <span class="nav-text">Mac command line</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">1.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承的特点"><span class="nav-number">1.1.</span> <span class="nav-text">继承的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#父类的继承"><span class="nav-number">1.2.</span> <span class="nav-text">父类的继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写父类的方法"><span class="nav-number">1.3.</span> <span class="nav-text">重写父类的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写父类的属性"><span class="nav-number">1.4.</span> <span class="nav-text">重写父类的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写属性观察者"><span class="nav-number">1.5.</span> <span class="nav-text">重写属性观察者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写父类的下标"><span class="nav-number">1.6.</span> <span class="nav-text">重写父类的下标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多态"><span class="nav-number">2.</span> <span class="nav-text">多态</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -800,9 +759,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/09/Git本地操作/';
-      var disqus_title = 'Git本地操作';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/09/Git本地操作/';
+      var disqus_identifier = '2016/03/13/Swift中的继承和多态/';
+      var disqus_title = 'Swift中的继承和多态';
+      var disqus_url = 'http://jackliu17.github.io/2016/03/13/Swift中的继承和多态/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
