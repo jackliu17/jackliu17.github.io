@@ -238,6 +238,365 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/13/Swift面向对象基础（下）/" itemprop="url">
+                  Swift面向对象基础（下）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T10:15:37+11:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/Swift面向对象基础（下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift面向对象基础（下）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h1><h2 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h2><ol>
+<li>在原有类型后面添加?,需要强制解析</li>
+<li>在原有类型后面添加！，不需要强制解析，因为这已经是隐式解析了</li>
+<li>所有类型默认不接受nil，但是可选类型可以</li>
+</ol>
+<h2 id="可选链-1"><a href="#可选链-1" class="headerlink" title="可选链"></a>可选链</h2><pre><code>class Customer {
+
+var name = &quot;&quot;
+var emp: Employee?
+
+init(name :String){
+self.name = name
+}
+
+//定义一个常量类型的employee数组，用于模拟系统中所有员工
+let employees = [
+    Employee(name: &quot;张三&quot;, title: &quot;销售客服&quot;),
+    Employee (name: &quot;小明&quot;, title: &quot;售后客服&quot;),
+    Employee (name: &quot;Han&quot;, title: &quot;普通客服&quot;),
+    Employee (name: &quot;Better&quot;, title: &quot;销售主管&quot;),
+]
+
+//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
+func findEmp(empName:String) -&gt; Employee! {
+
+    for emp in employees {
+        if emp.name == empName {
+          return emp
+        }
+    }
+    return nil
+}
+
+}
+
+
+class Company {
+
+  var name = &quot;&quot;
+  var addr = &quot;&quot;
+
+  init (name:String, addr:String){
+  self.name = name
+  self.addr = addr
+  }
+}
+
+class Employee {
+
+var name = &quot;Lily&quot;
+var title = &quot;行政&quot;
+var company:Company!
+
+init(name:String, title:String){
+
+    self.name = name
+    self.title = title
+}
+
+func info(){
+
+     print(&quot;本员工名为\(self.name),职位是\(self.title)&quot;)
+
+}
+}
+
+//第一种情况----------------------
+var c = Customer(name: &quot;Damon&quot;)
+var emp = Employee(name: &quot;Elena&quot;, title: &quot;Student&quot;)
+
+//设置Customer关联的Employee实例
+c.emp = emp
+
+//设置Employee关联的Company实例
+emp.company = Company(name: &quot;极客学院&quot;, addr: &quot;北京市&quot;)
+
+//print(&quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&quot;)
+//print(&quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&quot;) //使用可选链访问属性
+
+//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
+var c2 = Customer(name: &quot;Lucky&quot;)
+c2.emp = Employee(name: &quot;Snow&quot;, title: &quot;客服&quot;)
+//print(&quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&quot;) //会报错，因为有空值
+//print(&quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&quot;) //使用可选链访问属性
+
+//第三种情况 ---------------
+var c3 = Customer(name: &quot;Paul&quot;)
+c3.findEmp(&quot;张三&quot;)?.info()
+c3.findEmp(&quot;小明&quot;)?.info()
+//print(&quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&quot;)
+
+
+//第四种情况
+var dict = [Int: Customer]()
+dict[1] = Customer(name: &quot;Han&quot;)
+dict[2] = Customer(name: &quot;Angle&quot;)
+
+dict[1]?.findEmp(&quot;Better&quot;)?.info()
+dict[4]?.findEmp(&quot;Better&quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句
+</code></pre><ol>
+<li>可选链用于处理可选类型的属性，方法和下标</li>
+<li>使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀</li>
+<li>可选链会自动判断程序访问的关联实例是否为nil</li>
+</ol>
+<h1 id="类型属性和类型方法"><a href="#类型属性和类型方法" class="headerlink" title="类型属性和类型方法"></a>类型属性和类型方法</h1><ol>
+<li>Swift的类型中可以定义5种成员:属性，方法，下标，构造器和嵌套类型</li>
+<li>类型属性，实例属性</li>
+<li>类型方法，实例方法</li>
+<li>static:在枚举，结构体中修饰的属性，方法为类型属性，类型方法</li>
+<li>class:在类中修饰的属性，方法</li>
+<li>结构体可以包含实例计算属性，不能包含实例存储属性</li>
+<li>类中不可以定义类型存储属性，只能包含类型计算属性</li>
+</ol>
+<h2 id="值类型的类型属性-枚举"><a href="#值类型的类型属性-枚举" class="headerlink" title="值类型的类型属性-枚举"></a>值类型的类型属性-枚举</h2><p>结构体可以包含实例计算属性，不能包含实例存储属性</p>
+<pre><code>enum Season {
+//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+//为枚举定义类型存储属性，且声明为常量
+static let name = &quot;季节&quot;
+static var info:String{
+
+    get{
+
+    return&quot;代表季节的枚举，其desc为:\(desc)&quot;
+
+    }
+
+    set{
+
+    print(&quot;程序尝试对info计算属性进行赋值:\(newValue)&quot;)
+
+    }
+}
+}
+//对Season枚举的类型属性赋值
+Season.desc = &quot;季节类&quot;
+print(Season.name)
+Season.info = &quot;新的info&quot;
+print(Season.info)
+</code></pre><h2 id="值类型的类型属性-结构体"><a href="#值类型的类型属性-结构体" class="headerlink" title="值类型的类型属性-结构体"></a>值类型的类型属性-结构体</h2><pre><code>struct FkRange {
+
+//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+//为结构体定义类型存储属性，且声明为常量
+static let maxWidth = 10000
+static let maxHeight = 40000
+//定义类型计算属性，该属性只有get部分，是一个只读属性
+static var maxArea:Int{
+return maxWidth * maxHeight
+}
+}
+
+FkRange.desc = &quot;描述范围的结构体&quot;
+print(FkRange.desc)
+print(FkRange.maxWidth)
+print(FkRange.maxHeight)
+print(FkRange.maxArea)
+</code></pre><h2 id="类的类型属性"><a href="#类的类型属性" class="headerlink" title="类的类型属性"></a>类的类型属性</h2><p>类中不可以定义类型存储属性，只能包含类型计算属性</p>
+<pre><code>class User {
+
+   //为类定义类型计算属性
+class var nameMaxLength:Int {
+    get {
+    return 24
+    }
+
+    set {
+    print(&quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&quot;)
+    }
+}
+}
+print(User.nameMaxLength)
+User.nameMaxLength = 20
+</code></pre><h2 id="值类型的类型方法"><a href="#值类型的类型方法" class="headerlink" title="值类型的类型方法"></a>值类型的类型方法</h2><pre><code>enum Season2{
+
+ //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+
+//为枚举定义类型存储属性，且声明为常量
+static let name = &quot;季节&quot;
+
+//定义无参数的类型方法
+static func info(){
+
+print(&quot;季节类的info方法，该类的name存储属性为:\(name)&quot;)
+}
+
+//定义带一个参数的类型方法
+static func setDesc(desc:String){
+
+self.desc = desc
+}
+}
+
+Season2.info()
+Season2.setDesc(&quot;描述季节变化的枚举&quot;)
+print(Season2.desc)
+</code></pre><h2 id="类的类型方法"><a href="#类的类型方法" class="headerlink" title="类的类型方法"></a>类的类型方法</h2><pre><code>class Math {
+
+   //类不允许定义类型存储属性，使用类型计算属性代替
+class var pi:Double {
+    return 3.1415926535
+}
+
+class func abs(value:Double)-&gt;Double {
+    return value&lt;0 ? -value:value
+}
+
+//定义类型方法，取消第二个形参的外部形参名
+class func pow(base:Double,_ exponent:Int)-&gt;Double {
+    var result = 1.0
+    for idx in 1...exponent{
+    result *= base
+    }
+    return result
+}
+
+//定义类型方法，类型方法可直接访问类型属性
+class func radian2Degre(radian:Double)-&gt;Double {
+    return radian * 180/pi
+}
+
+//定义类型方法，类型方法可通过self引用类型属性
+class func degree2Radian(degree:Double)-&gt;Double {
+    return degree * self.pi/180
+}
+}
+
+print(Math.pi)
+print(Math.pow(2, 4))
+print(Math.radian2Degre(1.57))
+print(Math.degree2Radian(45))
+</code></pre><h1 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h1><ol>
+<li>Swift的构造器构造出来的实例由系统隐式返回</li>
+<li>构造器的作用完成每个类，结构体中实例存储属性的初始化</li>
+<li>为实例存储属性赋初始值的时机:1.定义实例存储属性时指定初始值。2.在构造器中为实例存储属性指定初始值.</li>
+</ol>
+<h2 id="实例存储属性的初始化分类"><a href="#实例存储属性的初始化分类" class="headerlink" title="实例存储属性的初始化分类"></a>实例存储属性的初始化分类</h2><ol>
+<li>定义实例存储属性时显示指定了初始值</li>
+<li>实例存储属性的类型为可选类型</li>
+<li>系统提供的默认构造器为实例存储属性分配初始值</li>
+<li>显式提供的构造器为实例存储属性分配初始值</li>
+</ol>
+<h2 id="类和结构体的构造器"><a href="#类和结构体的构造器" class="headerlink" title="类和结构体的构造器"></a>类和结构体的构造器</h2><ol>
+<li>swift只为类提供一个无参数的构造器</li>
+<li>swift为结构体提供两个构造器:无参数的构造器和初始化所有实例存储属性的构造器</li>
+</ol>
+<h2 id="可能失败的构造器"><a href="#可能失败的构造器" class="headerlink" title="可能失败的构造器"></a>可能失败的构造器</h2><ol>
+<li>可能失败的构造器:使用Init？或者!关键字进行定义</li>
+<li>在构造器执行体中使用return nil 来表示构造器失败</li>
+<li>Swift不允许定义两个相同形参列表的构造器。即使一个是可能失败的构造器，一个是普通的构造器也不行</li>
+</ol>
+<h2 id="构造器的外部形参名"><a href="#构造器的外部形参名" class="headerlink" title="构造器的外部形参名"></a>构造器的外部形参名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct FkPoint</span><br><span class="line">    &#123;</span><br><span class="line">    var left: Int = 0</span><br><span class="line">    var top: Int = 0</span><br><span class="line">    //定义带两个参数的构造器，并为第二个构造器参数显式指定外部形参名</span><br><span class="line">    init(left: Int , y top: Int)</span><br><span class="line">&#123;</span><br><span class="line">    self.left = left</span><br><span class="line">    self.top = top</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 第一个形参的外部形参名与局部形参名相同</span><br><span class="line">// 第二个形参的外部形参名使用显式指定的形参名</span><br><span class="line">var p1 = FkPoint(left:20 , y:12)</span><br></pre></td></tr></table></figure>
+<h2 id="取消构造器的外部形参名"><a href="#取消构造器的外部形参名" class="headerlink" title="取消构造器的外部形参名"></a>取消构造器的外部形参名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Person</span><br><span class="line">    &#123;</span><br><span class="line">    var name: String?</span><br><span class="line">    var gender: String?</span><br><span class="line">    var age = 0</span><br><span class="line">    // 由于该类中前2个实例存储属性使用了可选类型，后1个实例存储属性指定了初始值，</span><br><span class="line">    // 因此该结构体对构造器没有要求，故此处可随便定义一个带参数的构造器</span><br><span class="line">    // 取消构造器参数的外部形参名</span><br><span class="line">    init(_ name:String , _ gender:String)</span><br><span class="line">&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.gender = gender</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 调用构造器时无需使用外部形参名</span><br><span class="line">var p = Person(&quot;孙悟空&quot; , &quot;男&quot;)</span><br><span class="line">print(p.name)</span><br><span class="line">print(p.gender)</span><br><span class="line">print(p.age)</span><br></pre></td></tr></table></figure>
+<h2 id="在构造过程中常量属性是可以修改的"><a href="#在构造过程中常量属性是可以修改的" class="headerlink" title="在构造过程中常量属性是可以修改的"></a>在构造过程中常量属性是可以修改的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class User</span><br><span class="line">    &#123;</span><br><span class="line">    let maxAge = 100</span><br><span class="line">    var name: String</span><br><span class="line">    init(maxAge: Int , name :String) &#123;</span><br><span class="line">      println(self.maxAge)</span><br><span class="line">      self.maxAge = Int.max</span><br><span class="line">      println(self.maxAge)</span><br><span class="line">      self.name = name</span><br><span class="line">      self.maxAge = maxAge</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var u = User(maxAge:120 , name:&quot;白骨精&quot;)</span><br><span class="line">println(u.maxAge)</span><br><span class="line">println(u.name)</span><br></pre></td></tr></table></figure>
+<h2 id="使用闭包或函数为属性设置初始值"><a href="#使用闭包或函数为属性设置初始值" class="headerlink" title="使用闭包或函数为属性设置初始值"></a>使用闭包或函数为属性设置初始值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">struct ClosureInit &#123;</span><br><span class="line">    // 使用闭包对test实例存储属性执行初始化</span><br><span class="line">    var test: Int = &#123;</span><br><span class="line">    var dt = NSDate()</span><br><span class="line">    var gregorian = NSCalendar.currentCalendar()</span><br><span class="line">    // 定义一个时间字段的旗标，指定将会获取指定月、日信息</span><br><span class="line">    var unitFlags = NSCalendarUnit.CalendarUnitMonth</span><br><span class="line">    | NSCalendarUnit.CalendarUnitDay</span><br><span class="line">    var comp = gregorian.components(unitFlags</span><br><span class="line">    , fromDate:dt)</span><br><span class="line">    // 获取当前的月份</span><br><span class="line">    var month = Int(comp.month)</span><br><span class="line">    // 获取当前第几日</span><br><span class="line">    var day = Int(comp.day)</span><br><span class="line">    // 得到计算结果</span><br><span class="line">    return day - month</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line">var ci = ClosureInit()</span><br><span class="line">println(ci.test)</span><br></pre></td></tr></table></figure>
+<h2 id="值类型的构造器重载"><a href="#值类型的构造器重载" class="headerlink" title="值类型的构造器重载"></a>值类型的构造器重载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">struct ConstructorOverload &#123;</span><br><span class="line">    var name: String!</span><br><span class="line">    var amount: Int!</span><br><span class="line">    // 提供无参数的构造器</span><br><span class="line">    init()&#123; &#125;</span><br><span class="line">    // 提供带两个参数的构造器来完成构造过程</span><br><span class="line">    init(name: String, amount: Int)</span><br><span class="line">&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.amount = amount</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 通过无参数构造器创建ConstructorOverload实例</span><br><span class="line">var oc1 = ConstructorOverload()</span><br><span class="line">// 通过有参数构造器创建ConstructorOverload实例</span><br><span class="line">var oc2 = ConstructorOverload(</span><br><span class="line">    name:&quot;HelloWorld&quot;,amount:800000)</span><br><span class="line">println(&quot;\(oc1.name)  \(oc1.amount)&quot;)</span><br><span class="line">println(&quot;\(oc2.name)  \(oc2.amount)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="构造器代理："><a href="#构造器代理：" class="headerlink" title="构造器代理："></a>构造器代理：</h2><p>在定义构造器时，通过self.init(实参)调用其他构造器来完成实例的部分构造过程*/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">struct Apple</span><br><span class="line">    &#123;</span><br><span class="line">    var name: String</span><br><span class="line">    var color: String</span><br><span class="line">    var weight: Double!</span><br><span class="line">    init(_ name: String , _ color:String)</span><br><span class="line">&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.color = color</span><br><span class="line">    &#125;</span><br><span class="line">// 两个参数的构造器</span><br><span class="line">    init(name: String , color:String)</span><br><span class="line">&#123;</span><br><span class="line">    self.init(name , color)  // 构造器代理</span><br><span class="line">    &#125;</span><br><span class="line">// 为构造器显式指定外部形参名</span><br><span class="line">    init(appleName n: String , appleColor c:String)</span><br><span class="line">&#123;</span><br><span class="line">    //		name = &quot;临时值&quot; // 这行代码将导致错误</span><br><span class="line">    self.init(n , c)  // 构造器代理</span><br><span class="line">    // 调用构造器代理之后，即可通过self访问该实例的属性</span><br><span class="line">    println(&quot;--执行显式指定外部形参名的构造器--\(self.name)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">// 定义三个参数的构造器</span><br><span class="line">    init(name: String , color: String , weight: Double)</span><br><span class="line">&#123;</span><br><span class="line">    self.init(name , color)  // 构造器代理</span><br><span class="line">    self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var ap1 = Apple(&quot;红富士&quot; , &quot;粉红色&quot;)</span><br><span class="line">println(&quot;\(ap1.name)---&gt;\(ap1.color)&quot;)</span><br><span class="line">var ap2 = Apple(appleName:&quot;青苹果&quot; , appleColor:&quot;绿色&quot;)</span><br><span class="line">println(&quot;\(ap2.name)---&gt;\(ap2.color)&quot;)</span><br><span class="line">var ap3 = Apple(name:&quot;美国苹果&quot; , color:&quot;红色&quot; , weight:0.45)</span><br></pre></td></tr></table></figure></p>
+<h2 id="可能失败的构造器-1"><a href="#可能失败的构造器-1" class="headerlink" title="可能失败的构造器"></a>可能失败的构造器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">struct Cat</span><br><span class="line">        &#123;</span><br><span class="line">        let name: String</span><br><span class="line">        init?(name: String) &#123;</span><br><span class="line">        // 如果传入的name参数为空字符串，构造器失败，返回nil</span><br><span class="line">        if name.isEmpty &#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">        self.name = name</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">let c1 = Cat(name: &quot;Kitty&quot;)</span><br><span class="line">if c1 != nil &#123;</span><br><span class="line">        // 创建c1的构造器是init?，因此程序必须对c1执行强制解析</span><br><span class="line">        print(&quot;c1的name为：\(c1!.name)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">let c2 = Cat(name: &quot;&quot;)</span><br><span class="line">print(c2 == nil) // 输出true，表明c2为nil</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">enum Season&#123;</span><br><span class="line">    case Spring, Summer, Autumn, Winter</span><br><span class="line">    // 使用init!定义可能失败的构造器，则该构造器创建的实例可进行隐式解析</span><br><span class="line">    init!(name: Character) &#123;</span><br><span class="line">        // 根据传入的构造器参数选择相应的枚举成员</span><br><span class="line">        switch name &#123;</span><br><span class="line">        case &quot;S&quot;,&quot;s&quot;:</span><br><span class="line">            self = .Spring</span><br><span class="line">        case &quot;U&quot;, &quot;u&quot;:</span><br><span class="line">            self = .Summer</span><br><span class="line">        case &quot;A&quot;, &quot;a&quot;:</span><br><span class="line">            self = .Autumn</span><br><span class="line">        case &quot;W&quot;, &quot;w&quot;:</span><br><span class="line">            self = .Winter</span><br><span class="line">            // 如果传入其他参数，构造失败，返回nil。</span><br><span class="line">        default:</span><br><span class="line">            return nil</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let s1 = Season(name: &quot;s&quot;)</span><br><span class="line">if s1 != nil &#123;</span><br><span class="line">    print(&quot;Season实例构造成功！&quot;)</span><br><span class="line">&#125;</span><br><span class="line">let s2 = Season(name: &quot;x&quot;)</span><br><span class="line">print(s2 == nil)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Swift只为类提供一个无参数的构造器。</li>
+<li>Swift为结构体提供两个构造器：无参数的构造器和初始化所有实例存储属性的构造器。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/12/Swift面向对象基础（中）/" itemprop="url">
                   Swift面向对象基础（中）
                 </a>
@@ -1625,244 +1984,6 @@ println(valuesArr)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/10/Swift语言基础/" itemprop="url">
-                  Swift语言基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T16:22:51+11:00" content="2016-03-10">
-              2016-03-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/10/Swift语言基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/10/Swift语言基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h1><pre><code>var str = &quot;Hello&quot;  
-var name = &quot;Lucky&quot;    
-var age: Int  
-var string: String = &quot;smile&quot;  
-var a = 20, b:String, c = &quot;Swift&quot;  
-println(&quot;Her name is \(name)&quot;)   //作为占位符&quot;\&quot; 
-</code></pre><ol>
-<li>变量var ,常量let    </li>
-<li>标识符必须以字符(包括Unicode字符)，下划线_，美元符$开头，但不能以数字开头，不可以包含空格，不能使用关键字，其长度没有限制</li>
-</ol>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="整型：用Int就可以了"><a href="#整型：用Int就可以了" class="headerlink" title="整型：用Int就可以了"></a>整型：用Int就可以了</h2><pre><code>let oneMillion = 1_000_000 //可以增加下划线作为分隔符
-println(oneMillion)
-</code></pre><h2 id="整型之间转换必须是显式转换"><a href="#整型之间转换必须是显式转换" class="headerlink" title="整型之间转换必须是显式转换"></a>整型之间转换必须是显式转换</h2><pre><code>var book1: Int16 = 100
-var book2: Int32 = 30
-var totalPrice = Int32(book1) + book2 //必须先转换，否则会报错
-</code></pre><h2 id="正无穷-负无穷-非数"><a href="#正无穷-负无穷-非数" class="headerlink" title="正无穷,负无穷,非数"></a>正无穷,负无穷,非数</h2><pre><code>var w = 4.0 / 0.0   //正无穷
-var w = - 4.0 / 0.0 //负无穷
-var f = 0.0 / 0.0   //非数
-</code></pre><h2 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h2><pre><code>var width: Float = 2.1
-var height: Double = 3.9
-var area1 = width * Float(height) //必须先转换，否则会报错
-var area2 = Int(width) * 4 //必须先转换，否则会报错
-</code></pre><h2 id="类型别名："><a href="#类型别名：" class="headerlink" title="类型别名："></a>类型别名：</h2><pre><code>typealias Age = UInt16
-let myAge:Age = 10
-</code></pre><h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><pre><code>//赋值方式1.
-var score = (140,140,&quot;Good&quot;)
-
-//赋值方式2.赋值时必须为所有的成员变量赋值
-var health : (Int , Int , String) 
-health = (182 , 78 , &quot;Good&quot;)  
-
-println (&quot;health元组的值为:\(health)&quot;)  //打印元组所有
-println (&quot;health元组中身高的值为:\(health.1)&quot;) //打印元组中第二个值
-
-//元组中的嵌套
-var test:(Int,(Int,String))
-test = (10,(100,&quot;Swift&quot;))
-println(&quot;test元组中第二个元素的第一个元素为：\(test.1.0)&quot;)
-
-//通过key-value赋值，顺序可以调换
-var score2 = (math:140, English:140, Assessment:&quot;A&quot;)
-var score2 :(math:Int, English:Int, Assessment:String)
-score2 = (English:140, math:140, Assessment:&quot;A&quot;) 
-println(&quot;score2 中数学的成绩是: \(score2.math)&quot;)
-</code></pre><h2 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h2><p>任何已知类型后面紧跟?即可代表可选类型如Int?</p>
-<pre><code>var str2 = &quot;HelloGeek&quot;
-var num: Int? = str2.toInt()
-println(num) //nil表示值缺失
-</code></pre><h2 id="强制解析："><a href="#强制解析：" class="headerlink" title="强制解析："></a>强制解析：</h2><p>在变量或者常量后面添加!注意：必须可选类型的变量和常量确实有值的时候才能解析成功</p>
-<pre><code>var num1: Int? = 10
-var num2: Int? = 20
-
-if num1 !=nil &amp;&amp; num !=nil{
-   let sum = num1! + num2! //获得可选类型的值
-}else{
-   println(&quot;num1&quot;或者&quot;num2&quot;为nil,不能强制解析)
-} 
-</code></pre><h2 id="可选绑定："><a href="#可选绑定：" class="headerlink" title="可选绑定："></a>可选绑定：</h2><p>可以用在if和while语句中来对可选类型的值进行判断并把值赋给一个常量或者变量</p>
-<pre><code>var str3: String! = &quot;Swift&quot;
-if var tmp = str3 {
-   println(&quot;str3 的值为: \(tmp)&quot;)
-}else{
-   println(&quot;str3 的值为nil,不能解析&quot;)
-}
-</code></pre><h2 id="隐式解析可选类型："><a href="#隐式解析可选类型：" class="headerlink" title="隐式解析可选类型："></a>隐式解析可选类型：</h2><p>在已有类型后面添加！如Int!适用于被赋值后不会重新变为nil的变量</p>
-<pre><code>var possibleStr: String! = &quot;jikexueyuan&quot;
-</code></pre><h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="swift赋值表达没有值，不支持连续赋值"><a href="#swift赋值表达没有值，不支持连续赋值" class="headerlink" title="swift赋值表达没有值，不支持连续赋值"></a>swift赋值表达没有值，不支持连续赋值</h2><pre><code>var a: Int
-var b = a = 20
-</code></pre><h2 id="求余运算"><a href="#求余运算" class="headerlink" title="求余运算"></a>求余运算</h2><pre><code>var g = 5.2 (结果正负取决于被除数的正负)
-var h = 3.1
-var mod = g % h
-println(mod)
-</code></pre><h2 id="自增自减"><a href="#自增自减" class="headerlink" title="自增自减"></a>自增自减</h2><pre><code>//结果是11，先执行运算，然后a再自加1
-var a = 5
-var b = a++ + 6
-println(b) 
-
-//结果是12，先自身加1，再执行运算
-var a = 5
-var b = ++a + 6
-println(b)  
-</code></pre><h2 id="溢出运算符-amp-amp-amp-amp-amp"><a href="#溢出运算符-amp-amp-amp-amp-amp" class="headerlink" title="溢出运算符 &amp;+ &amp;- &amp;* &amp;/ &amp;%"></a>溢出运算符 &amp;+ &amp;- &amp;* &amp;/ &amp;%</h2><pre><code>var willUnderflow = UInt8.min
-willUnderflow = willUnderflow &amp;-1 //下溢
-
-let a = 20
-let b = a &amp;/ 0
-let c = a &amp;% 0
-</code></pre><h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p>&amp; 按位与<br>|  或<br>^  异或<br>~  取反<br>&lt;&lt; 左位移<br>右位移 &gt;&gt;   </p>
-<h2 id="扩展后的赋值运算符"><a href="#扩展后的赋值运算符" class="headerlink" title="扩展后的赋值运算符"></a>扩展后的赋值运算符</h2><p>-=<br>*=<br>/=<br>&amp;=<br>|=<br>运算符 “+= ” 对于 x+=y 等价于 x = x+y    </p>
-<h2 id="区间运算符"><a href="#区间运算符" class="headerlink" title="区间运算符"></a>区间运算符</h2><p>a..&lt;b (包含a,但不包含b)<br>a…b（包含a,也包含b）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for a in 0..&lt;10&#123;</span><br><span class="line">println(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for a in 0...10&#123;</span><br><span class="line">println(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="比较运算符，结果为BOOL值"><a href="#比较运算符，结果为BOOL值" class="headerlink" title="比较运算符，结果为BOOL值"></a>比较运算符，结果为BOOL值</h2><pre><code>var c= a === b //只有a和b指向的类型实例相同时，c为true
-</code></pre><ol>
-<li>=== 特征相等运算符  </li>
-<li>!== 特征不等运算符  </li>
-</ol>
-<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>&amp;&amp; 与<br>|| 或<br>!  非</p>
-<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 5</span><br><span class="line">var b = 3</span><br><span class="line">var str = a &gt; b ? &quot;a大于b&quot;:&quot;a小于b&quot; //如果条件成立就执行?后的，否则就执行:后的</span><br></pre></td></tr></table></figure>
-<h2 id="空合并运算符-a-b"><a href="#空合并运算符-a-b" class="headerlink" title="空合并运算符 a??b"></a>空合并运算符 a??b</h2><ol>
-<li>将对可选类型a进行空判断，如果a包含一个值就进行解封</li>
-<li>否则就返回一个默认值b  </li>
-<li>默认值b的类型必须要和a存储值的类型保持一致  </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let words = &quot;hello&quot;</span><br><span class="line">var say: String? = &quot;jike&quot; </span><br><span class="line">var content = say ?? words</span><br><span class="line">println(content)</span><br></pre></td></tr></table></figure>
-<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><h3 id="if…else…"><a href="#if…else…" class="headerlink" title="if…else…"></a>if…else…</h3><p>语句的条件执行体必须放在花括号中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var age = 30</span><br><span class="line">if age &gt; 20 &#123;</span><br><span class="line">  println(“年龄大于20岁”)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  println(&quot;年龄小于20岁&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><ol>
-<li>任意一个case不需要break,执行完一条会自动退出  </li>
-<li>每一个case块至少包含一条语句</li>
-<li>case标签后可以有多个值，用逗号隔开</li>
-<li>case块后的条件还可以是一个范围或者元组，支持值绑定</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let score = &quot;a&quot;</span><br><span class="line">switch score &#123;  </span><br><span class="line">case &quot;A&quot;,&quot;a&quot;:</span><br><span class="line"> println(&quot;Good&quot;)</span><br><span class="line">case &quot;B&quot;:</span><br><span class="line"> println(&quot;LG&quot;)</span><br><span class="line">case &quot;C&quot;:</span><br><span class="line"> println(&quot;TW4&quot;)</span><br><span class="line">case &quot;D&quot;:</span><br><span class="line"> println(&quot;Good&quot;)</span><br><span class="line">case &quot;E&quot;:</span><br><span class="line"> println(&quot;Good&quot;)</span><br><span class="line">default:</span><br><span class="line"> println(&quot;error&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用fallthrough语句贯穿"><a href="#使用fallthrough语句贯穿" class="headerlink" title="使用fallthrough语句贯穿"></a>使用fallthrough语句贯穿</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var num = 5</span><br><span class="line">var desc = &quot;\(num)是&quot;</span><br><span class="line">switch num &#123;</span><br><span class="line">case 2, 3, 5, 7 :</span><br><span class="line">     desc += &quot;质数，而且还是&quot;</span><br><span class="line">	 fallthrough</span><br><span class="line">default:</span><br><span class="line">     desc += &quot;整数&quot;</span><br><span class="line">&#125;</span><br><span class="line">println(desc) //结果是“5是质数，而且还是整数”</span><br></pre></td></tr></table></figure>
-<h3 id="case后的条件为元组"><a href="#case后的条件为元组" class="headerlink" title="case后的条件为元组"></a>case后的条件为元组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:1 , y:1)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">    println(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (_,0):   //用_表示可以忽略这个数据</span><br><span class="line">    println(&quot;(\(point.0),0)位于x轴上&quot;)</span><br><span class="line">case (0...Int.max, 0...Int.max):</span><br><span class="line">    println(&quot;(\(point.0),\(point.1))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">    break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:1 , y:1)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">   println(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a</span><br><span class="line">   println(&quot;该点位于x轴上，x值为:\(a)&quot;)</span><br><span class="line">case var (x,y) where x&gt;0 &amp;&amp; y&gt;0:  //条件值绑定</span><br><span class="line">   println(&quot;(\(x),\(y))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">   break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><h3 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for var count = 0; count &lt;10; count++&#123;</span><br><span class="line">   println(count)</span><br><span class="line">&#125;</span><br><span class="line">let base = 3</span><br><span class="line">let power = 10</span><br><span class="line">var answer = 1</span><br><span class="line">for _ in 1...power &#123; //下划线符号_替代循环中的变量，能够忽略具体的值，并且不提供循环遍历时对值的访问</span><br><span class="line">  answer *= base</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="标签："><a href="#标签：" class="headerlink" title="标签："></a>标签：</h3><p>紧跟冒号的标识符，只有放在循环语句或者switch语句之前才有作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">outer: for var i=0;i&lt;5;i++&#123;</span><br><span class="line">内层循环</span><br><span class="line">for var j=0;j&lt;3;j++&#123;</span><br><span class="line">   println(&quot;i的值为:\(i),j的值为\(j)&quot;)</span><br><span class="line">   if j==1 &#123;</span><br><span class="line">     break outer</span><br><span class="line">   &#125;</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>break结束循环，开始执行循环之后的代码</li>
-<li>continue 忽略本次循环的剩下语句，执行下一次循环，但不终止循环</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1909,7 +2030,7 @@ let c = a &amp;% 0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

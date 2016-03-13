@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-12T11:25:37.000Z</updated>
+  <updated>2016-03-13T04:11:39.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,292 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift面向对象基础（下）</title>
+    <link href="http://jackliu17.github.io/2016/03/13/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/</id>
+    <published>2016-03-12T23:15:37.000Z</published>
+    <updated>2016-03-13T04:11:39.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;可选链&quot;&gt;&lt;a href=&quot;#可选链&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h1&gt;&lt;h2 id=&quot;可选类型&quot;&gt;&lt;a href=&quot;#可选类型&quot; class=&quot;headerlink&quot; title=&quot;可选类型&quot;&gt;&lt;/a&gt;可选类型&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在原有类型后面添加?,需要强制解析&lt;/li&gt;
+&lt;li&gt;在原有类型后面添加！，不需要强制解析，因为这已经是隐式解析了&lt;/li&gt;
+&lt;li&gt;所有类型默认不接受nil，但是可选类型可以&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;可选链-1&quot;&gt;&lt;a href=&quot;#可选链-1&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class Customer {
+
+var name = &amp;quot;&amp;quot;
+var emp: Employee?
+
+init(name :String){
+self.name = name
+}
+
+//定义一个常量类型的employee数组，用于模拟系统中所有员工
+let employees = [
+    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quot;销售客服&amp;quot;),
+    Employee (name: &amp;quot;小明&amp;quot;, title: &amp;quot;售后客服&amp;quot;),
+    Employee (name: &amp;quot;Han&amp;quot;, title: &amp;quot;普通客服&amp;quot;),
+    Employee (name: &amp;quot;Better&amp;quot;, title: &amp;quot;销售主管&amp;quot;),
+]
+
+//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
+func findEmp(empName:String) -&amp;gt; Employee! {
+
+    for emp in employees {
+        if emp.name == empName {
+          return emp
+        }
+    }
+    return nil
+}
+
+}
+
+
+class Company {
+
+  var name = &amp;quot;&amp;quot;
+  var addr = &amp;quot;&amp;quot;
+
+  init (name:String, addr:String){
+  self.name = name
+  self.addr = addr
+  }
+}
+
+class Employee {
+
+var name = &amp;quot;Lily&amp;quot;
+var title = &amp;quot;行政&amp;quot;
+var company:Company!
+
+init(name:String, title:String){
+
+    self.name = name
+    self.title = title
+}
+
+func info(){
+
+     print(&amp;quot;本员工名为\(self.name),职位是\(self.title)&amp;quot;)
+
+}
+}
+
+//第一种情况----------------------
+var c = Customer(name: &amp;quot;Damon&amp;quot;)
+var emp = Employee(name: &amp;quot;Elena&amp;quot;, title: &amp;quot;Student&amp;quot;)
+
+//设置Customer关联的Employee实例
+c.emp = emp
+
+//设置Employee关联的Company实例
+emp.company = Company(name: &amp;quot;极客学院&amp;quot;, addr: &amp;quot;北京市&amp;quot;)
+
+//print(&amp;quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&amp;quot;)
+//print(&amp;quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&amp;quot;) //使用可选链访问属性
+
+//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
+var c2 = Customer(name: &amp;quot;Lucky&amp;quot;)
+c2.emp = Employee(name: &amp;quot;Snow&amp;quot;, title: &amp;quot;客服&amp;quot;)
+//print(&amp;quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&amp;quot;) //会报错，因为有空值
+//print(&amp;quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&amp;quot;) //使用可选链访问属性
+
+//第三种情况 ---------------
+var c3 = Customer(name: &amp;quot;Paul&amp;quot;)
+c3.findEmp(&amp;quot;张三&amp;quot;)?.info()
+c3.findEmp(&amp;quot;小明&amp;quot;)?.info()
+//print(&amp;quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&amp;quot;)
+
+
+//第四种情况
+var dict = [Int: Customer]()
+dict[1] = Customer(name: &amp;quot;Han&amp;quot;)
+dict[2] = Customer(name: &amp;quot;Angle&amp;quot;)
+
+dict[1]?.findEmp(&amp;quot;Better&amp;quot;)?.info()
+dict[4]?.findEmp(&amp;quot;Better&amp;quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;可选链用于处理可选类型的属性，方法和下标&lt;/li&gt;
+&lt;li&gt;使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀&lt;/li&gt;
+&lt;li&gt;可选链会自动判断程序访问的关联实例是否为nil&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;类型属性和类型方法&quot;&gt;&lt;a href=&quot;#类型属性和类型方法&quot; class=&quot;headerlink&quot; title=&quot;类型属性和类型方法&quot;&gt;&lt;/a&gt;类型属性和类型方法&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Swift的类型中可以定义5种成员:属性，方法，下标，构造器和嵌套类型&lt;/li&gt;
+&lt;li&gt;类型属性，实例属性&lt;/li&gt;
+&lt;li&gt;类型方法，实例方法&lt;/li&gt;
+&lt;li&gt;static:在枚举，结构体中修饰的属性，方法为类型属性，类型方法&lt;/li&gt;
+&lt;li&gt;class:在类中修饰的属性，方法&lt;/li&gt;
+&lt;li&gt;结构体可以包含实例计算属性，不能包含实例存储属性&lt;/li&gt;
+&lt;li&gt;类中不可以定义类型存储属性，只能包含类型计算属性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;值类型的类型属性-枚举&quot;&gt;&lt;a href=&quot;#值类型的类型属性-枚举&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型属性-枚举&quot;&gt;&lt;/a&gt;值类型的类型属性-枚举&lt;/h2&gt;&lt;p&gt;结构体可以包含实例计算属性，不能包含实例存储属性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;enum Season {
+//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+//为枚举定义类型存储属性，且声明为常量
+static let name = &amp;quot;季节&amp;quot;
+static var info:String{
+
+    get{
+
+    return&amp;quot;代表季节的枚举，其desc为:\(desc)&amp;quot;
+
+    }
+
+    set{
+
+    print(&amp;quot;程序尝试对info计算属性进行赋值:\(newValue)&amp;quot;)
+
+    }
+}
+}
+//对Season枚举的类型属性赋值
+Season.desc = &amp;quot;季节类&amp;quot;
+print(Season.name)
+Season.info = &amp;quot;新的info&amp;quot;
+print(Season.info)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的类型属性-结构体&quot;&gt;&lt;a href=&quot;#值类型的类型属性-结构体&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型属性-结构体&quot;&gt;&lt;/a&gt;值类型的类型属性-结构体&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct FkRange {
+
+//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+//为结构体定义类型存储属性，且声明为常量
+static let maxWidth = 10000
+static let maxHeight = 40000
+//定义类型计算属性，该属性只有get部分，是一个只读属性
+static var maxArea:Int{
+return maxWidth * maxHeight
+}
+}
+
+FkRange.desc = &amp;quot;描述范围的结构体&amp;quot;
+print(FkRange.desc)
+print(FkRange.maxWidth)
+print(FkRange.maxHeight)
+print(FkRange.maxArea)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类的类型属性&quot;&gt;&lt;a href=&quot;#类的类型属性&quot; class=&quot;headerlink&quot; title=&quot;类的类型属性&quot;&gt;&lt;/a&gt;类的类型属性&lt;/h2&gt;&lt;p&gt;类中不可以定义类型存储属性，只能包含类型计算属性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class User {
+
+   //为类定义类型计算属性
+class var nameMaxLength:Int {
+    get {
+    return 24
+    }
+
+    set {
+    print(&amp;quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&amp;quot;)
+    }
+}
+}
+print(User.nameMaxLength)
+User.nameMaxLength = 20
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的类型方法&quot;&gt;&lt;a href=&quot;#值类型的类型方法&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型方法&quot;&gt;&lt;/a&gt;值类型的类型方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum Season2{
+
+ //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
+static var desc:String?
+
+//为枚举定义类型存储属性，且声明为常量
+static let name = &amp;quot;季节&amp;quot;
+
+//定义无参数的类型方法
+static func info(){
+
+print(&amp;quot;季节类的info方法，该类的name存储属性为:\(name)&amp;quot;)
+}
+
+//定义带一个参数的类型方法
+static func setDesc(desc:String){
+
+self.desc = desc
+}
+}
+
+Season2.info()
+Season2.setDesc(&amp;quot;描述季节变化的枚举&amp;quot;)
+print(Season2.desc)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类的类型方法&quot;&gt;&lt;a href=&quot;#类的类型方法&quot; class=&quot;headerlink&quot; title=&quot;类的类型方法&quot;&gt;&lt;/a&gt;类的类型方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class Math {
+
+   //类不允许定义类型存储属性，使用类型计算属性代替
+class var pi:Double {
+    return 3.1415926535
+}
+
+class func abs(value:Double)-&amp;gt;Double {
+    return value&amp;lt;0 ? -value:value
+}
+
+//定义类型方法，取消第二个形参的外部形参名
+class func pow(base:Double,_ exponent:Int)-&amp;gt;Double {
+    var result = 1.0
+    for idx in 1...exponent{
+    result *= base
+    }
+    return result
+}
+
+//定义类型方法，类型方法可直接访问类型属性
+class func radian2Degre(radian:Double)-&amp;gt;Double {
+    return radian * 180/pi
+}
+
+//定义类型方法，类型方法可通过self引用类型属性
+class func degree2Radian(degree:Double)-&amp;gt;Double {
+    return degree * self.pi/180
+}
+}
+
+print(Math.pi)
+print(Math.pow(2, 4))
+print(Math.radian2Degre(1.57))
+print(Math.degree2Radian(45))
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;构造器&quot;&gt;&lt;a href=&quot;#构造器&quot; class=&quot;headerlink&quot; title=&quot;构造器&quot;&gt;&lt;/a&gt;构造器&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Swift的构造器构造出来的实例由系统隐式返回&lt;/li&gt;
+&lt;li&gt;构造器的作用完成每个类，结构体中实例存储属性的初始化&lt;/li&gt;
+&lt;li&gt;为实例存储属性赋初始值的时机:1.定义实例存储属性时指定初始值。2.在构造器中为实例存储属性指定初始值.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;实例存储属性的初始化分类&quot;&gt;&lt;a href=&quot;#实例存储属性的初始化分类&quot; class=&quot;headerlink&quot; title=&quot;实例存储属性的初始化分类&quot;&gt;&lt;/a&gt;实例存储属性的初始化分类&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;定义实例存储属性时显示指定了初始值&lt;/li&gt;
+&lt;li&gt;实例存储属性的类型为可选类型&lt;/li&gt;
+&lt;li&gt;系统提供的默认构造器为实例存储属性分配初始值&lt;/li&gt;
+&lt;li&gt;显式提供的构造器为实例存储属性分配初始值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;类和结构体的构造器&quot;&gt;&lt;a href=&quot;#类和结构体的构造器&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的构造器&quot;&gt;&lt;/a&gt;类和结构体的构造器&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;swift只为类提供一个无参数的构造器&lt;/li&gt;
+&lt;li&gt;swift为结构体提供两个构造器:无参数的构造器和初始化所有实例存储属性的构造器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;可能失败的构造器&quot;&gt;&lt;a href=&quot;#可能失败的构造器&quot; class=&quot;headerlink&quot; title=&quot;可能失败的构造器&quot;&gt;&lt;/a&gt;可能失败的构造器&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;可能失败的构造器:使用Init？或者!关键字进行定义&lt;/li&gt;
+&lt;li&gt;在构造器执行体中使用return nil 来表示构造器失败&lt;/li&gt;
+&lt;li&gt;Swift不允许定义两个相同形参列表的构造器。即使一个是可能失败的构造器，一个是普通的构造器也不行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;构造器的外部形参名&quot;&gt;&lt;a href=&quot;#构造器的外部形参名&quot; class=&quot;headerlink&quot; title=&quot;构造器的外部形参名&quot;&gt;&lt;/a&gt;构造器的外部形参名&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct FkPoint&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var left: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var top: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //定义带两个参数的构造器，并为第二个构造器参数显式指定外部形参名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(left: Int , y top: Int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.left = left&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.top = top&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 第一个形参的外部形参名与局部形参名相同&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 第二个形参的外部形参名使用显式指定的形参名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var p1 = FkPoint(left:20 , y:12)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;取消构造器的外部形参名&quot;&gt;&lt;a href=&quot;#取消构造器的外部形参名&quot; class=&quot;headerlink&quot; title=&quot;取消构造器的外部形参名&quot;&gt;&lt;/a&gt;取消构造器的外部形参名&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Person&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var name: String?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var gender: String?&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var age = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 由于该类中前2个实例存储属性使用了可选类型，后1个实例存储属性指定了初始值，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 因此该结构体对构造器没有要求，故此处可随便定义一个带参数的构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 取消构造器参数的外部形参名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(_ name:String , _ gender:String)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.gender = gender&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 调用构造器时无需使用外部形参名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var p = Person(&amp;quot;孙悟空&amp;quot; , &amp;quot;男&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(p.name)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(p.gender)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(p.age)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;在构造过程中常量属性是可以修改的&quot;&gt;&lt;a href=&quot;#在构造过程中常量属性是可以修改的&quot; class=&quot;headerlink&quot; title=&quot;在构造过程中常量属性是可以修改的&quot;&gt;&lt;/a&gt;在构造过程中常量属性是可以修改的&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class User&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    let maxAge = 100&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var name: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(maxAge: Int , name :String) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      println(self.maxAge)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      self.maxAge = Int.max&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      println(self.maxAge)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      self.maxAge = maxAge&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var u = User(maxAge:120 , name:&amp;quot;白骨精&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(u.maxAge)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(u.name)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;使用闭包或函数为属性设置初始值&quot;&gt;&lt;a href=&quot;#使用闭包或函数为属性设置初始值&quot; class=&quot;headerlink&quot; title=&quot;使用闭包或函数为属性设置初始值&quot;&gt;&lt;/a&gt;使用闭包或函数为属性设置初始值&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct ClosureInit &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 使用闭包对test实例存储属性执行初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var test: Int = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var dt = NSDate()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var gregorian = NSCalendar.currentCalendar()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 定义一个时间字段的旗标，指定将会获取指定月、日信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var unitFlags = NSCalendarUnit.CalendarUnitMonth&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    | NSCalendarUnit.CalendarUnitDay&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var comp = gregorian.components(unitFlags&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    , fromDate:dt)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 获取当前的月份&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var month = Int(comp.month)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 获取当前第几日&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var day = Int(comp.day)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 得到计算结果&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return day - month&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var ci = ClosureInit()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(ci.test)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;值类型的构造器重载&quot;&gt;&lt;a href=&quot;#值类型的构造器重载&quot; class=&quot;headerlink&quot; title=&quot;值类型的构造器重载&quot;&gt;&lt;/a&gt;值类型的构造器重载&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct ConstructorOverload &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var name: String!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var amount: Int!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 提供无参数的构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init()&amp;#123; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 提供带两个参数的构造器来完成构造过程&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(name: String, amount: Int)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.amount = amount&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 通过无参数构造器创建ConstructorOverload实例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var oc1 = ConstructorOverload()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 通过有参数构造器创建ConstructorOverload实例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var oc2 = ConstructorOverload(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    name:&amp;quot;HelloWorld&amp;quot;,amount:800000)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(&amp;quot;\(oc1.name)  \(oc1.amount)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(&amp;quot;\(oc2.name)  \(oc2.amount)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;构造器代理：&quot;&gt;&lt;a href=&quot;#构造器代理：&quot; class=&quot;headerlink&quot; title=&quot;构造器代理：&quot;&gt;&lt;/a&gt;构造器代理：&lt;/h2&gt;&lt;p&gt;在定义构造器时，通过self.init(实参)调用其他构造器来完成实例的部分构造过程*/&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct Apple&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var name: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var color: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var weight: Double!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(_ name: String , _ color:String)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.color = color&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 两个参数的构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(name: String , color:String)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.init(name , color)  // 构造器代理&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 为构造器显式指定外部形参名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(appleName n: String , appleColor c:String)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //		name = &amp;quot;临时值&amp;quot; // 这行代码将导致错误&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.init(n , c)  // 构造器代理&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 调用构造器代理之后，即可通过self访问该实例的属性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;--执行显式指定外部形参名的构造器--\(self.name)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 定义三个参数的构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(name: String , color: String , weight: Double)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.init(name , color)  // 构造器代理&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self.weight = weight&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var ap1 = Apple(&amp;quot;红富士&amp;quot; , &amp;quot;粉红色&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(&amp;quot;\(ap1.name)---&amp;gt;\(ap1.color)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var ap2 = Apple(appleName:&amp;quot;青苹果&amp;quot; , appleColor:&amp;quot;绿色&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(&amp;quot;\(ap2.name)---&amp;gt;\(ap2.color)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var ap3 = Apple(name:&amp;quot;美国苹果&amp;quot; , color:&amp;quot;红色&amp;quot; , weight:0.45)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;可能失败的构造器-1&quot;&gt;&lt;a href=&quot;#可能失败的构造器-1&quot; class=&quot;headerlink&quot; title=&quot;可能失败的构造器&quot;&gt;&lt;/a&gt;可能失败的构造器&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct Cat&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        let name: String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        init?(name: String) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // 如果传入的name参数为空字符串，构造器失败，返回nil&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if name.isEmpty &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return nil&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let c1 = Cat(name: &amp;quot;Kitty&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if c1 != nil &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // 创建c1的构造器是init?，因此程序必须对c1执行强制解析&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        print(&amp;quot;c1的name为：\(c1!.name)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let c2 = Cat(name: &amp;quot;&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(c2 == nil) // 输出true，表明c2为nil&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;enum Season&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Spring, Summer, Autumn, Winter&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 使用init!定义可能失败的构造器，则该构造器创建的实例可进行隐式解析&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init!(name: Character) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // 根据传入的构造器参数选择相应的枚举成员&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        switch name &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;S&amp;quot;,&amp;quot;s&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            self = .Spring&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;U&amp;quot;, &amp;quot;u&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            self = .Summer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;A&amp;quot;, &amp;quot;a&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            self = .Autumn&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;W&amp;quot;, &amp;quot;w&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            self = .Winter&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            // 如果传入其他参数，构造失败，返回nil。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nil&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let s1 = Season(name: &amp;quot;s&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if s1 != nil &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(&amp;quot;Season实例构造成功！&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let s2 = Season(name: &amp;quot;x&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(s2 == nil)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;Swift只为类提供一个无参数的构造器。&lt;/li&gt;
+&lt;li&gt;Swift为结构体提供两个构造器：无参数的构造器和初始化所有实例存储属性的构造器。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;可选链&quot;&gt;&lt;a href=&quot;#可选链&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h1&gt;&lt;h2 id=&quot;可选类型&quot;&gt;&lt;a href=&quot;#可选类型&quot; class=&quot;headerlink&quot; title=&quot;可选类型&quot;&gt;&lt;/a&gt;可选类
+    
+    </summary>
+    
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>Swift面向对象基础（中）</title>
@@ -367,9 +653,9 @@ println(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
@@ -606,9 +892,9 @@ person.info()
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
@@ -889,9 +1175,9 @@ return addElement
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
@@ -1060,9 +1346,9 @@ println(valuesArr)
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
@@ -1209,9 +1495,9 @@ var name = &amp;quot;Luc
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
