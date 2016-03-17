@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-17T02:07:30.000Z</updated>
+  <updated>2016-03-17T02:31:25.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UIStoryboard的相关操作</title>
+    <link href="http://jackliu17.github.io/2016/03/17/UIStoryboard%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
+    <id>http://jackliu17.github.io/2016/03/17/UIStoryboard的相关操作/</id>
+    <published>2016-03-17T02:18:16.000Z</published>
+    <updated>2016-03-17T02:31:25.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h1&gt;&lt;p&gt;在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png&quot; alt=&quot;info.plist&quot;&gt;&lt;/p&gt;
+&lt;p&gt;箭头所指就是启动的画面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png&quot; alt=&quot;箭头所指&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;新建一个new-tab&quot;&gt;&lt;a href=&quot;#新建一个new-tab&quot; class=&quot;headerlink&quot; title=&quot;新建一个new tab&quot;&gt;&lt;/a&gt;新建一个new tab&lt;/h1&gt;&lt;h1 id=&quot;UIElement的绑定&quot;&gt;&lt;a href=&quot;#UIElement的绑定&quot; class=&quot;headerlink&quot; title=&quot;UIElement的绑定&quot;&gt;&lt;/a&gt;UIElement的绑定&lt;/h1&gt;&lt;h1 id=&quot;事件的绑定&quot;&gt;&lt;a href=&quot;#事件的绑定&quot; class=&quot;headerlink&quot; title=&quot;事件的绑定&quot;&gt;&lt;/a&gt;事件的绑定&lt;/h1&gt;&lt;h1 id=&quot;不同视图的跳转&quot;&gt;&lt;a href=&quot;#不同视图的跳转&quot; class=&quot;headerlink&quot; title=&quot;不同视图的跳转&quot;&gt;&lt;/a&gt;不同视图的跳转&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h1&gt;&lt;p&gt;在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;h
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Keyboad快捷键</title>
+    <link href="http://jackliu17.github.io/2016/03/17/Keyboad%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://jackliu17.github.io/2016/03/17/Keyboad快捷键/</id>
+    <published>2016-03-17T02:13:06.000Z</published>
+    <updated>2016-03-17T02:22:37.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Xcode&quot;&gt;&lt;a href=&quot;#Xcode&quot; class=&quot;headerlink&quot; title=&quot;Xcode&quot;&gt;&lt;/a&gt;Xcode&lt;/h1&gt;&lt;h3 id=&quot;显示某class的方法提示，在-后按esc键&quot;&gt;&lt;a href=&quot;#显示某class的方法提示，在-后按esc键&quot; class=&quot;headerlink&quot; title=&quot;显示某class的方法提示，在.后按esc键&quot;&gt;&lt;/a&gt;显示某class的方法提示，在.后按esc键&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Esc&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;a href=&quot;#Storyboard里放大缩小视图&quot; class=&quot;headerlink&quot; title=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;/a&gt;Storyboard里放大缩小视图&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;触摸板上的手势&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Xcode&quot;&gt;&lt;a href=&quot;#Xcode&quot; class=&quot;headerlink&quot; title=&quot;Xcode&quot;&gt;&lt;/a&gt;Xcode&lt;/h1&gt;&lt;h3 id=&quot;显示某class的方法提示，在-后按esc键&quot;&gt;&lt;a href=&quot;#显示某class的方法提示，在-后按e
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Mac" scheme="http://jackliu17.github.io/tags/Mac/"/>
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+  </entry>
   
   <entry>
     <title>Objective-C语言应用开发基础编程入门</title>
