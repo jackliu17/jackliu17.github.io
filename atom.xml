@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-16T07:18:16.000Z</updated>
+  <updated>2016-03-17T02:07:30.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Objective-C语言应用开发基础编程入门</title>
+    <link href="http://jackliu17.github.io/2016/03/16/Objective-C%E8%AF%AD%E8%A8%80%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8/"/>
+    <id>http://jackliu17.github.io/2016/03/16/Objective-C语言应用开发基础编程入门/</id>
+    <published>2016-03-16T07:40:55.000Z</published>
+    <updated>2016-03-17T02:07:30.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *name = @&amp;quot;jikexueyuan&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;以’-’代表对象&quot;&gt;&lt;a href=&quot;#以’-’代表对象&quot; class=&quot;headerlink&quot; title=&quot;以’%@’代表对象&quot;&gt;&lt;/a&gt;以’%@’代表对象&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;Hello Objective-C&amp;quot;);
+NSLog(@&amp;quot;The number is %d&amp;quot;,1000);
+NSLog(@&amp;quot;Hello %s&amp;quot;,&amp;quot;XiaoLi&amp;quot;);
+NSLog(@&amp;quot;Hello %@&amp;quot;,name);
+NSLog(@&amp;quot;ObjC Object %@&amp;quot;,[[[NSObject alloc] init] description]); //实际上是调用NSObject中的description方法
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Class的构成&quot;&gt;&lt;a href=&quot;#Class的构成&quot; class=&quot;headerlink&quot; title=&quot;Class的构成&quot;&gt;&lt;/a&gt;Class的构成&lt;/h1&gt;&lt;h2 id=&quot;h-file&quot;&gt;&lt;a href=&quot;#h-file&quot; class=&quot;headerlink&quot; title=&quot;.h file&quot;&gt;&lt;/a&gt;.h file&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@interface People : NSObject&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    int _age;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    NSString *_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// class method-------------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;+(People*)peopleWithAge:(int)age andName:(NSString*)name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-(id)initWithAge:(int)age andName:(NSString*)name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-(int)getAge;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-(NSString*)getName;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;m-file&quot;&gt;&lt;a href=&quot;#m-file&quot; class=&quot;headerlink&quot; title=&quot;.m file&quot;&gt;&lt;/a&gt;.m file&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;+(People*)peopleWithAge:(int)age andName:(NSString *)name&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return [[People alloc] initWithAge:age andName:name];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- (instancetype)initWithAge:(int)age andName:(NSString *)name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    self = [super init];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (self) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        _age = age;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        _name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return self;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-(int)getAge&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return _age;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-(NSString*)getName&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return _name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;call-method&quot;&gt;&lt;a href=&quot;#call-method&quot; class=&quot;headerlink&quot; title=&quot;call method&quot;&gt;&lt;/a&gt;call method&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Hello *h = [[Hello alloc] init];
+[h sayHello];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组与字典&quot;&gt;&lt;a href=&quot;#数组与字典&quot; class=&quot;headerlink&quot; title=&quot;数组与字典&quot;&gt;&lt;/a&gt;数组与字典&lt;/h1&gt;&lt;h2 id=&quot;非可变数组&quot;&gt;&lt;a href=&quot;#非可变数组&quot; class=&quot;headerlink&quot; title=&quot;非可变数组&quot;&gt;&lt;/a&gt;非可变数组&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//三种构造方法，可以从plist文件中获取数据
+NSArray *arr = @[@&amp;quot;Hello&amp;quot;,@&amp;quot;jikexueyuan&amp;quot;];
+NSArray *arr = [NSArray arrayWithObjects:@&amp;quot;Hello&amp;quot;, @&amp;quot;jikexueyuan&amp;quot;,nil];
+NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&amp;quot;data&amp;quot; ofType:@&amp;quot;plist&amp;quot;]];
+
+for (int i=0; i&amp;lt;[arr count]; i++) {
+    NSLog(@&amp;quot;%@&amp;quot;,[arr objectAtIndex:i]);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;可变数组&quot;&gt;&lt;a href=&quot;#可变数组&quot; class=&quot;headerlink&quot; title=&quot;可变数组&quot;&gt;&lt;/a&gt;可变数组&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSMutableArray *arr = [[NSMutableArray alloc] init];
+
+for (int i=0; i&amp;lt;100; i++) {
+    [arr addObject:[NSString stringWithFormat:@&amp;quot;Item %d&amp;quot;,i]];
+}
+
+NSLog(@&amp;quot;%@&amp;quot;,arr);
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;数组的plist文件&quot;&gt;&lt;a href=&quot;#数组的plist文件&quot; class=&quot;headerlink&quot; title=&quot;数组的plist文件&quot;&gt;&lt;/a&gt;数组的plist文件&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png&quot; alt=&quot;数组的plist文件&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;字典的plist文件&quot;&gt;&lt;a href=&quot;#字典的plist文件&quot; class=&quot;headerlink&quot; title=&quot;字典的plist文件&quot;&gt;&lt;/a&gt;字典的plist文件&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/dic%20plist%20file.png&quot; alt=&quot;字典的plist文件&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;字典与可变字典&quot;&gt;&lt;a href=&quot;#字典与可变字典&quot; class=&quot;headerlink&quot; title=&quot;字典与可变字典&quot;&gt;&lt;/a&gt;字典与可变字典&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//字典的构造
+NSDictionary *dict = @{@&amp;quot;name&amp;quot;: @&amp;quot;ZhangSan&amp;quot;,@&amp;quot;sex&amp;quot;:@&amp;quot;male&amp;quot;};    
+NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&amp;quot;data&amp;quot; ofType:@&amp;quot;plist&amp;quot;]];
+NSLog(@&amp;quot;%@&amp;quot;,[dict objectForKey:@&amp;quot;age&amp;quot;]);
+
+//可变字典
+NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+[dict setObject:@&amp;quot;jikexueyuan&amp;quot; forKey:@&amp;quot;name&amp;quot;];
+
+NSLog(@&amp;quot;%@&amp;quot;,[dict objectForKey:@&amp;quot;name&amp;quot;]);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;protocol&quot;&gt;&lt;a href=&quot;#protocol&quot; class=&quot;headerlink&quot; title=&quot;protocol&quot;&gt;&lt;/a&gt;protocol&lt;/h1&gt;&lt;h2 id=&quot;h-file-1&quot;&gt;&lt;a href=&quot;#h-file-1&quot; class=&quot;headerlink&quot; title=&quot;.h file&quot;&gt;&lt;/a&gt;.h file&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+
+@protocol IPeople &amp;lt;NSObject&amp;gt;
+
+-(int)getAge;
+-(void)setAge:(int)age;
+-(NSString*)getName;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;m-file-1&quot;&gt;&lt;a href=&quot;#m-file-1&quot; class=&quot;headerlink&quot; title=&quot;.m file&quot;&gt;&lt;/a&gt;.m file&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface Man : NSObject&amp;lt;IPeople&amp;gt;{
+int _age;
+}
+
+-(id)init;
+
+-(void)setAge:(int)age;
+-(NSString*)getName;
+-(int)getAge;
+
+@property id&amp;lt;ManDelegate&amp;gt; delegate;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Exception&quot;&gt;&lt;a href=&quot;#Exception&quot; class=&quot;headerlink&quot; title=&quot;Exception&quot;&gt;&lt;/a&gt;Exception&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@try {
+
+    //需要被捕获异常的代码
+    @throw [NSException exceptionWithName:@&amp;quot;My Error&amp;quot; reason:nil userInfo:nil];
+}
+@catch (NSException *exception) {
+
+    //输出一场信息
+    NSLog(@&amp;quot;%@&amp;quot;,exception);
+}
+@finally {
+    //无论是否有异常，都要执行
+    NSLog(@&amp;quot;run&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *name = @&amp;quot;jikexueyuan&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;h
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS开发面试</title>
@@ -115,11 +213,11 @@
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
+    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
   </entry>
   
