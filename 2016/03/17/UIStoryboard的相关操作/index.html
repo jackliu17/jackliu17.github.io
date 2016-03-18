@@ -65,7 +65,10 @@
 
 箭头所指就是启动的画面
 
-新建一个new tabUIElement的绑定事件的绑定不同视图的跳转">
+在Tab模板中新建一个new tab按住ctrl 键拖入到新的视图，选择 Relationship Segue — view controllers
+
+不同视图的跳转使用UIStoryboard创建视图
+点住Button,按住ctrl，向新的viewControl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIStoryboard的相关操作">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/17/UIStoryboard的相关操作/index.html">
@@ -74,17 +77,24 @@
 
 箭头所指就是启动的画面
 
-新建一个new tabUIElement的绑定事件的绑定不同视图的跳转">
+在Tab模板中新建一个new tab按住ctrl 键拖入到新的视图，选择 Relationship Segue — view controllers
+
+不同视图的跳转使用UIStoryboard创建视图
+点住Button,按住ctrl，向新的viewControl">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png">
-<meta property="og:updated_time" content="2016-03-17T02:31:25.000Z">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/new%20tab.png">
+<meta property="og:updated_time" content="2016-03-18T06:00:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIStoryboard的相关操作">
 <meta name="twitter:description" content="启动在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord
 
 箭头所指就是启动的画面
 
-新建一个new tabUIElement的绑定事件的绑定不同视图的跳转">
+在Tab模板中新建一个new tab按住ctrl 键拖入到新的视图，选择 Relationship Segue — view controllers
+
+不同视图的跳转使用UIStoryboard创建视图
+点住Button,按住ctrl，向新的viewControl">
 <meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png">
 
 
@@ -314,7 +324,32 @@
 <p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png" alt="info.plist"></p>
 <p>箭头所指就是启动的画面</p>
 <p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png" alt="箭头所指"></p>
-<h1 id="新建一个new-tab"><a href="#新建一个new-tab" class="headerlink" title="新建一个new tab"></a>新建一个new tab</h1><h1 id="UIElement的绑定"><a href="#UIElement的绑定" class="headerlink" title="UIElement的绑定"></a>UIElement的绑定</h1><h1 id="事件的绑定"><a href="#事件的绑定" class="headerlink" title="事件的绑定"></a>事件的绑定</h1><h1 id="不同视图的跳转"><a href="#不同视图的跳转" class="headerlink" title="不同视图的跳转"></a>不同视图的跳转</h1>
+<h1 id="在Tab模板中新建一个new-tab"><a href="#在Tab模板中新建一个new-tab" class="headerlink" title="在Tab模板中新建一个new tab"></a>在Tab模板中新建一个new tab</h1><p>按住ctrl 键拖入到新的视图，选择 <strong>Relationship Segue — view controllers</strong></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new%20tab.png" alt="new tab"></p>
+<h1 id="不同视图的跳转"><a href="#不同视图的跳转" class="headerlink" title="不同视图的跳转"></a>不同视图的跳转</h1><h2 id="使用UIStoryboard创建视图"><a href="#使用UIStoryboard创建视图" class="headerlink" title="使用UIStoryboard创建视图"></a>使用UIStoryboard创建视图</h2><ol>
+<li>点住Button,按住ctrl，向新的viewController拖动,选择segue模式</li>
+<li>从新视图的返回，使用如下代码: </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
+<h2 id="使用nib文件创建视图"><a href="#使用nib文件创建视图" class="headerlink" title="使用nib文件创建视图"></a>使用nib文件创建视图</h2><ul>
+<li><p>创建新的viewController文件和nib</p>
+</li>
+<li><p>在初始视图中，如下代码跳转到新视图:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.presentModalViewController(MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil),animated:true)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从新视图的返回，使用如下代码: </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
+<h1 id="视图中传值"><a href="#视图中传值" class="headerlink" title="视图中传值"></a>视图中传值</h1><h2 id="在第一个视图中"><a href="#在第一个视图中" class="headerlink" title="在第一个视图中"></a>在第一个视图中</h2><ul>
+<li>创建新视图的同时，就将其属性配置好<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@IBOutlet var input:UITextField</span><br><span class="line">@IBAction func nextBtn&#123;</span><br><span class="line">let vc = MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil)</span><br><span class="line">vc.labelContent = input.text</span><br><span class="line">&#125;</span><br><span class="line">self.presentModalViewController(vc,animated:true)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="在第二个视图中"><a href="#在第二个视图中" class="headerlink" title="在第二个视图中"></a>在第二个视图中</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var labelContent:String = &quot;&quot;</span><br><span class="line">func viewDidLoad()&#123;</span><br><span class="line">myLabel.text = labelContent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回时传值"><a href="#返回时传值" class="headerlink" title="返回时传值"></a>返回时传值</h2><p>在第二个视图中，通过如下代码，访问到前一个视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.parentViewController</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -348,6 +383,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/17/Interview-English/" rel="prev" title="Interview-English">
+                Interview-English <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -422,7 +461,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -430,7 +469,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -439,7 +478,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -479,7 +518,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建一个new-tab"><span class="nav-number">2.</span> <span class="nav-text">新建一个new tab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIElement的绑定"><span class="nav-number">3.</span> <span class="nav-text">UIElement的绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件的绑定"><span class="nav-number">4.</span> <span class="nav-text">事件的绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不同视图的跳转"><span class="nav-number">5.</span> <span class="nav-text">不同视图的跳转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-number">1.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Tab模板中新建一个new-tab"><span class="nav-number">2.</span> <span class="nav-text">在Tab模板中新建一个new tab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不同视图的跳转"><span class="nav-number">3.</span> <span class="nav-text">不同视图的跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用UIStoryboard创建视图"><span class="nav-number">3.1.</span> <span class="nav-text">使用UIStoryboard创建视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nib文件创建视图"><span class="nav-number">3.2.</span> <span class="nav-text">使用nib文件创建视图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图中传值"><span class="nav-number">4.</span> <span class="nav-text">视图中传值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在第一个视图中"><span class="nav-number">4.1.</span> <span class="nav-text">在第一个视图中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在第二个视图中"><span class="nav-number">4.2.</span> <span class="nav-text">在第二个视图中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回时传值"><span class="nav-number">4.3.</span> <span class="nav-text">返回时传值</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

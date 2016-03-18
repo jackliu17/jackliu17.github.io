@@ -238,6 +238,364 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/18/iOS的疑问/" itemprop="url">
+                  iOS的疑问
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-18T16:45:00+11:00" content="2016-03-18">
+              2016-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/18/iOS的疑问/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/18/iOS的疑问/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="为啥要在viewController中加入如下代码？"><a href="#为啥要在viewController中加入如下代码？" class="headerlink" title="为啥要在viewController中加入如下代码？"></a>为啥要在viewController中加入如下代码？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init(coder aDecoder:NSCoder!)&#123;</span><br><span class="line">  super.init(coder:aDecoder)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/18/iOS-UI-CodeExample/" itemprop="url">
+                  iOS-UI-CodeExample
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-18T13:08:59+11:00" content="2016-03-18">
+              2016-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/18/iOS-UI-CodeExample/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/18/iOS-UI-CodeExample/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="000-使用代码创建UI元素"><a href="#000-使用代码创建UI元素" class="headerlink" title="000 使用代码创建UI元素"></a>000 使用代码创建UI元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let label = UILabel(frame: CGRect(x: 50, y: 50, width: 200, height: 100))</span><br><span class="line">      label.text = &quot;Hello jikexueyuan&quot;</span><br><span class="line">      view.addSubview(label)</span><br></pre></td></tr></table></figure>
+<h1 id="001-使用webView打开网站"><a href="#001-使用webView打开网站" class="headerlink" title="001.使用webView打开网站"></a>001.使用webView打开网站</h1><p>需要在info.plist里设置</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/webview%20setting.png" alt="uiwebview"></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>@IBOutlet weak var wv: UIWebView!
+@IBOutlet weak var urlInput: UITextField!
+@IBAction func btnGoClicked(sender: AnyObject) {
+    wv.loadRequest(NSURLRequest(URL:NSURL(string: urlInput.text!)!))
+    urlInput.resignFirstResponder()
+}
+</code></pre><h1 id="002-圆形进度指示器"><a href="#002-圆形进度指示器" class="headerlink" title="002.圆形进度指示器"></a>002.圆形进度指示器</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%8C%87%E7%A4%BA%E5%99%A8.gif" alt="圆形进度指示器"></p>
+<h2 id="ProgressControl-swift"><a href="#ProgressControl-swift" class="headerlink" title="ProgressControl.swift"></a>ProgressControl.swift</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">class ProgressControl: UIView &#123;</span><br><span class="line">    override init(frame:CGRect)&#123;</span><br><span class="line">        super.init(frame: frame)</span><br><span class="line">        self.backgroundColor = UIColor(white: 1, alpha: 0)</span><br><span class="line">    &#125;</span><br><span class="line">    required init?(coder aDecoder: NSCoder) &#123;</span><br><span class="line">        fatalError(&quot;init(coder:) has not been implemented&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    private var _progressValue:CGFloat = 0</span><br><span class="line">    internal func getProgressValue()-&gt;CGFloat&#123;</span><br><span class="line">        return _progressValue</span><br><span class="line">    &#125;</span><br><span class="line">    internal func setProgressValue(value:CGFloat)&#123;</span><br><span class="line">        _progressValue = value</span><br><span class="line">        setNeedsDisplay()</span><br><span class="line">    &#125;</span><br><span class="line">    override func drawRect(rect: CGRect) &#123;</span><br><span class="line">        self.backgroundColor = UIColor(white: 1, alpha: 0)</span><br><span class="line">        // Drawing code</span><br><span class="line">        let ctx = UIGraphicsGetCurrentContext()</span><br><span class="line">        let r = rect.width/2</span><br><span class="line">        CGContextAddArc(ctx, r, r, r, 0, 3.141592653*2, 0)</span><br><span class="line">        CGContextSetRGBFillColor(ctx, 0.7, 0.7, 0.7, 1)</span><br><span class="line">        CGContextFillPath(ctx) </span><br><span class="line">        CGContextAddArc(ctx,r,r,r,0,3.141592653*2*_progressValue, 0)</span><br><span class="line">        CGContextAddLineToPoint(ctx, r, r)</span><br><span class="line">        CGContextSetRGBFillColor(ctx, 0, 0, 1, 1)</span><br><span class="line">        CGContextFillPath(ctx)   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="viewController-swift"><a href="#viewController-swift" class="headerlink" title="viewController.swift"></a>viewController.swift</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    private var pc:ProgressControl!</span><br><span class="line">    @IBAction func addProgressBtnPress(sender: AnyObject) &#123;</span><br><span class="line">        pc.setProgressValue(pc.getProgressValue()+0.1)</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">        pc = ProgressControl(frame:CGRect(x: 100,</span><br><span class="line">            y: 100,</span><br><span class="line">            width: 100,</span><br><span class="line">            height: 100))</span><br><span class="line">        self.view.addSubview(pc)</span><br><span class="line">    &#125;</span><br><span class="line">    override func didReceiveMemoryWarning() &#123;</span><br><span class="line">        super.didReceiveMemoryWarning()</span><br><span class="line">        // Dispose of any resources that can be recreated.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="003-实时预览自定义控件"><a href="#003-实时预览自定义控件" class="headerlink" title="003.实时预览自定义控件"></a>003.实时预览自定义控件</h1><h2 id="1-创建一个new-Target"><a href="#1-创建一个new-Target" class="headerlink" title="1.创建一个new Target"></a>1.创建一个new Target</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new%20target.png" alt=""></p>
+<h2 id="2-创建新的文件MyView-swift在这个target里"><a href="#2-创建新的文件MyView-swift在这个target里" class="headerlink" title="2.创建新的文件MyView.swift在这个target里"></a>2.创建新的文件MyView.swift在这个target里</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">@IBDesignable class MyView: UIView &#123;</span><br><span class="line">    @IBInspectable var str:String = &quot;Hello&quot;</span><br><span class="line">    @IBInspectable var borderWidth:CGFloat = 0&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.borderWidth = borderWidth</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @IBInspectable var borderColor:UIColor = UIColor.clearColor()&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.borderColor = borderColor.CGColor</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @IBInspectable var cornerRaius:CGFloat=0&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.cornerRadius = cornerRaius</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-实时预览编辑效果"><a href="#3-实时预览编辑效果" class="headerlink" title="3.实时预览编辑效果"></a>3.实时预览编辑效果</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/17/Interview-English/" itemprop="url">
+                  Interview-English
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-17T13:34:05+11:00" content="2016-03-17">
+              2016-03-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/Interview-English/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/17/Interview-English/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/17/UIStoryboard的相关操作/" itemprop="url">
                   UIStoryboard的相关操作
                 </a>
@@ -311,7 +669,32 @@
 <p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png" alt="info.plist"></p>
 <p>箭头所指就是启动的画面</p>
 <p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png" alt="箭头所指"></p>
-<h1 id="新建一个new-tab"><a href="#新建一个new-tab" class="headerlink" title="新建一个new tab"></a>新建一个new tab</h1><h1 id="UIElement的绑定"><a href="#UIElement的绑定" class="headerlink" title="UIElement的绑定"></a>UIElement的绑定</h1><h1 id="事件的绑定"><a href="#事件的绑定" class="headerlink" title="事件的绑定"></a>事件的绑定</h1><h1 id="不同视图的跳转"><a href="#不同视图的跳转" class="headerlink" title="不同视图的跳转"></a>不同视图的跳转</h1>
+<h1 id="在Tab模板中新建一个new-tab"><a href="#在Tab模板中新建一个new-tab" class="headerlink" title="在Tab模板中新建一个new tab"></a>在Tab模板中新建一个new tab</h1><p>按住ctrl 键拖入到新的视图，选择 <strong>Relationship Segue — view controllers</strong></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new%20tab.png" alt="new tab"></p>
+<h1 id="不同视图的跳转"><a href="#不同视图的跳转" class="headerlink" title="不同视图的跳转"></a>不同视图的跳转</h1><h2 id="使用UIStoryboard创建视图"><a href="#使用UIStoryboard创建视图" class="headerlink" title="使用UIStoryboard创建视图"></a>使用UIStoryboard创建视图</h2><ol>
+<li>点住Button,按住ctrl，向新的viewController拖动,选择segue模式</li>
+<li>从新视图的返回，使用如下代码: </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
+<h2 id="使用nib文件创建视图"><a href="#使用nib文件创建视图" class="headerlink" title="使用nib文件创建视图"></a>使用nib文件创建视图</h2><ul>
+<li><p>创建新的viewController文件和nib</p>
+</li>
+<li><p>在初始视图中，如下代码跳转到新视图:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.presentModalViewController(MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil),animated:true)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从新视图的返回，使用如下代码: </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
+<h1 id="视图中传值"><a href="#视图中传值" class="headerlink" title="视图中传值"></a>视图中传值</h1><h2 id="在第一个视图中"><a href="#在第一个视图中" class="headerlink" title="在第一个视图中"></a>在第一个视图中</h2><ul>
+<li>创建新视图的同时，就将其属性配置好<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@IBOutlet var input:UITextField</span><br><span class="line">@IBAction func nextBtn&#123;</span><br><span class="line">let vc = MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil)</span><br><span class="line">vc.labelContent = input.text</span><br><span class="line">&#125;</span><br><span class="line">self.presentModalViewController(vc,animated:true)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="在第二个视图中"><a href="#在第二个视图中" class="headerlink" title="在第二个视图中"></a>在第二个视图中</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var labelContent:String = &quot;&quot;</span><br><span class="line">func viewDidLoad()&#123;</span><br><span class="line">myLabel.text = labelContent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回时传值"><a href="#返回时传值" class="headerlink" title="返回时传值"></a>返回时传值</h2><p>在第二个视图中，通过如下代码，访问到前一个视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.parentViewController</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -455,479 +838,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/16/Objective-C语言应用开发基础编程入门/" itemprop="url">
-                  Objective-C语言应用开发基础编程入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T18:40:55+11:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/Objective-C语言应用开发基础编程入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/Objective-C语言应用开发基础编程入门/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><pre><code>NSString *name = @&quot;jikexueyuan&quot;;
-</code></pre><h2 id="以’-’代表对象"><a href="#以’-’代表对象" class="headerlink" title="以’%@’代表对象"></a>以’%@’代表对象</h2><pre><code>NSLog(@&quot;Hello Objective-C&quot;);
-NSLog(@&quot;The number is %d&quot;,1000);
-NSLog(@&quot;Hello %s&quot;,&quot;XiaoLi&quot;);
-NSLog(@&quot;Hello %@&quot;,name);
-NSLog(@&quot;ObjC Object %@&quot;,[[[NSObject alloc] init] description]); //实际上是调用NSObject中的description方法
-</code></pre><h1 id="Class的构成"><a href="#Class的构成" class="headerlink" title="Class的构成"></a>Class的构成</h1><h2 id="h-file"><a href="#h-file" class="headerlink" title=".h file"></a>.h file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface People : NSObject&#123;</span><br><span class="line">    int _age;</span><br><span class="line">    NSString *_name;</span><br><span class="line">&#125;</span><br><span class="line">// class method-------------------------------</span><br><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(id)initWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(int)getAge;</span><br><span class="line">-(NSString*)getName;</span><br></pre></td></tr></table></figure>
-<h2 id="m-file"><a href="#m-file" class="headerlink" title=".m file"></a>.m file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString *)name&#123;</span><br><span class="line">    return [[People alloc] initWithAge:age andName:name];</span><br><span class="line">&#125;</span><br><span class="line">- (instancetype)initWithAge:(int)age andName:(NSString *)name</span><br><span class="line">&#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        _age = age;</span><br><span class="line">        _name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">-(int)getAge&#123;</span><br><span class="line">    return _age;</span><br><span class="line">&#125;</span><br><span class="line">-(NSString*)getName&#123;</span><br><span class="line">    return _name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="call-method"><a href="#call-method" class="headerlink" title="call method"></a>call method</h2><pre><code>Hello *h = [[Hello alloc] init];
-[h sayHello];
-</code></pre><h1 id="数组与字典"><a href="#数组与字典" class="headerlink" title="数组与字典"></a>数组与字典</h1><h2 id="非可变数组"><a href="#非可变数组" class="headerlink" title="非可变数组"></a>非可变数组</h2><pre><code>//三种构造方法，可以从plist文件中获取数据
-NSArray *arr = @[@&quot;Hello&quot;,@&quot;jikexueyuan&quot;];
-NSArray *arr = [NSArray arrayWithObjects:@&quot;Hello&quot;, @&quot;jikexueyuan&quot;,nil];
-NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
-
-for (int i=0; i&lt;[arr count]; i++) {
-    NSLog(@&quot;%@&quot;,[arr objectAtIndex:i]);
-}
-</code></pre><h2 id="可变数组"><a href="#可变数组" class="headerlink" title="可变数组"></a>可变数组</h2><pre><code>NSMutableArray *arr = [[NSMutableArray alloc] init];
-
-for (int i=0; i&lt;100; i++) {
-    [arr addObject:[NSString stringWithFormat:@&quot;Item %d&quot;,i]];
-}
-
-NSLog(@&quot;%@&quot;,arr);
-</code></pre><h2 id="数组的plist文件"><a href="#数组的plist文件" class="headerlink" title="数组的plist文件"></a>数组的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png" alt="数组的plist文件"></p>
-<h2 id="字典的plist文件"><a href="#字典的plist文件" class="headerlink" title="字典的plist文件"></a>字典的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/dic%20plist%20file.png" alt="字典的plist文件"></p>
-<h2 id="字典与可变字典"><a href="#字典与可变字典" class="headerlink" title="字典与可变字典"></a>字典与可变字典</h2><pre><code>//字典的构造
-NSDictionary *dict = @{@&quot;name&quot;: @&quot;ZhangSan&quot;,@&quot;sex&quot;:@&quot;male&quot;};    
-NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;age&quot;]);
-
-//可变字典
-NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-[dict setObject:@&quot;jikexueyuan&quot; forKey:@&quot;name&quot;];
-
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;name&quot;]);
-</code></pre><h1 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h1><h2 id="h-file-1"><a href="#h-file-1" class="headerlink" title=".h file"></a>.h file</h2><pre><code>#import &lt;Foundation/Foundation.h&gt;
-
-@protocol IPeople &lt;NSObject&gt;
-
--(int)getAge;
--(void)setAge:(int)age;
--(NSString*)getName;
-
-@end
-</code></pre><h2 id="m-file-1"><a href="#m-file-1" class="headerlink" title=".m file"></a>.m file</h2><pre><code>@interface Man : NSObject&lt;IPeople&gt;{
-int _age;
-}
-
--(id)init;
-
--(void)setAge:(int)age;
--(NSString*)getName;
--(int)getAge;
-
-@property id&lt;ManDelegate&gt; delegate;
-
-@end
-</code></pre><h1 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h1><pre><code>@try {
-
-    //需要被捕获异常的代码
-    @throw [NSException exceptionWithName:@&quot;My Error&quot; reason:nil userInfo:nil];
-}
-@catch (NSException *exception) {
-
-    //输出一场信息
-    NSLog(@&quot;%@&quot;,exception);
-}
-@finally {
-    //无论是否有异常，都要执行
-    NSLog(@&quot;run&quot;);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/16/iOS开发面试/" itemprop="url">
-                  iOS开发面试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T16:43:22+11:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/iOS开发面试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/iOS开发面试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Objective-C有多重继承吗？不是的话有什么替代方法"><a href="#Objective-C有多重继承吗？不是的话有什么替代方法" class="headerlink" title="Objective-C有多重继承吗？不是的话有什么替代方法?"></a>Objective-C有多重继承吗？不是的话有什么替代方法?</h3><p>cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的</p>
-<h3 id="Objective-C有私有方法吗，私有变量呢"><a href="#Objective-C有私有方法吗，私有变量呢" class="headerlink" title="Objective-C有私有方法吗，私有变量呢?"></a>Objective-C有私有方法吗，私有变量呢?</h3><p>Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。</p>
-<h3 id="const作用"><a href="#const作用" class="headerlink" title="const作用"></a>const作用</h3><ol>
-<li>欲阻止一个变量被改变，可以使用const关键字</li>
-<li>对指针来说，可以指定指针本身为const,也可以指定指针所指的数据为const,或二者同时指定为const</li>
-<li>在一个函数声明中，const可以修饰形参，表明它是一个输入参数，在函数内部不能改变其值</li>
-<li>对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量</li>
-</ol>
-<h3 id="static作用"><a href="#static作用" class="headerlink" title="static作用"></a>static作用</h3><ol>
-<li>函数体内static变量的作用范围为该函数体，不同于auto变量，该变量的内存只被分配一次，因此其值在下次调用时仍维持上次的值</li>
-<li>在模块内的static全局变量可以被模块内所用的函数访问，但不能被模块外其他函数访问</li>
-<li>在模块内的static函数只可被这一模块内的其他函数调用，这个函数的使用范围被限制在声明它的模块内</li>
-<li>在类中的static成员变量属于整个类所拥有，对类的所有对象只有一份拷贝</li>
-<li>在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量</li>
-</ol>
-<h3 id="extern-“C”的作用"><a href="#extern-“C”的作用" class="headerlink" title="extern “C”的作用"></a>extern “C”的作用</h3><ol>
-<li>被extern”C”限定的函数或者变量是extern类型的</li>
-<li>被extern”C”修饰的变量和函数是按照C语言方式编译和连接的</li>
-</ol>
-<h3 id="import和-include的区别，-class呢？"><a href="#import和-include的区别，-class呢？" class="headerlink" title="#import和 #include的区别，@class呢？"></a>#import和 #include的区别，@class呢？</h3><p>@class一般用于头文件中需要声明该类的某个实例变量的时候用到，在m文件中还是需要使用#import，而#import比#include的好处就是不会引起交叉编译</p>
-<h3 id="objective-C的优点"><a href="#objective-C的优点" class="headerlink" title="objective-C的优点"></a>objective-C的优点</h3><ol>
-<li>Categories</li>
-<li>Posing</li>
-<li>动态识别</li>
-<li>指标计算</li>
-<li>弹性讯息传递</li>
-<li>不是一个过度复杂的C衍生语言</li>
-<li>OC与C++可以混合编程</li>
-</ol>
-<h3 id="Objective-C的缺点"><a href="#Objective-C的缺点" class="headerlink" title="Objective-C的缺点"></a>Objective-C的缺点</h3><ol>
-<li>不支持命名空间</li>
-<li>不支持运算符重载</li>
-<li>不支持多重继承</li>
-<li>使用动态运行时类型，所有的方法都是函数调用，所以很多编译时优化方法都用不到</li>
-</ol>
-<h3 id="Objective-C的内存管理"><a href="#Objective-C的内存管理" class="headerlink" title="Objective-C的内存管理"></a>Objective-C的内存管理</h3><ol>
-<li>通过分配和初始化([[MyClass alloc]init])的方式来创建对象，那就拥有这个对象，需要负责该对象的释放。这个规则在使用NSObject的便利方法new时也同样适用。</li>
-<li>如果您拷贝(copy)一个对象，您也拥有拷贝得到的对象，需要负责该对象的释放。如果您保持(retain)一个对象，你就部分拥有这个对象，需要<br>在不再使用时释放该对象。反过来如果您从其他对象那里接收到一个对象。则您不再拥有该对象。也不应该释放它。</li>
-</ol>
-<h3 id="自动释放池是什么，如何工作"><a href="#自动释放池是什么，如何工作" class="headerlink" title="自动释放池是什么，如何工作"></a>自动释放池是什么，如何工作</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png" alt="自动释放池"></p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png" alt="堆和栈的区别1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png" alt="堆和栈的区别2"></p>
-<h3 id="swift新特性"><a href="#swift新特性" class="headerlink" title="swift新特性"></a>swift新特性</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png" alt="swift新特性"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/16/iOS-Swift与Objective-C混合编程/" itemprop="url">
-                  iOS-Swift与Objective-C混合编程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T15:35:57+11:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/iOS-Swift与Objective-C混合编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/iOS-Swift与Objective-C混合编程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Swift调用Objective-C代码"><a href="#Swift调用Objective-C代码" class="headerlink" title="Swift调用Objective-C代码"></a>Swift调用Objective-C代码</h1><p>在swift project里新建OC文件时，会弹出如下对话框，选择yes,创建<code>SwiftTut-Bridging-Header</code>文件与<code>OCHello</code>文件<br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/swift-oc-Bridge.png" alt="dialogue"><br>在SwiftTut-Bridging-Header里加入如下代码</p>
-<pre><code>#include &quot;OCHello.h&quot;
-</code></pre><p>可以在swift项目里使用oc文件了</p>
-<pre><code>var h = OCHello()
-    h.sayHello()
-}
-</code></pre><h1 id="Objective-C调用Swift代码"><a href="#Objective-C调用Swift代码" class="headerlink" title="Objective-C调用Swift代码"></a>Objective-C调用Swift代码</h1><p>在OC project里新建swift文件时，会弹出如下对话框，选择yes,创建<code>SwiftTut-Bridging-Header</code>文件与<code>SwfitHello</code>文件</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/swift-oc-Bridge.png" alt="dialogue"></p>
-<p>在Project file –&gt;Build setting –&gt; Package –&gt;Defines module –&gt; 选择”Yes”</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/import%20Swift%20-%20build%20setting.png" alt="dialogue2"></p>
-<p>在OC文件里引入”ProductName-Swift.h”文件，这个是系统自动生成的</p>
-<pre><code>#import &quot;CallSwift-Swift.h&quot;
-</code></pre><p>在OC文件里可以引用swift类了</p>
-<pre><code>SwiftHello *h = [[SwiftHello alloc]init];
-[h sayHello];
-</code></pre><p><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html" target="_blank" rel="external">iOS official doc for mixing swift with OC</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -974,7 +884,7 @@ int _age;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -982,7 +892,7 @@ int _age;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -991,7 +901,7 @@ int _age;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
