@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-03-20T04:23:03.000Z</updated>
+  <updated>2016-03-26T07:02:39.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS实例-通讯录</title>
+    <link href="http://jackliu17.github.io/2016/03/26/iOS%E5%AE%9E%E4%BE%8B-%E9%80%9A%E8%AE%AF%E5%BD%95/"/>
+    <id>http://jackliu17.github.io/2016/03/26/iOS实例-通讯录/</id>
+    <published>2016-03-26T06:59:29.000Z</published>
+    <updated>2016-03-26T07:02:39.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;h3 id=&quot;创建新的navigation视图&quot;&gt;&lt;a href=&quot;#创建新的navigation视图&quot; class=&quot;headerlink&quot; title=&quot;创建新的navigation视图&quot;&gt;&lt;/a&gt;创建新的navigation视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/new_navigation_controller.png&quot; alt=&quot;new navigation&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;创建新的rootViewController&quot;&gt;&lt;a href=&quot;#创建新的rootViewController&quot; class=&quot;headerlink&quot; title=&quot;创建新的rootViewController&quot;&gt;&lt;/a&gt;创建新的rootViewController&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/new_root_controller.png&quot; alt=&quot;new root view controller&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;导航视图顶部标题及按钮的设置&quot;&gt;&lt;a href=&quot;#导航视图顶部标题及按钮的设置&quot; class=&quot;headerlink&quot; title=&quot;导航视图顶部标题及按钮的设置&quot;&gt;&lt;/a&gt;导航视图顶部标题及按钮的设置&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/custom_bar_button_item.png&quot; alt=&quot;自定义标题栏&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;登录后视跳转视图&quot;&gt;&lt;a href=&quot;#登录后视跳转视图&quot; class=&quot;headerlink&quot; title=&quot;登录后视跳转视图&quot;&gt;&lt;/a&gt;登录后视跳转视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;UITableView-Cell-跳转到新视图&quot;&gt;&lt;a href=&quot;#UITableView-Cell-跳转到新视图&quot; class=&quot;headerlink&quot; title=&quot;UITableView Cell 跳转到新视图&quot;&gt;&lt;/a&gt;UITableView Cell 跳转到新视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/tableViewCell.png&quot; alt=&quot;UITableView Cell&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;UI-element&quot;&gt;&lt;a href=&quot;#UI-element&quot; class=&quot;headerlink&quot; title=&quot;UI element&quot;&gt;&lt;/a&gt;UI element&lt;/h2&gt;&lt;h2 id=&quot;UIBarbutton的属性配置&quot;&gt;&lt;a href=&quot;#UIBarbutton的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UIBarbutton的属性配置&quot;&gt;&lt;/a&gt;UIBarbutton的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/Bar_button_item__.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;UITextfield的属性配置&quot;&gt;&lt;a href=&quot;#UITextfield的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UITextfield的属性配置&quot;&gt;&lt;/a&gt;UITextfield的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/TextField.png&quot; alt=&quot;TextField&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;UIButton的属性配置&quot;&gt;&lt;a href=&quot;#UIButton的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的属性配置&quot;&gt;&lt;/a&gt;UIButton的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIButton.png&quot; alt=&quot;UIButton&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;如何在xcode里正确的建立文件夹？&quot;&gt;&lt;a href=&quot;#如何在xcode里正确的建立文件夹？&quot; class=&quot;headerlink&quot; title=&quot;如何在xcode里正确的建立文件夹？&quot;&gt;&lt;/a&gt;如何在xcode里正确的建立文件夹？&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;如果仅是在xcode里创建，那文件夹不会在存在finder里，实际上相关文件还是存在一个目录下&lt;/li&gt;
+&lt;li&gt;需要在Xcode里左下角，”add new file to ….project” –&amp;gt; create new folder –&amp;gt; add,这样创建的文件夹可以存在finder里&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;h3 id=&quot;创建新的navigation视图&quot;&gt;&lt;a href=&quot;#创建新的navigation视图&quot; class=&quot;headerlink&quot; 
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS实战项目开发（1）</title>
@@ -42,10 +78,11 @@
     <link href="http://jackliu17.github.io/2016/03/18/iOS%E7%9A%84%E7%96%91%E9%97%AE/"/>
     <id>http://jackliu17.github.io/2016/03/18/iOS的疑问/</id>
     <published>2016-03-18T05:45:00.000Z</published>
-    <updated>2016-03-18T05:46:10.000Z</updated>
+    <updated>2016-03-26T06:39:07.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;为啥要在viewController中加入如下代码？&quot;&gt;&lt;a href=&quot;#为啥要在viewController中加入如下代码？&quot; class=&quot;headerlink&quot; title=&quot;为啥要在viewController中加入如下代码？&quot;&gt;&lt;/a&gt;为啥要在viewController中加入如下代码？&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;init(coder aDecoder:NSCoder!)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  super.init(coder:aDecoder)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
+&lt;h1 id=&quot;为什么不能用这个方法？（通讯录实例）&quot;&gt;&lt;a href=&quot;#为什么不能用这个方法？（通讯录实例）&quot; class=&quot;headerlink&quot; title=&quot;为什么不能用这个方法？（通讯录实例）&quot;&gt;&lt;/a&gt;为什么不能用这个方法？（通讯录实例）&lt;/h1&gt;&lt;p&gt;dequeueReusableCellWithIdentifier:forIndexPath:&lt;br&gt;而是要去掉forIndexPath &lt;/p&gt;
+&lt;h1 id=&quot;不使用模拟器中的键盘&quot;&gt;&lt;a href=&quot;#不使用模拟器中的键盘&quot; class=&quot;headerlink&quot; title=&quot;不使用模拟器中的键盘?&quot;&gt;&lt;/a&gt;不使用模拟器中的键盘?&lt;/h1&gt;</content>
     
     <summary type="html">
     
@@ -106,9 +143,9 @@
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
-    
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
   </entry>
   
@@ -193,13 +230,16 @@
     <link href="http://jackliu17.github.io/2016/03/17/Keyboad%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     <id>http://jackliu17.github.io/2016/03/17/Keyboad快捷键/</id>
     <published>2016-03-17T02:13:06.000Z</published>
-    <updated>2016-03-17T02:22:37.000Z</updated>
+    <updated>2016-03-26T06:40:17.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Xcode&quot;&gt;&lt;a href=&quot;#Xcode&quot; class=&quot;headerlink&quot; title=&quot;Xcode&quot;&gt;&lt;/a&gt;Xcode&lt;/h1&gt;&lt;h3 id=&quot;显示某class的方法提示，在-后按esc键&quot;&gt;&lt;a href=&quot;#显示某class的方法提示，在-后按esc键&quot; class=&quot;headerlink&quot; title=&quot;显示某class的方法提示，在.后按esc键&quot;&gt;&lt;/a&gt;显示某class的方法提示，在.后按esc键&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;Esc&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;a href=&quot;#Storyboard里放大缩小视图&quot; class=&quot;headerlink&quot; title=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;/a&gt;Storyboard里放大缩小视图&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;触摸板上的手势&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;查看某class内部的详情&quot;&gt;&lt;a href=&quot;#查看某class内部的详情&quot; class=&quot;headerlink&quot; title=&quot;查看某class内部的详情&quot;&gt;&lt;/a&gt;查看某class内部的详情&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;command + 点击&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
     
@@ -2243,26 +2283,6 @@ var name = &amp;quot;Luc
     
     
       <category term="Git" scheme="http://jackliu17.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>今天</title>
-    <link href="http://jackliu17.github.io/2016/03/04/%E4%BB%8A%E5%A4%A9/"/>
-    <id>http://jackliu17.github.io/2016/03/04/今天/</id>
-    <published>2016-03-04T06:21:32.000Z</published>
-    <updated>2016-03-04T06:50:31.000Z</updated>
-    
-    <content type="html">&lt;p&gt;今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…&lt;br&gt;不知写啥，就将这作为我的第一篇吧.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…&lt;br&gt;不知写啥，就将这作为我的第一篇吧.&lt;/p&gt;
-
-    
-    </summary>
-    
     
   </entry>
   
