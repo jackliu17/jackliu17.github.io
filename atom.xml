@@ -143,9 +143,9 @@
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   
@@ -2056,155 +2056,6 @@ println(valuesArr)
   </entry>
   
   <entry>
-    <title>Swift语言基础</title>
-    <link href="http://jackliu17.github.io/2016/03/10/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
-    <id>http://jackliu17.github.io/2016/03/10/Swift语言基础/</id>
-    <published>2016-03-10T05:22:51.000Z</published>
-    <updated>2016-03-10T08:18:47.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;常量和变量&quot;&gt;&lt;a href=&quot;#常量和变量&quot; class=&quot;headerlink&quot; title=&quot;常量和变量&quot;&gt;&lt;/a&gt;常量和变量&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var str = &amp;quot;Hello&amp;quot;  
-var name = &amp;quot;Lucky&amp;quot;    
-var age: Int  
-var string: String = &amp;quot;smile&amp;quot;  
-var a = 20, b:String, c = &amp;quot;Swift&amp;quot;  
-println(&amp;quot;Her name is \(name)&amp;quot;)   //作为占位符&amp;quot;\&amp;quot; 
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;变量var ,常量let    &lt;/li&gt;
-&lt;li&gt;标识符必须以字符(包括Unicode字符)，下划线_，美元符$开头，但不能以数字开头，不可以包含空格，不能使用关键字，其长度没有限制&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h1&gt;&lt;h2 id=&quot;整型：用Int就可以了&quot;&gt;&lt;a href=&quot;#整型：用Int就可以了&quot; class=&quot;headerlink&quot; title=&quot;整型：用Int就可以了&quot;&gt;&lt;/a&gt;整型：用Int就可以了&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let oneMillion = 1_000_000 //可以增加下划线作为分隔符
-println(oneMillion)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;整型之间转换必须是显式转换&quot;&gt;&lt;a href=&quot;#整型之间转换必须是显式转换&quot; class=&quot;headerlink&quot; title=&quot;整型之间转换必须是显式转换&quot;&gt;&lt;/a&gt;整型之间转换必须是显式转换&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var book1: Int16 = 100
-var book2: Int32 = 30
-var totalPrice = Int32(book1) + book2 //必须先转换，否则会报错
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;正无穷-负无穷-非数&quot;&gt;&lt;a href=&quot;#正无穷-负无穷-非数&quot; class=&quot;headerlink&quot; title=&quot;正无穷,负无穷,非数&quot;&gt;&lt;/a&gt;正无穷,负无穷,非数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var w = 4.0 / 0.0   //正无穷
-var w = - 4.0 / 0.0 //负无穷
-var f = 0.0 / 0.0   //非数
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;浮点运算&quot;&gt;&lt;a href=&quot;#浮点运算&quot; class=&quot;headerlink&quot; title=&quot;浮点运算&quot;&gt;&lt;/a&gt;浮点运算&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var width: Float = 2.1
-var height: Double = 3.9
-var area1 = width * Float(height) //必须先转换，否则会报错
-var area2 = Int(width) * 4 //必须先转换，否则会报错
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类型别名：&quot;&gt;&lt;a href=&quot;#类型别名：&quot; class=&quot;headerlink&quot; title=&quot;类型别名：&quot;&gt;&lt;/a&gt;类型别名：&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;typealias Age = UInt16
-let myAge:Age = 10
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;元组&quot;&gt;&lt;a href=&quot;#元组&quot; class=&quot;headerlink&quot; title=&quot;元组&quot;&gt;&lt;/a&gt;元组&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//赋值方式1.
-var score = (140,140,&amp;quot;Good&amp;quot;)
-
-//赋值方式2.赋值时必须为所有的成员变量赋值
-var health : (Int , Int , String) 
-health = (182 , 78 , &amp;quot;Good&amp;quot;)  
-
-println (&amp;quot;health元组的值为:\(health)&amp;quot;)  //打印元组所有
-println (&amp;quot;health元组中身高的值为:\(health.1)&amp;quot;) //打印元组中第二个值
-
-//元组中的嵌套
-var test:(Int,(Int,String))
-test = (10,(100,&amp;quot;Swift&amp;quot;))
-println(&amp;quot;test元组中第二个元素的第一个元素为：\(test.1.0)&amp;quot;)
-
-//通过key-value赋值，顺序可以调换
-var score2 = (math:140, English:140, Assessment:&amp;quot;A&amp;quot;)
-var score2 :(math:Int, English:Int, Assessment:String)
-score2 = (English:140, math:140, Assessment:&amp;quot;A&amp;quot;) 
-println(&amp;quot;score2 中数学的成绩是: \(score2.math)&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;可选类型&quot;&gt;&lt;a href=&quot;#可选类型&quot; class=&quot;headerlink&quot; title=&quot;可选类型&quot;&gt;&lt;/a&gt;可选类型&lt;/h2&gt;&lt;p&gt;任何已知类型后面紧跟?即可代表可选类型如Int?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var str2 = &amp;quot;HelloGeek&amp;quot;
-var num: Int? = str2.toInt()
-println(num) //nil表示值缺失
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;强制解析：&quot;&gt;&lt;a href=&quot;#强制解析：&quot; class=&quot;headerlink&quot; title=&quot;强制解析：&quot;&gt;&lt;/a&gt;强制解析：&lt;/h2&gt;&lt;p&gt;在变量或者常量后面添加!注意：必须可选类型的变量和常量确实有值的时候才能解析成功&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var num1: Int? = 10
-var num2: Int? = 20
-
-if num1 !=nil &amp;amp;&amp;amp; num !=nil{
-   let sum = num1! + num2! //获得可选类型的值
-}else{
-   println(&amp;quot;num1&amp;quot;或者&amp;quot;num2&amp;quot;为nil,不能强制解析)
-} 
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;可选绑定：&quot;&gt;&lt;a href=&quot;#可选绑定：&quot; class=&quot;headerlink&quot; title=&quot;可选绑定：&quot;&gt;&lt;/a&gt;可选绑定：&lt;/h2&gt;&lt;p&gt;可以用在if和while语句中来对可选类型的值进行判断并把值赋给一个常量或者变量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var str3: String! = &amp;quot;Swift&amp;quot;
-if var tmp = str3 {
-   println(&amp;quot;str3 的值为: \(tmp)&amp;quot;)
-}else{
-   println(&amp;quot;str3 的值为nil,不能解析&amp;quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;隐式解析可选类型：&quot;&gt;&lt;a href=&quot;#隐式解析可选类型：&quot; class=&quot;headerlink&quot; title=&quot;隐式解析可选类型：&quot;&gt;&lt;/a&gt;隐式解析可选类型：&lt;/h2&gt;&lt;p&gt;在已有类型后面添加！如Int!适用于被赋值后不会重新变为nil的变量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var possibleStr: String! = &amp;quot;jikexueyuan&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;运算符&quot;&gt;&lt;a href=&quot;#运算符&quot; class=&quot;headerlink&quot; title=&quot;运算符&quot;&gt;&lt;/a&gt;运算符&lt;/h1&gt;&lt;h2 id=&quot;swift赋值表达没有值，不支持连续赋值&quot;&gt;&lt;a href=&quot;#swift赋值表达没有值，不支持连续赋值&quot; class=&quot;headerlink&quot; title=&quot;swift赋值表达没有值，不支持连续赋值&quot;&gt;&lt;/a&gt;swift赋值表达没有值，不支持连续赋值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var a: Int
-var b = a = 20
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;求余运算&quot;&gt;&lt;a href=&quot;#求余运算&quot; class=&quot;headerlink&quot; title=&quot;求余运算&quot;&gt;&lt;/a&gt;求余运算&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var g = 5.2 (结果正负取决于被除数的正负)
-var h = 3.1
-var mod = g % h
-println(mod)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;自增自减&quot;&gt;&lt;a href=&quot;#自增自减&quot; class=&quot;headerlink&quot; title=&quot;自增自减&quot;&gt;&lt;/a&gt;自增自减&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//结果是11，先执行运算，然后a再自加1
-var a = 5
-var b = a++ + 6
-println(b) 
-
-//结果是12，先自身加1，再执行运算
-var a = 5
-var b = ++a + 6
-println(b)  
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;溢出运算符-amp-amp-amp-amp-amp&quot;&gt;&lt;a href=&quot;#溢出运算符-amp-amp-amp-amp-amp&quot; class=&quot;headerlink&quot; title=&quot;溢出运算符 &amp;amp;+ &amp;amp;- &amp;amp;* &amp;amp;/ &amp;amp;%&quot;&gt;&lt;/a&gt;溢出运算符 &amp;amp;+ &amp;amp;- &amp;amp;* &amp;amp;/ &amp;amp;%&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var willUnderflow = UInt8.min
-willUnderflow = willUnderflow &amp;amp;-1 //下溢
-
-let a = 20
-let b = a &amp;amp;/ 0
-let c = a &amp;amp;% 0
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;位运算符&quot;&gt;&lt;a href=&quot;#位运算符&quot; class=&quot;headerlink&quot; title=&quot;位运算符&quot;&gt;&lt;/a&gt;位运算符&lt;/h2&gt;&lt;p&gt;&amp;amp; 按位与&lt;br&gt;|  或&lt;br&gt;^  异或&lt;br&gt;~  取反&lt;br&gt;&amp;lt;&amp;lt; 左位移&lt;br&gt;右位移 &amp;gt;&amp;gt;   &lt;/p&gt;
-&lt;h2 id=&quot;扩展后的赋值运算符&quot;&gt;&lt;a href=&quot;#扩展后的赋值运算符&quot; class=&quot;headerlink&quot; title=&quot;扩展后的赋值运算符&quot;&gt;&lt;/a&gt;扩展后的赋值运算符&lt;/h2&gt;&lt;p&gt;-=&lt;br&gt;*=&lt;br&gt;/=&lt;br&gt;&amp;amp;=&lt;br&gt;|=&lt;br&gt;运算符 “+= ” 对于 x+=y 等价于 x = x+y    &lt;/p&gt;
-&lt;h2 id=&quot;区间运算符&quot;&gt;&lt;a href=&quot;#区间运算符&quot; class=&quot;headerlink&quot; title=&quot;区间运算符&quot;&gt;&lt;/a&gt;区间运算符&lt;/h2&gt;&lt;p&gt;a..&amp;lt;b (包含a,但不包含b)&lt;br&gt;a…b（包含a,也包含b）&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for a in 0..&amp;lt;10&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for a in 0...10&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;比较运算符，结果为BOOL值&quot;&gt;&lt;a href=&quot;#比较运算符，结果为BOOL值&quot; class=&quot;headerlink&quot; title=&quot;比较运算符，结果为BOOL值&quot;&gt;&lt;/a&gt;比较运算符，结果为BOOL值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var c= a === b //只有a和b指向的类型实例相同时，c为true
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;=== 特征相等运算符  &lt;/li&gt;
-&lt;li&gt;!== 特征不等运算符  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;逻辑运算符&quot;&gt;&lt;a href=&quot;#逻辑运算符&quot; class=&quot;headerlink&quot; title=&quot;逻辑运算符&quot;&gt;&lt;/a&gt;逻辑运算符&lt;/h2&gt;&lt;p&gt;&amp;amp;&amp;amp; 与&lt;br&gt;|| 或&lt;br&gt;!  非&lt;/p&gt;
-&lt;h2 id=&quot;三目运算符&quot;&gt;&lt;a href=&quot;#三目运算符&quot; class=&quot;headerlink&quot; title=&quot;三目运算符&quot;&gt;&lt;/a&gt;三目运算符&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var a = 5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var b = 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var str = a &amp;gt; b ? &amp;quot;a大于b&amp;quot;:&amp;quot;a小于b&amp;quot; //如果条件成立就执行?后的，否则就执行:后的&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;空合并运算符-a-b&quot;&gt;&lt;a href=&quot;#空合并运算符-a-b&quot; class=&quot;headerlink&quot; title=&quot;空合并运算符 a??b&quot;&gt;&lt;/a&gt;空合并运算符 a??b&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;将对可选类型a进行空判断，如果a包含一个值就进行解封&lt;/li&gt;
-&lt;li&gt;否则就返回一个默认值b  &lt;/li&gt;
-&lt;li&gt;默认值b的类型必须要和a存储值的类型保持一致  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let words = &amp;quot;hello&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var say: String? = &amp;quot;jike&amp;quot; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var content = say ?? words&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(content)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;流程控制&quot;&gt;&lt;a href=&quot;#流程控制&quot; class=&quot;headerlink&quot; title=&quot;流程控制&quot;&gt;&lt;/a&gt;流程控制&lt;/h1&gt;&lt;h2 id=&quot;分支结构&quot;&gt;&lt;a href=&quot;#分支结构&quot; class=&quot;headerlink&quot; title=&quot;分支结构&quot;&gt;&lt;/a&gt;分支结构&lt;/h2&gt;&lt;h3 id=&quot;if…else…&quot;&gt;&lt;a href=&quot;#if…else…&quot; class=&quot;headerlink&quot; title=&quot;if…else…&quot;&gt;&lt;/a&gt;if…else…&lt;/h3&gt;&lt;p&gt;语句的条件执行体必须放在花括号中&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var age = 30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if age &amp;gt; 20 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  println(“年龄大于20岁”)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  println(&amp;quot;年龄小于20岁&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;Switch&quot;&gt;&lt;a href=&quot;#Switch&quot; class=&quot;headerlink&quot; title=&quot;Switch&quot;&gt;&lt;/a&gt;Switch&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;任意一个case不需要break,执行完一条会自动退出  &lt;/li&gt;
-&lt;li&gt;每一个case块至少包含一条语句&lt;/li&gt;
-&lt;li&gt;case标签后可以有多个值，用逗号隔开&lt;/li&gt;
-&lt;li&gt;case块后的条件还可以是一个范围或者元组，支持值绑定&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;let score = &amp;quot;a&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switch score &amp;#123;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;quot;A&amp;quot;,&amp;quot;a&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;Good&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;quot;B&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;LG&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;quot;C&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;TW4&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;quot;D&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;Good&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;quot;E&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;Good&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; println(&amp;quot;error&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;使用fallthrough语句贯穿&quot;&gt;&lt;a href=&quot;#使用fallthrough语句贯穿&quot; class=&quot;headerlink&quot; title=&quot;使用fallthrough语句贯穿&quot;&gt;&lt;/a&gt;使用fallthrough语句贯穿&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var num = 5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var desc = &amp;quot;\(num)是&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switch num &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case 2, 3, 5, 7 :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     desc += &amp;quot;质数，而且还是&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	 fallthrough&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     desc += &amp;quot;整数&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;println(desc) //结果是“5是质数，而且还是整数”&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;case后的条件为元组&quot;&gt;&lt;a href=&quot;#case后的条件为元组&quot; class=&quot;headerlink&quot; title=&quot;case后的条件为元组&quot;&gt;&lt;/a&gt;case后的条件为元组&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var point = (x:1 , y:1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switch point &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case (0,0):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;(0,0)位于原点&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case (_,0):   //用_表示可以忽略这个数据&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;(\(point.0),0)位于x轴上&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case (0...Int.max, 0...Int.max):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    println(&amp;quot;(\(point.0),\(point.1))位于第一象限&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    break&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;值绑定&quot;&gt;&lt;a href=&quot;#值绑定&quot; class=&quot;headerlink&quot; title=&quot;值绑定&quot;&gt;&lt;/a&gt;值绑定&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var point = (x:1 , y:1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switch point &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case (0,0):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   println(&amp;quot;(0,0)位于原点&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   println(&amp;quot;该点位于x轴上，x值为:\(a)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case var (x,y) where x&amp;gt;0 &amp;amp;&amp;amp; y&amp;gt;0:  //条件值绑定&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   println(&amp;quot;(\(x),\(y))位于第一象限&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   break&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;循环结构&quot;&gt;&lt;a href=&quot;#循环结构&quot; class=&quot;headerlink&quot; title=&quot;循环结构&quot;&gt;&lt;/a&gt;循环结构&lt;/h2&gt;&lt;h3 id=&quot;for-loop&quot;&gt;&lt;a href=&quot;#for-loop&quot; class=&quot;headerlink&quot; title=&quot;for loop&quot;&gt;&lt;/a&gt;for loop&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;for var count = 0; count &amp;lt;10; count++&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   println(count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let base = 3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let power = 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var answer = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for _ in 1...power &amp;#123; //下划线符号_替代循环中的变量，能够忽略具体的值，并且不提供循环遍历时对值的访问&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  answer *= base&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;标签：&quot;&gt;&lt;a href=&quot;#标签：&quot; class=&quot;headerlink&quot; title=&quot;标签：&quot;&gt;&lt;/a&gt;标签：&lt;/h3&gt;&lt;p&gt;紧跟冒号的标识符，只有放在循环语句或者switch语句之前才有作用&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;outer: for var i=0;i&amp;lt;5;i++&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;内层循环&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for var j=0;j&amp;lt;3;j++&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   println(&amp;quot;i的值为:\(i),j的值为\(j)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   if j==1 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     break outer&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol&gt;
-&lt;li&gt;break结束循环，开始执行循环之后的代码&lt;/li&gt;
-&lt;li&gt;continue 忽略本次循环的剩下语句，执行下一次循环，但不终止循环&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;常量和变量&quot;&gt;&lt;a href=&quot;#常量和变量&quot; class=&quot;headerlink&quot; title=&quot;常量和变量&quot;&gt;&lt;/a&gt;常量和变量&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var str = &amp;quot;Hello&amp;quot;  
-var name = &amp;quot;Luc
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Git本地操作</title>
     <link href="http://jackliu17.github.io/2016/03/09/Git%E6%9C%AC%E5%9C%B0%E6%93%8D%E4%BD%9C/"/>
     <id>http://jackliu17.github.io/2016/03/09/Git本地操作/</id>
@@ -2283,6 +2134,26 @@ var name = &amp;quot;Luc
     
     
       <category term="Git" scheme="http://jackliu17.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>今天</title>
+    <link href="http://jackliu17.github.io/2016/03/04/%E4%BB%8A%E5%A4%A9/"/>
+    <id>http://jackliu17.github.io/2016/03/04/今天/</id>
+    <published>2016-03-04T06:21:32.000Z</published>
+    <updated>2016-03-04T06:50:31.000Z</updated>
+    
+    <content type="html">&lt;p&gt;今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…&lt;br&gt;不知写啥，就将这作为我的第一篇吧.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…&lt;br&gt;不知写啥，就将这作为我的第一篇吧.&lt;/p&gt;
+
+    
+    </summary>
+    
     
   </entry>
   
