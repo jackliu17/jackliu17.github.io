@@ -87,7 +87,7 @@ var start: Int
 //定义常量存储属性，可以不指定初始值
 let length:Int
 }">
-<meta property="og:updated_time" content="2016-03-12T11:25:37.000Z">
+<meta property="og:updated_time" content="2016-04-13T08:10:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础（中）">
 <meta name="twitter:description" content="存储属性和计算属性存储属性
@@ -339,23 +339,24 @@ let length:Int
 
 var len = LengthRange(start:9, length:3)
 //通过构造器参数完成实例存储属性的初始化
-println(&quot;len的起点为\(en.start),长度为\(en.length)&quot;)
-
+print(&quot;len的起点为\(len.start),长度为\(len.length)&quot;)
 
 len.start = 2
-len.length = 4 //这个会报错，因为是常量，常量是不能修改的
+//len.length = 4 //这个会报错，因为是常量，常量是不能修改的
 </code></pre><ol>
 <li>程序为所有的实例存储属性指定了初始值，且没有构造器，则系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。</li>
 <li>没有初始值和构造器，系统提供一个初始化所有实例存储属性的构造器。   </li>
 <li>有构造器，则程序必须为结构体中的所有存储属性提供初始值。</li>
+<li>其实上述的意思就是，初始值要么在构造器中，要么在就直接赋予</li>
 </ol>
 <h2 id="结构体常量与实例属性"><a href="#结构体常量与实例属性" class="headerlink" title="结构体常量与实例属性"></a>结构体常量与实例属性</h2><pre><code>struct LengthRange2{
 var start: Int
 var length:Int
 }
 
-let len2 = LengthRange(start:1, length:5)
-</code></pre><h2 id="延迟存储属性"><a href="#延迟存储属性" class="headerlink" title="延迟存储属性"></a>延迟存储属性</h2><p>第一次被调用时才会被计算初始值的属性，用lazy修饰符</p>
+let len2 = LengthRange2(start:1, length:5)
+len2.length = 6 //这样会报错，因为是常量，不能修改
+</code></pre><h2 id="延迟存储属性"><a href="#延迟存储属性" class="headerlink" title="延迟存储属性"></a>延迟存储属性</h2><p>第一次被调用时才会被计算初始值的属性，用lazy修饰符.目前未做详细了解</p>
 <h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>[修饰符]var计算属性名:属性类型{
 get{
 //get方法执行体，该方法一定要有返回值
@@ -373,36 +374,32 @@ var last:String = &quot;&quot;
 //定义计算属性
 var fullName:String{
 
-//定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
-gett{
-   return first + &quot;-&quot; + last
-}
+    //定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
+    get{
+        return first + &quot;-&quot; + last
+    }
 
-//定义计算属性的setter方法
-//该setter方法将负责改变该实例的first,last两个存储属性
-set (newValue){
-  var names = newValue.componentsSeparateByString(&quot;-&quot;)
-  self.first = names[0]
-  self.last = names [1]
-}
-
+    //定义计算属性的setter方法
+    //该setter方法将负责改变该实例的first,last两个存储属性
+    set(newValue){
+        var names = newValue.componentsSeparatedByString(&quot;-&quot;)
+        self.first = names[0]
+        self.last = names [1]
+    }
 }
 
 init(first:String, last:String){
-   self.first = first
-   self.last = last
+    self.first = first
+    self.last = last
+}
 }
 
-}
-
-
-let s = User(first:&quot;极客&quot;，last:&quot;Hello&quot;)
-println(s.fullName) //结果是：极客-Hello
-
+let s = User(first:&quot;极客&quot;,last:&quot;Hello&quot;)
+//print(s.fullName) //结果是：极客-Hello
 
 s.fullName = &quot;极客-学院&quot;
-println(s.first)  //outcome is 极客
-println(s.last)   //结果是 学院
+print(s.first)  //outcome is 极客
+print(s.last)   //结果是 学院
 </code></pre><h3 id="例子2-只读属性"><a href="#例子2-只读属性" class="headerlink" title="例子2 只读属性"></a>例子2 只读属性</h3><p>无需set部分，可以省略get和花括号</p>
 <pre><code>class User{
 var first:String = &quot;&quot;
@@ -439,49 +436,45 @@ init(first:String, last:String){
 <li>可通过重载方式为继承得到的属性（包括存储属性和计算属性）添加属性观察者。</li>
 </ol>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre><code>class Person {
-  //定义存储属性
-  var name: String = &quot;&quot;{
+//定义存储属性
+var name: String = &quot;&quot;{
+
     willSet{
-      if(countElements(newValue)&gt;6)||(countElements(newValue)&lt;2){
-        println(&quot;您设置的人名\(newValue)不符合要求，请重新设置！&quot;)
-      }else{
-        println(&quot;人名设置符合要求，设置成功&quot;)
-      }
+
+        if(newValue.characters.count &gt; 6 || newValue.characters.count &lt; 2){
+            print(&quot;您设置的人名\(newValue)不符合要求，请重新设置！&quot;)
+        }else{
+            print(&quot;人名设置符合要求，设置成功&quot;)
+        }
     }
 
     didSet{
-        println(&quot;人名设置完成，被修改的原名为：\(oldValue)&quot;)
+        print(&quot;人名设置完成，被修改的原名为：\(oldValue)&quot;)
     }
-  }
+}
 
-  var age: Int = 0{
+var age: Int = 0{
 
-      willSet{
-
-        if newValue&gt;100 || newValue &lt;0{
-
-           println(&quot;您设置的年龄\(newValue)不符合要求，请重新设置！&quot;)
-
+    willSet{
+        if newValue &gt; 100 || newValue &lt; 0{
+            print(&quot;您设置的年龄\(newValue)不符合要求，请重新设置！&quot;)
         }else{
-
-           println(&quot;年龄设置符合要求，设置成功&quot;)
-
+            print(&quot;年龄设置符合要求，设置成功&quot;)
         }
-      }
+    }
 
-      didSet {
-
-           println(&quot;年龄设置完成，被修改的年龄为：\(oldValue)&quot;)
-
-      }
-  }
+    didSet {
+        print(&quot;年龄设置完成，被修改的年龄为：\(oldValue)&quot;)
+    }
+}
 }
 
 var p = Person()
-p.age = 999  //不成功的设置
+//p.age = 999  //不成功的设置，先调用willSet，再调用didSet
 p.age = 10 // 成功的设置
+print(&quot;成功设置年龄后，年龄为\(p.age)&quot;)  
 </code></pre><h1 id="Swift中的方法"><a href="#Swift中的方法" class="headerlink" title="Swift中的方法"></a>Swift中的方法</h1><h2 id="方法的所属性"><a href="#方法的所属性" class="headerlink" title="方法的所属性"></a>方法的所属性</h2><ol>
-<li>定义方法需要在类型（枚举，结构体，类）里下定义，不能独立定义</li>
+<li>定义方法需要在类型（枚举，结构体，类）里下定义，不能独立定义，否则就成了函数</li>
 <li>方法要么属于该类型本身，要么是该类型的一个实例</li>
 <li>不能独立执行方法，执行方法必须使用类型或实例作为调用者</li>
 <li>枚举，结构体中方法使用static修饰，类中用class修饰，都属于类型方法，否则的话属于实例方法</li>
@@ -489,104 +482,98 @@ p.age = 10 // 成功的设置
 <h2 id="将方法转换为函数"><a href="#将方法转换为函数" class="headerlink" title="将方法转换为函数"></a>将方法转换为函数</h2><pre><code>class SomeClass {
 
 func test() {
-  println(&quot;==test 方法==&quot;)
+    print(&quot;==test 方法==&quot;)
 }
 
-class func bar(#msg:String) {
-  println(&quot;==bar类型方法==，传入的参数为:\(msg)&quot;)
+class func bar(msg:String) {
+    print(&quot;==bar类型方法==，传入的参数为:\(msg)&quot;)
 }
 }
 
 var sc = SomeClass()     //创建实例
 var f1:()-&gt;()=sc.test    //将sc的test方法分离成函数
 
-var f2:(String) -&gt; Void = SomeClass.bar    //将sc的bar方法分离成函数
-f1()    //等价于sc.test()
+var f2:(String) -&gt; Void = SomeClass.bar    //将sc的bar方法分离成函数，定义一个函数型的变量并赋值
+//f1()    //等价于sc.test()
 f2(&quot;极客&quot;)  //等价于SomeClass.bar(msg:&quot;Geek&quot;)
 </code></pre><h2 id="方法的外部形参名"><a href="#方法的外部形参名" class="headerlink" title="方法的外部形参名"></a>方法的外部形参名</h2><p>默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉</p>
 <pre><code>class Person {
 
-   var name:String
+var name:String
 
-   init(name:String){
+init(name:String){
+    self.name = name
+}
 
-     self.name = name
-
-   }
-
-   func eat (food:String, _drink:String, cigarette:String){
-
-     println(&quot;\(self.name)吃着\(food),喝着\(drink),抽着\(cigarette)&quot;)
-
-   }
+func eat (food:String, _ drink:String, cigarette:String){
+    print(&quot;\(self.name)吃着\(food),喝着\(drink),抽着\(cigarette)&quot;)
+}
 }
 
 var p = Person(name:&quot;Tom&quot;)
-p.eat(&quot;烤鸭&quot;，“啤酒”，cigarette:&quot;雪茄&quot;)
+p.eat(&quot;烤鸭&quot;,&quot;啤酒&quot;,cigarette:&quot;雪茄&quot;)
 </code></pre><h2 id="值类型的可变方法"><a href="#值类型的可变方法" class="headerlink" title="值类型的可变方法"></a>值类型的可变方法</h2><pre><code>struct JKRect {
-  var x: Int
-  var y: Int
-  var width:Int
-  var height:Int
-  mutating func moveByX(x:Int,y:Int){
+var x: Int
+var y: Int
+var width:Int
+var height:Int
+mutating func moveByX(x:Int,y:Int){
     self.x += x
     self.y += y
-  }
+}
 }
 
 var rect = JKRect(x:20, y:12, width:200, height:300)   //创建实例
 rect.moveByX(100, y:90)   //调用mutating方法，该方法可以改变rect实例的存储属性
-println(“rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)”)
+print(&quot;rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)&quot;)
 </code></pre><ol>
 <li>将mutating关键字放在func之前，即将该方法声明为可变方法</li>
-<li>常量类型的结构体，枚举是不可变的</li>
+<li>常量类型的结构体，枚举是不可变的,比如上述的var 改成 let就不行了</li>
 </ol>
 <h1 id="属性和方法的统一"><a href="#属性和方法的统一" class="headerlink" title="属性和方法的统一"></a>属性和方法的统一</h1><p>使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法</p>
 <pre><code>func factorial(n:Int) -&gt; Int {
 var result = 1
 for i in 1...n {
-   result *= i
+    result *= i
 }
-return result 
+return result
 }
 
 struct SomeStruct {
 var info:() -&gt; Void = {
-  println(&quot;info方法&quot;)
+    print(&quot;info方法&quot;)
 }
-
 //将全局函数作为fact存储属性的初始值
 static var fact:(Int) -&gt; Int = factorial
 }
 
 var sc = SomeStruct()
 //调用info方法
-sc.info()  //outcome is info方法
+//sc.info()  //outcome is info方法
 
 //使用闭包对sc对象的info赋值，相当于重新定义sc的info方法
 sc.info = {
-  println(&quot;另外一个闭包&quot;)
+print(&quot;另外一个闭包&quot;)
 }
 
-sc.info()  //outcome is 另外一个闭包
+//sc.info()  //outcome is 另外一个闭包
 
 var n = 6
 
-//调用fact方法，执行的是阶乘 
-println(&quot;\(n)的阶乘是：\(SomeStruct.fact(6))&quot;) //Outcome is 720
+//调用fact方法，执行的是阶乘
+//print(&quot;\(n)的阶乘是：\(SomeStruct.fact(6))&quot;) //Outcome is 720
 
 //使用闭包对SomeStruct的fact赋值，相当于重新定义SomeStruct的fact方法
-
 SomeStruct.fact = {
-  var result = 1
-  for i in 1...$0 {
-     result += i
-  }
-  return result
+var result = 1
+for i in 1...$0 {
+    result += i
+}
+return result
 }
 
 //再次调用fact方法，执行的是累加
-println(&quot;\(n)的累加的和是:\(SomeStruct.fact(6))&quot;) //outcome is 22
+print(&quot;\(n)的累加的和是:\(SomeStruct.fact(6))&quot;) //outcome is 22
 </code></pre><h1 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h1><ol>
 <li>所有的Swift类型（枚举，类，结构体）都支持定义下标</li>
 <li>同一个类型可以定义多个下标</li>
@@ -607,58 +594,53 @@ set(形参名){
 <li>形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值</li>
 <li>下标的返回值类型：可以是任何有效的类型</li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>struct JKRect2{
-  var x:Int
-  var y:Int
-  var width:Int
-  var height:Int
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>struct JKRect2{<br>    var x:Int<br>    var y:Int<br>    var width:Int<br>    var height:Int</p>
+<pre><code>//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
 
-  //定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
-
-  subscript(index:Int) -&gt;Int {
+subscript(index:Int) -&gt;Int {
 
     get{
         switch(index){
         case 0:
-           return self.x
+            return self.x
         case 1:
-           return self.y
+            return self.y
         case 2:
-           return self.width
+            return self.width
         case 3:
-           return self.height
+            return self.height
         default:
-           println(&quot;不支持该索引值&quot;)
-           return 0
+            print(&quot;不支持该索引值&quot;)
+            return 0
         }
     }
 
     set{
-         switch(index){
-         case 0:
+        switch(index){
+        case 0:
             self.x = newValue
-         case 1:
+        case 1:
             self.y = newValue
-         case 2:
+        case 2:
             self.width = newValue
-         case 3:
+        case 3:
             self.height = newValue
-         default:
-            println(&quot;不支持该索引值&quot;)
-         }
+        default:
+            print(&quot;不支持该索引值&quot;)
+        }
     }
-  }
+}
 }
 
 //创建实例
 var rect2 = JKRect2(x:20,y:12,width:200,height:300)
 
 //通过下标进行赋值
-rect2[0] = 40
-rect2[1] = 67
+//rect2[0] = 40
+//rect2[1] = 67
 
 //通过下标访问rect的属性
-println(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&quot;)
+print(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&quot;)
 </code></pre>
       
     </div>

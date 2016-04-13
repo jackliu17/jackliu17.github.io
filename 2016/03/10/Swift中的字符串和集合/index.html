@@ -65,7 +65,7 @@
 字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift中的字符串和集合">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/index.html">
@@ -74,15 +74,15 @@ println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
 字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
-<meta property="og:updated_time" content="2016-03-11T01:37:50.000Z">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
+<meta property="og:updated_time" content="2016-04-12T06:14:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的字符串和集合">
 <meta name="twitter:description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
 字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
 
 
 
@@ -311,7 +311,7 @@ println(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;q">
 <h2 id="字符类型及表现形式"><a href="#字符类型及表现形式" class="headerlink" title="字符类型及表现形式"></a>字符类型及表现形式</h2><pre><code>var s:Character = &quot;美&quot;
 var quote1 = &quot;\&apos;&quot;
 var quote2 = &quot;\u{22}&quot;
-println(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
+print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
 </code></pre><ol>
 <li>单个字符来指定字符常量，如“A”，“9”</li>
 <li>转义字符表示特殊字符常量，如”\n”,”\t”</li>
@@ -327,29 +327,35 @@ var str2 = String()
 //创建多个重复字符的字符串
 var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
 var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
-println(strRep)
+print(strRep)
 
 //判断字符串是否为空
-println(str3.isEmpty)
+print(str3.isEmpty)
 </code></pre><h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><pre><code>//拼接方式1.
 var str4 = str1 + &quot;College&quot;
 str1 += &quot;Hello&quot;
-println(str4)
+print(str4)
 
 //拼接方式2.
 let char:Character = &quot;!&quot;
 str1.append(char)
-println(str1)
-</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>println(&quot;str3 has \(countElements(str3)) characters&quot;)
+print(str1)
+</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
+
+print(&quot;str3 has \(str4.characters.count) characters&quot;)
 </code></pre><ol>
 <li>通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量</li>
-<li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样</li>
+<li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样。因为SWIFT的count是基于Unicode，而OC的length是基于UTF-16</li>
 <li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定</li>
 </ol>
+<p>&gt;<br>Note<br>&gt;</p>
+<blockquote>
+<p>In Swift 2 you should write yourString.characters.count to return the length of a string.<br>This is different from Swift 1.2, where you used count(yourString),<br>and different again from Swift 1.0, where you used countElements(yourString). </p>
+</blockquote>
 <h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
 let sameQuotation = &quot;We are the same&quot;
 if quotation == sameQuotation {
-println(&quot;These are the same&quot;)
+print(&quot;These are the same&quot;)
 }
 </code></pre><h2 id="检查字符串是否有特定的前缀后缀"><a href="#检查字符串是否有特定的前缀后缀" class="headerlink" title="检查字符串是否有特定的前缀后缀"></a>检查字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
 &quot;Fruits : orange&quot;,
@@ -358,12 +364,12 @@ println(&quot;These are the same&quot;)
 &quot;Vegetables: potato&quot;]
 
 for fry in food{
-if fru.hasPrefix(&quot;Fruits&quot;){
-   println(fru)
+if fry.hasPrefix(&quot;Fruits&quot;){
+   print(fry)
 }
 
-if fru.hasSuffix(&quot;o&quot;){
-   println(fru)
+if fry.hasSuffix(&quot;o&quot;){
+   print(fry)
 }
 }
 </code></pre><h1 id="Swift中的数组"><a href="#Swift中的数组" class="headerlink" title="Swift中的数组"></a>Swift中的数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
@@ -371,16 +377,19 @@ var num = Array&lt;Int&gt;(count:3,repeatedValue:1)
 </code></pre><h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2."></a>方式2.</h3><pre><code>var someInts = [Int]()
 var arr:[Int]=[1,2,3]
 var threeDoubles = [Double](count:3, repeatedValue:0.0)
-var food = [&quot;apple&quot;,&quot;orange&quot;,&quot;bnana&quot;]
-println(food[3])
-println(food.count)
+var food = [&quot;apple&quot;,&quot;orange&quot;,&quot;banana&quot;]
+print(food[3])
+print(food.count)
 </code></pre><h3 id="AnyObject-and-Any"><a href="#AnyObject-and-Any" class="headerlink" title="AnyObject and Any"></a>AnyObject and Any</h3><p>Swift中有两种特殊的object:  </p>
 <ol>
 <li>Any:表示任何数据类型</li>
 <li>AnyObject:表示任何对象</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//因为数组里的数据不一样，这里的数组是AnyObject</span><br><span class="line">var shoppingList = [&quot;Eggs&quot;,123,true] </span><br><span class="line">    for item in shoppingList &#123;</span><br><span class="line">      println(item)</span><br><span class="line">&#125;     </span><br><span class="line">for fruit in food&#123;</span><br><span class="line">    fruit = &quot;good&quot; //error, fruit默认是let类型</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre><code>//1. 用append()在数组尾部添加
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    //因为数组里的数据不一样，这里的数组默认是AnyObject类型，因为他们都不一样</span><br><span class="line">    var shoppingList = [&quot;Eggs&quot;,123,true] </span><br><span class="line">    for item in shoppingList &#123;</span><br><span class="line">      print(item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>for fruit in food{
+fruit = &quot;good&quot; //error, fruit默认是let类型
+}
+</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre><code>//1. 用append()在数组尾部添加
 food.append(&quot;Vegetables:mushroom&quot;)
 
 //2. 通过加法添加数组元素
@@ -396,31 +405,32 @@ var dic1: Dictionary&lt;String,String&gt;
 
 //[KeyType:valueType]
 var scores:[String:Int]
-</code></pre><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><pre><code>dic1 = Dictionary&lt;String,String&gt;()
-scores = Dictionary&lt;String,Int&gt;(minimumCapacity;5)
+</code></pre><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
+<pre><code>dic1 = Dictionary&lt;String,String&gt;()
+scores = Dictionary&lt;String,Int&gt;(minimumCapacity:5)
 </code></pre><h2 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h2><pre><code>var emptyDic:[String:Double] = [:] 
-println(emptyDic.isEmpty)
+print(emptyDic.isEmpty)
 </code></pre><h2 id="字典的使用"><a href="#字典的使用" class="headerlink" title="字典的使用"></a>字典的使用</h2><pre><code>//这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型
 var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:178]
 
 //这样会报错，因为是将NSObject转为int
 var height:Int? = person[&quot;身高&quot;]  
 if height != nil {
-   println(height!)
+   print(height!)
 }
 
 //以下才正确
-var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
+var person = [&quot;age&quot;:&quot;18&quot;,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
 
 var height:String? = person[&quot;身高&quot;]  
 if height != nil {
-   println(height!)
+   print(height!)
 }
 
-println(person[&quot;age&quot;])
+print(person[&quot;age&quot;])
 
 //不存才的key，返回为nil
-println(person[&quot;weight&quot;])
+print(person[&quot;weight&quot;])
 
 //对该值重新赋值
 person[&quot;name&quot;] = &quot;Jack&quot;
@@ -439,11 +449,11 @@ person[&quot;weight&quot;] = 90
 <li>键不存在时，不发生替换，不返回任何东西</li>
 </ol>
 <pre><code>if let oldName = person.updateValue(&quot;Lucky&quot;,forKey:&quot;name&quot;){
-   println(&quot;原来的值是:\(oldName)&quot;)
+   print(&quot;原来的值是:\(oldName)&quot;)
 }
 </code></pre><h2 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h2><pre><code>//使用元组
 for (key,value) in person{
- println(&quot;\(key):\(value)&quot;)
+ print(&quot;\(key):\(value)&quot;)
 } 
 </code></pre><h2 id="字典的删除"><a href="#字典的删除" class="headerlink" title="字典的删除"></a>字典的删除</h2><pre><code>//移除单个值
 person.removeValueForKey(&quot;name&quot;)
@@ -452,7 +462,7 @@ person.removeValueForKey(&quot;name&quot;)
 person.removeAll(keepCapacity:false)
 </code></pre><h2 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h2><pre><code>let keysArr = [String](person.keys)
 let valueArr = [String](person.values)
-println(valuesArr)
+print(valuesArr)
 </code></pre>
       
     </div>

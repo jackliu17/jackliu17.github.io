@@ -93,7 +93,7 @@ Swift可以定义枚举，结构体，和类三种面向对象的类型
 支持扩展和协议
 
 枚举语法enum 枚举名 {  //使用case关键字列出所有枚举值  /">
-<meta property="og:updated_time" content="2016-03-12T01:02:04.000Z">
+<meta property="og:updated_time" content="2016-04-13T02:48:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础(上)">
 <meta name="twitter:description" content="面向对象的特点
@@ -362,46 +362,44 @@ enum Season2 {
    case Spring, Summer, Fall, Winter
 }
 </code></pre><h2 id="使用枚举声明变量"><a href="#使用枚举声明变量" class="headerlink" title="使用枚举声明变量"></a>使用枚举声明变量</h2><pre><code>var weather: Season
-weather = .Summer
-println(weather)
+weather = Season.Fall
+weather = .Fall //也可以这样写
+print(weather)
 </code></pre><h2 id="枚举值和switch语句"><a href="#枚举值和switch语句" class="headerlink" title="枚举值和switch语句"></a>枚举值和switch语句</h2><p>switch中的case没有覆盖枚举的所有值，必须添加default语句</p>
 <pre><code>var chooseDay = Season.Fall
 
 switch(chooseDay){
 case .Spring:
-  println(&quot;This is spring&quot;)
+  print(&quot;This is spring&quot;)
 case .Summer:
-  println(&quot;This is summer&quot;)
-
+  print(&quot;This is summer&quot;)
 default:
-  println(&quot;At home&quot;)
-
+  print(&quot;At home&quot;)
 }
 </code></pre><h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><p>enum 枚举名：原始值类型{<br>   case 枚举值 = 原始值<br>}</p>
 <h3 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h3><pre><code>//可以自动推断，不用每个都赋予原始值
 enum Weekday: Int{
   case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
-
 }
 </code></pre><h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><pre><code>//必须每个都赋予原始值，因为不能自动推断
 enum Season3: Character{
-  case Spring = &quot;春天&quot;
-  case Summer = &quot;夏天&quot;
-  case Fall = &quot;秋天&quot;
-  case Winter = &quot;冬天&quot;
+  case Spring = &quot;春&quot;
+  case Summer = &quot;夏&quot;
+  case Fall = &quot;秋&quot;
+  case Winter = &quot;冬&quot;
 }
-</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>println(Weekday.Fri.rawvalue)
-</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春天&quot;)
+</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>print(Weekday.Fri.rawValue)
+</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
 if mySeason != nil {
   switch(mySeason!){ //不为空才能进行强制解析
   case .Spring:
-    println(&quot;春天不是读书天&quot;)
+    print(&quot;春天不是读书天&quot;)
   case .Summer:
-    println(&quot;夏天炎炎正好眠&quot;)
+    print(&quot;夏天炎炎正好眠&quot;)
   case .Fall , .Winter:
-    println(&quot;秋多蚊蝇冬日冷&quot;)
+    print(&quot;秋多蚊蝇冬日冷&quot;)
   default:
-    println(&quot;读书只好等明年&quot;)
+    print(&quot;读书只好等明年&quot;)
 
   }
 }
@@ -420,11 +418,11 @@ var p3 = Planet.Mars(density:3.95, name:&quot;火星&quot;,weight:0.1)
 switch (p3){
 //将关联值绑定到变量或者常量来提取
 case Planet.Earth(var weight , var name):
-   println(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
+   print(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
 
 //将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
 case let Planet.Mars(density:d, name:n, weight:w):
-   println(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
+   print(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
 default:
    break
 }
@@ -448,7 +446,7 @@ var name: String = &quot;Jack&quot;
 var age: Int = 0
 func say(content: String)
 {
-   println(content)
+   print(content)
 }
 }
 </code></pre><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><pre><code>[修饰符]struct 结构体名 {
@@ -462,7 +460,7 @@ var name: String
 var age: Int
 func run(){
 
-println(&quot;\(name)在奔跑&quot;)
+print(&quot;\(name)在奔跑&quot;)
 }
 }
 </code></pre><h3 id="定义属性的语法"><a href="#定义属性的语法" class="headerlink" title="定义属性的语法"></a>定义属性的语法</h3><pre><code>[修饰符]var或者let 存储属性:类型名字 = 初始值
@@ -474,22 +472,22 @@ println(&quot;\(name)在奔跑&quot;)
 }
 </code></pre><h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><h3 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h3><pre><code>var p: Person
 p = Person() //等价于 var p = Person()
-println(p.name)
-p.say(“Hello world”)
+print(p.name)
+p.say(&quot;Hello world&quot;)
 </code></pre><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><pre><code>var dog = Dog(name:&quot;Wangcai&quot;, age:2)
-println(dog.name)
+print(dog.name)
 dog.run()
 </code></pre><h2 id="值类型与引用类型"><a href="#值类型与引用类型" class="headerlink" title="值类型与引用类型"></a>值类型与引用类型</h2><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>var p2 =p
 p2.name = &quot;Rose&quot;
-println(p.name)
+print(p.name)
 </code></pre><ol>
 <li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
 <li>如果一个引用更改了，那对象里的值也会更改。</li>
 </ol>
 <h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><pre><code>var dog2 = dog
 dog2.name = &quot;snoopy&quot;
-println(dog2.name)
-println(dog.name)
+print(dog2.name)
+print(dog.name)
 </code></pre><ol>
 <li>值对象是要复制的</li>
 <li>每个值对象的更改，不会影响其他对象的更改</li>
@@ -499,30 +497,30 @@ println(dog.name)
 var name: String
 var age: Int
 init(name: String, age: Int){
-  self.name = name
-  self.age = age
+    self.name = name
+    self.age = age
 }
 }
 
 var u1 = User(name:&quot;Han&quot;,age:32)
-var U2 = User(name:&quot;Han&quot;,age:32)
+var u2 = User(name:&quot;Han&quot;,age:32)
 //虽然传递的值是一样，但是是创建了两个对象
 
-println(u1===u2) //u1与u2引用的不是同一对象,结果是false
-println(u1!==u2) //结果是true
+print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
+print(u1 !== u2) //结果是true
 
 var u3 = u1
-println(u3===u1) //结果是true
-</code></pre><ul>
-<li>=== 这个不能用于值类型的判断</li>
-</ul>
-<h3 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h3><h4 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h4><pre><code>class Dog {  
+print(u3 === u1) //结果是true
+
+// &quot;===&quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
+// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
+</code></pre><h3 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h3><h4 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h4><pre><code>class Dog {  
   func jump(){
-    println(&quot;正在执行jump方法&quot;)
+    print(&quot;正在执行jump方法&quot;)
   }
   func run(){
-  self.jump()
-     println(&quot;正在执行run方法&quot;)
+  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
+     print(&quot;正在执行run方法&quot;)
   }
 }
 </code></pre><h4 id="构造器中的self代表该构造器正在初始化的实例"><a href="#构造器中的self代表该构造器正在初始化的实例" class="headerlink" title="构造器中的self代表该构造器正在初始化的实例"></a>构造器中的self代表该构造器正在初始化的实例</h4><pre><code>class Person {
@@ -535,7 +533,7 @@ println(u3===u1) //结果是true
     }
 
     func info(){
-    println(“我的名字是:\(name)年龄是:\(age)”)
+    print(&quot;我的名字是:\(name)年龄是:\(age)&quot;)
     }
 }
 
