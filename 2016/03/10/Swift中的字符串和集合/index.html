@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,swift," />
+  <meta name="keywords" content="swift,iOS," />
 
 
 
@@ -62,27 +62,27 @@
 
 
 <meta name="description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
-字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quot;)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift中的字符串和集合">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
 <meta property="og:description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
-字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
-<meta property="og:updated_time" content="2016-04-12T06:14:20.000Z">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quot;)">
+<meta property="og:updated_time" content="2016-04-14T07:24:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的字符串和集合">
 <meta name="twitter:description" content="字符串Swift中的字符串是结构体，而NSString中的字符串是Class
-字符类型及表现形式var s:Character = &amp;quot;美&amp;quot;
+表现形式var s:Character = &amp;quot;美&amp;quot;
 var quote1 = &amp;quot;\&amp;apos;&amp;quot;
 var quote2 = &amp;quot;\u{22}&amp;quot;
-print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
+print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quot;)">
 
 
 
@@ -308,7 +308,7 @@ print(&amp;quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&amp;quo">
 
       
         <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>Swift中的字符串是结构体，而NSString中的字符串是Class</p>
-<h2 id="字符类型及表现形式"><a href="#字符类型及表现形式" class="headerlink" title="字符类型及表现形式"></a>字符类型及表现形式</h2><pre><code>var s:Character = &quot;美&quot;
+<h2 id="表现形式"><a href="#表现形式" class="headerlink" title="表现形式"></a>表现形式</h2><pre><code>var s:Character = &quot;美&quot;
 var quote1 = &quot;\&apos;&quot;
 var quote2 = &quot;\u{22}&quot;
 print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
@@ -319,45 +319,32 @@ print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
 <li>必须用双引号包起来</li>
 <li>Swift中的每一个字符代表了一个可扩展字母集</li>
 </ol>
-<h2 id="字符串的创建"><a href="#字符串的创建" class="headerlink" title="字符串的创建"></a>字符串的创建</h2><pre><code>//创建方法1：直接赋值
-var str1 = &quot;Jike&quot;
-//创建方法2：构造函数
-var str2 = String()
+<h2 id="字符串创建"><a href="#字符串创建" class="headerlink" title="字符串创建"></a>字符串创建</h2><h3 id="方法1：直接赋值"><a href="#方法1：直接赋值" class="headerlink" title="方法1：直接赋值"></a>方法1：直接赋值</h3><pre><code>var str1 = &quot;Jike&quot;
+</code></pre><h3 id="方法2：构造函数"><a href="#方法2：构造函数" class="headerlink" title="方法2：构造函数"></a>方法2：构造函数</h3><pre><code>var str2 = String()
 
 //创建多个重复字符的字符串
 var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
 var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
 print(strRep)
-
-//判断字符串是否为空
-print(str3.isEmpty)
-</code></pre><h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><pre><code>//拼接方式1.
-var str4 = str1 + &quot;College&quot;
+</code></pre><h2 id="字符串是否为空"><a href="#字符串是否为空" class="headerlink" title="字符串是否为空"></a>字符串是否为空</h2><pre><code>print(str3.isEmpty)
+</code></pre><h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><h3 id="方式1-用-“-”"><a href="#方式1-用-“-”" class="headerlink" title="方式1.用 “+”"></a>方式1.用 “+”</h3><pre><code>var str4 = str1 + &quot;College&quot;
 str1 += &quot;Hello&quot;
 print(str4)
-
-//拼接方式2.
-let char:Character = &quot;!&quot;
+</code></pre><h3 id="方式2-用append"><a href="#方式2-用append" class="headerlink" title="方式2.用append"></a>方式2.用append</h3><pre><code>let char:Character = &quot;!&quot;
 str1.append(char)
 print(str1)
-</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
-
-print(&quot;str3 has \(str4.characters.count) characters&quot;)
+</code></pre><h2 id="字符数量"><a href="#字符数量" class="headerlink" title="字符数量"></a>字符数量</h2><h3 id="Swift1-x"><a href="#Swift1-x" class="headerlink" title="Swift1.x"></a>Swift1.x</h3><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
+</code></pre><h3 id="Swift2-x"><a href="#Swift2-x" class="headerlink" title="Swift2.x"></a>Swift2.x</h3><pre><code>print(&quot;str3 has \(str4.characters.count) characters&quot;)
 </code></pre><ol>
-<li>通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量</li>
 <li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样。因为SWIFT的count是基于Unicode，而OC的length是基于UTF-16</li>
-<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定</li>
+<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定,也就是var or let</li>
 </ol>
-<p>&gt;<br>Note<br>&gt;</p>
-<blockquote>
-<p>In Swift 2 you should write yourString.characters.count to return the length of a string.<br>This is different from Swift 1.2, where you used count(yourString),<br>and different again from Swift 1.0, where you used countElements(yourString). </p>
-</blockquote>
 <h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
 let sameQuotation = &quot;We are the same&quot;
 if quotation == sameQuotation {
 print(&quot;These are the same&quot;)
 }
-</code></pre><h2 id="检查字符串是否有特定的前缀后缀"><a href="#检查字符串是否有特定的前缀后缀" class="headerlink" title="检查字符串是否有特定的前缀后缀"></a>检查字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
+</code></pre><h2 id="字符串是否有特定的前缀后缀"><a href="#字符串是否有特定的前缀后缀" class="headerlink" title="字符串是否有特定的前缀后缀"></a>字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
 &quot;Fruits : orange&quot;,
 &quot;Fruits : banana&quot;,
 &quot;Vegetables: tomato&quot;,
@@ -372,7 +359,11 @@ if fry.hasSuffix(&quot;o&quot;){
    print(fry)
 }
 }
-</code></pre><h1 id="Swift中的数组"><a href="#Swift中的数组" class="headerlink" title="Swift中的数组"></a>Swift中的数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
+</code></pre><h2 id="字符串转为整形"><a href="#字符串转为整形" class="headerlink" title="字符串转为整形"></a>字符串转为整形</h2><h3 id="Swift-1-x"><a href="#Swift-1-x" class="headerlink" title="Swift 1.x"></a>Swift 1.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = myString.toInt()
+</code></pre><h3 id="Swift-2-x"><a href="#Swift-2-x" class="headerlink" title="Swift 2.x"></a>Swift 2.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = Int(myString)
+</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
 var num = Array&lt;Int&gt;(count:3,repeatedValue:1)
 </code></pre><h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2."></a>方式2.</h3><pre><code>var someInts = [Int]()
 var arr:[Int]=[1,2,3]
@@ -389,24 +380,22 @@ print(food.count)
 <pre><code>for fruit in food{
 fruit = &quot;good&quot; //error, fruit默认是let类型
 }
-</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre><code>//1. 用append()在数组尾部添加
-food.append(&quot;Vegetables:mushroom&quot;)
-
-//2. 通过加法添加数组元素
-food += [&quot;pineapple&quot;,&quot;pity&quot;]
+</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><h4 id="1-用append-在数组尾部添加"><a href="#1-用append-在数组尾部添加" class="headerlink" title="1. 用append()在数组尾部添加"></a>1. 用append()在数组尾部添加</h4><pre><code>food.append(&quot;Vegetables:mushroom&quot;)
+</code></pre><h4 id="2-通过加法添加数组元素"><a href="#2-通过加法添加数组元素" class="headerlink" title="2. 通过加法添加数组元素"></a>2. 通过加法添加数组元素</h4><pre><code>food += [&quot;pineapple&quot;,&quot;pity&quot;]
 </code></pre><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
 //从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
 </code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code>food.insert(&quot;Meat&quot;,atIndex:0)
 </code></pre><h3 id="删除某一项"><a href="#删除某一项" class="headerlink" title="删除某一项"></a>删除某一项</h3><pre><code>food.removeAtIndex(0)
 </code></pre><h3 id="删除最后一项"><a href="#删除最后一项" class="headerlink" title="删除最后一项"></a>删除最后一项</h3><pre><code>food.removeLast()
 </code></pre><h3 id="删除所有"><a href="#删除所有" class="headerlink" title="删除所有"></a>删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><pre><code>//Dictionary&lt;KeyType,valueType&gt;
+</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明和创建"><a href="#声明和创建" class="headerlink" title="声明和创建"></a>声明和创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
+<pre><code>//Dictionary&lt;KeyType,valueType&gt;
 var dic1: Dictionary&lt;String,String&gt;
 
 //[KeyType:valueType]
 var scores:[String:Int]
-</code></pre><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
-<pre><code>dic1 = Dictionary&lt;String,String&gt;()
+
+dic1 = Dictionary&lt;String,String&gt;()
 scores = Dictionary&lt;String,Int&gt;(minimumCapacity:5)
 </code></pre><h2 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h2><pre><code>var emptyDic:[String:Double] = [:] 
 print(emptyDic.isEmpty)
@@ -463,7 +452,14 @@ person.removeAll(keepCapacity:false)
 </code></pre><h2 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h2><pre><code>let keysArr = [String](person.keys)
 let valueArr = [String](person.values)
 print(valuesArr)
-</code></pre>
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>字符串的创建，拼接，字符数量，转整型，是否为空，是否有前后缀</li>
+<li>数组的创建(左右使用方括号),添加，替换,插入，删除</li>
+<li>字典的创建(和数组差不多，就方括号里多个值)</li>
+<li>字典的key or value 通常最好是同一类型，否则强制解析时会出错.如果没有显示数据类型声明，字典就会根据值进行推断因为.系统就会认为是NSObject</li>
+<li>数组是有序的，字典是无序的</li>
+</ol>
+
       
     </div>
 
@@ -477,9 +473,9 @@ print(valuesArr)
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
             <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -630,7 +626,7 @@ print(valuesArr)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符类型及表现形式"><span class="nav-number">1.1.</span> <span class="nav-text">字符类型及表现形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的创建"><span class="nav-number">1.2.</span> <span class="nav-text">字符串的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的拼接"><span class="nav-number">1.3.</span> <span class="nav-text">字符串的拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串的字符数量"><span class="nav-number">1.4.</span> <span class="nav-text">字符串的字符数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串比较"><span class="nav-number">1.5.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查字符串是否有特定的前缀后缀"><span class="nav-number">1.6.</span> <span class="nav-text">检查字符串是否有特定的前缀后缀</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中的数组"><span class="nav-number">2.</span> <span class="nav-text">Swift中的数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的创建"><span class="nav-number">2.1.</span> <span class="nav-text">数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式1"><span class="nav-number">2.1.1.</span> <span class="nav-text">方式1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式2"><span class="nav-number">2.1.2.</span> <span class="nav-text">方式2.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AnyObject-and-Any"><span class="nav-number">2.1.3.</span> <span class="nav-text">AnyObject and Any</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的可变性"><span class="nav-number">2.2.</span> <span class="nav-text">数组的可变性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加"><span class="nav-number">2.2.1.</span> <span class="nav-text">添加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换"><span class="nav-number">2.2.2.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.2.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除某一项"><span class="nav-number">2.2.4.</span> <span class="nav-text">删除某一项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除最后一项"><span class="nav-number">2.2.5.</span> <span class="nav-text">删除最后一项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除所有"><span class="nav-number">2.2.6.</span> <span class="nav-text">删除所有</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典"><span class="nav-number">3.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明"><span class="nav-number">3.1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建"><span class="nav-number">3.2.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空字典"><span class="nav-number">3.3.</span> <span class="nav-text">空字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的使用"><span class="nav-number">3.4.</span> <span class="nav-text">字典的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的替换"><span class="nav-number">3.5.</span> <span class="nav-text">字典的替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的遍历"><span class="nav-number">3.6.</span> <span class="nav-text">字典的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的删除"><span class="nav-number">3.7.</span> <span class="nav-text">字典的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典键和值的取出"><span class="nav-number">3.8.</span> <span class="nav-text">字典键和值的取出</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#表现形式"><span class="nav-number">1.1.</span> <span class="nav-text">表现形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串创建"><span class="nav-number">1.2.</span> <span class="nav-text">字符串创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：直接赋值"><span class="nav-number">1.2.1.</span> <span class="nav-text">方法1：直接赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：构造函数"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法2：构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串是否为空"><span class="nav-number">1.3.</span> <span class="nav-text">字符串是否为空</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接"><span class="nav-number">1.4.</span> <span class="nav-text">字符串拼接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式1-用-“-”"><span class="nav-number">1.4.1.</span> <span class="nav-text">方式1.用 “+”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式2-用append"><span class="nav-number">1.4.2.</span> <span class="nav-text">方式2.用append</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符数量"><span class="nav-number">1.5.</span> <span class="nav-text">字符数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift1-x"><span class="nav-number">1.5.1.</span> <span class="nav-text">Swift1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift2-x"><span class="nav-number">1.5.2.</span> <span class="nav-text">Swift2.x</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串比较"><span class="nav-number">1.6.</span> <span class="nav-text">字符串比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串是否有特定的前缀后缀"><span class="nav-number">1.7.</span> <span class="nav-text">字符串是否有特定的前缀后缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串转为整形"><span class="nav-number">1.8.</span> <span class="nav-text">字符串转为整形</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-1-x"><span class="nav-number">1.8.1.</span> <span class="nav-text">Swift 1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift-2-x"><span class="nav-number">1.8.2.</span> <span class="nav-text">Swift 2.x</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的创建"><span class="nav-number">2.1.</span> <span class="nav-text">数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方式1"><span class="nav-number">2.1.1.</span> <span class="nav-text">方式1.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方式2"><span class="nav-number">2.1.2.</span> <span class="nav-text">方式2.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AnyObject-and-Any"><span class="nav-number">2.1.3.</span> <span class="nav-text">AnyObject and Any</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的可变性"><span class="nav-number">2.2.</span> <span class="nav-text">数组的可变性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加"><span class="nav-number">2.2.1.</span> <span class="nav-text">添加</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-用append-在数组尾部添加"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1. 用append()在数组尾部添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-通过加法添加数组元素"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">2. 通过加法添加数组元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换"><span class="nav-number">2.2.2.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">2.2.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除某一项"><span class="nav-number">2.2.4.</span> <span class="nav-text">删除某一项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除最后一项"><span class="nav-number">2.2.5.</span> <span class="nav-text">删除最后一项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除所有"><span class="nav-number">2.2.6.</span> <span class="nav-text">删除所有</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典"><span class="nav-number">3.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#声明和创建"><span class="nav-number">3.1.</span> <span class="nav-text">声明和创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空字典"><span class="nav-number">3.2.</span> <span class="nav-text">空字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的使用"><span class="nav-number">3.3.</span> <span class="nav-text">字典的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的替换"><span class="nav-number">3.4.</span> <span class="nav-text">字典的替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的遍历"><span class="nav-number">3.5.</span> <span class="nav-text">字典的遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的删除"><span class="nav-number">3.6.</span> <span class="nav-text">字典的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典键和值的取出"><span class="nav-number">3.7.</span> <span class="nav-text">字典键和值的取出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

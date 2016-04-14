@@ -1424,7 +1424,7 @@ return addElement
         
           
             <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>Swift中的字符串是结构体，而NSString中的字符串是Class</p>
-<h2 id="字符类型及表现形式"><a href="#字符类型及表现形式" class="headerlink" title="字符类型及表现形式"></a>字符类型及表现形式</h2><pre><code>var s:Character = &quot;美&quot;
+<h2 id="表现形式"><a href="#表现形式" class="headerlink" title="表现形式"></a>表现形式</h2><pre><code>var s:Character = &quot;美&quot;
 var quote1 = &quot;\&apos;&quot;
 var quote2 = &quot;\u{22}&quot;
 print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
@@ -1435,45 +1435,32 @@ print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
 <li>必须用双引号包起来</li>
 <li>Swift中的每一个字符代表了一个可扩展字母集</li>
 </ol>
-<h2 id="字符串的创建"><a href="#字符串的创建" class="headerlink" title="字符串的创建"></a>字符串的创建</h2><pre><code>//创建方法1：直接赋值
-var str1 = &quot;Jike&quot;
-//创建方法2：构造函数
-var str2 = String()
+<h2 id="字符串创建"><a href="#字符串创建" class="headerlink" title="字符串创建"></a>字符串创建</h2><h3 id="方法1：直接赋值"><a href="#方法1：直接赋值" class="headerlink" title="方法1：直接赋值"></a>方法1：直接赋值</h3><pre><code>var str1 = &quot;Jike&quot;
+</code></pre><h3 id="方法2：构造函数"><a href="#方法2：构造函数" class="headerlink" title="方法2：构造函数"></a>方法2：构造函数</h3><pre><code>var str2 = String()
 
 //创建多个重复字符的字符串
 var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
 var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
 print(strRep)
-
-//判断字符串是否为空
-print(str3.isEmpty)
-</code></pre><h2 id="字符串的拼接"><a href="#字符串的拼接" class="headerlink" title="字符串的拼接"></a>字符串的拼接</h2><pre><code>//拼接方式1.
-var str4 = str1 + &quot;College&quot;
+</code></pre><h2 id="字符串是否为空"><a href="#字符串是否为空" class="headerlink" title="字符串是否为空"></a>字符串是否为空</h2><pre><code>print(str3.isEmpty)
+</code></pre><h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><h3 id="方式1-用-“-”"><a href="#方式1-用-“-”" class="headerlink" title="方式1.用 “+”"></a>方式1.用 “+”</h3><pre><code>var str4 = str1 + &quot;College&quot;
 str1 += &quot;Hello&quot;
 print(str4)
-
-//拼接方式2.
-let char:Character = &quot;!&quot;
+</code></pre><h3 id="方式2-用append"><a href="#方式2-用append" class="headerlink" title="方式2.用append"></a>方式2.用append</h3><pre><code>let char:Character = &quot;!&quot;
 str1.append(char)
 print(str1)
-</code></pre><h2 id="字符串的字符数量"><a href="#字符串的字符数量" class="headerlink" title="字符串的字符数量"></a>字符串的字符数量</h2><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
-
-print(&quot;str3 has \(str4.characters.count) characters&quot;)
+</code></pre><h2 id="字符数量"><a href="#字符数量" class="headerlink" title="字符数量"></a>字符数量</h2><h3 id="Swift1-x"><a href="#Swift1-x" class="headerlink" title="Swift1.x"></a>Swift1.x</h3><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
+</code></pre><h3 id="Swift2-x"><a href="#Swift2-x" class="headerlink" title="Swift2.x"></a>Swift2.x</h3><pre><code>print(&quot;str3 has \(str4.characters.count) characters&quot;)
 </code></pre><ol>
-<li>通过调用全局countElement函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量</li>
 <li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样。因为SWIFT的count是基于Unicode，而OC的length是基于UTF-16</li>
-<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定</li>
+<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定,也就是var or let</li>
 </ol>
-<p>&gt;<br>Note<br>&gt;</p>
-<blockquote>
-<p>In Swift 2 you should write yourString.characters.count to return the length of a string.<br>This is different from Swift 1.2, where you used count(yourString),<br>and different again from Swift 1.0, where you used countElements(yourString). </p>
-</blockquote>
 <h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
 let sameQuotation = &quot;We are the same&quot;
 if quotation == sameQuotation {
 print(&quot;These are the same&quot;)
 }
-</code></pre><h2 id="检查字符串是否有特定的前缀后缀"><a href="#检查字符串是否有特定的前缀后缀" class="headerlink" title="检查字符串是否有特定的前缀后缀"></a>检查字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
+</code></pre><h2 id="字符串是否有特定的前缀后缀"><a href="#字符串是否有特定的前缀后缀" class="headerlink" title="字符串是否有特定的前缀后缀"></a>字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
 &quot;Fruits : orange&quot;,
 &quot;Fruits : banana&quot;,
 &quot;Vegetables: tomato&quot;,
@@ -1488,7 +1475,11 @@ if fry.hasSuffix(&quot;o&quot;){
    print(fry)
 }
 }
-</code></pre><h1 id="Swift中的数组"><a href="#Swift中的数组" class="headerlink" title="Swift中的数组"></a>Swift中的数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
+</code></pre><h2 id="字符串转为整形"><a href="#字符串转为整形" class="headerlink" title="字符串转为整形"></a>字符串转为整形</h2><h3 id="Swift-1-x"><a href="#Swift-1-x" class="headerlink" title="Swift 1.x"></a>Swift 1.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = myString.toInt()
+</code></pre><h3 id="Swift-2-x"><a href="#Swift-2-x" class="headerlink" title="Swift 2.x"></a>Swift 2.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = Int(myString)
+</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
 var num = Array&lt;Int&gt;(count:3,repeatedValue:1)
 </code></pre><h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2."></a>方式2.</h3><pre><code>var someInts = [Int]()
 var arr:[Int]=[1,2,3]
@@ -1505,24 +1496,22 @@ print(food.count)
 <pre><code>for fruit in food{
 fruit = &quot;good&quot; //error, fruit默认是let类型
 }
-</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><pre><code>//1. 用append()在数组尾部添加
-food.append(&quot;Vegetables:mushroom&quot;)
-
-//2. 通过加法添加数组元素
-food += [&quot;pineapple&quot;,&quot;pity&quot;]
+</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><h4 id="1-用append-在数组尾部添加"><a href="#1-用append-在数组尾部添加" class="headerlink" title="1. 用append()在数组尾部添加"></a>1. 用append()在数组尾部添加</h4><pre><code>food.append(&quot;Vegetables:mushroom&quot;)
+</code></pre><h4 id="2-通过加法添加数组元素"><a href="#2-通过加法添加数组元素" class="headerlink" title="2. 通过加法添加数组元素"></a>2. 通过加法添加数组元素</h4><pre><code>food += [&quot;pineapple&quot;,&quot;pity&quot;]
 </code></pre><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
 //从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
 </code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code>food.insert(&quot;Meat&quot;,atIndex:0)
 </code></pre><h3 id="删除某一项"><a href="#删除某一项" class="headerlink" title="删除某一项"></a>删除某一项</h3><pre><code>food.removeAtIndex(0)
 </code></pre><h3 id="删除最后一项"><a href="#删除最后一项" class="headerlink" title="删除最后一项"></a>删除最后一项</h3><pre><code>food.removeLast()
 </code></pre><h3 id="删除所有"><a href="#删除所有" class="headerlink" title="删除所有"></a>删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><pre><code>//Dictionary&lt;KeyType,valueType&gt;
+</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明和创建"><a href="#声明和创建" class="headerlink" title="声明和创建"></a>声明和创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
+<pre><code>//Dictionary&lt;KeyType,valueType&gt;
 var dic1: Dictionary&lt;String,String&gt;
 
 //[KeyType:valueType]
 var scores:[String:Int]
-</code></pre><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
-<pre><code>dic1 = Dictionary&lt;String,String&gt;()
+
+dic1 = Dictionary&lt;String,String&gt;()
 scores = Dictionary&lt;String,Int&gt;(minimumCapacity:5)
 </code></pre><h2 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h2><pre><code>var emptyDic:[String:Double] = [:] 
 print(emptyDic.isEmpty)
@@ -1579,7 +1568,14 @@ person.removeAll(keepCapacity:false)
 </code></pre><h2 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h2><pre><code>let keysArr = [String](person.keys)
 let valueArr = [String](person.values)
 print(valuesArr)
-</code></pre>
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>字符串的创建，拼接，字符数量，转整型，是否为空，是否有前后缀</li>
+<li>数组的创建(左右使用方括号),添加，替换,插入，删除</li>
+<li>字典的创建(和数组差不多，就方括号里多个值)</li>
+<li>字典的key or value 通常最好是同一类型，否则强制解析时会出错.如果没有显示数据类型声明，字典就会根据值进行推断因为.系统就会认为是NSObject</li>
+<li>数组是有序的，字典是无序的</li>
+</ol>
+
           
         
       
@@ -1805,19 +1801,19 @@ willUnderflow = willUnderflow &amp;-1 //下溢
 <li>case块后的条件还可以是一个范围或者元组，支持值绑定</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let score = &quot;B&quot;</span><br><span class="line">switch score &#123;</span><br><span class="line">case &quot;A&quot;,&quot;a&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">case &quot;B&quot;:</span><br><span class="line">    print(&quot;LG&quot;)</span><br><span class="line">case &quot;C&quot;:</span><br><span class="line">    print(&quot;TW4&quot;)</span><br><span class="line">case &quot;D&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">case &quot;E&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">default:</span><br><span class="line">    print(&quot;error&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用fallthrough语句贯穿"><a href="#使用fallthrough语句贯穿" class="headerlink" title="使用fallthrough语句贯穿"></a>使用fallthrough语句贯穿</h3><p>执行完一条语句后，不要退出，再继续执行下一条</p>
+<h3 id="Switch使用fallthrough语句贯穿"><a href="#Switch使用fallthrough语句贯穿" class="headerlink" title="Switch使用fallthrough语句贯穿"></a>Switch使用fallthrough语句贯穿</h3><p>执行完一条语句后，不要退出，再继续执行下一条</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var num = 5</span><br><span class="line">var desc = &quot;\(num)是&quot;</span><br><span class="line">switch num &#123;</span><br><span class="line">case 2, 3, 5, 7 :</span><br><span class="line">     desc += &quot;质数，而且还是&quot;</span><br><span class="line">	 fallthrough</span><br><span class="line">default:</span><br><span class="line">     desc += &quot;整数&quot;</span><br><span class="line">&#125;</span><br><span class="line">print(desc) //结果是“5是质数，而且还是整数”</span><br></pre></td></tr></table></figure>
-<h3 id="case后的条件为元组"><a href="#case后的条件为元组" class="headerlink" title="case后的条件为元组"></a>case后的条件为元组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:5 , y:2)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">    print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (_,0):   //用 &quot;_&quot; 表示可以忽略这个数据</span><br><span class="line">    print(&quot;(\(point.0),0)位于x轴上&quot;)</span><br><span class="line">case (0...Int.max as ClosedInterval, 0...Int.max as ClosedInterval):</span><br><span class="line">    print(&quot;(\(point.0),\(point.1))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">    break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:1 , y:1)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">   print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a</span><br><span class="line">   print(&quot;该点位于x轴上，x值为:\(a)&quot;)</span><br><span class="line">case var (x,y) where x&gt;0 &amp;&amp; y&gt;0:  //条件值绑定</span><br><span class="line">   print(&quot;(\(x),\(y))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">   break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Switch的case后的条件为元组"><a href="#Switch的case后的条件为元组" class="headerlink" title="Switch的case后的条件为元组"></a>Switch的case后的条件为元组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:5 , y:2)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">    print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (_,0):   //用 &quot;_&quot; 表示可以忽略这个数据</span><br><span class="line">    print(&quot;(\(point.0),0)位于x轴上&quot;)</span><br><span class="line">case (0...Int.max as ClosedInterval, 0...Int.max as ClosedInterval):</span><br><span class="line">    print(&quot;(\(point.0),\(point.1))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">    break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Switch值绑定"><a href="#Switch值绑定" class="headerlink" title="Switch值绑定"></a>Switch值绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:1 , y:1)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">   print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a</span><br><span class="line">   print(&quot;该点位于x轴上，x值为:\(a)&quot;)</span><br><span class="line">case var (x,y) where x&gt;0 &amp;&amp; y&gt;0:  //条件值绑定</span><br><span class="line">   print(&quot;(\(x),\(y))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">   break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><h3 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for index in 1...5 &#123;</span><br><span class="line">    print(&quot;\(index) times 5 is \(index * 5)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let base = 3</span><br><span class="line">let power = 10</span><br><span class="line">var answer = 1</span><br><span class="line">for _ in 1...power &#123; //下划线符号_替代循环中的变量，能够忽略具体的值，并且不提供循环遍历时对值的访问</span><br><span class="line">  answer *= base</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="标签："><a href="#标签：" class="headerlink" title="标签："></a>标签：</h3><ol>
+<h3 id="嵌套循环遍历时使用的标签"><a href="#嵌套循环遍历时使用的标签" class="headerlink" title="嵌套循环遍历时使用的标签"></a>嵌套循环遍历时使用的标签</h3><ol>
 <li>紧跟冒号的标识符，只有放在循环语句或者switch语句之前才有作用</li>
 <li>break结束循环，开始执行循环之后的代码</li>
 <li>continue 忽略本次循环的剩下语句，执行下一次循环，但不终止循环</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">outer: for i in 0...5 &#123;</span><br><span class="line">    //内层循环</span><br><span class="line">    for j in 0...3&#123;</span><br><span class="line">    print(&quot;i的值为:\(i),j的值为\(j)&quot;)</span><br><span class="line">    if j==1 &#123;</span><br><span class="line">    break outer</span><br><span class="line">    &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
 <li>常量let，变量var，OC中的变量是否mutable也归为var和let了</li>
 <li>元组，就是一个变量里面有很多不同类型的值,而且还可以KV赋值</li>
 <li>可选类型？,能允许值缺失</li>
