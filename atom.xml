@@ -244,9 +244,9 @@
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
@@ -443,9 +443,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="interview" scheme="http://jackliu17.github.io/tags/interview/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="interview" scheme="http://jackliu17.github.io/tags/interview/"/>
     
   </entry>
   
@@ -483,9 +483,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
       <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
@@ -592,9 +592,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -665,9 +665,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -737,9 +737,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -1026,9 +1026,9 @@ print(Math.degree2Radian(45))
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -1366,9 +1366,9 @@ print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(re
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -1603,9 +1603,9 @@ person.info()
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -1614,9 +1614,9 @@ person.info()
     <link href="http://jackliu17.github.io/2016/03/11/Swift%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85/"/>
     <id>http://jackliu17.github.io/2016/03/11/Swift中的函数和闭包/</id>
     <published>2016-03-11T01:38:16.000Z</published>
-    <updated>2016-04-13T00:56:51.000Z</updated>
+    <updated>2016-04-14T11:28:59.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h1&gt;&lt;h2 id=&quot;定义和调用函数&quot;&gt;&lt;a href=&quot;#定义和调用函数&quot; class=&quot;headerlink&quot; title=&quot;定义和调用函数&quot;&gt;&lt;/a&gt;定义和调用函数&lt;/h2&gt;&lt;p&gt;fun 函数名（形参列表）-&amp;gt; 返回值类型 {&lt;br&gt;//可执行语句组成的函数&lt;br&gt;}&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;函数&quot;&gt;&lt;a href=&quot;#函数&quot; class=&quot;headerlink&quot; title=&quot;函数&quot;&gt;&lt;/a&gt;函数&lt;/h1&gt;&lt;h2 id=&quot;定义和调用函数&quot;&gt;&lt;a href=&quot;#定义和调用函数&quot; class=&quot;headerlink&quot; title=&quot;定义和调用函数&quot;&gt;&lt;/a&gt;定义和调用函数&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fun 函数名（形参列表）-&amp;gt; 返回值类型 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//可执行语句组成的函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;两个参数&quot;&gt;&lt;a href=&quot;#两个参数&quot; class=&quot;headerlink&quot; title=&quot;两个参数&quot;&gt;&lt;/a&gt;两个参数&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func sayHello(personName:String)-&amp;gt; String {
 
   return &amp;quot;Hello ,&amp;quot; + personName + &amp;quot;!&amp;quot;
@@ -1634,36 +1634,28 @@ return x&amp;gt;y ? x:y
 }
 
 print(max(3,5)) //这里的3，5是实参
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;为什么这里实参没有width，却有height标识符？&quot;&gt;&lt;a href=&quot;#为什么这里实参没有width，却有height标识符？&quot; class=&quot;headerlink&quot; title=&quot;为什么这里实参没有width，却有height标识符？&quot;&gt;&lt;/a&gt;为什么这里实参没有width，却有height标识符？&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func area(width:Double,height:Double)-&amp;gt;Double{
-
-return width * height
-}
-
-print(area(3.5, height: 2.0))
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;外部参数名&quot;&gt;&lt;a href=&quot;#外部参数名&quot; class=&quot;headerlink&quot; title=&quot;外部参数名&quot;&gt;&lt;/a&gt;外部参数名&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func area (宽 width:Double ,高 height:Double ) -&amp;gt;Double {
 
 return width * height
 }
 
 print (area(宽:3.4,高:4.7)) //宽和高为外部函数名
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;以-代替外部参数名-只在Swift-1-0中使用&quot;&gt;&lt;a href=&quot;#以-代替外部参数名-只在Swift-1-0中使用&quot; class=&quot;headerlink&quot; title=&quot;以#代替外部参数名 (只在Swift 1.0中使用)&quot;&gt;&lt;/a&gt;以#代替外部参数名 (只在Swift 1.0中使用)&lt;/h3&gt;&lt;p&gt;如果外部参数名和局部参数一样的话，只需要在局部参数前加 #&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;以-代替外部参数名-Swift-1-x&quot;&gt;&lt;a href=&quot;#以-代替外部参数名-Swift-1-x&quot; class=&quot;headerlink&quot; title=&quot;以#代替外部参数名 (Swift 1.x)&quot;&gt;&lt;/a&gt;以#代替外部参数名 (Swift 1.x)&lt;/h3&gt;&lt;p&gt;如果外部参数名和局部参数一样的话，只需要在局部参数前加 #&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;func area (#width:Double ,#height:Double ) -&amp;gt;Double {
 
 return width * height
 }
 
 print (area(width:3.4,height:4.7)) //width和height为外部函数名
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;可变参数&quot;&gt;&lt;a href=&quot;#可变参数&quot; class=&quot;headerlink&quot; title=&quot;可变参数&quot;&gt;&lt;/a&gt;可变参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sum(numbers:Int...)-&amp;gt;Int &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var total: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for num in numbers &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   total += num&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(total)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;return total&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sum(1,3,4,5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;数组参数&quot;&gt;&lt;a href=&quot;#数组参数&quot; class=&quot;headerlink&quot; title=&quot;数组参数&quot;&gt;&lt;/a&gt;数组参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sum(numbers:Int...)-&amp;gt;Int &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var total: Int = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for num in numbers &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   total += num&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(total)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;return total&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sum(1,3,4,5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ol&gt;
 &lt;li&gt;在参数类型后面添加…表示该参数可以接受多个参数值&lt;/li&gt;
-&lt;li&gt;一个函数当中只有一个可变参数,并且位于列表的最后&lt;/li&gt;
+&lt;li&gt;一个函数当中只有一个数组参数,并且位于列表的最后&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; func sayHi(msg:String, name:String=&amp;quot;Lily&amp;quot;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; print (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;, name:&amp;quot;Tom&amp;quot;) //如果传入了，就使用传入的新值&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;###忽略默认值的外部参数名，添加下划线 _&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sayHi(msg:String, _name:String=&amp;quot;Lily&amp;quot;)&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; print (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;,&amp;quot;Tom&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;忽略形参名，添加下划线&quot;&gt;&lt;a href=&quot;#忽略形参名，添加下划线&quot; class=&quot;headerlink&quot; title=&quot;忽略形参名，添加下划线 _&quot;&gt;&lt;/a&gt;忽略形参名，添加下划线 _&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;func sayHi(msg:String, _name:String=&amp;quot;Lily&amp;quot;)&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; print (&amp;quot;\(name),\(msg)&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sayHi(&amp;quot;Welcome to our city&amp;quot;,&amp;quot;Tom&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ol&gt;
-&lt;li&gt;带有默认值的参数是有外部参数名的&lt;/li&gt;
-&lt;li&gt;添加下划线就可以忽略&lt;/li&gt;
-&lt;li&gt;如果函数里有可变参数也有默认参数，可变参数放在最后面，默认参数出现在次后面&lt;/li&gt;
+&lt;li&gt;如果函数里有可变参数也有默认参数，数组参数放在最后面，默认参数出现在次后面&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;变量形参-swift3将取消&quot;&gt;&lt;a href=&quot;#变量形参-swift3将取消&quot; class=&quot;headerlink&quot; title=&quot;变量形参 (swift3将取消)&quot;&gt;&lt;/a&gt;变量形参 (swift3将取消)&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//这里的形参是个变量，如果去掉var就是个常量，因为形参默认是常量constant
 func factorial(var number:Int) -&amp;gt; Int{
@@ -1702,7 +1694,7 @@ let c = (width + height) * 2
 return (s,c)
 }
 print(area(3.1, height: 3.4))
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;函数类型&quot;&gt;&lt;a href=&quot;#函数类型&quot; class=&quot;headerlink&quot; title=&quot;函数类型&quot;&gt;&lt;/a&gt;函数类型&lt;/h2&gt;&lt;h3 id=&quot;函数变量&quot;&gt;&lt;a href=&quot;#函数变量&quot; class=&quot;headerlink&quot; title=&quot;函数变量&quot;&gt;&lt;/a&gt;函数变量&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func addTwoInts(a:Int,b:Int)-&amp;gt;Int{
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;函数使用&quot;&gt;&lt;a href=&quot;#函数使用&quot; class=&quot;headerlink&quot; title=&quot;函数使用&quot;&gt;&lt;/a&gt;函数使用&lt;/h2&gt;&lt;h3 id=&quot;函数作为变量&quot;&gt;&lt;a href=&quot;#函数作为变量&quot; class=&quot;headerlink&quot; title=&quot;函数作为变量&quot;&gt;&lt;/a&gt;函数作为变量&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func addTwoInts(a:Int,b:Int)-&amp;gt;Int{
 return a+b
 }
 
@@ -1762,7 +1754,7 @@ print(&amp;quot;重载的test()函数\(msg),带返回值&amp;quot;)
 return &amp;quot;test&amp;quot;
 }
 
-//4 这不算重载, 仅有局部参数名一样是不行的
+//4 这不算重载, 仅有形参名一样是不行的
 func test(message:String){
 print(&amp;quot;重载的test()函数\(message)&amp;quot;)
 }
@@ -1794,11 +1786,12 @@ default:
 }
 }
 
-var mathFunc = getMathFunc (&amp;quot;squre&amp;quot;)
+var mathFunc:(Int)-&amp;gt;Int  = getMathFunc (&amp;quot;squre&amp;quot;)
+var mathFunc = getMathFunc (&amp;quot;squre&amp;quot;) // 这样写说明即使不写变量的类型，系统也会进行推断
 print(mathFunc(4)) //outcome is 16
 
 mathFunc = getMathFunc (&amp;quot;other&amp;quot;)
-print(mathFunc2(4)) //outcome is 64
+print(mathFunc(4)) //outcome is 64
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;闭包表达式&quot;&gt;&lt;a href=&quot;#闭包表达式&quot; class=&quot;headerlink&quot; title=&quot;闭包表达式&quot;&gt;&lt;/a&gt;闭包表达式&lt;/h1&gt;&lt;h2 id=&quot;闭包的写法&quot;&gt;&lt;a href=&quot;#闭包的写法&quot; class=&quot;headerlink&quot; title=&quot;闭包的写法&quot;&gt;&lt;/a&gt;闭包的写法&lt;/h2&gt;&lt;p&gt;将嵌套函数改写，去掉函数名。因为嵌套函数的函数名已经可以省略了。类似于OC的block&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;{ （形参列表）-&amp;gt; 返回值类型 in
    可执行表达式
@@ -1863,7 +1856,26 @@ return arr
 }
 return addElement
 }
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;h2 id=&quot;函数的参数&quot;&gt;&lt;a href=&quot;#函数的参数&quot; class=&quot;headerlink&quot; title=&quot;函数的参数&quot;&gt;&lt;/a&gt;函数的参数&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;函数的形参是标识，实参是传入的值&lt;/li&gt;
+&lt;li&gt;数组参数，参数可以接受多个参数值，位于列表最后，传入一个数组&lt;/li&gt;
+&lt;li&gt;默认参数，在函数的形参列表里都设定好了一个默认值&lt;/li&gt;
+&lt;li&gt;变量形参，详见后文&lt;/li&gt;
+&lt;li&gt;In-out形参，详见后文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;函数的使用&quot;&gt;&lt;a href=&quot;#函数的使用&quot; class=&quot;headerlink&quot; title=&quot;函数的使用&quot;&gt;&lt;/a&gt;函数的使用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;作为变量,在定义变量的类型时，列出所需函数的形参和返回值即可。注意右侧的函数不带括号，否则就是执行函数了&lt;/li&gt;
+&lt;li&gt;作为函数参数,在定义形参的类型时，列出所需函数的形参和返回值即可。&lt;/li&gt;
+&lt;li&gt;作为函数返回值类型, 注意有两个箭头。如果将具有函数返回值的函数设为变量，因为可以根据右侧推断，左侧的变量可以不用写变量类型了。&lt;/li&gt;
+&lt;li&gt;函数重载，形参和返回值不一样的同名函数.仅有形参名一样是不行的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;闭包&quot;&gt;&lt;a href=&quot;#闭包&quot; class=&quot;headerlink&quot; title=&quot;闭包{ }&quot;&gt;&lt;/a&gt;闭包{ }&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;函数和闭包是统一的，函数和闭包都是引用类型，当赋值给变量时，不会复制，而是指向同一个闭包 &lt;/li&gt;
+&lt;li&gt;将闭包设为变量就相当于将函数设为变量，如果左侧写明了变量类型，那系统会自动推断右侧的闭包形参和返回值类型。&lt;/li&gt;
+&lt;li&gt;尾随闭包，也就是将闭包当做形参传入&lt;/li&gt;
+&lt;li&gt;闭包或者嵌套函数，可以访问上下文中的变量或者常量&lt;/li&gt;
+&lt;/ol&gt;
+</content>
     
     <summary type="html">
     
@@ -1874,9 +1886,9 @@ return addElement
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -2051,9 +2063,9 @@ print(valuesArr)
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
@@ -2212,9 +2224,9 @@ willUnderflow = willUnderflow &amp;amp;-1 //下溢
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
   </entry>
   
