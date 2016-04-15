@@ -61,46 +61,40 @@
 
 
 
-<meta name="description" content="存储属性和计算属性存储属性
-存储在类，结构体里的变量或者常量
-实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举
-所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定
-可选类型的存储属性可以不指定初始值
+<meta name="description" content="存储属性特点
+存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性
+初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值
+系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。
 
-结构体中实例存储属性的规则struct LengthRange {
+结构体实例存储属性struct LengthRange {
 var start: Int
 //定义常量存储属性，可以不指定初始值
-let length:Int
-}">
+let length:Int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift面向对象基础（中）">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/12/Swift面向对象基础（中）/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="存储属性和计算属性存储属性
-存储在类，结构体里的变量或者常量
-实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举
-所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定
-可选类型的存储属性可以不指定初始值
+<meta property="og:description" content="存储属性特点
+存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性
+初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值
+系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。
 
-结构体中实例存储属性的规则struct LengthRange {
+结构体实例存储属性struct LengthRange {
 var start: Int
 //定义常量存储属性，可以不指定初始值
-let length:Int
-}">
-<meta property="og:updated_time" content="2016-04-13T08:10:28.000Z">
+let length:Int">
+<meta property="og:updated_time" content="2016-04-15T11:49:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础（中）">
-<meta name="twitter:description" content="存储属性和计算属性存储属性
-存储在类，结构体里的变量或者常量
-实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举
-所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定
-可选类型的存储属性可以不指定初始值
+<meta name="twitter:description" content="存储属性特点
+存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性
+初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值
+系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。
 
-结构体中实例存储属性的规则struct LengthRange {
+结构体实例存储属性struct LengthRange {
 var start: Int
 //定义常量存储属性，可以不指定初始值
-let length:Int
-}">
+let length:Int">
 
 
 
@@ -325,13 +319,12 @@ let length:Int
       
 
       
-        <h1 id="存储属性和计算属性"><a href="#存储属性和计算属性" class="headerlink" title="存储属性和计算属性"></a>存储属性和计算属性</h1><h2 id="存储属性"><a href="#存储属性" class="headerlink" title="存储属性"></a>存储属性</h2><ol>
-<li>存储在类，结构体里的变量或者常量</li>
-<li>实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举</li>
-<li>所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定</li>
-<li>可选类型的存储属性可以不指定初始值</li>
+        <h1 id="存储属性"><a href="#存储属性" class="headerlink" title="存储属性"></a>存储属性</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性</li>
+<li>初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值</li>
+<li>系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。</li>
 </ol>
-<h2 id="结构体中实例存储属性的规则"><a href="#结构体中实例存储属性的规则" class="headerlink" title="结构体中实例存储属性的规则"></a>结构体中实例存储属性的规则</h2><pre><code>struct LengthRange {
+<h2 id="结构体实例存储属性"><a href="#结构体实例存储属性" class="headerlink" title="结构体实例存储属性"></a>结构体实例存储属性</h2><pre><code>struct LengthRange {
 var start: Int
 //定义常量存储属性，可以不指定初始值
 let length:Int
@@ -343,21 +336,7 @@ print(&quot;len的起点为\(len.start),长度为\(len.length)&quot;)
 
 len.start = 2
 //len.length = 4 //这个会报错，因为是常量，常量是不能修改的
-</code></pre><ol>
-<li>程序为所有的实例存储属性指定了初始值，且没有构造器，则系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。</li>
-<li>没有初始值和构造器，系统提供一个初始化所有实例存储属性的构造器。   </li>
-<li>有构造器，则程序必须为结构体中的所有存储属性提供初始值。</li>
-<li>其实上述的意思就是，初始值要么在构造器中，要么在就直接赋予</li>
-</ol>
-<h2 id="结构体常量与实例属性"><a href="#结构体常量与实例属性" class="headerlink" title="结构体常量与实例属性"></a>结构体常量与实例属性</h2><pre><code>struct LengthRange2{
-var start: Int
-var length:Int
-}
-
-let len2 = LengthRange2(start:1, length:5)
-len2.length = 6 //这样会报错，因为是常量，不能修改
-</code></pre><h2 id="延迟存储属性"><a href="#延迟存储属性" class="headerlink" title="延迟存储属性"></a>延迟存储属性</h2><p>第一次被调用时才会被计算初始值的属性，用lazy修饰符.目前未做详细了解</p>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre><code>[修饰符]var计算属性名:属性类型{
+</code></pre><h1 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><pre><code>[修饰符]var计算属性名:属性类型{
 get{
 //get方法执行体，该方法一定要有返回值
 }
@@ -367,7 +346,7 @@ setter方法执行体，该方法一定不能有返回值
 }
 
 }
-</code></pre><h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><pre><code>class User{
+</code></pre><h2 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h2><pre><code>class User{
 var first:String = &quot;&quot;
 var last:String = &quot;&quot;
 
@@ -400,7 +379,7 @@ let s = User(first:&quot;极客&quot;,last:&quot;Hello&quot;)
 s.fullName = &quot;极客-学院&quot;
 print(s.first)  //outcome is 极客
 print(s.last)   //结果是 学院
-</code></pre><h3 id="例子2-只读属性"><a href="#例子2-只读属性" class="headerlink" title="例子2 只读属性"></a>例子2 只读属性</h3><p>无需set部分，可以省略get和花括号</p>
+</code></pre><h2 id="例子2-只读属性"><a href="#例子2-只读属性" class="headerlink" title="例子2 只读属性"></a>例子2 只读属性</h2><p>无需set部分，可以省略get和花括号</p>
 <pre><code>class User{
 var first:String = &quot;&quot;
 var last:String = &quot;&quot;
@@ -419,7 +398,7 @@ init(first:String, last:String){
 }
 
 }
-</code></pre><h2 id="属性观察者"><a href="#属性观察者" class="headerlink" title="属性观察者"></a>属性观察者</h2><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><pre><code>[修饰符]var 计算属性名：属性类型 = 初始值 {
+</code></pre><h1 id="属性观察者"><a href="#属性观察者" class="headerlink" title="属性观察者"></a>属性观察者</h1><h2 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h2><pre><code>[修饰符]var 计算属性名：属性类型 = 初始值 {
   willSet (newValue){
   //属性即将被赋值之前自动调用的方法
 
@@ -430,12 +409,11 @@ init(first:String, last:String){
 
   }
 }
-</code></pre><p>注意：willSet和didSet后面的参数名都可以身略</p>
-<ol>
+</code></pre><ol>
 <li>除了延迟存储属性之外的所有存储属性（包括实例存储属性和类型存储属性）</li>
 <li>可通过重载方式为继承得到的属性（包括存储属性和计算属性）添加属性观察者。</li>
 </ol>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><pre><code>class Person {
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>class Person {
 //定义存储属性
 var name: String = &quot;&quot;{
 
@@ -473,12 +451,7 @@ var p = Person()
 //p.age = 999  //不成功的设置，先调用willSet，再调用didSet
 p.age = 10 // 成功的设置
 print(&quot;成功设置年龄后，年龄为\(p.age)&quot;)  
-</code></pre><h1 id="Swift中的方法"><a href="#Swift中的方法" class="headerlink" title="Swift中的方法"></a>Swift中的方法</h1><h2 id="方法的所属性"><a href="#方法的所属性" class="headerlink" title="方法的所属性"></a>方法的所属性</h2><ol>
-<li>定义方法需要在类型（枚举，结构体，类）里下定义，不能独立定义，否则就成了函数</li>
-<li>方法要么属于该类型本身，要么是该类型的一个实例</li>
-<li>不能独立执行方法，执行方法必须使用类型或实例作为调用者</li>
-<li>枚举，结构体中方法使用static修饰，类中用class修饰，都属于类型方法，否则的话属于实例方法</li>
-</ol>
+</code></pre><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>类型方法:枚举，结构体中方法使用static修饰，类中用class修饰，否则的话属于实例方法</p>
 <h2 id="将方法转换为函数"><a href="#将方法转换为函数" class="headerlink" title="将方法转换为函数"></a>将方法转换为函数</h2><pre><code>class SomeClass {
 
 func test() {
@@ -496,7 +469,7 @@ var f1:()-&gt;()=sc.test    //将sc的test方法分离成函数
 var f2:(String) -&gt; Void = SomeClass.bar    //将sc的bar方法分离成函数，定义一个函数型的变量并赋值
 //f1()    //等价于sc.test()
 f2(&quot;极客&quot;)  //等价于SomeClass.bar(msg:&quot;Geek&quot;)
-</code></pre><h2 id="方法的外部形参名"><a href="#方法的外部形参名" class="headerlink" title="方法的外部形参名"></a>方法的外部形参名</h2><p>默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉</p>
+</code></pre><h2 id="方法形参名省略用-“-”"><a href="#方法形参名省略用-“-”" class="headerlink" title="方法形参名省略用 “_”"></a>方法形参名省略用 “_”</h2><p>默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉</p>
 <pre><code>class Person {
 
 var name:String
@@ -512,7 +485,7 @@ func eat (food:String, _ drink:String, cigarette:String){
 
 var p = Person(name:&quot;Tom&quot;)
 p.eat(&quot;烤鸭&quot;,&quot;啤酒&quot;,cigarette:&quot;雪茄&quot;)
-</code></pre><h2 id="值类型的可变方法"><a href="#值类型的可变方法" class="headerlink" title="值类型的可变方法"></a>值类型的可变方法</h2><pre><code>struct JKRect {
+</code></pre><h2 id="值类型的可变方法可以改变存储属性"><a href="#值类型的可变方法可以改变存储属性" class="headerlink" title="值类型的可变方法可以改变存储属性"></a>值类型的可变方法可以改变存储属性</h2><pre><code>struct JKRect {
 var x: Int
 var y: Int
 var width:Int
@@ -530,7 +503,7 @@ print(&quot;rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)
 <li>将mutating关键字放在func之前，即将该方法声明为可变方法</li>
 <li>常量类型的结构体，枚举是不可变的,比如上述的var 改成 let就不行了</li>
 </ol>
-<h1 id="属性和方法的统一"><a href="#属性和方法的统一" class="headerlink" title="属性和方法的统一"></a>属性和方法的统一</h1><p>使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法</p>
+<h2 id="属性和方法的统一"><a href="#属性和方法的统一" class="headerlink" title="属性和方法的统一"></a>属性和方法的统一</h2><p>使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法</p>
 <pre><code>func factorial(n:Int) -&gt; Int {
 var result = 1
 for i in 1...n {
@@ -576,26 +549,19 @@ return result
 print(&quot;\(n)的累加的和是:\(SomeStruct.fact(6))&quot;) //outcome is 22
 </code></pre><h1 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h1><ol>
 <li>所有的Swift类型（枚举，类，结构体）都支持定义下标</li>
-<li>同一个类型可以定义多个下标</li>
-<li>通过下标的形参列表或者返回值类型来区分不同的下标</li>
+<li>同一个类型可以定义多个下标，通过下标的形参列表或者返回值类型来区分不同的下标</li>
 <li>同一类型中定义多个不同的下标被称为下标重载</li>
-</ol>
-<h2 id="下标的基本用法"><a href="#下标的基本用法" class="headerlink" title="下标的基本用法"></a>下标的基本用法</h2><pre><code>Subscripe(形参列表) -&gt;下标返回值类型 {
-
-get {
-  //getter方法执行体，该方法必须有返回值
-}
-
-set(形参名){
-  //setter方法执行体，该方法不能有返回值
-}
-}
-</code></pre><h2 id="下标语法格式说明"><a href="#下标语法格式说明" class="headerlink" title="下标语法格式说明"></a>下标语法格式说明</h2><ol>
 <li>形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值</li>
-<li>下标的返回值类型：可以是任何有效的类型</li>
+<li>下标的返回值类型：可以是任何有效的类型   </li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>struct JKRect2{<br>    var x:Int<br>    var y:Int<br>    var width:Int<br>    var height:Int</p>
-<pre><code>//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Subscripe(形参列表) -&gt;下标返回值类型 &#123;</span><br><span class="line">get &#123;</span><br><span class="line">  //getter方法执行体，该方法必须有返回值</span><br><span class="line">&#125;</span><br><span class="line">set(形参名)&#123;</span><br><span class="line">  //setter方法执行体，该方法不能有返回值</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>struct JKRect2{
+var x:Int
+var y:Int
+var width:Int
+var height:Int
+
+//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
 
 subscript(index:Int) -&gt;Int {
 
@@ -641,7 +607,17 @@ var rect2 = JKRect2(x:20,y:12,width:200,height:300)
 
 //通过下标访问rect的属性
 print(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&quot;)
-</code></pre>
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
+<li>存储属性有类型存储属性和实例子存储属性</li>
+<li>计算属性,其实就是get/set方法</li>
+<li>属性观察者，将赋值前的判断写入里面</li>
+<li>类型方法的修饰符:class用于类，static用于枚举和结构体</li>
+<li>类中的方法转为函数，使用函数变量</li>
+<li>类中的属性转为函数，使用闭包</li>
+<li>值类型的可变方法可以改变存储属性,相当于set方法。</li>
+<li>枚举，类，结构体都支持下标，有下标重载，下标就是传入一个整数值来调用类里的get方法，当给下标赋值时，传入的值就是newValue</li>
+</ol>
+
       
     </div>
 
@@ -808,7 +784,7 @@ print(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#存储属性和计算属性"><span class="nav-number">1.</span> <span class="nav-text">存储属性和计算属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储属性"><span class="nav-number">1.1.</span> <span class="nav-text">存储属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体中实例存储属性的规则"><span class="nav-number">1.2.</span> <span class="nav-text">结构体中实例存储属性的规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体常量与实例属性"><span class="nav-number">1.3.</span> <span class="nav-text">结构体常量与实例属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟存储属性"><span class="nav-number">1.4.</span> <span class="nav-text">延迟存储属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算属性"><span class="nav-number">1.5.</span> <span class="nav-text">计算属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.5.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子1"><span class="nav-number">1.5.2.</span> <span class="nav-text">例子1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子2-只读属性"><span class="nav-number">1.5.3.</span> <span class="nav-text">例子2 只读属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性观察者"><span class="nav-number">1.6.</span> <span class="nav-text">属性观察者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.6.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift中的方法"><span class="nav-number">2.</span> <span class="nav-text">Swift中的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的所属性"><span class="nav-number">2.1.</span> <span class="nav-text">方法的所属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将方法转换为函数"><span class="nav-number">2.2.</span> <span class="nav-text">将方法转换为函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法的外部形参名"><span class="nav-number">2.3.</span> <span class="nav-text">方法的外部形参名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型的可变方法"><span class="nav-number">2.4.</span> <span class="nav-text">值类型的可变方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性和方法的统一"><span class="nav-number">3.</span> <span class="nav-text">属性和方法的统一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下标"><span class="nav-number">4.</span> <span class="nav-text">下标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下标的基本用法"><span class="nav-number">4.1.</span> <span class="nav-text">下标的基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下标语法格式说明"><span class="nav-number">4.2.</span> <span class="nav-text">下标语法格式说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#存储属性"><span class="nav-number">1.</span> <span class="nav-text">存储属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构体实例存储属性"><span class="nav-number">1.2.</span> <span class="nav-text">结构体实例存储属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算属性"><span class="nav-number">2.</span> <span class="nav-text">计算属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子1"><span class="nav-number">2.2.</span> <span class="nav-text">例子1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子2-只读属性"><span class="nav-number">2.3.</span> <span class="nav-text">例子2 只读属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性观察者"><span class="nav-number">3.</span> <span class="nav-text">属性观察者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法-1"><span class="nav-number">3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将方法转换为函数"><span class="nav-number">4.1.</span> <span class="nav-text">将方法转换为函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法形参名省略用-“-”"><span class="nav-number">4.2.</span> <span class="nav-text">方法形参名省略用 “_”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型的可变方法可以改变存储属性"><span class="nav-number">4.3.</span> <span class="nav-text">值类型的可变方法可以改变存储属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性和方法的统一"><span class="nav-number">4.4.</span> <span class="nav-text">属性和方法的统一</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下标"><span class="nav-number">5.</span> <span class="nav-text">下标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结:</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

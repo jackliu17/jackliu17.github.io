@@ -377,9 +377,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   
@@ -483,11 +483,11 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
+    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
   </entry>
   
@@ -603,7 +603,7 @@ int _age;
     <link href="http://jackliu17.github.io/2016/03/14/Swift%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/"/>
     <id>http://jackliu17.github.io/2016/03/14/Swift中的扩展和协议/</id>
     <published>2016-03-14T05:30:21.000Z</published>
-    <updated>2016-04-15T07:23:20.000Z</updated>
+    <updated>2016-04-15T07:27:24.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;扩展&quot;&gt;&lt;a href=&quot;#扩展&quot; class=&quot;headerlink&quot; title=&quot;扩展&quot;&gt;&lt;/a&gt;扩展&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;Swift的扩展与OC的Category类似，只是swift中的扩展没有名字.&lt;/li&gt;
@@ -623,7 +623,7 @@ int _age;
 &lt;li&gt;想要他们并存，就需要扩展，通过扩展添加的构造器，不会影响原有的构造器&lt;/li&gt;
 &lt;/ol&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//定义一个结构体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct SomeStruct&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var name:String&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var count:Int&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用扩展来添加构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;extension SomeStruct&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(name:String)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.name = name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.count = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init(count:Int)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.count = count&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        self.name = &amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//下面使用了SomeStruct的3个构造器&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var sc1 = SomeStruct(name: &amp;quot;jike&amp;quot;, count: 5)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var sc2 = SomeStruct(name: &amp;quot;crazyjike&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var sc3 = SomeStruct(count: 20)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;添加嵌套类型&quot;&gt;&lt;a href=&quot;#添加嵌套类型&quot; class=&quot;headerlink&quot; title=&quot;添加嵌套类型&quot;&gt;&lt;/a&gt;添加嵌套类型&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;extension String &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//定义一个嵌套枚举&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    enum Suit:String&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Diamond = &amp;quot;A&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Club = &amp;quot;B&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Heart = &amp;quot;C&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Spade = &amp;quot;D&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //通过扩展为String增加一个类型方法，用于判断指定字符串属于哪种花色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static func judgeSuit(s:String)-&amp;gt;Suit?&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        switch(s)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;A&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Diamond&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;B&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Club&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;C&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Heart&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;D&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Spade&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nil&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用Strig包含的嵌套枚举&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var s1:String.Suit? = String.judgeSuit(&amp;quot;C&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(s1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var s2:String.Suit? = String.judgeSuit(&amp;quot;j&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(s2)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;添加嵌套类型&quot;&gt;&lt;a href=&quot;#添加嵌套类型&quot; class=&quot;headerlink&quot; title=&quot;添加嵌套类型&quot;&gt;&lt;/a&gt;添加嵌套类型&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;extension String &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//定义一个嵌套枚举&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    enum Suit:String&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Diamond = &amp;quot;A&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Club = &amp;quot;B&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Heart = &amp;quot;C&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    case Spade = &amp;quot;D&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //通过扩展为String增加一个类型方法，用于判断指定字符串属于哪种花色&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static func judgeSuit(s:String)-&amp;gt;Suit?&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        switch(s)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;A&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Diamond&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;B&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Club&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;C&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Heart&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        case &amp;quot;D&amp;quot;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return .Spade&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return nil&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//使用Strig包含的嵌套枚举&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var s1:String.Suit? = String.judgeSuit(&amp;quot;C&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(s1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var s2:String.Suit? = String.judgeSuit(&amp;quot;j&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(s2)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h1 id=&quot;协议-规范和实现的分离，松耦合的设计&quot;&gt;&lt;a href=&quot;#协议-规范和实现的分离，松耦合的设计&quot; class=&quot;headerlink&quot; title=&quot;协议 - 规范和实现的分离，松耦合的设计&quot;&gt;&lt;/a&gt;协议 - 规范和实现的分离，松耦合的设计&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;协议定义了一种规范，不提供任何实现&lt;/li&gt;
 &lt;li&gt;修饰符:可以省略，也可以是private,internal,public之一&lt;/li&gt;
@@ -1031,15 +1031,14 @@ print(Math.degree2Radian(45))
     <link href="http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
     <id>http://jackliu17.github.io/2016/03/12/Swift面向对象基础（中）/</id>
     <published>2016-03-12T01:04:36.000Z</published>
-    <updated>2016-04-13T08:10:28.000Z</updated>
+    <updated>2016-04-15T11:49:42.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;存储属性和计算属性&quot;&gt;&lt;a href=&quot;#存储属性和计算属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性和计算属性&quot;&gt;&lt;/a&gt;存储属性和计算属性&lt;/h1&gt;&lt;h2 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;存储在类，结构体里的变量或者常量&lt;/li&gt;
-&lt;li&gt;实例存储属性：单个实例的状态数据。类型存储属性：类，结构体，枚举&lt;/li&gt;
-&lt;li&gt;所有的存储属性必须显式的指定初始值，在定义时或者构造器当中指定&lt;/li&gt;
-&lt;li&gt;可选类型的存储属性可以不指定初始值&lt;/li&gt;
+    <content type="html">&lt;h1 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性&lt;/li&gt;
+&lt;li&gt;初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值&lt;/li&gt;
+&lt;li&gt;系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;结构体中实例存储属性的规则&quot;&gt;&lt;a href=&quot;#结构体中实例存储属性的规则&quot; class=&quot;headerlink&quot; title=&quot;结构体中实例存储属性的规则&quot;&gt;&lt;/a&gt;结构体中实例存储属性的规则&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange {
+&lt;h2 id=&quot;结构体实例存储属性&quot;&gt;&lt;a href=&quot;#结构体实例存储属性&quot; class=&quot;headerlink&quot; title=&quot;结构体实例存储属性&quot;&gt;&lt;/a&gt;结构体实例存储属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange {
 var start: Int
 //定义常量存储属性，可以不指定初始值
 let length:Int
@@ -1051,21 +1050,7 @@ print(&amp;quot;len的起点为\(len.start),长度为\(len.length)&amp;quot;)
 
 len.start = 2
 //len.length = 4 //这个会报错，因为是常量，常量是不能修改的
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;程序为所有的实例存储属性指定了初始值，且没有构造器，则系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。&lt;/li&gt;
-&lt;li&gt;没有初始值和构造器，系统提供一个初始化所有实例存储属性的构造器。   &lt;/li&gt;
-&lt;li&gt;有构造器，则程序必须为结构体中的所有存储属性提供初始值。&lt;/li&gt;
-&lt;li&gt;其实上述的意思就是，初始值要么在构造器中，要么在就直接赋予&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;结构体常量与实例属性&quot;&gt;&lt;a href=&quot;#结构体常量与实例属性&quot; class=&quot;headerlink&quot; title=&quot;结构体常量与实例属性&quot;&gt;&lt;/a&gt;结构体常量与实例属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange2{
-var start: Int
-var length:Int
-}
-
-let len2 = LengthRange2(start:1, length:5)
-len2.length = 6 //这样会报错，因为是常量，不能修改
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;延迟存储属性&quot;&gt;&lt;a href=&quot;#延迟存储属性&quot; class=&quot;headerlink&quot; title=&quot;延迟存储属性&quot;&gt;&lt;/a&gt;延迟存储属性&lt;/h2&gt;&lt;p&gt;第一次被调用时才会被计算初始值的属性，用lazy修饰符.目前未做详细了解&lt;/p&gt;
-&lt;h2 id=&quot;计算属性&quot;&gt;&lt;a href=&quot;#计算属性&quot; class=&quot;headerlink&quot; title=&quot;计算属性&quot;&gt;&lt;/a&gt;计算属性&lt;/h2&gt;&lt;h3 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var计算属性名:属性类型{
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;计算属性&quot;&gt;&lt;a href=&quot;#计算属性&quot; class=&quot;headerlink&quot; title=&quot;计算属性&quot;&gt;&lt;/a&gt;计算属性&lt;/h1&gt;&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var计算属性名:属性类型{
 get{
 //get方法执行体，该方法一定要有返回值
 }
@@ -1075,7 +1060,7 @@ setter方法执行体，该方法一定不能有返回值
 }
 
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;例子1&quot;&gt;&lt;a href=&quot;#例子1&quot; class=&quot;headerlink&quot; title=&quot;例子1&quot;&gt;&lt;/a&gt;例子1&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class User{
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;例子1&quot;&gt;&lt;a href=&quot;#例子1&quot; class=&quot;headerlink&quot; title=&quot;例子1&quot;&gt;&lt;/a&gt;例子1&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class User{
 var first:String = &amp;quot;&amp;quot;
 var last:String = &amp;quot;&amp;quot;
 
@@ -1108,7 +1093,7 @@ let s = User(first:&amp;quot;极客&amp;quot;,last:&amp;quot;Hello&amp;quot;)
 s.fullName = &amp;quot;极客-学院&amp;quot;
 print(s.first)  //outcome is 极客
 print(s.last)   //结果是 学院
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;例子2-只读属性&quot;&gt;&lt;a href=&quot;#例子2-只读属性&quot; class=&quot;headerlink&quot; title=&quot;例子2 只读属性&quot;&gt;&lt;/a&gt;例子2 只读属性&lt;/h3&gt;&lt;p&gt;无需set部分，可以省略get和花括号&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;例子2-只读属性&quot;&gt;&lt;a href=&quot;#例子2-只读属性&quot; class=&quot;headerlink&quot; title=&quot;例子2 只读属性&quot;&gt;&lt;/a&gt;例子2 只读属性&lt;/h2&gt;&lt;p&gt;无需set部分，可以省略get和花括号&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class User{
 var first:String = &amp;quot;&amp;quot;
 var last:String = &amp;quot;&amp;quot;
@@ -1127,7 +1112,7 @@ init(first:String, last:String){
 }
 
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;属性观察者&quot;&gt;&lt;a href=&quot;#属性观察者&quot; class=&quot;headerlink&quot; title=&quot;属性观察者&quot;&gt;&lt;/a&gt;属性观察者&lt;/h2&gt;&lt;h3 id=&quot;语法-1&quot;&gt;&lt;a href=&quot;#语法-1&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var 计算属性名：属性类型 = 初始值 {
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;属性观察者&quot;&gt;&lt;a href=&quot;#属性观察者&quot; class=&quot;headerlink&quot; title=&quot;属性观察者&quot;&gt;&lt;/a&gt;属性观察者&lt;/h1&gt;&lt;h2 id=&quot;语法-1&quot;&gt;&lt;a href=&quot;#语法-1&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var 计算属性名：属性类型 = 初始值 {
   willSet (newValue){
   //属性即将被赋值之前自动调用的方法
 
@@ -1138,12 +1123,11 @@ init(first:String, last:String){
 
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：willSet和didSet后面的参数名都可以身略&lt;/p&gt;
-&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
 &lt;li&gt;除了延迟存储属性之外的所有存储属性（包括实例存储属性和类型存储属性）&lt;/li&gt;
 &lt;li&gt;可通过重载方式为继承得到的属性（包括存储属性和计算属性）添加属性观察者。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Person {
+&lt;h2 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class Person {
 //定义存储属性
 var name: String = &amp;quot;&amp;quot;{
 
@@ -1181,12 +1165,7 @@ var p = Person()
 //p.age = 999  //不成功的设置，先调用willSet，再调用didSet
 p.age = 10 // 成功的设置
 print(&amp;quot;成功设置年龄后，年龄为\(p.age)&amp;quot;)  
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swift中的方法&quot;&gt;&lt;a href=&quot;#Swift中的方法&quot; class=&quot;headerlink&quot; title=&quot;Swift中的方法&quot;&gt;&lt;/a&gt;Swift中的方法&lt;/h1&gt;&lt;h2 id=&quot;方法的所属性&quot;&gt;&lt;a href=&quot;#方法的所属性&quot; class=&quot;headerlink&quot; title=&quot;方法的所属性&quot;&gt;&lt;/a&gt;方法的所属性&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;定义方法需要在类型（枚举，结构体，类）里下定义，不能独立定义，否则就成了函数&lt;/li&gt;
-&lt;li&gt;方法要么属于该类型本身，要么是该类型的一个实例&lt;/li&gt;
-&lt;li&gt;不能独立执行方法，执行方法必须使用类型或实例作为调用者&lt;/li&gt;
-&lt;li&gt;枚举，结构体中方法使用static修饰，类中用class修饰，都属于类型方法，否则的话属于实例方法&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h1&gt;&lt;p&gt;类型方法:枚举，结构体中方法使用static修饰，类中用class修饰，否则的话属于实例方法&lt;/p&gt;
 &lt;h2 id=&quot;将方法转换为函数&quot;&gt;&lt;a href=&quot;#将方法转换为函数&quot; class=&quot;headerlink&quot; title=&quot;将方法转换为函数&quot;&gt;&lt;/a&gt;将方法转换为函数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class SomeClass {
 
 func test() {
@@ -1204,7 +1183,7 @@ var f1:()-&amp;gt;()=sc.test    //将sc的test方法分离成函数
 var f2:(String) -&amp;gt; Void = SomeClass.bar    //将sc的bar方法分离成函数，定义一个函数型的变量并赋值
 //f1()    //等价于sc.test()
 f2(&amp;quot;极客&amp;quot;)  //等价于SomeClass.bar(msg:&amp;quot;Geek&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;方法的外部形参名&quot;&gt;&lt;a href=&quot;#方法的外部形参名&quot; class=&quot;headerlink&quot; title=&quot;方法的外部形参名&quot;&gt;&lt;/a&gt;方法的外部形参名&lt;/h2&gt;&lt;p&gt;默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;方法形参名省略用-“-”&quot;&gt;&lt;a href=&quot;#方法形参名省略用-“-”&quot; class=&quot;headerlink&quot; title=&quot;方法形参名省略用 “_”&quot;&gt;&lt;/a&gt;方法形参名省略用 “_”&lt;/h2&gt;&lt;p&gt;默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Person {
 
 var name:String
@@ -1220,7 +1199,7 @@ func eat (food:String, _ drink:String, cigarette:String){
 
 var p = Person(name:&amp;quot;Tom&amp;quot;)
 p.eat(&amp;quot;烤鸭&amp;quot;,&amp;quot;啤酒&amp;quot;,cigarette:&amp;quot;雪茄&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的可变方法&quot;&gt;&lt;a href=&quot;#值类型的可变方法&quot; class=&quot;headerlink&quot; title=&quot;值类型的可变方法&quot;&gt;&lt;/a&gt;值类型的可变方法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct JKRect {
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的可变方法可以改变存储属性&quot;&gt;&lt;a href=&quot;#值类型的可变方法可以改变存储属性&quot; class=&quot;headerlink&quot; title=&quot;值类型的可变方法可以改变存储属性&quot;&gt;&lt;/a&gt;值类型的可变方法可以改变存储属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct JKRect {
 var x: Int
 var y: Int
 var width:Int
@@ -1238,7 +1217,7 @@ print(&amp;quot;rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rec
 &lt;li&gt;将mutating关键字放在func之前，即将该方法声明为可变方法&lt;/li&gt;
 &lt;li&gt;常量类型的结构体，枚举是不可变的,比如上述的var 改成 let就不行了&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&quot;属性和方法的统一&quot;&gt;&lt;a href=&quot;#属性和方法的统一&quot; class=&quot;headerlink&quot; title=&quot;属性和方法的统一&quot;&gt;&lt;/a&gt;属性和方法的统一&lt;/h1&gt;&lt;p&gt;使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法&lt;/p&gt;
+&lt;h2 id=&quot;属性和方法的统一&quot;&gt;&lt;a href=&quot;#属性和方法的统一&quot; class=&quot;headerlink&quot; title=&quot;属性和方法的统一&quot;&gt;&lt;/a&gt;属性和方法的统一&lt;/h2&gt;&lt;p&gt;使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;func factorial(n:Int) -&amp;gt; Int {
 var result = 1
 for i in 1...n {
@@ -1284,26 +1263,19 @@ return result
 print(&amp;quot;\(n)的累加的和是:\(SomeStruct.fact(6))&amp;quot;) //outcome is 22
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;下标&quot;&gt;&lt;a href=&quot;#下标&quot; class=&quot;headerlink&quot; title=&quot;下标&quot;&gt;&lt;/a&gt;下标&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;所有的Swift类型（枚举，类，结构体）都支持定义下标&lt;/li&gt;
-&lt;li&gt;同一个类型可以定义多个下标&lt;/li&gt;
-&lt;li&gt;通过下标的形参列表或者返回值类型来区分不同的下标&lt;/li&gt;
+&lt;li&gt;同一个类型可以定义多个下标，通过下标的形参列表或者返回值类型来区分不同的下标&lt;/li&gt;
 &lt;li&gt;同一类型中定义多个不同的下标被称为下标重载&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;下标的基本用法&quot;&gt;&lt;a href=&quot;#下标的基本用法&quot; class=&quot;headerlink&quot; title=&quot;下标的基本用法&quot;&gt;&lt;/a&gt;下标的基本用法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Subscripe(形参列表) -&amp;gt;下标返回值类型 {
-
-get {
-  //getter方法执行体，该方法必须有返回值
-}
-
-set(形参名){
-  //setter方法执行体，该方法不能有返回值
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;下标语法格式说明&quot;&gt;&lt;a href=&quot;#下标语法格式说明&quot; class=&quot;headerlink&quot; title=&quot;下标语法格式说明&quot;&gt;&lt;/a&gt;下标语法格式说明&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值&lt;/li&gt;
-&lt;li&gt;下标的返回值类型：可以是任何有效的类型&lt;/li&gt;
+&lt;li&gt;下标的返回值类型：可以是任何有效的类型   &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;p&gt;struct JKRect2{&lt;br&gt;    var x:Int&lt;br&gt;    var y:Int&lt;br&gt;    var width:Int&lt;br&gt;    var height:Int&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subscripe(形参列表) -&amp;gt;下标返回值类型 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;get &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  //getter方法执行体，该方法必须有返回值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set(形参名)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  //setter方法执行体，该方法不能有返回值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code&gt;struct JKRect2{
+var x:Int
+var y:Int
+var width:Int
+var height:Int
+
+//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
 
 subscript(index:Int) -&amp;gt;Int {
 
@@ -1349,11 +1321,21 @@ var rect2 = JKRect2(x:20,y:12,width:200,height:300)
 
 //通过下标访问rect的属性
 print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;存储属性有类型存储属性和实例子存储属性&lt;/li&gt;
+&lt;li&gt;计算属性,其实就是get/set方法&lt;/li&gt;
+&lt;li&gt;属性观察者，将赋值前的判断写入里面&lt;/li&gt;
+&lt;li&gt;类型方法的修饰符:class用于类，static用于枚举和结构体&lt;/li&gt;
+&lt;li&gt;类中的方法转为函数，使用函数变量&lt;/li&gt;
+&lt;li&gt;类中的属性转为函数，使用闭包&lt;/li&gt;
+&lt;li&gt;值类型的可变方法可以改变存储属性,相当于set方法。&lt;/li&gt;
+&lt;li&gt;枚举，类，结构体都支持下标，有下标重载，下标就是传入一个整数值来调用类里的get方法，当给下标赋值时，传入的值就是newValue&lt;/li&gt;
+&lt;/ol&gt;
+</content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;存储属性和计算属性&quot;&gt;&lt;a href=&quot;#存储属性和计算属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性和计算属性&quot;&gt;&lt;/a&gt;存储属性和计算属性&lt;/h1&gt;&lt;h2 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerli
+      &lt;h1 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h
     
     </summary>
     
@@ -1371,13 +1353,11 @@ print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(re
     <link href="http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/"/>
     <id>http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/</id>
     <published>2016-03-11T07:06:33.000Z</published>
-    <updated>2016-04-13T02:48:24.000Z</updated>
+    <updated>2016-04-15T11:11:08.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象的核心：类和对象&lt;/li&gt;
 &lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
 &lt;li&gt;Swift可以定义枚举，结构体，和类三种面向对象的类型&lt;/li&gt;
-&lt;li&gt;支持定义存储属性，计算属性，方法，下标，构造器和嵌套类型&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h1&gt;&lt;h2 id=&quot;枚举定义&quot;&gt;&lt;a href=&quot;#枚举定义&quot; class=&quot;headerlink&quot; title=&quot;枚举定义&quot;&gt;&lt;/a&gt;枚举定义&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;用于管理一组有限的值的集合&lt;/li&gt;
@@ -1386,9 +1366,12 @@ print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(re
 &lt;li&gt;支持定义构造器来完成初始化&lt;/li&gt;
 &lt;li&gt;支持扩展和协议&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;枚举语法&quot;&gt;&lt;a href=&quot;#枚举语法&quot; class=&quot;headerlink&quot; title=&quot;枚举语法&quot;&gt;&lt;/a&gt;枚举语法&lt;/h2&gt;&lt;p&gt;enum 枚举名 {&lt;br&gt;  //使用case关键字列出所有枚举值&lt;br&gt;  //枚举的其他成员&lt;/p&gt;
-&lt;p&gt;}&lt;/p&gt;
-&lt;h2 id=&quot;定义枚举&quot;&gt;&lt;a href=&quot;#定义枚举&quot; class=&quot;headerlink&quot; title=&quot;定义枚举&quot;&gt;&lt;/a&gt;定义枚举&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//方法1
+&lt;h2 id=&quot;枚举语法&quot;&gt;&lt;a href=&quot;#枚举语法&quot; class=&quot;headerlink&quot; title=&quot;枚举语法&quot;&gt;&lt;/a&gt;枚举语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名 {
+  //使用case关键字列出所有枚举值
+  //枚举的其他成员
+}
+
+//方法1
 enum Season {
    case Spring
    case Summer
@@ -1415,8 +1398,10 @@ case .Summer:
 default:
   print(&amp;quot;At home&amp;quot;)
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;原始值&quot;&gt;&lt;a href=&quot;#原始值&quot; class=&quot;headerlink&quot; title=&quot;原始值&quot;&gt;&lt;/a&gt;原始值&lt;/h2&gt;&lt;p&gt;enum 枚举名：原始值类型{&lt;br&gt;   case 枚举值 = 原始值&lt;br&gt;}&lt;/p&gt;
-&lt;h3 id=&quot;整型的枚举&quot;&gt;&lt;a href=&quot;#整型的枚举&quot; class=&quot;headerlink&quot; title=&quot;整型的枚举&quot;&gt;&lt;/a&gt;整型的枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//可以自动推断，不用每个都赋予原始值
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;原始值&quot;&gt;&lt;a href=&quot;#原始值&quot; class=&quot;headerlink&quot; title=&quot;原始值&quot;&gt;&lt;/a&gt;原始值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名：原始值类型{
+   case 枚举值 = 原始值
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;整型的枚举&quot;&gt;&lt;a href=&quot;#整型的枚举&quot; class=&quot;headerlink&quot; title=&quot;整型的枚举&quot;&gt;&lt;/a&gt;整型的枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//可以自动推断，不用每个都赋予原始值
 enum Weekday: Int{
   case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
 }
@@ -1502,11 +1487,11 @@ func run(){
 print(&amp;quot;\(name)在奔跑&amp;quot;)
 }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义属性的语法&quot;&gt;&lt;a href=&quot;#定义属性的语法&quot; class=&quot;headerlink&quot; title=&quot;定义属性的语法&quot;&gt;&lt;/a&gt;定义属性的语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var或者let 存储属性:类型名字 = 初始值
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义构造器语法&quot;&gt;&lt;a href=&quot;#定义构造器语法&quot; class=&quot;headerlink&quot; title=&quot;定义构造器语法&quot;&gt;&lt;/a&gt;定义构造器语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]init(形参列表){
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;属性&quot;&gt;&lt;a href=&quot;#属性&quot; class=&quot;headerlink&quot; title=&quot;属性&quot;&gt;&lt;/a&gt;属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var或者let 存储属性:类型名字 = 初始值
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器&quot;&gt;&lt;a href=&quot;#构造器&quot; class=&quot;headerlink&quot; title=&quot;构造器&quot;&gt;&lt;/a&gt;构造器&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]init(形参列表){
 //零到多条可执行语句组成的构造器执行体
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定义方法的语法&quot;&gt;&lt;a href=&quot;#定义方法的语法&quot; class=&quot;headerlink&quot; title=&quot;定义方法的语法&quot;&gt;&lt;/a&gt;定义方法的语法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]func 方法名(形参列表) -&amp;gt;返回值类型 {
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]func 方法名(形参列表) -&amp;gt;返回值类型 {
 //零到多条可执行语句
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建实例&quot;&gt;&lt;a href=&quot;#创建实例&quot; class=&quot;headerlink&quot; title=&quot;创建实例&quot;&gt;&lt;/a&gt;创建实例&lt;/h2&gt;&lt;h3 id=&quot;类-1&quot;&gt;&lt;a href=&quot;#类-1&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p: Person
@@ -1553,7 +1538,7 @@ print(u3 === u1) //结果是true
 
 // &amp;quot;===&amp;quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
 // “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;self关键字&quot;&gt;&lt;a href=&quot;#self关键字&quot; class=&quot;headerlink&quot; title=&quot;self关键字&quot;&gt;&lt;/a&gt;self关键字&lt;/h3&gt;&lt;h4 id=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;a href=&quot;#方法中的self代表该方法的调用者&quot; class=&quot;headerlink&quot; title=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;/a&gt;方法中的self代表该方法的调用者&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;class Dog {  
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;self关键字&quot;&gt;&lt;a href=&quot;#self关键字&quot; class=&quot;headerlink&quot; title=&quot;self关键字&quot;&gt;&lt;/a&gt;self关键字&lt;/h2&gt;&lt;h3 id=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;a href=&quot;#方法中的self代表该方法的调用者&quot; class=&quot;headerlink&quot; title=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;/a&gt;方法中的self代表该方法的调用者&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Dog {  
   func jump(){
     print(&amp;quot;正在执行jump方法&amp;quot;)
   }
@@ -1562,7 +1547,7 @@ print(u3 === u1) //结果是true
      print(&amp;quot;正在执行run方法&amp;quot;)
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;a href=&quot;#构造器中的self代表该构造器正在初始化的实例&quot; class=&quot;headerlink&quot; title=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;/a&gt;构造器中的self代表该构造器正在初始化的实例&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;class Person {
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;a href=&quot;#构造器中的self代表该构造器正在初始化的实例&quot; class=&quot;headerlink&quot; title=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;/a&gt;构造器中的self代表该构造器正在初始化的实例&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Person {
     var name: String = &amp;quot;&amp;quot;
     var age: Int = 2
 
@@ -1578,19 +1563,25 @@ print(u3 === u1) //结果是true
 
 var person = Person(name:&amp;quot;Lily&amp;quot;,age:10)
 person.info()
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;类和结构体的选择&quot;&gt;&lt;a href=&quot;#类和结构体的选择&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的选择&quot;&gt;&lt;/a&gt;类和结构体的选择&lt;/h3&gt;&lt;ol&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类和结构体的选择&quot;&gt;&lt;a href=&quot;#类和结构体的选择&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的选择&quot;&gt;&lt;/a&gt;类和结构体的选择&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;结构体的主要目的是用于封装少量相关的简单数据&lt;/li&gt;
 &lt;li&gt;如果需要在传递参数或者赋值时自动复制副本，使用结构体&lt;/li&gt;
 &lt;li&gt;明确该类型无须继承另一个已有的类或被其他类继承&lt;/li&gt;
 &lt;li&gt;注意，大部分时候，程序应该自定义类而不是自定义结构体。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Swift中的三种面向对象类型:枚举，结构体，类&lt;/li&gt;
+&lt;li&gt;枚举,一组有限的值的集合.要区分枚举值，关联值，原始值&lt;/li&gt;
+&lt;li&gt;类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承&lt;/li&gt;
+&lt;li&gt;值类型和引用类型的区别。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象的核心：类和对象&lt;/li&gt;
-&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;
+&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
+&lt;li&gt;Swift可以定义枚举，结
     
     </summary>
     

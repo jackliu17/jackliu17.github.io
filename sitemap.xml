@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
+    
+    <lastmod>2016-04-15T11:49:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/</loc>
+    
+    <lastmod>2016-04-15T11:11:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/03/14/Swift%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/</loc>
     
-    <lastmod>2016-04-15T07:23:20.000Z</lastmod>
+    <lastmod>2016-04-15T07:27:24.000Z</lastmod>
     
   </url>
   
@@ -40,20 +54,6 @@
     <loc>http://jackliu17.github.io/2016/03/13/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89/</loc>
     
     <lastmod>2016-04-14T04:51:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
-    
-    <lastmod>2016-04-13T08:10:28.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/</loc>
-    
-    <lastmod>2016-04-13T02:48:24.000Z</lastmod>
     
   </url>
   
