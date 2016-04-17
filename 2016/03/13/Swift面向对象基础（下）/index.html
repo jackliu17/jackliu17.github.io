@@ -64,13 +64,7 @@
 <meta name="description" content="可选链
 可选链用于处理可选类型的属性，方法和下标
 使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀
-可选链会自动判断程序访问的关联实例是否为nilclass Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量">
+可选链会自动判断程序访问的关联实例是否为nil12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift面向对象基础（下）">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/index.html">
@@ -78,26 +72,14 @@ self.name = name
 <meta property="og:description" content="可选链
 可选链用于处理可选类型的属性，方法和下标
 使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀
-可选链会自动判断程序访问的关联实例是否为nilclass Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量">
-<meta property="og:updated_time" content="2016-04-17T04:27:05.000Z">
+可选链会自动判断程序访问的关联实例是否为nil12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
+<meta property="og:updated_time" content="2016-04-17T04:36:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础（下）">
 <meta name="twitter:description" content="可选链
 可选链用于处理可选类型的属性，方法和下标
 使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀
-可选链会自动判断程序访问的关联实例是否为nilclass Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量">
+可选链会自动判断程序访问的关联实例是否为nil12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758">
 
 
 
@@ -325,138 +307,11 @@ self.name = name
         <h1 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h1><ol>
 <li>可选链用于处理可选类型的属性，方法和下标</li>
 <li>使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀</li>
-<li>可选链会自动判断程序访问的关联实例是否为nil<pre><code>class Customer {
-var name = &quot;&quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &quot;张三&quot;, title: &quot;销售客服&quot;),
-    Employee (name: &quot;小明&quot;, title: &quot;售后客服&quot;),
-    Employee (name: &quot;Han&quot;, title: &quot;普通客服&quot;),
-    Employee (name: &quot;Better&quot;, title: &quot;销售主管&quot;),
-]
-//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
-func findEmp(empName:String) -&gt; Employee! {
-    for emp in employees {
-        if emp.name == empName {
-          return emp
-        }
-    }
-    return nil
-}
-}
-class Company {
-  var name = &quot;&quot;
-  var addr = &quot;&quot;
-  init (name:String, addr:String){
-  self.name = name
-  self.addr = addr
-  }
-}
-class Employee {
-var name = &quot;Lily&quot;
-var title = &quot;行政&quot;
-var company:Company!  
-init(name:String, title:String){
-    self.name = name
-    self.title = title
-}
-func info(){
-     print(&quot;本员工名为\(self.name),职位是\(self.title)&quot;)
-}
-}
-//第一种情况----------------------
-var c = Customer(name: &quot;Damon&quot;)
-var emp = Employee(name: &quot;Elena&quot;, title: &quot;Student&quot;)
-//设置Customer关联的Employee实例
-c.emp = emp
-//设置Employee关联的Company实例
-emp.company = Company(name: &quot;极客学院&quot;, addr: &quot;北京市&quot;)
-//print(&quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&quot;)  //强制解析访问属性
-//print(&quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&quot;) //使用可选链访问属性
-//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
-var c2 = Customer(name: &quot;Lucky&quot;)
-c2.emp = Employee(name: &quot;Snow&quot;, title: &quot;客服&quot;)
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&quot;) //会报错，因为有空值，company没有赋值
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&quot;) //使用可选链访问属性，即使没有赋值也没有关系
-//第三种情况 ---------------
-var c3 = Customer(name: &quot;Paul&quot;)
-c3.findEmp(&quot;张三&quot;)?.info()
-c3.findEmp(&quot;小明&quot;)?.info() //如果传入的名字不存在，它就不会执行输出，但是也不会让程序崩溃
-//print(&quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&quot;)
-//第四种情况
-var dict = [Int: Customer]()
-dict[1] = Customer(name: &quot;Han&quot;)
-dict[2] = Customer(name: &quot;Angle&quot;)
-dict[1]?.findEmp(&quot;Better&quot;)?.info()
-dict[4]?.findEmp(&quot;Better&quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句
-</code></pre></li>
+<li>可选链会自动判断程序访问的关联实例是否为nil<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">    class Customer &#123;</span><br><span class="line">    var name = &quot;&quot;</span><br><span class="line">    var emp: Employee?</span><br><span class="line">    init(name :String)&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个常量类型的employee数组，用于模拟系统中所有员工</span><br><span class="line">    let employees = [</span><br><span class="line">        Employee(name: &quot;张三&quot;, title: &quot;销售客服&quot;),</span><br><span class="line">        Employee (name: &quot;小明&quot;, title: &quot;售后客服&quot;),</span><br><span class="line">        Employee (name: &quot;Han&quot;, title: &quot;普通客服&quot;),</span><br><span class="line">        Employee (name: &quot;Better&quot;, title: &quot;销售主管&quot;),</span><br><span class="line">    ]</span><br><span class="line">    //定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型</span><br><span class="line">    func findEmp(empName:String) -&gt; Employee! &#123;</span><br><span class="line">        for emp in employees &#123;</span><br><span class="line">            if emp.name == empName &#123;</span><br><span class="line">              return emp</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nil</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    class Company &#123;</span><br><span class="line">      var name = &quot;&quot;</span><br><span class="line">      var addr = &quot;&quot;</span><br><span class="line">      init (name:String, addr:String)&#123;</span><br><span class="line">      self.name = name</span><br><span class="line">      self.addr = addr</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    class Employee &#123;</span><br><span class="line">    var name = &quot;Lily&quot;</span><br><span class="line">    var title = &quot;行政&quot;</span><br><span class="line">    var company:Company!  </span><br><span class="line">    init(name:String, title:String)&#123;</span><br><span class="line">        self.name = name</span><br><span class="line">        self.title = title</span><br><span class="line">    &#125;</span><br><span class="line">    func info()&#123;</span><br><span class="line">         print(&quot;本员工名为\(self.name),职位是\(self.title)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //第一种情况----------------------</span><br><span class="line">    var c = Customer(name: &quot;Damon&quot;)</span><br><span class="line">    var emp = Employee(name: &quot;Elena&quot;, title: &quot;Student&quot;)</span><br><span class="line">    //设置Customer关联的Employee实例</span><br><span class="line">    c.emp = emp</span><br><span class="line">    //设置Employee关联的Company实例</span><br><span class="line">    emp.company = Company(name: &quot;极客学院&quot;, addr: &quot;北京市&quot;)</span><br><span class="line">    //print(&quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&quot;)  //强制解析访问属性</span><br><span class="line">    //print(&quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&quot;) //使用可选链访问属性</span><br><span class="line">    //第二种情况, 如果不赋值的情况下强制解析，会有空值报错</span><br><span class="line">    var c2 = Customer(name: &quot;Lucky&quot;)</span><br><span class="line">    c2.emp = Employee(name: &quot;Snow&quot;, title: &quot;客服&quot;)</span><br><span class="line">    //print(&quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&quot;) //会报错，因为有空值，company没有赋值</span><br><span class="line">    //print(&quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&quot;) //使用可选链访问属性，即使没有赋值也没有关系</span><br><span class="line">    //第三种情况 ---------------</span><br><span class="line">    var c3 = Customer(name: &quot;Paul&quot;)</span><br><span class="line">    c3.findEmp(&quot;张三&quot;)?.info()</span><br><span class="line">    c3.findEmp(&quot;小明&quot;)?.info() //如果传入的名字不存在，它就不会执行输出，但是也不会让程序崩溃</span><br><span class="line">    //print(&quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&quot;)</span><br><span class="line">    //第四种情况</span><br><span class="line">    var dict = [Int: Customer]()</span><br><span class="line">    dict[1] = Customer(name: &quot;Han&quot;)</span><br><span class="line">    dict[2] = Customer(name: &quot;Angle&quot;)</span><br><span class="line">    dict[1]?.findEmp(&quot;Better&quot;)?.info()</span><br><span class="line">    dict[4]?.findEmp(&quot;Better&quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line"># 值类型的类型属性-枚举</span><br><span class="line"></span><br><span class="line">结构体可以包含实例计算属性，不能包含实例存储属性</span><br><span class="line"></span><br><span class="line">    enum Season &#123;</span><br><span class="line">    //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil</span><br><span class="line">    static var desc:String?</span><br><span class="line">    //为枚举定义类型存储属性，且声明为常量</span><br><span class="line">    static let name = &quot;季节&quot;</span><br><span class="line">    static var info:String&#123;</span><br><span class="line">    </span><br><span class="line">        get&#123;</span><br><span class="line">        </span><br><span class="line">        return&quot;代表季节的枚举，其desc为:\(desc)&quot;</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        set&#123;</span><br><span class="line">        </span><br><span class="line">        print(&quot;程序尝试对info计算属性进行赋值:\(newValue)&quot;)</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //对Season枚举的类型属性赋值</span><br><span class="line">    Season.desc = &quot;季节类&quot;</span><br><span class="line">    print(Season.name)</span><br><span class="line">    Season.info = &quot;新的info&quot;</span><br><span class="line">    print(Season.info)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 值类型的类型属性-结构体</span><br><span class="line"></span><br><span class="line">用static 修饰的是类型属性，需要通过类来调用</span><br><span class="line"></span><br><span class="line">    struct FkRange &#123;</span><br><span class="line">    </span><br><span class="line">    //为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil</span><br><span class="line">    static var desc:String?</span><br><span class="line">    //为结构体定义类型存储属性，且声明为常量</span><br><span class="line">    static let maxWidth = 10000</span><br><span class="line">    static let maxHeight = 40000</span><br><span class="line">    //定义类型计算属性，该属性只有get部分，是一个只读属性</span><br><span class="line">    static var maxArea:Int&#123;</span><br><span class="line">    return maxWidth * maxHeight</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    FkRange.desc = &quot;描述范围的结构体&quot;</span><br><span class="line">    print(FkRange.desc)</span><br><span class="line">    print(FkRange.maxWidth)</span><br><span class="line">    print(FkRange.maxHeight)</span><br><span class="line">    print(FkRange.maxArea)  </span><br><span class="line"></span><br><span class="line"># 类的类型属性</span><br><span class="line">类中不可以定义类型存储属性，只能包含类型计算属性</span><br><span class="line">    </span><br><span class="line">    class User &#123;</span><br><span class="line"></span><br><span class="line">       //为类定义类型计算属性</span><br><span class="line">    class var nameMaxLength:Int &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">        return 24</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        set &#123;</span><br><span class="line">        print(&quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    print(User.nameMaxLength)</span><br><span class="line">    User.nameMaxLength = 20</span><br><span class="line">    </span><br><span class="line"># 使用闭包或函数为属性设置初始值</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h1 id="值类型的类型属性-枚举"><a href="#值类型的类型属性-枚举" class="headerlink" title="值类型的类型属性-枚举"></a>值类型的类型属性-枚举</h1><p>结构体可以包含实例计算属性，不能包含实例存储属性</p>
-<pre><code>enum Season {
-//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为枚举定义类型存储属性，且声明为常量
-static let name = &quot;季节&quot;
-static var info:String{
-
-    get{
-
-    return&quot;代表季节的枚举，其desc为:\(desc)&quot;
-
-    }
-
-    set{
-
-    print(&quot;程序尝试对info计算属性进行赋值:\(newValue)&quot;)
-
-    }
-}
-}
-//对Season枚举的类型属性赋值
-Season.desc = &quot;季节类&quot;
-print(Season.name)
-Season.info = &quot;新的info&quot;
-print(Season.info)
-</code></pre><h1 id="值类型的类型属性-结构体"><a href="#值类型的类型属性-结构体" class="headerlink" title="值类型的类型属性-结构体"></a>值类型的类型属性-结构体</h1><p>用static 修饰的是类型属性，需要通过类来调用</p>
-<pre><code>struct FkRange {
-
-//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为结构体定义类型存储属性，且声明为常量
-static let maxWidth = 10000
-static let maxHeight = 40000
-//定义类型计算属性，该属性只有get部分，是一个只读属性
-static var maxArea:Int{
-return maxWidth * maxHeight
-}
-}
-
-FkRange.desc = &quot;描述范围的结构体&quot;
-print(FkRange.desc)
-print(FkRange.maxWidth)
-print(FkRange.maxHeight)
-print(FkRange.maxArea)  
-</code></pre><h1 id="类的类型属性"><a href="#类的类型属性" class="headerlink" title="类的类型属性"></a>类的类型属性</h1><p>类中不可以定义类型存储属性，只能包含类型计算属性</p>
-<pre><code>class User {
-
-   //为类定义类型计算属性
-class var nameMaxLength:Int {
-    get {
-    return 24
-    }
-
-    set {
-    print(&quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&quot;)
-    }
-}
-}
-print(User.nameMaxLength)
-User.nameMaxLength = 20
-</code></pre><h1 id="值类型的类型方法"><a href="#值类型的类型方法" class="headerlink" title="值类型的类型方法"></a>值类型的类型方法</h1><pre><code>enum Season2{
+<p>struct ClosureInit {<br>    // 使用闭包对test实例存储属性执行初始化<br>    var test: Int = {<br>    var dt = NSDate()<br>    var gregorian = NSCalendar.currentCalendar()<br>    // 定义一个时间字段的旗标，指定将会获取指定月、日信息<br>    var unitFlags = NSCalendarUnit.CalendarUnitMonth<br>    | NSCalendarUnit.CalendarUnitDay  //这段代码有问题<br>    var comp = gregorian.components(unitFlags<br>    , fromDate:dt)<br>    // 获取当前的月份<br>    var month = Int(comp.month)<br>    // 获取当前第几日<br>    var day = Int(comp.day)<br>    // 得到计算结果<br>    return day - month<br>    }()<br>}<br>var ci = ClosureInit()<br>print(ci.test)<br>```</p>
+<h1 id="值类型的类型方法"><a href="#值类型的类型方法" class="headerlink" title="值类型的类型方法"></a>值类型的类型方法</h1><pre><code>enum Season2{
 
  //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
 static var desc:String?
@@ -688,7 +543,7 @@ print(Math.degree2Radian(45))
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可选链"><span class="nav-number">1.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-枚举"><span class="nav-number">2.</span> <span class="nav-text">值类型的类型属性-枚举</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-结构体"><span class="nav-number">3.</span> <span class="nav-text">值类型的类型属性-结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型属性"><span class="nav-number">4.</span> <span class="nav-text">类的类型属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型方法"><span class="nav-number">5.</span> <span class="nav-text">值类型的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型方法"><span class="nav-number">6.</span> <span class="nav-text">类的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可选链"><span class="nav-number">1.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型方法"><span class="nav-number">2.</span> <span class="nav-text">值类型的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型方法"><span class="nav-number">3.</span> <span class="nav-text">类的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结:</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
