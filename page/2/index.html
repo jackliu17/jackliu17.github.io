@@ -238,6 +238,146 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/18/iOS-UI-CodeExample/" itemprop="url">
+                  iOS-UI-CodeExample
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-18T13:08:59+11:00" content="2016-03-18">
+              2016-03-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/18/iOS-UI-CodeExample/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/18/iOS-UI-CodeExample/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="000-使用代码创建UI元素"><a href="#000-使用代码创建UI元素" class="headerlink" title="000 使用代码创建UI元素"></a>000 使用代码创建UI元素</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let label = UILabel(frame: CGRect(x: 50, y: 50, width: 200, height: 100))</span><br><span class="line">      label.text = &quot;Hello jikexueyuan&quot;</span><br><span class="line">      view.addSubview(label)</span><br></pre></td></tr></table></figure>
+<h1 id="001-使用webView打开网站"><a href="#001-使用webView打开网站" class="headerlink" title="001.使用webView打开网站"></a>001.使用webView打开网站</h1><p>需要在info.plist里设置</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/webview%20setting.png" alt="uiwebview"></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>@IBOutlet weak var wv: UIWebView!
+@IBOutlet weak var urlInput: UITextField!
+@IBAction func btnGoClicked(sender: AnyObject) {
+    wv.loadRequest(NSURLRequest(URL:NSURL(string: urlInput.text!)!))
+    urlInput.resignFirstResponder()
+}
+</code></pre><h1 id="002-圆形进度指示器"><a href="#002-圆形进度指示器" class="headerlink" title="002.圆形进度指示器"></a>002.圆形进度指示器</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9C%86%E5%BD%A2%E8%BF%9B%E5%BA%A6%E6%8C%87%E7%A4%BA%E5%99%A8.gif" alt="圆形进度指示器"></p>
+<h2 id="ProgressControl-swift"><a href="#ProgressControl-swift" class="headerlink" title="ProgressControl.swift"></a>ProgressControl.swift</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">class ProgressControl: UIView &#123;</span><br><span class="line">    override init(frame:CGRect)&#123;</span><br><span class="line">        super.init(frame: frame)</span><br><span class="line">        self.backgroundColor = UIColor(white: 1, alpha: 0)</span><br><span class="line">    &#125;</span><br><span class="line">    required init?(coder aDecoder: NSCoder) &#123;</span><br><span class="line">        fatalError(&quot;init(coder:) has not been implemented&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    private var _progressValue:CGFloat = 0</span><br><span class="line">    internal func getProgressValue()-&gt;CGFloat&#123;</span><br><span class="line">        return _progressValue</span><br><span class="line">    &#125;</span><br><span class="line">    internal func setProgressValue(value:CGFloat)&#123;</span><br><span class="line">        _progressValue = value</span><br><span class="line">        setNeedsDisplay()</span><br><span class="line">    &#125;</span><br><span class="line">    override func drawRect(rect: CGRect) &#123;</span><br><span class="line">        self.backgroundColor = UIColor(white: 1, alpha: 0)</span><br><span class="line">        // Drawing code</span><br><span class="line">        let ctx = UIGraphicsGetCurrentContext()</span><br><span class="line">        let r = rect.width/2</span><br><span class="line">        CGContextAddArc(ctx, r, r, r, 0, 3.141592653*2, 0)</span><br><span class="line">        CGContextSetRGBFillColor(ctx, 0.7, 0.7, 0.7, 1)</span><br><span class="line">        CGContextFillPath(ctx) </span><br><span class="line">        CGContextAddArc(ctx,r,r,r,0,3.141592653*2*_progressValue, 0)</span><br><span class="line">        CGContextAddLineToPoint(ctx, r, r)</span><br><span class="line">        CGContextSetRGBFillColor(ctx, 0, 0, 1, 1)</span><br><span class="line">        CGContextFillPath(ctx)   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="viewController-swift"><a href="#viewController-swift" class="headerlink" title="viewController.swift"></a>viewController.swift</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    private var pc:ProgressControl!</span><br><span class="line">    @IBAction func addProgressBtnPress(sender: AnyObject) &#123;</span><br><span class="line">        pc.setProgressValue(pc.getProgressValue()+0.1)</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">        pc = ProgressControl(frame:CGRect(x: 100,</span><br><span class="line">            y: 100,</span><br><span class="line">            width: 100,</span><br><span class="line">            height: 100))</span><br><span class="line">        self.view.addSubview(pc)</span><br><span class="line">    &#125;</span><br><span class="line">    override func didReceiveMemoryWarning() &#123;</span><br><span class="line">        super.didReceiveMemoryWarning()</span><br><span class="line">        // Dispose of any resources that can be recreated.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="003-实时预览自定义控件"><a href="#003-实时预览自定义控件" class="headerlink" title="003.实时预览自定义控件"></a>003.实时预览自定义控件</h1><h2 id="1-创建一个new-Target"><a href="#1-创建一个new-Target" class="headerlink" title="1.创建一个new Target"></a>1.创建一个new Target</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new%20target.png" alt=""></p>
+<h2 id="2-创建新的文件MyView-swift在这个target里"><a href="#2-创建新的文件MyView-swift在这个target里" class="headerlink" title="2.创建新的文件MyView.swift在这个target里"></a>2.创建新的文件MyView.swift在这个target里</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">@IBDesignable class MyView: UIView &#123;</span><br><span class="line">    @IBInspectable var str:String = &quot;Hello&quot;</span><br><span class="line">    @IBInspectable var borderWidth:CGFloat = 0&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.borderWidth = borderWidth</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @IBInspectable var borderColor:UIColor = UIColor.clearColor()&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.borderColor = borderColor.CGColor</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @IBInspectable var cornerRaius:CGFloat=0&#123;</span><br><span class="line">        didSet&#123;</span><br><span class="line">        layer.cornerRadius = cornerRaius</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-实时预览编辑效果"><a href="#3-实时预览编辑效果" class="headerlink" title="3.实时预览编辑效果"></a>3.实时预览编辑效果</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%AE%9E%E6%97%B6%E9%A2%84%E8%A7%88.png" alt=""></p>
+<h1 id="004-传感器"><a href="#004-传感器" class="headerlink" title="004. 传感器"></a>004. 传感器</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">import CoreMotion</span><br><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    var cmm:CMMotionManager!</span><br><span class="line">    var q:NSOperationQueue!</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">    cmm = CMMotionManager()</span><br><span class="line">        q = NSOperationQueue()</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewWillAppear(animated: Bool) &#123;</span><br><span class="line">        startAccelerometerUpdate()</span><br><span class="line">        startGyroUpdate()</span><br><span class="line">        startListenProximity()</span><br><span class="line">        startListenLevel()</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewWillDisappear(animated: Bool) &#123;</span><br><span class="line">        stopAccelerometerUpdate()</span><br><span class="line">        stopGyroUpdate()</span><br><span class="line">        stopListenProximity()</span><br><span class="line">        stopListenLevel()</span><br><span class="line">    &#125;</span><br><span class="line">    //调用加速度传感器</span><br><span class="line">    func startAccelerometerUpdate()&#123;</span><br><span class="line">        cmm.accelerometerUpdateInterval = 1</span><br><span class="line">        if cmm.accelerometerAvailable &amp;&amp; !cmm.accelerometerActive &#123;</span><br><span class="line">            cmm.startAccelerometerUpdatesToQueue(q, withHandler: &#123;</span><br><span class="line">                (data:CMAccelerometerData?,err:NSError?) -&gt; Void in</span><br><span class="line">                print(&quot;AccelerometerData:\(data)&quot;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            print(&quot;加速度传感器不可用&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //调用陀螺仪</span><br><span class="line">    func startGyroUpdate()&#123;</span><br><span class="line">        cmm.gyroUpdateInterval = 1</span><br><span class="line">        if cmm.gyroAvailable &amp;&amp; !cmm.gyroActive&#123;</span><br><span class="line">            cmm.startGyroUpdatesToQueue(q, withHandler:&#123;</span><br><span class="line">                (data:CMGyroData?,err:NSError?)in</span><br><span class="line">                print(&quot;Gyro data:\(data)&quot;)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //调用距离传感器</span><br><span class="line">    func startListenProximity()&#123;</span><br><span class="line">        UIDevice.currentDevice().proximityMonitoringEnabled = true</span><br><span class="line">        NSNotificationCenter.defaultCenter().addObserver(self,</span><br><span class="line">            selector: Selector(&quot;proximityChanged&quot;),</span><br><span class="line">            name:UIDeviceProximityStateDidChangeNotification,</span><br><span class="line">            object: nil)</span><br><span class="line">    &#125;</span><br><span class="line">    func proximityChanged()&#123;</span><br><span class="line">        print(&quot;\(UIDevice.currentDevice().proximityState)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    //调用电源传感器</span><br><span class="line">    func startListenLevel()&#123;</span><br><span class="line">    UIDevice.currentDevice().batteryMonitoringEnabled = true</span><br><span class="line">        print(&quot;\(UIDevice.currentDevice().batteryLevel)&quot;)</span><br><span class="line">        NSNotificationCenter.defaultCenter().addObserver(self,</span><br><span class="line">            selector: (&quot;levelChanged&quot;),</span><br><span class="line">            name: UIDeviceBatteryLevelDidChangeNotification,</span><br><span class="line">            object: nil)</span><br><span class="line">    &#125;</span><br><span class="line">    func levelChanged()&#123;</span><br><span class="line">    print(&quot;\(UIDevice.currentDevice().batteryLevel)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    func stopListenLevel()&#123;</span><br><span class="line">    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceBatteryLevelDidChangeNotification,object:nil)</span><br><span class="line">    &#125;</span><br><span class="line">    func stopAccelerometerUpdate()&#123;</span><br><span class="line">        if cmm.accelerometerActive &#123;</span><br><span class="line">            cmm.stopAccelerometerUpdates()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    func stopGyroUpdate()&#123;</span><br><span class="line">        if cmm.gyroActive&#123;</span><br><span class="line">            cmm.stopGyroUpdates()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    func stopListenProximity()&#123;</span><br><span class="line">    NSNotificationCenter.defaultCenter().removeObserver(self,name:UIDeviceProximityStateDidChangeNotification,object:nil)</span><br><span class="line">    &#125;</span><br><span class="line">    override func didReceiveMemoryWarning() &#123;</span><br><span class="line">        super.didReceiveMemoryWarning()</span><br><span class="line">        // Dispose of any resources that can be recreated.</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="005-指南针"><a href="#005-指南针" class="headerlink" title="005. 指南针"></a>005. 指南针</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">import CoreLocation</span><br><span class="line">class ViewController: UIViewController,CLLocationManagerDelegate &#123;</span><br><span class="line">      @IBOutlet weak var pointerIv: UIImageView!</span><br><span class="line">    var lm:CLLocationManager!</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        lm = CLLocationManager()</span><br><span class="line">        lm.delegate = self</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewWillAppear(animated: Bool) &#123;</span><br><span class="line">        lm.startUpdatingHeading()</span><br><span class="line">    &#125;</span><br><span class="line">    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) &#123;</span><br><span class="line">        pointerIv.transform = CGAffineTransformMakeRotation(CGFloat((180-newHeading.magneticHeading)/180.0 * 3.141592653))</span><br><span class="line">    &#125;</span><br><span class="line">    override func viewWillDisappear(animated: Bool) &#123;</span><br><span class="line">        lm.stopUpdatingHeading()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="006-触摸事件的侦听-amp-图片的缩小放大"><a href="#006-触摸事件的侦听-amp-图片的缩小放大" class="headerlink" title="006.触摸事件的侦听 &amp; 图片的缩小放大"></a>006.触摸事件的侦听 &amp; 图片的缩小放大</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import UIKit</span><br><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    @IBOutlet weak var iv:UIImageView!</span><br><span class="line">    private var lastDistance:CGFloat = 0.0</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        // Do any additional setup after loading the view, typically from a nib.</span><br><span class="line">        //开启侦听多点触摸</span><br><span class="line">        self.view.multipleTouchEnabled = true</span><br><span class="line">    &#125;</span><br><span class="line">    override func touchesBegan(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) &#123;</span><br><span class="line">        lastDistance = 0.0</span><br><span class="line">        print(&quot;touchedBegan&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    override func touchesMoved(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) &#123;</span><br><span class="line">        //输出触摸时某个点的坐标</span><br><span class="line">        //print(touches.first!.locationInView(self.view))</span><br><span class="line">        //输出有多少个触摸点同时在屏幕上</span><br><span class="line">        // print(touches.count)</span><br><span class="line">        //输出每一个触摸点的坐标</span><br><span class="line">//        for touch in touches &#123;</span><br><span class="line">//        print(touch.locationInView(self.view))</span><br><span class="line">//        &#125;</span><br><span class="line">        //图片的缩小放大</span><br><span class="line">        let touchesSet = touches as NSSet</span><br><span class="line">        if touchesSet.count == 2&#123;</span><br><span class="line">        let p1 = touchesSet.allObjects[0].locationInView(self.view)</span><br><span class="line">        let p2 = touchesSet.allObjects[1].locationInView(self.view)</span><br><span class="line">            let xx = p1.x - p2.x</span><br><span class="line">            let yy = p1.y - p2.y</span><br><span class="line">            let currentDistance = sqrt(xx * xx + yy * yy)</span><br><span class="line">            if lastDistance == 0.0 &#123;</span><br><span class="line">            lastDistance = currentDistance</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                if lastDistance - currentDistance &gt; 5&#123;</span><br><span class="line">                print(&quot;缩小&quot;)</span><br><span class="line">                    lastDistance = currentDistance</span><br><span class="line">                    iv.transform = CGAffineTransformScale(iv.transform, 0.9, 0.9)</span><br><span class="line">                &#125;else if lastDistance - currentDistance &lt; -5&#123;</span><br><span class="line">                print(&quot;放大&quot;)</span><br><span class="line">                    lastDistance = currentDistance</span><br><span class="line">                    iv.transform = CGAffineTransformScale(iv.transform, 1.1, 1.1)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    override func touchesEnded(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) &#123;</span><br><span class="line">        print(&quot;touchedEnded&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="007-浏览器打开网页-打电话-发短信-发邮件"><a href="#007-浏览器打开网页-打电话-发短信-发邮件" class="headerlink" title="007.浏览器打开网页 - 打电话 - 发短信 - 发邮件"></a>007.浏览器打开网页 - 打电话 - 发短信 - 发邮件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func btnGoWeb(sender: AnyObject) &#123;</span><br><span class="line">    UIApplication.sharedApplication().openURL(NSURL(string:&quot;http://www.google.com&quot;)!)</span><br><span class="line">&#125;</span><br><span class="line">@IBAction func btnGoMail(sender: AnyObject) &#123;</span><br><span class="line">    UIApplication.sharedApplication().openURL(NSURL(string:&quot;mailto://xxx@jikexueyuan.com&quot;)!)</span><br><span class="line">&#125;</span><br><span class="line">@IBAction func btnGoPhone(sender: AnyObject) &#123;</span><br><span class="line">    UIApplication.sharedApplication().openURL(NSURL(string:&quot;tel://10086&quot;)!)</span><br><span class="line">&#125;</span><br><span class="line">@IBAction func btnGoMsg(sender: AnyObject) &#123;</span><br><span class="line">    UIApplication.sharedApplication().openURL(NSURL(string:&quot;sms://10086&quot;)!)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="app-A调用app-B"><a href="#app-A调用app-B" class="headerlink" title="app A调用app B"></a>app A调用app B</h1><h2 id="app-A"><a href="#app-A" class="headerlink" title="app A"></a>app A</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@IBAction func btnCallIme(sender: AnyObject) &#123;</span><br><span class="line">      UIApplication.sharedApplication().openURL(NSURL(string: &quot;ime://i.love.you?h=Hello&amp;b=World&quot;)!)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="app-B"><a href="#app-B" class="headerlink" title="app B"></a>app B</h2><p>在info.plist里先注册</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/register%20protocol.png" alt="register protocol"></p>
+<p>AppDelegate.swift</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, handleOpenURL url: NSURL) -&gt; Bool &#123;</span><br><span class="line">      let vc = LabelViewController(nibName:&quot;LabelViewController&quot;,bundle:nil)</span><br><span class="line">      window?.addSubview(vc.view)</span><br><span class="line">      vc.myLabel.text = &quot;\(url)&quot;</span><br><span class="line">      return true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="008-从相册获取照片"><a href="#008-从相册获取照片" class="headerlink" title="008.从相册获取照片"></a>008.从相册获取照片</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/getImage.gif" alt="getImage"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate &#123;</span><br><span class="line">    @IBOutlet weak var iv:UIImageView!</span><br><span class="line">    @IBAction func btnGetImage(sender: AnyObject) &#123;</span><br><span class="line">        let c = UIImagePickerController()</span><br><span class="line">        c.sourceType = UIImagePickerControllerSourceType.PhotoLibrary</span><br><span class="line">        c.delegate = self</span><br><span class="line">        self.presentViewController(c, animated:true,completion: nil)</span><br><span class="line">    &#125;</span><br><span class="line">    func imagePickerController(picker: UIImagePickerController,didFinishPickingMediaWithInfo info: [String : AnyObject]) &#123;</span><br><span class="line">            let image:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage</span><br><span class="line">            iv.image = image</span><br><span class="line">            picker.dismissViewControllerAnimated(true, completion: nil)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/17/Interview-English/" itemprop="url">
                   Interview-English
                 </a>
@@ -784,162 +924,6 @@ int _age;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/16/iOS开发面试/" itemprop="url">
-                  iOS开发面试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T16:43:22+11:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/iOS开发面试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/iOS开发面试/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Objective-C有多重继承吗？不是的话有什么替代方法"><a href="#Objective-C有多重继承吗？不是的话有什么替代方法" class="headerlink" title="Objective-C有多重继承吗？不是的话有什么替代方法?"></a>Objective-C有多重继承吗？不是的话有什么替代方法?</h3><p>cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的</p>
-<h3 id="Objective-C有私有方法吗，私有变量呢"><a href="#Objective-C有私有方法吗，私有变量呢" class="headerlink" title="Objective-C有私有方法吗，私有变量呢?"></a>Objective-C有私有方法吗，私有变量呢?</h3><p>Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。</p>
-<h3 id="const作用"><a href="#const作用" class="headerlink" title="const作用"></a>const作用</h3><ol>
-<li>欲阻止一个变量被改变，可以使用const关键字</li>
-<li>对指针来说，可以指定指针本身为const,也可以指定指针所指的数据为const,或二者同时指定为const</li>
-<li>在一个函数声明中，const可以修饰形参，表明它是一个输入参数，在函数内部不能改变其值</li>
-<li>对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量</li>
-</ol>
-<h3 id="static作用"><a href="#static作用" class="headerlink" title="static作用"></a>static作用</h3><ol>
-<li>函数体内static变量的作用范围为该函数体，不同于auto变量，该变量的内存只被分配一次，因此其值在下次调用时仍维持上次的值</li>
-<li>在模块内的static全局变量可以被模块内所用的函数访问，但不能被模块外其他函数访问</li>
-<li>在模块内的static函数只可被这一模块内的其他函数调用，这个函数的使用范围被限制在声明它的模块内</li>
-<li>在类中的static成员变量属于整个类所拥有，对类的所有对象只有一份拷贝</li>
-<li>在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量</li>
-</ol>
-<h3 id="extern-“C”的作用"><a href="#extern-“C”的作用" class="headerlink" title="extern “C”的作用"></a>extern “C”的作用</h3><ol>
-<li>被extern”C”限定的函数或者变量是extern类型的</li>
-<li>被extern”C”修饰的变量和函数是按照C语言方式编译和连接的</li>
-</ol>
-<h3 id="import和-include的区别，-class呢？"><a href="#import和-include的区别，-class呢？" class="headerlink" title="#import和 #include的区别，@class呢？"></a>#import和 #include的区别，@class呢？</h3><p>@class一般用于头文件中需要声明该类的某个实例变量的时候用到，在m文件中还是需要使用#import，而#import比#include的好处就是不会引起交叉编译</p>
-<h3 id="objective-C的优点"><a href="#objective-C的优点" class="headerlink" title="objective-C的优点"></a>objective-C的优点</h3><ol>
-<li>Categories</li>
-<li>Posing</li>
-<li>动态识别</li>
-<li>指标计算</li>
-<li>弹性讯息传递</li>
-<li>不是一个过度复杂的C衍生语言</li>
-<li>OC与C++可以混合编程</li>
-</ol>
-<h3 id="Objective-C的缺点"><a href="#Objective-C的缺点" class="headerlink" title="Objective-C的缺点"></a>Objective-C的缺点</h3><ol>
-<li>不支持命名空间</li>
-<li>不支持运算符重载</li>
-<li>不支持多重继承</li>
-<li>使用动态运行时类型，所有的方法都是函数调用，所以很多编译时优化方法都用不到</li>
-</ol>
-<h3 id="Objective-C的内存管理"><a href="#Objective-C的内存管理" class="headerlink" title="Objective-C的内存管理"></a>Objective-C的内存管理</h3><ol>
-<li>通过分配和初始化([[MyClass alloc]init])的方式来创建对象，那就拥有这个对象，需要负责该对象的释放。这个规则在使用NSObject的便利方法new时也同样适用。</li>
-<li>如果您拷贝(copy)一个对象，您也拥有拷贝得到的对象，需要负责该对象的释放。如果您保持(retain)一个对象，你就部分拥有这个对象，需要<br>在不再使用时释放该对象。反过来如果您从其他对象那里接收到一个对象。则您不再拥有该对象。也不应该释放它。</li>
-</ol>
-<h3 id="自动释放池是什么，如何工作"><a href="#自动释放池是什么，如何工作" class="headerlink" title="自动释放池是什么，如何工作"></a>自动释放池是什么，如何工作</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png" alt="自动释放池"></p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png" alt="堆和栈的区别1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png" alt="堆和栈的区别2"></p>
-<h3 id="swift新特性"><a href="#swift新特性" class="headerlink" title="swift新特性"></a>swift新特性</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png" alt="swift新特性"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -986,7 +970,7 @@ int _age;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
