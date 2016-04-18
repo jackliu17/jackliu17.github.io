@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="interview,iOS," />
+  <meta name="keywords" content="iOS,codeExample," />
 
 
 
@@ -61,33 +61,26 @@
 
 
 
-<meta name="description" content="Objective-C有多重继承吗？不是的话有什么替代方法?cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的
-Objective-C有私有方法吗，私有变量呢?Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。
-const作用
-欲阻止一个变量被改变，可以使用const关键字
-对指针来">
+<meta name="description" content="效果图
+项目结构
+UIButton 配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发面试">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/16/iOS开发面试/index.html">
+<meta property="og:title" content="iOS项目2.图片浏览器">
+<meta property="og:url" content="http://jackliu17.github.io/2016/04/18/iOS项目2-图片浏览器/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Objective-C有多重继承吗？不是的话有什么替代方法?cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的
-Objective-C有私有方法吗，私有变量呢?Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。
-const作用
-欲阻止一个变量被改变，可以使用const关键字
-对指针来">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png">
-<meta property="og:updated_time" content="2016-03-16T07:18:16.000Z">
+<meta property="og:description" content="效果图
+项目结构
+UIButton 配置">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%881.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/button_image.png">
+<meta property="og:updated_time" content="2016-04-18T06:01:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发面试">
-<meta name="twitter:description" content="Objective-C有多重继承吗？不是的话有什么替代方法?cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的
-Objective-C有私有方法吗，私有变量呢?Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。
-const作用
-欲阻止一个变量被改变，可以使用const关键字
-对指针来">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png">
+<meta name="twitter:title" content="iOS项目2.图片浏览器">
+<meta name="twitter:description" content="效果图
+项目结构
+UIButton 配置">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%881.png">
 
 
 
@@ -105,7 +98,7 @@ const作用
   };
 </script>
 
-  <title> iOS开发面试 | Cowboy Tech </title>
+  <title> iOS项目2.图片浏览器 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +240,7 @@ const作用
             
             
               
-                iOS开发面试
+                iOS项目2.图片浏览器
               
             
           </h1>
@@ -259,8 +252,8 @@ const作用
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T16:43:22+11:00" content="2016-03-16">
-              2016-03-16
+            <time itemprop="dateCreated" datetime="2016-04-18T15:57:39+10:00" content="2016-04-18">
+              2016-04-18
             </time>
           </span>
 
@@ -289,8 +282,8 @@ const作用
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/16/iOS开发面试/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/iOS开发面试/" itemprop="commentsCount"></span>
+                <a href="/2016/04/18/iOS项目2-图片浏览器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目2-图片浏览器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,48 +305,9 @@ const作用
       
 
       
-        <h3 id="Objective-C有多重继承吗？不是的话有什么替代方法"><a href="#Objective-C有多重继承吗？不是的话有什么替代方法" class="headerlink" title="Objective-C有多重继承吗？不是的话有什么替代方法?"></a>Objective-C有多重继承吗？不是的话有什么替代方法?</h3><p>cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的</p>
-<h3 id="Objective-C有私有方法吗，私有变量呢"><a href="#Objective-C有私有方法吗，私有变量呢" class="headerlink" title="Objective-C有私有方法吗，私有变量呢?"></a>Objective-C有私有方法吗，私有变量呢?</h3><p>Objectivie-C类里面的方法只有两种，静态方法和实例方法。所有实例变量默认都是私有的，所有实例方法默认都是公有的。</p>
-<h3 id="const作用"><a href="#const作用" class="headerlink" title="const作用"></a>const作用</h3><ol>
-<li>欲阻止一个变量被改变，可以使用const关键字</li>
-<li>对指针来说，可以指定指针本身为const,也可以指定指针所指的数据为const,或二者同时指定为const</li>
-<li>在一个函数声明中，const可以修饰形参，表明它是一个输入参数，在函数内部不能改变其值</li>
-<li>对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量</li>
-</ol>
-<h3 id="static作用"><a href="#static作用" class="headerlink" title="static作用"></a>static作用</h3><ol>
-<li>函数体内static变量的作用范围为该函数体，不同于auto变量，该变量的内存只被分配一次，因此其值在下次调用时仍维持上次的值</li>
-<li>在模块内的static全局变量可以被模块内所用的函数访问，但不能被模块外其他函数访问</li>
-<li>在模块内的static函数只可被这一模块内的其他函数调用，这个函数的使用范围被限制在声明它的模块内</li>
-<li>在类中的static成员变量属于整个类所拥有，对类的所有对象只有一份拷贝</li>
-<li>在类中的static成员函数属于整个类所拥有，这个函数不接收this指针，因而只能访问类的static成员变量</li>
-</ol>
-<h3 id="extern-“C”的作用"><a href="#extern-“C”的作用" class="headerlink" title="extern “C”的作用"></a>extern “C”的作用</h3><ol>
-<li>被extern”C”限定的函数或者变量是extern类型的</li>
-<li>被extern”C”修饰的变量和函数是按照C语言方式编译和连接的</li>
-</ol>
-<h3 id="import和-include的区别，-class呢？"><a href="#import和-include的区别，-class呢？" class="headerlink" title="#import和 #include的区别，@class呢？"></a>#import和 #include的区别，@class呢？</h3><p>@class一般用于头文件中需要声明该类的某个实例变量的时候用到，在m文件中还是需要使用#import，而#import比#include的好处就是不会引起交叉编译</p>
-<h3 id="objective-C的优点"><a href="#objective-C的优点" class="headerlink" title="objective-C的优点"></a>objective-C的优点</h3><ol>
-<li>Categories</li>
-<li>Posing</li>
-<li>动态识别</li>
-<li>指标计算</li>
-<li>弹性讯息传递</li>
-<li>不是一个过度复杂的C衍生语言</li>
-<li>OC与C++可以混合编程</li>
-</ol>
-<h3 id="Objective-C的缺点"><a href="#Objective-C的缺点" class="headerlink" title="Objective-C的缺点"></a>Objective-C的缺点</h3><ol>
-<li>不支持命名空间</li>
-<li>不支持运算符重载</li>
-<li>不支持多重继承</li>
-<li>使用动态运行时类型，所有的方法都是函数调用，所以很多编译时优化方法都用不到</li>
-</ol>
-<h3 id="Objective-C的内存管理"><a href="#Objective-C的内存管理" class="headerlink" title="Objective-C的内存管理"></a>Objective-C的内存管理</h3><ol>
-<li>通过分配和初始化([[MyClass alloc]init])的方式来创建对象，那就拥有这个对象，需要负责该对象的释放。这个规则在使用NSObject的便利方法new时也同样适用。</li>
-<li>如果您拷贝(copy)一个对象，您也拥有拷贝得到的对象，需要负责该对象的释放。如果您保持(retain)一个对象，你就部分拥有这个对象，需要<br>在不再使用时释放该对象。反过来如果您从其他对象那里接收到一个对象。则您不再拥有该对象。也不应该释放它。</li>
-</ol>
-<h3 id="自动释放池是什么，如何工作"><a href="#自动释放池是什么，如何工作" class="headerlink" title="自动释放池是什么，如何工作"></a>自动释放池是什么，如何工作</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png" alt="自动释放池"></p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png" alt="堆和栈的区别1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png" alt="堆和栈的区别2"></p>
-<h3 id="swift新特性"><a href="#swift新特性" class="headerlink" title="swift新特性"></a>swift新特性</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png" alt="swift新特性"></p>
+        <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%881.png" alt="效果图"></p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="project structure"></p>
+<h2 id="UIButton-配置"><a href="#UIButton-配置" class="headerlink" title="UIButton 配置"></a>UIButton 配置</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/button_image.png" alt="button_image"></p>
 
       
     </div>
@@ -368,9 +322,9 @@ const作用
       
         <div class="post-tags">
           
-            <a href="/tags/interview/" rel="tag">#interview</a>
-          
             <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
           
         </div>
       
@@ -379,17 +333,13 @@ const作用
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/16/iOS-Swift与Objective-C混合编程/" rel="next" title="iOS-Swift与Objective-C混合编程">
-                <i class="fa fa-chevron-left"></i> iOS-Swift与Objective-C混合编程
+              <a href="/2016/04/18/iOS项目1-加法计算器/" rel="next" title="iOS项目1.加法计算器">
+                <i class="fa fa-chevron-left"></i> iOS项目1.加法计算器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/16/Objective-C语言应用开发基础编程入门/" rel="prev" title="Objective-C语言应用开发基础编程入门">
-                Objective-C语言应用开发基础编程入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -521,7 +471,7 @@ const作用
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C有多重继承吗？不是的话有什么替代方法"><span class="nav-number">1.</span> <span class="nav-text">Objective-C有多重继承吗？不是的话有什么替代方法?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C有私有方法吗，私有变量呢"><span class="nav-number">2.</span> <span class="nav-text">Objective-C有私有方法吗，私有变量呢?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const作用"><span class="nav-number">3.</span> <span class="nav-text">const作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static作用"><span class="nav-number">4.</span> <span class="nav-text">static作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extern-“C”的作用"><span class="nav-number">5.</span> <span class="nav-text">extern “C”的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import和-include的区别，-class呢？"><span class="nav-number">6.</span> <span class="nav-text">#import和 #include的区别，@class呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#objective-C的优点"><span class="nav-number">7.</span> <span class="nav-text">objective-C的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C的缺点"><span class="nav-number">8.</span> <span class="nav-text">Objective-C的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Objective-C的内存管理"><span class="nav-number">9.</span> <span class="nav-text">Objective-C的内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动释放池是什么，如何工作"><span class="nav-number">10.</span> <span class="nav-text">自动释放池是什么，如何工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆和栈的区别"><span class="nav-number">11.</span> <span class="nav-text">堆和栈的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift新特性"><span class="nav-number">12.</span> <span class="nav-text">swift新特性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton-配置"><span class="nav-number">3.</span> <span class="nav-text">UIButton 配置</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -779,9 +729,9 @@ const作用
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/16/iOS开发面试/';
-      var disqus_title = 'iOS开发面试';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/16/iOS开发面试/';
+      var disqus_identifier = '2016/04/18/iOS项目2-图片浏览器/';
+      var disqus_title = 'iOS项目2.图片浏览器';
+      var disqus_url = 'http://jackliu17.github.io/2016/04/18/iOS项目2-图片浏览器/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
