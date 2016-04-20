@@ -238,6 +238,340 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/11/Swift面向对象基础(上)/" itemprop="url">
+                  Swift面向对象基础(上)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T18:06:33+11:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/Swift面向对象基础(上)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift面向对象基础(上)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向对象的特点"><a href="#面向对象的特点" class="headerlink" title="面向对象的特点"></a>面向对象的特点</h1><ol>
+<li>面向对象编程的三大特征：封装，继承，和多态</li>
+<li>Swift可以定义枚举，结构体，和类三种面向对象的类型</li>
+</ol>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h2 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h2><ol>
+<li>用于管理一组有限的值的集合</li>
+<li>支持计算属性</li>
+<li>支持实例方法和类方法</li>
+<li>支持定义构造器来完成初始化</li>
+<li>支持扩展和协议</li>
+</ol>
+<h2 id="枚举语法"><a href="#枚举语法" class="headerlink" title="枚举语法"></a>枚举语法</h2><pre><code>enum 枚举名 {
+  //使用case关键字列出所有枚举值
+  //枚举的其他成员
+}
+
+//方法1
+enum Season {
+   case Spring
+   case Summer
+   case Fall
+   case Winter
+}
+
+//方法2
+enum Season2 {
+   case Spring, Summer, Fall, Winter
+}
+</code></pre><h2 id="使用枚举声明变量"><a href="#使用枚举声明变量" class="headerlink" title="使用枚举声明变量"></a>使用枚举声明变量</h2><pre><code>var weather: Season
+weather = Season.Fall
+weather = .Fall //也可以这样写
+print(weather)
+</code></pre><h2 id="枚举值和switch语句"><a href="#枚举值和switch语句" class="headerlink" title="枚举值和switch语句"></a>枚举值和switch语句</h2><p>switch中的case没有覆盖枚举的所有值，必须添加default语句</p>
+<pre><code>var chooseDay = Season.Fall
+
+switch(chooseDay){
+case .Spring:
+  print(&quot;This is spring&quot;)
+case .Summer:
+  print(&quot;This is summer&quot;)
+default:
+  print(&quot;At home&quot;)
+}
+</code></pre><h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><pre><code>enum 枚举名：原始值类型{
+   case 枚举值 = 原始值
+}
+</code></pre><h3 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h3><pre><code>//可以自动推断，不用每个都赋予原始值
+enum Weekday: Int{
+  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
+}
+</code></pre><h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><pre><code>//必须每个都赋予原始值，因为不能自动推断
+enum Season3: Character{
+  case Spring = &quot;春&quot;
+  case Summer = &quot;夏&quot;
+  case Fall = &quot;秋&quot;
+  case Winter = &quot;冬&quot;
+}
+</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>print(Weekday.Fri.rawValue)
+</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
+if mySeason != nil {
+  switch(mySeason!){ //不为空才能进行强制解析
+  case .Spring:
+    print(&quot;春天不是读书天&quot;)
+  case .Summer:
+    print(&quot;夏天炎炎正好眠&quot;)
+  case .Fall , .Winter:
+    print(&quot;秋多蚊蝇冬日冷&quot;)
+  default:
+    print(&quot;读书只好等明年&quot;)
+
+  }
+}
+</code></pre><h3 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h3><pre><code>enum Planet {
+case Earth(weight: Double , name:String)
+case Mars (density: Double, name: String, weight:Double)
+case Venus(Double, String)
+case Saturn
+case Neptune
+}
+
+var p1 = Planet.Earth(weight:1.0, name:&quot;地球&quot;)
+var p2 = Planet.Venus(0.815,&quot;金星&quot;)
+var p3 = Planet.Mars(density:3.95, name:&quot;火星&quot;,weight:0.1)
+
+switch (p3){
+//将关联值绑定到变量或者常量来提取
+case Planet.Earth(var weight , var name):
+   print(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
+
+//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
+case let Planet.Mars(density:d, name:n, weight:w):
+   print(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
+default:
+   break
+}
+</code></pre><h1 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h1><ol>
+<li>这两个非常相似</li>
+<li>主要区别在于结构体和枚举不支持继承，只有类才有继承</li>
+<li>结构体和枚举是值类型</li>
+<li>类是引用类型</li>
+<li>只有类的实例可以称为对象</li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><pre><code>[修饰符]class类名 {
+零到多个构造器
+零到多个属性
+零到多个方法
+零到多个下标
+}
+修饰符可以是private ,public, internal,final
+
+class Person {
+var name: String = &quot;Jack&quot;
+var age: Int = 0
+func say(content: String)
+{
+   print(content)
+}
+}
+</code></pre><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><pre><code>[修饰符]struct 结构体名 {
+
+}
+修饰符可以是private , public, internal
+
+struct Dog{
+
+var name: String
+var age: Int
+func run(){
+
+print(&quot;\(name)在奔跑&quot;)
+}
+}
+</code></pre><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre><code>[修饰符]var或者let 存储属性:类型名字 = 初始值
+</code></pre><h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><pre><code>[修饰符]init(形参列表){
+//零到多条可执行语句组成的构造器执行体
+}
+</code></pre><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><pre><code>[修饰符]func 方法名(形参列表) -&gt;返回值类型 {
+//零到多条可执行语句
+}
+</code></pre><h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><h3 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h3><pre><code>var p: Person
+p = Person() //等价于 var p = Person()
+print(p.name)
+p.say(&quot;Hello world&quot;)
+</code></pre><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><pre><code>var dog = Dog(name:&quot;Wangcai&quot;, age:2)
+print(dog.name)
+dog.run()
+</code></pre><h2 id="值类型与引用类型"><a href="#值类型与引用类型" class="headerlink" title="值类型与引用类型"></a>值类型与引用类型</h2><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>var p2 =p
+p2.name = &quot;Rose&quot;
+print(p.name)
+</code></pre><ol>
+<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
+<li>如果一个引用更改了，那对象里的值也会更改。</li>
+</ol>
+<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><pre><code>var dog2 = dog
+dog2.name = &quot;snoopy&quot;
+print(dog2.name)
+print(dog.name)
+</code></pre><ol>
+<li>值对象是要复制的</li>
+<li>每个值对象的更改，不会影响其他对象的更改</li>
+<li>因此枚举和结构体是没有继承的  </li>
+</ol>
+<h3 id="引用类型的比较"><a href="#引用类型的比较" class="headerlink" title="引用类型的比较"></a>引用类型的比较</h3><pre><code>class User {
+var name: String
+var age: Int
+init(name: String, age: Int){
+    self.name = name
+    self.age = age
+}
+}
+
+var u1 = User(name:&quot;Han&quot;,age:32)
+var u2 = User(name:&quot;Han&quot;,age:32)
+//虽然传递的值是一样，但是是创建了两个对象
+
+print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
+print(u1 !== u2) //结果是true
+
+var u3 = u1
+print(u3 === u1) //结果是true
+
+// &quot;===&quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
+// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
+</code></pre><h2 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h2><h3 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h3><pre><code>class Dog {  
+  func jump(){
+    print(&quot;正在执行jump方法&quot;)
+  }
+  func run(){
+  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
+     print(&quot;正在执行run方法&quot;)
+  }
+}
+</code></pre><h3 id="构造器中的self代表该构造器正在初始化的实例"><a href="#构造器中的self代表该构造器正在初始化的实例" class="headerlink" title="构造器中的self代表该构造器正在初始化的实例"></a>构造器中的self代表该构造器正在初始化的实例</h3><pre><code>class Person {
+    var name: String = &quot;&quot;
+    var age: Int = 2
+
+    init(name:String, age:Int){
+    self.name = name
+    self.age = age
+    }
+
+    func info(){
+    print(&quot;我的名字是:\(name)年龄是:\(age)&quot;)
+    }
+}
+
+var person = Person(name:&quot;Lily&quot;,age:10)
+person.info()
+</code></pre><h2 id="类和结构体的选择"><a href="#类和结构体的选择" class="headerlink" title="类和结构体的选择"></a>类和结构体的选择</h2><ol>
+<li>结构体的主要目的是用于封装少量相关的简单数据</li>
+<li>如果需要在传递参数或者赋值时自动复制副本，使用结构体</li>
+<li>明确该类型无须继承另一个已有的类或被其他类继承</li>
+<li>注意，大部分时候，程序应该自定义类而不是自定义结构体。</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
+<li>Swift中的三种面向对象类型:枚举，结构体，类</li>
+<li>枚举,一组有限的值的集合.要区分枚举值，关联值，原始值</li>
+<li>类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承</li>
+<li>值类型和引用类型的区别。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/11/Swift中的函数和闭包/" itemprop="url">
                   Swift中的函数和闭包
                 </a>
@@ -1280,108 +1614,12 @@ willUnderflow = willUnderflow &amp;-1 //下溢
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/04/今天/" itemprop="url">
-                  今天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1422,7 +1660,7 @@ willUnderflow = willUnderflow &amp;-1 //下溢
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

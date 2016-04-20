@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-04-18T07:43:36.000Z</updated>
+  <updated>2016-04-20T02:11:50.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS项目4.应用程序管理</title>
+    <link href="http://jackliu17.github.io/2016/04/20/iOS%E9%A1%B9%E7%9B%AE4-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86/"/>
+    <id>http://jackliu17.github.io/2016/04/20/iOS项目4-应用程序管理/</id>
+    <published>2016-04-20T02:07:50.000Z</published>
+    <updated>2016-04-20T02:11:50.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;项目结构1&quot;&gt;&lt;a href=&quot;#项目结构1&quot; class=&quot;headerlink&quot; title=&quot;项目结构1&quot;&gt;&lt;/a&gt;项目结构1&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%861.png&quot; alt=&quot;项目结构1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;项目结构2&quot;&gt;&lt;a href=&quot;#项目结构2&quot; class=&quot;headerlink&quot; title=&quot;项目结构2&quot;&gt;&lt;/a&gt;项目结构2&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%862.png&quot; alt=&quot;项目结构2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;项目结构3&quot;&gt;&lt;a href=&quot;#项目结构3&quot; class=&quot;headerlink&quot; title=&quot;项目结构3&quot;&gt;&lt;/a&gt;项目结构3&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%863.png&quot; alt=&quot;项目结构3&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置xib为freeform&quot;&gt;&lt;a href=&quot;#设置xib为freeform&quot; class=&quot;headerlink&quot; title=&quot;设置xib为freeform&quot;&gt;&lt;/a&gt;设置xib为freeform&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/freeForm.png&quot; alt=&quot;设置xib为freeform&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目3.英雄图片表视图展示</title>
@@ -324,9 +353,9 @@
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
     
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
@@ -457,9 +486,9 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
   </entry>
   
@@ -563,11 +592,11 @@ int _age;
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
   </entry>
   
@@ -1382,252 +1411,6 @@ print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(re
     <summary type="html">
     
       &lt;h1 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swift面向对象基础(上)</title>
-    <link href="http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/"/>
-    <id>http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/</id>
-    <published>2016-03-11T07:06:33.000Z</published>
-    <updated>2016-04-15T11:11:08.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
-&lt;li&gt;Swift可以定义枚举，结构体，和类三种面向对象的类型&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h1&gt;&lt;h2 id=&quot;枚举定义&quot;&gt;&lt;a href=&quot;#枚举定义&quot; class=&quot;headerlink&quot; title=&quot;枚举定义&quot;&gt;&lt;/a&gt;枚举定义&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;用于管理一组有限的值的集合&lt;/li&gt;
-&lt;li&gt;支持计算属性&lt;/li&gt;
-&lt;li&gt;支持实例方法和类方法&lt;/li&gt;
-&lt;li&gt;支持定义构造器来完成初始化&lt;/li&gt;
-&lt;li&gt;支持扩展和协议&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;枚举语法&quot;&gt;&lt;a href=&quot;#枚举语法&quot; class=&quot;headerlink&quot; title=&quot;枚举语法&quot;&gt;&lt;/a&gt;枚举语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case Spring
-   case Summer
-   case Fall
-   case Winter
-}
-
-//方法2
-enum Season2 {
-   case Spring, Summer, Fall, Winter
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用枚举声明变量&quot;&gt;&lt;a href=&quot;#使用枚举声明变量&quot; class=&quot;headerlink&quot; title=&quot;使用枚举声明变量&quot;&gt;&lt;/a&gt;使用枚举声明变量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var weather: Season
-weather = Season.Fall
-weather = .Fall //也可以这样写
-print(weather)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;枚举值和switch语句&quot;&gt;&lt;a href=&quot;#枚举值和switch语句&quot; class=&quot;headerlink&quot; title=&quot;枚举值和switch语句&quot;&gt;&lt;/a&gt;枚举值和switch语句&lt;/h2&gt;&lt;p&gt;switch中的case没有覆盖枚举的所有值，必须添加default语句&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var chooseDay = Season.Fall
-
-switch(chooseDay){
-case .Spring:
-  print(&amp;quot;This is spring&amp;quot;)
-case .Summer:
-  print(&amp;quot;This is summer&amp;quot;)
-default:
-  print(&amp;quot;At home&amp;quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;原始值&quot;&gt;&lt;a href=&quot;#原始值&quot; class=&quot;headerlink&quot; title=&quot;原始值&quot;&gt;&lt;/a&gt;原始值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名：原始值类型{
-   case 枚举值 = 原始值
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;整型的枚举&quot;&gt;&lt;a href=&quot;#整型的枚举&quot; class=&quot;headerlink&quot; title=&quot;整型的枚举&quot;&gt;&lt;/a&gt;整型的枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//可以自动推断，不用每个都赋予原始值
-enum Weekday: Int{
-  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;字符串枚举&quot;&gt;&lt;a href=&quot;#字符串枚举&quot; class=&quot;headerlink&quot; title=&quot;字符串枚举&quot;&gt;&lt;/a&gt;字符串枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//必须每个都赋予原始值，因为不能自动推断
-enum Season3: Character{
-  case Spring = &amp;quot;春&amp;quot;
-  case Summer = &amp;quot;夏&amp;quot;
-  case Fall = &amp;quot;秋&amp;quot;
-  case Winter = &amp;quot;冬&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取原始值&quot;&gt;&lt;a href=&quot;#获取原始值&quot; class=&quot;headerlink&quot; title=&quot;获取原始值&quot;&gt;&lt;/a&gt;获取原始值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;print(Weekday.Fri.rawValue)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取枚举值&quot;&gt;&lt;a href=&quot;#获取枚举值&quot; class=&quot;headerlink&quot; title=&quot;获取枚举值&quot;&gt;&lt;/a&gt;获取枚举值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var mySeason = Season3(rawValue:&amp;quot;春&amp;quot;)
-if mySeason != nil {
-  switch(mySeason!){ //不为空才能进行强制解析
-  case .Spring:
-    print(&amp;quot;春天不是读书天&amp;quot;)
-  case .Summer:
-    print(&amp;quot;夏天炎炎正好眠&amp;quot;)
-  case .Fall , .Winter:
-    print(&amp;quot;秋多蚊蝇冬日冷&amp;quot;)
-  default:
-    print(&amp;quot;读书只好等明年&amp;quot;)
-
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;关联值&quot;&gt;&lt;a href=&quot;#关联值&quot; class=&quot;headerlink&quot; title=&quot;关联值&quot;&gt;&lt;/a&gt;关联值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;enum Planet {
-case Earth(weight: Double , name:String)
-case Mars (density: Double, name: String, weight:Double)
-case Venus(Double, String)
-case Saturn
-case Neptune
-}
-
-var p1 = Planet.Earth(weight:1.0, name:&amp;quot;地球&amp;quot;)
-var p2 = Planet.Venus(0.815,&amp;quot;金星&amp;quot;)
-var p3 = Planet.Mars(density:3.95, name:&amp;quot;火星&amp;quot;,weight:0.1)
-
-switch (p3){
-//将关联值绑定到变量或者常量来提取
-case Planet.Earth(var weight , var name):
-   print(&amp;quot;此行星的名字为:\(name),质量相当于\(weight)个地球&amp;quot;)
-
-//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
-case let Planet.Mars(density:d, name:n, weight:w):
-   print(&amp;quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&amp;quot;)
-default:
-   break
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;类和结构体&quot;&gt;&lt;a href=&quot;#类和结构体&quot; class=&quot;headerlink&quot; title=&quot;类和结构体&quot;&gt;&lt;/a&gt;类和结构体&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;这两个非常相似&lt;/li&gt;
-&lt;li&gt;主要区别在于结构体和枚举不支持继承，只有类才有继承&lt;/li&gt;
-&lt;li&gt;结构体和枚举是值类型&lt;/li&gt;
-&lt;li&gt;类是引用类型&lt;/li&gt;
-&lt;li&gt;只有类的实例可以称为对象&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;h3 id=&quot;类&quot;&gt;&lt;a href=&quot;#类&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]class类名 {
-零到多个构造器
-零到多个属性
-零到多个方法
-零到多个下标
-}
-修饰符可以是private ,public, internal,final
-
-class Person {
-var name: String = &amp;quot;Jack&amp;quot;
-var age: Int = 0
-func say(content: String)
-{
-   print(content)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体&quot;&gt;&lt;a href=&quot;#结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]struct 结构体名 {
-
-}
-修饰符可以是private , public, internal
-
-struct Dog{
-
-var name: String
-var age: Int
-func run(){
-
-print(&amp;quot;\(name)在奔跑&amp;quot;)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;属性&quot;&gt;&lt;a href=&quot;#属性&quot; class=&quot;headerlink&quot; title=&quot;属性&quot;&gt;&lt;/a&gt;属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var或者let 存储属性:类型名字 = 初始值
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器&quot;&gt;&lt;a href=&quot;#构造器&quot; class=&quot;headerlink&quot; title=&quot;构造器&quot;&gt;&lt;/a&gt;构造器&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]init(形参列表){
-//零到多条可执行语句组成的构造器执行体
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]func 方法名(形参列表) -&amp;gt;返回值类型 {
-//零到多条可执行语句
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建实例&quot;&gt;&lt;a href=&quot;#创建实例&quot; class=&quot;headerlink&quot; title=&quot;创建实例&quot;&gt;&lt;/a&gt;创建实例&lt;/h2&gt;&lt;h3 id=&quot;类-1&quot;&gt;&lt;a href=&quot;#类-1&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p: Person
-p = Person() //等价于 var p = Person()
-print(p.name)
-p.say(&amp;quot;Hello world&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体-1&quot;&gt;&lt;a href=&quot;#结构体-1&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog = Dog(name:&amp;quot;Wangcai&amp;quot;, age:2)
-print(dog.name)
-dog.run()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型与引用类型&quot;&gt;&lt;a href=&quot;#值类型与引用类型&quot; class=&quot;headerlink&quot; title=&quot;值类型与引用类型&quot;&gt;&lt;/a&gt;值类型与引用类型&lt;/h2&gt;&lt;h3 id=&quot;引用类型&quot;&gt;&lt;a href=&quot;#引用类型&quot; class=&quot;headerlink&quot; title=&quot;引用类型&quot;&gt;&lt;/a&gt;引用类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p2 =p
-p2.name = &amp;quot;Rose&amp;quot;
-print(p.name)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;内存里的对象可以有多个引用，即多个引用变量指向同一个对象&lt;/li&gt;
-&lt;li&gt;如果一个引用更改了，那对象里的值也会更改。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;值类型&quot;&gt;&lt;a href=&quot;#值类型&quot; class=&quot;headerlink&quot; title=&quot;值类型&quot;&gt;&lt;/a&gt;值类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog2 = dog
-dog2.name = &amp;quot;snoopy&amp;quot;
-print(dog2.name)
-print(dog.name)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;值对象是要复制的&lt;/li&gt;
-&lt;li&gt;每个值对象的更改，不会影响其他对象的更改&lt;/li&gt;
-&lt;li&gt;因此枚举和结构体是没有继承的  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;引用类型的比较&quot;&gt;&lt;a href=&quot;#引用类型的比较&quot; class=&quot;headerlink&quot; title=&quot;引用类型的比较&quot;&gt;&lt;/a&gt;引用类型的比较&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class User {
-var name: String
-var age: Int
-init(name: String, age: Int){
-    self.name = name
-    self.age = age
-}
-}
-
-var u1 = User(name:&amp;quot;Han&amp;quot;,age:32)
-var u2 = User(name:&amp;quot;Han&amp;quot;,age:32)
-//虽然传递的值是一样，但是是创建了两个对象
-
-print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
-print(u1 !== u2) //结果是true
-
-var u3 = u1
-print(u3 === u1) //结果是true
-
-// &amp;quot;===&amp;quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
-// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;self关键字&quot;&gt;&lt;a href=&quot;#self关键字&quot; class=&quot;headerlink&quot; title=&quot;self关键字&quot;&gt;&lt;/a&gt;self关键字&lt;/h2&gt;&lt;h3 id=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;a href=&quot;#方法中的self代表该方法的调用者&quot; class=&quot;headerlink&quot; title=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;/a&gt;方法中的self代表该方法的调用者&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Dog {  
-  func jump(){
-    print(&amp;quot;正在执行jump方法&amp;quot;)
-  }
-  func run(){
-  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
-     print(&amp;quot;正在执行run方法&amp;quot;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;a href=&quot;#构造器中的self代表该构造器正在初始化的实例&quot; class=&quot;headerlink&quot; title=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;/a&gt;构造器中的self代表该构造器正在初始化的实例&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Person {
-    var name: String = &amp;quot;&amp;quot;
-    var age: Int = 2
-
-    init(name:String, age:Int){
-    self.name = name
-    self.age = age
-    }
-
-    func info(){
-    print(&amp;quot;我的名字是:\(name)年龄是:\(age)&amp;quot;)
-    }
-}
-
-var person = Person(name:&amp;quot;Lily&amp;quot;,age:10)
-person.info()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类和结构体的选择&quot;&gt;&lt;a href=&quot;#类和结构体的选择&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的选择&quot;&gt;&lt;/a&gt;类和结构体的选择&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;结构体的主要目的是用于封装少量相关的简单数据&lt;/li&gt;
-&lt;li&gt;如果需要在传递参数或者赋值时自动复制副本，使用结构体&lt;/li&gt;
-&lt;li&gt;明确该类型无须继承另一个已有的类或被其他类继承&lt;/li&gt;
-&lt;li&gt;注意，大部分时候，程序应该自定义类而不是自定义结构体。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;Swift中的三种面向对象类型:枚举，结构体，类&lt;/li&gt;
-&lt;li&gt;枚举,一组有限的值的集合.要区分枚举值，关联值，原始值&lt;/li&gt;
-&lt;li&gt;类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承&lt;/li&gt;
-&lt;li&gt;值类型和引用类型的区别。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
-&lt;li&gt;Swift可以定义枚举，结
     
     </summary>
     
