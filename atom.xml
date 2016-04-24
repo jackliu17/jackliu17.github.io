@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-04-22T01:18:34.000Z</updated>
+  <updated>2016-04-24T08:33:52.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,580 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用OpenGL_ES显示图像</title>
+    <link href="http://jackliu17.github.io/2016/04/24/%E4%BD%BF%E7%94%A8OpenGL-ES%E6%98%BE%E7%A4%BA%E5%9B%BE%E5%83%8F/"/>
+    <id>http://jackliu17.github.io/2016/04/24/使用OpenGL-ES显示图像/</id>
+    <published>2016-04-24T06:58:54.000Z</published>
+    <updated>2016-04-24T08:33:52.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/android-training-geek/opengl-index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;转载&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://developer.android.com/training/graphics/opengl/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Android框架提供了大量的标准工具，用来创建吸引人的，功能丰富的图形界面。然而，如果我们希望应用在屏幕上所绘制的内容进行更多的控制，或者正在尝试建立三维图像，那么我们就需要一个不同的工具了。由Android框架提供的OpenGL ES接口给予我们一组可以显示高级动画和图形的工具集，它的功能仅仅受限于我们自身的想象力。同时，在许多Android设备上搭载的图形处理单元（GPU）都能为其提供GPU加速等性能优化。&lt;/p&gt;
+&lt;p&gt;这系列课程将展示如何使用OpenGL构建应用的基础知识，包括配置，绘制对象，移动图形元素以及响应点击事件。&lt;/p&gt;
+&lt;p&gt;这系列课程所涉及的样例代码使用的是OpenGL ES 2.0接口，这是当前Android设备所推荐的接口版本。关于更多OpenGL ES的版本信息，可以阅读：&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OpenGL开发手册&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note：注意不要把OpenGL ES 1.x版本的接口和OpenGL ES 2.0的接口混合调用。这两种版本的接口不是通用的。如果尝试混用它们可能会让你感到无奈和沮丧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;建立OpenGL-ES的环境&quot;&gt;&lt;a href=&quot;#建立OpenGL-ES的环境&quot; class=&quot;headerlink&quot; title=&quot;建立OpenGL ES的环境&quot;&gt;&lt;/a&gt;建立OpenGL ES的环境&lt;/h1&gt;&lt;p&gt;要在应用中使用OpenGL ES绘制图像，我们必须为它们创建一个View容器。一种比较直接的方法是实现&lt;code&gt;GLSurfaceView&lt;/code&gt;类和&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;类。其中，&lt;code&gt;GLSurfaceView&lt;/code&gt;是一个View容器，它用来存放使用OpenGL绘制的图形，而&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;则用来控制在该View中绘制的内容。关于这两个类的更多信息，你可以阅读：&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OpenGL ES开发手册&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用&lt;code&gt;GLSurfaceView&lt;/code&gt;是一种将OpenGL ES集成到应用中的方法之一。对于一个全屏的或者接近全屏的图形View，使用它是一个理想的选择。开发者如果希望把OpenGL ES的图形集成在布局的一小部分里面，那么可以考虑使用&lt;code&gt;TextureView&lt;/code&gt;。对于喜欢自己动手实现的开发者来说，还可以通过使用&lt;code&gt;SurfaceView&lt;/code&gt;搭建一个OpenGL ES View，但这将需要编写更多的代码。&lt;/p&gt;
+&lt;p&gt;在这节课中，我们将展示如何在一个的&lt;code&gt;Activity&lt;/code&gt;中完成&lt;code&gt;GLSurfaceView&lt;/code&gt;和&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;的最简单的实现&lt;/p&gt;
+&lt;h2 id=&quot;在Manifest配置文件中声明使用OpenGL-ES&quot;&gt;&lt;a href=&quot;#在Manifest配置文件中声明使用OpenGL-ES&quot; class=&quot;headerlink&quot; title=&quot;在Manifest配置文件中声明使用OpenGL ES&quot;&gt;&lt;/a&gt;在Manifest配置文件中声明使用OpenGL ES&lt;/h2&gt;&lt;p&gt;为了让应用能够使用OpenGL ES 2.0接口，我们必须将下列声明添加到Manifest配置文件当中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;uses-feature android:glEsVersion=&amp;quot;0x00020000&amp;quot; android:required=&amp;quot;true&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果我们的应用使用纹理压缩（Texture Compression），那么我们必须对支持的压缩格式也进行声明，确保应用仅安装在可以兼容的设备上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;supports-gl-texture android:name=&amp;quot;GL_OES_compressed_ETC1_RGB8_texture&amp;quot; /&amp;gt;
+&amp;lt;supports-gl-texture android:name=&amp;quot;GL_OES_compressed_paletted_texture&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更多关于纹理压缩的内容，可以阅读：&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html#textures&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OpenGL开发手册&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;为OpenGL-ES图形创建一个activity&quot;&gt;&lt;a href=&quot;#为OpenGL-ES图形创建一个activity&quot; class=&quot;headerlink&quot; title=&quot;为OpenGL ES图形创建一个activity&quot;&gt;&lt;/a&gt;为OpenGL ES图形创建一个activity&lt;/h2&gt;&lt;p&gt;使用OpenGL ES的安卓应用就像其它类型的应用一样有自己的用户接口，即也拥有多个Activity。主要的区别体现在Acitivity布局内容上的差异。在许多应用中你可能会使用&lt;code&gt;TextView&lt;/code&gt;，&lt;code&gt;Button&lt;/code&gt;和&lt;code&gt;ListView&lt;/code&gt;等，而在使用OpenGL ES的应用中，我们还可以添加一个&lt;code&gt;GLSurfaceView&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;下面的代码展示了一个使用&lt;code&gt;GLSurfaceView&lt;/code&gt;作为其主View的Activity：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class OpenGLES20Activity extends Activity {
+
+private GLSurfaceView mGLView;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Create a GLSurfaceView instance and set it
+    // as the ContentView for this Activity.
+    mGLView = new MyGLSurfaceView(this);
+    setContentView(mGLView);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;Note：OpenGL ES 2.0需要Android 2.2（API Level 8）或更高版本的系统，所以确保你的Android项目的API版本满足该要求。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;构建一个GLSurfaceView对象&quot;&gt;&lt;a href=&quot;#构建一个GLSurfaceView对象&quot; class=&quot;headerlink&quot; title=&quot;构建一个GLSurfaceView对象&quot;&gt;&lt;/a&gt;构建一个GLSurfaceView对象&lt;/h2&gt;&lt;p&gt;&lt;code&gt;GLSurfaceView&lt;/code&gt;是一种比较特殊的View，我们可以在该View中绘制OpenGL ES图形，不过它自己并不做太多和绘制图形相关的任务。绘制对象的任务是由你在该View中配置的&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;所控制的。事实上，这个对象的代码非常简短，你可能会希望不要继承它，直接创建一个未经修改的&lt;code&gt;GLSurfaceView&lt;/code&gt;实例，不过请不要这么做，因为我们需要继承该类来捕捉触控事件，这方面知识会在响应触摸事件（该系列课程的最后一节课）中做进一步的介绍。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GLSurfaceView&lt;/code&gt;的核心代码非常简短，所以对于一个快速的实现而言，我们通常可以在Acitvity中创建一个内部类并使用它：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class MyGLSurfaceView extends GLSurfaceView {
+
+private final MyGLRenderer mRenderer;
+
+public MyGLSurfaceView(Context context){
+    super(context);
+
+    // Create an OpenGL ES 2.0 context
+    setEGLContextClientVersion(2);
+
+    mRenderer = new MyGLRenderer();
+
+    // Set the Renderer for drawing on the GLSurfaceView
+    setRenderer(mRenderer);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;另一个对于&lt;code&gt;GLSurfaceView&lt;/code&gt;实现的可选选项，是将渲染模式设置为：&lt;code&gt;GLSurfaceView.RENDERMODE_WHEN_DIRTY&lt;/code&gt;，其含义是：仅在你的绘制数据发生变化时才在视图中进行绘制操作：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// Render the view only when there is a change in the drawing data
+setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果选用这一配置选项，那么除非调用了&lt;code&gt;requestRender()&lt;/code&gt;，否则&lt;code&gt;GLSurfaceView&lt;/code&gt;不会被重新绘制，这样做可以让应用的性能及效率得到提高。&lt;/p&gt;
+&lt;h2 id=&quot;构建一个渲染类&quot;&gt;&lt;a href=&quot;#构建一个渲染类&quot; class=&quot;headerlink&quot; title=&quot;构建一个渲染类&quot;&gt;&lt;/a&gt;构建一个渲染类&lt;/h2&gt;&lt;p&gt;在一个使用OpenGL ES的应用中，一个&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;类的实现（或者我们将其称之为渲染器），正是事情变得有趣的地方。该类会控制和其相关联的&lt;code&gt;GLSurfaceView&lt;/code&gt;，具体而言，它会控制在&lt;code&gt;GLSurfaceView&lt;/code&gt;上绘制的内容。在渲染器中，一共有三个方法会被Android系统调用，以此来明确要在&lt;code&gt;GLSurfaceView&lt;/code&gt;上绘制的内容以及如何绘制：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;onSurfaceCreated()&lt;/code&gt;：调用一次，用来配置View的OpenGL ES环境。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onDrawFrame()&lt;/code&gt;：每次重新绘制View时被调用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onSurfaceChanged()&lt;/code&gt;：如果View的几何形态发生变化时会被调用，例如当设备的屏幕方向发生改变时。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下面是一个非常基本的OpenGL ES渲染器的实现，它仅仅在&lt;code&gt;GLSurfaceView&lt;/code&gt;中画一个黑色的背景：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MyGLRenderer implements GLSurfaceView.Renderer {
+
+public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    // Set the background frame color
+    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+public void onDrawFrame(GL10 unused) {
+    // Redraw background color
+    GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+}
+
+public void onSurfaceChanged(GL10 unused, int width, int height) {
+    GLES20.glViewport(0, 0, width, height);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就是这样！上面的代码创建了一个简单地应用程序，它使用OpenGL让屏幕呈现为黑色。虽然它的代码看上去并没有做什么非常有意思的事情，但是通过创建这些类，我们已经对使用OpenGL绘制图形有了基本的认识和铺垫。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note：你可能想知道，自己明明使用的是OpenGL ES 2.0接口，为什么这些方法会有一个GL10的参数。这是因为这些方法的签名（Method Signature）在2.0接口中被简&amp;gt;单地重用了，以此来保持Android框架的代码尽量简单。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果你对OpenGL ES接口很熟悉，那么你现在就可以在你的应用中构建一个OpenGL ES的环境并绘制图形了。当然， 如果你希望获取更多的帮助来学会使用OpenGL，那么请继续学习下一节课程获取更多的知识。&lt;/p&gt;
+&lt;h1 id=&quot;定义形状&quot;&gt;&lt;a href=&quot;#定义形状&quot; class=&quot;headerlink&quot; title=&quot;定义形状&quot;&gt;&lt;/a&gt;定义形状&lt;/h1&gt;&lt;p&gt;在一个OpenGL ES View的上下文（Context）中定义形状，是创建你的杰作所需要的第一步。在了解关于OpenGL ES如何定义图形对象的基本知识之前，通过OpenGL ES 绘图可能会有些困难。&lt;/p&gt;
+&lt;p&gt;这节课将讲解OpenGL ES相对于Android设备屏幕的坐标系，定义形状和形状表面的基本知识，如定义一个三角形和一个矩形。&lt;/p&gt;
+&lt;h2 id=&quot;定义一个三角形&quot;&gt;&lt;a href=&quot;#定义一个三角形&quot; class=&quot;headerlink&quot; title=&quot;定义一个三角形&quot;&gt;&lt;/a&gt;定义一个三角形&lt;/h2&gt;&lt;p&gt;OpenGL ES允许我们使用三维空间的坐标来定义绘画对象。所以在我们能画三角形之前，必须先定义它的坐标。在OpenGL 中，典型的办法是为坐标定义一个浮点型的顶点数组。为了高效起见，我们可以将坐标写入一个&lt;code&gt;ByteBuffer&lt;/code&gt;，它将会传入OpenGl ES的图形处理流程中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Triangle {
+
+private FloatBuffer vertexBuffer;
+
+// number of coordinates per vertex in this array
+static final int COORDS_PER_VERTEX = 3;
+static float triangleCoords[] = {   // in counterclockwise order:
+         0.0f,  0.622008459f, 0.0f, // top
+        -0.5f, -0.311004243f, 0.0f, // bottom left
+         0.5f, -0.311004243f, 0.0f  // bottom right
+};
+
+// Set color with red, green, blue and alpha (opacity) values
+float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+
+public Triangle() {
+    // initialize vertex byte buffer for shape coordinates
+    ByteBuffer bb = ByteBuffer.allocateDirect(
+            // (number of coordinate values * 4 bytes per float)
+            triangleCoords.length * 4);
+    // use the device hardware&amp;apos;s native byte order
+    bb.order(ByteOrder.nativeOrder());
+
+    // create a floating point buffer from the ByteBuffer
+    vertexBuffer = bb.asFloatBuffer();
+    // add the coordinates to the FloatBuffer
+    vertexBuffer.put(triangleCoords);
+    // set the buffer to read the first coordinate
+    vertexBuffer.position(0);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（分别对应X轴坐标, Y轴坐标, Z轴坐标）对应的是GLSurfaceView的中心。[1, 1, 0]对应的是右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;OpenGL ES开发手册&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;定义一个矩形&quot;&gt;&lt;a href=&quot;#定义一个矩形&quot; class=&quot;headerlink&quot; title=&quot;定义一个矩形&quot;&gt;&lt;/a&gt;定义一个矩形&lt;/h2&gt;&lt;p&gt;在OpenGL中定义三角形非常简单，那么你是否想要来点更复杂的呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/openGL.png&quot; alt=&quot;定义一个矩形&quot;&gt;&lt;/p&gt;
+&lt;p&gt;再一次地，我们需要逆时针地为三角形顶点定义坐标来表现这个图形，并将值放入一个&lt;code&gt;ByteBuffer&lt;/code&gt;中。为了避免由两个三角形重合的那条边的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Square {
+
+private FloatBuffer vertexBuffer;
+private ShortBuffer drawListBuffer;
+
+// number of coordinates per vertex in this array
+static final int COORDS_PER_VERTEX = 3;
+static float squareCoords[] = {
+        -0.5f,  0.5f, 0.0f,   // top left
+        -0.5f, -0.5f, 0.0f,   // bottom left
+         0.5f, -0.5f, 0.0f,   // bottom right
+         0.5f,  0.5f, 0.0f }; // top right
+
+private short drawOrder[] = { 0, 1, 2, 0, 2, 3 }; // order to draw vertices
+
+public Square() {
+    // initialize vertex byte buffer for shape coordinates
+    ByteBuffer bb = ByteBuffer.allocateDirect(
+    // (# of coordinate values * 4 bytes per float)
+            squareCoords.length * 4);
+    bb.order(ByteOrder.nativeOrder());
+    vertexBuffer = bb.asFloatBuffer();
+    vertexBuffer.put(squareCoords);
+    vertexBuffer.position(0);
+
+    // initialize byte buffer for the draw list
+    ByteBuffer dlb = ByteBuffer.allocateDirect(
+    // (# of coordinate values * 2 bytes per short)
+            drawOrder.length * 2);
+    dlb.order(ByteOrder.nativeOrder());
+    drawListBuffer = dlb.asShortBuffer();
+    drawListBuffer.put(drawOrder);
+    drawListBuffer.position(0);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该样例可以看作是一个如何使用OpenGL创建复杂图形的启发，通常来说，我们需要使用三角形的集合来绘制对象。在下一节课中，我们将学习如何在屏幕上画这些形状&lt;/p&gt;
+&lt;h1 id=&quot;绘制形状&quot;&gt;&lt;a href=&quot;#绘制形状&quot; class=&quot;headerlink&quot; title=&quot;绘制形状&quot;&gt;&lt;/a&gt;绘制形状&lt;/h1&gt;&lt;p&gt;在定义了使用OpenGL绘制的形状之后，你可能希望绘制出它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中更复杂一些，因为API中提供了大量对于图形渲染流程的控制。&lt;/p&gt;
+&lt;p&gt;这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的形状。&lt;/p&gt;
+&lt;h2 id=&quot;初始化形状&quot;&gt;&lt;a href=&quot;#初始化形状&quot; class=&quot;headerlink&quot; title=&quot;初始化形状&quot;&gt;&lt;/a&gt;初始化形状&lt;/h2&gt;&lt;p&gt;在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的onSurfaceCreated()方法中初始化它们，这样做是出于内存和执行效率的考量。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MyGLRenderer implements GLSurfaceView.Renderer {
+
+...
+private Triangle mTriangle;
+private Square   mSquare;
+
+public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    ...
+
+    // initialize a triangle
+    mTriangle = new Triangle();
+    // initialize a square
+    mSquare = new Square();
+}
+...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;画一个形状&quot;&gt;&lt;a href=&quot;#画一个形状&quot; class=&quot;headerlink&quot; title=&quot;画一个形状&quot;&gt;&lt;/a&gt;画一个形状&lt;/h2&gt;&lt;p&gt;使用OpenGL ES 2.0画一个定义好的形状需要较多代码，因为你需要提供很多图形渲染流程的细节。具体而言，你必须定义如下几项：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;顶点着色器（Vertex Shader）：用来渲染形状顶点的OpenGL ES代码。&lt;/li&gt;
+&lt;li&gt;片段着色器（Fragment Shader）：使用颜色或纹理渲染形状表面的OpenGL ES代码。&lt;/li&gt;
+&lt;li&gt;程式（Program）：一个OpenGL ES对象，包含了你希望用来绘制一个或更多图形所要用到的着色器。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个OpenGL ES Program当中，并利用它来绘制形状。下面的代码在Triangle类中定义了基本的着色器，我们可以利用它们绘制出一个图形：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Triangle {
+
+private final String vertexShaderCode =
+    &amp;quot;attribute vec4 vPosition;&amp;quot; +
+    &amp;quot;void main() {&amp;quot; +
+    &amp;quot;  gl_Position = vPosition;&amp;quot; +
+    &amp;quot;}&amp;quot;;
+
+private final String fragmentShaderCode =
+    &amp;quot;precision mediump float;&amp;quot; +
+    &amp;quot;uniform vec4 vColor;&amp;quot; +
+    &amp;quot;void main() {&amp;quot; +
+    &amp;quot;  gl_FragColor = vColor;&amp;quot; +
+    &amp;quot;}&amp;quot;;
+
+...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public static int loadShader(int type, String shaderCode){
+
+// create a vertex shader type (GLES20.GL_VERTEX_SHADER)
+// or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)
+int shader = GLES20.glCreateShader(type);
+
+// add the source code to the shader and compile it
+GLES20.glShaderSource(shader, shaderCode);
+GLES20.glCompileShader(shader);
+
+return shader;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了绘制你的图形，你必须编译着色器代码，将它们添加至一个OpenGL ES Program对象中，然后执行链接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note：编译OpenGL ES着色器及链接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果在执行期间不知道着色器的内容，那么你应该在构建你的应用时，确保它们只被创建了一次，并且缓存以备后续使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;public class Triangle() {
+...
+
+private final int mProgram;
+
+public Triangle() {
+    ...
+
+    int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+                                    vertexShaderCode);
+    int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+                                    fragmentShaderCode);
+
+    // create empty OpenGL ES Program
+    mProgram = GLES20.glCreateProgram();
+
+    // add the vertex shader to program
+    GLES20.glAttachShader(mProgram, vertexShader);
+
+    // add the fragment shader to program
+    GLES20.glAttachShader(mProgram, fragmentShader);
+
+    // creates OpenGL ES program executables
+    GLES20.glLinkProgram(mProgram);
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此，你已经完全准备好添加实际的调用语句来绘制你的图形了。使用OpenGL ES绘制图形需要你定义一些变量来告诉渲染流程你需要绘制的内容以及如何绘制。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。&lt;/p&gt;
+&lt;p&gt;创建一个&lt;code&gt;draw()&lt;/code&gt;方法来绘制图形。下面的代码为形状的顶点着色器和形状着色器设置了位置和颜色值，然后执行绘制函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private int mPositionHandle;
+private int mColorHandle;
+
+private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
+private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+
+public void draw() {
+// Add program to OpenGL ES environment
+GLES20.glUseProgram(mProgram);
+
+// get handle to vertex shader&amp;apos;s vPosition member
+mPositionHandle = GLES20.glGetAttribLocation(mProgram, &amp;quot;vPosition&amp;quot;);
+
+// Enable a handle to the triangle vertices
+GLES20.glEnableVertexAttribArray(mPositionHandle);
+
+// Prepare the triangle coordinate data
+GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
+                             GLES20.GL_FLOAT, false,
+                             vertexStride, vertexBuffer);
+
+// get handle to fragment shader&amp;apos;s vColor member
+mColorHandle = GLES20.glGetUniformLocation(mProgram, &amp;quot;vColor&amp;quot;);
+
+// Set color for drawing the triangle
+GLES20.glUniform4fv(mColorHandle, 1, color, 0);
+
+// Draw the triangle
+GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+
+// Disable vertex array
+GLES20.glDisableVertexAttribArray(mPositionHandle);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一旦你完成了上述所有代码，仅需要在你渲染器的&lt;code&gt;onDrawFrame()&lt;/code&gt;方法中调用&lt;code&gt;draw()&lt;/code&gt;方法就可以画出我们想要画的对象了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void onDrawFrame(GL10 unused) {
+...
+
+mTriangle.draw();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当你运行这个应用时，它看上去会像是这样：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/openGL2.png&quot; alt=&quot;openGL2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在这个代码样例中，还存在一些问题。首先，它无法给用户带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。发生形变的原因是因为对象的顶点没有根据显示&lt;code&gt;GLSurfaceView&lt;/code&gt;的屏幕区域的长宽比进行修正。你可以在下一节课中使用投影（Projection）或者相机视角（Camera View）来解决这个问题。&lt;/p&gt;
+&lt;p&gt;最后，这个三角形是静止的，这看上去有些无聊。在添加移动课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程中更加新奇的用法。&lt;/p&gt;
+&lt;h1 id=&quot;运用投影与相机视角&quot;&gt;&lt;a href=&quot;#运用投影与相机视角&quot; class=&quot;headerlink&quot; title=&quot;运用投影与相机视角&quot;&gt;&lt;/a&gt;运用投影与相机视角&lt;/h1&gt;&lt;p&gt;在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于我们用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;投影（Projection）：这个变换会基于显示它们的&lt;code&gt;GLSurfaceView&lt;/code&gt;的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于其长宽比例和View窗口比例的不一致而发生形变。一个投影变换一般仅当OpenGL View的比例在渲染器的&lt;code&gt;onSurfaceChanged()&lt;/code&gt;方法中建立或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Mapping Coordinates for Drawn Objects&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;相机视角（Camera View）：这个变换会基于一个虚拟相机位置改变绘图对象的坐标。注意到OpenGL ES并没有定义一个实际的相机对象，取而代之的，它提供了一些辅助方法，通过对绘图对象的变换来模拟相机视角。一个相机视角变换可能仅在建立你的&lt;code&gt;GLSurfaceView&lt;/code&gt;时计算一次，也可能根据用户的行为或者你的应用的功能进行动态调整。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这节课将解释如何创建一个投影和一个相机视角，并应用它们到&lt;code&gt;GLSurfaceView&lt;/code&gt;中的绘制图像上。&lt;/p&gt;
+&lt;h2 id=&quot;定义一个投影&quot;&gt;&lt;a href=&quot;#定义一个投影&quot; class=&quot;headerlink&quot; title=&quot;定义一个投影&quot;&gt;&lt;/a&gt;定义一个投影&lt;/h2&gt;&lt;p&gt;投影变换的数据会在&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;类的&lt;code&gt;onSurfaceChanged()&lt;/code&gt;方法中被计算。下面的代码首先接收&lt;code&gt;GLSurfaceView&lt;/code&gt;的高和宽，然后利用它并使用&lt;code&gt;Matrix.frustumM()&lt;/code&gt;方法来填充一个投影变换矩阵（Projection Transformation Matrix）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// mMVPMatrix is an abbreviation for &amp;quot;Model View Projection Matrix&amp;quot;
+private final float[] mMVPMatrix = new float[16];
+private final float[] mProjectionMatrix = new float[16];
+private final float[] mViewMatrix = new float[16];
+
+@Override
+public void onSurfaceChanged(GL10 unused, int width, int height) {
+GLES20.glViewport(0, 0, width, height);
+
+float ratio = (float) width / height;
+
+// this projection matrix is applied to object coordinates
+// in the onDrawFrame() method
+Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该代码填充了一个投影矩阵：&lt;code&gt;mProjectionMatrix&lt;/code&gt;，在下一节中，我们可以在&lt;code&gt;onDrawFrame()&lt;/code&gt;方法中将它和一个相机视角变换结合起来。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note：在绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，我们还要实现一个相机视角，使得所有对象出现在屏幕上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;定义一个相机视角&quot;&gt;&lt;a href=&quot;#定义一个相机视角&quot; class=&quot;headerlink&quot; title=&quot;定义一个相机视角&quot;&gt;&lt;/a&gt;定义一个相机视角&lt;/h2&gt;&lt;p&gt;在渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成我们的绘图对象所需变换的所有步骤。在下面的代码中，使用&lt;code&gt;Matrix.setLookAtM()&lt;/code&gt;方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Override
+public void onDrawFrame(GL10 unused) {
+...
+// Set the camera position (View matrix)
+Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+
+// Calculate the projection and view transformation
+Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
+
+// Draw shape
+mTriangle.draw(mMVPMatrix);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;应用投影和相机变换&quot;&gt;&lt;a href=&quot;#应用投影和相机变换&quot; class=&quot;headerlink&quot; title=&quot;应用投影和相机变换&quot;&gt;&lt;/a&gt;应用投影和相机变换&lt;/h2&gt;&lt;p&gt;为了使用在之前章节中结合了的相机视角变换和投影变换，我们首先为之前在Triangle类中定义的顶点着色器添加一个Matrix变量：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Triangle {
+
+private final String vertexShaderCode =
+    // This matrix member variable provides a hook to manipulate
+    // the coordinates of the objects that use this vertex shader
+    &amp;quot;uniform mat4 uMVPMatrix;&amp;quot; +
+    &amp;quot;attribute vec4 vPosition;&amp;quot; +
+    &amp;quot;void main() {&amp;quot; +
+    // the matrix must be included as a modifier of gl_Position
+    // Note that the uMVPMatrix factor *must be first* in order
+    // for the matrix multiplication product to be correct.
+    &amp;quot;  gl_Position = uMVPMatrix * vPosition;&amp;quot; +
+    &amp;quot;}&amp;quot;;
+
+// Use to access and set the view transformation
+private int mMVPMatrixHandle;
+
+...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之后，修改图形对象的&lt;code&gt;draw()&lt;/code&gt;方法，使得它接收组合后的变换矩阵，并将它应用到图形上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void draw(float[] mvpMatrix) { // pass in the calculated transformation matrix
+...
+
+// get handle to shape&amp;apos;s transformation matrix
+mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, &amp;quot;uMVPMatrix&amp;quot;);
+
+// Pass the projection and view transformation to the shader
+GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
+
+// Draw the triangle
+GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+
+// Disable vertex array
+GLES20.glDisableVertexAttribArray(mPositionHandle);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/OpenGL3.png&quot; alt=&quot;OPENGL3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;现在，应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！&lt;/p&gt;
+&lt;h1 id=&quot;添加移动&quot;&gt;&lt;a href=&quot;#添加移动&quot; class=&quot;headerlink&quot; title=&quot;添加移动&quot;&gt;&lt;/a&gt;添加移动&lt;/h1&gt;&lt;p&gt;在屏幕上绘制图形是OpenGL的一个基本特性，当然我们也可以通过其它的Android图形框架类做这些事情，包括&lt;code&gt;Canvas&lt;/code&gt;和&lt;code&gt;Drawable&lt;/code&gt;对象。OpenGL ES的特别之处在于，它还提供了其它的一些功能，比如在三维空间中对绘制图形进行移动和变换操作，或者通过其它独有的方法创建出引人入胜的用户体验。&lt;/p&gt;
+&lt;p&gt;在这节课中，我们会更深入地学习OpenGL ES的知识：对一个图形添加旋转动画。&lt;/p&gt;
+&lt;h2 id=&quot;旋转一个形状&quot;&gt;&lt;a href=&quot;#旋转一个形状&quot; class=&quot;headerlink&quot; title=&quot;旋转一个形状&quot;&gt;&lt;/a&gt;旋转一个形状&lt;/h2&gt;&lt;p&gt;使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。在渲染器中，创建另一个变换矩阵（一个旋转矩阵），并且将它和我们的投影变换矩阵以及相机视角变换矩阵结合在一起：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private float[] mRotationMatrix = new float[16];
+public void onDrawFrame(GL10 gl) {
+float[] scratch = new float[16];
+
+...
+
+// Create a rotation transformation for the triangle
+long time = SystemClock.uptimeMillis() % 4000L;
+float angle = 0.090f * ((int) time);
+Matrix.setRotateM(mRotationMatrix, 0, angle, 0, 0, -1.0f);
+
+// Combine the rotation matrix with the projection and camera view
+// Note that the mMVPMatrix factor *must be first* in order
+// for the matrix multiplication product to be correct.
+Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+// Draw triangle
+mTriangle.draw(scratch);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将启用&lt;code&gt;GLSurfaceView.RENDERMODE_WHEN_DIRTY&lt;/code&gt;的这一配置所对应的代码注释掉了，有关该方面的知识会在下一节中展开。&lt;/p&gt;
+&lt;h2 id=&quot;启用连续渲染&quot;&gt;&lt;a href=&quot;#启用连续渲染&quot; class=&quot;headerlink&quot; title=&quot;启用连续渲染&quot;&gt;&lt;/a&gt;启用连续渲染&lt;/h2&gt;&lt;p&gt;如果严格按照这节课的样例代码走到了现在这一步，那么请确认一下是否将设置渲染模式为&lt;code&gt;RENDERMODE_WHEN_DIRTY&lt;/code&gt;的那行代码注释了，不然的话OpenGL只会对这个形状执行一次旋转，然后就等待&lt;code&gt;GLSurfaceView&lt;/code&gt;容器的&lt;code&gt;requestRender()&lt;/code&gt;方法被调用后才会继续执行渲染操作。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public MyGLSurfaceView(Context context) {
+...
+// Render the view only when there is a change in the drawing data.
+// To allow the triangle to rotate automatically, this line is commented out:
+//setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;除非某个对象，它的变化和用户的交互无关，不然的话一般还是建议将这个配置打开。在下一节课中的内容将会把这个注释放开，再次设定这一配置选项。&lt;/p&gt;
+&lt;h1 id=&quot;响应触摸事件&quot;&gt;&lt;a href=&quot;#响应触摸事件&quot; class=&quot;headerlink&quot; title=&quot;响应触摸事件&quot;&gt;&lt;/a&gt;响应触摸事件&lt;/h1&gt;&lt;p&gt;让对象根据预设的程序运动（如让一个三角形旋转），可以有效地引起用户的注意，但是如果希望让OpenGL ES的图形对象与用户交互呢？让我们的OpenGL ES应用可以支持触控交互的关键点在于，拓展&lt;code&gt;GLSurfaceView&lt;/code&gt;的实现，重写&lt;code&gt;onTouchEvent()&lt;/code&gt;方法来监听触摸事件。&lt;/p&gt;
+&lt;p&gt;这节课将会向你展示如何监听触控事件，让用户旋转一个OpenGL ES对象。&lt;/p&gt;
+&lt;h2 id=&quot;配置触摸监听器&quot;&gt;&lt;a href=&quot;#配置触摸监听器&quot; class=&quot;headerlink&quot; title=&quot;配置触摸监听器&quot;&gt;&lt;/a&gt;配置触摸监听器&lt;/h2&gt;&lt;p&gt;为了让我们的OpenGL ES应用响应触控事件，我们必须实现&lt;code&gt;GLSurfaceView&lt;/code&gt;类中的&lt;code&gt;onTouchEvent()&lt;/code&gt;方法。下面的例子展示了如何监听&lt;code&gt;MotionEvent.ACTION_MOVE&lt;/code&gt;事件，并将事件转换为形状旋转的角度：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
+private float mPreviousX;
+private float mPreviousY;
+
+@Override
+public boolean onTouchEvent(MotionEvent e) {
+// MotionEvent reports input details from the touch screen
+// and other input controls. In this case, you are only
+// interested in events where the touch position changed.
+
+float x = e.getX();
+float y = e.getY();
+
+switch (e.getAction()) {
+    case MotionEvent.ACTION_MOVE:
+
+        float dx = x - mPreviousX;
+        float dy = y - mPreviousY;
+
+        // reverse direction of rotation above the mid-line
+        if (y &amp;gt; getHeight() / 2) {
+          dx = dx * -1 ;
+        }
+
+        // reverse direction of rotation to left of the mid-line
+        if (x &amp;lt; getWidth() / 2) {
+          dy = dy * -1 ;
+        }
+
+        mRenderer.setAngle(
+                mRenderer.getAngle() +
+                ((dx + dy) * TOUCH_SCALE_FACTOR));
+        requestRender();
+}
+mPreviousX = x;
+mPreviousY = y;
+return true;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意在计算旋转角度后，该方法会调用&lt;code&gt;requestRender()&lt;/code&gt;来告诉渲染器现在可以进行渲染了。这种办法对于这个例子来说是最有效的，因为图形并不需要重新绘制，除非有一个旋转角度的变化。当然，为了能够真正实现执行效率的提高，记得使用&lt;code&gt;setRenderMode()&lt;/code&gt;方法以保证渲染器仅在数据发生变化时才会重新绘制图形，所以请确保这一行代码没有被注释掉：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public MyGLSurfaceView(Context context) {
+...
+// Render the view only when there is a change in the drawing data
+setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;公开旋转角度&quot;&gt;&lt;a href=&quot;#公开旋转角度&quot; class=&quot;headerlink&quot; title=&quot;公开旋转角度&quot;&gt;&lt;/a&gt;公开旋转角度&lt;/h2&gt;&lt;p&gt;上述样例代码需要我们公开旋转的角度，具体来说，是在渲染器中添加一个&lt;code&gt;public&lt;/code&gt;成员变量。由于渲染器代码运行在一个独立的线程中（非主UI线程），我们必须同时将该变量声明为volatile。注意下面声明该变量的代码，另外对应的get和set方法也被声明为了&lt;code&gt;public&lt;/code&gt;成员函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MyGLRenderer implements GLSurfaceView.Renderer {
+...
+
+public volatile float mAngle;
+
+public float getAngle() {
+    return mAngle;
+}
+
+public void setAngle(float angle) {
+    mAngle = angle;
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;应用旋转&quot;&gt;&lt;a href=&quot;#应用旋转&quot; class=&quot;headerlink&quot; title=&quot;应用旋转&quot;&gt;&lt;/a&gt;应用旋转&lt;/h2&gt;&lt;p&gt;为了应用触控输入所生成的旋转，注释掉创建旋转角度的代码，然后添加mAngle，该变量包含了触控输入所生成的角度：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void onDrawFrame(GL10 gl) {
+...
+float[] scratch = new float[16];
+
+// Create a rotation for the triangle
+// long time = SystemClock.uptimeMillis() % 4000L;
+// float angle = 0.090f * ((int) time);
+Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, -1.0f);
+
+// Combine the rotation matrix with the projection and camera view
+// Note that the mMVPMatrix factor *must be first* in order
+// for the matrix multiplication product to be correct.
+Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+// Draw triangle
+mTriangle.draw(scratch);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当完成了上述步骤，我们就可以运行这个程序，并通过手指在屏幕上的滑动旋转三角形了：&lt;br&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/opengl4.png&quot; alt=&quot;opengl4&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://wiki.jikexueyuan.com/project/android-training-geek/opengl-index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;转载&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;h
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
+    
+      <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+      <category term="Android_API_Guides" scheme="http://jackliu17.github.io/tags/Android-API-Guides/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL_ES</title>
+    <link href="http://jackliu17.github.io/2016/04/24/OpenGL-ES/"/>
+    <id>http://jackliu17.github.io/2016/04/24/OpenGL-ES/</id>
+    <published>2016-04-24T06:43:39.000Z</published>
+    <updated>2016-04-24T06:57:33.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;OpenGL 是跨平台的图像API，定义了3D图像处理的标准&lt;/li&gt;
+&lt;li&gt;OpenGL ES是为OPenGL在嵌入式设备上的标准&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;安卓支持如下OpenGL&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenGL ES 1.0 and 1.1 - This API specification is supported by Android 1.0 and higher.&lt;/li&gt;
+&lt;li&gt;OpenGL ES 2.0 - This API specification is supported by Android 2.2 (API level 8) and higher.&lt;/li&gt;
+&lt;li&gt;OpenGL ES 3.0 - This API specification is supported by Android 4.3 (API level 18) and higher.&lt;/li&gt;
+&lt;li&gt;OpenGL ES 3.1 - This API specification is supported by Android 5.0 (API level 21) and higher.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;OpenGL ES 3.0以上需要厂家在设备上安装某图像处理，Android4.3以上可能不支持OpenGL ES 3.0&lt;/p&gt;
+&lt;h2 id=&quot;The-Basics&quot;&gt;&lt;a href=&quot;#The-Basics&quot; class=&quot;headerlink&quot; title=&quot;The Basics&quot;&gt;&lt;/a&gt;The Basics&lt;/h2&gt;&lt;p&gt;Android中两个class需要特别注意&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GLSurfaceView&lt;/code&gt;&lt;br&gt;这是一个view,用来绘画和管理对象，和SurfaceView很相似&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GLSurfaceView.Renderer&lt;/code&gt;&lt;br&gt;在GLSurfaceView中绘画的接口，提供了必要的方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;onSurfaceCreated():  //初始化环境&lt;/li&gt;
+&lt;li&gt;onDrawFrame(): //绘画对象&lt;/li&gt;
+&lt;li&gt;onSurfaceChanged(): //当界面改变时，比如屏幕旋转&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;OpenGL-ES-packages&quot;&gt;&lt;a href=&quot;#OpenGL-ES-packages&quot; class=&quot;headerlink&quot; title=&quot;OpenGL ES packages&quot;&gt;&lt;/a&gt;OpenGL ES packages&lt;/h3&gt;&lt;p&gt;OpenGL ES 1.0/1.1 API Packages&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;android.opengl
+javax.microedition.khronos.opengles
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;OpenGL ES 2.0 API Class&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;android.opengl.GLES20
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;OpenGL ES 3.0/3.1 API Packages&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;android.opengl
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Declaring-OpenGL-Requirements&quot;&gt;&lt;a href=&quot;#Declaring-OpenGL-Requirements&quot; class=&quot;headerlink&quot; title=&quot;Declaring OpenGL Requirements&quot;&gt;&lt;/a&gt;Declaring OpenGL Requirements&lt;/h2&gt;&lt;p&gt;在AndroidManifest.xml中声明OpenGL版本要求&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;For OpenGL ES 2.0:
+&amp;lt;!-- Tell the system this app requires OpenGL ES 2.0. --&amp;gt;
+&amp;lt;uses-feature android:glEsVersion=&amp;quot;0x00020000&amp;quot; android:required=&amp;quot;true&amp;quot; /&amp;gt;
+
+For OpenGL ES 3.0:
+&amp;lt;!-- Tell the system this app requires OpenGL ES 3.0. --&amp;gt;
+&amp;lt;uses-feature android:glEsVersion=&amp;quot;0x00030000&amp;quot; android:required=&amp;quot;true&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;纹理压缩要求 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;supports-gl-texture&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Mapping-Coordinates-for-Drawn-Objects&quot;&gt;&lt;a href=&quot;#Mapping-Coordinates-for-Drawn-Objects&quot; class=&quot;headerlink&quot; title=&quot;Mapping Coordinates for Drawn Objects&quot;&gt;&lt;/a&gt;Mapping Coordinates for Drawn Objects&lt;/h2&gt;&lt;h2 id=&quot;Shape-Faces-and-Winding&quot;&gt;&lt;a href=&quot;#Shape-Faces-and-Winding&quot; class=&quot;headerlink&quot; title=&quot;Shape Faces and Winding&quot;&gt;&lt;/a&gt;Shape Faces and Winding&lt;/h2&gt;&lt;h2 id=&quot;OpenGL-Versions-and-Device-Compatibility&quot;&gt;&lt;a href=&quot;#OpenGL-Versions-and-Device-Compatibility&quot; class=&quot;headerlink&quot; title=&quot;OpenGL Versions and Device Compatibility&quot;&gt;&lt;/a&gt;OpenGL Versions and Device Compatibility&lt;/h2&gt;&lt;h2 id=&quot;Choosing-an-OpenGL-API-Version&quot;&gt;&lt;a href=&quot;#Choosing-an-OpenGL-API-Version&quot; class=&quot;headerlink&quot; title=&quot;Choosing an OpenGL API Version&quot;&gt;&lt;/a&gt;Choosing an OpenGL API Version&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Abstract from Android API Guides - OpenGL&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;OpenGL 是跨平台的图像API，定义了3D图像处理的标准&lt;/li&gt;
+&lt;li&gt;OpenGL ES是为OPenGL在嵌入式设备上的标准&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;安卓支持如下OpenGL&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;OpenGL ES 1.0 and 1.1 -
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
+    
+      <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+      <category term="Android_API_Guides" scheme="http://jackliu17.github.io/tags/Android-API-Guides/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目5.UIScrollView图片自动滚动</title>
@@ -343,9 +917,9 @@
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
       <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
@@ -1079,574 +1653,6 @@ print(Math.degree2Radian(45))
       &lt;h1 id=&quot;可选链&quot;&gt;&lt;a href=&quot;#可选链&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;class Customer {
 var name = &amp;quot;&amp;quot;
 var emp: Employee
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swift面向对象基础（中）</title>
-    <link href="http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
-    <id>http://jackliu17.github.io/2016/03/12/Swift面向对象基础（中）/</id>
-    <published>2016-03-12T01:04:36.000Z</published>
-    <updated>2016-04-17T03:23:56.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;存储在类，结构体里的变量或者常量，有两种:实例存储属性和类型存储属性&lt;/li&gt;
-&lt;li&gt;初始值要么在构造器中，要么在就直接赋予，可选类型的存储属性可以不指定初始值&lt;/li&gt;
-&lt;li&gt;系统会提供两个构造器：一个无参数的构造器和一个初始化所有实例存储属性的构造器。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;结构体实例存储属性&quot;&gt;&lt;a href=&quot;#结构体实例存储属性&quot; class=&quot;headerlink&quot; title=&quot;结构体实例存储属性&quot;&gt;&lt;/a&gt;结构体实例存储属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct LengthRange {
-var start: Int
-//定义常量存储属性，可以不指定初始值
-let length:Int
-}
-
-var len = LengthRange(start:9, length:3)
-//通过构造器参数完成实例存储属性的初始化
-print(&amp;quot;len的起点为\(len.start),长度为\(len.length)&amp;quot;)
-
-len.start = 2
-//len.length = 4 //这个会报错，因为是常量，常量是不能修改的
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;计算属性&quot;&gt;&lt;a href=&quot;#计算属性&quot; class=&quot;headerlink&quot; title=&quot;计算属性&quot;&gt;&lt;/a&gt;计算属性&lt;/h1&gt;&lt;h2 id=&quot;语法&quot;&gt;&lt;a href=&quot;#语法&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var计算属性名:属性类型{
-get{
-//get方法执行体，该方法一定要有返回值
-}
-
-set(形参名){
-setter方法执行体，该方法一定不能有返回值
-}
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;例子1&quot;&gt;&lt;a href=&quot;#例子1&quot; class=&quot;headerlink&quot; title=&quot;例子1&quot;&gt;&lt;/a&gt;例子1&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class User{
-var first:String = &amp;quot;&amp;quot;
-var last:String = &amp;quot;&amp;quot;
-
-//定义计算属性
-var fullName:String{
-
-    //定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
-    get{
-        return first + &amp;quot;-&amp;quot; + last
-    }
-
-    //定义计算属性的setter方法
-    //该setter方法将负责改变该实例的first,last两个存储属性
-    set(newValue){
-        var names = newValue.componentsSeparatedByString(&amp;quot;-&amp;quot;)
-        self.first = names[0]
-        self.last = names [1]
-    }
-}
-
-init(first:String, last:String){
-    self.first = first
-    self.last = last
-}
-}
-
-let s = User(first:&amp;quot;极客&amp;quot;,last:&amp;quot;Hello&amp;quot;)
-//print(s.fullName) //结果是：极客-Hello
-
-s.fullName = &amp;quot;极客-学院&amp;quot;
-print(s.first)  //outcome is 极客
-print(s.last)   //结果是 学院
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;例子2-只读属性&quot;&gt;&lt;a href=&quot;#例子2-只读属性&quot; class=&quot;headerlink&quot; title=&quot;例子2 只读属性&quot;&gt;&lt;/a&gt;例子2 只读属性&lt;/h2&gt;&lt;p&gt;无需set部分，可以省略get和花括号&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class User{
-var first:String = &amp;quot;&amp;quot;
-var last:String = &amp;quot;&amp;quot;
-
-//定义计算属性
-var fullName:String{
-
-//定义计算属性的getter方法，该方法的返回值由first,last两个存储属性决定
-   return first + &amp;quot;-&amp;quot; + last
-
-}
-
-init(first:String, last:String){
-   self.first = first
-   self.last = last
-}
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;属性观察者&quot;&gt;&lt;a href=&quot;#属性观察者&quot; class=&quot;headerlink&quot; title=&quot;属性观察者&quot;&gt;&lt;/a&gt;属性观察者&lt;/h1&gt;&lt;h2 id=&quot;语法-1&quot;&gt;&lt;a href=&quot;#语法-1&quot; class=&quot;headerlink&quot; title=&quot;语法&quot;&gt;&lt;/a&gt;语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var 计算属性名：属性类型 = 初始值 {
-  willSet (newValue){
-  //属性即将被赋值之前自动调用的方法
-
-  }
-
-  didSet(oldValue){
-  //属性被赋值完成之后自动调用的方法
-
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;除了延迟存储属性之外的所有存储属性（包括实例存储属性和类型存储属性）&lt;/li&gt;
-&lt;li&gt;可通过重载方式为继承得到的属性（包括存储属性和计算属性）添加属性观察者。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;例子&quot;&gt;&lt;a href=&quot;#例子&quot; class=&quot;headerlink&quot; title=&quot;例子&quot;&gt;&lt;/a&gt;例子&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class Person {
-//定义存储属性
-var name: String = &amp;quot;&amp;quot;{
-
-    willSet{
-
-        if(newValue.characters.count &amp;gt; 6 || newValue.characters.count &amp;lt; 2){
-            print(&amp;quot;您设置的人名\(newValue)不符合要求，请重新设置！&amp;quot;)
-        }else{
-            print(&amp;quot;人名设置符合要求，设置成功&amp;quot;)
-        }
-    }
-
-    didSet{
-        print(&amp;quot;人名设置完成，被修改的原名为：\(oldValue)&amp;quot;)
-    }
-}
-
-var age: Int = 0{
-
-    willSet{
-        if newValue &amp;gt; 100 || newValue &amp;lt; 0{
-            print(&amp;quot;您设置的年龄\(newValue)不符合要求，请重新设置！&amp;quot;)
-        }else{
-            print(&amp;quot;年龄设置符合要求，设置成功&amp;quot;)
-        }
-    }
-
-    didSet {
-        print(&amp;quot;年龄设置完成，被修改的年龄为：\(oldValue)&amp;quot;)
-    }
-}
-}
-
-var p = Person()
-//p.age = 999  //不成功的设置，先调用willSet，再调用didSet
-p.age = 10 // 成功的设置
-print(&amp;quot;成功设置年龄后，年龄为\(p.age)&amp;quot;)  
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h1&gt;&lt;p&gt;类型方法:枚举，结构体中方法使用static修饰，类中用class修饰，否则的话属于实例方法&lt;/p&gt;
-&lt;h2 id=&quot;将方法转换为函数&quot;&gt;&lt;a href=&quot;#将方法转换为函数&quot; class=&quot;headerlink&quot; title=&quot;将方法转换为函数&quot;&gt;&lt;/a&gt;将方法转换为函数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class SomeClass {
-
-func test() {
-    print(&amp;quot;==test 方法==&amp;quot;)
-}
-
-class func bar(msg:String) {
-    print(&amp;quot;==bar类型方法==，传入的参数为:\(msg)&amp;quot;)
-}
-}
-
-var sc = SomeClass()     //创建实例
-var f1:()-&amp;gt;()=sc.test    //将sc的test方法分离成函数
-
-var f2:(String) -&amp;gt; Void = SomeClass.bar    //将sc的bar方法分离成函数，定义一个函数型的变量并赋值
-//f1()    //等价于sc.test()
-f2(&amp;quot;极客&amp;quot;)  //等价于SomeClass.bar(msg:&amp;quot;Geek&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;方法形参名省略用-“-”&quot;&gt;&lt;a href=&quot;#方法形参名省略用-“-”&quot; class=&quot;headerlink&quot; title=&quot;方法形参名省略用 “_”&quot;&gt;&lt;/a&gt;方法形参名省略用 “_”&lt;/h2&gt;&lt;p&gt;默认除第一个参数外都添加了外部参数名，与局部参数名一样，如果不需要的话，则用_下划线的方式去掉&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Person {
-
-var name:String
-
-init(name:String){
-    self.name = name
-}
-
-func eat (food:String, _ drink:String, cigarette:String){
-    print(&amp;quot;\(self.name)吃着\(food),喝着\(drink),抽着\(cigarette)&amp;quot;)
-}
-}
-
-var p = Person(name:&amp;quot;Tom&amp;quot;)
-p.eat(&amp;quot;烤鸭&amp;quot;,&amp;quot;啤酒&amp;quot;,cigarette:&amp;quot;雪茄&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型的可变方法可以改变存储属性&quot;&gt;&lt;a href=&quot;#值类型的可变方法可以改变存储属性&quot; class=&quot;headerlink&quot; title=&quot;值类型的可变方法可以改变存储属性&quot;&gt;&lt;/a&gt;值类型的可变方法可以改变存储属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;struct JKRect {
-var x: Int
-var y: Int
-var width:Int
-var height:Int
-mutating func moveByX(x:Int,y:Int){
-    self.x += x
-    self.y += y
-}
-}
-
-var rect = JKRect(x:20, y:12, width:200, height:300)   //创建实例
-rect.moveByX(100, y:90)   //调用mutating方法，该方法可以改变rect实例的存储属性
-print(&amp;quot;rect矩形的左上角的x坐标为：\(rect.x),y坐标为:\(rect.y)&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;将mutating关键字放在func之前，即将该方法声明为可变方法&lt;/li&gt;
-&lt;li&gt;常量类型的结构体，枚举是不可变的,比如上述的var 改成 let就不行了&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;属性和方法的统一&quot;&gt;&lt;a href=&quot;#属性和方法的统一&quot; class=&quot;headerlink&quot; title=&quot;属性和方法的统一&quot;&gt;&lt;/a&gt;属性和方法的统一&lt;/h2&gt;&lt;p&gt;使用函数类型定义存储属性，并将函数或者闭包作为该属性的初始值，这个属性就成了方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;func factorial(n:Int) -&amp;gt; Int {
-var result = 1
-for i in 1...n {
-    result *= i
-}
-return result
-}
-
-struct SomeStruct {
-var info:() -&amp;gt; Void = {
-    print(&amp;quot;info方法&amp;quot;)
-}
-//将全局函数作为fact存储属性的初始值
-static var fact:(Int) -&amp;gt; Int = factorial
-}
-
-var sc = SomeStruct()
-//调用info方法
-//sc.info()  //outcome is info方法
-
-//使用闭包对sc对象的info赋值，相当于重新定义sc的info方法
-sc.info = {
-print(&amp;quot;另外一个闭包&amp;quot;)
-}
-
-//sc.info()  //outcome is 另外一个闭包
-
-var n = 6
-
-//调用fact方法，执行的是阶乘
-//print(&amp;quot;\(n)的阶乘是：\(SomeStruct.fact(6))&amp;quot;) //Outcome is 720
-
-//使用闭包对SomeStruct的fact赋值，相当于重新定义SomeStruct的fact方法
-SomeStruct.fact = {
-var result = 1
-for i in 1...$0 {
-    result += i
-}
-return result
-}
-
-//再次调用fact方法，执行的是累加
-print(&amp;quot;\(n)的累加的和是:\(SomeStruct.fact(6))&amp;quot;) //outcome is 22
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;下标&quot;&gt;&lt;a href=&quot;#下标&quot; class=&quot;headerlink&quot; title=&quot;下标&quot;&gt;&lt;/a&gt;下标&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;所有的Swift类型（枚举，类，结构体）都支持定义下标&lt;/li&gt;
-&lt;li&gt;同一个类型可以定义多个下标，通过下标的形参列表或者返回值类型来区分不同的下标&lt;/li&gt;
-&lt;li&gt;同一类型中定义多个不同的下标被称为下标重载&lt;/li&gt;
-&lt;li&gt;形参列表：与函数的形参列表的用法基本相同，但是不支持指定外部参数和默认值&lt;/li&gt;
-&lt;li&gt;下标的返回值类型：可以是任何有效的类型   &lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subscripe(形参列表) -&amp;gt;下标返回值类型 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;get &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  //getter方法执行体，该方法必须有返回值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;set(形参名)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  //setter方法执行体，该方法不能有返回值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;pre&gt;&lt;code&gt;struct JKRect2{
-var x:Int
-var y:Int
-var width:Int
-var height:Int
-
-//定义下标，指定下标只接受一个Int类型的参数，下标的返回类型为Int
-
-subscript(index:Int) -&amp;gt;Int {
-
-    get{
-        switch(index){
-        case 0:
-            return self.x
-        case 1:
-            return self.y
-        case 2:
-            return self.width
-        case 3:
-            return self.height
-        default:
-            print(&amp;quot;不支持该索引值&amp;quot;)
-            return 0
-        }
-    }
-
-    set{
-        switch(index){
-        case 0:
-            self.x = newValue
-        case 1:
-            self.y = newValue
-        case 2:
-            self.width = newValue
-        case 3:
-            self.height = newValue
-        default:
-            print(&amp;quot;不支持该索引值&amp;quot;)
-        }
-    }
-}
-}
-
-//创建实例
-var rect2 = JKRect2(x:20,y:12,width:200,height:300)
-
-//通过下标进行赋值
-//rect2[0] = 40
-//rect2[1] = 67
-
-//通过下标访问rect的属性
-print(&amp;quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[1])&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;存储属性有类型存储属性和实例子存储属性&lt;/li&gt;
-&lt;li&gt;计算属性,其实就是get/set方法&lt;/li&gt;
-&lt;li&gt;属性观察者，将赋值前的判断写入里面&lt;/li&gt;
-&lt;li&gt;类型方法的修饰符:class用于类，static用于枚举和结构体&lt;/li&gt;
-&lt;li&gt;类中的方法转为函数，使用函数变量&lt;/li&gt;
-&lt;li&gt;类中的属性转为函数，使用闭包&lt;/li&gt;
-&lt;li&gt;值类型的可变方法可以改变存储属性,相当于set方法。&lt;/li&gt;
-&lt;li&gt;枚举，类，结构体都支持下标，有下标重载，下标就是传入一个整数值来调用类里的get方法，当给下标赋值时，传入的值就是newValue&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;存储属性&quot;&gt;&lt;a href=&quot;#存储属性&quot; class=&quot;headerlink&quot; title=&quot;存储属性&quot;&gt;&lt;/a&gt;存储属性&lt;/h1&gt;&lt;h2 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swift面向对象基础(上)</title>
-    <link href="http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/"/>
-    <id>http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/</id>
-    <published>2016-03-11T07:06:33.000Z</published>
-    <updated>2016-04-15T11:11:08.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
-&lt;li&gt;Swift可以定义枚举，结构体，和类三种面向对象的类型&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h1&gt;&lt;h2 id=&quot;枚举定义&quot;&gt;&lt;a href=&quot;#枚举定义&quot; class=&quot;headerlink&quot; title=&quot;枚举定义&quot;&gt;&lt;/a&gt;枚举定义&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;用于管理一组有限的值的集合&lt;/li&gt;
-&lt;li&gt;支持计算属性&lt;/li&gt;
-&lt;li&gt;支持实例方法和类方法&lt;/li&gt;
-&lt;li&gt;支持定义构造器来完成初始化&lt;/li&gt;
-&lt;li&gt;支持扩展和协议&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;枚举语法&quot;&gt;&lt;a href=&quot;#枚举语法&quot; class=&quot;headerlink&quot; title=&quot;枚举语法&quot;&gt;&lt;/a&gt;枚举语法&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case Spring
-   case Summer
-   case Fall
-   case Winter
-}
-
-//方法2
-enum Season2 {
-   case Spring, Summer, Fall, Winter
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用枚举声明变量&quot;&gt;&lt;a href=&quot;#使用枚举声明变量&quot; class=&quot;headerlink&quot; title=&quot;使用枚举声明变量&quot;&gt;&lt;/a&gt;使用枚举声明变量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var weather: Season
-weather = Season.Fall
-weather = .Fall //也可以这样写
-print(weather)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;枚举值和switch语句&quot;&gt;&lt;a href=&quot;#枚举值和switch语句&quot; class=&quot;headerlink&quot; title=&quot;枚举值和switch语句&quot;&gt;&lt;/a&gt;枚举值和switch语句&lt;/h2&gt;&lt;p&gt;switch中的case没有覆盖枚举的所有值，必须添加default语句&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var chooseDay = Season.Fall
-
-switch(chooseDay){
-case .Spring:
-  print(&amp;quot;This is spring&amp;quot;)
-case .Summer:
-  print(&amp;quot;This is summer&amp;quot;)
-default:
-  print(&amp;quot;At home&amp;quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;原始值&quot;&gt;&lt;a href=&quot;#原始值&quot; class=&quot;headerlink&quot; title=&quot;原始值&quot;&gt;&lt;/a&gt;原始值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;enum 枚举名：原始值类型{
-   case 枚举值 = 原始值
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;整型的枚举&quot;&gt;&lt;a href=&quot;#整型的枚举&quot; class=&quot;headerlink&quot; title=&quot;整型的枚举&quot;&gt;&lt;/a&gt;整型的枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//可以自动推断，不用每个都赋予原始值
-enum Weekday: Int{
-  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;字符串枚举&quot;&gt;&lt;a href=&quot;#字符串枚举&quot; class=&quot;headerlink&quot; title=&quot;字符串枚举&quot;&gt;&lt;/a&gt;字符串枚举&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//必须每个都赋予原始值，因为不能自动推断
-enum Season3: Character{
-  case Spring = &amp;quot;春&amp;quot;
-  case Summer = &amp;quot;夏&amp;quot;
-  case Fall = &amp;quot;秋&amp;quot;
-  case Winter = &amp;quot;冬&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取原始值&quot;&gt;&lt;a href=&quot;#获取原始值&quot; class=&quot;headerlink&quot; title=&quot;获取原始值&quot;&gt;&lt;/a&gt;获取原始值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;print(Weekday.Fri.rawValue)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;获取枚举值&quot;&gt;&lt;a href=&quot;#获取枚举值&quot; class=&quot;headerlink&quot; title=&quot;获取枚举值&quot;&gt;&lt;/a&gt;获取枚举值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var mySeason = Season3(rawValue:&amp;quot;春&amp;quot;)
-if mySeason != nil {
-  switch(mySeason!){ //不为空才能进行强制解析
-  case .Spring:
-    print(&amp;quot;春天不是读书天&amp;quot;)
-  case .Summer:
-    print(&amp;quot;夏天炎炎正好眠&amp;quot;)
-  case .Fall , .Winter:
-    print(&amp;quot;秋多蚊蝇冬日冷&amp;quot;)
-  default:
-    print(&amp;quot;读书只好等明年&amp;quot;)
-
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;关联值&quot;&gt;&lt;a href=&quot;#关联值&quot; class=&quot;headerlink&quot; title=&quot;关联值&quot;&gt;&lt;/a&gt;关联值&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;enum Planet {
-case Earth(weight: Double , name:String)
-case Mars (density: Double, name: String, weight:Double)
-case Venus(Double, String)
-case Saturn
-case Neptune
-}
-
-var p1 = Planet.Earth(weight:1.0, name:&amp;quot;地球&amp;quot;)
-var p2 = Planet.Venus(0.815,&amp;quot;金星&amp;quot;)
-var p3 = Planet.Mars(density:3.95, name:&amp;quot;火星&amp;quot;,weight:0.1)
-
-switch (p3){
-//将关联值绑定到变量或者常量来提取
-case Planet.Earth(var weight , var name):
-   print(&amp;quot;此行星的名字为:\(name),质量相当于\(weight)个地球&amp;quot;)
-
-//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
-case let Planet.Mars(density:d, name:n, weight:w):
-   print(&amp;quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&amp;quot;)
-default:
-   break
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;类和结构体&quot;&gt;&lt;a href=&quot;#类和结构体&quot; class=&quot;headerlink&quot; title=&quot;类和结构体&quot;&gt;&lt;/a&gt;类和结构体&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;这两个非常相似&lt;/li&gt;
-&lt;li&gt;主要区别在于结构体和枚举不支持继承，只有类才有继承&lt;/li&gt;
-&lt;li&gt;结构体和枚举是值类型&lt;/li&gt;
-&lt;li&gt;类是引用类型&lt;/li&gt;
-&lt;li&gt;只有类的实例可以称为对象&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;h3 id=&quot;类&quot;&gt;&lt;a href=&quot;#类&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]class类名 {
-零到多个构造器
-零到多个属性
-零到多个方法
-零到多个下标
-}
-修饰符可以是private ,public, internal,final
-
-class Person {
-var name: String = &amp;quot;Jack&amp;quot;
-var age: Int = 0
-func say(content: String)
-{
-   print(content)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体&quot;&gt;&lt;a href=&quot;#结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]struct 结构体名 {
-
-}
-修饰符可以是private , public, internal
-
-struct Dog{
-
-var name: String
-var age: Int
-func run(){
-
-print(&amp;quot;\(name)在奔跑&amp;quot;)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;属性&quot;&gt;&lt;a href=&quot;#属性&quot; class=&quot;headerlink&quot; title=&quot;属性&quot;&gt;&lt;/a&gt;属性&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]var或者let 存储属性:类型名字 = 初始值
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器&quot;&gt;&lt;a href=&quot;#构造器&quot; class=&quot;headerlink&quot; title=&quot;构造器&quot;&gt;&lt;/a&gt;构造器&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]init(形参列表){
-//零到多条可执行语句组成的构造器执行体
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;方法&quot;&gt;&lt;a href=&quot;#方法&quot; class=&quot;headerlink&quot; title=&quot;方法&quot;&gt;&lt;/a&gt;方法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;[修饰符]func 方法名(形参列表) -&amp;gt;返回值类型 {
-//零到多条可执行语句
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建实例&quot;&gt;&lt;a href=&quot;#创建实例&quot; class=&quot;headerlink&quot; title=&quot;创建实例&quot;&gt;&lt;/a&gt;创建实例&lt;/h2&gt;&lt;h3 id=&quot;类-1&quot;&gt;&lt;a href=&quot;#类-1&quot; class=&quot;headerlink&quot; title=&quot;类&quot;&gt;&lt;/a&gt;类&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p: Person
-p = Person() //等价于 var p = Person()
-print(p.name)
-p.say(&amp;quot;Hello world&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;结构体-1&quot;&gt;&lt;a href=&quot;#结构体-1&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog = Dog(name:&amp;quot;Wangcai&amp;quot;, age:2)
-print(dog.name)
-dog.run()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;值类型与引用类型&quot;&gt;&lt;a href=&quot;#值类型与引用类型&quot; class=&quot;headerlink&quot; title=&quot;值类型与引用类型&quot;&gt;&lt;/a&gt;值类型与引用类型&lt;/h2&gt;&lt;h3 id=&quot;引用类型&quot;&gt;&lt;a href=&quot;#引用类型&quot; class=&quot;headerlink&quot; title=&quot;引用类型&quot;&gt;&lt;/a&gt;引用类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var p2 =p
-p2.name = &amp;quot;Rose&amp;quot;
-print(p.name)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;内存里的对象可以有多个引用，即多个引用变量指向同一个对象&lt;/li&gt;
-&lt;li&gt;如果一个引用更改了，那对象里的值也会更改。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;值类型&quot;&gt;&lt;a href=&quot;#值类型&quot; class=&quot;headerlink&quot; title=&quot;值类型&quot;&gt;&lt;/a&gt;值类型&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;var dog2 = dog
-dog2.name = &amp;quot;snoopy&amp;quot;
-print(dog2.name)
-print(dog.name)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;值对象是要复制的&lt;/li&gt;
-&lt;li&gt;每个值对象的更改，不会影响其他对象的更改&lt;/li&gt;
-&lt;li&gt;因此枚举和结构体是没有继承的  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;引用类型的比较&quot;&gt;&lt;a href=&quot;#引用类型的比较&quot; class=&quot;headerlink&quot; title=&quot;引用类型的比较&quot;&gt;&lt;/a&gt;引用类型的比较&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class User {
-var name: String
-var age: Int
-init(name: String, age: Int){
-    self.name = name
-    self.age = age
-}
-}
-
-var u1 = User(name:&amp;quot;Han&amp;quot;,age:32)
-var u2 = User(name:&amp;quot;Han&amp;quot;,age:32)
-//虽然传递的值是一样，但是是创建了两个对象
-
-print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
-print(u1 !== u2) //结果是true
-
-var u3 = u1
-print(u3 === u1) //结果是true
-
-// &amp;quot;===&amp;quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
-// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;self关键字&quot;&gt;&lt;a href=&quot;#self关键字&quot; class=&quot;headerlink&quot; title=&quot;self关键字&quot;&gt;&lt;/a&gt;self关键字&lt;/h2&gt;&lt;h3 id=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;a href=&quot;#方法中的self代表该方法的调用者&quot; class=&quot;headerlink&quot; title=&quot;方法中的self代表该方法的调用者&quot;&gt;&lt;/a&gt;方法中的self代表该方法的调用者&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Dog {  
-  func jump(){
-    print(&amp;quot;正在执行jump方法&amp;quot;)
-  }
-  func run(){
-  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
-     print(&amp;quot;正在执行run方法&amp;quot;)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;a href=&quot;#构造器中的self代表该构造器正在初始化的实例&quot; class=&quot;headerlink&quot; title=&quot;构造器中的self代表该构造器正在初始化的实例&quot;&gt;&lt;/a&gt;构造器中的self代表该构造器正在初始化的实例&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;class Person {
-    var name: String = &amp;quot;&amp;quot;
-    var age: Int = 2
-
-    init(name:String, age:Int){
-    self.name = name
-    self.age = age
-    }
-
-    func info(){
-    print(&amp;quot;我的名字是:\(name)年龄是:\(age)&amp;quot;)
-    }
-}
-
-var person = Person(name:&amp;quot;Lily&amp;quot;,age:10)
-person.info()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;类和结构体的选择&quot;&gt;&lt;a href=&quot;#类和结构体的选择&quot; class=&quot;headerlink&quot; title=&quot;类和结构体的选择&quot;&gt;&lt;/a&gt;类和结构体的选择&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;结构体的主要目的是用于封装少量相关的简单数据&lt;/li&gt;
-&lt;li&gt;如果需要在传递参数或者赋值时自动复制副本，使用结构体&lt;/li&gt;
-&lt;li&gt;明确该类型无须继承另一个已有的类或被其他类继承&lt;/li&gt;
-&lt;li&gt;注意，大部分时候，程序应该自定义类而不是自定义结构体。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;Swift中的三种面向对象类型:枚举，结构体，类&lt;/li&gt;
-&lt;li&gt;枚举,一组有限的值的集合.要区分枚举值，关联值，原始值&lt;/li&gt;
-&lt;li&gt;类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承&lt;/li&gt;
-&lt;li&gt;值类型和引用类型的区别。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;面向对象的特点&quot;&gt;&lt;a href=&quot;#面向对象的特点&quot; class=&quot;headerlink&quot; title=&quot;面向对象的特点&quot;&gt;&lt;/a&gt;面向对象的特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;面向对象编程的三大特征：封装，继承，和多态&lt;/li&gt;
-&lt;li&gt;Swift可以定义枚举，结
     
     </summary>
     
