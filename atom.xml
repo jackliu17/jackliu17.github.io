@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-04-24T08:33:52.000Z</updated>
+  <updated>2016-04-26T01:23:31.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android_Studio相关操作</title>
+    <link href="http://jackliu17.github.io/2016/04/26/Android-Studio%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
+    <id>http://jackliu17.github.io/2016/04/26/Android-Studio相关操作/</id>
+    <published>2016-04-26T01:14:55.000Z</published>
+    <updated>2016-04-26T01:23:31.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;创建assest-folder&quot;&gt;&lt;a href=&quot;#创建assest-folder&quot; class=&quot;headerlink&quot; title=&quot;创建assest folder&quot;&gt;&lt;/a&gt;创建assest folder&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/android_asset_foldrer.png&quot; alt=&quot;assest&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;导入jar文件&quot;&gt;&lt;a href=&quot;#导入jar文件&quot; class=&quot;headerlink&quot; title=&quot;导入jar文件&quot;&gt;&lt;/a&gt;导入jar文件&lt;/h2&gt;&lt;h3 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2&quot;&gt;&lt;a href=&quot;#2&quot; class=&quot;headerlink&quot; title=&quot;2&quot;&gt;&lt;/a&gt;2&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;3&quot;&gt;&lt;a href=&quot;#3&quot; class=&quot;headerlink&quot; title=&quot;3&quot;&gt;&lt;/a&gt;3&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;4&quot;&gt;&lt;a href=&quot;#4&quot; class=&quot;headerlink&quot; title=&quot;4&quot;&gt;&lt;/a&gt;4&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;5&quot;&gt;&lt;a href=&quot;#5&quot; class=&quot;headerlink&quot; title=&quot;5&quot;&gt;&lt;/a&gt;5&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;6&quot;&gt;&lt;a href=&quot;#6&quot; class=&quot;headerlink&quot; title=&quot;6&quot;&gt;&lt;/a&gt;6&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;创建assest-folder&quot;&gt;&lt;a href=&quot;#创建assest-folder&quot; class=&quot;headerlink&quot; title=&quot;创建assest folder&quot;&gt;&lt;/a&gt;创建assest folder&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+      <category term="Android_Studio" scheme="http://jackliu17.github.io/tags/Android-Studio/"/>
+    
+  </entry>
   
   <entry>
     <title>使用OpenGL_ES显示图像</title>
@@ -511,9 +542,9 @@ mTriangle.draw(scratch);
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
-    
       <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
     
       <category term="Android_API_Guides" scheme="http://jackliu17.github.io/tags/Android-API-Guides/"/>
     
@@ -581,9 +612,9 @@ For OpenGL ES 3.0:
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
-    
       <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+      <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
     
       <category term="Android_API_Guides" scheme="http://jackliu17.github.io/tags/Android-API-Guides/"/>
     
@@ -917,9 +948,9 @@ For OpenGL ES 3.0:
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
     
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
@@ -1427,232 +1458,6 @@ int _age;
     <summary type="html">
     
       &lt;h1 id=&quot;继承&quot;&gt;&lt;a href=&quot;#继承&quot; class=&quot;headerlink&quot; title=&quot;继承&quot;&gt;&lt;/a&gt;继承&lt;/h1&gt;&lt;h2 id=&quot;继承的特点&quot;&gt;&lt;a href=&quot;#继承的特点&quot; class=&quot;headerlink&quot; title=&quot;继承的特点&quot;&gt;&lt;/a&gt;继承的特
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Swift面向对象基础（下）</title>
-    <link href="http://jackliu17.github.io/2016/03/13/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
-    <id>http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/</id>
-    <published>2016-03-12T23:15:37.000Z</published>
-    <updated>2016-04-17T04:43:30.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;可选链&quot;&gt;&lt;a href=&quot;#可选链&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quot;销售客服&amp;quot;),
-    Employee (name: &amp;quot;小明&amp;quot;, title: &amp;quot;售后客服&amp;quot;),
-    Employee (name: &amp;quot;Han&amp;quot;, title: &amp;quot;普通客服&amp;quot;),
-    Employee (name: &amp;quot;Better&amp;quot;, title: &amp;quot;销售主管&amp;quot;),
-]
-//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
-func findEmp(empName:String) -&amp;gt; Employee! {
-    for emp in employees {
-        if emp.name == empName {
-          return emp
-        }
-    }
-    return nil
-}
-}
-class Company {
-  var name = &amp;quot;&amp;quot;
-  var addr = &amp;quot;&amp;quot;
-  init (name:String, addr:String){
-  self.name = name
-  self.addr = addr
-  }
-}
-class Employee {
-var name = &amp;quot;Lily&amp;quot;
-var title = &amp;quot;行政&amp;quot;
-var company:Company!  
-init(name:String, title:String){
-    self.name = name
-    self.title = title
-}
-func info(){
-     print(&amp;quot;本员工名为\(self.name),职位是\(self.title)&amp;quot;)
-}
-}
-//第一种情况----------------------
-var c = Customer(name: &amp;quot;Damon&amp;quot;)
-var emp = Employee(name: &amp;quot;Elena&amp;quot;, title: &amp;quot;Student&amp;quot;)
-//设置Customer关联的Employee实例
-c.emp = emp
-//设置Employee关联的Company实例
-emp.company = Company(name: &amp;quot;极客学院&amp;quot;, addr: &amp;quot;北京市&amp;quot;)
-//print(&amp;quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&amp;quot;)  //强制解析访问属性
-//print(&amp;quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&amp;quot;) //使用可选链访问属性
-//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
-var c2 = Customer(name: &amp;quot;Lucky&amp;quot;)
-c2.emp = Employee(name: &amp;quot;Snow&amp;quot;, title: &amp;quot;客服&amp;quot;)
-//print(&amp;quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&amp;quot;) //会报错，因为有空值，company没有赋值
-//print(&amp;quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&amp;quot;) //使用可选链访问属性，即使没有赋值也没有关系
-//第三种情况 ---------------
-var c3 = Customer(name: &amp;quot;Paul&amp;quot;)
-c3.findEmp(&amp;quot;张三&amp;quot;)?.info()
-c3.findEmp(&amp;quot;小明&amp;quot;)?.info() //如果传入的名字不存在，它就不会执行输出，但是也不会让程序崩溃
-//print(&amp;quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&amp;quot;)
-//第四种情况
-var dict = [Int: Customer]()
-dict[1] = Customer(name: &amp;quot;Han&amp;quot;)
-dict[2] = Customer(name: &amp;quot;Angle&amp;quot;)
-dict[1]?.findEmp(&amp;quot;Better&amp;quot;)?.info()
-dict[4]?.findEmp(&amp;quot;Better&amp;quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句    
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;可选链用于处理可选类型的属性，方法和下标&lt;/li&gt;
-&lt;li&gt;使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀&lt;/li&gt;
-&lt;li&gt;可选链会自动判断程序访问的关联实例是否为nil&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;值类型的类型属性-枚举&quot;&gt;&lt;a href=&quot;#值类型的类型属性-枚举&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型属性-枚举&quot;&gt;&lt;/a&gt;值类型的类型属性-枚举&lt;/h1&gt;&lt;p&gt;结构体可以包含实例计算属性，不能包含实例存储属性&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;enum Season {
-//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为枚举定义类型存储属性，且声明为常量
-static let name = &amp;quot;季节&amp;quot;
-static var info:String{
-
-    get{
-
-    return&amp;quot;代表季节的枚举，其desc为:\(desc)&amp;quot;
-
-    }
-
-    set{
-
-    print(&amp;quot;程序尝试对info计算属性进行赋值:\(newValue)&amp;quot;)
-
-    }
-}
-}
-//对Season枚举的类型属性赋值
-Season.desc = &amp;quot;季节类&amp;quot;
-print(Season.name)
-Season.info = &amp;quot;新的info&amp;quot;
-print(Season.info)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;值类型的类型属性-结构体&quot;&gt;&lt;a href=&quot;#值类型的类型属性-结构体&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型属性-结构体&quot;&gt;&lt;/a&gt;值类型的类型属性-结构体&lt;/h1&gt;&lt;p&gt;用static 修饰的是类型属性，需要通过类来调用&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;struct FkRange {
-
-//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为结构体定义类型存储属性，且声明为常量
-static let maxWidth = 10000
-static let maxHeight = 40000
-//定义类型计算属性，该属性只有get部分，是一个只读属性
-static var maxArea:Int{
-return maxWidth * maxHeight
-}
-}
-
-FkRange.desc = &amp;quot;描述范围的结构体&amp;quot;
-print(FkRange.desc)
-print(FkRange.maxWidth)
-print(FkRange.maxHeight)
-print(FkRange.maxArea)  
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;类的类型属性&quot;&gt;&lt;a href=&quot;#类的类型属性&quot; class=&quot;headerlink&quot; title=&quot;类的类型属性&quot;&gt;&lt;/a&gt;类的类型属性&lt;/h1&gt;&lt;p&gt;类中不可以定义类型存储属性，只能包含类型计算属性&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class User {
-
-   //为类定义类型计算属性
-class var nameMaxLength:Int {
-    get {
-    return 24
-    }
-
-    set {
-    print(&amp;quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&amp;quot;)
-    }
-}
-}
-print(User.nameMaxLength)
-User.nameMaxLength = 20
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用闭包或函数为属性设置初始值&quot;&gt;&lt;a href=&quot;#使用闭包或函数为属性设置初始值&quot; class=&quot;headerlink&quot; title=&quot;使用闭包或函数为属性设置初始值&quot;&gt;&lt;/a&gt;使用闭包或函数为属性设置初始值&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct ClosureInit &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 使用闭包对test实例存储属性执行初始化&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var test: Int = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var dt = NSDate()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var gregorian = NSCalendar.currentCalendar()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 定义一个时间字段的旗标，指定将会获取指定月、日信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var unitFlags = NSCalendarUnit.CalendarUnitMonth&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    | NSCalendarUnit.CalendarUnitDay  //这段代码有问题&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var comp = gregorian.components(unitFlags&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    , fromDate:dt)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 获取当前的月份&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var month = Int(comp.month)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 获取当前第几日&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var day = Int(comp.day)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    // 得到计算结果&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return day - month&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var ci = ClosureInit()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(ci.test)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;值类型的类型方法&quot;&gt;&lt;a href=&quot;#值类型的类型方法&quot; class=&quot;headerlink&quot; title=&quot;值类型的类型方法&quot;&gt;&lt;/a&gt;值类型的类型方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;enum Season2{
-
- //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-
-//为枚举定义类型存储属性，且声明为常量
-static let name = &amp;quot;季节&amp;quot;
-
-//定义无参数的类型方法
-static func info(){
-
-print(&amp;quot;季节类的info方法，该类的name存储属性为:\(name)&amp;quot;)
-}
-
-//定义带一个参数的类型方法
-static func setDesc(desc:String){
-
-self.desc = desc
-}
-}
-
-Season2.info()
-Season2.setDesc(&amp;quot;描述季节变化的枚举&amp;quot;)
-print(Season2.desc)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;类的类型方法&quot;&gt;&lt;a href=&quot;#类的类型方法&quot; class=&quot;headerlink&quot; title=&quot;类的类型方法&quot;&gt;&lt;/a&gt;类的类型方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;class Math {
-
-   //类不允许定义类型存储属性，使用类型计算属性代替
-class var pi:Double {
-    return 3.1415926535
-}
-
-class func abs(value:Double)-&amp;gt;Double {
-    return value&amp;lt;0 ? -value:value
-}
-
-//定义类型方法，取消第二个形参的外部形参名
-class func pow(base:Double,_ exponent:Int)-&amp;gt;Double {
-    var result = 1.0
-    for idx in 1...exponent{
-    result *= base
-    }
-    return result
-}
-
-//定义类型方法，类型方法可直接访问类型属性
-class func radian2Degre(radian:Double)-&amp;gt;Double {
-    return radian * 180/pi
-}
-
-//定义类型方法，类型方法可通过self引用类型属性
-class func degree2Radian(degree:Double)-&amp;gt;Double {
-    return degree * self.pi/180
-}
-}
-
-print(Math.pi)
-print(Math.pow(2, 4))
-print(Math.radian2Degre(1.57))
-print(Math.degree2Radian(45))
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结:&quot;&gt;&lt;/a&gt;总结:&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;通过可选链可以避免因为某个对象值的缺失，而引起程序崩溃。&lt;/li&gt;
-&lt;li&gt;static 在枚举和结构体中使用，class在类中使用&lt;/li&gt;
-&lt;li&gt;枚举和结构体中的属性基本都有static。&lt;/li&gt;
-&lt;li&gt;class只能修饰计算属性&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;可选链&quot;&gt;&lt;a href=&quot;#可选链&quot; class=&quot;headerlink&quot; title=&quot;可选链&quot;&gt;&lt;/a&gt;可选链&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee
     
     </summary>
     
