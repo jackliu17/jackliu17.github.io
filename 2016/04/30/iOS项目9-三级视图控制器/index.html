@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="objective-C,iOS," />
+  <meta name="keywords" content="iOS,codeExample," />
 
 
 
@@ -61,31 +61,43 @@
 
 
 
-<meta name="description" content="字符串NSString *name = @&amp;quot;jikexueyuan&amp;quot;;
-以’%@’代表对象NSLog(@&amp;quot;Hello Objective-C&amp;quot;);
-NSLog(@&amp;quot;The number is %d&amp;quot;,1000);
-NSLog(@&amp;quot;Hello %s&amp;quot;,&amp;quot;XiaoLi&amp;quot;);
-NSLog(@&amp;quot;H">
+<meta name="description" content="效果图
+项目分析
+三级视图控制器
+标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
+一个导航控制器对应于一个视图控制器，
+标签控制器是管理固定的几个视图控制器，子控制器是并列的。
+UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+
+设置window- (BOOL)application:(UIApplic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objective-C语言应用开发基础编程入门">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/16/Objective-C语言应用开发基础编程入门/index.html">
+<meta property="og:title" content="iOS项目9.三级视图控制器">
+<meta property="og:url" content="http://jackliu17.github.io/2016/04/30/iOS项目9-三级视图控制器/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="字符串NSString *name = @&amp;quot;jikexueyuan&amp;quot;;
-以’%@’代表对象NSLog(@&amp;quot;Hello Objective-C&amp;quot;);
-NSLog(@&amp;quot;The number is %d&amp;quot;,1000);
-NSLog(@&amp;quot;Hello %s&amp;quot;,&amp;quot;XiaoLi&amp;quot;);
-NSLog(@&amp;quot;H">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/dic%20plist%20file.png">
-<meta property="og:updated_time" content="2016-03-17T02:07:30.000Z">
+<meta property="og:description" content="效果图
+项目分析
+三级视图控制器
+标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
+一个导航控制器对应于一个视图控制器，
+标签控制器是管理固定的几个视图控制器，子控制器是并列的。
+UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+
+设置window- (BOOL)application:(UIApplic">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png">
+<meta property="og:updated_time" content="2016-04-30T12:15:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objective-C语言应用开发基础编程入门">
-<meta name="twitter:description" content="字符串NSString *name = @&amp;quot;jikexueyuan&amp;quot;;
-以’%@’代表对象NSLog(@&amp;quot;Hello Objective-C&amp;quot;);
-NSLog(@&amp;quot;The number is %d&amp;quot;,1000);
-NSLog(@&amp;quot;Hello %s&amp;quot;,&amp;quot;XiaoLi&amp;quot;);
-NSLog(@&amp;quot;H">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png">
+<meta name="twitter:title" content="iOS项目9.三级视图控制器">
+<meta name="twitter:description" content="效果图
+项目分析
+三级视图控制器
+标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
+一个导航控制器对应于一个视图控制器，
+标签控制器是管理固定的几个视图控制器，子控制器是并列的。
+UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+
+设置window- (BOOL)application:(UIApplic">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png">
 
 
 
@@ -103,7 +115,7 @@ NSLog(@&amp;quot;H">
   };
 </script>
 
-  <title> Objective-C语言应用开发基础编程入门 | Cowboy Tech </title>
+  <title> iOS项目9.三级视图控制器 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +257,7 @@ NSLog(@&amp;quot;H">
             
             
               
-                Objective-C语言应用开发基础编程入门
+                iOS项目9.三级视图控制器
               
             
           </h1>
@@ -257,8 +269,8 @@ NSLog(@&amp;quot;H">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T18:40:55+11:00" content="2016-03-16">
-              2016-03-16
+            <time itemprop="dateCreated" datetime="2016-04-30T22:14:13+10:00" content="2016-04-30">
+              2016-04-30
             </time>
           </span>
 
@@ -287,8 +299,8 @@ NSLog(@&amp;quot;H">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/16/Objective-C语言应用开发基础编程入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/Objective-C语言应用开发基础编程入门/" itemprop="commentsCount"></span>
+                <a href="/2016/04/30/iOS项目9-三级视图控制器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/iOS项目9-三级视图控制器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,78 +322,89 @@ NSLog(@&amp;quot;H">
       
 
       
-        <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><pre><code>NSString *name = @&quot;jikexueyuan&quot;;
-</code></pre><h2 id="以’-’代表对象"><a href="#以’-’代表对象" class="headerlink" title="以’%@’代表对象"></a>以’%@’代表对象</h2><pre><code>NSLog(@&quot;Hello Objective-C&quot;);
-NSLog(@&quot;The number is %d&quot;,1000);
-NSLog(@&quot;Hello %s&quot;,&quot;XiaoLi&quot;);
-NSLog(@&quot;Hello %@&quot;,name);
-NSLog(@&quot;ObjC Object %@&quot;,[[[NSObject alloc] init] description]); //实际上是调用NSObject中的description方法
-</code></pre><h1 id="Class的构成"><a href="#Class的构成" class="headerlink" title="Class的构成"></a>Class的构成</h1><h2 id="h-file"><a href="#h-file" class="headerlink" title=".h file"></a>.h file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface People : NSObject&#123;</span><br><span class="line">    int _age;</span><br><span class="line">    NSString *_name;</span><br><span class="line">&#125;</span><br><span class="line">// class method-------------------------------</span><br><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(id)initWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(int)getAge;</span><br><span class="line">-(NSString*)getName;</span><br></pre></td></tr></table></figure>
-<h2 id="m-file"><a href="#m-file" class="headerlink" title=".m file"></a>.m file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString *)name&#123;</span><br><span class="line">    return [[People alloc] initWithAge:age andName:name];</span><br><span class="line">&#125;</span><br><span class="line">- (instancetype)initWithAge:(int)age andName:(NSString *)name</span><br><span class="line">&#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        _age = age;</span><br><span class="line">        _name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">-(int)getAge&#123;</span><br><span class="line">    return _age;</span><br><span class="line">&#125;</span><br><span class="line">-(NSString*)getName&#123;</span><br><span class="line">    return _name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="call-method"><a href="#call-method" class="headerlink" title="call method"></a>call method</h2><pre><code>Hello *h = [[Hello alloc] init];
-[h sayHello];
-</code></pre><h1 id="数组与字典"><a href="#数组与字典" class="headerlink" title="数组与字典"></a>数组与字典</h1><h2 id="非可变数组"><a href="#非可变数组" class="headerlink" title="非可变数组"></a>非可变数组</h2><pre><code>//三种构造方法，可以从plist文件中获取数据
-NSArray *arr = @[@&quot;Hello&quot;,@&quot;jikexueyuan&quot;];
-NSArray *arr = [NSArray arrayWithObjects:@&quot;Hello&quot;, @&quot;jikexueyuan&quot;,nil];
-NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
+        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png" alt=""></p>
+<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png" alt=""></p>
+<h1 id="三级视图控制器"><a href="#三级视图控制器" class="headerlink" title="三级视图控制器"></a>三级视图控制器</h1><ol>
+<li>标签控制器 -&gt; 导航控制器 -&gt; 视图控制器，这就叫三级视图控制器</li>
+<li>一个导航控制器对应于一个视图控制器，</li>
+<li>标签控制器是管理固定的几个视图控制器，子控制器是并列的。</li>
+<li>UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系</li>
+</ol>
+<h1 id="设置window"><a href="#设置window" class="headerlink" title="设置window"></a>设置window</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-for (int i=0; i&lt;[arr count]; i++) {
-    NSLog(@&quot;%@&quot;,[arr objectAtIndex:i]);
+self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+self.window.backgroundColor = [UIColor whiteColor];
+[self.window makeKeyAndVisible];
+RootViewController *rootVC = [[RootViewController alloc] init];
+//权限最高的给根视图控制器
+self.window.rootViewController = rootVC; 
+// Override point for customization after application launch.
+return YES;
 }
-</code></pre><h2 id="可变数组"><a href="#可变数组" class="headerlink" title="可变数组"></a>可变数组</h2><pre><code>NSMutableArray *arr = [[NSMutableArray alloc] init];
+</code></pre><h1 id="数组赋值示例"><a href="#数组赋值示例" class="headerlink" title="数组赋值示例"></a>数组赋值示例</h1><pre><code>NSArray *vcArray = @[profielVC,messageVC,colaVC,userVC,moreVC];
+NSMutableArray *tabArray = [NSMutableArray arrayWithCapacity:vcArray.count];
+</code></pre><h1 id="背景颜色赋值为图片"><a href="#背景颜色赋值为图片" class="headerlink" title="背景颜色赋值为图片"></a>背景颜色赋值为图片</h1><pre><code>_tabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@&quot;mask_navbar&quot;]];
+</code></pre><h1 id="UIButton设tag值"><a href="#UIButton设tag值" class="headerlink" title="UIButton设tag值"></a>UIButton设tag值</h1><pre><code> //区分是点击了哪个button
+//iOS中100以前的tag值有特殊用法，所以最好在100以后
+btn.tag = 100 + i; 
+</code></pre><h1 id="UITabBarController的属性"><a href="#UITabBarController的属性" class="headerlink" title="UITabBarController的属性"></a>UITabBarController的属性</h1><pre><code>//选择的是哪个tab
+self.selectedIndex = button.tag - 100;
 
-for (int i=0; i&lt;100; i++) {
-    [arr addObject:[NSString stringWithFormat:@&quot;Item %d&quot;,i]];
+//隐藏系统默认的样式
+self.tabBar.hidden = YES;
+
+//用数组管理视图控制器
+self.viewControllers = tabArray;
+</code></pre><h1 id="Tab子视图调用根视图方法-UITabBarController"><a href="#Tab子视图调用根视图方法-UITabBarController" class="headerlink" title="Tab子视图调用根视图方法(UITabBarController)"></a>Tab子视图调用根视图方法(UITabBarController)</h1><pre><code>RootViewController *rootVC = (RootViewController *)self.tabBarController;
+[rootVC showTabBar:NO];
+</code></pre><h1 id="动画效果在于CGPoint-or-frame的改变"><a href="#动画效果在于CGPoint-or-frame的改变" class="headerlink" title="动画效果在于CGPoint or frame的改变"></a>动画效果在于CGPoint or frame的改变</h1><pre><code>[UIView animateWithDuration:0.2 animations:^{
+    _selectView.center = button.center;
+} completion:nil];
+
+
+//重新赋值frame,让tabBar消失
+[UIView animateWithDuration:0.2 animations:^{
+    self.tabBarView.frame = frame;
+} completion:nil];
+</code></pre><h1 id="UIButton的设置"><a href="#UIButton的设置" class="headerlink" title="UIButton的设置"></a>UIButton的设置</h1><pre><code>//需要custom类型才能设置图片
+UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+
+//[pushButton setImage:(UIImage *) forState:(UIControlState)]
+//标题和图片不能同时设置
+[pushButton setTitle:@&quot;Push&quot; forState:UIControlStateNormal];
+</code></pre><h1 id="视图顶部导航栏左右按钮"><a href="#视图顶部导航栏左右按钮" class="headerlink" title="视图顶部导航栏左右按钮"></a>视图顶部导航栏左右按钮</h1><pre><code>//自定义导航栏按钮
+- (void)initNavButton{
+
+UIButton *writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//导航按钮的xy值没有用
+writeBtn.frame = CGRectMake(0, 0, writeButtonWidth, writeButtonHeight);
+[writeBtn setBackgroundImage:[UIImage imageNamed:@&quot;write&quot;] forState:UIControlStateNormal];
+[writeBtn addTarget:self action:@selector(presentAction) forControlEvents:UIControlEventTouchUpInside];
+//添加自定义按钮
+UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:writeBtn];
+self.navigationItem.rightBarButtonItem = item;
 }
-
-NSLog(@&quot;%@&quot;,arr);
-</code></pre><h2 id="数组的plist文件"><a href="#数组的plist文件" class="headerlink" title="数组的plist文件"></a>数组的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png" alt="数组的plist文件"></p>
-<h2 id="字典的plist文件"><a href="#字典的plist文件" class="headerlink" title="字典的plist文件"></a>字典的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/dic%20plist%20file.png" alt="字典的plist文件"></p>
-<h2 id="字典与可变字典"><a href="#字典与可变字典" class="headerlink" title="字典与可变字典"></a>字典与可变字典</h2><pre><code>//字典的构造
-NSDictionary *dict = @{@&quot;name&quot;: @&quot;ZhangSan&quot;,@&quot;sex&quot;:@&quot;male&quot;};    
-NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;age&quot;]);
-
-//可变字典
-NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-[dict setObject:@&quot;jikexueyuan&quot; forKey:@&quot;name&quot;];
-
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;name&quot;]);
-</code></pre><h1 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h1><h2 id="h-file-1"><a href="#h-file-1" class="headerlink" title=".h file"></a>.h file</h2><pre><code>#import &lt;Foundation/Foundation.h&gt;
-
-@protocol IPeople &lt;NSObject&gt;
-
--(int)getAge;
--(void)setAge:(int)age;
--(NSString*)getName;
-
-@end
-</code></pre><h2 id="m-file-1"><a href="#m-file-1" class="headerlink" title=".m file"></a>.m file</h2><pre><code>@interface Man : NSObject&lt;IPeople&gt;{
-int _age;
+</code></pre><h1 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h1><h2 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h2><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
+</code></pre><h2 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h2><pre><code>- (void)dismissAction{
+[self dismissViewControllerAnimated:YES completion:nil];
 }
+</code></pre><h1 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h1><h2 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h2><pre><code>- (void)pushAction{
+PushViewController *pushVC = [[PushViewController alloc] init];
+[self.navigationController pushViewController:pushVC animated:YES];
+//[self.navigationController showViewController:pushVC sender:nil];
+RootViewController *rootVC = (RootViewController *)self.tabBarController;
+[rootVC showTabBar:NO];
+}    
+</code></pre><h2 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h2><pre><code>- (void)popAction{
 
--(id)init;
+    // 回到上级视图
+    [self.navigationController popViewControllerAnimated:YES];
 
--(void)setAge:(int)age;
--(NSString*)getName;
--(int)getAge;
+    // 跳转到某视图
+    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
 
-@property id&lt;ManDelegate&gt; delegate;
-
-@end
-</code></pre><h1 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h1><pre><code>@try {
-
-    //需要被捕获异常的代码
-    @throw [NSException exceptionWithName:@&quot;My Error&quot; reason:nil userInfo:nil];
-}
-@catch (NSException *exception) {
-
-    //输出一场信息
-    NSLog(@&quot;%@&quot;,exception);
-}
-@finally {
-    //无论是否有异常，都要执行
-    NSLog(@&quot;run&quot;);
+    // 跳转到根视图
+    //[self.navigationController popToRootViewControllerAnimated:YES];
 }
 </code></pre>
       
@@ -397,9 +420,9 @@ int _age;
       
         <div class="post-tags">
           
-            <a href="/tags/objective-C/" rel="tag">#objective-C</a>
-          
             <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
           
         </div>
       
@@ -408,17 +431,13 @@ int _age;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/16/iOS开发面试/" rel="next" title="iOS开发面试">
-                <i class="fa fa-chevron-left"></i> iOS开发面试
+              <a href="/2016/04/30/设计复杂的iOS动画效果/" rel="next" title="设计复杂的iOS动画效果">
+                <i class="fa fa-chevron-left"></i> 设计复杂的iOS动画效果
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/17/Keyboad快捷键/" rel="prev" title="Keyboad快捷键">
-                Keyboad快捷键 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -550,7 +569,7 @@ int _age;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以’-’代表对象"><span class="nav-number">1.1.</span> <span class="nav-text">以’%@’代表对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class的构成"><span class="nav-number">2.</span> <span class="nav-text">Class的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#h-file"><span class="nav-number">2.1.</span> <span class="nav-text">.h file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-file"><span class="nav-number">2.2.</span> <span class="nav-text">.m file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-method"><span class="nav-number">2.3.</span> <span class="nav-text">call method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组与字典"><span class="nav-number">3.</span> <span class="nav-text">数组与字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非可变数组"><span class="nav-number">3.1.</span> <span class="nav-text">非可变数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可变数组"><span class="nav-number">3.2.</span> <span class="nav-text">可变数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的plist文件"><span class="nav-number">3.3.</span> <span class="nav-text">数组的plist文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典的plist文件"><span class="nav-number">3.4.</span> <span class="nav-text">字典的plist文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典与可变字典"><span class="nav-number">3.5.</span> <span class="nav-text">字典与可变字典</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#protocol"><span class="nav-number">4.</span> <span class="nav-text">protocol</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#h-file-1"><span class="nav-number">4.1.</span> <span class="nav-text">.h file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m-file-1"><span class="nav-number">4.2.</span> <span class="nav-text">.m file</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exception"><span class="nav-number">5.</span> <span class="nav-text">Exception</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目分析"><span class="nav-number">2.</span> <span class="nav-text">项目分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三级视图控制器"><span class="nav-number">3.</span> <span class="nav-text">三级视图控制器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置window"><span class="nav-number">4.</span> <span class="nav-text">设置window</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组赋值示例"><span class="nav-number">5.</span> <span class="nav-text">数组赋值示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景颜色赋值为图片"><span class="nav-number">6.</span> <span class="nav-text">背景颜色赋值为图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton设tag值"><span class="nav-number">7.</span> <span class="nav-text">UIButton设tag值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITabBarController的属性"><span class="nav-number">8.</span> <span class="nav-text">UITabBarController的属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tab子视图调用根视图方法-UITabBarController"><span class="nav-number">9.</span> <span class="nav-text">Tab子视图调用根视图方法(UITabBarController)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果在于CGPoint-or-frame的改变"><span class="nav-number">10.</span> <span class="nav-text">动画效果在于CGPoint or frame的改变</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton的设置"><span class="nav-number">11.</span> <span class="nav-text">UIButton的设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图顶部导航栏左右按钮"><span class="nav-number">12.</span> <span class="nav-text">视图顶部导航栏左右按钮</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图跳转-模态视图"><span class="nav-number">13.</span> <span class="nav-text">视图跳转 - 模态视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#呈现使用present"><span class="nav-number">13.1.</span> <span class="nav-text">呈现使用present</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出使用dissmiss"><span class="nav-number">13.2.</span> <span class="nav-text">退出使用dissmiss</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图跳转-push视图"><span class="nav-number">14.</span> <span class="nav-text">视图跳转 - push视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#呈现用导航视图push-show"><span class="nav-number">14.1.</span> <span class="nav-text">呈现用导航视图push/show</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出用pop-的三种方式"><span class="nav-number">14.2.</span> <span class="nav-text">退出用pop 的三种方式</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -808,9 +827,9 @@ int _age;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/16/Objective-C语言应用开发基础编程入门/';
-      var disqus_title = 'Objective-C语言应用开发基础编程入门';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/16/Objective-C语言应用开发基础编程入门/';
+      var disqus_identifier = '2016/04/30/iOS项目9-三级视图控制器/';
+      var disqus_title = 'iOS项目9.三级视图控制器';
+      var disqus_url = 'http://jackliu17.github.io/2016/04/30/iOS项目9-三级视图控制器/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
