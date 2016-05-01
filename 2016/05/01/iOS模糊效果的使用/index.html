@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="iOS,iOS_image," />
 
 
 
@@ -61,43 +61,42 @@
 
 
 
-<meta name="description" content="效果图
-项目分析
-三级视图控制器
-标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
-一个导航控制器对应于一个视图控制器，
-标签控制器是管理固定的几个视图控制器，子控制器是并列的。
-UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+<meta name="description" content="CoreImage中的模糊滤镜
+CoreImage是苹果用来简化图片处理的框架
+CIImage, CIFilter与CIContext三者之间的联系
+CIGaussianBlur中可以设置的参数
 
-设置window- (BOOL)application:(UIApplic">
+代码- (void)viewDidLoad {
+
+[super viewDidLoad];
+// Do any additional setup after loading the view, typi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目9.三级视图控制器">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/30/iOS项目9-三级视图控制器/index.html">
+<meta property="og:title" content="iOS模糊效果的使用">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/01/iOS模糊效果的使用/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="效果图
-项目分析
-三级视图控制器
-标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
-一个导航控制器对应于一个视图控制器，
-标签控制器是管理固定的几个视图控制器，子控制器是并列的。
-UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+<meta property="og:description" content="CoreImage中的模糊滤镜
+CoreImage是苹果用来简化图片处理的框架
+CIImage, CIFilter与CIContext三者之间的联系
+CIGaussianBlur中可以设置的参数
 
-设置window- (BOOL)application:(UIApplic">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png">
-<meta property="og:updated_time" content="2016-04-30T12:15:50.000Z">
+代码- (void)viewDidLoad {
+
+[super viewDidLoad];
+// Do any additional setup after loading the view, typi">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_image001_1.png">
+<meta property="og:updated_time" content="2016-05-01T08:54:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目9.三级视图控制器">
-<meta name="twitter:description" content="效果图
-项目分析
-三级视图控制器
-标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器
-一个导航控制器对应于一个视图控制器，
-标签控制器是管理固定的几个视图控制器，子控制器是并列的。
-UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系
+<meta name="twitter:title" content="iOS模糊效果的使用">
+<meta name="twitter:description" content="CoreImage中的模糊滤镜
+CoreImage是苹果用来简化图片处理的框架
+CIImage, CIFilter与CIContext三者之间的联系
+CIGaussianBlur中可以设置的参数
 
-设置window- (BOOL)application:(UIApplic">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png">
+代码- (void)viewDidLoad {
+
+[super viewDidLoad];
+// Do any additional setup after loading the view, typi">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_image001_1.png">
 
 
 
@@ -115,7 +114,7 @@ UITabBarController用数组管理视图控制器，而导航控制器所管理�
   };
 </script>
 
-  <title> iOS项目9.三级视图控制器 | Cowboy Tech </title>
+  <title> iOS模糊效果的使用 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +256,7 @@ UITabBarController用数组管理视图控制器，而导航控制器所管理�
             
             
               
-                iOS项目9.三级视图控制器
+                iOS模糊效果的使用
               
             
           </h1>
@@ -269,8 +268,8 @@ UITabBarController用数组管理视图控制器，而导航控制器所管理�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T22:14:13+10:00" content="2016-04-30">
-              2016-04-30
+            <time itemprop="dateCreated" datetime="2016-05-01T17:04:23+10:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -299,8 +298,8 @@ UITabBarController用数组管理视图控制器，而导航控制器所管理�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/iOS项目9-三级视图控制器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/iOS项目9-三级视图控制器/" itemprop="commentsCount"></span>
+                <a href="/2016/05/01/iOS模糊效果的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/01/iOS模糊效果的使用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,90 +321,220 @@ UITabBarController用数组管理视图控制器，而导航控制器所管理�
       
 
       
-        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png" alt=""></p>
-<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png" alt=""></p>
-<h1 id="三级视图控制器"><a href="#三级视图控制器" class="headerlink" title="三级视图控制器"></a>三级视图控制器</h1><ol>
-<li>标签控制器 -&gt; 导航控制器 -&gt; 视图控制器，这就叫三级视图控制器</li>
-<li>一个导航控制器对应于一个视图控制器，</li>
-<li>标签控制器是管理固定的几个视图控制器，子控制器是并列的。</li>
-<li>UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系</li>
+        <h1 id="CoreImage中的模糊滤镜"><a href="#CoreImage中的模糊滤镜" class="headerlink" title="CoreImage中的模糊滤镜"></a>CoreImage中的模糊滤镜</h1><ol>
+<li>CoreImage是苹果用来简化图片处理的框架</li>
+<li>CIImage, CIFilter与CIContext三者之间的联系</li>
+<li>CIGaussianBlur中可以设置的参数</li>
 </ol>
-<h1 id="设置window"><a href="#设置window" class="headerlink" title="设置window"></a>设置window</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
 
-self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-self.window.backgroundColor = [UIColor whiteColor];
-[self.window makeKeyAndVisible];
-RootViewController *rootVC = [[RootViewController alloc] init];
-//权限最高的给根视图控制器
-self.window.rootViewController = rootVC; 
-// Override point for customization after application launch.
-return YES;
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 原始图片
+UIImage *image = [UIImage imageNamed:@&quot;girl.jpg&quot;];
+
+/*......coreImage部分........ */
+
+//CIImage
+CIImage *ciImage = [[CIImage alloc]initWithImage:image];
+
+//CIFilter
+CIFilter *blurFilter = [CIFilter filterWithName:@&quot;CIGaussianBlur&quot;];
+
+//将图片输入到滤镜中
+[blurFilter setValue:ciImage forKey:kCIInputImageKey];
+
+//    //设置的模糊程度
+//    [blurFilter setValue:@(100) forKey:@&quot;inputRadius&quot;];
+//
+
+//将处理好的图片输出
+CIImage *outCiImage = [blurFilter valueForKey:kCIOutputImageKey];
+
+NSLog(@&quot;%@&quot;,[blurFilter attributes]);
+
+//CIContext
+CIContext *context = [CIContext contextWithOptions:nil];
+
+//获取CGImage句柄
+CGImageRef outCGImage = [context createCGImage:outCiImage
+                                      fromRect:[outCiImage extent]];
+//最终获取到图片
+UIImage *blurImage = [UIImage imageWithCGImage:outCGImage];
+
+//释放CGImage句柄
+CGImageRelease(outCGImage);
+
+/*.............. */
+
+//初始化UIImageView
+UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 590/2.f, 988/2.f)];
+imageView.image = blurImage;
+imageView.center = self.view.center;
+[self.view addSubview:imageView];
+
 }
-</code></pre><h1 id="数组赋值示例"><a href="#数组赋值示例" class="headerlink" title="数组赋值示例"></a>数组赋值示例</h1><pre><code>NSArray *vcArray = @[profielVC,messageVC,colaVC,userVC,moreVC];
-NSMutableArray *tabArray = [NSMutableArray arrayWithCapacity:vcArray.count];
-</code></pre><h1 id="背景颜色赋值为图片"><a href="#背景颜色赋值为图片" class="headerlink" title="背景颜色赋值为图片"></a>背景颜色赋值为图片</h1><pre><code>_tabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@&quot;mask_navbar&quot;]];
-</code></pre><h1 id="UIButton设tag值"><a href="#UIButton设tag值" class="headerlink" title="UIButton设tag值"></a>UIButton设tag值</h1><pre><code> //区分是点击了哪个button
-//iOS中100以前的tag值有特殊用法，所以最好在100以后
-btn.tag = 100 + i; 
-</code></pre><h1 id="UITabBarController的属性"><a href="#UITabBarController的属性" class="headerlink" title="UITabBarController的属性"></a>UITabBarController的属性</h1><pre><code>//选择的是哪个tab
-self.selectedIndex = button.tag - 100;
-
-//隐藏系统默认的样式
-self.tabBar.hidden = YES;
-
-//用数组管理视图控制器
-self.viewControllers = tabArray;
-</code></pre><h1 id="Tab子视图调用根视图方法-UITabBarController"><a href="#Tab子视图调用根视图方法-UITabBarController" class="headerlink" title="Tab子视图调用根视图方法(UITabBarController)"></a>Tab子视图调用根视图方法(UITabBarController)</h1><pre><code>RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-</code></pre><h1 id="动画效果在于CGPoint-or-frame的改变"><a href="#动画效果在于CGPoint-or-frame的改变" class="headerlink" title="动画效果在于CGPoint or frame的改变"></a>动画效果在于CGPoint or frame的改变</h1><pre><code>[UIView animateWithDuration:0.2 animations:^{
-    _selectView.center = button.center;
-} completion:nil];
+</code></pre><h1 id="UIImage-ImageEffects的category模糊效果"><a href="#UIImage-ImageEffects的category模糊效果" class="headerlink" title="UIImage + ImageEffects的category模糊效果"></a>UIImage + ImageEffects的category模糊效果</h1><ol>
+<li>UIImage + ImageEffects是Accelerate框架中的内容</li>
+<li>UIImage + ImageEffects的模糊效果非常美观</li>
+<li>修改过的UIImage + ImageEffects可以对图片进行局部模糊</li>
+</ol>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
 
 
-//重新赋值frame,让tabBar消失
-[UIView animateWithDuration:0.2 animations:^{
-    self.tabBarView.frame = frame;
-} completion:nil];
-</code></pre><h1 id="UIButton的设置"><a href="#UIButton的设置" class="headerlink" title="UIButton的设置"></a>UIButton的设置</h1><pre><code>//需要custom类型才能设置图片
-UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//原始图片
+UIImage *sourceImage = [UIImage imageNamed:@&quot;normal.png&quot;];
 
-//[pushButton setImage:(UIImage *) forState:(UIControlState)]
-//标题和图片不能同时设置
-[pushButton setTitle:@&quot;Push&quot; forState:UIControlStateNormal];
-</code></pre><h1 id="视图顶部导航栏左右按钮"><a href="#视图顶部导航栏左右按钮" class="headerlink" title="视图顶部导航栏左右按钮"></a>视图顶部导航栏左右按钮</h1><pre><code>//自定义导航栏按钮
-- (void)initNavButton{
+//对图片进行部分模糊
+//UIImage *blurImage = [sourceImage blurImage];
+UIImage *blurImage = [sourceImage blurImageAtFrame:CGRectMake(0, 100, sourceImage.size.width, sourceImage.size.height/2.f)];
 
-UIButton *writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//导航按钮的xy值没有用
-writeBtn.frame = CGRectMake(0, 0, writeButtonWidth, writeButtonHeight);
-[writeBtn setBackgroundImage:[UIImage imageNamed:@&quot;write&quot;] forState:UIControlStateNormal];
-[writeBtn addTarget:self action:@selector(presentAction) forControlEvents:UIControlEventTouchUpInside];
-//添加自定义按钮
-UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:writeBtn];
-self.navigationItem.rightBarButtonItem = item;
+
+//加载图片
+UIImageView *imageView = [[UIImageView alloc]initWithImage:blurImage];
+[self.view addSubview:imageView];
 }
-</code></pre><h1 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h1><h2 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h2><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
-</code></pre><h2 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h2><pre><code>- (void)dismissAction{
-[self dismissViewControllerAnimated:YES completion:nil];
+</code></pre><h1 id="iOS8中UIVisualEffectView模糊效果的使用"><a href="#iOS8中UIVisualEffectView模糊效果的使用" class="headerlink" title="iOS8中UIVisualEffectView模糊效果的使用"></a>iOS8中UIVisualEffectView模糊效果的使用</h1><ol>
+<li>UIVisualEffectView的模糊效果是即使渲染的</li>
+<li>要注意处理在UIVisualEffectView之上的文本显示</li>
+<li>只能在iOS8以上才能够使用UIVisualEffectView</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_image001_1.png" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+//添加展示背景，用以显示动态模糊
+self.scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@&quot;girl.jpg&quot;]];
+self.scrollView.contentSize = imageView.image.size;
+self.scrollView.bounces = NO;
+[self.scrollView addSubview:imageView];
+[self.view addSubview:self.scrollView];
+
+/* 添加模糊效果*/
+
+//1. 创建模糊view
+UIVisualEffectView *effectView = [[UIVisualEffectView alloc]
+                              initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+
+//2.设定尺寸
+effectView.frame = CGRectMake(0, 100, 320, 200);
+
+//3.添加到view当中
+[self.view addSubview:effectView];
+
+//添加显示文本
+UILabel *label = [[UILabel alloc]initWithFrame:effectView.bounds];
+label.text = @&quot;I love you&quot;;
+label.font = [UIFont systemFontOfSize:50.f];
+label.textAlignment = NSTextAlignmentCenter;
+//[effectView.contentView addSubview:label];
+
+//添加模糊子view的UIVisualEffectView
+
+//1. 创建出子模糊view
+UIVisualEffectView *subEffectView = [[UIVisualEffectView alloc]
+                                     initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)effectView.effect]];
+
+//2. 设定尺寸
+subEffectView.frame = effectView.bounds;
+
+//3. 将子模糊view添加到effectView的contentView才能生效
+[effectView.contentView addSubview:subEffectView];
+
+//4. 添加要显示的view来达到特殊的效果
+[subEffectView.contentView addSubview:label];
 }
-</code></pre><h1 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h1><h2 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h2><pre><code>- (void)pushAction{
-PushViewController *pushVC = [[PushViewController alloc] init];
-[self.navigationController pushViewController:pushVC animated:YES];
-//[self.navigationController showViewController:pushVC sender:nil];
-RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-}    
-</code></pre><h2 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h2><pre><code>- (void)popAction{
+</code></pre><h1 id="设计下载图片后自动模糊的控件"><a href="#设计下载图片后自动模糊的控件" class="headerlink" title="设计下载图片后自动模糊的控件"></a>设计下载图片后自动模糊的控件</h1><ol>
+<li>用KVO监听下载完成后的事件</li>
+<li>在子线程中进行渲染，主线程中进行图片的加载</li>
+</ol>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
 
-    // 回到上级视图
-    [self.navigationController popViewControllerAnimated:YES];
+NSString *picUrlString = @&quot;http://f.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ce4ea4cd4d52a6059242da6d7.jpg&quot;;
 
-    // 跳转到某视图
-    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
+BlurDownloadPicView *blurDownloadView = [[BlurDownloadPicView alloc]initWithFrame:CGRectMake(0, 0, 320, 400)];
+blurDownloadView.center = self.view.center;
+blurDownloadView.pictureUrlString = picUrlString;
+//内容填充模式(图片怎样填入)
+blurDownloadView.contentMode = UIViewContentModeScaleAspectFit;
+[self.view addSubview:blurDownloadView];
 
-    // 跳转到根视图
-    //[self.navigationController popToRootViewControllerAnimated:YES];
+[blurDownloadView startProgress];
+
 }
+</code></pre><p>BlurDownloadPicView.m</p>
+<pre><code>@interface BlurDownloadPicView ()
+@property (nonatomic,strong) UIImageView *imageView;
+@end
+@implementation BlurDownloadPicView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+
+self = [super initWithFrame:frame];
+if (self) {
+    //初始化控件
+    self.imageView = [[UIImageView alloc]initWithFrame:self.bounds];
+    self.imageView.alpha = 0.f;
+    [self addSubview:self.imageView];
+}
+return self;
+}
+
+- (void)startProgress{
+
+if (self.pictureUrlString) {
+
+    //子线程
+    [GCDQueue executeInGlobalQueue:^{
+        //创建请求
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.pictureUrlString]];
+        //因为是同步请求,会阻塞主线程(mainQueue)
+        NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                             returningResponse:nil
+                                                         error:nil];
+        //获取图片
+        UIImage *image = [[UIImage alloc]initWithData:data];
+        //对图片进行模糊
+        UIImage *blurImage = [image blurImage];
+        //主线程
+        [GCDQueue executeInMainQueue:^{
+            //加载图片
+            self.imageView.image = blurImage;
+            //动画效果
+            [UIView animateWithDuration:3.f
+                             animations:^{
+                                 self.imageView.alpha = 1.f;
+                             }];
+        }];
+
+    }];
+}
+}
+
+@synthesize contentMode = _contentMode;
+
+- (void)setContentMode:(UIViewContentMode)contentMode {
+_contentMode = contentMode;
+self.imageView.contentMode = contentMode;
+}
+
+- (UIViewContentMode)contentMode {
+return _contentMode;
+}
+@end
+</code></pre><h1 id="内容填充模式contentMode"><a href="#内容填充模式contentMode" class="headerlink" title="内容填充模式contentMode"></a>内容填充模式contentMode</h1><pre><code>//内容填充模式(图片怎样填入)
+blurDownloadView.contentMode = UIViewContentModeScaleAspectFit;
+</code></pre><h1 id="透明度渐变采用动画设定alpha值"><a href="#透明度渐变采用动画设定alpha值" class="headerlink" title="透明度渐变采用动画设定alpha值"></a>透明度渐变采用动画设定alpha值</h1><pre><code>[UIView animateWithDuration:3.f
+                             animations:^{
+                                 self.imageView.alpha = 1.f;
+                             }];
 </code></pre>
       
     </div>
@@ -422,7 +551,7 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
           
         </div>
       
@@ -431,17 +560,13 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/30/设计复杂的iOS动画效果/" rel="next" title="设计复杂的iOS动画效果">
-                <i class="fa fa-chevron-left"></i> 设计复杂的iOS动画效果
+              <a href="/2016/04/30/iOS项目9-三级视图控制器/" rel="next" title="iOS项目9.三级视图控制器">
+                <i class="fa fa-chevron-left"></i> iOS项目9.三级视图控制器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/01/iOS模糊效果的使用/" rel="prev" title="iOS模糊效果的使用">
-                iOS模糊效果的使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,7 +698,7 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目分析"><span class="nav-number">2.</span> <span class="nav-text">项目分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三级视图控制器"><span class="nav-number">3.</span> <span class="nav-text">三级视图控制器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置window"><span class="nav-number">4.</span> <span class="nav-text">设置window</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组赋值示例"><span class="nav-number">5.</span> <span class="nav-text">数组赋值示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#背景颜色赋值为图片"><span class="nav-number">6.</span> <span class="nav-text">背景颜色赋值为图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton设tag值"><span class="nav-number">7.</span> <span class="nav-text">UIButton设tag值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITabBarController的属性"><span class="nav-number">8.</span> <span class="nav-text">UITabBarController的属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tab子视图调用根视图方法-UITabBarController"><span class="nav-number">9.</span> <span class="nav-text">Tab子视图调用根视图方法(UITabBarController)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果在于CGPoint-or-frame的改变"><span class="nav-number">10.</span> <span class="nav-text">动画效果在于CGPoint or frame的改变</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton的设置"><span class="nav-number">11.</span> <span class="nav-text">UIButton的设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图顶部导航栏左右按钮"><span class="nav-number">12.</span> <span class="nav-text">视图顶部导航栏左右按钮</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图跳转-模态视图"><span class="nav-number">13.</span> <span class="nav-text">视图跳转 - 模态视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#呈现使用present"><span class="nav-number">13.1.</span> <span class="nav-text">呈现使用present</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出使用dissmiss"><span class="nav-number">13.2.</span> <span class="nav-text">退出使用dissmiss</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图跳转-push视图"><span class="nav-number">14.</span> <span class="nav-text">视图跳转 - push视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#呈现用导航视图push-show"><span class="nav-number">14.1.</span> <span class="nav-text">呈现用导航视图push/show</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出用pop-的三种方式"><span class="nav-number">14.2.</span> <span class="nav-text">退出用pop 的三种方式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreImage中的模糊滤镜"><span class="nav-number">1.</span> <span class="nav-text">CoreImage中的模糊滤镜</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIImage-ImageEffects的category模糊效果"><span class="nav-number">2.</span> <span class="nav-text">UIImage + ImageEffects的category模糊效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS8中UIVisualEffectView模糊效果的使用"><span class="nav-number">3.</span> <span class="nav-text">iOS8中UIVisualEffectView模糊效果的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计下载图片后自动模糊的控件"><span class="nav-number">4.</span> <span class="nav-text">设计下载图片后自动模糊的控件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-3"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容填充模式contentMode"><span class="nav-number">5.</span> <span class="nav-text">内容填充模式contentMode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#透明度渐变采用动画设定alpha值"><span class="nav-number">6.</span> <span class="nav-text">透明度渐变采用动画设定alpha值</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -831,9 +956,9 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/30/iOS项目9-三级视图控制器/';
-      var disqus_title = 'iOS项目9.三级视图控制器';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/30/iOS项目9-三级视图控制器/';
+      var disqus_identifier = '2016/05/01/iOS模糊效果的使用/';
+      var disqus_title = 'iOS模糊效果的使用';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/01/iOS模糊效果的使用/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
