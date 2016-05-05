@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-03T11:50:53.000Z</updated>
+  <updated>2016-05-05T04:37:27.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Facebook开源动画库POP实现真实衰减与弹簧动画</title>
+    <link href="http://jackliu17.github.io/2016/05/05/Facebook%E5%BC%80%E6%BA%90%E5%8A%A8%E7%94%BB%E5%BA%93POP%E5%AE%9E%E7%8E%B0%E7%9C%9F%E5%AE%9E%E8%A1%B0%E5%87%8F%E4%B8%8E%E5%BC%B9%E7%B0%A7%E5%8A%A8%E7%94%BB/"/>
+    <id>http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/</id>
+    <published>2016-05-05T04:36:15.000Z</published>
+    <updated>2016-05-05T04:37:27.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;POP动画引擎简介&quot;&gt;&lt;a href=&quot;#POP动画引擎简介&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎简介&quot;&gt;&lt;/a&gt;POP动画引擎简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;POP动画引擎是Facebook公司开源的&lt;/li&gt;
+&lt;li&gt;POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)&lt;/li&gt;
+&lt;li&gt;POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)&lt;/li&gt;
+&lt;li&gt;POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;a href=&quot;#POP动画引擎中Layer与CALayer的区别&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;/a&gt;POP动画引擎中Layer与CALayer的区别&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;使用POP动画与使用CALayer动画非常相似&lt;/li&gt;
+&lt;li&gt;POP动画的执行没有中间状态&lt;/li&gt;
+&lt;li&gt;POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果&lt;/li&gt;
+&lt;li&gt;POP动画可以作用在任何对象上，不仅仅是CALayer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;POP动画引擎中Layer与CALayer的区别-1&quot;&gt;&lt;a href=&quot;#POP动画引擎中Layer与CALayer的区别-1&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;/a&gt;POP动画引擎中Layer与CALayer的区别&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/pop.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;用POP动画引擎实现衰减动画&quot;&gt;&lt;a href=&quot;#用POP动画引擎实现衰减动画&quot; class=&quot;headerlink&quot; title=&quot;用POP动画引擎实现衰减动画&quot;&gt;&lt;/a&gt;用POP动画引擎实现衰减动画&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;衰减动画由POPDecayAnimation来实现&lt;/li&gt;
+&lt;li&gt;需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;用POP动画引擎实现弹簧动画&quot;&gt;&lt;a href=&quot;#用POP动画引擎实现弹簧动画&quot; class=&quot;headerlink&quot; title=&quot;用POP动画引擎实现弹簧动画&quot;&gt;&lt;/a&gt;用POP动画引擎实现弹簧动画&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;弹簧动画由POPSpringAnimation来实现&lt;/li&gt;
+&lt;li&gt;弹簧的质量速度时间等值都是可以设置的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more information , go to &lt;a href=&quot;https://github.com/facebook/pop&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/facebook/pop&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;POP动画引擎简介&quot;&gt;&lt;a href=&quot;#POP动画引擎简介&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎简介&quot;&gt;&lt;/a&gt;POP动画引擎简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;POP动画引擎是Facebook公司开源的&lt;/li&gt;
+&lt;li&gt;POP动画
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+  </entry>
   
   <entry>
     <title>使用maskView设计动画及遮盖</title>
@@ -222,9 +270,9 @@ return _text;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
-    
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
     
   </entry>
   
@@ -1833,44 +1881,11 @@ For OpenGL ES 3.0:
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
-    
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Keyboad快捷键</title>
-    <link href="http://jackliu17.github.io/2016/03/17/Keyboad%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
-    <id>http://jackliu17.github.io/2016/03/17/Keyboad快捷键/</id>
-    <published>2016-03-17T02:13:06.000Z</published>
-    <updated>2016-03-26T06:40:17.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Xcode&quot;&gt;&lt;a href=&quot;#Xcode&quot; class=&quot;headerlink&quot; title=&quot;Xcode&quot;&gt;&lt;/a&gt;Xcode&lt;/h1&gt;&lt;h3 id=&quot;显示某class的方法提示，在-后按esc键&quot;&gt;&lt;a href=&quot;#显示某class的方法提示，在-后按esc键&quot; class=&quot;headerlink&quot; title=&quot;显示某class的方法提示，在.后按esc键&quot;&gt;&lt;/a&gt;显示某class的方法提示，在.后按esc键&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;Esc&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;a href=&quot;#Storyboard里放大缩小视图&quot; class=&quot;headerlink&quot; title=&quot;Storyboard里放大缩小视图&quot;&gt;&lt;/a&gt;Storyboard里放大缩小视图&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;触摸板上的手势&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;查看某class内部的详情&quot;&gt;&lt;a href=&quot;#查看某class内部的详情&quot; class=&quot;headerlink&quot; title=&quot;查看某class内部的详情&quot;&gt;&lt;/a&gt;查看某class内部的详情&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;command + 点击&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Xcode&quot;&gt;&lt;a href=&quot;#Xcode&quot; class=&quot;headerlink&quot; title=&quot;Xcode&quot;&gt;&lt;/a&gt;Xcode&lt;/h1&gt;&lt;h3 id=&quot;显示某class的方法提示，在-后按esc键&quot;&gt;&lt;a href=&quot;#显示某class的方法提示，在-后按e
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="Mac" scheme="http://jackliu17.github.io/tags/Mac/"/>
-    
       <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
   </entry>
   
