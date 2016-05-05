@@ -238,6 +238,231 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/15/Swift中类的构造与析构/" itemprop="url">
+                  Swift中类的构造与析构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-15T10:44:10+11:00" content="2016-03-15">
+              2016-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/15/Swift中类的构造与析构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/15/Swift中类的构造与析构/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="类和结构体的构造器"><a href="#类和结构体的构造器" class="headerlink" title="类和结构体的构造器"></a>类和结构体的构造器</h1><ol>
+<li>Swift的构造器构造出来的实例由系统隐式返回，不用return</li>
+<li>构造器的作用完成每个类，结构体中实例存储属性的初始化</li>
+<li>为实例存储属性赋初始值的时机:1.定义实例存储属性时指定初始值。2.在构造器中为实例存储属性指定初始值.</li>
+<li>swift只为类提供一个无参数的构造器</li>
+<li>swift为结构体提供两个构造器:无参数的构造器和初始化所有实例存储属性的构造器</li>
+</ol>
+<h1 id="构造器代理："><a href="#构造器代理：" class="headerlink" title="构造器代理："></a>构造器代理：</h1><p>在定义构造器时，通过self.init(实参)调用其他构造器来完成实例的部分构造过程，就是A构造器调用B构造器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">struct Apple</span><br><span class="line">    &#123;</span><br><span class="line">    var name: String</span><br><span class="line">    var color: String</span><br><span class="line">    var weight: Double!</span><br><span class="line">    init(_ name: String , _ color:String)</span><br><span class="line">&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.color = color</span><br><span class="line">    &#125;</span><br><span class="line">// 两个参数的构造器</span><br><span class="line">    init(name: String , color:String)</span><br><span class="line">&#123;</span><br><span class="line">    self.init(name , color)  // 构造器代理</span><br><span class="line">    &#125;</span><br><span class="line">// 为构造器显式指定外部形参名</span><br><span class="line">    init(appleName n: String , appleColor c:String)</span><br><span class="line">&#123;</span><br><span class="line">    //		name = &quot;临时值&quot; // 这行代码将导致错误</span><br><span class="line">    self.init(n , c)  // 构造器代理</span><br><span class="line">    // 调用构造器代理之后，即可通过self访问该实例的属性</span><br><span class="line">    print(&quot;--执行显式指定外部形参名的构造器--\(self.name)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">// 定义三个参数的构造器</span><br><span class="line">    init(name: String , color: String , weight: Double)</span><br><span class="line">&#123;</span><br><span class="line">    self.init(name , color)  // 构造器代理</span><br><span class="line">    self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var ap1 = Apple(&quot;红富士&quot; , &quot;粉红色&quot;)</span><br><span class="line">print(&quot;\(ap1.name)---&gt;\(ap1.color)&quot;)</span><br><span class="line">var ap2 = Apple(appleName:&quot;青苹果&quot; , appleColor:&quot;绿色&quot;)</span><br><span class="line">print(&quot;\(ap2.name)---&gt;\(ap2.color)&quot;)</span><br><span class="line">var ap3 = Apple(name:&quot;美国苹果&quot; , color:&quot;红色&quot; , weight:0.45)</span><br></pre></td></tr></table></figure></p>
+<h1 id="指定构造器"><a href="#指定构造器" class="headerlink" title="指定构造器"></a>指定构造器</h1><p>一个类中至少有一个指定构造器，其必须负责初始化类中所有的实例存储属性。</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E6%8C%87%E5%AE%9A%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E9%A1%BA%E5%BA%8F.png" alt="指定构造器"></p>
+<h1 id="便利构造器"><a href="#便利构造器" class="headerlink" title="便利构造器"></a>便利构造器</h1><ol>
+<li>便利构造器属于次要的，辅助性的构造器</li>
+<li>类中可以不定义便利构造器，便利构造器必须调用同一个类中的其他构造器完成初始化</li>
+<li>只有类中才有便利构造器的概念</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%AE%89%E5%85%A8%E6%A3%80%E6%9F%A53.png" alt="安全检查3"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">便利构造器的语法格式:</span><br><span class="line">   convenience init(形参)&#123;</span><br><span class="line">   //</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Apple&#123;</span><br><span class="line">    var name:String!</span><br><span class="line">    var weight:Double</span><br><span class="line">    //定义指定构造器</span><br><span class="line">    init(name:String, weight:Double)&#123;</span><br><span class="line">        self.name = name</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">    //定义便利构造器，使用convenience修饰</span><br><span class="line">    convenience init(n name:String, w weight:Double)&#123;</span><br><span class="line">    //便利构造器必须调用同一个类中其他构造器</span><br><span class="line">        self.init(name: name, weight: weight)</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var app1 = Apple(n: &quot;Red apple&quot;, w: 1.2)</span><br><span class="line">var app2 = Apple(name: &quot;Alvocado&quot;, weight: 2.4)</span><br></pre></td></tr></table></figure>
+<h1 id="类的构造器链"><a href="#类的构造器链" class="headerlink" title="类的构造器链"></a>类的构造器链</h1><h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ol>
+<li>子类构造器必须调用直接父类的指定构造器(如果有父类)</li>
+<li>便利构造器必须调用同一个类中的其他构造器;</li>
+<li>便利构造器调用的构造器链的最终节点必须是指定构造器</li>
+</ol>
+<p>简化记忆为:</p>
+<ol>
+<li>指定构造器总是向上代理(调用父类构造器)</li>
+<li>便利构造器总是必须横向代理(调用当前类的其他构造器)</li>
+</ol>
+<h2 id="类的构造器链1"><a href="#类的构造器链1" class="headerlink" title="类的构造器链1"></a>类的构造器链1</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%99%A8%E9%93%BE.png" alt="类的构造器链1"></p>
+<h2 id="类的构造器链2"><a href="#类的构造器链2" class="headerlink" title="类的构造器链2"></a>类的构造器链2</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%99%A8%E9%93%BE2.png" alt="类的构造器链2"></p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    init (name:String) &#123; //1</span><br><span class="line">       self.name = name</span><br><span class="line">       self.weight = 0.0</span><br><span class="line">    &#125;</span><br><span class="line">    //定义便利构造器</span><br><span class="line">    convenience init (name:String,weight:Double)&#123;//2</span><br><span class="line">    //调用本类中的1号指定构造器</span><br><span class="line">        self.init(name:name)</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">    //定义另一个便利构造器</span><br><span class="line">    convenience init(n name:String,w weight:Double)&#123;//3</span><br><span class="line">    //调用本类中2号便利构造器</span><br><span class="line">        self.init(name:name,weight:weight)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    init(name:String,weight:Double,color:String)&#123;//4</span><br><span class="line">        self.color = color</span><br><span class="line">        //子类指定构造器必须调用父类的指定构造器，此处调用父类1号构造器</span><br><span class="line">    super.init(name: name)</span><br><span class="line">        self.weight = weight //为什么不能放在init前面？因为父类构造器会把值给覆盖</span><br><span class="line">    &#125;</span><br><span class="line">    init()&#123;//5</span><br><span class="line">    self.color = &quot;&quot;</span><br><span class="line">        //子类指定构造器必须调用父类的指定构造器，此处调用父类1号构造器</span><br><span class="line">        super.init(name: &quot;&quot;)</span><br><span class="line">        self.weight = 0.0</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个便利构造器</span><br><span class="line">    convenience init(name:String,color:String) &#123;//6</span><br><span class="line">    //调用本类中4号指定构造器</span><br><span class="line">        self.init(name:name,weight:0.0,color:color)</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个便利构造器</span><br><span class="line">    convenience init(n name:String, c color:String)&#123;//7</span><br><span class="line">    //调用本类中6号便利构造器</span><br><span class="line">        self.init(name:name,color:color)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="两段式构造"><a href="#两段式构造" class="headerlink" title="两段式构造"></a>两段式构造</h1><h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><ol>
+<li>程序调用子类的某个构造器</li>
+<li>为实例分配内存，此时实例的内存还没有被初始化</li>
+<li>指定构造器确保子类定义的所有实例存储属性都已被赋初值</li>
+<li>指定构造器将调用父类的构造器，完成父类定义的实例存储属性的初始化</li>
+<li>沿着调用父类构造器的构造器链一直往上执行，直到到达构造器链的最顶部</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E4%B8%A4%E6%AE%B5%E5%BC%8F%E6%9E%84%E9%80%A0%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5.png" alt="第一阶段"></p>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><ol>
+<li>沿着继承树往下，构造器此时可以修改实例属性，访问self,甚至可以调用实例方法</li>
+<li>最后，构造器链中的便利构造器都有机会定制实例和使用self</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E4%B8%A4%E6%AE%B5%E5%BC%8F%E6%9E%84%E9%80%A0%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5.png" alt="第二阶段"></p>
+<h2 id="安全检查规则"><a href="#安全检查规则" class="headerlink" title="安全检查规则"></a>安全检查规则</h2><ol>
+<li>指定构造器必须先初始化当前类中定义的实例存储属性，然后才能向上调用父类构造器</li>
+<li>指定构造器必须先向上调用父类构造器，然后才能对继承得到的属性赋值</li>
+<li>便利构造器必须先调用同一个类的其他构造器，然后才能对属性赋值。否则如果先赋值，在调用，那就会把刚刚赋值的给覆盖掉</li>
+<li>构造器在第一阶段完成之前，不能调用实例方法，不能读取实例属性</li>
+<li>总之，建议实例存储属性指定初始值</li>
+</ol>
+<h2 id="安全检查代码示例1"><a href="#安全检查代码示例1" class="headerlink" title="安全检查代码示例1"></a>安全检查代码示例1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    init(name:String)&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    init(color:String)&#123;</span><br><span class="line">    //print(self.color) // error</span><br><span class="line">    self.color = color</span><br><span class="line">        //print(self.color)</span><br><span class="line">    self.color = &quot;Red&quot;</span><br><span class="line">        //print(super.name)// error</span><br><span class="line">        super.init(name: &quot;Flower apple&quot;)</span><br><span class="line">        //print(super.name)</span><br><span class="line">        super.name = &quot;red apple&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = Apple(color: &quot;Green&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="安全检查代码示例2"><a href="#安全检查代码示例2" class="headerlink" title="安全检查代码示例2"></a>安全检查代码示例2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    init(name:String)&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    init(color:String)&#123;</span><br><span class="line">    self.color = color</span><br><span class="line">        print(self.color)</span><br><span class="line">        super.init(name:&quot;Red apple&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    //定义便利构造器</span><br><span class="line">    convenience init (name:String,color:String)&#123;</span><br><span class="line">    //调用其他构造器之前，不能访问或修改任何实例存储属性，下面两行代码出错</span><br><span class="line">    //print(self.color)</span><br><span class="line">      //  super.name = name</span><br><span class="line">        //调用本类其他构造器</span><br><span class="line">        self.init(color:&quot;Red&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = Apple(color: &quot;Red&quot;)</span><br></pre></td></tr></table></figure>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>Swift的子类不会自动继承父类的构造器，若继承，则满足如下规则：</p>
+<blockquote>
+<p>1.如果子类没有提供任何指定构造器，那么它将自动继承父类的所有指定构造器<br>2.如果子类实现了父类所有的指定构造器，无论如何实现的，都将自动继承父类的所有便利构造器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    //定义一个指定构造器</span><br><span class="line">    init(name:String,weight:Double)&#123;  //1</span><br><span class="line">    self.name = name</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">    //定义2个便利构造器</span><br><span class="line">    convenience init(name:String)&#123;    //2</span><br><span class="line">        self.init(name:name,weight:0.0)</span><br><span class="line">    &#125;</span><br><span class="line">    convenience init()&#123;               //3</span><br><span class="line">        self.init(name:&quot;Fruit&quot;)</span><br><span class="line">        self.weight = 1.0</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//该类提供了指定构造器，并未实现父类所有的指定构造器，所以根据规则，就如下两个构造器，不继承父类的</span><br><span class="line">class Apple:Fruit&#123;</span><br><span class="line">    var color:String</span><br><span class="line">    //定义一个指定构造器</span><br><span class="line">    init(name:String,color:String,weight:Double)&#123; //4</span><br><span class="line">    self.color = color</span><br><span class="line">        super.init(name: name, weight: weight)</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个便利构造器</span><br><span class="line">    convenience init(name:String,color:String)&#123;   //5</span><br><span class="line">        self.init(name:name,color:color,weight:0.0)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//该类没有定义任何构造器，所以根据规则继承父类的所有</span><br><span class="line">class Fu:Apple&#123;</span><br><span class="line">    var vitamin:Double = 0.21</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h1><ol>
+<li>子类构造器重写了父类的指定构造器，必须添加override修饰符</li>
+<li>子类中定义的构造器只是与父类中便利构造器的形参列表，外部形参名相同，不算重写<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    init()&#123;                       //1</span><br><span class="line">    self.name = &quot;&quot;</span><br><span class="line">        self.weight = 0.0</span><br><span class="line">    &#125;</span><br><span class="line">    init(name:String,weight:Double)&#123;  //2</span><br><span class="line">    self.name = name</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">    convenience init(name:String)&#123;    //3</span><br><span class="line">        self.init(name:name,weight:0.0)</span><br><span class="line">    &#125;</span><br><span class="line">    convenience init(_ name:String)&#123;   //4</span><br><span class="line">        self.init(name:name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    //重写父类的指定构造器                 //override 2</span><br><span class="line">    override init(name:String,weight:Double)&#123;</span><br><span class="line">    self.color = &quot;Default&quot;</span><br><span class="line">        //调用父类构造器</span><br><span class="line">        super.init(name:name, weight:weight)</span><br><span class="line">    &#125;</span><br><span class="line">    //定义指定构造器                      //5 这个和父类的便利构造器名和形参名都相同，但是不算做重写</span><br><span class="line">    init(name:String)&#123; </span><br><span class="line">    self.color = &quot;Default&quot;</span><br><span class="line">        super.init(name: name, weight: 0.0)</span><br><span class="line">    &#125;</span><br><span class="line">    //便利构造器</span><br><span class="line">    convenience init(name: String, weight: Double,color:String) &#123;  //6</span><br><span class="line">        self.init(name:name,weight:weight)</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">    //使用便利构造器重写父类的指定构造器     //override 1</span><br><span class="line">    override convenience init() &#123;</span><br><span class="line">        self.init(name:&quot;Apple&quot;,weight:0.0,color:&quot;Pink&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="可能失败的构造器"><a href="#可能失败的构造器" class="headerlink" title="可能失败的构造器"></a>可能失败的构造器</h1><ol>
+<li>可能失败的构造器:使用Init？或者!关键字进行定义</li>
+<li>在构造器执行体中使用return nil 来表示构造器失败</li>
+<li>Swift不允许定义两个相同形参列表的构造器。即使一个是可能失败的构造器，一个是普通的构造器也不行</li>
+</ol>
+<p>可能失败的构造器必须满足如下两个条件才能触发:</p>
+<ol>
+<li>该类中的所有实例存储属性都已被赋初始值</li>
+<li>所有的构造器调用都已经被执行</li>
+<li>可能失败的构造器可以调用同一个类中的普通构造器</li>
+<li>普通构造器不能调用同一个类中可能失败的构造器init?，但可以调用init!隐式解析的构造器</li>
+<li>结构体中，普通构造器却可以调用同一个结构体中可能失败的构造器<h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">struct Cat</span><br><span class="line">        &#123;</span><br><span class="line">        let name: String</span><br><span class="line">        init?(name: String) &#123;</span><br><span class="line">        // 如果传入的name参数为空字符串，构造器失败，返回nil</span><br><span class="line">        if name.isEmpty &#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">        self.name = name</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">let c1 = Cat(name: &quot;Kitty&quot;)</span><br><span class="line">if c1 != nil &#123;</span><br><span class="line">        // 创建c1的构造器是init?，因此程序必须对c1执行强制解析</span><br><span class="line">        print(&quot;c1的name为：\(c1!.name)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">let c2 = Cat(name: &quot;&quot;)</span><br><span class="line">print(c2 == nil) // 输出true，表明c2为nil</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">enum Season&#123;</span><br><span class="line">    case Spring, Summer, Autumn, Winter</span><br><span class="line">    // 使用init!定义可能失败的构造器，则该构造器创建的实例可进行隐式解析</span><br><span class="line">    init!(name: Character) &#123;</span><br><span class="line">        // 根据传入的构造器参数选择相应的枚举成员</span><br><span class="line">        switch name &#123;</span><br><span class="line">        case &quot;S&quot;,&quot;s&quot;:</span><br><span class="line">            self = .Spring</span><br><span class="line">        case &quot;U&quot;, &quot;u&quot;:</span><br><span class="line">            self = .Summer</span><br><span class="line">        case &quot;A&quot;, &quot;a&quot;:</span><br><span class="line">            self = .Autumn</span><br><span class="line">        case &quot;W&quot;, &quot;w&quot;:</span><br><span class="line">            self = .Winter</span><br><span class="line">            // 如果传入其他参数，构造失败，返回nil。</span><br><span class="line">        default:</span><br><span class="line">            return nil</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let s1 = Season(name: &quot;s&quot;)</span><br><span class="line">if s1 != nil &#123;</span><br><span class="line">    print(&quot;Season实例构造成功！&quot;)</span><br><span class="line">&#125;</span><br><span class="line">let s2 = Season(name: &quot;x&quot;)</span><br><span class="line">print(s2 == nil)</span><br></pre></td></tr></table></figure>
+<h2 id="代码2"><a href="#代码2" class="headerlink" title="代码2"></a>代码2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class User &#123;</span><br><span class="line">    var name :String   //如果没有下面的赋值语句。根据规则1. 如果这个是可选类型 var name: String! ，那这样也可以，算是已经赋值nil了。</span><br><span class="line">    init?(name:String)&#123;</span><br><span class="line">    //self.name = &quot;&quot;     // 根据规则1.必须先赋值，才能return nil</span><br><span class="line">        if name.isEmpty&#123;</span><br><span class="line">        return nil  //根据规则2. return nil 必须在super init 和 self init语句之后</span><br><span class="line">        &#125;</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class User&#123;</span><br><span class="line">    var name: String</span><br><span class="line">    init?(name:String)&#123; //如果改为init!, 那就是隐式解析，子类中的普通构造器也可以调用它</span><br><span class="line">    self.name = &quot;&quot;</span><br><span class="line">        if name.isEmpty&#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Student:User &#123;</span><br><span class="line">    var grade:Int!</span><br><span class="line">    init!(name:String,grade:Int)&#123;</span><br><span class="line">    //调用父类的可能失败的构造器</span><br><span class="line">        super.init(name: name)</span><br><span class="line">        print(&quot;--super.init(name:\(name))之后--&quot;)</span><br><span class="line">    //如果grade小于1，使用return nil触发构造失败</span><br><span class="line">        if grade &lt; 1&#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">        self.grade = grade</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let s1 = Student(name: &quot;Tom&quot;, grade: 4)</span><br><span class="line">print(&quot;s1的name:\(s1.name),s1的grade:\(s1.grade)&quot;)</span><br><span class="line">let s2 = Student(name: &quot;Jerry&quot;, grade: 0)</span><br><span class="line">print(s2 == nil)</span><br><span class="line">let s3 = Student(name: &quot;&quot;, grade: 3)</span><br><span class="line">print(s3 == nil)</span><br></pre></td></tr></table></figure>
+<h1 id="重写可能失败的构造器"><a href="#重写可能失败的构造器" class="headerlink" title="重写可能失败的构造器"></a>重写可能失败的构造器</h1><ol>
+<li>子类可以用可能失败的构造器或者普通的构造器重写父类中的可能失败的构造器</li>
+<li>子类的普通构造器不能向上调用父类的可能失败的构造器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var name:String!</span><br><span class="line">    //定义普通构造器</span><br><span class="line">    init()&#123;&#125;</span><br><span class="line">    //定义可能失败的构造器</span><br><span class="line">    init?(name:String)&#123;</span><br><span class="line">        if name.isEmpty&#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">    self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Sparrow:Bird &#123;</span><br><span class="line">    let weight:Double!</span><br><span class="line">    init?(name:String,weight:Double)&#123;</span><br><span class="line">    //由于该构造器是可能失败的构造器，可以调用父类可能失败的构造器</span><br><span class="line">        super.init(name: name)</span><br><span class="line">        if weight &lt;= 0 &#123;</span><br><span class="line">        return nil</span><br><span class="line">        &#125;</span><br><span class="line">        self.weight = weight</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    //使用普通构造器重写父类的构造器</span><br><span class="line">    override init(name: String) &#123;</span><br><span class="line">        //由于该构造器是普通构造器，因此不能调用父类的可能失败的构造器</span><br><span class="line">        //因此只能调用父类的普通构造器</span><br><span class="line">        super.init()</span><br><span class="line">        if name.isEmpty &#123;</span><br><span class="line">        super.name = &quot;麻雀&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        self.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let sp1 = Sparrow(name: &quot;&quot;)</span><br><span class="line">print(&quot;sp1的name:\(sp1.name)&quot;)</span><br><span class="line">let sp2 = Sparrow(name: &quot;&quot;, weight: 2.2)</span><br><span class="line">print(sp2 == nil)</span><br><span class="line">let sp3 = Sparrow(name: &quot;小黄嘴&quot;, weight: 0)</span><br><span class="line">print(sp3 == nil)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="required构造器"><a href="#required构造器" class="headerlink" title="required构造器"></a>required构造器</h1><ol>
+<li>Swift允许在父类构造器前添加require关键字，用于声明所有子类必须包含该require构造器</li>
+<li>父类中声明的required构造器即可是指定构造器，也可以便利构造器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    required init(name:String)&#123;//1</span><br><span class="line">    self.name = name</span><br><span class="line">        self.weight = 0.0</span><br><span class="line">    &#125;</span><br><span class="line">    required convenience init(name:String,weight:Double)&#123;//2</span><br><span class="line">        self.init(name:name)</span><br><span class="line">        self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    required init(name:String,weight:Double)&#123;// override 2</span><br><span class="line">        self.color = &quot;Pink&quot;</span><br><span class="line">        super.init(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">    init(color:String)&#123;</span><br><span class="line">    self.color = color</span><br><span class="line">    super.init(name: &quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    required convenience init(name:String)&#123;//override 1</span><br><span class="line">        self.init(color:&quot;aaaa&quot;)</span><br><span class="line">        super.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//该类将会继承得到父类的request构造器</span><br><span class="line">class Grape:Fruit&#123;  </span><br><span class="line">    var sugarRate:Double = 0.45</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="析构器"><a href="#析构器" class="headerlink" title="析构器"></a>析构器</h1><ol>
+<li>析构器是一个名为deinit的函数，不需要使用func关键字，无参数和返回值</li>
+<li>析构器在实例释放之前由系统自动调用，不要主动调用析构器</li>
+<li>子类自动继承父类的析构器，而且无论如何，子类析构器一定会调用父类析构器</li>
+<li>析构器可以访问该实例的所有实例存储属性，或者根据这些属性来关闭资源,比如关闭哪个文件，哪个程序链接<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    //定义指定构造器</span><br><span class="line">    init(name:String)&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.weight = 0.0</span><br><span class="line">    &#125;</span><br><span class="line">    //定义析构器</span><br><span class="line">    deinit&#123;</span><br><span class="line">    print(&quot;程序准备释放fruit&quot;)</span><br><span class="line">    //此处可访问实例属性，可用于释放资源</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    //定义指定构造器</span><br><span class="line">    init(name:String,weight:Double,color:String)&#123;</span><br><span class="line">    self.color = color</span><br><span class="line">    super.init(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">    //定义析构器</span><br><span class="line">    deinit&#123;</span><br><span class="line">    print(&quot;程序准备释放apple&quot;)</span><br><span class="line">        //此处可访问实例属性，可用于释放资源</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var ap:Apple? = Apple(name: &quot;红富士&quot;, weight: 0.34, color: &quot;红色&quot;)</span><br><span class="line">print(ap!.name + &quot;--&gt;&quot; + ap!.color)</span><br><span class="line">ap = nil //此处会自动调用析构器</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>便利构造器不是必要的，使用convenience关键字，横向调用类中的构造器,代码执行顺序:先调用构造器，再赋值</li>
+<li>指定构造器,一个类中至少有一个指定构造器，其必须负责初始化类中所有的实例存储属性</li>
+<li>指定构造器的代码执行顺序: 初始化属性–&gt;赋值–&gt;super init—&gt; 赋值继承得到的属性</li>
+<li>类的构造第一阶段, 初始化属性–&gt;赋值–&gt;super init—&gt; 赋值继承得到的属性 —&gt;调用该属性</li>
+<li>类的构造第二阶段, 赋值或调用</li>
+<li>总之建议变量初始化的时候就直接赋值，最好。</li>
+<li>构造器的继承,子类有自己的就用自己的，没有就继承父类的全部</li>
+<li>重写使用override</li>
+<li>可能失败的构造器</li>
+<li>重写可能失败的构造器</li>
+<li>required构造器</li>
+<li>析构器</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/14/Swift中的扩展和协议/" itemprop="url">
                   Swift中的扩展和协议
                 </a>
@@ -1261,346 +1486,12 @@ print(&quot;rect2矩形的左上角的x坐标为:\(rect2[0]),y坐标为:\(rect2[
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/11/Swift面向对象基础(上)/" itemprop="url">
-                  Swift面向对象基础(上)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-11T18:06:33+11:00" content="2016-03-11">
-              2016-03-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/11/Swift面向对象基础(上)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift面向对象基础(上)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="面向对象的特点"><a href="#面向对象的特点" class="headerlink" title="面向对象的特点"></a>面向对象的特点</h1><ol>
-<li>面向对象编程的三大特征：封装，继承，和多态</li>
-<li>Swift可以定义枚举，结构体，和类三种面向对象的类型</li>
-</ol>
-<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h2 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h2><ol>
-<li>用于管理一组有限的值的集合</li>
-<li>支持计算属性</li>
-<li>支持实例方法和类方法</li>
-<li>支持定义构造器来完成初始化</li>
-<li>支持扩展和协议</li>
-</ol>
-<h2 id="枚举语法"><a href="#枚举语法" class="headerlink" title="枚举语法"></a>枚举语法</h2><pre><code>enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case Spring
-   case Summer
-   case Fall
-   case Winter
-}
-
-//方法2
-enum Season2 {
-   case Spring, Summer, Fall, Winter
-}
-</code></pre><h2 id="使用枚举声明变量"><a href="#使用枚举声明变量" class="headerlink" title="使用枚举声明变量"></a>使用枚举声明变量</h2><pre><code>var weather: Season
-weather = Season.Fall
-weather = .Fall //也可以这样写
-print(weather)
-</code></pre><h2 id="枚举值和switch语句"><a href="#枚举值和switch语句" class="headerlink" title="枚举值和switch语句"></a>枚举值和switch语句</h2><p>switch中的case没有覆盖枚举的所有值，必须添加default语句</p>
-<pre><code>var chooseDay = Season.Fall
-
-switch(chooseDay){
-case .Spring:
-  print(&quot;This is spring&quot;)
-case .Summer:
-  print(&quot;This is summer&quot;)
-default:
-  print(&quot;At home&quot;)
-}
-</code></pre><h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><pre><code>enum 枚举名：原始值类型{
-   case 枚举值 = 原始值
-}
-</code></pre><h3 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h3><pre><code>//可以自动推断，不用每个都赋予原始值
-enum Weekday: Int{
-  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
-}
-</code></pre><h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><pre><code>//必须每个都赋予原始值，因为不能自动推断
-enum Season3: Character{
-  case Spring = &quot;春&quot;
-  case Summer = &quot;夏&quot;
-  case Fall = &quot;秋&quot;
-  case Winter = &quot;冬&quot;
-}
-</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>print(Weekday.Fri.rawValue)
-</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
-if mySeason != nil {
-  switch(mySeason!){ //不为空才能进行强制解析
-  case .Spring:
-    print(&quot;春天不是读书天&quot;)
-  case .Summer:
-    print(&quot;夏天炎炎正好眠&quot;)
-  case .Fall , .Winter:
-    print(&quot;秋多蚊蝇冬日冷&quot;)
-  default:
-    print(&quot;读书只好等明年&quot;)
-
-  }
-}
-</code></pre><h3 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h3><pre><code>enum Planet {
-case Earth(weight: Double , name:String)
-case Mars (density: Double, name: String, weight:Double)
-case Venus(Double, String)
-case Saturn
-case Neptune
-}
-
-var p1 = Planet.Earth(weight:1.0, name:&quot;地球&quot;)
-var p2 = Planet.Venus(0.815,&quot;金星&quot;)
-var p3 = Planet.Mars(density:3.95, name:&quot;火星&quot;,weight:0.1)
-
-switch (p3){
-//将关联值绑定到变量或者常量来提取
-case Planet.Earth(var weight , var name):
-   print(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
-
-//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
-case let Planet.Mars(density:d, name:n, weight:w):
-   print(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
-default:
-   break
-}
-</code></pre><h1 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h1><ol>
-<li>这两个非常相似</li>
-<li>主要区别在于结构体和枚举不支持继承，只有类才有继承</li>
-<li>结构体和枚举是值类型</li>
-<li>类是引用类型</li>
-<li>只有类的实例可以称为对象</li>
-</ol>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><pre><code>[修饰符]class类名 {
-零到多个构造器
-零到多个属性
-零到多个方法
-零到多个下标
-}
-修饰符可以是private ,public, internal,final
-
-class Person {
-var name: String = &quot;Jack&quot;
-var age: Int = 0
-func say(content: String)
-{
-   print(content)
-}
-}
-</code></pre><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><pre><code>[修饰符]struct 结构体名 {
-
-}
-修饰符可以是private , public, internal
-
-struct Dog{
-
-var name: String
-var age: Int
-func run(){
-
-print(&quot;\(name)在奔跑&quot;)
-}
-}
-</code></pre><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre><code>[修饰符]var或者let 存储属性:类型名字 = 初始值
-</code></pre><h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><pre><code>[修饰符]init(形参列表){
-//零到多条可执行语句组成的构造器执行体
-}
-</code></pre><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><pre><code>[修饰符]func 方法名(形参列表) -&gt;返回值类型 {
-//零到多条可执行语句
-}
-</code></pre><h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><h3 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h3><pre><code>var p: Person
-p = Person() //等价于 var p = Person()
-print(p.name)
-p.say(&quot;Hello world&quot;)
-</code></pre><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><pre><code>var dog = Dog(name:&quot;Wangcai&quot;, age:2)
-print(dog.name)
-dog.run()
-</code></pre><h2 id="值类型与引用类型"><a href="#值类型与引用类型" class="headerlink" title="值类型与引用类型"></a>值类型与引用类型</h2><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>var p2 =p
-p2.name = &quot;Rose&quot;
-print(p.name)
-</code></pre><ol>
-<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
-<li>如果一个引用更改了，那对象里的值也会更改。</li>
-</ol>
-<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><pre><code>var dog2 = dog
-dog2.name = &quot;snoopy&quot;
-print(dog2.name)
-print(dog.name)
-</code></pre><ol>
-<li>值对象是要复制的</li>
-<li>每个值对象的更改，不会影响其他对象的更改</li>
-<li>因此枚举和结构体是没有继承的  </li>
-</ol>
-<h3 id="引用类型的比较"><a href="#引用类型的比较" class="headerlink" title="引用类型的比较"></a>引用类型的比较</h3><pre><code>class User {
-var name: String
-var age: Int
-init(name: String, age: Int){
-    self.name = name
-    self.age = age
-}
-}
-
-var u1 = User(name:&quot;Han&quot;,age:32)
-var u2 = User(name:&quot;Han&quot;,age:32)
-//虽然传递的值是一样，但是是创建了两个对象
-
-print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
-print(u1 !== u2) //结果是true
-
-var u3 = u1
-print(u3 === u1) //结果是true
-
-// &quot;===&quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
-// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
-</code></pre><h2 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h2><h3 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h3><pre><code>class Dog {  
-  func jump(){
-    print(&quot;正在执行jump方法&quot;)
-  }
-  func run(){
-  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
-     print(&quot;正在执行run方法&quot;)
-  }
-}
-</code></pre><h3 id="构造器中的self代表该构造器正在初始化的实例"><a href="#构造器中的self代表该构造器正在初始化的实例" class="headerlink" title="构造器中的self代表该构造器正在初始化的实例"></a>构造器中的self代表该构造器正在初始化的实例</h3><pre><code>class Person {
-    var name: String = &quot;&quot;
-    var age: Int = 2
-
-    init(name:String, age:Int){
-    self.name = name
-    self.age = age
-    }
-
-    func info(){
-    print(&quot;我的名字是:\(name)年龄是:\(age)&quot;)
-    }
-}
-
-var person = Person(name:&quot;Lily&quot;,age:10)
-person.info()
-</code></pre><h2 id="类和结构体的选择"><a href="#类和结构体的选择" class="headerlink" title="类和结构体的选择"></a>类和结构体的选择</h2><ol>
-<li>结构体的主要目的是用于封装少量相关的简单数据</li>
-<li>如果需要在传递参数或者赋值时自动复制副本，使用结构体</li>
-<li>明确该类型无须继承另一个已有的类或被其他类继承</li>
-<li>注意，大部分时候，程序应该自定义类而不是自定义结构体。</li>
-</ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
-<li>Swift中的三种面向对象类型:枚举，结构体，类</li>
-<li>枚举,一组有限的值的集合.要区分枚举值，关联值，原始值</li>
-<li>类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承</li>
-<li>值类型和引用类型的区别。</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1641,7 +1532,7 @@ person.info()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

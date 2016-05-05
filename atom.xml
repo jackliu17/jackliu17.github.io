@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-05T04:37:27.000Z</updated>
+  <updated>2016-05-05T11:18:33.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,205 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>缓动函数与关键帧动画</title>
+    <link href="http://jackliu17.github.io/2016/05/05/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E5%85%B3%E9%94%AE%E5%B8%A7%E5%8A%A8%E7%94%BB/"/>
+    <id>http://jackliu17.github.io/2016/05/05/缓动函数与关键帧动画/</id>
+    <published>2016-05-05T11:08:35.000Z</published>
+    <updated>2016-05-05T11:18:33.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;缓动函数简介&quot;&gt;&lt;a href=&quot;#缓动函数简介&quot; class=&quot;headerlink&quot; title=&quot;缓动函数简介&quot;&gt;&lt;/a&gt;缓动函数简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;缓动函数的动画效果是建立在CALayer层级的关键帧动画基础之上&lt;/li&gt;
+&lt;li&gt;缓动函数是一系列模拟物理效果（如抛物线）方程式的统称，用以计算给定两点之间的插值&lt;/li&gt;
+&lt;li&gt;两点之间插的值越多，效果越好，但是会耗费更多的性能&lt;/li&gt;
+&lt;li&gt;只有理解了缓动函数的原理才有可能写出自己想要的效果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;缓动函数与关键帧动画的联系&quot;&gt;&lt;a href=&quot;#缓动函数与关键帧动画的联系&quot; class=&quot;headerlink&quot; title=&quot;缓动函数与关键帧动画的联系&quot;&gt;&lt;/a&gt;缓动函数与关键帧动画的联系&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;关键帧动画需要提供很多的帧来完善动画效果&lt;/li&gt;
+&lt;li&gt;关键帧动画的帧可以通过一定的数学计算来提供需要的帧数&lt;/li&gt;
+&lt;li&gt;关键帧动画只需要提供起始点，结束点，就可以通过缓动函数来计算中间“缺失”的帧&lt;/li&gt;
+&lt;li&gt;缓动函数可以指定计算出多少帧&lt;/li&gt;
+&lt;li&gt;帧数越多，动画越流畅，但同时耗费更多的GPU性能。&lt;strong&gt;1秒钟60帧最多了，写得再大也是浪费GPU&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 添加显示用的view
+UIView *showView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+showView.layer.cornerRadius  = 50;
+showView.layer.masksToBounds = YES;
+showView.backgroundColor     = [UIColor redColor];
+[self.view addSubview:showView];
+
+//    // 基本动画类型
+//    CABasicAnimation *basicAnimation = [CABasicAnimation animation];
+//    basicAnimation.keyPath           = @&amp;quot;position&amp;quot;;
+//    basicAnimation.duration          = 4.f;
+//
+//    // fromValue = A | toValue = B
+//    basicAnimation.fromValue = [NSValue valueWithCGPoint:showView.center];
+//    basicAnimation.toValue   = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
+//
+//    showView.center = CGPointMake(200, 200);
+//    [showView.layer addAnimation:basicAnimation forKey:nil];
+
+// 关键帧动画类型
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&amp;quot;position&amp;quot;;
+keyFrameAnimation.duration             = 4.f;
+keyFrameAnimation.values = [YXEasing calculateFrameFromPoint:showView.center
+                                                     toPoint:CGPointMake(200, 200)
+                                                        func:BounceEaseInOut
+                                                  frameCount:30 * 4];
+showView.center = CGPointMake(200, 200);
+[showView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用缓动函数模拟弹簧效果&quot;&gt;&lt;a href=&quot;#用缓动函数模拟弹簧效果&quot; class=&quot;headerlink&quot; title=&quot;用缓动函数模拟弹簧效果&quot;&gt;&lt;/a&gt;用缓动函数模拟弹簧效果&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;使用easeOutElastic函数来创建弹簧效果&lt;/li&gt;
+&lt;li&gt;将easeOutElastic创建出来的帧数组添加到关键帧动画中&lt;/li&gt;
+&lt;li&gt;弹簧效果用途&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_spring.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码-1&quot;&gt;&lt;a href=&quot;#代码-1&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;YXEasing.h&amp;quot;
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *secLayer; // 秒针layer
+@property (nonatomic, strong) NSTimer *timer;    // 定时器
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 创建一个表盘
+UIView *showView            = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+showView.center             = self.view.center;
+showView.layer.borderWidth  = 1.f;
+showView.layer.cornerRadius = 150;
+showView.layer.borderColor  = [UIColor redColor].CGColor;
+[self.view addSubview:showView];
+
+// 创建出秒针layer
+self.secLayer                 = [CALayer layer];
+self.secLayer.anchorPoint     = CGPointMake(0, 0);
+self.secLayer.frame           = CGRectMake(150, 150, 1, 150);
+self.secLayer.backgroundColor = [UIColor blackColor].CGColor;
+[showView.layer addSublayer:self.secLayer];
+
+// 创建定时器
+self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                              target:self
+                                            selector:@selector(timerEvent)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+- (void)timerEvent {
+
+static int i = 1;
+
+CGFloat oldValue = DEGREES_TO_RADIANS((360 / 60.f) * i++);
+CGFloat newValue = DEGREES_TO_RADIANS((360 / 60.f) * i);
+
+// 创建关键帧动画
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&amp;quot;transform.rotation.z&amp;quot;;
+keyFrameAnimation.duration             = 0.5;
+keyFrameAnimation.values               = [YXEasing calculateFrameFromValue:oldValue
+                                                                   toValue:newValue
+                                                                      func:ElasticEaseOut
+                                                                frameCount:0.5 * 30];
+
+self.secLayer.transform = CATransform3DMakeRotation(newValue, 0, 0, 1);
+[self.secLayer addAnimation:keyFrameAnimation forKey:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用缓动函数模拟碰撞效果&quot;&gt;&lt;a href=&quot;#用缓动函数模拟碰撞效果&quot; class=&quot;headerlink&quot; title=&quot;用缓动函数模拟碰撞效果&quot;&gt;&lt;/a&gt;用缓动函数模拟碰撞效果&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;使用easeOutBounce函数来创建弹簧效果&lt;/li&gt;
+&lt;li&gt;将easeOutBounce创建出来的帧数组添加到关键帧动画中&lt;/li&gt;
+&lt;li&gt;碰撞效果用途&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;代码-2&quot;&gt;&lt;a href=&quot;#代码-2&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建图片view
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+imageView.image        = [UIImage imageNamed:@&amp;quot;pic&amp;quot;];
+imageView.contentMode  = UIViewContentModeScaleAspectFill;
+[self.view addSubview:imageView];
+
+// 创建关键帧动画(移动距离的动画)
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&amp;quot;position&amp;quot;;
+keyFrameAnimation.duration             = 2.f;
+keyFrameAnimation.values               = \
+[YXEasing calculateFrameFromPoint:imageView.center
+                          toPoint:CGPointMake(320 / 2.f, 320 / 2.f + 240)
+                             func:BounceEaseOut
+                       frameCount:2 * 30];
+
+// 添加动画
+imageView.center = CGPointMake(320 / 2.f, 320 / 2.f + 240);
+[imageView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用缓动函数模拟衰减效果&quot;&gt;&lt;a href=&quot;#用缓动函数模拟衰减效果&quot; class=&quot;headerlink&quot; title=&quot;用缓动函数模拟衰减效果&quot;&gt;&lt;/a&gt;用缓动函数模拟衰减效果&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;使用easeOutCubic函数来创建弹簧效果&lt;/li&gt;
+&lt;li&gt;将easeOutCubic创建出来的帧数组添加到关键帧动画中&lt;/li&gt;
+&lt;li&gt;衰减效果用途&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;代码-3&quot;&gt;&lt;a href=&quot;#代码-3&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 背景变暗的view
+UIView *backView         = [[UIView alloc] initWithFrame:self.view.bounds];
+backView.backgroundColor = [UIColor blackColor];
+backView.alpha           = 0;
+[UIView animateWithDuration:1.f animations:^{
+    backView.alpha       = 0.3;
+}];
+[self.view addSubview:backView];
+
+// 创建模拟的菜单
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 568)];
+imageView.image        = [UIImage imageNamed:@&amp;quot;pic&amp;quot;];
+[self.view addSubview:imageView];
+
+// 创建关键帧动画
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&amp;quot;position&amp;quot;;
+keyFrameAnimation.duration             = 1.f;
+keyFrameAnimation.values               = \
+[YXEasing calculateFrameFromPoint:imageView.center
+                          toPoint:CGPointMake(self.view.center.x + 100, self.view.center.y)
+                             func:CubicEaseOut
+                       frameCount:1 * 30];
+
+// 加载关键帧动画
+imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
+[imageView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;缓动函数简介&quot;&gt;&lt;a href=&quot;#缓动函数简介&quot; class=&quot;headerlink&quot; title=&quot;缓动函数简介&quot;&gt;&lt;/a&gt;缓动函数简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;缓动函数的动画效果是建立在CALayer层级的关键帧动画基础之上&lt;/li&gt;
+&lt;li&gt;缓动函数是一
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+  </entry>
   
   <entry>
     <title>Facebook开源动画库POP实现真实衰减与弹簧动画</title>
@@ -1830,62 +2029,6 @@ For OpenGL ES 3.0:
       <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>UIStoryboard的相关操作</title>
-    <link href="http://jackliu17.github.io/2016/03/17/UIStoryboard%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
-    <id>http://jackliu17.github.io/2016/03/17/UIStoryboard的相关操作/</id>
-    <published>2016-03-17T02:18:16.000Z</published>
-    <updated>2016-03-18T06:00:48.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h1&gt;&lt;p&gt;在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png&quot; alt=&quot;info.plist&quot;&gt;&lt;/p&gt;
-&lt;p&gt;箭头所指就是启动的画面&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png&quot; alt=&quot;箭头所指&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;在Tab模板中新建一个new-tab&quot;&gt;&lt;a href=&quot;#在Tab模板中新建一个new-tab&quot; class=&quot;headerlink&quot; title=&quot;在Tab模板中新建一个new tab&quot;&gt;&lt;/a&gt;在Tab模板中新建一个new tab&lt;/h1&gt;&lt;p&gt;按住ctrl 键拖入到新的视图，选择 &lt;strong&gt;Relationship Segue — view controllers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/new%20tab.png&quot; alt=&quot;new tab&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;不同视图的跳转&quot;&gt;&lt;a href=&quot;#不同视图的跳转&quot; class=&quot;headerlink&quot; title=&quot;不同视图的跳转&quot;&gt;&lt;/a&gt;不同视图的跳转&lt;/h1&gt;&lt;h2 id=&quot;使用UIStoryboard创建视图&quot;&gt;&lt;a href=&quot;#使用UIStoryboard创建视图&quot; class=&quot;headerlink&quot; title=&quot;使用UIStoryboard创建视图&quot;&gt;&lt;/a&gt;使用UIStoryboard创建视图&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;点住Button,按住ctrl，向新的viewController拖动,选择segue模式&lt;/li&gt;
-&lt;li&gt;从新视图的返回，使用如下代码: &lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;self.dismissModalViewControllerAnimated(true)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;使用nib文件创建视图&quot;&gt;&lt;a href=&quot;#使用nib文件创建视图&quot; class=&quot;headerlink&quot; title=&quot;使用nib文件创建视图&quot;&gt;&lt;/a&gt;使用nib文件创建视图&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;创建新的viewController文件和nib&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在初始视图中，如下代码跳转到新视图:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;self.presentModalViewController(MyViewController(nibName:&amp;quot;MyViewController&amp;quot;,bundle:nil),animated:true)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;从新视图的返回，使用如下代码: &lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;self.dismissModalViewControllerAnimated(true)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h1 id=&quot;视图中传值&quot;&gt;&lt;a href=&quot;#视图中传值&quot; class=&quot;headerlink&quot; title=&quot;视图中传值&quot;&gt;&lt;/a&gt;视图中传值&lt;/h1&gt;&lt;h2 id=&quot;在第一个视图中&quot;&gt;&lt;a href=&quot;#在第一个视图中&quot; class=&quot;headerlink&quot; title=&quot;在第一个视图中&quot;&gt;&lt;/a&gt;在第一个视图中&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;创建新视图的同时，就将其属性配置好&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@IBOutlet var input:UITextField&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@IBAction func nextBtn&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;let vc = MyViewController(nibName:&amp;quot;MyViewController&amp;quot;,bundle:nil)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vc.labelContent = input.text&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;self.presentModalViewController(vc,animated:true)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;在第二个视图中&quot;&gt;&lt;a href=&quot;#在第二个视图中&quot; class=&quot;headerlink&quot; title=&quot;在第二个视图中&quot;&gt;&lt;/a&gt;在第二个视图中&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var labelContent:String = &amp;quot;&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;func viewDidLoad()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;myLabel.text = labelContent&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;返回时传值&quot;&gt;&lt;a href=&quot;#返回时传值&quot; class=&quot;headerlink&quot; title=&quot;返回时传值&quot;&gt;&lt;/a&gt;返回时传值&lt;/h2&gt;&lt;p&gt;在第二个视图中，通过如下代码，访问到前一个视图&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;self.parentViewController&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;启动&quot;&gt;&lt;a href=&quot;#启动&quot; class=&quot;headerlink&quot; title=&quot;启动&quot;&gt;&lt;/a&gt;启动&lt;/h1&gt;&lt;p&gt;在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;h
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
-    
-      <category term="UIKit" scheme="http://jackliu17.github.io/tags/UIKit/"/>
     
   </entry>
   
