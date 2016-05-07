@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/03/17/UIStoryboard%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2016-05-07T06:43:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/05/07/iOS%E7%BB%98%E5%9B%BEAPI%E6%BC%94%E7%A4%BA/</loc>
     
     <lastmod>2016-05-07T06:00:46.000Z</lastmod>
@@ -229,13 +236,6 @@
     <loc>http://jackliu17.github.io/2016/03/18/iOS-UI-CodeExample/</loc>
     
     <lastmod>2016-03-20T04:21:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/17/UIStoryboard%E7%9A%84%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</loc>
-    
-    <lastmod>2016-03-18T06:00:48.000Z</lastmod>
     
   </url>
   
