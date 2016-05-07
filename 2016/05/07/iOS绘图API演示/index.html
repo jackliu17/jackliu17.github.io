@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,swift," />
+  <meta name="keywords" content="iOS,iOS_image," />
 
 
 
@@ -61,40 +61,36 @@
 
 
 
-<meta name="description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
+<meta name="description" content="绘制直线
+代码class DrawLinesView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift面向对象基础（下）">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/index.html">
+<meta property="og:title" content="iOS绘图API演示">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/07/iOS绘图API演示/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
-<meta property="og:updated_time" content="2016-04-17T04:43:30.000Z">
+<meta property="og:description" content="绘制直线
+代码class DrawLinesView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect:">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png">
+<meta property="og:updated_time" content="2016-05-07T05:59:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift面向对象基础（下）">
-<meta name="twitter:description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
+<meta name="twitter:title" content="iOS绘图API演示">
+<meta name="twitter:description" content="绘制直线
+代码class DrawLinesView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect:">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png">
 
 
 
@@ -112,7 +108,7 @@ let employees = [
   };
 </script>
 
-  <title> Swift面向对象基础（下） | Cowboy Tech </title>
+  <title> iOS绘图API演示 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +250,7 @@ let employees = [
             
             
               
-                Swift面向对象基础（下）
+                iOS绘图API演示
               
             
           </h1>
@@ -266,8 +262,8 @@ let employees = [
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-13T10:15:37+11:00" content="2016-03-13">
-              2016-03-13
+            <time itemprop="dateCreated" datetime="2016-05-07T15:51:59+10:00" content="2016-05-07">
+              2016-05-07
             </time>
           </span>
 
@@ -296,8 +292,8 @@ let employees = [
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/13/Swift面向对象基础（下）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift面向对象基础（下）/" itemprop="commentsCount"></span>
+                <a href="/2016/05/07/iOS绘图API演示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/07/iOS绘图API演示/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -319,206 +315,169 @@ let employees = [
       
 
       
-        <h1 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h1><pre><code>class Customer {
-var name = &quot;&quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &quot;张三&quot;, title: &quot;销售客服&quot;),
-    Employee (name: &quot;小明&quot;, title: &quot;售后客服&quot;),
-    Employee (name: &quot;Han&quot;, title: &quot;普通客服&quot;),
-    Employee (name: &quot;Better&quot;, title: &quot;销售主管&quot;),
-]
-//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
-func findEmp(empName:String) -&gt; Employee! {
-    for emp in employees {
-        if emp.name == empName {
-          return emp
-        }
-    }
-    return nil
-}
-}
-class Company {
-  var name = &quot;&quot;
-  var addr = &quot;&quot;
-  init (name:String, addr:String){
-  self.name = name
-  self.addr = addr
-  }
-}
-class Employee {
-var name = &quot;Lily&quot;
-var title = &quot;行政&quot;
-var company:Company!  
-init(name:String, title:String){
-    self.name = name
-    self.title = title
-}
-func info(){
-     print(&quot;本员工名为\(self.name),职位是\(self.title)&quot;)
-}
-}
-//第一种情况----------------------
-var c = Customer(name: &quot;Damon&quot;)
-var emp = Employee(name: &quot;Elena&quot;, title: &quot;Student&quot;)
-//设置Customer关联的Employee实例
-c.emp = emp
-//设置Employee关联的Company实例
-emp.company = Company(name: &quot;极客学院&quot;, addr: &quot;北京市&quot;)
-//print(&quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&quot;)  //强制解析访问属性
-//print(&quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&quot;) //使用可选链访问属性
-//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
-var c2 = Customer(name: &quot;Lucky&quot;)
-c2.emp = Employee(name: &quot;Snow&quot;, title: &quot;客服&quot;)
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&quot;) //会报错，因为有空值，company没有赋值
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&quot;) //使用可选链访问属性，即使没有赋值也没有关系
-//第三种情况 ---------------
-var c3 = Customer(name: &quot;Paul&quot;)
-c3.findEmp(&quot;张三&quot;)?.info()
-c3.findEmp(&quot;小明&quot;)?.info() //如果传入的名字不存在，它就不会执行输出，但是也不会让程序崩溃
-//print(&quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&quot;)
-//第四种情况
-var dict = [Int: Customer]()
-dict[1] = Customer(name: &quot;Han&quot;)
-dict[2] = Customer(name: &quot;Angle&quot;)
-dict[1]?.findEmp(&quot;Better&quot;)?.info()
-dict[4]?.findEmp(&quot;Better&quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句    
-</code></pre><ol>
-<li>可选链用于处理可选类型的属性，方法和下标</li>
-<li>使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀</li>
-<li>可选链会自动判断程序访问的关联实例是否为nil</li>
-</ol>
-<h1 id="值类型的类型属性-枚举"><a href="#值类型的类型属性-枚举" class="headerlink" title="值类型的类型属性-枚举"></a>值类型的类型属性-枚举</h1><p>结构体可以包含实例计算属性，不能包含实例存储属性</p>
-<pre><code>enum Season {
-//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为枚举定义类型存储属性，且声明为常量
-static let name = &quot;季节&quot;
-static var info:String{
+        <h1 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>class DrawLinesView: UIView {
 
-    get{
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
 
-    return&quot;代表季节的枚举，其desc为:\(desc)&quot;
+    //设定绘画环境
+    let context = UIGraphicsGetCurrentContext()
 
-    }
+    //绘画起点
+    CGContextMoveToPoint(context, 100, 100)
+    //绘画终点
+    CGContextAddLineToPoint(context, 100, 200)
+     //绘画终点
+    CGContextAddLineToPoint(context, 200, 200)
 
-    set{
+    //绘画起点
+    CGContextMoveToPoint(context, 100, 300)
+      //绘画终点
+    CGContextAddLineToPoint(context, 100, 400)
+      //绘画终点
+    CGContextAddLineToPoint(context, 200, 500)
 
-    print(&quot;程序尝试对info计算属性进行赋值:\(newValue)&quot;)
+    //设定颜色
+    CGContextSetRGBStrokeColor(context, 1, 0, 1, 1)
+    //设定线条宽度
+    CGContextSetLineWidth(context, 5)
+    //绘制线条
+    CGContextStrokePath(context)
 
-    }
+}
+</code></pre><h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png" alt=""></p>
+<h1 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h1><pre><code>import UIKit
+
+class DrawRectView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+//设定绘画环境
+let context = UIGraphicsGetCurrentContext()
+    //加入矩形
+    CGContextAddRect(context, CGRect(x:100,y:100,width: 100,height: 100))
+    //填充颜色
+    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
+    //绘制矩形
+    CGContextFillPath(context)
+
+    //设置外框的宽度
+    CGContextSetLineWidth(context, 5)
+    //设置外框颜色
+    CGContextSetRGBStrokeColor(context,0 ,1, 0, 1)
+    //绘制外框
+    CGContextStrokeRect(context, CGRect(x: 100, y: 100, width: 100, height: 100))
+
 }
 }
-//对Season枚举的类型属性赋值
-Season.desc = &quot;季节类&quot;
-print(Season.name)
-Season.info = &quot;新的info&quot;
-print(Season.info)
-</code></pre><h1 id="值类型的类型属性-结构体"><a href="#值类型的类型属性-结构体" class="headerlink" title="值类型的类型属性-结构体"></a>值类型的类型属性-结构体</h1><p>用static 修饰的是类型属性，需要通过类来调用</p>
-<pre><code>struct FkRange {
+</code></pre><h1 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
-//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为结构体定义类型存储属性，且声明为常量
-static let maxWidth = 10000
-static let maxHeight = 40000
-//定义类型计算属性，该属性只有get部分，是一个只读属性
-static var maxArea:Int{
-return maxWidth * maxHeight
+class DrawCircle: UIView { 
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+
+let context = UIGraphicsGetCurrentContext()
+
+    //加入圆形
+    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
+    //填充颜色
+    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
+    //开始绘制填充
+    CGContextFillPath(context)
+
+    //加入圆形
+    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
+    //设定宽度
+    CGContextSetLineWidth(context, 10)
+    //绘制
+    CGContextStrokePath(context)
+
+    //加入椭圆
+    CGContextAddEllipseInRect(context, CGRect(x: 50, y: 400, width: 200, height: 100))
+    //绘制
+    CGContextStrokePath(context)
 }
 }
+</code></pre><h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png" alt=""></p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
-FkRange.desc = &quot;描述范围的结构体&quot;
-print(FkRange.desc)
-print(FkRange.maxWidth)
-print(FkRange.maxHeight)
-print(FkRange.maxArea)  
-</code></pre><h1 id="类的类型属性"><a href="#类的类型属性" class="headerlink" title="类的类型属性"></a>类的类型属性</h1><p>类中不可以定义类型存储属性，只能包含类型计算属性</p>
-<pre><code>class User {
+class DrawImageView: UIView {
 
-   //为类定义类型计算属性
-class var nameMaxLength:Int {
-    get {
-    return 24
-    }
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
 
-    set {
-    print(&quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&quot;)
-    }
+    var uiImage:CGImageRef?
+
+    uiImage = UIImage(named: &quot;girl.jpg&quot;)?.CGImage
+
+    let context = UIGraphicsGetCurrentContext()
+
+    //context状态的维持和释放，不影响其他图像的绘制
+    CGContextSaveGState(context)
+
+    //没有如下这两个图像会翻转
+    CGContextTranslateCTM(context, 10, 400)
+    CGContextScaleCTM(context, 1, -1)
+    CGContextDrawImage(context, CGRect(x: 0,y: 0,width: 200,height: 200), uiImage)
+    CGContextRestoreGState(context)
+
+    CGContextStrokeRect(context, CGRect(x: 50, y: 100, width: 100, height: 100))
 }
 }
-print(User.nameMaxLength)
-User.nameMaxLength = 20
-</code></pre><h1 id="使用闭包或函数为属性设置初始值"><a href="#使用闭包或函数为属性设置初始值" class="headerlink" title="使用闭包或函数为属性设置初始值"></a>使用闭包或函数为属性设置初始值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">struct ClosureInit &#123;</span><br><span class="line">    // 使用闭包对test实例存储属性执行初始化</span><br><span class="line">    var test: Int = &#123;</span><br><span class="line">    var dt = NSDate()</span><br><span class="line">    var gregorian = NSCalendar.currentCalendar()</span><br><span class="line">    // 定义一个时间字段的旗标，指定将会获取指定月、日信息</span><br><span class="line">    var unitFlags = NSCalendarUnit.CalendarUnitMonth</span><br><span class="line">    | NSCalendarUnit.CalendarUnitDay  //这段代码有问题</span><br><span class="line">    var comp = gregorian.components(unitFlags</span><br><span class="line">    , fromDate:dt)</span><br><span class="line">    // 获取当前的月份</span><br><span class="line">    var month = Int(comp.month)</span><br><span class="line">    // 获取当前第几日</span><br><span class="line">    var day = Int(comp.day)</span><br><span class="line">    // 得到计算结果</span><br><span class="line">    return day - month</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line">var ci = ClosureInit()</span><br><span class="line">print(ci.test)</span><br></pre></td></tr></table></figure>
-<h1 id="值类型的类型方法"><a href="#值类型的类型方法" class="headerlink" title="值类型的类型方法"></a>值类型的类型方法</h1><pre><code>enum Season2{
+</code></pre><h1 id="绘图板"><a href="#绘图板" class="headerlink" title="绘图板"></a>绘图板</h1><h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
- //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
+class DrawBoardView: UIView {
 
-//为枚举定义类型存储属性，且声明为常量
-static let name = &quot;季节&quot;
+var path = CGPathCreateMutable()
 
-//定义无参数的类型方法
-static func info(){
+override func touchesBegan(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
 
-print(&quot;季节类的info方法，该类的name存储属性为:\(name)&quot;)
+    let p = (touches as NSSet).anyObject()?.locationInView(self)
+
+    CGPathMoveToPoint(path, nil, p!.x, p!.y)
+
 }
 
-//定义带一个参数的类型方法
-static func setDesc(desc:String){
+override func touchesMoved(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
 
-self.desc = desc
-}
-}
+    let p = (touches as NSSet).anyObject()?.locationInView(self)
 
-Season2.info()
-Season2.setDesc(&quot;描述季节变化的枚举&quot;)
-print(Season2.desc)
-</code></pre><h1 id="类的类型方法"><a href="#类的类型方法" class="headerlink" title="类的类型方法"></a>类的类型方法</h1><pre><code>class Math {
+    CGPathAddLineToPoint(path, nil, p!.x, p!.y)
 
-   //类不允许定义类型存储属性，使用类型计算属性代替
-class var pi:Double {
-    return 3.1415926535
+    setNeedsDisplay()
+
 }
 
-class func abs(value:Double)-&gt;Double {
-    return value&lt;0 ? -value:value
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+    let context = UIGraphicsGetCurrentContext()
+    CGContextAddPath(context, path)
+    CGContextStrokePath(context)
+
 }
 
-//定义类型方法，取消第二个形参的外部形参名
-class func pow(base:Double,_ exponent:Int)-&gt;Double {
-    var result = 1.0
-    for idx in 1...exponent{
-    result *= base
-    }
-    return result
 }
-
-//定义类型方法，类型方法可直接访问类型属性
-class func radian2Degre(radian:Double)-&gt;Double {
-    return radian * 180/pi
-}
-
-//定义类型方法，类型方法可通过self引用类型属性
-class func degree2Radian(degree:Double)-&gt;Double {
-    return degree * self.pi/180
-}
-}
-
-print(Math.pi)
-print(Math.pow(2, 4))
-print(Math.radian2Degre(1.57))
-print(Math.degree2Radian(45))
-</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
-<li>通过可选链可以避免因为某个对象值的缺失，而引起程序崩溃。</li>
-<li>static 在枚举和结构体中使用，class在类中使用</li>
-<li>枚举和结构体中的属性基本都有static。</li>
-<li>class只能修饰计算属性</li>
-</ol>
+</code></pre><h1 id="怎么清空画板"><a href="#怎么清空画板" class="headerlink" title="怎么清空画板"></a>怎么清空画板</h1><p>1.重新运行程序即可清空<br>2.设置个按钮点击事件实现清空之前所有操作<br>3.使用CGContextClearRect，<br>4.重新初始化path，这样重画的时候不会检测到之前有线条的path，画面就自动清空了</p>
+<h1 id="橡皮擦功能"><a href="#橡皮擦功能" class="headerlink" title="橡皮擦功能"></a>橡皮擦功能</h1><p>较粗的和背景颜色同样的线条</p>
+<h1 id="绘制图像时解决翻转问题"><a href="#绘制图像时解决翻转问题" class="headerlink" title="绘制图像时解决翻转问题"></a>绘制图像时解决翻转问题</h1><pre><code>CGContextTranslateCTM(context, 10, 400)
+CGContextScaleCTM(context, 1, -1)
+</code></pre><h1 id="context状态的维持和释放"><a href="#context状态的维持和释放" class="headerlink" title="context状态的维持和释放"></a>context状态的维持和释放</h1><pre><code>//context状态的维持和释放，不影响其他图像的绘制
+CGContextSaveGState(context)
+.............绘制代码
+CGContextRestoreGState(context)
+</code></pre><h1 id="setNeedsDisplay"><a href="#setNeedsDisplay" class="headerlink" title="setNeedsDisplay()"></a>setNeedsDisplay()</h1><p>执行这个方法时会调用drawRect重新绘图</p>
 
       
     </div>
@@ -535,7 +494,7 @@ print(Math.degree2Radian(45))
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/swift/" rel="tag">#swift</a>
+            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
           
         </div>
       
@@ -544,17 +503,13 @@ print(Math.degree2Radian(45))
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/12/Swift面向对象基础（中）/" rel="next" title="Swift面向对象基础（中）">
-                <i class="fa fa-chevron-left"></i> Swift面向对象基础（中）
+              <a href="/2016/05/06/使用带粒子效果的CAEmitterLayer/" rel="next" title="使用带粒子效果的CAEmitterLayer">
+                <i class="fa fa-chevron-left"></i> 使用带粒子效果的CAEmitterLayer
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/13/Swift中的继承和多态/" rel="prev" title="Swift中的继承和多态">
-                Swift中的继承和多态 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -686,7 +641,7 @@ print(Math.degree2Radian(45))
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可选链"><span class="nav-number">1.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-枚举"><span class="nav-number">2.</span> <span class="nav-text">值类型的类型属性-枚举</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-结构体"><span class="nav-number">3.</span> <span class="nav-text">值类型的类型属性-结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型属性"><span class="nav-number">4.</span> <span class="nav-text">类的类型属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用闭包或函数为属性设置初始值"><span class="nav-number">5.</span> <span class="nav-text">使用闭包或函数为属性设置初始值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型方法"><span class="nav-number">6.</span> <span class="nav-text">值类型的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型方法"><span class="nav-number">7.</span> <span class="nav-text">类的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制直线"><span class="nav-number">1.</span> <span class="nav-text">绘制直线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制矩形"><span class="nav-number">2.</span> <span class="nav-text">绘制矩形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码-1"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制圆形"><span class="nav-number">4.</span> <span class="nav-text">绘制圆形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制图片"><span class="nav-number">5.</span> <span class="nav-text">绘制图片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-3"><span class="nav-number">5.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘图板"><span class="nav-number">6.</span> <span class="nav-text">绘图板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-4"><span class="nav-number">6.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎么清空画板"><span class="nav-number">7.</span> <span class="nav-text">怎么清空画板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#橡皮擦功能"><span class="nav-number">8.</span> <span class="nav-text">橡皮擦功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制图像时解决翻转问题"><span class="nav-number">9.</span> <span class="nav-text">绘制图像时解决翻转问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#context状态的维持和释放"><span class="nav-number">10.</span> <span class="nav-text">context状态的维持和释放</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setNeedsDisplay"><span class="nav-number">11.</span> <span class="nav-text">setNeedsDisplay()</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -944,9 +899,9 @@ print(Math.degree2Radian(45))
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/13/Swift面向对象基础（下）/';
-      var disqus_title = 'Swift面向对象基础（下）';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/';
+      var disqus_identifier = '2016/05/07/iOS绘图API演示/';
+      var disqus_title = 'iOS绘图API演示';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/07/iOS绘图API演示/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

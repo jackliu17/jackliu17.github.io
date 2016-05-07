@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-06T06:36:05.000Z</updated>
+  <updated>2016-05-07T05:59:19.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,193 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS绘图API演示</title>
+    <link href="http://jackliu17.github.io/2016/05/07/iOS%E7%BB%98%E5%9B%BEAPI%E6%BC%94%E7%A4%BA/"/>
+    <id>http://jackliu17.github.io/2016/05/07/iOS绘图API演示/</id>
+    <published>2016-05-07T05:51:59.000Z</published>
+    <updated>2016-05-07T05:59:19.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;绘制直线&quot;&gt;&lt;a href=&quot;#绘制直线&quot; class=&quot;headerlink&quot; title=&quot;绘制直线&quot;&gt;&lt;/a&gt;绘制直线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class DrawLinesView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+
+    //设定绘画环境
+    let context = UIGraphicsGetCurrentContext()
+
+    //绘画起点
+    CGContextMoveToPoint(context, 100, 100)
+    //绘画终点
+    CGContextAddLineToPoint(context, 100, 200)
+     //绘画终点
+    CGContextAddLineToPoint(context, 200, 200)
+
+    //绘画起点
+    CGContextMoveToPoint(context, 100, 300)
+      //绘画终点
+    CGContextAddLineToPoint(context, 100, 400)
+      //绘画终点
+    CGContextAddLineToPoint(context, 200, 500)
+
+    //设定颜色
+    CGContextSetRGBStrokeColor(context, 1, 0, 1, 1)
+    //设定线条宽度
+    CGContextSetLineWidth(context, 5)
+    //绘制线条
+    CGContextStrokePath(context)
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘制矩形&quot;&gt;&lt;a href=&quot;#绘制矩形&quot; class=&quot;headerlink&quot; title=&quot;绘制矩形&quot;&gt;&lt;/a&gt;绘制矩形&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;代码-1&quot;&gt;&lt;a href=&quot;#代码-1&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+
+class DrawRectView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+//设定绘画环境
+let context = UIGraphicsGetCurrentContext()
+    //加入矩形
+    CGContextAddRect(context, CGRect(x:100,y:100,width: 100,height: 100))
+    //填充颜色
+    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
+    //绘制矩形
+    CGContextFillPath(context)
+
+    //设置外框的宽度
+    CGContextSetLineWidth(context, 5)
+    //设置外框颜色
+    CGContextSetRGBStrokeColor(context,0 ,1, 0, 1)
+    //绘制外框
+    CGContextStrokeRect(context, CGRect(x: 100, y: 100, width: 100, height: 100))
+
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘制圆形&quot;&gt;&lt;a href=&quot;#绘制圆形&quot; class=&quot;headerlink&quot; title=&quot;绘制圆形&quot;&gt;&lt;/a&gt;绘制圆形&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码-2&quot;&gt;&lt;a href=&quot;#代码-2&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+
+class DrawCircle: UIView { 
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+
+let context = UIGraphicsGetCurrentContext()
+
+    //加入圆形
+    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
+    //填充颜色
+    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
+    //开始绘制填充
+    CGContextFillPath(context)
+
+    //加入圆形
+    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
+    //设定宽度
+    CGContextSetLineWidth(context, 10)
+    //绘制
+    CGContextStrokePath(context)
+
+    //加入椭圆
+    CGContextAddEllipseInRect(context, CGRect(x: 50, y: 400, width: 200, height: 100))
+    //绘制
+    CGContextStrokePath(context)
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘制图片&quot;&gt;&lt;a href=&quot;#绘制图片&quot; class=&quot;headerlink&quot; title=&quot;绘制图片&quot;&gt;&lt;/a&gt;绘制图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码-3&quot;&gt;&lt;a href=&quot;#代码-3&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+
+class DrawImageView: UIView {
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+
+    var uiImage:CGImageRef?
+
+    uiImage = UIImage(named: &amp;quot;girl.jpg&amp;quot;)?.CGImage
+
+    let context = UIGraphicsGetCurrentContext()
+
+    //context状态的维持和释放，不影响其他图像的绘制
+    CGContextSaveGState(context)
+
+    //没有如下这两个图像会翻转
+    CGContextTranslateCTM(context, 10, 400)
+    CGContextScaleCTM(context, 1, -1)
+    CGContextDrawImage(context, CGRect(x: 0,y: 0,width: 200,height: 200), uiImage)
+    CGContextRestoreGState(context)
+
+    CGContextStrokeRect(context, CGRect(x: 50, y: 100, width: 100, height: 100))
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘图板&quot;&gt;&lt;a href=&quot;#绘图板&quot; class=&quot;headerlink&quot; title=&quot;绘图板&quot;&gt;&lt;/a&gt;绘图板&lt;/h1&gt;&lt;h2 id=&quot;代码-4&quot;&gt;&lt;a href=&quot;#代码-4&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+
+class DrawBoardView: UIView {
+
+var path = CGPathCreateMutable()
+
+override func touchesBegan(touches: Set&amp;lt;UITouch&amp;gt;, withEvent event: UIEvent?) {
+
+    let p = (touches as NSSet).anyObject()?.locationInView(self)
+
+    CGPathMoveToPoint(path, nil, p!.x, p!.y)
+
+}
+
+override func touchesMoved(touches: Set&amp;lt;UITouch&amp;gt;, withEvent event: UIEvent?) {
+
+    let p = (touches as NSSet).anyObject()?.locationInView(self)
+
+    CGPathAddLineToPoint(path, nil, p!.x, p!.y)
+
+    setNeedsDisplay()
+
+}
+
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+override func drawRect(rect: CGRect) {
+    // Drawing code
+    let context = UIGraphicsGetCurrentContext()
+    CGContextAddPath(context, path)
+    CGContextStrokePath(context)
+
+}
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;怎么清空画板&quot;&gt;&lt;a href=&quot;#怎么清空画板&quot; class=&quot;headerlink&quot; title=&quot;怎么清空画板&quot;&gt;&lt;/a&gt;怎么清空画板&lt;/h1&gt;&lt;p&gt;1.重新运行程序即可清空&lt;br&gt;2.设置个按钮点击事件实现清空之前所有操作&lt;br&gt;3.使用CGContextClearRect，&lt;br&gt;4.重新初始化path，这样重画的时候不会检测到之前有线条的path，画面就自动清空了&lt;/p&gt;
+&lt;h1 id=&quot;橡皮擦功能&quot;&gt;&lt;a href=&quot;#橡皮擦功能&quot; class=&quot;headerlink&quot; title=&quot;橡皮擦功能&quot;&gt;&lt;/a&gt;橡皮擦功能&lt;/h1&gt;&lt;p&gt;较粗的和背景颜色同样的线条&lt;/p&gt;
+&lt;h1 id=&quot;绘制图像时解决翻转问题&quot;&gt;&lt;a href=&quot;#绘制图像时解决翻转问题&quot; class=&quot;headerlink&quot; title=&quot;绘制图像时解决翻转问题&quot;&gt;&lt;/a&gt;绘制图像时解决翻转问题&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;CGContextTranslateCTM(context, 10, 400)
+CGContextScaleCTM(context, 1, -1)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;context状态的维持和释放&quot;&gt;&lt;a href=&quot;#context状态的维持和释放&quot; class=&quot;headerlink&quot; title=&quot;context状态的维持和释放&quot;&gt;&lt;/a&gt;context状态的维持和释放&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//context状态的维持和释放，不影响其他图像的绘制
+CGContextSaveGState(context)
+.............绘制代码
+CGContextRestoreGState(context)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;setNeedsDisplay&quot;&gt;&lt;a href=&quot;#setNeedsDisplay&quot; class=&quot;headerlink&quot; title=&quot;setNeedsDisplay()&quot;&gt;&lt;/a&gt;setNeedsDisplay()&lt;/h1&gt;&lt;p&gt;执行这个方法时会调用drawRect重新绘图&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;绘制直线&quot;&gt;&lt;a href=&quot;#绘制直线&quot; class=&quot;headerlink&quot; title=&quot;绘制直线&quot;&gt;&lt;/a&gt;绘制直线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.p
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+  </entry>
   
   <entry>
     <title>使用带粒子效果的CAEmitterLayer</title>
@@ -2143,42 +2330,6 @@ For OpenGL ES 3.0:
     
       <category term="情感杂谈" scheme="http://jackliu17.github.io/categories/%E6%83%85%E6%84%9F%E6%9D%82%E8%B0%88/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>iOS实例-通讯录</title>
-    <link href="http://jackliu17.github.io/2016/03/26/iOS%E5%AE%9E%E4%BE%8B-%E9%80%9A%E8%AE%AF%E5%BD%95/"/>
-    <id>http://jackliu17.github.io/2016/03/26/iOS实例-通讯录/</id>
-    <published>2016-03-26T06:59:29.000Z</published>
-    <updated>2016-03-26T07:02:39.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;h3 id=&quot;创建新的navigation视图&quot;&gt;&lt;a href=&quot;#创建新的navigation视图&quot; class=&quot;headerlink&quot; title=&quot;创建新的navigation视图&quot;&gt;&lt;/a&gt;创建新的navigation视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/new_navigation_controller.png&quot; alt=&quot;new navigation&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;创建新的rootViewController&quot;&gt;&lt;a href=&quot;#创建新的rootViewController&quot; class=&quot;headerlink&quot; title=&quot;创建新的rootViewController&quot;&gt;&lt;/a&gt;创建新的rootViewController&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/new_root_controller.png&quot; alt=&quot;new root view controller&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;导航视图顶部标题及按钮的设置&quot;&gt;&lt;a href=&quot;#导航视图顶部标题及按钮的设置&quot; class=&quot;headerlink&quot; title=&quot;导航视图顶部标题及按钮的设置&quot;&gt;&lt;/a&gt;导航视图顶部标题及按钮的设置&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/custom_bar_button_item.png&quot; alt=&quot;自定义标题栏&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;登录后视跳转视图&quot;&gt;&lt;a href=&quot;#登录后视跳转视图&quot; class=&quot;headerlink&quot; title=&quot;登录后视跳转视图&quot;&gt;&lt;/a&gt;登录后视跳转视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;UITableView-Cell-跳转到新视图&quot;&gt;&lt;a href=&quot;#UITableView-Cell-跳转到新视图&quot; class=&quot;headerlink&quot; title=&quot;UITableView Cell 跳转到新视图&quot;&gt;&lt;/a&gt;UITableView Cell 跳转到新视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/tableViewCell.png&quot; alt=&quot;UITableView Cell&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;UI-element&quot;&gt;&lt;a href=&quot;#UI-element&quot; class=&quot;headerlink&quot; title=&quot;UI element&quot;&gt;&lt;/a&gt;UI element&lt;/h2&gt;&lt;h2 id=&quot;UIBarbutton的属性配置&quot;&gt;&lt;a href=&quot;#UIBarbutton的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UIBarbutton的属性配置&quot;&gt;&lt;/a&gt;UIBarbutton的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/Bar_button_item__.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;UITextfield的属性配置&quot;&gt;&lt;a href=&quot;#UITextfield的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UITextfield的属性配置&quot;&gt;&lt;/a&gt;UITextfield的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/TextField.png&quot; alt=&quot;TextField&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;UIButton的属性配置&quot;&gt;&lt;a href=&quot;#UIButton的属性配置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的属性配置&quot;&gt;&lt;/a&gt;UIButton的属性配置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIButton.png&quot; alt=&quot;UIButton&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;如何在xcode里正确的建立文件夹？&quot;&gt;&lt;a href=&quot;#如何在xcode里正确的建立文件夹？&quot; class=&quot;headerlink&quot; title=&quot;如何在xcode里正确的建立文件夹？&quot;&gt;&lt;/a&gt;如何在xcode里正确的建立文件夹？&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;如果仅是在xcode里创建，那文件夹不会在存在finder里，实际上相关文件还是存在一个目录下&lt;/li&gt;
-&lt;li&gt;需要在Xcode里左下角，”add new file to ….project” –&amp;gt; create new folder –&amp;gt; add,这样创建的文件夹可以存在finder里&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;h3 id=&quot;创建新的navigation视图&quot;&gt;&lt;a href=&quot;#创建新的navigation视图&quot; class=&quot;headerlink&quot; 
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   
