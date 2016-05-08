@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-07T06:00:46.000Z</updated>
+  <updated>2016-05-08T07:08:57.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,409 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CALayer的使用</title>
+    <link href="http://jackliu17.github.io/2016/05/08/CALayer%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://jackliu17.github.io/2016/05/08/CALayer的使用/</id>
+    <published>2016-05-08T07:07:09.000Z</published>
+    <updated>2016-05-08T07:08:57.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;CALayer简介&quot;&gt;&lt;a href=&quot;#CALayer简介&quot; class=&quot;headerlink&quot; title=&quot;CALayer简介&quot;&gt;&lt;/a&gt;CALayer简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;CALayer一般作为UIView的容器而使用&lt;/li&gt;
+&lt;li&gt;CALayer是一个管理着图片载体（image-based content）的层结构, &lt;strong&gt;UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;直接修改单独创建出的CALayer的属性可以触发隐式动画&lt;/li&gt;
+&lt;li&gt;UIView中的CALayer动画必须显式触发才能生效&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;用CALayer定制下载进度条控件&quot;&gt;&lt;a href=&quot;#用CALayer定制下载进度条控件&quot; class=&quot;headerlink&quot; title=&quot;用CALayer定制下载进度条控件&quot;&gt;&lt;/a&gt;用CALayer定制下载进度条控件&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;单独创建出CALayer&lt;/li&gt;
+&lt;li&gt;直接修改CALayer的frame值执行隐式动画，实现进度条效果&lt;/li&gt;
+&lt;li&gt;用定时器（NSTimer）模拟网络下载时提供的百分比数据&lt;/li&gt;
+&lt;li&gt;将CALayer封装进UIView子类中定制进度条控件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;隐式动画进度条&quot;&gt;&lt;a href=&quot;#隐式动画进度条&quot; class=&quot;headerlink&quot; title=&quot;隐式动画进度条&quot;&gt;&lt;/a&gt;隐式动画进度条&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) NSTimer *timer; // 定时器
+@property (nonatomic, strong) CALayer *layer; // layer
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 设置背景色
+self.view.backgroundColor = [UIColor blackColor];
+
+// CALayer
+_layer                 = [CALayer layer];
+_layer.frame           = CGRectMake(50, 50, 200, 2);
+_layer.backgroundColor = [UIColor redColor].CGColor;
+[self.view.layer addSublayer:_layer];
+
+// 定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(timerEvent)
+                                        userInfo:nil
+                                         repeats:YES];
+                                     }
+
+
+- (void)timerEvent {
+// 执行layer的隐式动画（取随机值模拟下载进度）
+_layer.frame = CGRectMake(50, 50, arc4random()%200, 2);
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;封装UIView实现进度条&quot;&gt;&lt;a href=&quot;#封装UIView实现进度条&quot; class=&quot;headerlink&quot; title=&quot;封装UIView实现进度条&quot;&gt;&lt;/a&gt;封装UIView实现进度条&lt;/h2&gt;&lt;p&gt;progressView.h&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;
+
+@interface ProgressView : UIView
+
+@property (nonatomic, assign) CGFloat  progress;   // 进度参数（取值范围为 %0 ~ %100）
+@property (nonatomic, strong) UIColor *layerColor; // 修改layer的颜色
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;progressView.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;ProgressView.h&amp;quot;
+
+@interface ProgressView ()
+
+@property (nonatomic, strong) CALayer *progressLayer;
+@property (nonatomic, assign) CGFloat  currentViewWidth;
+
+@end
+
+@implementation ProgressView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+self = [super initWithFrame:frame];
+if (self) {
+    self.progressLayer       = [CALayer layer];
+    self.progressLayer.frame = CGRectMake(0, 0, 0, frame.size.height);
+    self.progressLayer.backgroundColor = [UIColor redColor].CGColor;
+    [self.layer addSublayer:self.progressLayer];
+
+    // 存储当前view的宽度值
+    self.currentViewWidth = frame.size.width;
+}
+return self;
+}
+
+#pragma mark - 重写setter，getter方法
+@synthesize progress = _progress;
+
+- (void)setProgress:(CGFloat)progress {
+_progress = progress;
+
+if (progress &amp;lt;= 0) {
+    self.progressLayer.frame = CGRectMake(0, 0, 0, self.frame.size.height);
+} else if (progress &amp;lt;= 1) {
+    self.progressLayer.frame = CGRectMake(0, 0,
+                                          progress * self.currentViewWidth,
+                                          self.frame.size.height);
+} else {
+    self.progressLayer.frame = CGRectMake(0, 0, self.currentViewWidth,
+                                          self.frame.size.height);
+}
+}
+
+- (CGFloat)progress {
+return _progress;
+}
+
+@synthesize layerColor = _layerColor;
+
+- (void)setLayerColor:(UIColor *)layerColor {
+_layerColor = layerColor;
+self.progressLayer.backgroundColor = layerColor.CGColor;
+}
+
+- (UIColor *)layerColor {
+return _layerColor;
+}
+
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;viewController.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;ProgressView.h&amp;quot;
+@interface ViewController ()
+@property (nonatomic, strong) ProgressView *progressView;
+@property (nonatomic, strong) NSTimer      *timer;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+self.progressView            = [[ProgressView alloc] initWithFrame:CGRectMake(20, 20, 290, 3)];
+self.progressView.layerColor = [UIColor yellowColor];
+[self.view addSubview:self.progressView];
+
+// 创建定时器，每一秒执行一回
+self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                              target:self
+                                            selector:@selector(layerAnimation)
+                                            userInfo:nil
+                                             repeats:YES];
+                                         }
+
+- (void)layerAnimation {
+// 随机获取 0% ~ 100% 给layer赋值
+self.progressView.progress = arc4random() % 100 / 100.f;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用CALayer定制UIImageView淡入淡出切换图片效果&quot;&gt;&lt;a href=&quot;#用CALayer定制UIImageView淡入淡出切换图片效果&quot; class=&quot;headerlink&quot; title=&quot;用CALayer定制UIImageView淡入淡出切换图片效果&quot;&gt;&lt;/a&gt;用CALayer定制UIImageView淡入淡出切换图片效果&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;操作UIImageView的CALayer修改其bounds值进行显式动画&lt;/li&gt;
+&lt;li&gt;修改UIImageView的CALayer中的contents属性实现切换图片的动画&lt;/li&gt;
+&lt;li&gt;用CAAnimationGroup将bounds动画与contents动画组合起来&lt;/li&gt;
+&lt;li&gt;将上述效果封装进UIView的子类中生成控件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+
+#define NO_EXECUTE  0  // 不执行
+#define EXECUTE     1  // 执行
+
+
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *imageLayer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 创建出独立的layer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(0, 0, 302, 707);
+// 给layer的contents属性设置图片
+self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;起始图片&amp;quot;].CGImage);
+[self.view.layer addSublayer:self.imageLayer];
+
+
+// 3s后执行layer动画
+[self performSelector:@selector(layerAnimation)
+           withObject:nil
+           afterDelay:3.f];
+       }
+
+- (void)layerAnimation {
+
+if (NO_EXECUTE) {
+    // 执行隐式动画（你自己无法控制持续时间等等的参数）
+    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+}
+
+if (NO_EXECUTE) {
+    // 执行显式动画
+
+    // 设定基本动画参数
+    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;contents&amp;quot;];
+    contentsAnimation.fromValue         =  self.imageLayer.contents;
+    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+    contentsAnimation.duration          = 3.f;
+
+    // 设定layer动画结束后的contents值
+    self.imageLayer.contents         = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+
+    // 让layer开始执行动画
+    [self.imageLayer addAnimation:contentsAnimation forKey:nil];
+}
+
+if (EXECUTE) {
+    // 执行显式动画
+
+    // 基于图片的动画
+    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;contents&amp;quot;];
+    contentsAnimation.fromValue         =  self.imageLayer.contents;
+    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+    contentsAnimation.duration          = 0.5f;
+
+    // 基于bounds的动画
+    CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;bounds&amp;quot;];
+    boundsAnimation.fromValue         = [NSValue valueWithCGRect:self.imageLayer.bounds];
+    boundsAnimation.toValue           = [NSValue valueWithCGRect:CGRectMake(0, 0, 302/2.f, 707/2.f)];
+    boundsAnimation.duration          = 0.5f;
+
+    // 将基于图片的动画与基于bounds的动画组合起来
+    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
+    groupAnimation.animations        = @[contentsAnimation, boundsAnimation];
+    groupAnimation.duration          = 0.5f;
+
+    // 设定layer动画结束后的contents值
+    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+    self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
+
+    // 让layer开始执行动画
+    [self.imageLayer addAnimation:groupAnimation forKey:nil];
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用CALayer实现复杂遮罩效果&quot;&gt;&lt;a href=&quot;#用CALayer实现复杂遮罩效果&quot; class=&quot;headerlink&quot; title=&quot;用CALayer实现复杂遮罩效果&quot;&gt;&lt;/a&gt;用CALayer实现复杂遮罩效果&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;遮罩原理的分析&lt;/li&gt;
+&lt;li&gt;用png图片作为CALayer中mask属性的遮罩Layer&lt;/li&gt;
+&lt;li&gt;移动该CALayer的mask的frame值实现遮罩动画效果&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;CALayer实现遮罩淡化滤镜&quot;&gt;&lt;a href=&quot;#CALayer实现遮罩淡化滤镜&quot; class=&quot;headerlink&quot; title=&quot;CALayer实现遮罩淡化滤镜&quot;&gt;&lt;/a&gt;CALayer实现遮罩淡化滤镜&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) CALayer *imageLayer;
+@property (nonatomic, strong) CALayer *maskLayer;
+
+@property (nonatomic, strong) UIImage *contentImage;
+@property (nonatomic, strong) UIImage *maskImage;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+// 处理图片
+self.contentImage = [UIImage imageNamed:@&amp;quot;原始图片&amp;quot;];
+self.maskImage    = [UIImage imageNamed:@&amp;quot;maskLayerContents&amp;quot;];
+
+
+// 生成maskLayer
+self.maskLayer          = [CALayer layer];
+self.maskLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
+self.maskLayer.contents = (__bridge id)(self.maskImage.CGImage);
+
+
+// 生成contentsLayer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
+self.imageLayer.contents = (__bridge id)(self.contentImage.CGImage);
+
+
+// 给contentsLayer设定mask值
+self.imageLayer.mask     = self.maskLayer;
+
+
+// 将contentsLayer添加到layer中
+[self.view.layer addSublayer:self.imageLayer];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CALayer实现遮罩平移&quot;&gt;&lt;a href=&quot;#CALayer实现遮罩平移&quot; class=&quot;headerlink&quot; title=&quot;CALayer实现遮罩平移&quot;&gt;&lt;/a&gt;CALayer实现遮罩平移&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *imageLayer;
+@property (nonatomic, strong) CALayer *maskLayer;
+
+@property (nonatomic, strong) UIImage *imageContents;
+@property (nonatomic, strong) UIImage *maskContents;
+
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+// 获取图片
+self.imageContents = [UIImage imageNamed:@&amp;quot;原始图片&amp;quot;];
+self.maskContents  = [UIImage imageNamed:@&amp;quot;maskLayerContents&amp;quot;];
+
+// 创建出图片layer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(50, 50, 200, 200);
+self.imageLayer.contents = (__bridge id)(self.imageContents.CGImage);
+[self.view.layer addSublayer:self.imageLayer];
+
+// 创建出遮罩layer
+self.maskLayer          = [CALayer layer];
+self.maskLayer.frame    = self.imageLayer.bounds;
+self.maskLayer.contents = (__bridge id)(self.maskContents.CGImage);
+self.maskLayer.backgroundColor = [UIColor whiteColor].CGColor;
+
+// 给图片layer提供遮罩的layer
+self.imageLayer.mask = self.maskLayer;
+
+// 3秒钟之后做maskLayer动画
+[self performSelector:@selector(maskLayerAnimation)
+           withObject:nil
+           afterDelay:3.f];
+       }
+
+- (void)maskLayerAnimation {
+self.maskLayer.frame = CGRectMake(50, 50, 200, 200);
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定时执行某方法&quot;&gt;&lt;a href=&quot;#定时执行某方法&quot; class=&quot;headerlink&quot; title=&quot;定时执行某方法&quot;&gt;&lt;/a&gt;定时执行某方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;// 定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(timerEvent)
+                                        userInfo:nil
+                                         repeats:YES];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;随机取值&quot;&gt;&lt;a href=&quot;#随机取值&quot; class=&quot;headerlink&quot; title=&quot;随机取值&quot;&gt;&lt;/a&gt;随机取值&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//随机取0-200中的值
+arc4random()%200
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;进度参数&quot;&gt;&lt;a href=&quot;#进度参数&quot; class=&quot;headerlink&quot; title=&quot;进度参数&quot;&gt;&lt;/a&gt;进度参数&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//（取值范围为 %0 ~ %100）
+@property (nonatomic, assign) CGFloat  progress;  
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;方法执行开关&quot;&gt;&lt;a href=&quot;#方法执行开关&quot; class=&quot;headerlink&quot; title=&quot;方法执行开关&quot;&gt;&lt;/a&gt;方法执行开关&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#define NO_EXECUTE  0  // 不执行
+#define EXECUTE     1  // 执行
+
+// 不执行
+if (NO_EXECUTE) {
+....
+}
+
+// 执行
+if (EXECUTE) {
+.....
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;动画执行与最终设定&quot;&gt;&lt;a href=&quot;#动画执行与最终设定&quot; class=&quot;headerlink&quot; title=&quot;动画执行与最终设定&quot;&gt;&lt;/a&gt;动画执行与最终设定&lt;/h1&gt;&lt;p&gt;此类动画只是一种提交，并没有最终改变layer的设定。如果结束后，会很快返回到原先的设定。所以要在动画执行前设定好layer值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 设定layer动画结束后的contents值
+self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
+self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
+
+// 让layer开始执行动画
+[self.imageLayer addAnimation:groupAnimation forKey:nil];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;CALayer简介&quot;&gt;&lt;a href=&quot;#CALayer简介&quot; class=&quot;headerlink&quot; title=&quot;CALayer简介&quot;&gt;&lt;/a&gt;CALayer简介&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;CALayer一般作为UIView的容器而使用&lt;/li&gt;
+&lt;li&gt;CAL
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS绘图API演示</title>
@@ -858,9 +1261,9 @@ return _text;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -2303,33 +2706,6 @@ For OpenGL ES 3.0:
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>4月12日之夜梦</title>
-    <link href="http://jackliu17.github.io/2016/04/12/4%E6%9C%8812%E6%97%A5%E4%B9%8B%E5%A4%9C%E6%A2%A6/"/>
-    <id>http://jackliu17.github.io/2016/04/12/4月12日之夜梦/</id>
-    <published>2016-04-12T00:53:22.000Z</published>
-    <updated>2016-04-12T01:21:03.000Z</updated>
-    
-    <content type="html">&lt;p&gt;昨夜梦见D君了。&lt;/p&gt;
-&lt;p&gt;他是多年前的朋友。一晃眼就14年了。那时我大学刚毕业，懵懂的来到广州找工作，托这个破专业的福，我误打误撞的进入了这个连锁餐厅当见习经理。他也是，只不过比我早点进去而已。那段日子，每日起早贪黑的在厨房忙碌着，期间多少心酸的感受，以后再找机会写吧。记得2003年新年除夕的那一天，结束了单位的庆祝活动后，从餐厅出来，我们俩坐在惠福西路寺庙前的石墩上，仰望星空，探究着自己不可测的未来。那一幕，那一满夜空的星星，时至今日，依然记忆犹新。&lt;/p&gt;
-&lt;p&gt;长话短说，先把昨天的梦记录完，有时间再写当年的往事吧。&lt;/p&gt;
-&lt;p&gt;昨夜梦见他在自己创业的小店里，给我做饭，为了煎一条鱼，花了五十多分钟。我笑着对他说：这也太慢了，顾客都等急了。然后我又搬出了自己自以为擅长的市场分析理论，“来快餐店吃饭的顾客有两种，第一是要赶时间的，第二是慢吞吞吃饭的，你们的店只能招待第二类顾客了”。他的店里能提供很多各式各样的广式煲汤，我一直很好奇，这库存怎么管理，如果每天做了很多汤，又吃不完卖不掉呢？&lt;/p&gt;
-&lt;p&gt;他在现实中创业了，在沉淀了十多年的餐饮行业开始了扬帆前行。真羡慕，祝福他，也勉励自己。&lt;/p&gt;
-&lt;p&gt;最近老是做一些梦，想起很多人很多事。也许我们怀念一个人，更确切的是，通过他来怀念自己的过去吧。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;昨夜梦见D君了。&lt;/p&gt;
-&lt;p&gt;他是多年前的朋友。一晃眼就14年了。那时我大学刚毕业，懵懂的来到广州找工作，托这个破专业的福，我误打误撞的进入了这个连锁餐厅当见习经理。他也是，只不过比我早点进去而已。那段日子，每日起早贪黑的在厨房忙碌着，期间多少心酸的感受，以后再找机会写吧
-    
-    </summary>
-    
-      <category term="情感杂谈" scheme="http://jackliu17.github.io/categories/%E6%83%85%E6%84%9F%E6%9D%82%E8%B0%88/"/>
-    
     
   </entry>
   

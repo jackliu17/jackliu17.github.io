@@ -1,0 +1,1149 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,iOS_image,iOS_CALayer," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="CALayer简介
+CALayer一般作为UIView的容器而使用
+CALayer是一个管理着图片载体（image-based content）的层结构, UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定
+直接修改单独创建出的CALayer的属性可以触发隐式动画
+UIView中的CALayer动画必须显式触发才能生效
+
+用CALa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CALayer的使用">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/08/CALayer的使用/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="CALayer简介
+CALayer一般作为UIView的容器而使用
+CALayer是一个管理着图片载体（image-based content）的层结构, UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定
+直接修改单独创建出的CALayer的属性可以触发隐式动画
+UIView中的CALayer动画必须显式触发才能生效
+
+用CALa">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png">
+<meta property="og:updated_time" content="2016-05-08T07:08:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CALayer的使用">
+<meta name="twitter:description" content="CALayer简介
+CALayer一般作为UIView的容器而使用
+CALayer是一个管理着图片载体（image-based content）的层结构, UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定
+直接修改单独创建出的CALayer的属性可以触发隐式动画
+UIView中的CALayer动画必须显式触发才能生效
+
+用CALa">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> CALayer的使用 | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CALayer的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-08T17:07:09+10:00" content="2016-05-08">
+              2016-05-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/08/CALayer的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CALayer的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CALayer简介"><a href="#CALayer简介" class="headerlink" title="CALayer简介"></a>CALayer简介</h1><ol>
+<li>CALayer一般作为UIView的容器而使用</li>
+<li>CALayer是一个管理着图片载体（image-based content）的层结构, <strong>UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定</strong></li>
+<li>直接修改单独创建出的CALayer的属性可以触发隐式动画</li>
+<li>UIView中的CALayer动画必须显式触发才能生效</li>
+</ol>
+<h1 id="用CALayer定制下载进度条控件"><a href="#用CALayer定制下载进度条控件" class="headerlink" title="用CALayer定制下载进度条控件"></a>用CALayer定制下载进度条控件</h1><ol>
+<li>单独创建出CALayer</li>
+<li>直接修改CALayer的frame值执行隐式动画，实现进度条效果</li>
+<li>用定时器（NSTimer）模拟网络下载时提供的百分比数据</li>
+<li>将CALayer封装进UIView子类中定制进度条控件</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png" alt=""></p>
+<h2 id="隐式动画进度条"><a href="#隐式动画进度条" class="headerlink" title="隐式动画进度条"></a>隐式动画进度条</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) NSTimer *timer; // 定时器
+@property (nonatomic, strong) CALayer *layer; // layer
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 设置背景色
+self.view.backgroundColor = [UIColor blackColor];
+
+// CALayer
+_layer                 = [CALayer layer];
+_layer.frame           = CGRectMake(50, 50, 200, 2);
+_layer.backgroundColor = [UIColor redColor].CGColor;
+[self.view.layer addSublayer:_layer];
+
+// 定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(timerEvent)
+                                        userInfo:nil
+                                         repeats:YES];
+                                     }
+
+
+- (void)timerEvent {
+// 执行layer的隐式动画（取随机值模拟下载进度）
+_layer.frame = CGRectMake(50, 50, arc4random()%200, 2);
+}
+
+@end
+</code></pre><h2 id="封装UIView实现进度条"><a href="#封装UIView实现进度条" class="headerlink" title="封装UIView实现进度条"></a>封装UIView实现进度条</h2><p>progressView.h</p>
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+@interface ProgressView : UIView
+
+@property (nonatomic, assign) CGFloat  progress;   // 进度参数（取值范围为 %0 ~ %100）
+@property (nonatomic, strong) UIColor *layerColor; // 修改layer的颜色
+
+@end
+</code></pre><p>progressView.m</p>
+<pre><code>#import &quot;ProgressView.h&quot;
+
+@interface ProgressView ()
+
+@property (nonatomic, strong) CALayer *progressLayer;
+@property (nonatomic, assign) CGFloat  currentViewWidth;
+
+@end
+
+@implementation ProgressView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+self = [super initWithFrame:frame];
+if (self) {
+    self.progressLayer       = [CALayer layer];
+    self.progressLayer.frame = CGRectMake(0, 0, 0, frame.size.height);
+    self.progressLayer.backgroundColor = [UIColor redColor].CGColor;
+    [self.layer addSublayer:self.progressLayer];
+
+    // 存储当前view的宽度值
+    self.currentViewWidth = frame.size.width;
+}
+return self;
+}
+
+#pragma mark - 重写setter，getter方法
+@synthesize progress = _progress;
+
+- (void)setProgress:(CGFloat)progress {
+_progress = progress;
+
+if (progress &lt;= 0) {
+    self.progressLayer.frame = CGRectMake(0, 0, 0, self.frame.size.height);
+} else if (progress &lt;= 1) {
+    self.progressLayer.frame = CGRectMake(0, 0,
+                                          progress * self.currentViewWidth,
+                                          self.frame.size.height);
+} else {
+    self.progressLayer.frame = CGRectMake(0, 0, self.currentViewWidth,
+                                          self.frame.size.height);
+}
+}
+
+- (CGFloat)progress {
+return _progress;
+}
+
+@synthesize layerColor = _layerColor;
+
+- (void)setLayerColor:(UIColor *)layerColor {
+_layerColor = layerColor;
+self.progressLayer.backgroundColor = layerColor.CGColor;
+}
+
+- (UIColor *)layerColor {
+return _layerColor;
+}
+
+
+@end
+</code></pre><p>viewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;ProgressView.h&quot;
+@interface ViewController ()
+@property (nonatomic, strong) ProgressView *progressView;
+@property (nonatomic, strong) NSTimer      *timer;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+self.progressView            = [[ProgressView alloc] initWithFrame:CGRectMake(20, 20, 290, 3)];
+self.progressView.layerColor = [UIColor yellowColor];
+[self.view addSubview:self.progressView];
+
+// 创建定时器，每一秒执行一回
+self.timer = [NSTimer scheduledTimerWithTimeInterval:1
+                                              target:self
+                                            selector:@selector(layerAnimation)
+                                            userInfo:nil
+                                             repeats:YES];
+                                         }
+
+- (void)layerAnimation {
+// 随机获取 0% ~ 100% 给layer赋值
+self.progressView.progress = arc4random() % 100 / 100.f;
+}
+
+@end
+</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png" alt=""></p>
+<ol>
+<li>操作UIImageView的CALayer修改其bounds值进行显式动画</li>
+<li>修改UIImageView的CALayer中的contents属性实现切换图片的动画</li>
+<li>用CAAnimationGroup将bounds动画与contents动画组合起来</li>
+<li>将上述效果封装进UIView的子类中生成控件</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
+
+#define NO_EXECUTE  0  // 不执行
+#define EXECUTE     1  // 执行
+
+
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *imageLayer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 创建出独立的layer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(0, 0, 302, 707);
+// 给layer的contents属性设置图片
+self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;起始图片&quot;].CGImage);
+[self.view.layer addSublayer:self.imageLayer];
+
+
+// 3s后执行layer动画
+[self performSelector:@selector(layerAnimation)
+           withObject:nil
+           afterDelay:3.f];
+       }
+
+- (void)layerAnimation {
+
+if (NO_EXECUTE) {
+    // 执行隐式动画（你自己无法控制持续时间等等的参数）
+    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+}
+
+if (NO_EXECUTE) {
+    // 执行显式动画
+
+    // 设定基本动画参数
+    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;contents&quot;];
+    contentsAnimation.fromValue         =  self.imageLayer.contents;
+    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+    contentsAnimation.duration          = 3.f;
+
+    // 设定layer动画结束后的contents值
+    self.imageLayer.contents         = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+
+    // 让layer开始执行动画
+    [self.imageLayer addAnimation:contentsAnimation forKey:nil];
+}
+
+if (EXECUTE) {
+    // 执行显式动画
+
+    // 基于图片的动画
+    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;contents&quot;];
+    contentsAnimation.fromValue         =  self.imageLayer.contents;
+    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+    contentsAnimation.duration          = 0.5f;
+
+    // 基于bounds的动画
+    CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;bounds&quot;];
+    boundsAnimation.fromValue         = [NSValue valueWithCGRect:self.imageLayer.bounds];
+    boundsAnimation.toValue           = [NSValue valueWithCGRect:CGRectMake(0, 0, 302/2.f, 707/2.f)];
+    boundsAnimation.duration          = 0.5f;
+
+    // 将基于图片的动画与基于bounds的动画组合起来
+    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
+    groupAnimation.animations        = @[contentsAnimation, boundsAnimation];
+    groupAnimation.duration          = 0.5f;
+
+    // 设定layer动画结束后的contents值
+    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+    self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
+
+    // 让layer开始执行动画
+    [self.imageLayer addAnimation:groupAnimation forKey:nil];
+}
+}
+</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png" alt=""></p>
+<ol>
+<li>遮罩原理的分析</li>
+<li>用png图片作为CALayer中mask属性的遮罩Layer</li>
+<li>移动该CALayer的mask的frame值实现遮罩动画效果</li>
+</ol>
+<h2 id="CALayer实现遮罩淡化滤镜"><a href="#CALayer实现遮罩淡化滤镜" class="headerlink" title="CALayer实现遮罩淡化滤镜"></a>CALayer实现遮罩淡化滤镜</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) CALayer *imageLayer;
+@property (nonatomic, strong) CALayer *maskLayer;
+
+@property (nonatomic, strong) UIImage *contentImage;
+@property (nonatomic, strong) UIImage *maskImage;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+// 处理图片
+self.contentImage = [UIImage imageNamed:@&quot;原始图片&quot;];
+self.maskImage    = [UIImage imageNamed:@&quot;maskLayerContents&quot;];
+
+
+// 生成maskLayer
+self.maskLayer          = [CALayer layer];
+self.maskLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
+self.maskLayer.contents = (__bridge id)(self.maskImage.CGImage);
+
+
+// 生成contentsLayer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
+self.imageLayer.contents = (__bridge id)(self.contentImage.CGImage);
+
+
+// 给contentsLayer设定mask值
+self.imageLayer.mask     = self.maskLayer;
+
+
+// 将contentsLayer添加到layer中
+[self.view.layer addSublayer:self.imageLayer];
+}
+</code></pre><h2 id="CALayer实现遮罩平移"><a href="#CALayer实现遮罩平移" class="headerlink" title="CALayer实现遮罩平移"></a>CALayer实现遮罩平移</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *imageLayer;
+@property (nonatomic, strong) CALayer *maskLayer;
+
+@property (nonatomic, strong) UIImage *imageContents;
+@property (nonatomic, strong) UIImage *maskContents;
+
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.view.backgroundColor = [UIColor blackColor];
+
+// 获取图片
+self.imageContents = [UIImage imageNamed:@&quot;原始图片&quot;];
+self.maskContents  = [UIImage imageNamed:@&quot;maskLayerContents&quot;];
+
+// 创建出图片layer
+self.imageLayer          = [CALayer layer];
+self.imageLayer.frame    = CGRectMake(50, 50, 200, 200);
+self.imageLayer.contents = (__bridge id)(self.imageContents.CGImage);
+[self.view.layer addSublayer:self.imageLayer];
+
+// 创建出遮罩layer
+self.maskLayer          = [CALayer layer];
+self.maskLayer.frame    = self.imageLayer.bounds;
+self.maskLayer.contents = (__bridge id)(self.maskContents.CGImage);
+self.maskLayer.backgroundColor = [UIColor whiteColor].CGColor;
+
+// 给图片layer提供遮罩的layer
+self.imageLayer.mask = self.maskLayer;
+
+// 3秒钟之后做maskLayer动画
+[self performSelector:@selector(maskLayerAnimation)
+           withObject:nil
+           afterDelay:3.f];
+       }
+
+- (void)maskLayerAnimation {
+self.maskLayer.frame = CGRectMake(50, 50, 200, 200);
+}
+
+@end
+</code></pre><h1 id="定时执行某方法"><a href="#定时执行某方法" class="headerlink" title="定时执行某方法"></a>定时执行某方法</h1><pre><code>// 定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(timerEvent)
+                                        userInfo:nil
+                                         repeats:YES];
+</code></pre><h1 id="随机取值"><a href="#随机取值" class="headerlink" title="随机取值"></a>随机取值</h1><pre><code>//随机取0-200中的值
+arc4random()%200
+</code></pre><h1 id="进度参数"><a href="#进度参数" class="headerlink" title="进度参数"></a>进度参数</h1><pre><code>//（取值范围为 %0 ~ %100）
+@property (nonatomic, assign) CGFloat  progress;  
+</code></pre><h1 id="方法执行开关"><a href="#方法执行开关" class="headerlink" title="方法执行开关"></a>方法执行开关</h1><pre><code>#define NO_EXECUTE  0  // 不执行
+#define EXECUTE     1  // 执行
+
+// 不执行
+if (NO_EXECUTE) {
+....
+}
+
+// 执行
+if (EXECUTE) {
+.....
+}
+</code></pre><h1 id="动画执行与最终设定"><a href="#动画执行与最终设定" class="headerlink" title="动画执行与最终设定"></a>动画执行与最终设定</h1><p>此类动画只是一种提交，并没有最终改变layer的设定。如果结束后，会很快返回到原先的设定。所以要在动画执行前设定好layer值</p>
+<pre><code>// 设定layer动画结束后的contents值
+self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
+self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
+
+// 让layer开始执行动画
+[self.imageLayer addAnimation:groupAnimation forKey:nil];
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
+          
+            <a href="/tags/iOS-CALayer/" rel="tag">#iOS_CALayer</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/07/iOS绘图API演示/" rel="next" title="iOS绘图API演示">
+                <i class="fa fa-chevron-left"></i> iOS绘图API演示
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CALayer简介"><span class="nav-number">1.</span> <span class="nav-text">CALayer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer定制下载进度条控件"><span class="nav-number">2.</span> <span class="nav-text">用CALayer定制下载进度条控件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式动画进度条"><span class="nav-number">2.1.</span> <span class="nav-text">隐式动画进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装UIView实现进度条"><span class="nav-number">2.2.</span> <span class="nav-text">封装UIView实现进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer定制UIImageView淡入淡出切换图片效果"><span class="nav-number">3.</span> <span class="nav-text">用CALayer定制UIImageView淡入淡出切换图片效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer实现复杂遮罩效果"><span class="nav-number">4.</span> <span class="nav-text">用CALayer实现复杂遮罩效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CALayer实现遮罩淡化滤镜"><span class="nav-number">4.1.</span> <span class="nav-text">CALayer实现遮罩淡化滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CALayer实现遮罩平移"><span class="nav-number">4.2.</span> <span class="nav-text">CALayer实现遮罩平移</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时执行某方法"><span class="nav-number">5.</span> <span class="nav-text">定时执行某方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机取值"><span class="nav-number">6.</span> <span class="nav-text">随机取值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进度参数"><span class="nav-number">7.</span> <span class="nav-text">进度参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法执行开关"><span class="nav-number">8.</span> <span class="nav-text">方法执行开关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画执行与最终设定"><span class="nav-number">9.</span> <span class="nav-text">动画执行与最终设定</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/05/08/CALayer的使用/';
+      var disqus_title = 'CALayer的使用';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/08/CALayer的使用/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>
