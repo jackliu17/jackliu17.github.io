@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_animation," />
+  <meta name="keywords" content="iOS,iOS_CALayer,iOS_animation," />
 
 
 
@@ -61,42 +61,134 @@
 
 
 
-<meta name="description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
+<meta name="description" content="CAGradientLayer简介
+CAGradientLayer是用于处理渐变色的层结构
+CAGradientLayer的渐变色可以做隐式动画
+大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的
+CAGradientLayer可以用作png遮罩效果
 
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
 
-// 创建view
-- (void)buildView">
+
+
+多彩圆环
+多彩进度条
+
+
+
+
+
+
+
+
+
+
+
+
+
+动态多彩遮罩
+动态图像遮罩
+
+
+
+
+
+
+
+
+
+
+CAGra">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计复杂的iOS动画效果">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/30/设计复杂的iOS动画效果/index.html">
+<meta property="og:title" content="CAGradientLayer的使用">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/09/CAGradientLayer的使用/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
+<meta property="og:description" content="CAGradientLayer简介
+CAGradientLayer是用于处理渐变色的层结构
+CAGradientLayer的渐变色可以做隐式动画
+大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的
+CAGradientLayer可以用作png遮罩效果
 
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
 
-// 创建view
-- (void)buildView">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png">
-<meta property="og:updated_time" content="2016-04-30T10:04:26.000Z">
+
+
+多彩圆环
+多彩进度条
+
+
+
+
+
+
+
+
+
+
+
+
+
+动态多彩遮罩
+动态图像遮罩
+
+
+
+
+
+
+
+
+
+
+CAGra">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample2.gif">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample3.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample4.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerCoordinate.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj1.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerColor.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj2.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj3.png">
+<meta property="og:updated_time" content="2016-05-09T06:09:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计复杂的iOS动画效果">
-<meta name="twitter:description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
+<meta name="twitter:title" content="CAGradientLayer的使用">
+<meta name="twitter:description" content="CAGradientLayer简介
+CAGradientLayer是用于处理渐变色的层结构
+CAGradientLayer的渐变色可以做隐式动画
+大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的
+CAGradientLayer可以用作png遮罩效果
 
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
 
-// 创建view
-- (void)buildView">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png">
+
+
+多彩圆环
+多彩进度条
+
+
+
+
+
+
+
+
+
+
+
+
+
+动态多彩遮罩
+动态图像遮罩
+
+
+
+
+
+
+
+
+
+
+CAGra">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif">
 
 
 
@@ -114,7 +206,7 @@
   };
 </script>
 
-  <title> 设计复杂的iOS动画效果 | Cowboy Tech </title>
+  <title> CAGradientLayer的使用 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +348,7 @@
             
             
               
-                设计复杂的iOS动画效果
+                CAGradientLayer的使用
               
             
           </h1>
@@ -268,8 +360,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T18:56:02+10:00" content="2016-04-30">
-              2016-04-30
+            <time itemprop="dateCreated" datetime="2016-05-09T12:18:17+10:00" content="2016-05-09">
+              2016-05-09
             </time>
           </span>
 
@@ -298,8 +390,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/设计复杂的iOS动画效果/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/设计复杂的iOS动画效果/" itemprop="commentsCount"></span>
+                <a href="/2016/05/09/CAGradientLayer的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/09/CAGradientLayer的使用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,170 +413,299 @@
       
 
       
-        <h1 id="动画效果的UIView-Object"><a href="#动画效果的UIView-Object" class="headerlink" title="动画效果的UIView Object"></a>动画效果的UIView Object</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png" alt=""></p>
-<pre><code>// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView;
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent;
-</code></pre><h1 id="制定统一的动画接口"><a href="#制定统一的动画接口" class="headerlink" title="制定统一的动画接口"></a>制定统一的动画接口</h1><p>即：相关有动画效果的类，有同一的动画方法命名</p>
+        <h1 id="CAGradientLayer简介"><a href="#CAGradientLayer简介" class="headerlink" title="CAGradientLayer简介"></a>CAGradientLayer简介</h1><ol>
+<li>CAGradientLayer是用于处理渐变色的层结构</li>
+<li>CAGradientLayer的渐变色可以做隐式动画</li>
+<li>大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的</li>
+<li>CAGradientLayer可以用作png遮罩效果</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>多彩圆环</th>
+<th>多彩进度条</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif" alt=""></td>
+<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample2.gif" alt=""></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>动态多彩遮罩</th>
+<th>动态图像遮罩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample3.png" alt=""></td>
+<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample4.png" alt=""></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="CAGradientLayer坐标系统"><a href="#CAGradientLayer坐标系统" class="headerlink" title="CAGradientLayer坐标系统"></a>CAGradientLayer坐标系统</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerCoordinate.png" alt=""></p>
 <ol>
-<li>为了实现后续复杂的动画组合</li>
-<li>后续的代码维护极为方便</li>
-<li>优先考虑里氏代换原则</li>
+<li>CAGradientLayer的坐标系统是从坐标（0，0）到（1，1）绘制的矩形</li>
+<li>CAGradientLayer的frame值的size不为正方形的话，坐标系统会被拉伸</li>
+<li>CAGradientLayer的startPoint与endPoint会直接影响颜色的绘制方向</li>
+<li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
 </ol>
-<h1 id="动画中的高内聚低耦合原理"><a href="#动画中的高内聚低耦合原理" class="headerlink" title="动画中的高内聚低耦合原理"></a>动画中的高内聚低耦合原理</h1><ol>
-<li>高内聚：有动画效果的类，自身具有动画方法</li>
-<li>不要把实现动画的细节暴露在外</li>
-<li>设计动画类尽量要符合单一职能原则，以便后续方便组合成复杂的动画效果</li>
-</ol>
-<h1 id="设计动画函数的注意事项"><a href="#设计动画函数的注意事项" class="headerlink" title="设计动画函数的注意事项"></a>设计动画函数的注意事项</h1><ol>
-<li>动画方法的命名统一</li>
-<li>预留非动画情形的设计（tableView等reuse情况）</li>
-<li>用百分比来表示动画的执行程度</li>
-<li>懒加载的使用</li>
-</ol>
-<h1 id="动画效果就是frame值的重新设定"><a href="#动画效果就是frame值的重新设定" class="headerlink" title="动画效果就是frame值的重新设定"></a>动画效果就是frame值的重新设定</h1><pre><code>[UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-</code></pre><h1 id="一个具有动画效果的类"><a href="#一个具有动画效果的类" class="headerlink" title="一个具有动画效果的类"></a>一个具有动画效果的类</h1><pre><code>#import &quot;LineView.h&quot;
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj1.png" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
-@interface LineView ()
-@property (nonatomic) CGRect startRect;
-@property (nonatomic) CGRect midRect;
-@property (nonatomic) CGRect endRect;
+@interface ViewController ()
+@property (strong, nonatomic) CAGradientLayer *gradientLayer;
+
 @end
 
-@implementation LineView
+@implementation ViewController
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建并初始化
+self.gradientLayer             = [CAGradientLayer layer];
+self.gradientLayer.frame       = CGRectMake(0, 0, 200, 200);
+self.gradientLayer.position    = self.view.center;
+self.gradientLayer.borderWidth = 1.f;
+[self.view.layer addSublayer:self.gradientLayer];
+
+// 设置颜色
+self.gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,
+                              (__bridge id)[UIColor greenColor].CGColor,
+                              (__bridge id)[UIColor blueColor].CGColor];
+
+// 设置颜色渐变方向
+self.gradientLayer.startPoint = CGPointMake(0, 0);
+self.gradientLayer.endPoint   = CGPointMake(1, 0);
+
+// 设置颜色分割点
+self.gradientLayer.locations  = @[@(0.25), @(0.5), @(0.75)];
+
+
+// 延时3秒钟执行
+[self performSelector:@selector(gradientLayerLocationAnimation)
+           withObject:nil
+           afterDelay:3.f];
+
+       }
+
+- (void)gradientLayerLocationAnimation {
+// 颜色分割点效果
+self.gradientLayer.locations = @[@(0.01), @(0.5), @(0.99)];
+}
+
+@end
+</code></pre><h1 id="色差动画实现"><a href="#色差动画实现" class="headerlink" title="色差动画实现"></a>色差动画实现</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerColor.png" alt=""></p>
+<ol>
+<li>确定渐变色渐变方向</li>
+<li>设定两种颜色，其中一种是透明色，另外一种是自定义颜色</li>
+<li>设定好location颜色分割点值</li>
+<li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj2.png" alt=""></p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) CAGradientLayer *gradientLayer; // 渐变层
+@property (nonatomic, strong) NSTimer         *timer;         // 定时器
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.view.backgroundColor = [UIColor blackColor];
+
+// 创建背景图片
+UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;bg&quot;]];
+imageView.center       = self.view.center;
+[self.view addSubview:imageView];
+
+// 初始化渐变层
+self.gradientLayer       = [CAGradientLayer layer];
+self.gradientLayer.frame = imageView.bounds;
+[imageView.layer addSublayer:self.gradientLayer];
+
+// 设定颜色渐变方向
+self.gradientLayer.startPoint = CGPointMake(0, 0);
+self.gradientLayer.endPoint   = CGPointMake(0, 1);
+
+// 设定颜色组
+self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
+                              (__bridge id)[UIColor redColor].CGColor];
+
+// 设定颜色分割点
+self.gradientLayer.locations = @[@(0.5f), @(1.f)];
+
+// 初始化定时器
+self.timer = [NSTimer scheduledTimerWithTimeInterval:2.f
+                                              target:self
+                                            selector:@selector(timerEvent)
+                                            userInfo:nil
+                                             repeats:YES];
+                                         }
+
+- (void)timerEvent {
+// 设定颜色组动画
+self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
+                              (__bridge id)[UIColor colorWithRed:arc4random() % 255 / 255.f
+                                                           green:arc4random() % 255 / 255.f
+                                                            blue:arc4random() % 255 / 255.f
+                                                           alpha:1].CGColor];
+
+// 设定颜色分割点动画
+self.gradientLayer.locations = @[@(arc4random() % 10 / 10.f), @(1.f)];
+}
+
+@end
+</code></pre><h1 id="用CAGradientLayer封装带色差动画的View"><a href="#用CAGradientLayer封装带色差动画的View" class="headerlink" title="用CAGradientLayer封装带色差动画的View"></a>用CAGradientLayer封装带色差动画的View</h1><ol>
+<li>确定几个属性值</li>
+<li>确定可以做动画的参数</li>
+<li>重写setter方法做动画</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj3.png" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>ColorUIImageView.h</p>
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+typedef enum : NSUInteger {
+UP,    // 从上往下
+DOWN,  // 从下往上
+RIGHT, // 从右往左
+LEFT,  // 从左往右
+} EColorDirection;
+
+@interface ColorUIImageView : UIImageView
+
+/**
+ *  确定方向（可以做动画）
+ */
+@property (nonatomic, assign) EColorDirection  direction;
+
+/**
+ *  颜色（可以做动画）
+ */
+ @property (nonatomic, strong) UIColor  *color;
+
+ /**
+ *  百分比（可以做动画）
+ */
+@property (nonatomic, assign) CGFloat   percent;
+
+@end
+</code></pre><p>ColorUIImageView.m</p>
+<pre><code>#import &quot;ColorUIImageView.h&quot;
+
+@interface ColorUIImageView ()
+
+@property (nonatomic, strong) CAGradientLayer *gradientLayer;
+
+@end
+
+@implementation ColorUIImageView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
 self = [super initWithFrame:frame];
 if (self) {
-    self.alpha = 0.f;
+    // 初始化CAGradientLayer
+    self.gradientLayer           = [CAGradientLayer layer];
+    self.gradientLayer.frame     = self.bounds;
+
+    self.gradientLayer.colors    = @[(__bridge id)[UIColor clearColor].CGColor,
+                                     (__bridge id)[UIColor redColor].CGColor];
+    self.gradientLayer.locations = @[@(1), @(1)];
+
+    [self.layer addSublayer:self.gradientLayer];
 }
 return self;
 }
 
-// 创建view
-- (void)buildView {
-// todo
-self.startRect = self.frame;
-self.midRect   = CGRectMake(self.startRect.origin.x + self.offsetX,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-self.endRect   = CGRectMake(self.startRect.origin.x + self.offsetX * 2,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-                        }
+#pragma mark - 重写setter，getter方法
+@synthesize color = _color;
+- (void)setColor:(UIColor *)color {
+_color = color;
+self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
+                              (__bridge id)color.CGColor];
+                          }
+- (UIColor *)color {
+return _color;
+}
 
+@synthesize percent = _percent;
+- (void)setPercent:(CGFloat)percent {
+_percent = percent;
+self.gradientLayer.locations = @[@(percent), @(1)];
+}
+- (CGFloat)percent {
+return _percent;
+}
 
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
+@synthesize direction = _direction;
+- (void)setDirection:(EColorDirection)direction {
+_direction = direction;
+if (direction == UP) {
+    self.gradientLayer.startPoint = CGPointMake(0, 0);
+    self.gradientLayer.endPoint   = CGPointMake(0, 1);
+} else if (direction == DOWN) {
+    self.gradientLayer.startPoint = CGPointMake(0, 1);
+    self.gradientLayer.endPoint   = CGPointMake(0, 0);
+} else if (direction == RIGHT) {
+    self.gradientLayer.startPoint = CGPointMake(1, 0);
+    self.gradientLayer.endPoint   = CGPointMake(0, 0);
+} else if (direction == LEFT) {
+    self.gradientLayer.startPoint = CGPointMake(0, 0);
+    self.gradientLayer.endPoint   = CGPointMake(1, 0);
 } else {
-    self.frame = self.midRect;
-    self.alpha = 1.f;
+    self.gradientLayer.startPoint = CGPointMake(0, 0);
+    self.gradientLayer.endPoint   = CGPointMake(0, 1);
 }
 }
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.endRect;
-        self.alpha = 0.f;
-    } completion:^(BOOL finished) {
-        self.frame = self.startRect;
-    }];
-} else {
-    self.frame = self.startRect;
-    self.alpha = 0.f;
-}
+- (EColorDirection)direction {
+return _direction;
 }
 
+@end
+</code></pre><p>ViewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;ColorUIImageView.h&quot;
+@interface ViewController ()
+@property (nonatomic, strong) ColorUIImageView *colorView;
 
+@end
 
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent {
-CGFloat tmpOffsetX = 0;
+@implementation ViewController
 
-if (percent &lt;= 0) {
-    tmpOffsetX = 0;
-} else if (percent &gt;= 1) {
-    tmpOffsetX = self.offsetX;
-} else {
-    tmpOffsetX = percent * self.offsetX;
-}
-
-self.frame = CGRectMake(self.startRect.origin.x + tmpOffsetX,
-                        self.startRect.origin.y,
-                        self.startRect.size.width,
-                        self.startRect.size.height);
-}
-</code></pre><h1 id="里氏代换原则处理动画类的继承问题"><a href="#里氏代换原则处理动画类的继承问题" class="headerlink" title="里氏代换原则处理动画类的继承问题"></a>里氏代换原则处理动画类的继承问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SourceView *tmpView = [[ChildTwoView alloc] init];</span><br><span class="line">[tmpView show];</span><br></pre></td></tr></table></figure>
-<ol>
-<li>里氏代换原则的基本原理 (多态)</li>
-<li>设计中要确保父类可以直接调用子类的方法</li>
-<li>将父类设计成虚类</li>
-</ol>
-<h1 id="动画中的模块化设计"><a href="#动画中的模块化设计" class="headerlink" title="动画中的模块化设计"></a>动画中的模块化设计</h1><ol>
-<li>动画效果实现难度的判断</li>
-<li>将看到的动画效果拆分成小模块</li>
-<li>将写好的小模块组合成你所需要的动画效果</li>
-</ol>
-<p>ViewController.m</p>
-<pre><code>- (void)viewDidLoad {
+- (void)viewDidLoad {
 [super viewDidLoad];
 // Do any additional setup after loading the view, typically from a nib.
 
-// 复杂的动画被写进了BaseAnimationView当中，没有暴露不必要的细节
-BaseAnimationView *baseView = [[BaseAnimationView alloc] initWithFrame:CGRectZero];
-[self.view addSubview:baseView];
-[baseView show];
-}
-</code></pre><p>BaseAnimation.m</p>
-<pre><code>- (void)show {
-[self.circleView show];
-[self.lineView show];
-}
 
-- (void)hide {
-[self.circleView hide];
-[self.lineView hide];
-}
+self.colorView        = [[ColorUIImageView alloc] initWithFrame:CGRectMake(0, 0, 198, 253)];
+self.colorView.center = self.view.center;
+self.colorView.image  = [UIImage imageNamed:@&quot;bg&quot;];
+[self.view addSubview:self.colorView];
 
-- (void)buildView {
-self.circleView = [[CircleView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.circleView];
+[self performSelector:@selector(event)
+           withObject:nil
+           afterDelay:2.f];
+       }
 
-self.lineView = [[RectView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.lineView];
+- (void)event {
+self.colorView.direction = DOWN;
+self.colorView.color     = [UIColor cyanColor];
+self.colorView.percent   = 0.5;
 }
-</code></pre><p>circleView.m / lineView.m</p>
-<pre><code>- (void)show {}
-- (void)hide {}
-- (void)buildView {}
-</code></pre><h1 id="延时执行某方法"><a href="#延时执行某方法" class="headerlink" title="延时执行某方法"></a>延时执行某方法</h1><pre><code>[self performSelector:@selector(excuteAfterDelay) withObject:nil afterDelay:6];
-</code></pre><h1 id="初始化UIView"><a href="#初始化UIView" class="headerlink" title="初始化UIView"></a>初始化UIView</h1><pre><code>- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.rect = frame;
-}
-return self;
-}
+@end
 </code></pre>
       
     </div>
@@ -501,6 +722,8 @@ return self;
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
+            <a href="/tags/iOS-CALayer/" rel="tag">#iOS_CALayer</a>
+          
             <a href="/tags/iOS-animation/" rel="tag">#iOS_animation</a>
           
         </div>
@@ -510,17 +733,13 @@ return self;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/29/iOS项目8-QQ下拉菜单/" rel="next" title="iOS项目8.QQ下拉菜单">
-                <i class="fa fa-chevron-left"></i> iOS项目8.QQ下拉菜单
+              <a href="/2016/05/08/CAShapeLayer的使用/" rel="next" title="CAShapeLayer的使用">
+                <i class="fa fa-chevron-left"></i> CAShapeLayer的使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/30/iOS项目9-三级视图控制器/" rel="prev" title="iOS项目9.三级视图控制器">
-                iOS项目9.三级视图控制器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -652,7 +871,7 @@ return self;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果的UIView-Object"><span class="nav-number">1.</span> <span class="nav-text">动画效果的UIView Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#制定统一的动画接口"><span class="nav-number">2.</span> <span class="nav-text">制定统一的动画接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画中的高内聚低耦合原理"><span class="nav-number">3.</span> <span class="nav-text">动画中的高内聚低耦合原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计动画函数的注意事项"><span class="nav-number">4.</span> <span class="nav-text">设计动画函数的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果就是frame值的重新设定"><span class="nav-number">5.</span> <span class="nav-text">动画效果就是frame值的重新设定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个具有动画效果的类"><span class="nav-number">6.</span> <span class="nav-text">一个具有动画效果的类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏代换原则处理动画类的继承问题"><span class="nav-number">7.</span> <span class="nav-text">里氏代换原则处理动画类的继承问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画中的模块化设计"><span class="nav-number">8.</span> <span class="nav-text">动画中的模块化设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延时执行某方法"><span class="nav-number">9.</span> <span class="nav-text">延时执行某方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化UIView"><span class="nav-number">10.</span> <span class="nav-text">初始化UIView</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CAGradientLayer简介"><span class="nav-number">1.</span> <span class="nav-text">CAGradientLayer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAGradientLayer坐标系统"><span class="nav-number">2.</span> <span class="nav-text">CAGradientLayer坐标系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#色差动画实现"><span class="nav-number">3.</span> <span class="nav-text">色差动画实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CAGradientLayer封装带色差动画的View"><span class="nav-number">4.</span> <span class="nav-text">用CAGradientLayer封装带色差动画的View</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -910,9 +1129,9 @@ return self;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/30/设计复杂的iOS动画效果/';
-      var disqus_title = '设计复杂的iOS动画效果';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/30/设计复杂的iOS动画效果/';
+      var disqus_identifier = '2016/05/09/CAGradientLayer的使用/';
+      var disqus_title = 'CAGradientLayer的使用';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/09/CAGradientLayer的使用/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
