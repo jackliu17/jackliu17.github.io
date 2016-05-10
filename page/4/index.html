@@ -814,10 +814,59 @@ For OpenGL ES 3.0:
       
         
           
-            <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%B1%95%E7%A4%BA%E7%BC%A9%E5%B0%8F%E7%89%88.png" alt="效果图"></p>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA.png" alt="项目结构"></p>
-<h2 id="TableView的设置"><a href="#TableView的设置" class="headerlink" title="TableView的设置"></a>TableView的设置</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/tableViewDelegate.png" alt="TableView的设置"></p>
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%B1%95%E7%A4%BA%E7%BC%A9%E5%B0%8F%E7%89%88.png" alt="效果图"></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><strong>直接在Main Storyboard中拖入一个TableView</strong></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA.png" alt="项目结构"></p>
+<h1 id="字典加载数据模型"><a href="#字典加载数据模型" class="headerlink" title="字典加载数据模型"></a>字典加载数据模型</h1><pre><code>-  (instancetype)initWithDict:(NSDictionary *)dict{
 
+if (self=[super init]) {
+    [self setValuesForKeysWithDictionary:dict];
+}
+return self;
+}
+</code></pre><h1 id="加载plist中的数组数据"><a href="#加载plist中的数组数据" class="headerlink" title="加载plist中的数组数据"></a>加载plist中的数组数据</h1><p><strong>采用MVC模式，和前一项目相比，其数据加载时创建了一个Model</strong></p>
+<pre><code>- (NSArray *)heros{
+
+if (!_heros) {
+    NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;heros&quot; ofType:@&quot;plist&quot;];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+    for (NSDictionary *dict in array) {
+
+        JKHero *hero =  [JKHero heroWithDict:dict];
+
+        [arrayM addObject:hero];
+    }
+
+    _heros = [arrayM copy];
+}
+return _heros;
+}
+</code></pre><h1 id="表视图cell的配置"><a href="#表视图cell的配置" class="headerlink" title="表视图cell的配置"></a>表视图cell的配置</h1><pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+static NSString *identifier = @&quot;heroCell&quot;;
+
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+
+if (!cell) {
+    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+}
+
+JKHero *hero = self.heros[indexPath.row];
+
+cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+cell.textLabel.text = hero.name;
+cell.detailTextLabel.text = hero.intro;
+cell.detailTextLabel.textColor = [UIColor orangeColor];
+cell.imageView.image = [UIImage imageNamed:hero.icon];
+
+return cell;
+}
+</code></pre><h1 id="隐藏状态栏"><a href="#隐藏状态栏" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h1><pre><code>- (BOOL)prefersStatusBarHidden{
+return YES;
+}
+</code></pre>
           
         
       

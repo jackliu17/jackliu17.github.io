@@ -3318,16 +3318,65 @@ For OpenGL ES 3.0:
     <link href="http://jackliu17.github.io/2016/04/18/iOS%E9%A1%B9%E7%9B%AE3-%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA/"/>
     <id>http://jackliu17.github.io/2016/04/18/iOS项目3-英雄图片表视图展示/</id>
     <published>2016-04-18T07:40:30.000Z</published>
-    <updated>2016-04-20T07:11:01.000Z</updated>
+    <updated>2016-05-10T02:47:03.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%B1%95%E7%A4%BA%E7%BC%A9%E5%B0%8F%E7%89%88.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA.png&quot; alt=&quot;项目结构&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;TableView的设置&quot;&gt;&lt;a href=&quot;#TableView的设置&quot; class=&quot;headerlink&quot; title=&quot;TableView的设置&quot;&gt;&lt;/a&gt;TableView的设置&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/tableViewDelegate.png&quot; alt=&quot;TableView的设置&quot;&gt;&lt;/p&gt;
-</content>
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%B1%95%E7%A4%BA%E7%BC%A9%E5%B0%8F%E7%89%88.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;直接在Main Storyboard中拖入一个TableView&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA.png&quot; alt=&quot;项目结构&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;字典加载数据模型&quot;&gt;&lt;a href=&quot;#字典加载数据模型&quot; class=&quot;headerlink&quot; title=&quot;字典加载数据模型&quot;&gt;&lt;/a&gt;字典加载数据模型&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;-  (instancetype)initWithDict:(NSDictionary *)dict{
+
+if (self=[super init]) {
+    [self setValuesForKeysWithDictionary:dict];
+}
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;加载plist中的数组数据&quot;&gt;&lt;a href=&quot;#加载plist中的数组数据&quot; class=&quot;headerlink&quot; title=&quot;加载plist中的数组数据&quot;&gt;&lt;/a&gt;加载plist中的数组数据&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;采用MVC模式，和前一项目相比，其数据加载时创建了一个Model&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (NSArray *)heros{
+
+if (!_heros) {
+    NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;heros&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+    for (NSDictionary *dict in array) {
+
+        JKHero *hero =  [JKHero heroWithDict:dict];
+
+        [arrayM addObject:hero];
+    }
+
+    _heros = [arrayM copy];
+}
+return _heros;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;表视图cell的配置&quot;&gt;&lt;a href=&quot;#表视图cell的配置&quot; class=&quot;headerlink&quot; title=&quot;表视图cell的配置&quot;&gt;&lt;/a&gt;表视图cell的配置&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+static NSString *identifier = @&amp;quot;heroCell&amp;quot;;
+
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+
+if (!cell) {
+    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+}
+
+JKHero *hero = self.heros[indexPath.row];
+
+cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+cell.textLabel.text = hero.name;
+cell.detailTextLabel.text = hero.intro;
+cell.detailTextLabel.textColor = [UIColor orangeColor];
+cell.imageView.image = [UIImage imageNamed:hero.icon];
+
+return cell;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;隐藏状态栏&quot;&gt;&lt;a href=&quot;#隐藏状态栏&quot; class=&quot;headerlink&quot; title=&quot;隐藏状态栏&quot;&gt;&lt;/a&gt;隐藏状态栏&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (BOOL)prefersStatusBarHidden{
+return YES;
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84
     
     </summary>
     
