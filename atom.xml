@@ -3288,19 +3288,124 @@ For OpenGL ES 3.0:
     <link href="http://jackliu17.github.io/2016/04/20/iOS%E9%A1%B9%E7%9B%AE4-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86/"/>
     <id>http://jackliu17.github.io/2016/04/20/iOS项目4-应用程序管理/</id>
     <published>2016-04-20T02:07:50.000Z</published>
-    <updated>2016-04-20T07:12:11.000Z</updated>
+    <updated>2016-05-10T06:21:52.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;功能分析&quot;&gt;&lt;a href=&quot;#功能分析&quot; class=&quot;headerlink&quot; title=&quot;功能分析&quot;&gt;&lt;/a&gt;功能分析&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png&quot; alt=&quot;功能分析&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目结构1&quot;&gt;&lt;a href=&quot;#项目结构1&quot; class=&quot;headerlink&quot; title=&quot;项目结构1&quot;&gt;&lt;/a&gt;项目结构1&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%861.png&quot; alt=&quot;项目结构1&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目结构2&quot;&gt;&lt;a href=&quot;#项目结构2&quot; class=&quot;headerlink&quot; title=&quot;项目结构2&quot;&gt;&lt;/a&gt;项目结构2&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%862.png&quot; alt=&quot;项目结构2&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目结构3&quot;&gt;&lt;a href=&quot;#项目结构3&quot; class=&quot;headerlink&quot; title=&quot;项目结构3&quot;&gt;&lt;/a&gt;项目结构3&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%863.png&quot; alt=&quot;项目结构3&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置xib为freeform&quot;&gt;&lt;a href=&quot;#设置xib为freeform&quot; class=&quot;headerlink&quot; title=&quot;设置xib为freeform&quot;&gt;&lt;/a&gt;设置xib为freeform&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/freeForm.png&quot; alt=&quot;设置xib为freeform&quot;&gt;&lt;/p&gt;
-</content>
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;功能分析&quot;&gt;&lt;a href=&quot;#功能分析&quot; class=&quot;headerlink&quot; title=&quot;功能分析&quot;&gt;&lt;/a&gt;功能分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png&quot; alt=&quot;功能分析&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;freeform-UIView-in-Empty-XIB&quot;&gt;&lt;a href=&quot;#freeform-UIView-in-Empty-XIB&quot; class=&quot;headerlink&quot; title=&quot;freeform UIView in Empty XIB&quot;&gt;&lt;/a&gt;freeform UIView in Empty XIB&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/freeForm.png&quot; alt=&quot;设置xib为freeform&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ViewController&quot;&gt;&lt;a href=&quot;#ViewController&quot; class=&quot;headerlink&quot; title=&quot;ViewController&quot;&gt;&lt;/a&gt;ViewController&lt;/h1&gt;&lt;h2 id=&quot;定义常量&quot;&gt;&lt;a href=&quot;#定义常量&quot; class=&quot;headerlink&quot; title=&quot;定义常量&quot;&gt;&lt;/a&gt;定义常量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//屏幕的高
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+//屏幕的宽
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+//应用界面的高
+#define kAppViewH [JKAppView appView].bounds.size.height
+//应用界面的宽
+#define kAppViewW [JKAppView appView].bounds.size.width
+//每行的个数
+#define kTotalCol 3
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;加载plist中的数据&quot;&gt;&lt;a href=&quot;#加载plist中的数据&quot; class=&quot;headerlink&quot; title=&quot;加载plist中的数据&quot;&gt;&lt;/a&gt;加载plist中的数据&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (NSArray *)appViews{
+
+    if (!_appViews) {
+
+    NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;app&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+    for (NSDictionary *dict in array) {
+
+        JKAppInfo *appInfo = [JKAppInfo appInfoWithDict:dict];
+        JKAppView *appView = [JKAppView appView];
+        appView.appInfo = appInfo;
+        appView.delegate = self;
+
+        [arrayM addObject:appView];
+    }
+    _appViews = [arrayM copy];
+}
+return _appViews;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;列间距计算&quot;&gt;&lt;a href=&quot;#列间距计算&quot; class=&quot;headerlink&quot; title=&quot;列间距计算&quot;&gt;&lt;/a&gt;列间距计算&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;CGFloat margin = (kScreenW - kTotalCol * kAppViewW)/(kTotalCol + 1);
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;九宫格加载视图&quot;&gt;&lt;a href=&quot;#九宫格加载视图&quot; class=&quot;headerlink&quot; title=&quot;九宫格加载视图&quot;&gt;&lt;/a&gt;九宫格加载视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//遍历应用界面数组
+for (int i = 0 ; i&amp;lt;self.appViews.count; i++) {
+
+    //根据索引值取出单个应用界面
+    JKAppView *appView = self.appViews[i];
+
+    //九宫格的算法创建每个应用界面
+    int col = i % kTotalCol;
+    int row = i / kTotalCol;
+
+    CGFloat centerX = (margin + kAppViewW * 0.5) +(margin + kAppViewW) *col;
+    CGFloat centerY = (margin + kAppViewH * 0.5) +(margin + kAppViewH) *row;
+
+    appView.center = CGPointMake(centerX, centerY);
+    //加入到主视图中
+    [self.view addSubview:appView];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;根据点击的按钮获得相关视图&quot;&gt;&lt;a href=&quot;#根据点击的按钮获得相关视图&quot; class=&quot;headerlink&quot; title=&quot;根据点击的按钮获得相关视图&quot;&gt;&lt;/a&gt;根据点击的按钮获得相关视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;JKAppView *appView = (JKAppView*)btn.superview;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;菊花的frame值设定&quot;&gt;&lt;a href=&quot;#菊花的frame值设定&quot; class=&quot;headerlink&quot; title=&quot;菊花的frame值设定&quot;&gt;&lt;/a&gt;菊花的frame值设定&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;juhua.frame = self.view.bounds;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;菊花与”正在下载”标签&quot;&gt;&lt;a href=&quot;#菊花与”正在下载”标签&quot; class=&quot;headerlink&quot; title=&quot;菊花与”正在下载”标签&quot;&gt;&lt;/a&gt;菊花与”正在下载”标签&lt;/h2&gt;&lt;p&gt;因为”正在下载”标签是添加在菊花上的，所以当菊花停止时，标签也会自动消失&lt;/p&gt;
+&lt;h2 id=&quot;标签逐渐消失-使用alpha&quot;&gt;&lt;a href=&quot;#标签逐渐消失-使用alpha&quot; class=&quot;headerlink&quot; title=&quot;标签逐渐消失 - 使用alpha&quot;&gt;&lt;/a&gt;标签逐渐消失 - 使用alpha&lt;/h2&gt;&lt;p&gt;其效果为隐式动画，重新设定alpha值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;noteLabel.alpha = 1;  
+[self.view addSubview:noteLabel];
+
+[UIView animateWithDuration:5.0 animations:^{
+         noteLabel.alpha = 0; 
+     } completion:^(BOOL finished) {
+         .....
+     }];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;标签消失后&quot;&gt;&lt;a href=&quot;#标签消失后&quot; class=&quot;headerlink&quot; title=&quot;标签消失后&quot;&gt;&lt;/a&gt;标签消失后&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[UIView animateWithDuration:5.0 animations:^{
+
+         noteLabel.alpha = 0; 
+     } completion:^(BOOL finished) {
+
+         btn.enabled = NO;
+         [btn setTitle:@&amp;quot;已下载&amp;quot; forState:UIControlStateDisabled];
+         [noteLabel removeFromSuperview];
+
+     }];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;JKAppInfo&quot;&gt;&lt;a href=&quot;#JKAppInfo&quot; class=&quot;headerlink&quot; title=&quot;JKAppInfo&quot;&gt;&lt;/a&gt;JKAppInfo&lt;/h1&gt;&lt;h2 id=&quot;字典加载数据模型&quot;&gt;&lt;a href=&quot;#字典加载数据模型&quot; class=&quot;headerlink&quot; title=&quot;字典加载数据模型&quot;&gt;&lt;/a&gt;字典加载数据模型&lt;/h2&gt;&lt;p&gt;属性名需要和plist中的字典key一一对应&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (instancetype)initWithDict:(NSDictionary *)dict{
+
+if (self=[super init]) {
+    [self setValuesForKeysWithDictionary:dict];
+}
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建image图像&quot;&gt;&lt;a href=&quot;#创建image图像&quot; class=&quot;headerlink&quot; title=&quot;创建image图像&quot;&gt;&lt;/a&gt;创建image图像&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UIImage *)image{
+if (!_image) {
+    _image = [UIImage imageNamed:self.icon];
+}
+return _image ;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;JKAppView&quot;&gt;&lt;a href=&quot;#JKAppView&quot; class=&quot;headerlink&quot; title=&quot;JKAppView&quot;&gt;&lt;/a&gt;JKAppView&lt;/h1&gt;&lt;h2 id=&quot;协议方法-点击下载按钮&quot;&gt;&lt;a href=&quot;#协议方法-点击下载按钮&quot; class=&quot;headerlink&quot; title=&quot;协议方法-点击下载按钮&quot;&gt;&lt;/a&gt;协议方法-点击下载按钮&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@protocol JKAppViewDelegate &amp;lt;NSObject&amp;gt;
+@optional
+-(void)downloadClickWithBtn:(UIButton*)btn;
+@end
+
+@interface JKAppView : UIView
+@property (nonatomic,weak) id&amp;lt;JKAppViewDelegate&amp;gt; delegate;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;类与类之间的通讯，有三种方法：代理，通知，block&lt;/li&gt;
+&lt;li&gt;协议就好像一个武器，类本身不能使用，于是叫他的小弟”id&lt;jkappviewdelegate&gt; delegate” ,交由他人(viewController)使用&lt;/jkappviewdelegate&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;调用代理执行&quot;&gt;&lt;a href=&quot;#调用代理执行&quot; class=&quot;headerlink&quot; title=&quot;调用代理执行&quot;&gt;&lt;/a&gt;调用代理执行&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (IBAction)downloadBtnOnClick:(UIButton *)sender {
+
+if ([self.delegate respondsToSelector:@selector(downloadClickWithBtn:)]) {
+
+    [self.delegate downloadClickWithBtn:sender];
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;UIView中加载XIB视图&quot;&gt;&lt;a href=&quot;#UIView中加载XIB视图&quot; class=&quot;headerlink&quot; title=&quot;UIView中加载XIB视图&quot;&gt;&lt;/a&gt;UIView中加载XIB视图&lt;/h2&gt;&lt;p&gt;UIView子类 + (Freeform View in Empty XIB)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (instancetype)appView{
+//因为只有一个object,所以first or last都可以
+return [[[NSBundle mainBundle]loadNibNamed:@&amp;quot;JKAppView&amp;quot; owner:nil options:nil]lastObject];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%BA%94%E7%94%A8
     
     </summary>
     
