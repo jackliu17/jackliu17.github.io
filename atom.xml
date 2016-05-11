@@ -3261,16 +3261,30 @@ For OpenGL ES 3.0:
     <link href="http://jackliu17.github.io/2016/04/20/iOS%E9%A1%B9%E7%9B%AE5-UIPickerView%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9/"/>
     <id>http://jackliu17.github.io/2016/04/20/iOS项目5-UIPickerView国家选择/</id>
     <published>2016-04-20T07:14:27.000Z</published>
-    <updated>2016-04-20T07:16:53.000Z</updated>
+    <updated>2016-05-10T06:44:46.000Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;项目架构&quot;&gt;&lt;a href=&quot;#项目架构&quot; class=&quot;headerlink&quot; title=&quot;项目架构&quot;&gt;&lt;/a&gt;项目架构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png&quot; alt=&quot;项目架构&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置xib&quot;&gt;&lt;a href=&quot;#设置xib&quot; class=&quot;headerlink&quot; title=&quot;设置xib&quot;&gt;&lt;/a&gt;设置xib&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIPickerViewDataSource.png&quot; alt=&quot;设置xib&quot;&gt;&lt;/p&gt;
-</content>
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目架构&quot;&gt;&lt;a href=&quot;#项目架构&quot; class=&quot;headerlink&quot; title=&quot;项目架构&quot;&gt;&lt;/a&gt;项目架构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png&quot; alt=&quot;项目架构&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;设置xib&quot;&gt;&lt;a href=&quot;#设置xib&quot; class=&quot;headerlink&quot; title=&quot;设置xib&quot;&gt;&lt;/a&gt;设置xib&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/UIPickerViewDataSource.png&quot; alt=&quot;设置xib&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;数据模型创建&quot;&gt;&lt;a href=&quot;#数据模型创建&quot; class=&quot;headerlink&quot; title=&quot;数据模型创建&quot;&gt;&lt;/a&gt;数据模型创建&lt;/h1&gt;&lt;p&gt;自定义国家子视图和数据模型的创建如前例&lt;/p&gt;
+&lt;h1 id=&quot;滚轮中的每一行的视图设定&quot;&gt;&lt;a href=&quot;#滚轮中的每一行的视图设定&quot; class=&quot;headerlink&quot; title=&quot;滚轮中的每一行的视图设定&quot;&gt;&lt;/a&gt;滚轮中的每一行的视图设定&lt;/h1&gt;&lt;p&gt;因为是reuse的，所以不用像前例一样懒加载视图，只需要加载数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+
+JKCountryFlagView *countryView = (JKCountryFlagView *)view;
+
+if (!countryView) {
+    countryView = [JKCountryFlagView countryView];
+}
+
+countryView.countryModel = self.dataArray[row];
+
+return countryView;
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6
     
     </summary>
     

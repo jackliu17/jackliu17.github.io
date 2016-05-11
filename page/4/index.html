@@ -577,10 +577,24 @@ For OpenGL ES 3.0:
       
         
           
-            <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png" alt="效果图"></p>
-<h2 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png" alt="项目架构"></p>
-<h2 id="设置xib"><a href="#设置xib" class="headerlink" title="设置xib"></a>设置xib</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIPickerViewDataSource.png" alt="设置xib"></p>
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png" alt="效果图"></p>
+<h1 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png" alt="项目架构"></p>
+<h1 id="设置xib"><a href="#设置xib" class="headerlink" title="设置xib"></a>设置xib</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIPickerViewDataSource.png" alt="设置xib"></p>
+<h1 id="数据模型创建"><a href="#数据模型创建" class="headerlink" title="数据模型创建"></a>数据模型创建</h1><p>自定义国家子视图和数据模型的创建如前例</p>
+<h1 id="滚轮中的每一行的视图设定"><a href="#滚轮中的每一行的视图设定" class="headerlink" title="滚轮中的每一行的视图设定"></a>滚轮中的每一行的视图设定</h1><p>因为是reuse的，所以不用像前例一样懒加载视图，只需要加载数据</p>
+<pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
 
+JKCountryFlagView *countryView = (JKCountryFlagView *)view;
+
+if (!countryView) {
+    countryView = [JKCountryFlagView countryView];
+}
+
+countryView.countryModel = self.dataArray[row];
+
+return countryView;
+}
+</code></pre>
           
         
       
