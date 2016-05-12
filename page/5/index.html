@@ -849,7 +849,205 @@ if(!self.textTwo.hasText()){...}
       
         
           
-            <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2>
+            <h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
+将某个对象写入文件时候会调用
+在这个方法中说清楚哪些属性需要存储
+*/
+- (void)encodeWithCoder:(NSCoder *)encoder{
+[encoder encodeObject:self.name forKey:@&quot;name&quot;];
+[encoder encodeObject:self.phone forKey:@&quot;phone&quot;];
+}
+
+/*
+解析对象会调用这个方法
+需要解析哪些属性
+*/
+- (id)initWithCoder:(NSCoder *)decoder{
+if (self = [super init]) {
+self.name = [decoder decodeObjectForKey:@&quot;name&quot;];
+self.phone = [decoder decodeObjectForKey:@&quot;phone&quot;];
+}
+return self;
+}
+</code></pre><h1 id="LoginViewController"><a href="#LoginViewController" class="headerlink" title="LoginViewController"></a>LoginViewController</h1><h2 id="保存和读取登录信息"><a href="#保存和读取登录信息" class="headerlink" title="保存和读取登录信息"></a>保存和读取登录信息</h2><pre><code>//保存
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+[defaults setObject:self.nameField.text forKey:UserNameKey];
+[defaults setObject:self.pwdField.text forKey:PwdKey];
+[defaults setBool:self.rembSwitch.isOn forKey:RmbPwdKey];
+//设置同步,只有设置同步，其保存的信息才是最新的！！！！！
+[defaults synchronize];
+
+//读取
+NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+self.nameField.text = [defaults valueForKey:UserNameKey];
+self.pwdField.text = [defaults valueForKey:PwdKey];
+self.rembSwitch.on = [defaults boolForKey:RmbPwdKey];
+</code></pre><h2 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h2><p>当文本框里都填有数字时，按钮才可以点击</p>
+<pre><code>//添加观察者,如果object为nil，就会检测到所有的变化。因此必须得针对性的设定object监测
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChange) name:UITextFieldTextDidChangeNotification object:self.nameField];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChange) name:UITextFieldTextDidChangeNotification object:self.pwdField];
+</code></pre><h2 id="条件语句设置BOOL值"><a href="#条件语句设置BOOL值" class="headerlink" title="条件语句设置BOOL值"></a>条件语句设置BOOL值</h2><pre><code>self.loginBtn.enabled = (self.nameField.text.length &amp;&amp; self.pwdField.text.length);
+</code></pre><h2 id="执行Segue进行视图跳转"><a href="#执行Segue进行视图跳转" class="headerlink" title="执行Segue进行视图跳转"></a>执行Segue进行视图跳转</h2><pre><code>[self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];
+</code></pre><h2 id="Segue跳转之前执行"><a href="#Segue跳转之前执行" class="headerlink" title="Segue跳转之前执行"></a>Segue跳转之前执行</h2><pre><code>/*
+一般在这里给下一个控制器传值
+这个sender是当初performSegueWithIdentifier方法传入的sender
+*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+//1.取得目标控制器
+UIViewController *contactVc = segue.destinationViewController;
+//2.设置标题（传值）
+contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
+}
+</code></pre><h2 id="设置字符串"><a href="#设置字符串" class="headerlink" title="设置字符串"></a>设置字符串</h2><pre><code>[NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text]
+</code></pre><h2 id="MBProgressHUD"><a href="#MBProgressHUD" class="headerlink" title="MBProgressHUD"></a>MBProgressHUD</h2><pre><code>if (![self.nameField.text isEqualToString:@&quot;jike&quot;]) {
+    [MBProgressHUD showError:@&quot;账号不存在&quot;];
+    return;
+}
+if (![self.pwdField.text isEqualToString:@&quot;qq&quot;]) {
+    [MBProgressHUD showError:@&quot;密码错误&quot;];
+    return;
+}
+//显示蒙版（遮盖）
+[MBProgressHUD showMessage:@&quot;努力加载中&quot;];
+</code></pre><h1 id="ContactTableViewController"><a href="#ContactTableViewController" class="headerlink" title="ContactTableViewController"></a>ContactTableViewController</h1><h2 id="对象的归档和解档"><a href="#对象的归档和解档" class="headerlink" title="对象的归档和解档"></a>对象的归档和解档</h2><pre><code>//定义文件的路径
+#define ContactFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@&quot;contacts.data&quot;]
+
+//每次操作都需要将数据归档
+[NSKeyedArchiver archiveRootObject:self.contactArr toFile:ContactFilePath];
+
+//解档
+_contactArr = [NSKeyedUnarchiver unarchiveObjectWithFile:ContactFilePath];
+</code></pre><h2 id="懒加载数据"><a href="#懒加载数据" class="headerlink" title="懒加载数据"></a>懒加载数据</h2><pre><code>- (NSMutableArray *)contactArr{
+if (!_contactArr) {
+    _contactArr = [NSKeyedUnarchiver unarchiveObjectWithFile:ContactFilePath];
+    if (_contactArr == nil) {
+        _contactArr  = [NSMutableArray array];
+    }
+}
+return _contactArr;
+}
+</code></pre><h2 id="UIAlertcontroller"><a href="#UIAlertcontroller" class="headerlink" title="UIAlertcontroller"></a>UIAlertcontroller</h2><pre><code>- (IBAction)backAction:(id)sender {
+//初始化
+//UIAlertcontroller = UIAlertView + UIActionSheet , iOS 8以后出现的
+
+UIAlertController *alert = [UIAlertController
+                            alertControllerWithTitle:@&quot;是否注销?&quot;
+                            message:@&quot;真的要注销吗&quot;
+                            preferredStyle:UIAlertControllerStyleActionSheet];
+
+//添加按钮
+[alert addAction:[UIAlertAction
+                  actionWithTitle:@&quot;取消&quot;
+                  style:UIAlertActionStyleCancel
+                  handler:nil]];
+
+[alert addAction:[UIAlertAction
+                  actionWithTitle:@&quot;确定&quot;
+                  style:UIAlertActionStyleDestructive
+                  handler:^(UIAlertAction *action) {
+
+    [self.navigationController popViewControllerAnimated:YES];
+}]];
+
+
+//弹出
+[self presentViewController:alert animated:YES completion:NULL];
+}
+</code></pre><h2 id="去掉TableView中多余的线"><a href="#去掉TableView中多余的线" class="headerlink" title="去掉TableView中多余的线"></a>去掉TableView中多余的线</h2><pre><code>- (void)clearExtraLine :(UITableView *)tableView{
+UIView *view = [[UIView alloc] init];
+view.backgroundColor = [UIColor clearColor];
+[self.tableView setTableFooterView:view];
+}
+</code></pre><h2 id="when-reloadData"><a href="#when-reloadData" class="headerlink" title="when reloadData ?"></a>when reloadData ?</h2><pre><code>[self.tableView reloadData];
+</code></pre><h2 id="Prepare-for-multiple-segue"><a href="#Prepare-for-multiple-segue" class="headerlink" title="Prepare for multiple segue"></a>Prepare for multiple segue</h2><pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+id vc = segue.destinationViewController;
+
+if ([vc isKindOfClass:[AddViewController class]]) {
+
+    AddViewController *addVc = vc;
+    addVc.delegate = self;
+
+}else if ([vc isKindOfClass:[EditViewController class]]){
+    EditViewController *editVc = vc;
+
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    editVc.contactModel = self.contactArr[path.row];
+    editVc.delagate = self;
+}
+}
+</code></pre><h2 id="判断what-class"><a href="#判断what-class" class="headerlink" title="判断what class"></a>判断what class</h2><pre><code>[vc isKindOfClass:[EditViewController class]
+</code></pre><h2 id="确定选中哪一行"><a href="#确定选中哪一行" class="headerlink" title="确定选中哪一行"></a>确定选中哪一行</h2><pre><code>NSIndexPath *path = [self.tableView indexPathForSelectedRow]
+</code></pre><h2 id="动态删除一行"><a href="#动态删除一行" class="headerlink" title="动态删除一行"></a>动态删除一行</h2><pre><code>- (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath{
+
+if (editingStyle == UITableViewCellEditingStyleDelete) {
+    //1.删除数据模型
+    [self.contactArr removeObjectAtIndex:indexPath.row];
+    //2.刷新表视图
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+
+    //以下也是一个刷新的方法，是全部表格刷新
+    //[self.tableView reloadData];
+    //3. 归档
+    [NSKeyedArchiver archiveRootObject:self.contactArr toFile:ContactFilePath];
+}
+}
+</code></pre><h1 id="AddViewController"><a href="#AddViewController" class="headerlink" title="AddViewController"></a>AddViewController</h1><h2 id="设置代理方法"><a href="#设置代理方法" class="headerlink" title="设置代理方法"></a>设置代理方法</h2><pre><code>@protocol AddViewControllerDelegate &lt;NSObject&gt;
+@optional
+- (void)addContact:(AddViewController *)addVc didAddContact:(JKContactModel *)contact;
+@end
+
+@interface AddViewController : UIViewController
+//assign类型防止循环引用？
+@property (nonatomic, assign) id&lt;AddViewControllerDelegate&gt; delegate;
+@end
+</code></pre><h2 id="文本框为第一响应"><a href="#文本框为第一响应" class="headerlink" title="文本框为第一响应"></a>文本框为第一响应</h2><pre><code>- (void)viewDidAppear:(BOOL)animated{
+[super viewDidAppear:animated];
+//让姓名文本框成为第一响应者（叫出键盘）
+[self.nameField becomeFirstResponder];
+}
+</code></pre><h2 id="代理传值"><a href="#代理传值" class="headerlink" title="代理传值"></a>代理传值</h2><p><strong>delegate就相当于是一个信使，适用于视图控制器之间的传值(review 应用程序管理)</strong></p>
+<pre><code>- (IBAction)AddAction {
+//1.关闭当前视图控制器
+[self.navigationController popViewControllerAnimated:YES];
+
+if ([self.delegate respondsToSelector:@selector(addContact:didAddContact:)]) {
+    JKContactModel *contactModel = [[JKContactModel alloc] init];
+    contactModel.name = self.nameField.text;
+    contactModel.phone = self.phoneField.text;
+    [self.delegate addContact:self didAddContact:contactModel];
+}
+}
+</code></pre><p><strong>记得接收方要设置代理对象</strong></p>
+<pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    AddViewController *addVc = segue.destinationViewController;
+    addVc.delegate = self;
+</code></pre><h1 id="EditViewController"><a href="#EditViewController" class="headerlink" title="EditViewController"></a>EditViewController</h1><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view.
+self.nameField.text = self.contactModel.name;
+self.phoneField.text = self.contactModel.phone;
+}
+</code></pre><h2 id="代理传值-1"><a href="#代理传值-1" class="headerlink" title="代理传值"></a>代理传值</h2><pre><code>//保存
+- (IBAction)saveAction:(id)sender {
+//1.关闭当前页面
+[self.navigationController popViewControllerAnimated:YES];
+//2.通知代理
+if ([self.delagate respondsToSelector:@selector(enditViewController:didSaveContact:)]) {
+    //更新数据模型
+    self.contactModel.name = self.nameField.text;
+    self.contactModel.phone = self.phoneField.text;
+    [self.delagate enditViewController:self didSaveContact:self.contactModel];
+}
+}
+</code></pre><h2 id="UIButton-amp-UITextfield-amp-UIView"><a href="#UIButton-amp-UITextfield-amp-UIView" class="headerlink" title="UIButton &amp; UITextfield &amp; UIView"></a>UIButton &amp; UITextfield &amp; UIView</h2><pre><code>self.nameField.enabled = NO;
+[self.view endEditing:YES];
+self.savebtn.hidden = YES;
+</code></pre>
           
         
       
