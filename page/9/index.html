@@ -238,6 +238,180 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/09/Git本地操作/" itemprop="url">
+                  Git本地操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-09T09:34:11+11:00" content="2016-03-09">
+              2016-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/09/Git本地操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/09/Git本地操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Git安装与简单配置"><a href="#Git安装与简单配置" class="headerlink" title="Git安装与简单配置"></a>Git安装与简单配置</h2><p>配置或者修改git用户名<br><code>$ git config --global user.name Jack</code> </p>
+<p>配置git用户邮箱<br><code>$ git config --global user.email XXXXXX@gmail.com</code></p>
+<p>查询git帮助<br><code>$ git config --help</code></p>
+<p>添加git用户<br><code>$ git config --global --add user.name eoe</code></p>
+<p>删除git用户<br><code>$ git config --global --unset user.name eoe</code></p>
+<p>查询git当前用户<br><code>$ git config user.name</code></p>
+<p>查询git当前所有用户信息<br><code>$ git config --list --global</code></p>
+<h2 id="Git基本的工作流程"><a href="#Git基本的工作流程" class="headerlink" title="Git基本的工作流程"></a>Git基本的工作流程</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Git1.png" alt="1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/2.png" alt="2"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/3.png" alt="3"></p>
+<p>创建仓库，有两个方法，如下  </p>
+<ul>
+<li><code>git init</code>  </li>
+<li><code>git clone</code></li>
+</ul>
+<p>Mac OSX 下创建两个文件<br><code>$ touch a</code><br><code>$ touch b</code></p>
+<p>工作区提交到暂存区<br><code>git add a b （只添加这两个文件）</code><br><code>git add -A   (添加整个工作区)</code></p>
+<p>查看暂存区<br><code>git status</code></p>
+<p>提交到历史记录区(m为所标注的信息)<br><code>git commit -m &quot;Initial commit&quot;</code></p>
+<p>删除工作区和暂存区<br><code>git rm a</code></p>
+<p>只删除暂存区，不删除工作区<br><code>git rm --cached a</code></p>
+<p>将文件a命名为文件c （一系列的组合，在工作区中操作，也在暂存区中修改）<br><code>git mv a c</code></p>
+<p>编写.gitignore文件，指出哪些文件是可以不用被git的<br>.gitignore (省略)</p>
+<h2 id="Git本地分支与合并"><a href="#Git本地分支与合并" class="headerlink" title="Git本地分支与合并"></a>Git本地分支与合并</h2><h3 id="简单的分支操作"><a href="#简单的分支操作" class="headerlink" title="简单的分支操作"></a>简单的分支操作</h3><p>添加test分支<br><code>git branch test</code></p>
+<p>切换到test分支<br><code>git checkout test</code></p>
+<p>查看在什么分支<br><code>git status</code></p>
+<h3 id="查看commit的情况"><a href="#查看commit的情况" class="headerlink" title="查看commit的情况"></a>查看commit的情况</h3><p>为查看长命令设置个短标识“lol”<br><code>git config --global alias.lol &quot;log --oneline --decorate --graph --all&quot;</code></p>
+<p>查看commit的情况<br><code>git  lol</code></p>
+<h3 id="查看tag的情况"><a href="#查看tag的情况" class="headerlink" title="查看tag的情况"></a>查看tag的情况</h3><p>为某个commit设置个标签<br><code>git tag &quot;v0&quot; c8f9030</code></p>
+<p>查看有什么标签<br><code>git tag</code></p>
+<p>查看某标签的具体情况<br><code>git show v0</code></p>
+<h3 id="有关checkout分支的详述"><a href="#有关checkout分支的详述" class="headerlink" title="有关checkout分支的详述"></a>有关checkout分支的详述</h3><p>以checkout进入某commit点，实际上是以该点重新分支fix_v0，<br><code>git checkout v0</code></p>
+<p>所以还有后续命令,以该点创建一个分支<br> <code>git checkout -b fix_v0</code></p>
+<h3 id="有关stash"><a href="#有关stash" class="headerlink" title="有关stash"></a>有关stash</h3><p>当checkout切换分支时，要先提交或者stash暂存区的东西,否则会被覆盖<br>将工作区和暂存区的东西先藏起来，以免切换分支的时候被覆盖<br><code>git stash save -a &quot;stash1&quot;</code></p>
+<p>查看有哪些stash<br><code>git stash list</code></p>
+<p>将stash的东西还原出来，根据索引号，同时stash list中会删除<br><code>git stash pop --index stash@{0}</code></p>
+<p>将stash的东西还原出来，根据索引号，同时stash list依然保存<br><code>git stash apply --index stash@{0}</code></p>
+<p>删除某个stash<br><code>git stash drop stash@{0}</code></p>
+<p>删除全部stash<br><code>git stash clear</code></p>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>先切换到master分支下，再合并需要的分支<br><code>git master</code><br><code>git merge test_merge</code></p>
+<p>如果是fast-forward，那是不需要修改文件的合并，不重叠的融合  </p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/5.png" alt="5"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/6.png" alt="6"></p>
+<p>如果是有冲突的合并，用如下命令取消<br><code>git merge --abort</code></p>
+<p>或者是先编辑相冲突的内容，然后再add —&gt; commit,这个commit 是两个merge的commit<br><code>git add master.txt</code><br><code>git commit -m &quot;Test merge&quot;</code></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/4.png" alt="4"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/9.png" alt="9"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/7.png" alt="7"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/8.png" alt="8"></p>
+<h2 id="查看与对比历史记录"><a href="#查看与对比历史记录" class="headerlink" title="查看与对比历史记录"></a>查看与对比历史记录</h2><p>查看某个commit的详情<br><code>git show HEAD</code><br><code>git show 16e9e16</code></p>
+<p>如果某个commit是merge commit<br><code>git show master^</code>(显示merge中的两个commit中的第一副提交)<br><code>git show master^2</code> (显示merge中的两个commit中的第二副提交)</p>
+<p>用show可以显示commit ,tag 的相关信息，查看某标签的具体情况<br><code>git show v0</code></p>
+<p>查看历史详情，用键盘上下翻页，q退出<br><code>git log</code> （有很多参数）</p>
+<p>比较工作区和暂存区的差别<br><code>git diff</code></p>
+<p>比较历史记录区和暂存区的差别<br><code>git diff --cached</code></p>
+<p>比较哪个单词是差异，用颜色标注出来<br><code>git diff --color-words</code></p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>撤销工作区的修改，用暂存区的内容覆盖工作区的内容<br><code>git checkout -- master.txt</code></p>
+<p>用某个commit覆盖工作区和暂存区<br><code>git checkout INITIAL_COMMIT -- master.txt</code></p>
+<p>撤销暂存区的修改<br><code>git reset master.txt</code></p>
+<p>用某个commit覆盖暂存区，而不是工作区<br><code>git reset INITIAL_COMMIT -- master.txt</code></p>
+<p>撤销当前的提交,这也是一个新的提交<br><code>git revert HEAD</code></p>
+<p>指向某个commit，并用它还原工作区和暂存区<br><code>git reset --hard test</code></p>
+<p>指向某个commit，还原暂存区，不还原工作区<br><code>git reset --mixed test</code></p>
+<p>指向某个commit<br><code>git reset --soft test</code></p>
+<h2 id="Vim的编辑命令"><a href="#Vim的编辑命令" class="headerlink" title="Vim的编辑命令"></a>Vim的编辑命令</h2><p>编辑vim后，按esc键 + :wq 就是保存，不保存就不用加w</p>
+<h2 id="Mac-command-line"><a href="#Mac-command-line" class="headerlink" title="Mac command line"></a>Mac command line</h2><p><code>$ clear</code> (清楚屏幕上的所有东西)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/04/今天/" itemprop="url">
                   今天
                 </a>
@@ -359,7 +533,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -376,7 +550,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -63,22 +63,40 @@
 
 <meta name="description" content="项目结构
 视图分析
-总结">
+加载plist数据将数据的初始化放在了数据模型里
+JKQuestionInfo
++ (NSArray *)questions{
+
+NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+
+NSArray *array = [">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS项目7.超级猜图">
 <meta property="og:url" content="http://jackliu17.github.io/2016/04/28/iOS项目7-超级猜图/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
 <meta property="og:description" content="项目结构
 视图分析
-总结">
+加载plist数据将数据的初始化放在了数据模型里
+JKQuestionInfo
++ (NSArray *)questions{
+
+NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+
+NSArray *array = [">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png">
-<meta property="og:updated_time" content="2016-04-28T03:12:52.000Z">
+<meta property="og:updated_time" content="2016-05-11T09:05:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS项目7.超级猜图">
 <meta name="twitter:description" content="项目结构
 视图分析
-总结">
+加载plist数据将数据的初始化放在了数据模型里
+JKQuestionInfo
++ (NSArray *)questions{
+
+NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
+
+NSArray *array = [">
 <meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png">
 
 
@@ -304,9 +322,67 @@
       
 
       
-        <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png" alt=""></p>
-<h2 id="视图分析"><a href="#视图分析" class="headerlink" title="视图分析"></a>视图分析</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png" alt=""></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png" alt=""></p>
+<h1 id="视图分析"><a href="#视图分析" class="headerlink" title="视图分析"></a>视图分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png" alt=""></p>
+<h1 id="加载plist数据"><a href="#加载plist数据" class="headerlink" title="加载plist数据"></a>加载plist数据</h1><p><strong>将数据的初始化放在了数据模型里</strong></p>
+<p>JKQuestionInfo</p>
+<pre><code>+ (NSArray *)questions{
+
+NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;questions&quot; ofType:@&quot;plist&quot;];
+
+NSArray *array = [NSArray arrayWithContentsOfFile:path];
+
+NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+for (NSDictionary *dict in array) {
+
+    [arrayM addObject:[self questionWithDict:dict]];
+}
+return [arrayM copy];
+}
+</code></pre><p>ViewController</p>
+<pre><code>- (NSArray *)questions {
+if (nil == _questions) {
+    _questions = [JKQuestionInfo questions];
+}
+return _questions;
+}
+</code></pre><h1 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h1><h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>//需要计算的话，用宏,否则用const,如下
+
+//图片按钮的宽度
+#define imgW self.imgInsideBtn.bounds.size.width
+
+//答案按钮宽
+CGFloat const kBtnW = 35;
+</code></pre><h2 id="UIButton-配置"><a href="#UIButton-配置" class="headerlink" title="UIButton 配置"></a>UIButton 配置</h2><pre><code>//为按钮设置背景图片
+[self.imgInsideBtn setImage:question.image forState:UIControlStateNormal];
+
+//设定按钮高亮下的背景图片
+[btn setBackgroundImage:[UIImage imageNamed:@&quot;btn_answer_highlighted&quot;] forState:UIControlStateHighlighted];
+
+//设定按钮常规下的字体颜色
+[btn setTitleColor:kAnswerBtnTitleColor forState:UIControlStateNormal];
+
+//设定按钮的点击方法
+[btn addTarget:self action:@selector(answerBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+
+//设定按钮上的字符
+[answerBtn setTitle:nil forState:UIControlStateNormal];
+
+//alpha值切换按钮的不同状态
+self.cover.alpha = 0.0;
+</code></pre><h2 id="遍历移除所有子视图"><a href="#遍历移除所有子视图" class="headerlink" title="遍历移除所有子视图"></a>遍历移除所有子视图</h2><pre><code>for (UIButton *btn in self.answerView.subviews) {
+    [btn removeFromSuperview];
+}
+</code></pre><h2 id="UIView-配置"><a href="#UIView-配置" class="headerlink" title="UIView 配置"></a>UIView 配置</h2><pre><code>//该按钮不隐藏
+optionBtn.hidden = NO;
+
+//该view是否具有互动性
+self.optionsView.userInteractionEnabled = YES;
+
+//将中间图片按钮设置成是离屏幕最近一层,所有子视图的最上面
+[self.view bringSubviewToFront:self.imgInsideBtn];
+</code></pre>
       
     </div>
 
@@ -416,7 +492,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -433,7 +509,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -473,7 +549,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图分析"><span class="nav-number">2.</span> <span class="nav-text">视图分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图分析"><span class="nav-number">2.</span> <span class="nav-text">视图分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载plist数据"><span class="nav-number">3.</span> <span class="nav-text">加载plist数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController"><span class="nav-number">4.</span> <span class="nav-text">ViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义常量"><span class="nav-number">4.1.</span> <span class="nav-text">定义常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton-配置"><span class="nav-number">4.2.</span> <span class="nav-text">UIButton 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历移除所有子视图"><span class="nav-number">4.3.</span> <span class="nav-text">遍历移除所有子视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView-配置"><span class="nav-number">4.4.</span> <span class="nav-text">UIView 配置</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

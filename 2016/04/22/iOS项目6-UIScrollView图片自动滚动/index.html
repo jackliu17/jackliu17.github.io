@@ -63,27 +63,43 @@
 
 <meta name="description" content="效果图
 功能分析
-项目架构1
-项目架构2">
+定义常量的两种方式//屏幕高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//图像数量
+CGFloat kImgCount = 10;
+//Y轴坐标
+CGFloa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS项目6.UIScrollView图片自动滚动">
 <meta property="og:url" content="http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
 <meta property="og:description" content="效果图
 功能分析
-项目架构1
-项目架构2">
+定义常量的两种方式//屏幕高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//图像数量
+CGFloat kImgCount = 10;
+//Y轴坐标
+CGFloa">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE1.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE2.png">
-<meta property="og:updated_time" content="2016-04-28T03:15:12.000Z">
+<meta property="og:updated_time" content="2016-05-11T06:06:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS项目6.UIScrollView图片自动滚动">
 <meta name="twitter:description" content="效果图
 功能分析
-项目架构1
-项目架构2">
+定义常量的两种方式//屏幕高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//图像数量
+CGFloat kImgCount = 10;
+//Y轴坐标
+CGFloa">
 <meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
 
 
@@ -309,11 +325,55 @@
       
 
       
-        <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png" alt="效果图"></p>
-<h2 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png" alt="功能分析"></p>
-<h2 id="项目架构1"><a href="#项目架构1" class="headerlink" title="项目架构1"></a>项目架构1</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE1.png" alt="项目架构1"></p>
-<h2 id="项目架构2"><a href="#项目架构2" class="headerlink" title="项目架构2"></a>项目架构2</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE2.png" alt="项目架构2"></p>
+        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png" alt="效果图"></p>
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png" alt="功能分析"></p>
+<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//图像数量
+CGFloat kImgCount = 10;
+//Y轴坐标
+CGFloat scrollY = 20;
+//页面控制器宽度
+CGFloat pageCtrlWidth = 200;
+</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
+self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
 
+
+//配置滚动视图可以页面显示
+self.scrollView.pagingEnabled = YES;
+
+
+//在滚动视图中实现图像偏移
+[self.scrollView setContentOffset:point animated:YES];
+
+
+//滚动视图滚动之后
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+}
+
+//当视图将要拖动的时候
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+
+}
+
+//当视图停止拖拽的时候
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+}
+</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
+</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
+self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                              target:self
+                                            selector:@selector(nextPage)
+                                            userInfo:nil
+                                             repeats:YES];
+
+//停止定时器
+[self.timer invalidate];
+</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
+</code></pre>
       
     </div>
 
@@ -423,7 +483,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -440,7 +500,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -480,7 +540,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#功能分析"><span class="nav-number">2.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目架构1"><span class="nav-number">3.</span> <span class="nav-text">项目架构1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目架构2"><span class="nav-number">4.</span> <span class="nav-text">项目架构2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能分析"><span class="nav-number">2.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义常量的两种方式"><span class="nav-number">3.</span> <span class="nav-text">定义常量的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIScrollView的配置"><span class="nav-number">4.</span> <span class="nav-text">UIScrollView的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加视图-插入"><span class="nav-number">5.</span> <span class="nav-text">添加视图 - 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器添加和停止"><span class="nav-number">6.</span> <span class="nav-text">定时器添加和停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环调用"><span class="nav-number">7.</span> <span class="nav-text">循环调用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
