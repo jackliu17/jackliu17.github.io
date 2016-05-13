@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_animation," />
+  <meta name="keywords" content="iOS,iOS_Gesture,codeExample," />
 
 
 
@@ -61,39 +61,31 @@
 
 
 
-<meta name="description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
-
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
+<meta name="description" content="手势的种类
+UITapGestureRecognizer   
+UIPinGestureRecognizer   Pinch 捏合
+UIRotationGestureRecognizer  Rotation 旋转
+UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
+UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/index.html">
+<meta property="og:title" content="iOS项目13-手势识别">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/13/iOS项目13-手势识别/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
-
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
-<meta property="og:updated_time" content="2016-05-05T04:37:27.000Z">
+<meta property="og:description" content="手势的种类
+UITapGestureRecognizer   
+UIPinGestureRecognizer   Pinch 捏合
+UIRotationGestureRecognizer  Rotation 旋转
+UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
+UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
+<meta property="og:updated_time" content="2016-05-13T02:10:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta name="twitter:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
-
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
+<meta name="twitter:title" content="iOS项目13-手势识别">
+<meta name="twitter:description" content="手势的种类
+UITapGestureRecognizer   
+UIPinGestureRecognizer   Pinch 捏合
+UIRotationGestureRecognizer  Rotation 旋转
+UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
+UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
 
 
 
@@ -111,7 +103,7 @@ POP动画引擎中Layer与CALayer的区别
   };
 </script>
 
-  <title> Facebook开源动画库POP实现真实衰减与弹簧动画 | Cowboy Tech </title>
+  <title> iOS项目13-手势识别 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +245,7 @@ POP动画引擎中Layer与CALayer的区别
             
             
               
-                Facebook开源动画库POP实现真实衰减与弹簧动画
+                iOS项目13-手势识别
               
             
           </h1>
@@ -265,8 +257,8 @@ POP动画引擎中Layer与CALayer的区别
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-05T14:36:15+10:00" content="2016-05-05">
-              2016-05-05
+            <time itemprop="dateCreated" datetime="2016-05-13T12:07:26+10:00" content="2016-05-13">
+              2016-05-13
             </time>
           </span>
 
@@ -295,8 +287,8 @@ POP动画引擎中Layer与CALayer的区别
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="commentsCount"></span>
+                <a href="/2016/05/13/iOS项目13-手势识别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/13/iOS项目13-手势识别/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -318,29 +310,86 @@ POP动画引擎中Layer与CALayer的区别
       
 
       
-        <h1 id="POP动画引擎简介"><a href="#POP动画引擎简介" class="headerlink" title="POP动画引擎简介"></a>POP动画引擎简介</h1><ol>
-<li>POP动画引擎是Facebook公司开源的</li>
-<li>POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)</li>
-<li>POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)</li>
-<li>POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似</li>
+        <h1 id="手势的种类"><a href="#手势的种类" class="headerlink" title="手势的种类"></a>手势的种类</h1><ol>
+<li>UITapGestureRecognizer   </li>
+<li>UIPinGestureRecognizer   Pinch 捏合</li>
+<li>UIRotationGestureRecognizer  Rotation 旋转</li>
+<li>UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向</li>
+<li>UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏移量</li>
+<li>UILongPressGestureRecognizer LongPress 长按</li>
 </ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别"><a href="#POP动画引擎中Layer与CALayer的区别" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><ol>
-<li>使用POP动画与使用CALayer动画非常相似</li>
-<li>POP动画的执行没有中间状态</li>
-<li>POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果</li>
-<li>POP动画可以作用在任何对象上，不仅仅是CALayer</li>
-</ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别-1"><a href="#POP动画引擎中Layer与CALayer的区别-1" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png" alt=""></p>
-<h1 id="用POP动画引擎实现衰减动画"><a href="#用POP动画引擎实现衰减动画" class="headerlink" title="用POP动画引擎实现衰减动画"></a>用POP动画引擎实现衰减动画</h1><ol>
-<li>衰减动画由POPDecayAnimation来实现</li>
-<li>需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果</li>
-</ol>
-<h1 id="用POP动画引擎实现弹簧动画"><a href="#用POP动画引擎实现弹簧动画" class="headerlink" title="用POP动画引擎实现弹簧动画"></a>用POP动画引擎实现弹簧动画</h1><ol>
-<li>弹簧动画由POPSpringAnimation来实现</li>
-<li>弹簧的质量速度时间等值都是可以设置的</li>
-</ol>
-<p>For more information , go to <a href="https://github.com/facebook/pop" target="_blank" rel="external">https://github.com/facebook/pop</a></p>
+<h1 id="Tap点击"><a href="#Tap点击" class="headerlink" title="Tap点击"></a>Tap点击</h1><pre><code>/*  一个手指单击*/
+UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SignleTap:)];
+tap.numberOfTapsRequired = 1;
+tap.numberOfTouchesRequired = 1;
+[self.view addGestureRecognizer:tap];
 
+/*一个手指双击*/
+UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];
+tap2.numberOfTapsRequired = 2;
+[self.view addGestureRecognizer:tap2];
+
+//当tap 和 tap2同时出现在视图上，取消tap
+[tap requireGestureRecognizerToFail:tap2];
+
+/* 两个手指单击*/
+UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SigleTwoFingerTap:)];
+tap3.numberOfTouchesRequired = 2;
+[self.view addGestureRecognizer:tap3];
+//当tap2 和 tap3同时出现在视图上，取消tap2
+[tap2 requireGestureRecognizerToFail:tap3];
+</code></pre><h2 id="Tap互斥"><a href="#Tap互斥" class="headerlink" title="Tap互斥"></a>Tap互斥</h2><pre><code>/*
+[A requireGestureRecognizerToFail:B]
+当A手势发生时，即便A已经满足条件，但要等到B手势失败后才触发
+*/
+</code></pre><h1 id="Swipe轻扫手势"><a href="#Swipe轻扫手势" class="headerlink" title="Swipe轻扫手势"></a>Swipe轻扫手势</h1><pre><code>UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(SwipeAction:)];
+swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+[self.view addGestureRecognizer:swipe];
+</code></pre><h1 id="Pinch捏合手势"><a href="#Pinch捏合手势" class="headerlink" title="Pinch捏合手势"></a>Pinch捏合手势</h1><pre><code>- (void)PinchGesture{
+UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(PinchAction:)];
+[self.view addGestureRecognizer:pinch];
+}
+
+//pin的缩放
+- (void)PinchAction:(UIPinchGestureRecognizer *)pinch{
+float scale = pinch.scale;
+pinch.view.transform = CGAffineTransformScale(pinch.view.transform, scale, scale);
+if (scale &gt; 1) {
+    _genstureLabel.text = @&quot;捏合放大&quot;;
+}else if (scale &lt; 1){
+    _genstureLabel.text = @&quot;捏合缩小&quot;;
+}
+}
+</code></pre><h1 id="Pan拖移手势"><a href="#Pan拖移手势" class="headerlink" title="Pan拖移手势"></a>Pan拖移手势</h1><pre><code>- (void)PanGesture{
+UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
+[_genstureLabel addGestureRecognizer:pan];
+}
+
+- (void)PanAction:(UIPanGestureRecognizer *)pan{
+//移动的坐标值
+CGPoint translation = [pan translationInView:self.view];
+//移动后的坐标
+pan.view.center = CGPointMake(pan.view.center.x + translation.x, pan.view.center.y + translation.y);
+//设置坐标和速度
+[pan setTranslation:CGPointZero inView:self.view];
+_genstureLabel.text = @&quot;把我放哪啊&quot;;
+}
+</code></pre><h1 id="Rotation旋转手势"><a href="#Rotation旋转手势" class="headerlink" title="Rotation旋转手势"></a>Rotation旋转手势</h1><pre><code>- (void)RotationGesture{
+UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(RotationAction:)];
+[_genstureLabel addGestureRecognizer:rotation];
+}
+
+- (void)RotationAction:(UIRotationGestureRecognizer *)rotationGes{  
+rotationGes.view.transform = CGAffineTransformRotate(rotationGes.view.transform, rotationGes.rotation);
+rotationGes.rotation = M_PI;
+_genstureLabel.text = @&quot;旋转&quot;;
+}
+</code></pre><h1 id="LongPress长按手势"><a href="#LongPress长按手势" class="headerlink" title="LongPress长按手势"></a>LongPress长按手势</h1><pre><code>- (void)LongPressGesture{
+UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressAction:)];
+longPress.minimumPressDuration = 2;
+[self.view addGestureRecognizer:longPress];  
+}
+</code></pre>
       
     </div>
 
@@ -356,7 +405,9 @@ POP动画引擎中Layer与CALayer的区别
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-animation/" rel="tag">#iOS_animation</a>
+            <a href="/tags/iOS-Gesture/" rel="tag">#iOS_Gesture</a>
+          
+            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
           
         </div>
       
@@ -365,17 +416,13 @@ POP动画引擎中Layer与CALayer的区别
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/03/使用maskView设计动画及遮盖/" rel="next" title="使用maskView设计动画及遮盖">
-                <i class="fa fa-chevron-left"></i> 使用maskView设计动画及遮盖
+              <a href="/2016/05/12/Untitled/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/05/缓动函数与关键帧动画/" rel="prev" title="缓动函数与关键帧动画">
-                缓动函数与关键帧动画 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,7 +554,7 @@ POP动画引擎中Layer与CALayer的区别
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎简介"><span class="nav-number">1.</span> <span class="nav-text">POP动画引擎简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别"><span class="nav-number">2.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别-1"><span class="nav-number">3.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现衰减动画"><span class="nav-number">4.</span> <span class="nav-text">用POP动画引擎实现衰减动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现弹簧动画"><span class="nav-number">5.</span> <span class="nav-text">用POP动画引擎实现弹簧动画</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#手势的种类"><span class="nav-number">1.</span> <span class="nav-text">手势的种类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tap点击"><span class="nav-number">2.</span> <span class="nav-text">Tap点击</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tap互斥"><span class="nav-number">2.1.</span> <span class="nav-text">Tap互斥</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swipe轻扫手势"><span class="nav-number">3.</span> <span class="nav-text">Swipe轻扫手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pinch捏合手势"><span class="nav-number">4.</span> <span class="nav-text">Pinch捏合手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pan拖移手势"><span class="nav-number">5.</span> <span class="nav-text">Pan拖移手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rotation旋转手势"><span class="nav-number">6.</span> <span class="nav-text">Rotation旋转手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LongPress长按手势"><span class="nav-number">7.</span> <span class="nav-text">LongPress长按手势</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -765,9 +812,9 @@ POP动画引擎中Layer与CALayer的区别
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
-      var disqus_title = 'Facebook开源动画库POP实现真实衰减与弹簧动画';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
+      var disqus_identifier = '2016/05/13/iOS项目13-手势识别/';
+      var disqus_title = 'iOS项目13-手势识别';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/13/iOS项目13-手势识别/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
