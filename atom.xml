@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-13T02:10:35.000Z</updated>
+  <updated>2016-05-16T06:23:05.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,287 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS项目011-012.绘制图形及小黄人</title>
+    <link href="http://jackliu17.github.io/2016/05/16/iOS%E9%A1%B9%E7%9B%AE011-012-%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2%E5%8F%8A%E5%B0%8F%E9%BB%84%E4%BA%BA/"/>
+    <id>http://jackliu17.github.io/2016/05/16/iOS项目011-012-绘制图形及小黄人/</id>
+    <published>2016-05-16T06:18:56.000Z</published>
+    <updated>2016-05-16T06:23:05.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Quartz-2D&quot;&gt;&lt;a href=&quot;#Quartz-2D&quot; class=&quot;headerlink&quot; title=&quot;Quartz 2D&quot;&gt;&lt;/a&gt;Quartz 2D&lt;/h1&gt;&lt;h2 id=&quot;什么是Quartz-2D&quot;&gt;&lt;a href=&quot;#什么是Quartz-2D&quot; class=&quot;headerlink&quot; title=&quot;什么是Quartz 2D&quot;&gt;&lt;/a&gt;什么是Quartz 2D&lt;/h2&gt;&lt;p&gt;Quartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想&lt;/p&gt;
+&lt;h2 id=&quot;Quartz-2D作用&quot;&gt;&lt;a href=&quot;#Quartz-2D作用&quot; class=&quot;headerlink&quot; title=&quot;Quartz 2D作用&quot;&gt;&lt;/a&gt;Quartz 2D作用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;作用，绘制图形：线条，三角形，矩形，圆形，弧形&lt;/li&gt;
+&lt;li&gt;绘制文字&lt;/li&gt;
+&lt;li&gt;绘制生成图像&lt;/li&gt;
+&lt;li&gt;读取生成PDF&lt;/li&gt;
+&lt;li&gt;截图裁剪图片&lt;/li&gt;
+&lt;li&gt;自定义UI控件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;图形上下文-Graphics-Context&quot;&gt;&lt;a href=&quot;#图形上下文-Graphics-Context&quot; class=&quot;headerlink&quot; title=&quot;图形上下文(Graphics Context)&quot;&gt;&lt;/a&gt;图形上下文(Graphics Context)&lt;/h1&gt;&lt;p&gt;是一个CGContextRef类型的数据.作用:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;保存绘图信息，绘图状态&lt;/li&gt;
+&lt;li&gt;决定绘制的输出目标，绘制到什么地方去，输出目标可以是PDF文件，Bitmap或者显示器的窗口上&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;什么时候自动调用drawRect&quot;&gt;&lt;a href=&quot;#什么时候自动调用drawRect&quot; class=&quot;headerlink&quot; title=&quot;什么时候自动调用drawRect&quot;&gt;&lt;/a&gt;什么时候自动调用drawRect&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;系统自动调用，视图显示在屏幕上的时候调用且调用一次&lt;/li&gt;
+&lt;li&gt;需要更新的时候也会被调用，这时需要使seetNeedsDisplay&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (void)drawRect:(CGRect)rect &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// Drawing code&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;直线绘制&quot;&gt;&lt;a href=&quot;#直线绘制&quot; class=&quot;headerlink&quot; title=&quot;直线绘制&quot;&gt;&lt;/a&gt;直线绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drwaline(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+CGContextSaveGState(context);
+
+//第1条线-----------------------------------------
+
+CGContextSetLineWidth(context, 20);
+CGContextSetLineCap(context, kCGLineCapRound);
+CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
+CGContextMoveToPoint(context, 10, 10);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextStrokePath(context);
+
+CGContextRestoreGState(context);
+
+//2条线-------------------------------------------
+
+[[UIColor blueColor] set];
+CGContextSetLineJoin(context, kCGLineJoinRound);
+CGContextMoveToPoint(context, 100, 120);
+CGContextAddLineToPoint(context, 150, 120);
+CGContextAddLineToPoint(context, 150, 180);
+CGContextStrokePath(context);
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像保留栈&quot;&gt;&lt;a href=&quot;#图像保留栈&quot; class=&quot;headerlink&quot; title=&quot;图像保留栈&quot;&gt;&lt;/a&gt;图像保留栈&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//将上下文复制一份放到栈中,防止两个图形互相影响
+CGContextSaveGState(context);
+
+....................
+
+//将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
+CGContextRestoreGState(context);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;矩形绘制&quot;&gt;&lt;a href=&quot;#矩形绘制&quot; class=&quot;headerlink&quot; title=&quot;矩形绘制&quot;&gt;&lt;/a&gt;矩形绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawR(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
+[[UIColor purpleColor] setFill];
+CGContextFillPath(context);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;三角形绘制&quot;&gt;&lt;a href=&quot;#三角形绘制&quot; class=&quot;headerlink&quot; title=&quot;三角形绘制&quot;&gt;&lt;/a&gt;三角形绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawTriangle(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextMoveToPoint(context, 0, 0);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextAddLineToPoint(context, 150, 100);
+CGContextClosePath(context);
+[[UIColor redColor] set];
+CGContextStrokePath(context);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;圆形-椭圆形绘制&quot;&gt;&lt;a href=&quot;#圆形-椭圆形绘制&quot; class=&quot;headerlink&quot; title=&quot;圆形/椭圆形绘制&quot;&gt;&lt;/a&gt;圆形/椭圆形绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawCircle(){
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//绘制图形,宽度高度一样就是圆形，不一样就是椭圆
+CGContextAddEllipseInRect(context, CGRectMake(50, 50, 130, 100));
+CGContextSetLineWidth(context, 10);
+
+CGContextStrokePath(context);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;弧形绘制&quot;&gt;&lt;a href=&quot;#弧形绘制&quot; class=&quot;headerlink&quot; title=&quot;弧形绘制&quot;&gt;&lt;/a&gt;弧形绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CGFloat arc(CGFloat angle){
+return angle * (M_PI / 180);
+}
+
+void drawArc(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//CGContextAddArc 内各个参数的定义
+// x\y : 圆心
+// radius : 半径
+// startAngle : 开始角度
+// endAngle : 结束角度
+// clockwise : 圆弧的伸展方向(0:顺时针, 1:逆时针)
+
+CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
+
+//CGContextFillPath(context); 如果采用这个方法就是填充弧形
+ CGContextStrokePath(context);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;文字绘制&quot;&gt;&lt;a href=&quot;#文字绘制&quot; class=&quot;headerlink&quot; title=&quot;文字绘制&quot;&gt;&lt;/a&gt;文字绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawText(){
+NSString *str = @&amp;quot;天道酬勤&amp;quot;;
+NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
+[str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;图像绘制-设置水印&quot;&gt;&lt;a href=&quot;#图像绘制-设置水印&quot; class=&quot;headerlink&quot; title=&quot;图像绘制(设置水印)&quot;&gt;&lt;/a&gt;图像绘制(设置水印)&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawImg(){
+
+UIImage *img = [UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;];
+
+//[img drawAtPoint:CGPointMake(50, 50)]; 这个方法是在某个点开始绘制
+//[img drawInRect:CGRectMake(50, 50, 500, 500)]; 在某个矩形框内绘制
+
+//以下方法规定了图片的宽高，以他来进行填充,可以画出格子图案
+[img drawAsPatternInRect:CGRectMake(0, 0, 300, 300)];
+
+NSString *str = @&amp;quot;刘米米爱兔宝宝&amp;quot;;
+[str drawInRect:CGRectMake(0, 0, 100, 30) withAttributes:nil];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;JPG-vs-PNG&quot;&gt;&lt;a href=&quot;#JPG-vs-PNG&quot; class=&quot;headerlink&quot; title=&quot;JPG vs PNG&quot;&gt;&lt;/a&gt;JPG vs PNG&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//取得图片,jpg要后缀名，png不用
+UIImage *img = [UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;贝塞尔曲线绘制&quot;&gt;&lt;a href=&quot;#贝塞尔曲线绘制&quot; class=&quot;headerlink&quot; title=&quot;贝塞尔曲线绘制&quot;&gt;&lt;/a&gt;贝塞尔曲线绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void drawBezier(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+//起点
+CGContextMoveToPoint(context, 10, 10);
+//2个控制点 和终点
+CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
+//1个控制点
+//CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
+CGContextStrokePath(context);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;小黄人绘制&quot;&gt;&lt;a href=&quot;#小黄人绘制&quot; class=&quot;headerlink&quot; title=&quot;小黄人绘制&quot;&gt;&lt;/a&gt;小黄人绘制&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;定义常量&quot;&gt;&lt;a href=&quot;#定义常量&quot; class=&quot;headerlink&quot; title=&quot;定义常量&quot;&gt;&lt;/a&gt;定义常量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;中心的的x坐标&quot;&gt;&lt;a href=&quot;#中心的的x坐标&quot; class=&quot;headerlink&quot; title=&quot;中心的的x坐标&quot;&gt;&lt;/a&gt;中心的的x坐标&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;CGFloat topX = rect.size.width * 0.5;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Quartz-2D&quot;&gt;&lt;a href=&quot;#Quartz-2D&quot; class=&quot;headerlink&quot; title=&quot;Quartz 2D&quot;&gt;&lt;/a&gt;Quartz 2D&lt;/h1&gt;&lt;h2 id=&quot;什么是Quartz-2D&quot;&gt;&lt;a href=&quot;#什么是Quartz-2D&quot;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS项目014.九宫格手势解锁</title>
+    <link href="http://jackliu17.github.io/2016/05/14/iOS%E9%A1%B9%E7%9B%AE014-%E4%B9%9D%E5%AE%AB%E6%A0%BC%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81/"/>
+    <id>http://jackliu17.github.io/2016/05/14/iOS项目014-九宫格手势解锁/</id>
+    <published>2016-05-14T03:02:55.000Z</published>
+    <updated>2016-05-14T03:05:48.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;常量的定义&quot;&gt;&lt;a href=&quot;#常量的定义&quot; class=&quot;headerlink&quot; title=&quot;常量的定义&quot;&gt;&lt;/a&gt;常量的定义&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
+CGFloat const btnCount = 9;
+
+// define只是字符的转换
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIView的两种init方法&quot;&gt;&lt;a href=&quot;#UIView的两种init方法&quot; class=&quot;headerlink&quot; title=&quot;UIView的两种init方法&quot;&gt;&lt;/a&gt;UIView的两种init方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//通过代码创建会调用这个方法
+- (instancetype)initWithFrame:(CGRect)frame{
+if (self = [super initWithFrame:frame]) {
+    [self AddButton];
+}
+return self;
+}
+
+//通过storyboard 或者 xib 文件创建的时候会调用
+-(id)initWithCoder:(NSCoder *)aDecoder{
+if (self = [super initWithCoder:aDecoder]) {
+    [self AddButton];
+}
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;常用插件&quot;&gt;&lt;a href=&quot;#常用插件&quot; class=&quot;headerlink&quot; title=&quot;常用插件&quot;&gt;&lt;/a&gt;常用插件&lt;/h1&gt;&lt;p&gt;在github上查找，然后下载，完成之后运行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;KSImageNamed
+VVDocumenter-Xcode
+ColorSense-for-Xcode-master
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸方法&quot;&gt;&lt;a href=&quot;#触摸方法&quot; class=&quot;headerlink&quot; title=&quot;触摸方法&quot;&gt;&lt;/a&gt;触摸方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+[self touchesEnded:touches withEvent:event];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸点的坐标&quot;&gt;&lt;a href=&quot;#触摸点的坐标&quot; class=&quot;headerlink&quot; title=&quot;触摸点的坐标&quot;&gt;&lt;/a&gt;触摸点的坐标&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UITouch *touch = [touches anyObject];
+CGPoint point = [touch locationInView:self];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸的按钮&quot;&gt;&lt;a href=&quot;#触摸的按钮&quot; class=&quot;headerlink&quot; title=&quot;触摸的按钮&quot;&gt;&lt;/a&gt;触摸的按钮&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (UIButton *)buttonWithPoint:(CGPoint)point{
+for (UIButton *btn in self.subviews) {
+    if (CGRectContainsPoint(btn.frame, point)) {
+        return btn;
+    }
+}
+return nil;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;点是否在指定CGRect内&quot;&gt;&lt;a href=&quot;#点是否在指定CGRect内&quot; class=&quot;headerlink&quot; title=&quot;点是否在指定CGRect内&quot;&gt;&lt;/a&gt;点是否在指定CGRect内&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;bool CGRectContainsPoint (
+    CGRect rect,
+    CGPoint point
+);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;m-里声明私有属性&quot;&gt;&lt;a href=&quot;#m-里声明私有属性&quot; class=&quot;headerlink&quot; title=&quot;.m 里声明私有属性&quot;&gt;&lt;/a&gt;.m 里声明私有属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//匿名扩展（类目的特例） ：可以声明属性,私有的
+@interface JKLockView ()
+@property (nonatomic, strong) NSMutableArray *selectedBtns;
+@property (nonatomic, assign) CGPoint currentPoint;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组或字典添加对象需要先判断&quot;&gt;&lt;a href=&quot;#数组或字典添加对象需要先判断&quot; class=&quot;headerlink&quot; title=&quot;数组或字典添加对象需要先判断&quot;&gt;&lt;/a&gt;数组或字典添加对象需要先判断&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;if (btn) {
+[self.selectedBtns addObject:btn];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;开始绘图&quot;&gt;&lt;a href=&quot;#开始绘图&quot; class=&quot;headerlink&quot; title=&quot;开始绘图&quot;&gt;&lt;/a&gt;开始绘图&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[self setNeedsDisplay];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘制贝塞尔曲线&quot;&gt;&lt;a href=&quot;#绘制贝塞尔曲线&quot; class=&quot;headerlink&quot; title=&quot;绘制贝塞尔曲线&quot;&gt;&lt;/a&gt;绘制贝塞尔曲线&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UIBezierPath *path = [UIBezierPath bezierPath];
+path.lineWidth = 8;
+path.lineJoinStyle = kCGLineJoinRound;
+[[UIColor colorWithRed:32/255.0 green:210/255.0 blue:254/255.0 alpha:0.5] set];
+
+//遍历按钮
+for (int i = 0; i &amp;lt; self.selectedBtns.count; i++) {
+    UIButton *button = self.selectedBtns[i];
+    if (i == 0) {
+
+        //设置起点
+        [path moveToPoint:button.center];
+
+    }else{//连线
+
+        [path addLineToPoint:button.center];
+    }
+}
+
+[path addLineToPoint:self.currentPoint];
+[path stroke];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组中每个对象执行某方法&quot;&gt;&lt;a href=&quot;#数组中每个对象执行某方法&quot; class=&quot;headerlink&quot; title=&quot;数组中每个对象执行某方法&quot;&gt;&lt;/a&gt;数组中每个对象执行某方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//makeObjectsPerformSelector  
+//每个按钮设为没有选中状态
+//向数组中的每一个对象发送方法 setSelected:，方法参数为 NO
+[self.selectedBtns makeObjectsPerformSelector:@selector(setSelected:) withObject:NO];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;IBOutlet-和-delegate连接&quot;&gt;&lt;a href=&quot;#IBOutlet-和-delegate连接&quot; class=&quot;headerlink&quot; title=&quot;IBOutlet 和 delegate连接&quot;&gt;&lt;/a&gt;IBOutlet 和 delegate连接&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, assign) IBOutlet id&amp;lt;JKLockViewDelegate&amp;gt; delegate;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIAlertController&quot;&gt;&lt;a href=&quot;#UIAlertController&quot; class=&quot;headerlink&quot; title=&quot;UIAlertController&quot;&gt;&lt;/a&gt;UIAlertController&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UIAlertController *alert = [UIAlertController alertControllerWithTitle:@&amp;quot;密码正确&amp;quot; message:nil preferredStyle:UIAlertControllerStyleAlert];
+[alert addAction:[UIAlertAction actionWithTitle:@&amp;quot;确定&amp;quot; style:UIAlertActionStyleDestructive handler:nil]];
+[alert addAction:[UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleCancel handler:nil]];
+[self presentViewController:alert animated:YES completion:nil];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;连接字符串&quot;&gt;&lt;a href=&quot;#连接字符串&quot; class=&quot;headerlink&quot; title=&quot;连接字符串&quot;&gt;&lt;/a&gt;连接字符串&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[path appendFormat:@&amp;quot;%ld&amp;quot;,(long)btn.tag];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;heade
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目13-手势识别</title>
@@ -116,25 +397,9 @@ longPress.minimumPressDuration = 2;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_Gesture" scheme="http://jackliu17.github.io/tags/iOS-Gesture/"/>
-    
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://jackliu17.github.io/2016/05/12/Untitled/"/>
-    <id>http://jackliu17.github.io/2016/05/12/Untitled/</id>
-    <published>2016-05-12T12:05:23.000Z</published>
-    <updated>2016-05-12T12:05:23.000Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
+      <category term="iOS_Gesture" scheme="http://jackliu17.github.io/tags/iOS-Gesture/"/>
     
   </entry>
   
@@ -3439,78 +3704,6 @@ For OpenGL ES 3.0:
       <category term="openGL_ES" scheme="http://jackliu17.github.io/tags/openGL-ES/"/>
     
       <category term="Android_API_Guides" scheme="http://jackliu17.github.io/tags/Android-API-Guides/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目6.UIScrollView图片自动滚动</title>
-    <link href="http://jackliu17.github.io/2016/04/22/iOS%E9%A1%B9%E7%9B%AE6-UIScrollView%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8/"/>
-    <id>http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/</id>
-    <published>2016-04-22T01:13:06.000Z</published>
-    <updated>2016-05-11T06:06:49.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png&quot; alt=&quot;效果图&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;功能分析&quot;&gt;&lt;a href=&quot;#功能分析&quot; class=&quot;headerlink&quot; title=&quot;功能分析&quot;&gt;&lt;/a&gt;功能分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png&quot; alt=&quot;功能分析&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;定义常量的两种方式&quot;&gt;&lt;a href=&quot;#定义常量的两种方式&quot; class=&quot;headerlink&quot; title=&quot;定义常量的两种方式&quot;&gt;&lt;/a&gt;定义常量的两种方式&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIScrollView的配置&quot;&gt;&lt;a href=&quot;#UIScrollView的配置&quot; class=&quot;headerlink&quot; title=&quot;UIScrollView的配置&quot;&gt;&lt;/a&gt;UIScrollView的配置&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
-
-
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
-
-
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
-
-
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
-}
-
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
-}
-
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;添加视图-插入&quot;&gt;&lt;a href=&quot;#添加视图-插入&quot; class=&quot;headerlink&quot; title=&quot;添加视图 - 插入&quot;&gt;&lt;/a&gt;添加视图 - 插入&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定时器添加和停止&quot;&gt;&lt;a href=&quot;#定时器添加和停止&quot; class=&quot;headerlink&quot; title=&quot;定时器添加和停止&quot;&gt;&lt;/a&gt;定时器添加和停止&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
-
-//停止定时器
-[self.timer invalidate];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;循环调用&quot;&gt;&lt;a href=&quot;#循环调用&quot; class=&quot;headerlink&quot; title=&quot;循环调用&quot;&gt;&lt;/a&gt;循环调用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.p
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   

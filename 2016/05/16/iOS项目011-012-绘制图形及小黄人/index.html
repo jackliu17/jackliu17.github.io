@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_animation," />
+  <meta name="keywords" content="iOS,codeExample," />
 
 
 
@@ -61,39 +61,53 @@
 
 
 
-<meta name="description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta name="description" content="Quartz 2D什么是Quartz 2DQuartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想
+Quartz 2D作用
+作用，绘制图形：线条，三角形，矩形，圆形，弧形
+绘制文字
+绘制生成图像
+读取生成PDF
+截图裁剪图片
+自定义UI控件
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
+图形上下文(Graphics Context)是一个CGContextRef类型的数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/index.html">
+<meta property="og:title" content="iOS项目011-012.绘制图形及小黄人">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/16/iOS项目011-012-绘制图形及小黄人/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta property="og:description" content="Quartz 2D什么是Quartz 2DQuartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想
+Quartz 2D作用
+作用，绘制图形：线条，三角形，矩形，圆形，弧形
+绘制文字
+绘制生成图像
+读取生成PDF
+截图裁剪图片
+自定义UI控件
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
-<meta property="og:updated_time" content="2016-05-05T04:37:27.000Z">
+图形上下文(Graphics Context)是一个CGContextRef类型的数">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png">
+<meta property="og:updated_time" content="2016-05-16T06:23:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta name="twitter:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta name="twitter:title" content="iOS项目011-012.绘制图形及小黄人">
+<meta name="twitter:description" content="Quartz 2D什么是Quartz 2DQuartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想
+Quartz 2D作用
+作用，绘制图形：线条，三角形，矩形，圆形，弧形
+绘制文字
+绘制生成图像
+读取生成PDF
+截图裁剪图片
+自定义UI控件
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
+图形上下文(Graphics Context)是一个CGContextRef类型的数">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png">
 
 
 
@@ -111,7 +125,7 @@ POP动画引擎中Layer与CALayer的区别
   };
 </script>
 
-  <title> Facebook开源动画库POP实现真实衰减与弹簧动画 | Cowboy Tech </title>
+  <title> iOS项目011-012.绘制图形及小黄人 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +267,7 @@ POP动画引擎中Layer与CALayer的区别
             
             
               
-                Facebook开源动画库POP实现真实衰减与弹簧动画
+                iOS项目011-012.绘制图形及小黄人
               
             
           </h1>
@@ -265,8 +279,8 @@ POP动画引擎中Layer与CALayer的区别
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-05T14:36:15+10:00" content="2016-05-05">
-              2016-05-05
+            <time itemprop="dateCreated" datetime="2016-05-16T16:18:56+10:00" content="2016-05-16">
+              2016-05-16
             </time>
           </span>
 
@@ -295,8 +309,8 @@ POP动画引擎中Layer与CALayer的区别
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="commentsCount"></span>
+                <a href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -318,29 +332,150 @@ POP动画引擎中Layer与CALayer的区别
       
 
       
-        <h1 id="POP动画引擎简介"><a href="#POP动画引擎简介" class="headerlink" title="POP动画引擎简介"></a>POP动画引擎简介</h1><ol>
-<li>POP动画引擎是Facebook公司开源的</li>
-<li>POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)</li>
-<li>POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)</li>
-<li>POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似</li>
+        <h1 id="Quartz-2D"><a href="#Quartz-2D" class="headerlink" title="Quartz 2D"></a>Quartz 2D</h1><h2 id="什么是Quartz-2D"><a href="#什么是Quartz-2D" class="headerlink" title="什么是Quartz 2D"></a>什么是Quartz 2D</h2><p>Quartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想</p>
+<h2 id="Quartz-2D作用"><a href="#Quartz-2D作用" class="headerlink" title="Quartz 2D作用"></a>Quartz 2D作用</h2><ol>
+<li>作用，绘制图形：线条，三角形，矩形，圆形，弧形</li>
+<li>绘制文字</li>
+<li>绘制生成图像</li>
+<li>读取生成PDF</li>
+<li>截图裁剪图片</li>
+<li>自定义UI控件</li>
 </ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别"><a href="#POP动画引擎中Layer与CALayer的区别" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><ol>
-<li>使用POP动画与使用CALayer动画非常相似</li>
-<li>POP动画的执行没有中间状态</li>
-<li>POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果</li>
-<li>POP动画可以作用在任何对象上，不仅仅是CALayer</li>
+<h1 id="图形上下文-Graphics-Context"><a href="#图形上下文-Graphics-Context" class="headerlink" title="图形上下文(Graphics Context)"></a>图形上下文(Graphics Context)</h1><p>是一个CGContextRef类型的数据.作用:</p>
+<ol>
+<li>保存绘图信息，绘图状态</li>
+<li>决定绘制的输出目标，绘制到什么地方去，输出目标可以是PDF文件，Bitmap或者显示器的窗口上</li>
 </ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别-1"><a href="#POP动画引擎中Layer与CALayer的区别-1" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png" alt=""></p>
-<h1 id="用POP动画引擎实现衰减动画"><a href="#用POP动画引擎实现衰减动画" class="headerlink" title="用POP动画引擎实现衰减动画"></a>用POP动画引擎实现衰减动画</h1><ol>
-<li>衰减动画由POPDecayAnimation来实现</li>
-<li>需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果</li>
+<h1 id="什么时候自动调用drawRect"><a href="#什么时候自动调用drawRect" class="headerlink" title="什么时候自动调用drawRect"></a>什么时候自动调用drawRect</h1><ol>
+<li>系统自动调用，视图显示在屏幕上的时候调用且调用一次</li>
+<li>需要更新的时候也会被调用，这时需要使seetNeedsDisplay</li>
 </ol>
-<h1 id="用POP动画引擎实现弹簧动画"><a href="#用POP动画引擎实现弹簧动画" class="headerlink" title="用POP动画引擎实现弹簧动画"></a>用POP动画引擎实现弹簧动画</h1><ol>
-<li>弹簧动画由POPSpringAnimation来实现</li>
-<li>弹簧的质量速度时间等值都是可以设置的</li>
-</ol>
-<p>For more information , go to <a href="https://github.com/facebook/pop" target="_blank" rel="external">https://github.com/facebook/pop</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line">// Drawing code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png" alt=""></p>
+<pre><code>void drwaline(){
 
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+CGContextSaveGState(context);
+
+//第1条线-----------------------------------------
+
+CGContextSetLineWidth(context, 20);
+CGContextSetLineCap(context, kCGLineCapRound);
+CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
+CGContextMoveToPoint(context, 10, 10);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextStrokePath(context);
+
+CGContextRestoreGState(context);
+
+//2条线-------------------------------------------
+
+[[UIColor blueColor] set];
+CGContextSetLineJoin(context, kCGLineJoinRound);
+CGContextMoveToPoint(context, 100, 120);
+CGContextAddLineToPoint(context, 150, 120);
+CGContextAddLineToPoint(context, 150, 180);
+CGContextStrokePath(context);
+
+}
+</code></pre><h2 id="图像保留栈"><a href="#图像保留栈" class="headerlink" title="图像保留栈"></a>图像保留栈</h2><pre><code>//将上下文复制一份放到栈中,防止两个图形互相影响
+CGContextSaveGState(context);
+
+....................
+
+//将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
+CGContextRestoreGState(context);
+</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png" alt=""></p>
+<pre><code>void drawR(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
+[[UIColor purpleColor] setFill];
+CGContextFillPath(context);
+}
+</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png" alt=""></p>
+<pre><code>void drawTriangle(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextMoveToPoint(context, 0, 0);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextAddLineToPoint(context, 150, 100);
+CGContextClosePath(context);
+[[UIColor redColor] set];
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png" alt=""></p>
+<pre><code>void drawCircle(){
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//绘制图形,宽度高度一样就是圆形，不一样就是椭圆
+CGContextAddEllipseInRect(context, CGRectMake(50, 50, 130, 100));
+CGContextSetLineWidth(context, 10);
+
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png" alt=""></p>
+<pre><code>CGFloat arc(CGFloat angle){
+return angle * (M_PI / 180);
+}
+
+void drawArc(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//CGContextAddArc 内各个参数的定义
+// x\y : 圆心
+// radius : 半径
+// startAngle : 开始角度
+// endAngle : 结束角度
+// clockwise : 圆弧的伸展方向(0:顺时针, 1:逆时针)
+
+CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
+
+//CGContextFillPath(context); 如果采用这个方法就是填充弧形
+ CGContextStrokePath(context);
+}
+</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png" alt=""></p>
+<pre><code>void drawText(){
+NSString *str = @&quot;天道酬勤&quot;;
+NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
+[str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
+}
+</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png" alt=""></p>
+<pre><code>void drawImg(){
+
+UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
+
+//[img drawAtPoint:CGPointMake(50, 50)]; 这个方法是在某个点开始绘制
+//[img drawInRect:CGRectMake(50, 50, 500, 500)]; 在某个矩形框内绘制
+
+//以下方法规定了图片的宽高，以他来进行填充,可以画出格子图案
+[img drawAsPatternInRect:CGRectMake(0, 0, 300, 300)];
+
+NSString *str = @&quot;刘米米爱兔宝宝&quot;;
+[str drawInRect:CGRectMake(0, 0, 100, 30) withAttributes:nil];
+}
+</code></pre><h2 id="JPG-vs-PNG"><a href="#JPG-vs-PNG" class="headerlink" title="JPG vs PNG"></a>JPG vs PNG</h2><pre><code>//取得图片,jpg要后缀名，png不用
+UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
+</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png" alt=""></p>
+<pre><code>void drawBezier(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+//起点
+CGContextMoveToPoint(context, 10, 10);
+//2个控制点 和终点
+CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
+//1个控制点
+//CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png" alt=""></p>
+<h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+</code></pre><h2 id="中心的的x坐标"><a href="#中心的的x坐标" class="headerlink" title="中心的的x坐标"></a>中心的的x坐标</h2><pre><code>CGFloat topX = rect.size.width * 0.5;
+</code></pre>
       
     </div>
 
@@ -356,7 +491,7 @@ POP动画引擎中Layer与CALayer的区别
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-animation/" rel="tag">#iOS_animation</a>
+            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
           
         </div>
       
@@ -365,17 +500,13 @@ POP动画引擎中Layer与CALayer的区别
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/03/使用maskView设计动画及遮盖/" rel="next" title="使用maskView设计动画及遮盖">
-                <i class="fa fa-chevron-left"></i> 使用maskView设计动画及遮盖
+              <a href="/2016/05/14/iOS项目014-九宫格手势解锁/" rel="next" title="iOS项目014.九宫格手势解锁">
+                <i class="fa fa-chevron-left"></i> iOS项目014.九宫格手势解锁
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/05/缓动函数与关键帧动画/" rel="prev" title="缓动函数与关键帧动画">
-                缓动函数与关键帧动画 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,7 +638,7 @@ POP动画引擎中Layer与CALayer的区别
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎简介"><span class="nav-number">1.</span> <span class="nav-text">POP动画引擎简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别"><span class="nav-number">2.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别-1"><span class="nav-number">3.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现衰减动画"><span class="nav-number">4.</span> <span class="nav-text">用POP动画引擎实现衰减动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现弹簧动画"><span class="nav-number">5.</span> <span class="nav-text">用POP动画引擎实现弹簧动画</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Quartz-2D"><span class="nav-number">1.</span> <span class="nav-text">Quartz 2D</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Quartz-2D"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Quartz 2D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartz-2D作用"><span class="nav-number">1.2.</span> <span class="nav-text">Quartz 2D作用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图形上下文-Graphics-Context"><span class="nav-number">2.</span> <span class="nav-text">图形上下文(Graphics Context)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么时候自动调用drawRect"><span class="nav-number">3.</span> <span class="nav-text">什么时候自动调用drawRect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#直线绘制"><span class="nav-number">4.</span> <span class="nav-text">直线绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像保留栈"><span class="nav-number">4.1.</span> <span class="nav-text">图像保留栈</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩形绘制"><span class="nav-number">5.</span> <span class="nav-text">矩形绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三角形绘制"><span class="nav-number">6.</span> <span class="nav-text">三角形绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#圆形-椭圆形绘制"><span class="nav-number">7.</span> <span class="nav-text">圆形/椭圆形绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#弧形绘制"><span class="nav-number">8.</span> <span class="nav-text">弧形绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文字绘制"><span class="nav-number">9.</span> <span class="nav-text">文字绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图像绘制-设置水印"><span class="nav-number">10.</span> <span class="nav-text">图像绘制(设置水印)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JPG-vs-PNG"><span class="nav-number">10.1.</span> <span class="nav-text">JPG vs PNG</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝塞尔曲线绘制"><span class="nav-number">11.</span> <span class="nav-text">贝塞尔曲线绘制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小黄人绘制"><span class="nav-number">12.</span> <span class="nav-text">小黄人绘制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义常量"><span class="nav-number">12.1.</span> <span class="nav-text">定义常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中心的的x坐标"><span class="nav-number">12.2.</span> <span class="nav-text">中心的的x坐标</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -765,9 +896,9 @@ POP动画引擎中Layer与CALayer的区别
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
-      var disqus_title = 'Facebook开源动画库POP实现真实衰减与弹簧动画';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
+      var disqus_identifier = '2016/05/16/iOS项目011-012-绘制图形及小黄人/';
+      var disqus_title = 'iOS项目011-012.绘制图形及小黄人';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/16/iOS项目011-012-绘制图形及小黄人/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

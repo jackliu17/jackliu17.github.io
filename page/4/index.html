@@ -238,6 +238,207 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/29/iOS项目8-QQ下拉菜单/" itemprop="url">
+                  iOS项目8.QQ下拉菜单
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-29T22:56:05+10:00" content="2016-04-29">
+              2016-04-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/29/iOS项目8-QQ下拉菜单/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/29/iOS项目8-QQ下拉菜单/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_1.png" alt=""></p>
+<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_2.png" alt=""></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="在项目里添加目录"><a href="#在项目里添加目录" class="headerlink" title="在项目里添加目录"></a>在项目里添加目录</h2><ol>
+<li>点击左下角的+号 “Add file to ….”</li>
+<li>在弹出的对话框，选择左下角的”New folder”</li>
+<li>输入名称，点击右下角的”Add”  </li>
+</ol>
+<p>这样添加的目录才会真实存在与项目中</p>
+<h2 id="创建导航视图"><a href="#创建导航视图" class="headerlink" title="创建导航视图"></a>创建导航视图</h2><pre><code>ListTableViewController *listVC = [[ListTableViewController alloc] init];
+UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:listVC];
+self.window.rootViewController = navCtrl;
+</code></pre><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><ol>
+<li>每个字典对应一个数据模型(Model class），plist中有多少个字典就有多少个Model class</li>
+<li>使用该方法加载数据 — [self setValuesForKeysWithDictionary:dict]</li>
+<li>plist的第一层级都是数组，所以懒加载返回的也是数组</li>
+</ol>
+<h2 id="表视图中设定Section-Header"><a href="#表视图中设定Section-Header" class="headerlink" title="表视图中设定Section Header"></a>表视图中设定Section Header</h2><pre><code>- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+</code></pre><h2 id="每次表视图变动需要reload"><a href="#每次表视图变动需要reload" class="headerlink" title="每次表视图变动需要reload"></a>每次表视图变动需要reload</h2><pre><code>[self.tableView reloadData];
+</code></pre><h2 id="判断展开的Item数量"><a href="#判断展开的Item数量" class="headerlink" title="判断展开的Item数量"></a>判断展开的Item数量</h2><pre><code>NSInteger count = groupModel.isOpen ? groupModel.friends.count : 0;
+</code></pre><h2 id="设置cell的代码"><a href="#设置cell的代码" class="headerlink" title="设置cell的代码"></a>设置cell的代码</h2><pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+static NSString *identifier = @&quot;friendCell&quot;;
+UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];    
+}
+//对应的哪一个section
+JKGroupModel *groupModel = self.dataArray[indexPath.section];
+//对应的哪一个row
+JKFriendsModel *friendModel = groupModel.friends[indexPath.row];
+cell.imageView.image = [UIImage imageNamed:friendModel.icon];
+cell.textLabel.text = friendModel.name;
+cell.detailTextLabel.text = friendModel.intro;
+return cell;
+}
+</code></pre><h2 id="初始化Headerview-UITableViewHeaderFooterView"><a href="#初始化Headerview-UITableViewHeaderFooterView" class="headerlink" title="初始化Headerview(UITableViewHeaderFooterView)"></a>初始化Headerview(UITableViewHeaderFooterView)</h2><pre><code>//类似cell的创建
+
++ (instancetype)headerView:(UITableView *)tableView{
+
+static NSString *identifier = @&quot;header&quot;;
+HeaderView *header =(HeaderView *) [tableView dequeueReusableCellWithIdentifier:identifier];
+
+//用以下这个方式，则只创建一次,此项目不采用
+//HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+
+if (!header) {
+    header = [[HeaderView alloc] initWithReuseIdentifier:identifier];
+}
+return header;
+}
+</code></pre><h2 id="布局子视图"><a href="#布局子视图" class="headerlink" title="布局子视图"></a>布局子视图</h2><pre><code>- (void)layoutSubviews{
+[super layoutSubviews];
+_arrowBtn.frame = self.bounds;
+_label.frame = CGRectMake(self.frame.size.width - 70, 0, 60, self.frame.size.height);
+}
+</code></pre><ol>
+<li>layoutSubviews方法，是当改变父控件高度的时候，自动调用这个方法，所以一般在这里面设置子控件的frame。因为子控件随着父控件而改变。</li>
+<li>UITableViewHeaderFooterView不可以用xib，只能用代码创建</li>
+</ol>
+<h2 id="UIButton的属性设置"><a href="#UIButton的属性设置" class="headerlink" title="UIButton的属性设置"></a>UIButton的属性设置</h2><pre><code>//内容框的内边距
+button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
+//内容的对齐
+button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+//标题的内边距
+button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
+//为button设定方法
+[button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+</code></pre><h2 id="imageView-contentMode"><a href="#imageView-contentMode" class="headerlink" title="imageView.contentMode"></a>imageView.contentMode</h2><pre><code>button.imageView.contentMode = UIViewContentModeCenter;
+button.imageView.clipsToBounds = NO;
+</code></pre><p>这个居中是包括了，横向和纵向都是居中。图片不会拉伸或者压缩，就是按照imageView的frame和图片的大小来居中显示的。</p>
+<p>这里有两种情况：</p>
+<ol>
+<li>图片比view的区域更大。这个时候会截取图片的中间部位显示在frame区域里面。</li>
+<li>图片比view的区域更小。这个时候图片会完整的显示在frame的中间位置。</li>
+</ol>
+<p>如果在默认情况，图片的多出来的部分还是会显示屏幕上。如果不希望超过frame的区域显示在屏幕上要设置。clipsToBounds属性。</p>
+<h2 id="每点击一次的BOOL值取反"><a href="#每点击一次的BOOL值取反" class="headerlink" title="每点击一次的BOOL值取反"></a>每点击一次的BOOL值取反</h2><pre><code>self.groupModel.isOpen = !self.groupModel.isOpen;
+</code></pre><h2 id="调用代理方法"><a href="#调用代理方法" class="headerlink" title="调用代理方法"></a>调用代理方法</h2><p>代理就好比是自己有个武器不能用，然后让自己的小喽啰”id<headerviewdelegate> delegate” 交给他人来”viewController” 使用</headerviewdelegate></p>
+<pre><code>if ([self.delegate respondsToSelector:@selector(clickView)]) {
+    [self.delegate clickView];
+}
+</code></pre><h2 id="小箭头的旋转"><a href="#小箭头的旋转" class="headerlink" title="小箭头的旋转"></a>小箭头的旋转</h2><pre><code>//调用了tableView 的 reload方法,这个方法就会刷新headview,那样的话,就会重新生成一个headview
+- (void)didMoveToSuperview{
+_arrowBtn.imageView.transform = self.groupModel.isOpen ? CGAffineTransformMakeRotation(M_PI_2):CGAffineTransformMakeRotation(0);
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/28/iOS项目7-超级猜图/" itemprop="url">
                   iOS项目7.超级猜图
                 </a>
@@ -1256,168 +1457,6 @@ For OpenGL ES 3.0:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="url">
-                  iOS项目6.UIScrollView图片自动滚动
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
-              2016-04-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png" alt="效果图"></p>
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png" alt="功能分析"></p>
-<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
-
-
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
-
-
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
-
-
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
-}
-
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
-}
-
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
-
-//停止定时器
-[self.timer invalidate];
-</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1464,7 +1503,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
