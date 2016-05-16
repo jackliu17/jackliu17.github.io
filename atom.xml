@@ -187,10 +187,10 @@ CGContextStrokePath(context);
     <link href="http://jackliu17.github.io/2016/05/14/iOS%E9%A1%B9%E7%9B%AE014-%E4%B9%9D%E5%AE%AB%E6%A0%BC%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81/"/>
     <id>http://jackliu17.github.io/2016/05/14/iOS项目014-九宫格手势解锁/</id>
     <published>2016-05-14T03:02:55.000Z</published>
-    <updated>2016-05-14T03:05:48.000Z</updated>
+    <updated>2016-05-16T06:43:14.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj014Structure.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;常量的定义&quot;&gt;&lt;a href=&quot;#常量的定义&quot; class=&quot;headerlink&quot; title=&quot;常量的定义&quot;&gt;&lt;/a&gt;常量的定义&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
 CGFloat const btnCount = 9;
 
@@ -282,8 +282,7 @@ for (int i = 0; i &amp;lt; self.selectedBtns.count; i++) {
     
     <summary type="html">
     
-      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;heade
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png&quot;
     
     </summary>
     
