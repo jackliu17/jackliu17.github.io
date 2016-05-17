@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-17T03:30:37.000Z</updated>
+  <updated>2016-05-17T06:57:42.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS项目017.转盘抽奖</title>
+    <link href="http://jackliu17.github.io/2016/05/17/iOS%E9%A1%B9%E7%9B%AE017-%E8%BD%AC%E7%9B%98%E6%8A%BD%E5%A5%96/"/>
+    <id>http://jackliu17.github.io/2016/05/17/iOS项目017-转盘抽奖/</id>
+    <published>2016-05-17T06:18:42.000Z</published>
+    <updated>2016-05-17T06:57:42.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01701.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;h1 id=&quot;匿名类目-vs-IBOutlet&quot;&gt;&lt;a href=&quot;#匿名类目-vs-IBOutlet&quot; class=&quot;headerlink&quot; title=&quot;匿名类目 vs IBOutlet&quot;&gt;&lt;/a&gt;匿名类目 vs IBOutlet&lt;/h1&gt;&lt;p&gt;只有在.m文件中建立了匿名类目，才能连接storyBoard中的IBOutlet&lt;/p&gt;
+&lt;p&gt;view.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface WheelView ()
+@property (weak, nonatomic) IBOutlet UIImageView *centerView;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;加载xib文件&quot;&gt;&lt;a href=&quot;#加载xib文件&quot; class=&quot;headerlink&quot; title=&quot;加载xib文件&quot;&gt;&lt;/a&gt;加载xib文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;+ (instancetype)wheelView{
+return [[[NSBundle mainBundle] loadNibNamed:@&amp;quot;WheelView&amp;quot; owner:nil options:nil] lastObject];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;裁剪图片&quot;&gt;&lt;a href=&quot;#裁剪图片&quot; class=&quot;headerlink&quot; title=&quot;裁剪图片&quot;&gt;&lt;/a&gt;裁剪图片&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UIImage *img = [UIImage imageNamed:@&amp;quot;LuckyAstrology&amp;quot;];
+CGFloat smallW = img.size.width / 12 * [UIScreen mainScreen].scale;
+CGFloat smallH = img.size.height * [UIScreen mainScreen].scale; 
+CGRect smallRect = CGRectMake(index * smallW, 0, smallW, smallH);
+CGImageRef smallImage = CGImageCreateWithImageInRect(img.CGImage, smallRect);
+[btn setImage:[UIImage imageWithCGImage:smallImage] forState:UIControlStateNormal];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01701.png&quot;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目018.CAAnimation简介</title>
@@ -1774,9 +1815,9 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
-    
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
     
   </entry>
   
@@ -2623,9 +2664,9 @@ return _text;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
-    
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
     
   </entry>
   
@@ -3356,37 +3397,6 @@ self.optionsView.userInteractionEnabled = YES;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android_Studio相关操作</title>
-    <link href="http://jackliu17.github.io/2016/04/26/Android-Studio%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/"/>
-    <id>http://jackliu17.github.io/2016/04/26/Android-Studio相关操作/</id>
-    <published>2016-04-26T01:14:55.000Z</published>
-    <updated>2016-04-26T01:23:31.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;创建assest-folder&quot;&gt;&lt;a href=&quot;#创建assest-folder&quot; class=&quot;headerlink&quot; title=&quot;创建assest folder&quot;&gt;&lt;/a&gt;创建assest folder&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/android_asset_foldrer.png&quot; alt=&quot;assest&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;导入jar文件&quot;&gt;&lt;a href=&quot;#导入jar文件&quot; class=&quot;headerlink&quot; title=&quot;导入jar文件&quot;&gt;&lt;/a&gt;导入jar文件&lt;/h2&gt;&lt;h3 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;2&quot;&gt;&lt;a href=&quot;#2&quot; class=&quot;headerlink&quot; title=&quot;2&quot;&gt;&lt;/a&gt;2&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;3&quot;&gt;&lt;a href=&quot;#3&quot; class=&quot;headerlink&quot; title=&quot;3&quot;&gt;&lt;/a&gt;3&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;4&quot;&gt;&lt;a href=&quot;#4&quot; class=&quot;headerlink&quot; title=&quot;4&quot;&gt;&lt;/a&gt;4&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;5&quot;&gt;&lt;a href=&quot;#5&quot; class=&quot;headerlink&quot; title=&quot;5&quot;&gt;&lt;/a&gt;5&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;6&quot;&gt;&lt;a href=&quot;#6&quot; class=&quot;headerlink&quot; title=&quot;6&quot;&gt;&lt;/a&gt;6&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/importjar6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;创建assest-folder&quot;&gt;&lt;a href=&quot;#创建assest-folder&quot; class=&quot;headerlink&quot; title=&quot;创建assest folder&quot;&gt;&lt;/a&gt;创建assest folder&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
-    
-      <category term="Android_Studio" scheme="http://jackliu17.github.io/tags/Android-Studio/"/>
     
   </entry>
   

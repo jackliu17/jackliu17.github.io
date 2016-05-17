@@ -238,6 +238,199 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/13/iOS项目13-手势识别/" itemprop="url">
+                  iOS项目13-手势识别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T12:07:26+10:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/iOS项目13-手势识别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/13/iOS项目13-手势识别/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="手势的种类"><a href="#手势的种类" class="headerlink" title="手势的种类"></a>手势的种类</h1><ol>
+<li>UITapGestureRecognizer   </li>
+<li>UIPinGestureRecognizer   Pinch 捏合</li>
+<li>UIRotationGestureRecognizer  Rotation 旋转</li>
+<li>UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向</li>
+<li>UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏移量</li>
+<li>UILongPressGestureRecognizer LongPress 长按</li>
+</ol>
+<h1 id="Tap点击"><a href="#Tap点击" class="headerlink" title="Tap点击"></a>Tap点击</h1><pre><code>/*  一个手指单击*/
+UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SignleTap:)];
+tap.numberOfTapsRequired = 1;
+tap.numberOfTouchesRequired = 1;
+[self.view addGestureRecognizer:tap];
+
+/*一个手指双击*/
+UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];
+tap2.numberOfTapsRequired = 2;
+[self.view addGestureRecognizer:tap2];
+
+//当tap 和 tap2同时出现在视图上，取消tap
+[tap requireGestureRecognizerToFail:tap2];
+
+/* 两个手指单击*/
+UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SigleTwoFingerTap:)];
+tap3.numberOfTouchesRequired = 2;
+[self.view addGestureRecognizer:tap3];
+//当tap2 和 tap3同时出现在视图上，取消tap2
+[tap2 requireGestureRecognizerToFail:tap3];
+</code></pre><h2 id="Tap互斥"><a href="#Tap互斥" class="headerlink" title="Tap互斥"></a>Tap互斥</h2><pre><code>/*
+[A requireGestureRecognizerToFail:B]
+当A手势发生时，即便A已经满足条件，但要等到B手势失败后才触发
+*/
+</code></pre><h1 id="Swipe轻扫手势"><a href="#Swipe轻扫手势" class="headerlink" title="Swipe轻扫手势"></a>Swipe轻扫手势</h1><pre><code>UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(SwipeAction:)];
+swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+[self.view addGestureRecognizer:swipe];
+</code></pre><h1 id="Pinch捏合手势"><a href="#Pinch捏合手势" class="headerlink" title="Pinch捏合手势"></a>Pinch捏合手势</h1><pre><code>- (void)PinchGesture{
+UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(PinchAction:)];
+[self.view addGestureRecognizer:pinch];
+}
+
+//pin的缩放
+- (void)PinchAction:(UIPinchGestureRecognizer *)pinch{
+float scale = pinch.scale;
+pinch.view.transform = CGAffineTransformScale(pinch.view.transform, scale, scale);
+if (scale &gt; 1) {
+    _genstureLabel.text = @&quot;捏合放大&quot;;
+}else if (scale &lt; 1){
+    _genstureLabel.text = @&quot;捏合缩小&quot;;
+}
+}
+</code></pre><h1 id="Pan拖移手势"><a href="#Pan拖移手势" class="headerlink" title="Pan拖移手势"></a>Pan拖移手势</h1><pre><code>- (void)PanGesture{
+UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
+[_genstureLabel addGestureRecognizer:pan];
+}
+
+- (void)PanAction:(UIPanGestureRecognizer *)pan{
+//移动的坐标值
+CGPoint translation = [pan translationInView:self.view];
+//移动后的坐标
+pan.view.center = CGPointMake(pan.view.center.x + translation.x, pan.view.center.y + translation.y);
+//设置坐标和速度
+[pan setTranslation:CGPointZero inView:self.view];
+_genstureLabel.text = @&quot;把我放哪啊&quot;;
+}
+</code></pre><h1 id="Rotation旋转手势"><a href="#Rotation旋转手势" class="headerlink" title="Rotation旋转手势"></a>Rotation旋转手势</h1><pre><code>- (void)RotationGesture{
+UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(RotationAction:)];
+[_genstureLabel addGestureRecognizer:rotation];
+}
+
+- (void)RotationAction:(UIRotationGestureRecognizer *)rotationGes{  
+rotationGes.view.transform = CGAffineTransformRotate(rotationGes.view.transform, rotationGes.rotation);
+rotationGes.rotation = M_PI;
+_genstureLabel.text = @&quot;旋转&quot;;
+}
+</code></pre><h1 id="LongPress长按手势"><a href="#LongPress长按手势" class="headerlink" title="LongPress长按手势"></a>LongPress长按手势</h1><pre><code>- (void)LongPressGesture{
+UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressAction:)];
+longPress.minimumPressDuration = 2;
+[self.view addGestureRecognizer:longPress];  
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/12/iOS数据存储/" itemprop="url">
                   iOS数据存储
                 </a>
@@ -1685,283 +1878,6 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/07/iOS绘图API演示/" itemprop="url">
-                  iOS绘图API演示
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T15:51:59+10:00" content="2016-05-07">
-              2016-05-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/07/iOS绘图API演示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/07/iOS绘图API演示/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>class DrawLinesView: UIView {
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-
-    //设定绘画环境
-    let context = UIGraphicsGetCurrentContext()
-
-    //绘画起点
-    CGContextMoveToPoint(context, 100, 100)
-    //绘画终点
-    CGContextAddLineToPoint(context, 100, 200)
-     //绘画终点
-    CGContextAddLineToPoint(context, 200, 200)
-
-    //绘画起点
-    CGContextMoveToPoint(context, 100, 300)
-      //绘画终点
-    CGContextAddLineToPoint(context, 100, 400)
-      //绘画终点
-    CGContextAddLineToPoint(context, 200, 500)
-
-    //设定颜色
-    CGContextSetRGBStrokeColor(context, 1, 0, 1, 1)
-    //设定线条宽度
-    CGContextSetLineWidth(context, 5)
-    //绘制线条
-    CGContextStrokePath(context)
-
-}
-</code></pre><h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png" alt=""></p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
-
-class DrawRectView: UIView {
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-//设定绘画环境
-let context = UIGraphicsGetCurrentContext()
-    //加入矩形
-    CGContextAddRect(context, CGRect(x:100,y:100,width: 100,height: 100))
-    //填充颜色
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
-    //绘制矩形
-    CGContextFillPath(context)
-
-    //设置外框的宽度
-    CGContextSetLineWidth(context, 5)
-    //设置外框颜色
-    CGContextSetRGBStrokeColor(context,0 ,1, 0, 1)
-    //绘制外框
-    CGContextStrokeRect(context, CGRect(x: 100, y: 100, width: 100, height: 100))
-
-}
-}
-</code></pre><h1 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png" alt=""></p>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
-
-class DrawCircle: UIView { 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-
-let context = UIGraphicsGetCurrentContext()
-
-    //加入圆形
-    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
-    //填充颜色
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
-    //开始绘制填充
-    CGContextFillPath(context)
-
-    //加入圆形
-    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
-    //设定宽度
-    CGContextSetLineWidth(context, 10)
-    //绘制
-    CGContextStrokePath(context)
-
-    //加入椭圆
-    CGContextAddEllipseInRect(context, CGRect(x: 50, y: 400, width: 200, height: 100))
-    //绘制
-    CGContextStrokePath(context)
-}
-}
-</code></pre><h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png" alt=""></p>
-<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
-
-class DrawImageView: UIView {
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-
-    var uiImage:CGImageRef?
-
-    uiImage = UIImage(named: &quot;girl.jpg&quot;)?.CGImage
-
-    let context = UIGraphicsGetCurrentContext()
-
-    //context状态的维持和释放，不影响其他图像的绘制
-    CGContextSaveGState(context)
-
-    //没有如下这两个图像会翻转
-    CGContextTranslateCTM(context, 10, 400)
-    CGContextScaleCTM(context, 1, -1)
-    CGContextDrawImage(context, CGRect(x: 0,y: 0,width: 200,height: 200), uiImage)
-    CGContextRestoreGState(context)
-
-    CGContextStrokeRect(context, CGRect(x: 50, y: 100, width: 100, height: 100))
-}
-}
-</code></pre><h1 id="绘图板"><a href="#绘图板" class="headerlink" title="绘图板"></a>绘图板</h1><h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
-
-class DrawBoardView: UIView {
-
-var path = CGPathCreateMutable()
-
-override func touchesBegan(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
-
-    let p = (touches as NSSet).anyObject()?.locationInView(self)
-
-    CGPathMoveToPoint(path, nil, p!.x, p!.y)
-
-}
-
-override func touchesMoved(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
-
-    let p = (touches as NSSet).anyObject()?.locationInView(self)
-
-    CGPathAddLineToPoint(path, nil, p!.x, p!.y)
-
-    setNeedsDisplay()
-
-}
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-    let context = UIGraphicsGetCurrentContext()
-    CGContextAddPath(context, path)
-    CGContextStrokePath(context)
-
-}
-
-}
-</code></pre><h1 id="怎么清空画板"><a href="#怎么清空画板" class="headerlink" title="怎么清空画板"></a>怎么清空画板</h1><p>1.重新运行程序即可清空<br>2.设置个按钮点击事件实现清空之前所有操作<br>3.使用CGContextClearRect，<br>4.重新初始化path，这样重画的时候不会检测到之前有线条的path，画面就自动清空了</p>
-<h1 id="橡皮擦功能"><a href="#橡皮擦功能" class="headerlink" title="橡皮擦功能"></a>橡皮擦功能</h1><p>较粗的和背景颜色同样的线条</p>
-<h1 id="绘制图像时解决翻转问题"><a href="#绘制图像时解决翻转问题" class="headerlink" title="绘制图像时解决翻转问题"></a>绘制图像时解决翻转问题</h1><pre><code>CGContextTranslateCTM(context, 10, 400)
-CGContextScaleCTM(context, 1, -1)
-</code></pre><h1 id="context状态的维持和释放"><a href="#context状态的维持和释放" class="headerlink" title="context状态的维持和释放"></a>context状态的维持和释放</h1><pre><code>//context状态的维持和释放，不影响其他图像的绘制
-CGContextSaveGState(context)
-.............绘制代码
-CGContextRestoreGState(context)
-</code></pre><h1 id="setNeedsDisplay"><a href="#setNeedsDisplay" class="headerlink" title="setNeedsDisplay()"></a>setNeedsDisplay()</h1><p>执行这个方法时会调用drawRect重新绘图</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -2008,7 +1924,7 @@ CGContextRestoreGState(context)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
