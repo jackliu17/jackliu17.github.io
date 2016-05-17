@@ -3210,67 +3210,83 @@ return self;
     <link href="http://jackliu17.github.io/2016/04/29/iOS%E9%A1%B9%E7%9B%AE8-QQ%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95/"/>
     <id>http://jackliu17.github.io/2016/04/29/iOS项目8-QQ下拉菜单/</id>
     <published>2016-04-29T12:56:05.000Z</published>
-    <updated>2016-04-29T12:57:40.000Z</updated>
+    <updated>2016-05-17T11:42:28.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;项目分析&quot;&gt;&lt;a href=&quot;#项目分析&quot; class=&quot;headerlink&quot; title=&quot;项目分析&quot;&gt;&lt;/a&gt;项目分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;h2 id=&quot;在项目里添加目录&quot;&gt;&lt;a href=&quot;#在项目里添加目录&quot; class=&quot;headerlink&quot; title=&quot;在项目里添加目录&quot;&gt;&lt;/a&gt;在项目里添加目录&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;点击左下角的+号 “Add file to ….”&lt;/li&gt;
-&lt;li&gt;在弹出的对话框，选择左下角的”New folder”&lt;/li&gt;
-&lt;li&gt;输入名称，点击右下角的”Add”  &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这样添加的目录才会真实存在与项目中&lt;/p&gt;
-&lt;h2 id=&quot;创建导航视图&quot;&gt;&lt;a href=&quot;#创建导航视图&quot; class=&quot;headerlink&quot; title=&quot;创建导航视图&quot;&gt;&lt;/a&gt;创建导航视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ListTableViewController *listVC = [[ListTableViewController alloc] init];
-UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:listVC];
-self.window.rootViewController = navCtrl;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;加载数据&quot;&gt;&lt;a href=&quot;#加载数据&quot; class=&quot;headerlink&quot; title=&quot;加载数据&quot;&gt;&lt;/a&gt;加载数据&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;每个字典对应一个数据模型(Model class），plist中有多少个字典就有多少个Model class&lt;/li&gt;
-&lt;li&gt;使用该方法加载数据 — [self setValuesForKeysWithDictionary:dict]&lt;/li&gt;
-&lt;li&gt;plist的第一层级都是数组，所以懒加载返回的也是数组&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;表视图中设定Section-Header&quot;&gt;&lt;a href=&quot;#表视图中设定Section-Header&quot; class=&quot;headerlink&quot; title=&quot;表视图中设定Section Header&quot;&gt;&lt;/a&gt;表视图中设定Section Header&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;每次表视图变动需要reload&quot;&gt;&lt;a href=&quot;#每次表视图变动需要reload&quot; class=&quot;headerlink&quot; title=&quot;每次表视图变动需要reload&quot;&gt;&lt;/a&gt;每次表视图变动需要reload&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[self.tableView reloadData];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;判断展开的Item数量&quot;&gt;&lt;a href=&quot;#判断展开的Item数量&quot; class=&quot;headerlink&quot; title=&quot;判断展开的Item数量&quot;&gt;&lt;/a&gt;判断展开的Item数量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSInteger count = groupModel.isOpen ? groupModel.friends.count : 0;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;设置cell的代码&quot;&gt;&lt;a href=&quot;#设置cell的代码&quot; class=&quot;headerlink&quot; title=&quot;设置cell的代码&quot;&gt;&lt;/a&gt;设置cell的代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-static NSString *identifier = @&amp;quot;friendCell&amp;quot;;
-UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];    
+&lt;h1 id=&quot;JKFriendsModel&quot;&gt;&lt;a href=&quot;#JKFriendsModel&quot; class=&quot;headerlink&quot; title=&quot;JKFriendsModel&quot;&gt;&lt;/a&gt;JKFriendsModel&lt;/h1&gt;&lt;h2 id=&quot;加载数据-字典&quot;&gt;&lt;a href=&quot;#加载数据-字典&quot; class=&quot;headerlink&quot; title=&quot;加载数据(字典)&quot;&gt;&lt;/a&gt;加载数据(字典)&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithDict:(NSDictionary *)dict{
+if (self = [super init]) {
+    [self setValuesForKeysWithDictionary:dict];
 }
-//对应的哪一个section
-JKGroupModel *groupModel = self.dataArray[indexPath.section];
-//对应的哪一个row
-JKFriendsModel *friendModel = groupModel.friends[indexPath.row];
-cell.imageView.image = [UIImage imageNamed:friendModel.icon];
-cell.textLabel.text = friendModel.name;
-cell.detailTextLabel.text = friendModel.intro;
-return cell;
+return self;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;初始化Headerview-UITableViewHeaderFooterView&quot;&gt;&lt;a href=&quot;#初始化Headerview-UITableViewHeaderFooterView&quot; class=&quot;headerlink&quot; title=&quot;初始化Headerview(UITableViewHeaderFooterView)&quot;&gt;&lt;/a&gt;初始化Headerview(UITableViewHeaderFooterView)&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//类似cell的创建
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;构建class-method&quot;&gt;&lt;a href=&quot;#构建class-method&quot; class=&quot;headerlink&quot; title=&quot;构建class method&quot;&gt;&lt;/a&gt;构建class method&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;+ (instancetype)friendWithDict:(NSDictionary *)dict{
+return [[self alloc] initWithDict:dict];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;JKGroupModel&quot;&gt;&lt;a href=&quot;#JKGroupModel&quot; class=&quot;headerlink&quot; title=&quot;JKGroupModel&quot;&gt;&lt;/a&gt;JKGroupModel&lt;/h1&gt;&lt;h2 id=&quot;加载数据-字典内含数组&quot;&gt;&lt;a href=&quot;#加载数据-字典内含数组&quot; class=&quot;headerlink&quot; title=&quot;加载数据(字典内含数组)&quot;&gt;&lt;/a&gt;加载数据(字典内含数组)&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithDict:(NSDictionary *)dict{
+
+if (self = [super init]) {
+
+    //加载组内字典数据
+    [self setValuesForKeysWithDictionary:dict];
+
+    //加载组内数组数据
+    NSMutableArray *muArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.friends) {
+        JKFriendsModel *model = [JKFriendsModel friendWithDict:dict];
+        [muArray addObject:model];
+    }
+    self.friends = muArray;
+}
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;HeaderView&quot;&gt;&lt;a href=&quot;#HeaderView&quot; class=&quot;headerlink&quot; title=&quot;HeaderView&quot;&gt;&lt;/a&gt;HeaderView&lt;/h1&gt;&lt;h2 id=&quot;子类&quot;&gt;&lt;a href=&quot;#子类&quot; class=&quot;headerlink&quot; title=&quot;子类&quot;&gt;&lt;/a&gt;子类&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface HeaderView : UITableViewHeaderFooterView
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;初始化headerView&quot;&gt;&lt;a href=&quot;#初始化headerView&quot; class=&quot;headerlink&quot; title=&quot;初始化headerView&quot;&gt;&lt;/a&gt;初始化headerView&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//类似cell的创建
 
 + (instancetype)headerView:(UITableView *)tableView{
 
-static NSString *identifier = @&amp;quot;header&amp;quot;;
-HeaderView *header =(HeaderView *) [tableView dequeueReusableCellWithIdentifier:identifier];
+    static NSString *identifier = @&amp;quot;header&amp;quot;;
+    HeaderView *header =(HeaderView *) [tableView dequeueReusableCellWithIdentifier:identifier];
 
-//用以下这个方式，则只创建一次,此项目不采用
-//HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    //用以下这个方式，则只创建一次,此项目不采用
+    //HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
 
-if (!header) {
-    header = [[HeaderView alloc] initWithReuseIdentifier:identifier];
+    if (!header) {
+header = [[HeaderView alloc] initWithReuseIdentifier:identifier];
 }
 return header;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;布局子视图&quot;&gt;&lt;a href=&quot;#布局子视图&quot; class=&quot;headerlink&quot; title=&quot;布局子视图&quot;&gt;&lt;/a&gt;布局子视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)layoutSubviews{
-[super layoutSubviews];
-_arrowBtn.frame = self.bounds;
-_label.frame = CGRectMake(self.frame.size.width - 70, 0, 60, self.frame.size.height);
+
+
+//这个headerview其实就是个button
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+
+if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@&amp;quot;header_bg&amp;quot;] forState:UIControlStateNormal];
+    //[button setBackgroundImage:[UIImage imageNamed:@&amp;quot;header_bg_highlighted&amp;quot;] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@&amp;quot;arrow&amp;quot;] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    button.imageView.contentMode = UIViewContentModeCenter;
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    button.imageView.clipsToBounds = NO;
+    _arrowBtn = button;
+
+    [self addSubview:_arrowBtn];
+    //创建label，显示当前在线人数
+    UILabel *labelRight = [[UILabel alloc] init];
+    labelRight.textAlignment = NSTextAlignmentCenter;
+    _label = labelRight;
+    [self addSubview:_label];
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;layoutSubviews方法，是当改变父控件高度的时候，自动调用这个方法，所以一般在这里面设置子控件的frame。因为子控件随着父控件而改变。&lt;/li&gt;
-&lt;li&gt;UITableViewHeaderFooterView不可以用xib，只能用代码创建&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;UIButton的属性设置&quot;&gt;&lt;a href=&quot;#UIButton的属性设置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的属性设置&quot;&gt;&lt;/a&gt;UIButton的属性设置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//内容框的内边距
+
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;UIButton的属性设置&quot;&gt;&lt;a href=&quot;#UIButton的属性设置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的属性设置&quot;&gt;&lt;/a&gt;UIButton的属性设置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//内容框的内边距
 button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 
 //内容的对齐
@@ -3281,6 +3297,29 @@ button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 
 //为button设定方法
 [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;BOOL值取反&quot;&gt;&lt;a href=&quot;#BOOL值取反&quot; class=&quot;headerlink&quot; title=&quot;BOOL值取反&quot;&gt;&lt;/a&gt;BOOL值取反&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;self.groupModel.isOpen = !self.groupModel.isOpen;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;调用代理方法&quot;&gt;&lt;a href=&quot;#调用代理方法&quot; class=&quot;headerlink&quot; title=&quot;调用代理方法&quot;&gt;&lt;/a&gt;调用代理方法&lt;/h2&gt;&lt;p&gt;代理就好比是自己有个武器不能用，然后让自己的小喽啰”id delegate” 交给他人来”viewController” 使用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if ([self.delegate respondsToSelector:@selector(clickView)]) {
+[self.delegate clickView];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;小箭头的旋转&quot;&gt;&lt;a href=&quot;#小箭头的旋转&quot; class=&quot;headerlink&quot; title=&quot;小箭头的旋转&quot;&gt;&lt;/a&gt;小箭头的旋转&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//调用了tableView 的 reload方法,这个方法就会刷新headview,那样的话,就会重新生成一个headview
+- (void)didMoveToSuperview{
+    _arrowBtn.imageView.transform = self.groupModel.isOpen ? CGAffineTransformMakeRotation(M_PI_2):CGAffineTransformMakeRotation(0);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;布局子视图&quot;&gt;&lt;a href=&quot;#布局子视图&quot; class=&quot;headerlink&quot; title=&quot;布局子视图&quot;&gt;&lt;/a&gt;布局子视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)layoutSubviews{
+    [super layoutSubviews];
+    _arrowBtn.frame = self.bounds;
+    _label.frame = CGRectMake(self.frame.size.width - 70, 0, 60, self.frame.size.height);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;layoutSubviews方法，是当改变父控件高度的时候，自动调用这个方法，所以一般在这里面设置子控件的frame。因为子控件随着父控件而改变。&lt;/li&gt;
+&lt;li&gt;UITableViewHeaderFooterView不可以用xib，只能用代码创建&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;setter赋值button-title&quot;&gt;&lt;a href=&quot;#setter赋值button-title&quot; class=&quot;headerlink&quot; title=&quot;setter赋值button title&quot;&gt;&lt;/a&gt;setter赋值button title&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)setGroupModel:(JKGroupModel *)groupModel{
+_groupModel = groupModel;
+[_arrowBtn setTitle:_groupModel.name forState:UIControlStateNormal];
+_label.text = [NSString stringWithFormat:@&amp;quot;%@/%lu&amp;quot;,_groupModel.online,(unsigned long)_groupModel.friends.count];
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;imageView-contentMode&quot;&gt;&lt;a href=&quot;#imageView-contentMode&quot; class=&quot;headerlink&quot; title=&quot;imageView.contentMode&quot;&gt;&lt;/a&gt;imageView.contentMode&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;button.imageView.contentMode = UIViewContentModeCenter;
 button.imageView.clipsToBounds = NO;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个居中是包括了，横向和纵向都是居中。图片不会拉伸或者压缩，就是按照imageView的frame和图片的大小来居中显示的。&lt;/p&gt;
@@ -3290,15 +3329,52 @@ button.imageView.clipsToBounds = NO;
 &lt;li&gt;图片比view的区域更小。这个时候图片会完整的显示在frame的中间位置。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如果在默认情况，图片的多出来的部分还是会显示屏幕上。如果不希望超过frame的区域显示在屏幕上要设置。clipsToBounds属性。&lt;/p&gt;
-&lt;h2 id=&quot;每点击一次的BOOL值取反&quot;&gt;&lt;a href=&quot;#每点击一次的BOOL值取反&quot; class=&quot;headerlink&quot; title=&quot;每点击一次的BOOL值取反&quot;&gt;&lt;/a&gt;每点击一次的BOOL值取反&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;self.groupModel.isOpen = !self.groupModel.isOpen;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;调用代理方法&quot;&gt;&lt;a href=&quot;#调用代理方法&quot; class=&quot;headerlink&quot; title=&quot;调用代理方法&quot;&gt;&lt;/a&gt;调用代理方法&lt;/h2&gt;&lt;p&gt;代理就好比是自己有个武器不能用，然后让自己的小喽啰”id&lt;headerviewdelegate&gt; delegate” 交给他人来”viewController” 使用&lt;/headerviewdelegate&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if ([self.delegate respondsToSelector:@selector(clickView)]) {
-    [self.delegate clickView];
+&lt;h1 id=&quot;ListTableViewController&quot;&gt;&lt;a href=&quot;#ListTableViewController&quot; class=&quot;headerlink&quot; title=&quot;ListTableViewController&quot;&gt;&lt;/a&gt;ListTableViewController&lt;/h1&gt;&lt;h2 id=&quot;加载数据&quot;&gt;&lt;a href=&quot;#加载数据&quot; class=&quot;headerlink&quot; title=&quot;加载数据&quot;&gt;&lt;/a&gt;加载数据&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (NSArray *)dataArray{
+//为什么不能用self.dataArray?? BadAccess
+if (!_dataArray) {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&amp;quot;friends.plist&amp;quot; ofType:nil];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:array.count];
+    for (NSDictionary *dict in array) {
+        JKGroupModel *groupModel = [JKGroupModel GroupWithDict:dict];
+        [muArray addObject:groupModel];
+    }
+    _dataArray = [muArray copy];
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;小箭头的旋转&quot;&gt;&lt;a href=&quot;#小箭头的旋转&quot; class=&quot;headerlink&quot; title=&quot;小箭头的旋转&quot;&gt;&lt;/a&gt;小箭头的旋转&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//调用了tableView 的 reload方法,这个方法就会刷新headview,那样的话,就会重新生成一个headview
-- (void)didMoveToSuperview{
-_arrowBtn.imageView.transform = self.groupModel.isOpen ? CGAffineTransformMakeRotation(M_PI_2):CGAffineTransformMakeRotation(0);
+return _dataArray;
 }
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;每个字典对应一个数据模型(Model class），plist中有多少个字典就有多少个Model class&lt;/li&gt;
+&lt;li&gt;使用该方法加载数据 — [self setValuesForKeysWithDictionary:dict]&lt;/li&gt;
+&lt;li&gt;plist的第一层级都是数组，所以懒加载返回的也是数组&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;尾部去掉多余的线&quot;&gt;&lt;a href=&quot;#尾部去掉多余的线&quot; class=&quot;headerlink&quot; title=&quot;尾部去掉多余的线&quot;&gt;&lt;/a&gt;尾部去掉多余的线&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - 去掉多余的线 ,将尾部设为一个透明的UIView
+- (void)clipExtraCellLine:(UITableView *)tableView{
+UIView *view = [[UIView alloc] init];
+view.backgroundColor = [UIColor clearColor];
+[self.tableView setTableFooterView:view];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Section-Header&quot;&gt;&lt;a href=&quot;#Section-Header&quot; class=&quot;headerlink&quot; title=&quot;Section Header&quot;&gt;&lt;/a&gt;Section Header&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;每次表视图变动需要reload&quot;&gt;&lt;a href=&quot;#每次表视图变动需要reload&quot; class=&quot;headerlink&quot; title=&quot;每次表视图变动需要reload&quot;&gt;&lt;/a&gt;每次表视图变动需要reload&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[self.tableView reloadData];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;判断展开的Item数量&quot;&gt;&lt;a href=&quot;#判断展开的Item数量&quot; class=&quot;headerlink&quot; title=&quot;判断展开的Item数量&quot;&gt;&lt;/a&gt;判断展开的Item数量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSInteger count = groupModel.isOpen ? groupModel.friends.count : 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;设置cell的代码&quot;&gt;&lt;a href=&quot;#设置cell的代码&quot; class=&quot;headerlink&quot; title=&quot;设置cell的代码&quot;&gt;&lt;/a&gt;设置cell的代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @&amp;quot;friendCell&amp;quot;;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];    
+}
+//对应的哪一个section
+JKGroupModel *groupModel = self.dataArray[indexPath.section];
+//对应的哪一个row
+JKFriendsModel *friendModel = groupModel.friends[indexPath.row];
+cell.imageView.image = [UIImage imageNamed:friendModel.icon];
+cell.textLabel.text = friendModel.name;
+cell.detailTextLabel.text = friendModel.intro;
+return cell;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;AppDelegate&quot;&gt;&lt;a href=&quot;#AppDelegate&quot; class=&quot;headerlink&quot; title=&quot;AppDelegate&quot;&gt;&lt;/a&gt;AppDelegate&lt;/h1&gt;&lt;h2 id=&quot;创建导航视图&quot;&gt;&lt;a href=&quot;#创建导航视图&quot; class=&quot;headerlink&quot; title=&quot;创建导航视图&quot;&gt;&lt;/a&gt;创建导航视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ListTableViewController *listVC = [[ListTableViewController alloc] init];
+UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:listVC];
+self.window.rootViewController = navCtrl;
 &lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
