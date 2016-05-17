@@ -238,6 +238,158 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/24/OpenGL-ES/" itemprop="url">
+                  OpenGL_ES
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T16:43:39+10:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/24/OpenGL-ES/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/24/OpenGL-ES/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>OpenGL 是跨平台的图像API，定义了3D图像处理的标准</li>
+<li>OpenGL ES是为OPenGL在嵌入式设备上的标准</li>
+</ol>
+<p>安卓支持如下OpenGL</p>
+<ol>
+<li>OpenGL ES 1.0 and 1.1 - This API specification is supported by Android 1.0 and higher.</li>
+<li>OpenGL ES 2.0 - This API specification is supported by Android 2.2 (API level 8) and higher.</li>
+<li>OpenGL ES 3.0 - This API specification is supported by Android 4.3 (API level 18) and higher.</li>
+<li>OpenGL ES 3.1 - This API specification is supported by Android 5.0 (API level 21) and higher.</li>
+</ol>
+<p>OpenGL ES 3.0以上需要厂家在设备上安装某图像处理，Android4.3以上可能不支持OpenGL ES 3.0</p>
+<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><p>Android中两个class需要特别注意</p>
+<p><code>GLSurfaceView</code><br>这是一个view,用来绘画和管理对象，和SurfaceView很相似</p>
+<p><code>GLSurfaceView.Renderer</code><br>在GLSurfaceView中绘画的接口，提供了必要的方法</p>
+<ol>
+<li>onSurfaceCreated():  //初始化环境</li>
+<li>onDrawFrame(): //绘画对象</li>
+<li>onSurfaceChanged(): //当界面改变时，比如屏幕旋转</li>
+</ol>
+<h3 id="OpenGL-ES-packages"><a href="#OpenGL-ES-packages" class="headerlink" title="OpenGL ES packages"></a>OpenGL ES packages</h3><p>OpenGL ES 1.0/1.1 API Packages</p>
+<pre><code>android.opengl
+javax.microedition.khronos.opengles
+</code></pre><p>OpenGL ES 2.0 API Class</p>
+<pre><code>android.opengl.GLES20
+</code></pre><p>OpenGL ES 3.0/3.1 API Packages</p>
+<pre><code>android.opengl
+</code></pre><h2 id="Declaring-OpenGL-Requirements"><a href="#Declaring-OpenGL-Requirements" class="headerlink" title="Declaring OpenGL Requirements"></a>Declaring OpenGL Requirements</h2><p>在AndroidManifest.xml中声明OpenGL版本要求</p>
+<pre><code>For OpenGL ES 2.0:
+&lt;!-- Tell the system this app requires OpenGL ES 2.0. --&gt;
+&lt;uses-feature android:glEsVersion=&quot;0x00020000&quot; android:required=&quot;true&quot; /&gt;
+
+For OpenGL ES 3.0:
+&lt;!-- Tell the system this app requires OpenGL ES 3.0. --&gt;
+&lt;uses-feature android:glEsVersion=&quot;0x00030000&quot; android:required=&quot;true&quot; /&gt;
+</code></pre><p>纹理压缩要求 </p>
+<pre><code>&lt;supports-gl-texture&gt;
+</code></pre><h2 id="Mapping-Coordinates-for-Drawn-Objects"><a href="#Mapping-Coordinates-for-Drawn-Objects" class="headerlink" title="Mapping Coordinates for Drawn Objects"></a>Mapping Coordinates for Drawn Objects</h2><h2 id="Shape-Faces-and-Winding"><a href="#Shape-Faces-and-Winding" class="headerlink" title="Shape Faces and Winding"></a>Shape Faces and Winding</h2><h2 id="OpenGL-Versions-and-Device-Compatibility"><a href="#OpenGL-Versions-and-Device-Compatibility" class="headerlink" title="OpenGL Versions and Device Compatibility"></a>OpenGL Versions and Device Compatibility</h2><h2 id="Choosing-an-OpenGL-API-Version"><a href="#Choosing-an-OpenGL-API-Version" class="headerlink" title="Choosing an OpenGL API Version"></a>Choosing an OpenGL API Version</h2><p><a href="http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version" target="_blank" rel="external">Abstract from Android API Guides - OpenGL</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="url">
                   iOS项目6.UIScrollView图片自动滚动
                 </a>
@@ -901,143 +1053,12 @@ return YES;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/18/iOS项目2-图片浏览器/" itemprop="url">
-                  iOS项目2.图片浏览器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T15:57:39+10:00" content="2016-04-18">
-              2016-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/18/iOS项目2-图片浏览器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目2-图片浏览器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA.png" alt="效果图"></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="project structure"></p>
-<h1 id="加载plist中的数据"><a href="#加载plist中的数据" class="headerlink" title="加载plist中的数据"></a>加载plist中的数据</h1><p><strong>该方法并不用在viewDidLoad中调用，而是在实际取值时调用</strong></p>
-<pre><code>- (NSArray *)imageDicts
-{
-//判断数组为空时建立
-if (!_imageDicts) {
-   //从NSBundle中读取路径
-    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;imageDate.plist&quot; ofType:nil];
-    //利用文件路创建数组
-    _imageDicts = [NSArray arrayWithContentsOfFile:path];
-}
-//返回数组
-return _imageDicts;
-}
-</code></pre><h1 id="条件语句设置BOOL值"><a href="#条件语句设置BOOL值" class="headerlink" title="条件语句设置BOOL值"></a>条件语句设置BOOL值</h1><pre><code>self.leftBtn.enabled = (self.index != 0);
-</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><pre><code>如果每一次的按钮需要和对应的数据呈现对应，那么需要设置索引号index
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1078,7 +1099,7 @@ return _imageDicts;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
