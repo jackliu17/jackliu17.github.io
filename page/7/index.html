@@ -307,7 +307,9 @@
       
         
           
-            <h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010.png" alt=""></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010Structure.png" alt=""></p>
+<h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
 将某个对象写入文件时候会调用
 在这个方法中说清楚哪些属性需要存储
 */
@@ -800,12 +802,15 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
     // 跳转到根视图
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
-</code></pre><h2 id="UIStoryboard自动连接-button"><a href="#UIStoryboard自动连接-button" class="headerlink" title="UIStoryboard自动连接(button)"></a>UIStoryboard自动连接(button)</h2><ol>
-<li>点住Button,按住ctrl，向新的viewController拖动,选择segue模式</li>
+</code></pre><h2 id="Segue自动连接-button"><a href="#Segue自动连接-button" class="headerlink" title="Segue自动连接(button)"></a>Segue自动连接(button)</h2><ol>
+<li>点住Button or Cell,按住ctrl，向新的viewController拖动,选择segue模式,点击后不需任何方法，会自动跳转到目的视图</li>
+<li>可以在prepareForSegue中进行数据传递(optional)</li>
 <li>从新视图的返回，使用如下代码: </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
-<h2 id="UIStoryboard手动连接-login"><a href="#UIStoryboard手动连接-login" class="headerlink" title="UIStoryboard手动连接(login)"></a>UIStoryboard手动连接(login)</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png" alt=""></p>
+<p>or </p>
+<pre><code>[self.navigationController popViewControllerAnimated:YES];
+</code></pre><h2 id="Segue手动连接-login"><a href="#Segue手动连接-login" class="headerlink" title="Segue手动连接(login)"></a>Segue手动连接(login)</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png" alt=""></p>
 <pre><code>//一般在这里给下一个控制器传值这个sender是当初performSegueWithIdentifier方法传入的sender
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 

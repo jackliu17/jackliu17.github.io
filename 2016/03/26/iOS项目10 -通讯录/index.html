@@ -61,34 +61,43 @@
 
 
 
-<meta name="description" content="JKContactModel编码和解码/*
+<meta name="description" content="效果图
+项目结构
+JKContactModel编码和解码/*
 将某个对象写入文件时候会调用
 在这个方法中说清楚哪些属性需要存储
 */
 - (void)encodeWithCoder:(NSCoder *)encoder{
 [encoder encodeObject:self.name forKey:@&amp;quot;name&amp;quot;];
-[encoder encodeObject:self.phone forKey">
+[encoder encodeObject:self.pho">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS项目10-通讯录">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/26/iOS项目10 -通讯录/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="JKContactModel编码和解码/*
+<meta property="og:description" content="效果图
+项目结构
+JKContactModel编码和解码/*
 将某个对象写入文件时候会调用
 在这个方法中说清楚哪些属性需要存储
 */
 - (void)encodeWithCoder:(NSCoder *)encoder{
 [encoder encodeObject:self.name forKey:@&amp;quot;name&amp;quot;];
-[encoder encodeObject:self.phone forKey">
-<meta property="og:updated_time" content="2016-05-12T12:03:25.000Z">
+[encoder encodeObject:self.pho">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010Structure.png">
+<meta property="og:updated_time" content="2016-05-18T01:26:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS项目10-通讯录">
-<meta name="twitter:description" content="JKContactModel编码和解码/*
+<meta name="twitter:description" content="效果图
+项目结构
+JKContactModel编码和解码/*
 将某个对象写入文件时候会调用
 在这个方法中说清楚哪些属性需要存储
 */
 - (void)encodeWithCoder:(NSCoder *)encoder{
 [encoder encodeObject:self.name forKey:@&amp;quot;name&amp;quot;];
-[encoder encodeObject:self.phone forKey">
+[encoder encodeObject:self.pho">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010.png">
 
 
 
@@ -313,7 +322,9 @@
       
 
       
-        <h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
+        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010.png" alt=""></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj010Structure.png" alt=""></p>
+<h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
 将某个对象写入文件时候会调用
 在这个方法中说清楚哪些属性需要存储
 */
@@ -678,7 +689,7 @@ self.savebtn.hidden = YES;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JKContactModel"><span class="nav-number">1.</span> <span class="nav-text">JKContactModel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编码和解码"><span class="nav-number">1.1.</span> <span class="nav-text">编码和解码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LoginViewController"><span class="nav-number">2.</span> <span class="nav-text">LoginViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#保存和读取登录信息"><span class="nav-number">2.1.</span> <span class="nav-text">保存和读取登录信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者"><span class="nav-number">2.2.</span> <span class="nav-text">观察者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句设置BOOL值"><span class="nav-number">2.3.</span> <span class="nav-text">条件语句设置BOOL值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行Segue进行视图跳转"><span class="nav-number">2.4.</span> <span class="nav-text">执行Segue进行视图跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segue跳转之前执行"><span class="nav-number">2.5.</span> <span class="nav-text">Segue跳转之前执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置字符串"><span class="nav-number">2.6.</span> <span class="nav-text">设置字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MBProgressHUD"><span class="nav-number">2.7.</span> <span class="nav-text">MBProgressHUD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ContactTableViewController"><span class="nav-number">3.</span> <span class="nav-text">ContactTableViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的归档和解档"><span class="nav-number">3.1.</span> <span class="nav-text">对象的归档和解档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载数据"><span class="nav-number">3.2.</span> <span class="nav-text">懒加载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIAlertcontroller"><span class="nav-number">3.3.</span> <span class="nav-text">UIAlertcontroller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去掉TableView中多余的线"><span class="nav-number">3.4.</span> <span class="nav-text">去掉TableView中多余的线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#when-reloadData"><span class="nav-number">3.5.</span> <span class="nav-text">when reloadData ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-for-multiple-segue"><span class="nav-number">3.6.</span> <span class="nav-text">Prepare for multiple segue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断what-class"><span class="nav-number">3.7.</span> <span class="nav-text">判断what class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定选中哪一行"><span class="nav-number">3.8.</span> <span class="nav-text">确定选中哪一行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态删除一行"><span class="nav-number">3.9.</span> <span class="nav-text">动态删除一行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AddViewController"><span class="nav-number">4.</span> <span class="nav-text">AddViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置代理方法"><span class="nav-number">4.1.</span> <span class="nav-text">设置代理方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本框为第一响应"><span class="nav-number">4.2.</span> <span class="nav-text">文本框为第一响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理传值"><span class="nav-number">4.3.</span> <span class="nav-text">代理传值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EditViewController"><span class="nav-number">5.</span> <span class="nav-text">EditViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载数据"><span class="nav-number">5.1.</span> <span class="nav-text">加载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理传值-1"><span class="nav-number">5.2.</span> <span class="nav-text">代理传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton-amp-UITextfield-amp-UIView"><span class="nav-number">5.3.</span> <span class="nav-text">UIButton & UITextfield & UIView</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JKContactModel"><span class="nav-number">3.</span> <span class="nav-text">JKContactModel</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编码和解码"><span class="nav-number">3.1.</span> <span class="nav-text">编码和解码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LoginViewController"><span class="nav-number">4.</span> <span class="nav-text">LoginViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#保存和读取登录信息"><span class="nav-number">4.1.</span> <span class="nav-text">保存和读取登录信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者"><span class="nav-number">4.2.</span> <span class="nav-text">观察者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件语句设置BOOL值"><span class="nav-number">4.3.</span> <span class="nav-text">条件语句设置BOOL值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行Segue进行视图跳转"><span class="nav-number">4.4.</span> <span class="nav-text">执行Segue进行视图跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segue跳转之前执行"><span class="nav-number">4.5.</span> <span class="nav-text">Segue跳转之前执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置字符串"><span class="nav-number">4.6.</span> <span class="nav-text">设置字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MBProgressHUD"><span class="nav-number">4.7.</span> <span class="nav-text">MBProgressHUD</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ContactTableViewController"><span class="nav-number">5.</span> <span class="nav-text">ContactTableViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的归档和解档"><span class="nav-number">5.1.</span> <span class="nav-text">对象的归档和解档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载数据"><span class="nav-number">5.2.</span> <span class="nav-text">懒加载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIAlertcontroller"><span class="nav-number">5.3.</span> <span class="nav-text">UIAlertcontroller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去掉TableView中多余的线"><span class="nav-number">5.4.</span> <span class="nav-text">去掉TableView中多余的线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#when-reloadData"><span class="nav-number">5.5.</span> <span class="nav-text">when reloadData ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prepare-for-multiple-segue"><span class="nav-number">5.6.</span> <span class="nav-text">Prepare for multiple segue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断what-class"><span class="nav-number">5.7.</span> <span class="nav-text">判断what class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#确定选中哪一行"><span class="nav-number">5.8.</span> <span class="nav-text">确定选中哪一行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态删除一行"><span class="nav-number">5.9.</span> <span class="nav-text">动态删除一行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AddViewController"><span class="nav-number">6.</span> <span class="nav-text">AddViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置代理方法"><span class="nav-number">6.1.</span> <span class="nav-text">设置代理方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本框为第一响应"><span class="nav-number">6.2.</span> <span class="nav-text">文本框为第一响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理传值"><span class="nav-number">6.3.</span> <span class="nav-text">代理传值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EditViewController"><span class="nav-number">7.</span> <span class="nav-text">EditViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加载数据"><span class="nav-number">7.1.</span> <span class="nav-text">加载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理传值-1"><span class="nav-number">7.2.</span> <span class="nav-text">代理传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton-amp-UITextfield-amp-UIView"><span class="nav-number">7.3.</span> <span class="nav-text">UIButton & UITextfield & UIView</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
