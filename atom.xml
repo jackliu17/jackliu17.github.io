@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-17T06:57:42.000Z</updated>
+  <updated>2016-05-18T02:42:00.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS数据存储-plist文件</title>
+    <link href="http://jackliu17.github.io/2016/05/18/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-plist%E6%96%87%E4%BB%B6/"/>
+    <id>http://jackliu17.github.io/2016/05/18/iOS数据存储-plist文件/</id>
+    <published>2016-05-18T02:39:46.000Z</published>
+    <updated>2016-05-18T02:42:00.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;读取数组&quot;&gt;&lt;a href=&quot;#读取数组&quot; class=&quot;headerlink&quot; title=&quot;读取数组&quot;&gt;&lt;/a&gt;读取数组&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let arr = NSArray(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;arr&amp;quot;, ofType: &amp;quot;plist&amp;quot;)!))
+print(arr)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;读取字典&quot;&gt;&lt;a href=&quot;#读取字典&quot; class=&quot;headerlink&quot; title=&quot;读取字典&quot;&gt;&lt;/a&gt;读取字典&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let dict = NSDictionary(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;data&amp;quot;, ofType: &amp;quot;plist&amp;quot;)!))
+print(dict)
+
+let name:String = dict![&amp;quot;name&amp;quot;] as! String
+print(&amp;quot;name : \(name)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;读取数组&quot;&gt;&lt;a href=&quot;#读取数组&quot; class=&quot;headerlink&quot; title=&quot;读取数组&quot;&gt;&lt;/a&gt;读取数组&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let arr = NSArray(contentsOfURL: NSURL(fileURLWithPath
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目017.转盘抽奖</title>
@@ -3380,90 +3411,6 @@ self.window.rootViewController = navCtrl;
     <summary type="html">
     
       &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_1.png&quot; alt
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目7.超级猜图</title>
-    <link href="http://jackliu17.github.io/2016/04/28/iOS%E9%A1%B9%E7%9B%AE7-%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE/"/>
-    <id>http://jackliu17.github.io/2016/04/28/iOS项目7-超级猜图/</id>
-    <published>2016-04-28T03:05:41.000Z</published>
-    <updated>2016-05-11T09:05:10.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;视图分析&quot;&gt;&lt;a href=&quot;#视图分析&quot; class=&quot;headerlink&quot; title=&quot;视图分析&quot;&gt;&lt;/a&gt;视图分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;加载plist数据&quot;&gt;&lt;a href=&quot;#加载plist数据&quot; class=&quot;headerlink&quot; title=&quot;加载plist数据&quot;&gt;&lt;/a&gt;加载plist数据&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;将数据的初始化放在了数据模型里&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;JKQuestionInfo&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
-
-NSArray *array = [NSArray arrayWithContentsOfFile:path];
-
-NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
-
-for (NSDictionary *dict in array) {
-
-    [arrayM addObject:[self questionWithDict:dict]];
-}
-return [arrayM copy];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (NSArray *)questions {
-if (nil == _questions) {
-    _questions = [JKQuestionInfo questions];
-}
-return _questions;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;ViewController&quot;&gt;&lt;a href=&quot;#ViewController&quot; class=&quot;headerlink&quot; title=&quot;ViewController&quot;&gt;&lt;/a&gt;ViewController&lt;/h1&gt;&lt;h2 id=&quot;定义常量&quot;&gt;&lt;a href=&quot;#定义常量&quot; class=&quot;headerlink&quot; title=&quot;定义常量&quot;&gt;&lt;/a&gt;定义常量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//需要计算的话，用宏,否则用const,如下
-
-//图片按钮的宽度
-#define imgW self.imgInsideBtn.bounds.size.width
-
-//答案按钮宽
-CGFloat const kBtnW = 35;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;UIButton-配置&quot;&gt;&lt;a href=&quot;#UIButton-配置&quot; class=&quot;headerlink&quot; title=&quot;UIButton 配置&quot;&gt;&lt;/a&gt;UIButton 配置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//为按钮设置背景图片
-[self.imgInsideBtn setImage:question.image forState:UIControlStateNormal];
-
-//设定按钮高亮下的背景图片
-[btn setBackgroundImage:[UIImage imageNamed:@&amp;quot;btn_answer_highlighted&amp;quot;] forState:UIControlStateHighlighted];
-
-//设定按钮常规下的字体颜色
-[btn setTitleColor:kAnswerBtnTitleColor forState:UIControlStateNormal];
-
-//设定按钮的点击方法
-[btn addTarget:self action:@selector(answerBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-
-//设定按钮上的字符
-[answerBtn setTitle:nil forState:UIControlStateNormal];
-
-//alpha值切换按钮的不同状态
-self.cover.alpha = 0.0;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;遍历移除所有子视图&quot;&gt;&lt;a href=&quot;#遍历移除所有子视图&quot; class=&quot;headerlink&quot; title=&quot;遍历移除所有子视图&quot;&gt;&lt;/a&gt;遍历移除所有子视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;for (UIButton *btn in self.answerView.subviews) {
-    [btn removeFromSuperview];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;UIView-配置&quot;&gt;&lt;a href=&quot;#UIView-配置&quot; class=&quot;headerlink&quot; title=&quot;UIView 配置&quot;&gt;&lt;/a&gt;UIView 配置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//该按钮不隐藏
-optionBtn.hidden = NO;
-
-//该view是否具有互动性
-self.optionsView.userInteractionEnabled = YES;
-
-//将中间图片按钮设置成是离屏幕最近一层,所有子视图的最上面
-[self.view bringSubviewToFront:self.imgInsideBtn];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%B
     
     </summary>
     
