@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-18T02:42:00.000Z</updated>
+  <updated>2016-05-19T02:56:52.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,186 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS数据存储-CoreData</title>
+    <link href="http://jackliu17.github.io/2016/05/19/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-CoreData/"/>
+    <id>http://jackliu17.github.io/2016/05/19/iOS数据存储-CoreData/</id>
+    <published>2016-05-19T02:51:09.000Z</published>
+    <updated>2016-05-19T02:56:52.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;保存数据&quot;&gt;&lt;a href=&quot;#保存数据&quot; class=&quot;headerlink&quot; title=&quot;保存数据&quot;&gt;&lt;/a&gt;保存数据&lt;/h1&gt;&lt;h2 id=&quot;新建Entity&quot;&gt;&lt;a href=&quot;#新建Entity&quot; class=&quot;headerlink&quot; title=&quot;新建Entity&quot;&gt;&lt;/a&gt;新建Entity&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+import CoreData
+
+class ViewController: UIViewController {
+
+override func viewDidLoad(){
+    super.viewDidLoad()
+
+    let context = (UIApplication.sharedApplication()
+        .delegate as! AppDelegate)
+        .managedObjectContext
+
+
+    let row:AnyObject = NSEntityDescription.insertNewObjectForEntityForName(&amp;quot;Users&amp;quot;, inManagedObjectContext: context)
+
+    row.setValue(&amp;quot;jikexueyuan&amp;quot;, forKey: &amp;quot;name&amp;quot;)
+    row.setValue(1, forKey: &amp;quot;age&amp;quot;)
+
+    do{
+     try context.save()
+    }catch{
+    print(error)
+    }
+
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;注意要导入CoreData&lt;/li&gt;
+&lt;li&gt;这样赋值只能是单个数据，如果要添加多条数据，需要循环&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;打印数据文件路径&quot;&gt;&lt;a href=&quot;#打印数据文件路径&quot; class=&quot;headerlink&quot; title=&quot;打印数据文件路径&quot;&gt;&lt;/a&gt;打印数据文件路径&lt;/h2&gt;&lt;p&gt;AppDelegate&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+
+    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(&amp;quot;SingleViewCoreData.sqlite&amp;quot;)
+    print(url)
+    ......
+
+//Result
+file:///Users/jackliu/Library/Developer/CoreSimulator/Devices/A2C2C116-004D-4A10-95F0-654B4D89D1EB/data/Containers
+/Data/Application/F3D3A90B-A29D-42C9-A699-3FC44EF0D2CA/Documents/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Application-Sqlitebrowser&quot;&gt;&lt;a href=&quot;#Application-Sqlitebrowser&quot; class=&quot;headerlink&quot; title=&quot;Application Sqlitebrowser&quot;&gt;&lt;/a&gt;Application Sqlitebrowser&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;读取数据&quot;&gt;&lt;a href=&quot;#读取数据&quot; class=&quot;headerlink&quot; title=&quot;读取数据&quot;&gt;&lt;/a&gt;读取数据&lt;/h1&gt;&lt;h2 id=&quot;配置环境&quot;&gt;&lt;a href=&quot;#配置环境&quot; class=&quot;headerlink&quot; title=&quot;配置环境&quot;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+import CoreData
+
+class UsersTableViewController: UITableViewController {
+
+    var dataArr:Array&amp;lt;AnyObject&amp;gt; = []
+    var context:NSManagedObjectContext!
+
+override func viewDidLoad() {
+        super.viewDidLoad()
+
+    context = (UIApplication.sharedApplication()
+                .delegate as! AppDelegate)
+                .managedObjectContext
+
+            refreshData()
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;从sqlite数据库中读取&quot;&gt;&lt;a href=&quot;#从sqlite数据库中读取&quot; class=&quot;headerlink&quot; title=&quot;从sqlite数据库中读取&quot;&gt;&lt;/a&gt;从sqlite数据库中读取&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;func refreshData(){ 
+
+let f = NSFetchRequest(entityName: &amp;quot;Users&amp;quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
+}
+tableView.reloadData()
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;KV取值配置Cell&quot;&gt;&lt;a href=&quot;#KV取值配置Cell&quot; class=&quot;headerlink&quot; title=&quot;KV取值配置Cell&quot;&gt;&lt;/a&gt;KV取值配置Cell&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -&amp;gt; UITableViewCell {
+
+    let cell = tableView.dequeueReusableCellWithIdentifier(&amp;quot;cell&amp;quot;, forIndexPath: indexPath)as UITableViewCell
+
+    let label = cell.viewWithTag(2) as! UILabel
+
+    let name: AnyObject! = dataArr[indexPath.row].valueForKey(&amp;quot;name&amp;quot;)
+    let age: AnyObject! = dataArr[indexPath.row].valueForKey(&amp;quot;age&amp;quot;)
+
+    label.text =  &amp;quot;name:\(name),age:\(age)&amp;quot;
+    return cell
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;viewWithTag&quot;&gt;&lt;a href=&quot;#viewWithTag&quot; class=&quot;headerlink&quot; title=&quot;viewWithTag( )&quot;&gt;&lt;/a&gt;viewWithTag( )&lt;/h2&gt;&lt;p&gt;通过标签找到子视图&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let label = cell.viewWithTag(2) as! UILabel
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;点击Cell跳转视图&quot;&gt;&lt;a href=&quot;#点击Cell跳转视图&quot; class=&quot;headerlink&quot; title=&quot;点击Cell跳转视图&quot;&gt;&lt;/a&gt;点击Cell跳转视图&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    let data = dataArr[indexPath.row] as! NSManagedObject
+
+    let vc = storyboard!.instantiateViewControllerWithIdentifier(&amp;quot;UserContent&amp;quot;)as! UserContentViewController
+
+    vc.data = data
+
+    presentViewController(vc, animated: true, completion: nil)
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;视图跳转-StoryboardId&quot;&gt;&lt;a href=&quot;#视图跳转-StoryboardId&quot; class=&quot;headerlink&quot; title=&quot;视图跳转 - StoryboardId&quot;&gt;&lt;/a&gt;视图跳转 - StoryboardId&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let vc = storyboard!.instantiateViewControllerWithIdentifier(&amp;quot;UserContent&amp;quot;)as! UserContentViewController
+
+vc.data = data
+
+presentViewController(vc, animated: true, completion: nil)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;返回到tableView视图时&quot;&gt;&lt;a href=&quot;#返回到tableView视图时&quot; class=&quot;headerlink&quot; title=&quot;返回到tableView视图时&quot;&gt;&lt;/a&gt;返回到tableView视图时&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func viewWillAppear(animated: Bool) {
+    refreshData()
+}
+
+func refreshData(){ 
+
+let f = NSFetchRequest(entityName: &amp;quot;Users&amp;quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
+}
+tableView.reloadData()
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;删除数据&quot;&gt;&lt;a href=&quot;#删除数据&quot; class=&quot;headerlink&quot; title=&quot;删除数据&quot;&gt;&lt;/a&gt;删除数据&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -&amp;gt; Bool {
+
+    return true
+}
+
+
+override func tableView(tableView: UITableView,commitEditingStyle editingStyle: UITableViewCellEditingStyle,forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+
+        //从数据库删除
+        context.deleteObject(dataArr[indexPath.row] as! NSManagedObject)
+
+        //存档
+        do {
+          try context.save()
+        } catch _ {
+        }
+
+        //刷新
+        refreshData()
+
+    } else if editingStyle == .Insert {
+
+    }    
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;接收到传递过来的CoreData数据&quot;&gt;&lt;a href=&quot;#接收到传递过来的CoreData数据&quot; class=&quot;headerlink&quot; title=&quot;接收到传递过来的CoreData数据&quot;&gt;&lt;/a&gt;接收到传递过来的CoreData数据&lt;/h1&gt;&lt;p&gt;UserContentViewController&lt;/p&gt;
+&lt;h2 id=&quot;取值&quot;&gt;&lt;a href=&quot;#取值&quot; class=&quot;headerlink&quot; title=&quot;取值&quot;&gt;&lt;/a&gt;取值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var data:NSManagedObject!
+
+tfName.text = data.valueForKey(&amp;quot;name&amp;quot;) as? String        
+let age: AnyObject! = data.valueForKey(&amp;quot;age&amp;quot;)
+tfAge.text = &amp;quot;\(age)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;赋值存档&quot;&gt;&lt;a href=&quot;#赋值存档&quot; class=&quot;headerlink&quot; title=&quot;赋值存档&quot;&gt;&lt;/a&gt;赋值存档&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;data.setValue(tfName.text, forKey: &amp;quot;name&amp;quot;)
+data.setValue(Int(tfAge.text!), forKey: &amp;quot;age&amp;quot;)
+
+do{
+    try data.managedObjectContext!.save()
+}catch{
+    print(error)
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;保存数据&quot;&gt;&lt;a href=&quot;#保存数据&quot; class=&quot;headerlink&quot; title=&quot;保存数据&quot;&gt;&lt;/a&gt;保存数据&lt;/h1&gt;&lt;h2 id=&quot;新建Entity&quot;&gt;&lt;a href=&quot;#新建Entity&quot; class=&quot;headerlink&quot; title=&quot;新
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS数据存储-plist文件</title>
@@ -3233,193 +3413,6 @@ return self;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目8.QQ下拉菜单</title>
-    <link href="http://jackliu17.github.io/2016/04/29/iOS%E9%A1%B9%E7%9B%AE8-QQ%E4%B8%8B%E6%8B%89%E8%8F%9C%E5%8D%95/"/>
-    <id>http://jackliu17.github.io/2016/04/29/iOS项目8-QQ下拉菜单/</id>
-    <published>2016-04-29T12:56:05.000Z</published>
-    <updated>2016-05-17T11:42:28.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;项目分析&quot;&gt;&lt;a href=&quot;#项目分析&quot; class=&quot;headerlink&quot; title=&quot;项目分析&quot;&gt;&lt;/a&gt;项目分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;JKFriendsModel&quot;&gt;&lt;a href=&quot;#JKFriendsModel&quot; class=&quot;headerlink&quot; title=&quot;JKFriendsModel&quot;&gt;&lt;/a&gt;JKFriendsModel&lt;/h1&gt;&lt;h2 id=&quot;加载数据-字典&quot;&gt;&lt;a href=&quot;#加载数据-字典&quot; class=&quot;headerlink&quot; title=&quot;加载数据(字典)&quot;&gt;&lt;/a&gt;加载数据(字典)&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithDict:(NSDictionary *)dict{
-if (self = [super init]) {
-    [self setValuesForKeysWithDictionary:dict];
-}
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;构建class-method&quot;&gt;&lt;a href=&quot;#构建class-method&quot; class=&quot;headerlink&quot; title=&quot;构建class method&quot;&gt;&lt;/a&gt;构建class method&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;+ (instancetype)friendWithDict:(NSDictionary *)dict{
-return [[self alloc] initWithDict:dict];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;JKGroupModel&quot;&gt;&lt;a href=&quot;#JKGroupModel&quot; class=&quot;headerlink&quot; title=&quot;JKGroupModel&quot;&gt;&lt;/a&gt;JKGroupModel&lt;/h1&gt;&lt;h2 id=&quot;加载数据-字典内含数组&quot;&gt;&lt;a href=&quot;#加载数据-字典内含数组&quot; class=&quot;headerlink&quot; title=&quot;加载数据(字典内含数组)&quot;&gt;&lt;/a&gt;加载数据(字典内含数组)&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithDict:(NSDictionary *)dict{
-
-if (self = [super init]) {
-
-    //加载组内字典数据
-    [self setValuesForKeysWithDictionary:dict];
-
-    //加载组内数组数据
-    NSMutableArray *muArray = [NSMutableArray array];
-    for (NSDictionary *dict in self.friends) {
-        JKFriendsModel *model = [JKFriendsModel friendWithDict:dict];
-        [muArray addObject:model];
-    }
-    self.friends = muArray;
-}
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;HeaderView&quot;&gt;&lt;a href=&quot;#HeaderView&quot; class=&quot;headerlink&quot; title=&quot;HeaderView&quot;&gt;&lt;/a&gt;HeaderView&lt;/h1&gt;&lt;h2 id=&quot;子类&quot;&gt;&lt;a href=&quot;#子类&quot; class=&quot;headerlink&quot; title=&quot;子类&quot;&gt;&lt;/a&gt;子类&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface HeaderView : UITableViewHeaderFooterView
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;初始化headerView&quot;&gt;&lt;a href=&quot;#初始化headerView&quot; class=&quot;headerlink&quot; title=&quot;初始化headerView&quot;&gt;&lt;/a&gt;初始化headerView&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//类似cell的创建
-
-+ (instancetype)headerView:(UITableView *)tableView{
-
-    static NSString *identifier = @&amp;quot;header&amp;quot;;
-    HeaderView *header =(HeaderView *) [tableView dequeueReusableCellWithIdentifier:identifier];
-
-    //用以下这个方式，则只创建一次,此项目不采用
-    //HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-
-    if (!header) {
-header = [[HeaderView alloc] initWithReuseIdentifier:identifier];
-}
-return header;
-}
-
-
-//这个headerview其实就是个button
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-
-if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setBackgroundImage:[UIImage imageNamed:@&amp;quot;header_bg&amp;quot;] forState:UIControlStateNormal];
-    //[button setBackgroundImage:[UIImage imageNamed:@&amp;quot;header_bg_highlighted&amp;quot;] forState:UIControlStateHighlighted];
-    [button setImage:[UIImage imageNamed:@&amp;quot;arrow&amp;quot;] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    button.imageView.contentMode = UIViewContentModeCenter;
-    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
-    button.imageView.clipsToBounds = NO;
-    _arrowBtn = button;
-
-    [self addSubview:_arrowBtn];
-    //创建label，显示当前在线人数
-    UILabel *labelRight = [[UILabel alloc] init];
-    labelRight.textAlignment = NSTextAlignmentCenter;
-    _label = labelRight;
-    [self addSubview:_label];
-}
-
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;UIButton的属性设置&quot;&gt;&lt;a href=&quot;#UIButton的属性设置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的属性设置&quot;&gt;&lt;/a&gt;UIButton的属性设置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//内容框的内边距
-button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-
-//内容的对齐
-button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-
-//标题的内边距
-button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-
-//为button设定方法
-[button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;BOOL值取反&quot;&gt;&lt;a href=&quot;#BOOL值取反&quot; class=&quot;headerlink&quot; title=&quot;BOOL值取反&quot;&gt;&lt;/a&gt;BOOL值取反&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;self.groupModel.isOpen = !self.groupModel.isOpen;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;调用代理方法&quot;&gt;&lt;a href=&quot;#调用代理方法&quot; class=&quot;headerlink&quot; title=&quot;调用代理方法&quot;&gt;&lt;/a&gt;调用代理方法&lt;/h2&gt;&lt;p&gt;代理就好比是自己有个武器不能用，然后让自己的小喽啰”id delegate” 交给他人来”viewController” 使用&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if ([self.delegate respondsToSelector:@selector(clickView)]) {
-[self.delegate clickView];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;小箭头的旋转&quot;&gt;&lt;a href=&quot;#小箭头的旋转&quot; class=&quot;headerlink&quot; title=&quot;小箭头的旋转&quot;&gt;&lt;/a&gt;小箭头的旋转&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//调用了tableView 的 reload方法,这个方法就会刷新headview,那样的话,就会重新生成一个headview
-- (void)didMoveToSuperview{
-    _arrowBtn.imageView.transform = self.groupModel.isOpen ? CGAffineTransformMakeRotation(M_PI_2):CGAffineTransformMakeRotation(0);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;布局子视图&quot;&gt;&lt;a href=&quot;#布局子视图&quot; class=&quot;headerlink&quot; title=&quot;布局子视图&quot;&gt;&lt;/a&gt;布局子视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)layoutSubviews{
-    [super layoutSubviews];
-    _arrowBtn.frame = self.bounds;
-    _label.frame = CGRectMake(self.frame.size.width - 70, 0, 60, self.frame.size.height);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;layoutSubviews方法，是当改变父控件高度的时候，自动调用这个方法，所以一般在这里面设置子控件的frame。因为子控件随着父控件而改变。&lt;/li&gt;
-&lt;li&gt;UITableViewHeaderFooterView不可以用xib，只能用代码创建&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;setter赋值button-title&quot;&gt;&lt;a href=&quot;#setter赋值button-title&quot; class=&quot;headerlink&quot; title=&quot;setter赋值button title&quot;&gt;&lt;/a&gt;setter赋值button title&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)setGroupModel:(JKGroupModel *)groupModel{
-_groupModel = groupModel;
-[_arrowBtn setTitle:_groupModel.name forState:UIControlStateNormal];
-_label.text = [NSString stringWithFormat:@&amp;quot;%@/%lu&amp;quot;,_groupModel.online,(unsigned long)_groupModel.friends.count];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;imageView-contentMode&quot;&gt;&lt;a href=&quot;#imageView-contentMode&quot; class=&quot;headerlink&quot; title=&quot;imageView.contentMode&quot;&gt;&lt;/a&gt;imageView.contentMode&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;button.imageView.contentMode = UIViewContentModeCenter;
-button.imageView.clipsToBounds = NO;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个居中是包括了，横向和纵向都是居中。图片不会拉伸或者压缩，就是按照imageView的frame和图片的大小来居中显示的。&lt;/p&gt;
-&lt;p&gt;这里有两种情况：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;图片比view的区域更大。这个时候会截取图片的中间部位显示在frame区域里面。&lt;/li&gt;
-&lt;li&gt;图片比view的区域更小。这个时候图片会完整的显示在frame的中间位置。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如果在默认情况，图片的多出来的部分还是会显示屏幕上。如果不希望超过frame的区域显示在屏幕上要设置。clipsToBounds属性。&lt;/p&gt;
-&lt;h1 id=&quot;ListTableViewController&quot;&gt;&lt;a href=&quot;#ListTableViewController&quot; class=&quot;headerlink&quot; title=&quot;ListTableViewController&quot;&gt;&lt;/a&gt;ListTableViewController&lt;/h1&gt;&lt;h2 id=&quot;加载数据&quot;&gt;&lt;a href=&quot;#加载数据&quot; class=&quot;headerlink&quot; title=&quot;加载数据&quot;&gt;&lt;/a&gt;加载数据&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (NSArray *)dataArray{
-//为什么不能用self.dataArray?? BadAccess
-if (!_dataArray) {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@&amp;quot;friends.plist&amp;quot; ofType:nil];
-    NSArray *array = [NSArray arrayWithContentsOfFile:path];
-    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:array.count];
-    for (NSDictionary *dict in array) {
-        JKGroupModel *groupModel = [JKGroupModel GroupWithDict:dict];
-        [muArray addObject:groupModel];
-    }
-    _dataArray = [muArray copy];
-}
-return _dataArray;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;每个字典对应一个数据模型(Model class），plist中有多少个字典就有多少个Model class&lt;/li&gt;
-&lt;li&gt;使用该方法加载数据 — [self setValuesForKeysWithDictionary:dict]&lt;/li&gt;
-&lt;li&gt;plist的第一层级都是数组，所以懒加载返回的也是数组&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;尾部去掉多余的线&quot;&gt;&lt;a href=&quot;#尾部去掉多余的线&quot; class=&quot;headerlink&quot; title=&quot;尾部去掉多余的线&quot;&gt;&lt;/a&gt;尾部去掉多余的线&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#pragma mark - 去掉多余的线 ,将尾部设为一个透明的UIView
-- (void)clipExtraCellLine:(UITableView *)tableView{
-UIView *view = [[UIView alloc] init];
-view.backgroundColor = [UIColor clearColor];
-[self.tableView setTableFooterView:view];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Section-Header&quot;&gt;&lt;a href=&quot;#Section-Header&quot; class=&quot;headerlink&quot; title=&quot;Section Header&quot;&gt;&lt;/a&gt;Section Header&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;每次表视图变动需要reload&quot;&gt;&lt;a href=&quot;#每次表视图变动需要reload&quot; class=&quot;headerlink&quot; title=&quot;每次表视图变动需要reload&quot;&gt;&lt;/a&gt;每次表视图变动需要reload&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[self.tableView reloadData];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;判断展开的Item数量&quot;&gt;&lt;a href=&quot;#判断展开的Item数量&quot; class=&quot;headerlink&quot; title=&quot;判断展开的Item数量&quot;&gt;&lt;/a&gt;判断展开的Item数量&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSInteger count = groupModel.isOpen ? groupModel.friends.count : 0;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;设置cell的代码&quot;&gt;&lt;a href=&quot;#设置cell的代码&quot; class=&quot;headerlink&quot; title=&quot;设置cell的代码&quot;&gt;&lt;/a&gt;设置cell的代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @&amp;quot;friendCell&amp;quot;;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];    
-}
-//对应的哪一个section
-JKGroupModel *groupModel = self.dataArray[indexPath.section];
-//对应的哪一个row
-JKFriendsModel *friendModel = groupModel.friends[indexPath.row];
-cell.imageView.image = [UIImage imageNamed:friendModel.icon];
-cell.textLabel.text = friendModel.name;
-cell.detailTextLabel.text = friendModel.intro;
-return cell;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;AppDelegate&quot;&gt;&lt;a href=&quot;#AppDelegate&quot; class=&quot;headerlink&quot; title=&quot;AppDelegate&quot;&gt;&lt;/a&gt;AppDelegate&lt;/h1&gt;&lt;h2 id=&quot;创建导航视图&quot;&gt;&lt;a href=&quot;#创建导航视图&quot; class=&quot;headerlink&quot; title=&quot;创建导航视图&quot;&gt;&lt;/a&gt;创建导航视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ListTableViewController *listVC = [[ListTableViewController alloc] init];
-UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:listVC];
-self.window.rootViewController = navCtrl;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_008_1.png&quot; alt
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   

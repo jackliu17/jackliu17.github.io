@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_image," />
+  <meta name="keywords" content="iOS,iOS_dataStorage," />
 
 
 
@@ -61,36 +61,47 @@
 
 
 
-<meta name="description" content="绘制直线
-代码class DrawLinesView: UIView {
+<meta name="description" content="保存数据新建Entity
+代码实现import UIKit
+import CoreData
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect:">
+class ViewController: UIViewController {
+
+override func viewDidLoad(){
+    super.viewDidLoad()
+
+    let context = (UIApplication.sharedApplication()">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS绘图API演示">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/07/iOS绘图API演示/index.html">
+<meta property="og:title" content="iOS数据存储-CoreData">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/19/iOS数据存储-CoreData/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="绘制直线
-代码class DrawLinesView: UIView {
+<meta property="og:description" content="保存数据新建Entity
+代码实现import UIKit
+import CoreData
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect:">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png">
-<meta property="og:updated_time" content="2016-05-07T06:00:46.000Z">
+class ViewController: UIViewController {
+
+override func viewDidLoad(){
+    super.viewDidLoad()
+
+    let context = (UIApplication.sharedApplication()">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData1.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData2.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png">
+<meta property="og:updated_time" content="2016-05-19T02:56:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS绘图API演示">
-<meta name="twitter:description" content="绘制直线
-代码class DrawLinesView: UIView {
+<meta name="twitter:title" content="iOS数据存储-CoreData">
+<meta name="twitter:description" content="保存数据新建Entity
+代码实现import UIKit
+import CoreData
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect:">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png">
+class ViewController: UIViewController {
+
+override func viewDidLoad(){
+    super.viewDidLoad()
+
+    let context = (UIApplication.sharedApplication()">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData1.png">
 
 
 
@@ -108,7 +119,7 @@ override func drawRect(rect:">
   };
 </script>
 
-  <title> iOS绘图API演示 | Cowboy Tech </title>
+  <title> iOS数据存储-CoreData | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +261,7 @@ override func drawRect(rect:">
             
             
               
-                iOS绘图API演示
+                iOS数据存储-CoreData
               
             
           </h1>
@@ -262,8 +273,8 @@ override func drawRect(rect:">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-07T15:51:59+10:00" content="2016-05-07">
-              2016-05-07
+            <time itemprop="dateCreated" datetime="2016-05-19T12:51:09+10:00" content="2016-05-19">
+              2016-05-19
             </time>
           </span>
 
@@ -292,8 +303,8 @@ override func drawRect(rect:">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/07/iOS绘图API演示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/07/iOS绘图API演示/" itemprop="commentsCount"></span>
+                <a href="/2016/05/19/iOS数据存储-CoreData/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/iOS数据存储-CoreData/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,170 +326,163 @@ override func drawRect(rect:">
       
 
       
-        <h1 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>class DrawLinesView: UIView {
+        <h1 id="保存数据"><a href="#保存数据" class="headerlink" title="保存数据"></a>保存数据</h1><h2 id="新建Entity"><a href="#新建Entity" class="headerlink" title="新建Entity"></a>新建Entity</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData1.png" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>import UIKit
+import CoreData
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
+class ViewController: UIViewController {
 
-    //设定绘画环境
-    let context = UIGraphicsGetCurrentContext()
+override func viewDidLoad(){
+    super.viewDidLoad()
 
-    //绘画起点
-    CGContextMoveToPoint(context, 100, 100)
-    //绘画终点
-    CGContextAddLineToPoint(context, 100, 200)
-     //绘画终点
-    CGContextAddLineToPoint(context, 200, 200)
+    let context = (UIApplication.sharedApplication()
+        .delegate as! AppDelegate)
+        .managedObjectContext
 
-    //绘画起点
-    CGContextMoveToPoint(context, 100, 300)
-      //绘画终点
-    CGContextAddLineToPoint(context, 100, 400)
-      //绘画终点
-    CGContextAddLineToPoint(context, 200, 500)
 
-    //设定颜色
-    CGContextSetRGBStrokeColor(context, 1, 0, 1, 1)
-    //设定线条宽度
-    CGContextSetLineWidth(context, 5)
-    //绘制线条
-    CGContextStrokePath(context)
+    let row:AnyObject = NSEntityDescription.insertNewObjectForEntityForName(&quot;Users&quot;, inManagedObjectContext: context)
 
-}
-</code></pre><h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png" alt=""></p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
+    row.setValue(&quot;jikexueyuan&quot;, forKey: &quot;name&quot;)
+    row.setValue(1, forKey: &quot;age&quot;)
 
-class DrawRectView: UIView {
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-//设定绘画环境
-let context = UIGraphicsGetCurrentContext()
-    //加入矩形
-    CGContextAddRect(context, CGRect(x:100,y:100,width: 100,height: 100))
-    //填充颜色
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
-    //绘制矩形
-    CGContextFillPath(context)
-
-    //设置外框的宽度
-    CGContextSetLineWidth(context, 5)
-    //设置外框颜色
-    CGContextSetRGBStrokeColor(context,0 ,1, 0, 1)
-    //绘制外框
-    CGContextStrokeRect(context, CGRect(x: 100, y: 100, width: 100, height: 100))
+    do{
+     try context.save()
+    }catch{
+    print(error)
+    }
 
 }
 }
-</code></pre><h1 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png" alt=""></p>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
+</code></pre><ol>
+<li>注意要导入CoreData</li>
+<li>这样赋值只能是单个数据，如果要添加多条数据，需要循环</li>
+</ol>
+<h2 id="打印数据文件路径"><a href="#打印数据文件路径" class="headerlink" title="打印数据文件路径"></a>打印数据文件路径</h2><p>AppDelegate</p>
+<pre><code>lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 
-class DrawCircle: UIView { 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
+    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(&quot;SingleViewCoreData.sqlite&quot;)
+    print(url)
+    ......
 
-let context = UIGraphicsGetCurrentContext()
+//Result
+file:///Users/jackliu/Library/Developer/CoreSimulator/Devices/A2C2C116-004D-4A10-95F0-654B4D89D1EB/data/Containers
+/Data/Application/F3D3A90B-A29D-42C9-A699-3FC44EF0D2CA/Documents/
+</code></pre><h2 id="Application-Sqlitebrowser"><a href="#Application-Sqlitebrowser" class="headerlink" title="Application Sqlitebrowser"></a>Application Sqlitebrowser</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData2.png" alt=""></p>
+<h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><pre><code>import UIKit
+import CoreData
 
-    //加入圆形
-    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
-    //填充颜色
-    CGContextSetRGBFillColor(context, 1, 0, 0, 1)
-    //开始绘制填充
-    CGContextFillPath(context)
+class UsersTableViewController: UITableViewController {
 
-    //加入圆形
-    CGContextAddArc(context, 150, 200, 100, 0, 3.141592653 * 2, 0)
-    //设定宽度
-    CGContextSetLineWidth(context, 10)
-    //绘制
-    CGContextStrokePath(context)
+    var dataArr:Array&lt;AnyObject&gt; = []
+    var context:NSManagedObjectContext!
 
-    //加入椭圆
-    CGContextAddEllipseInRect(context, CGRect(x: 50, y: 400, width: 200, height: 100))
-    //绘制
-    CGContextStrokePath(context)
+override func viewDidLoad() {
+        super.viewDidLoad()
+
+    context = (UIApplication.sharedApplication()
+                .delegate as! AppDelegate)
+                .managedObjectContext
+
+            refreshData()
+    }
+</code></pre><h2 id="从sqlite数据库中读取"><a href="#从sqlite数据库中读取" class="headerlink" title="从sqlite数据库中读取"></a>从sqlite数据库中读取</h2><pre><code>func refreshData(){ 
+
+let f = NSFetchRequest(entityName: &quot;Users&quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
 }
+tableView.reloadData()
 }
-</code></pre><h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png" alt=""></p>
-<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
+</code></pre><h2 id="KV取值配置Cell"><a href="#KV取值配置Cell" class="headerlink" title="KV取值配置Cell"></a>KV取值配置Cell</h2><pre><code>override func tableView(tableView: UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
 
-class DrawImageView: UIView {
+    let cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;, forIndexPath: indexPath)as UITableViewCell
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
+    let label = cell.viewWithTag(2) as! UILabel
 
-    var uiImage:CGImageRef?
+    let name: AnyObject! = dataArr[indexPath.row].valueForKey(&quot;name&quot;)
+    let age: AnyObject! = dataArr[indexPath.row].valueForKey(&quot;age&quot;)
 
-    uiImage = UIImage(named: &quot;girl.jpg&quot;)?.CGImage
-
-    let context = UIGraphicsGetCurrentContext()
-
-    //context状态的维持和释放，不影响其他图像的绘制
-    CGContextSaveGState(context)
-
-    //没有如下这两个图像会翻转
-    CGContextTranslateCTM(context, 10, 400)
-    CGContextScaleCTM(context, 1, -1)
-    CGContextDrawImage(context, CGRect(x: 0,y: 0,width: 200,height: 200), uiImage)
-    CGContextRestoreGState(context)
-
-    CGContextStrokeRect(context, CGRect(x: 50, y: 100, width: 100, height: 100))
+    label.text =  &quot;name:\(name),age:\(age)&quot;
+    return cell
 }
-}
-</code></pre><h1 id="绘图板"><a href="#绘图板" class="headerlink" title="绘图板"></a>绘图板</h1><h2 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
+</code></pre><h2 id="viewWithTag"><a href="#viewWithTag" class="headerlink" title="viewWithTag( )"></a>viewWithTag( )</h2><p>通过标签找到子视图</p>
+<pre><code>let label = cell.viewWithTag(2) as! UILabel
+</code></pre><h1 id="点击Cell跳转视图"><a href="#点击Cell跳转视图" class="headerlink" title="点击Cell跳转视图"></a>点击Cell跳转视图</h1><pre><code>override func tableView(tableView: UITableView,didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-class DrawBoardView: UIView {
+    let data = dataArr[indexPath.row] as! NSManagedObject
 
-var path = CGPathCreateMutable()
+    let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController
 
-override func touchesBegan(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
+    vc.data = data
 
-    let p = (touches as NSSet).anyObject()?.locationInView(self)
-
-    CGPathMoveToPoint(path, nil, p!.x, p!.y)
+    presentViewController(vc, animated: true, completion: nil)
 
 }
+</code></pre><h2 id="视图跳转-StoryboardId"><a href="#视图跳转-StoryboardId" class="headerlink" title="视图跳转 - StoryboardId"></a>视图跳转 - StoryboardId</h2><pre><code>let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController
 
-override func touchesMoved(touches: Set&lt;UITouch&gt;, withEvent event: UIEvent?) {
+vc.data = data
 
-    let p = (touches as NSSet).anyObject()?.locationInView(self)
-
-    CGPathAddLineToPoint(path, nil, p!.x, p!.y)
-
-    setNeedsDisplay()
-
+presentViewController(vc, animated: true, completion: nil)
+</code></pre><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png" alt=""></p>
+<h1 id="返回到tableView视图时"><a href="#返回到tableView视图时" class="headerlink" title="返回到tableView视图时"></a>返回到tableView视图时</h1><pre><code>override func viewWillAppear(animated: Bool) {
+    refreshData()
 }
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-override func drawRect(rect: CGRect) {
-    // Drawing code
-    let context = UIGraphicsGetCurrentContext()
-    CGContextAddPath(context, path)
-    CGContextStrokePath(context)
+func refreshData(){ 
 
+let f = NSFetchRequest(entityName: &quot;Users&quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
+}
+tableView.reloadData()
+}
+</code></pre><h1 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h1><pre><code>override func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -&gt; Bool {
+
+    return true
 }
 
-}
-</code></pre><h1 id="怎么清空画板"><a href="#怎么清空画板" class="headerlink" title="怎么清空画板"></a>怎么清空画板</h1><p>1.重新运行程序即可清空<br>2.设置个按钮点击事件实现清空之前所有操作<br>3.使用CGContextClearRect，<br>4.重新初始化path，这样重画的时候不会检测到之前有线条的path，画面就自动清空了</p>
-<h1 id="橡皮擦功能"><a href="#橡皮擦功能" class="headerlink" title="橡皮擦功能"></a>橡皮擦功能</h1><p>较粗的和背景颜色同样的线条</p>
-<h1 id="绘制图像时解决翻转问题"><a href="#绘制图像时解决翻转问题" class="headerlink" title="绘制图像时解决翻转问题"></a>绘制图像时解决翻转问题</h1><pre><code>CGContextTranslateCTM(context, 10, 400)
-CGContextScaleCTM(context, 1, -1)
-</code></pre><h1 id="context状态的维持和释放"><a href="#context状态的维持和释放" class="headerlink" title="context状态的维持和释放"></a>context状态的维持和释放</h1><pre><code>//context状态的维持和释放，不影响其他图像的绘制
-CGContextSaveGState(context)
-.............绘制代码
-CGContextRestoreGState(context)
-</code></pre><h1 id="setNeedsDisplay"><a href="#setNeedsDisplay" class="headerlink" title="setNeedsDisplay()"></a>setNeedsDisplay()</h1><p>执行这个方法时会调用drawRect重新绘图</p>
 
+override func tableView(tableView: UITableView,commitEditingStyle editingStyle: UITableViewCellEditingStyle,forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+
+        //从数据库删除
+        context.deleteObject(dataArr[indexPath.row] as! NSManagedObject)
+
+        //存档
+        do {
+          try context.save()
+        } catch _ {
+        }
+
+        //刷新
+        refreshData()
+
+    } else if editingStyle == .Insert {
+
+    }    
+}
+</code></pre><h1 id="接收到传递过来的CoreData数据"><a href="#接收到传递过来的CoreData数据" class="headerlink" title="接收到传递过来的CoreData数据"></a>接收到传递过来的CoreData数据</h1><p>UserContentViewController</p>
+<h2 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h2><pre><code>var data:NSManagedObject!
+
+tfName.text = data.valueForKey(&quot;name&quot;) as? String        
+let age: AnyObject! = data.valueForKey(&quot;age&quot;)
+tfAge.text = &quot;\(age)&quot;
+</code></pre><h2 id="赋值存档"><a href="#赋值存档" class="headerlink" title="赋值存档"></a>赋值存档</h2><pre><code>data.setValue(tfName.text, forKey: &quot;name&quot;)
+data.setValue(Int(tfAge.text!), forKey: &quot;age&quot;)
+
+do{
+    try data.managedObjectContext!.save()
+}catch{
+    print(error)
+}
+</code></pre>
       
     </div>
 
@@ -494,7 +498,7 @@ CGContextRestoreGState(context)
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
+            <a href="/tags/iOS-dataStorage/" rel="tag">#iOS_dataStorage</a>
           
         </div>
       
@@ -503,17 +507,13 @@ CGContextRestoreGState(context)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/06/使用带粒子效果的CAEmitterLayer/" rel="next" title="使用带粒子效果的CAEmitterLayer">
-                <i class="fa fa-chevron-left"></i> 使用带粒子效果的CAEmitterLayer
+              <a href="/2016/05/18/iOS数据存储-plist文件/" rel="next" title="iOS数据存储-plist文件">
+                <i class="fa fa-chevron-left"></i> iOS数据存储-plist文件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/08/CALayer的使用/" rel="prev" title="CALayer的使用">
-                CALayer的使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -645,7 +645,7 @@ CGContextRestoreGState(context)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制直线"><span class="nav-number">1.</span> <span class="nav-text">绘制直线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制矩形"><span class="nav-number">2.</span> <span class="nav-text">绘制矩形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">2.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制圆形"><span class="nav-number">3.</span> <span class="nav-text">绘制圆形</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-2"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制图片"><span class="nav-number">4.</span> <span class="nav-text">绘制图片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-3"><span class="nav-number">4.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘图板"><span class="nav-number">5.</span> <span class="nav-text">绘图板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-4"><span class="nav-number">5.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#怎么清空画板"><span class="nav-number">6.</span> <span class="nav-text">怎么清空画板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#橡皮擦功能"><span class="nav-number">7.</span> <span class="nav-text">橡皮擦功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制图像时解决翻转问题"><span class="nav-number">8.</span> <span class="nav-text">绘制图像时解决翻转问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#context状态的维持和释放"><span class="nav-number">9.</span> <span class="nav-text">context状态的维持和释放</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#setNeedsDisplay"><span class="nav-number">10.</span> <span class="nav-text">setNeedsDisplay()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#保存数据"><span class="nav-number">1.</span> <span class="nav-text">保存数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建Entity"><span class="nav-number">1.1.</span> <span class="nav-text">新建Entity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印数据文件路径"><span class="nav-number">1.3.</span> <span class="nav-text">打印数据文件路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Sqlitebrowser"><span class="nav-number">1.4.</span> <span class="nav-text">Application Sqlitebrowser</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#读取数据"><span class="nav-number">2.</span> <span class="nav-text">读取数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">2.1.</span> <span class="nav-text">配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从sqlite数据库中读取"><span class="nav-number">2.2.</span> <span class="nav-text">从sqlite数据库中读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KV取值配置Cell"><span class="nav-number">2.3.</span> <span class="nav-text">KV取值配置Cell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewWithTag"><span class="nav-number">2.4.</span> <span class="nav-text">viewWithTag( )</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击Cell跳转视图"><span class="nav-number">3.</span> <span class="nav-text">点击Cell跳转视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#视图跳转-StoryboardId"><span class="nav-number">3.1.</span> <span class="nav-text">视图跳转 - StoryboardId</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回到tableView视图时"><span class="nav-number">4.</span> <span class="nav-text">返回到tableView视图时</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除数据"><span class="nav-number">5.</span> <span class="nav-text">删除数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收到传递过来的CoreData数据"><span class="nav-number">6.</span> <span class="nav-text">接收到传递过来的CoreData数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取值"><span class="nav-number">6.1.</span> <span class="nav-text">取值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值存档"><span class="nav-number">6.2.</span> <span class="nav-text">赋值存档</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -903,9 +903,9 @@ CGContextRestoreGState(context)
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/07/iOS绘图API演示/';
-      var disqus_title = 'iOS绘图API演示';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/07/iOS绘图API演示/';
+      var disqus_identifier = '2016/05/19/iOS数据存储-CoreData/';
+      var disqus_title = 'iOS数据存储-CoreData';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/19/iOS数据存储-CoreData/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
