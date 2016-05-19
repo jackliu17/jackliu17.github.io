@@ -1047,7 +1047,11 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
     // 跳转到根视图
     //[self.navigationController popToRootViewControllerAnimated:YES];
 }
-</code></pre><h2 id="Segue自动连接-button"><a href="#Segue自动连接-button" class="headerlink" title="Segue自动连接(button)"></a>Segue自动连接(button)</h2><ol>
+</code></pre><h2 id="无Segue连接-StoryboardId"><a href="#无Segue连接-StoryboardId" class="headerlink" title="无Segue连接 - StoryboardId"></a>无Segue连接 - StoryboardId</h2><pre><code>let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController  
+vc.data = data  
+presentViewController(vc, animated: true, completion: nil)
+</code></pre><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png" alt=""></p>
+<h2 id="Segue自动连接-button"><a href="#Segue自动连接-button" class="headerlink" title="Segue自动连接(button)"></a>Segue自动连接(button)</h2><ol>
 <li>点住Button or Cell,按住ctrl，向新的viewController拖动,选择segue模式,点击后不需任何方法，会自动跳转到目的视图</li>
 <li>可以在prepareForSegue中进行数据传递(optional)</li>
 <li>从新视图的返回，使用如下代码: </li>
