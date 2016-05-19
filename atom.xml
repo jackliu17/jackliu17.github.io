@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-19T02:56:52.000Z</updated>
+  <updated>2016-05-19T06:47:08.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS数据存储-JSON</title>
+    <link href="http://jackliu17.github.io/2016/05/19/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-JSON/"/>
+    <id>http://jackliu17.github.io/2016/05/19/iOS数据存储-JSON/</id>
+    <published>2016-05-19T06:44:42.000Z</published>
+    <updated>2016-05-19T06:47:08.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;读取JSON文件&quot;&gt;&lt;a href=&quot;#读取JSON文件&quot; class=&quot;headerlink&quot; title=&quot;读取JSON文件&quot;&gt;&lt;/a&gt;读取JSON文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let filePath: NSString = NSBundle.mainBundle().pathForResource(&amp;quot;obj&amp;quot;, ofType: &amp;quot;json&amp;quot;)!
+let jsonUrl = NSURL(fileURLWithPath: filePath as String)
+let jsonData = NSData(contentsOfURL: jsonUrl)
+
+do{       
+let json = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions())
+let lang:AnyObject = json.objectForKey(&amp;quot;language&amp;quot;)!
+print(lang)           
+}catch{
+print(error)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;生成JSON数据&quot;&gt;&lt;a href=&quot;#生成JSON数据&quot; class=&quot;headerlink&quot; title=&quot;生成JSON数据&quot;&gt;&lt;/a&gt;生成JSON数据&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let dict = [&amp;quot;name&amp;quot;:&amp;quot;jikexueyuan&amp;quot;,&amp;quot;age&amp;quot;:1]
+do{
+    let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions())
+    let str = NSString(data: jsonData, encoding: NSUTF8StringEncoding)!
+    print(str)
+}catch{
+    print(error)
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;读取JSON文件&quot;&gt;&lt;a href=&quot;#读取JSON文件&quot; class=&quot;headerlink&quot; title=&quot;读取JSON文件&quot;&gt;&lt;/a&gt;读取JSON文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let filePath: NSString = NSBundle.main
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS数据存储-CoreData</title>
@@ -1259,9 +1302,9 @@ self.colorView.percent   = 0.5;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
   </entry>
   
@@ -1623,9 +1666,9 @@ return _value;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
   </entry>
   
@@ -3225,194 +3268,6 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计复杂的iOS动画效果</title>
-    <link href="http://jackliu17.github.io/2016/04/30/%E8%AE%BE%E8%AE%A1%E5%A4%8D%E6%9D%82%E7%9A%84iOS%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/"/>
-    <id>http://jackliu17.github.io/2016/04/30/设计复杂的iOS动画效果/</id>
-    <published>2016-04-30T08:56:02.000Z</published>
-    <updated>2016-04-30T10:04:26.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;动画效果的UIView-Object&quot;&gt;&lt;a href=&quot;#动画效果的UIView-Object&quot; class=&quot;headerlink&quot; title=&quot;动画效果的UIView Object&quot;&gt;&lt;/a&gt;动画效果的UIView Object&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView;
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;制定统一的动画接口&quot;&gt;&lt;a href=&quot;#制定统一的动画接口&quot; class=&quot;headerlink&quot; title=&quot;制定统一的动画接口&quot;&gt;&lt;/a&gt;制定统一的动画接口&lt;/h1&gt;&lt;p&gt;即：相关有动画效果的类，有同一的动画方法命名&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;为了实现后续复杂的动画组合&lt;/li&gt;
-&lt;li&gt;后续的代码维护极为方便&lt;/li&gt;
-&lt;li&gt;优先考虑里氏代换原则&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;动画中的高内聚低耦合原理&quot;&gt;&lt;a href=&quot;#动画中的高内聚低耦合原理&quot; class=&quot;headerlink&quot; title=&quot;动画中的高内聚低耦合原理&quot;&gt;&lt;/a&gt;动画中的高内聚低耦合原理&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;高内聚：有动画效果的类，自身具有动画方法&lt;/li&gt;
-&lt;li&gt;不要把实现动画的细节暴露在外&lt;/li&gt;
-&lt;li&gt;设计动画类尽量要符合单一职能原则，以便后续方便组合成复杂的动画效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;设计动画函数的注意事项&quot;&gt;&lt;a href=&quot;#设计动画函数的注意事项&quot; class=&quot;headerlink&quot; title=&quot;设计动画函数的注意事项&quot;&gt;&lt;/a&gt;设计动画函数的注意事项&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;动画方法的命名统一&lt;/li&gt;
-&lt;li&gt;预留非动画情形的设计（tableView等reuse情况）&lt;/li&gt;
-&lt;li&gt;用百分比来表示动画的执行程度&lt;/li&gt;
-&lt;li&gt;懒加载的使用&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;动画效果就是frame值的重新设定&quot;&gt;&lt;a href=&quot;#动画效果就是frame值的重新设定&quot; class=&quot;headerlink&quot; title=&quot;动画效果就是frame值的重新设定&quot;&gt;&lt;/a&gt;动画效果就是frame值的重新设定&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;一个具有动画效果的类&quot;&gt;&lt;a href=&quot;#一个具有动画效果的类&quot; class=&quot;headerlink&quot; title=&quot;一个具有动画效果的类&quot;&gt;&lt;/a&gt;一个具有动画效果的类&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;LineView.h&amp;quot;
-
-@interface LineView ()
-@property (nonatomic) CGRect startRect;
-@property (nonatomic) CGRect midRect;
-@property (nonatomic) CGRect endRect;
-@end
-
-@implementation LineView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.alpha = 0.f;
-}
-return self;
-}
-
-// 创建view
-- (void)buildView {
-// todo
-self.startRect = self.frame;
-self.midRect   = CGRectMake(self.startRect.origin.x + self.offsetX,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-self.endRect   = CGRectMake(self.startRect.origin.x + self.offsetX * 2,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-                        }
-
-
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-} else {
-    self.frame = self.midRect;
-    self.alpha = 1.f;
-}
-}
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.endRect;
-        self.alpha = 0.f;
-    } completion:^(BOOL finished) {
-        self.frame = self.startRect;
-    }];
-} else {
-    self.frame = self.startRect;
-    self.alpha = 0.f;
-}
-}
-
-
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent {
-CGFloat tmpOffsetX = 0;
-
-if (percent &amp;lt;= 0) {
-    tmpOffsetX = 0;
-} else if (percent &amp;gt;= 1) {
-    tmpOffsetX = self.offsetX;
-} else {
-    tmpOffsetX = percent * self.offsetX;
-}
-
-self.frame = CGRectMake(self.startRect.origin.x + tmpOffsetX,
-                        self.startRect.origin.y,
-                        self.startRect.size.width,
-                        self.startRect.size.height);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;里氏代换原则处理动画类的继承问题&quot;&gt;&lt;a href=&quot;#里氏代换原则处理动画类的继承问题&quot; class=&quot;headerlink&quot; title=&quot;里氏代换原则处理动画类的继承问题&quot;&gt;&lt;/a&gt;里氏代换原则处理动画类的继承问题&lt;/h1&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SourceView *tmpView = [[ChildTwoView alloc] init];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[tmpView show];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol&gt;
-&lt;li&gt;里氏代换原则的基本原理 (多态)&lt;/li&gt;
-&lt;li&gt;设计中要确保父类可以直接调用子类的方法&lt;/li&gt;
-&lt;li&gt;将父类设计成虚类&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;动画中的模块化设计&quot;&gt;&lt;a href=&quot;#动画中的模块化设计&quot; class=&quot;headerlink&quot; title=&quot;动画中的模块化设计&quot;&gt;&lt;/a&gt;动画中的模块化设计&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;动画效果实现难度的判断&lt;/li&gt;
-&lt;li&gt;将看到的动画效果拆分成小模块&lt;/li&gt;
-&lt;li&gt;将写好的小模块组合成你所需要的动画效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;ViewController.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 复杂的动画被写进了BaseAnimationView当中，没有暴露不必要的细节
-BaseAnimationView *baseView = [[BaseAnimationView alloc] initWithFrame:CGRectZero];
-[self.view addSubview:baseView];
-[baseView show];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BaseAnimation.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)show {
-[self.circleView show];
-[self.lineView show];
-}
-
-- (void)hide {
-[self.circleView hide];
-[self.lineView hide];
-}
-
-- (void)buildView {
-self.circleView = [[CircleView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.circleView];
-
-self.lineView = [[RectView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.lineView];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;circleView.m / lineView.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)show {}
-- (void)hide {}
-- (void)buildView {}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;延时执行某方法&quot;&gt;&lt;a href=&quot;#延时执行某方法&quot; class=&quot;headerlink&quot; title=&quot;延时执行某方法&quot;&gt;&lt;/a&gt;延时执行某方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[self performSelector:@selector(excuteAfterDelay) withObject:nil afterDelay:6];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;初始化UIView&quot;&gt;&lt;a href=&quot;#初始化UIView&quot; class=&quot;headerlink&quot; title=&quot;初始化UIView&quot;&gt;&lt;/a&gt;初始化UIView&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.rect = frame;
-}
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;动画效果的UIView-Object&quot;&gt;&lt;a href=&quot;#动画效果的UIView-Object&quot; class=&quot;headerlink&quot; title=&quot;动画效果的UIView Object&quot;&gt;&lt;/a&gt;动画效果的UIView Object&lt;/h1&gt;&lt;p&gt;&lt;img s
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   

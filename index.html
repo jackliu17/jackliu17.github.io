@@ -238,6 +238,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/19/iOS数据存储-JSON/" itemprop="url">
+                  iOS数据存储-JSON
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-19T16:44:42+10:00" content="2016-05-19">
+              2016-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/19/iOS数据存储-JSON/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/iOS数据存储-JSON/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="读取JSON文件"><a href="#读取JSON文件" class="headerlink" title="读取JSON文件"></a>读取JSON文件</h1><pre><code>let filePath: NSString = NSBundle.mainBundle().pathForResource(&quot;obj&quot;, ofType: &quot;json&quot;)!
+let jsonUrl = NSURL(fileURLWithPath: filePath as String)
+let jsonData = NSData(contentsOfURL: jsonUrl)
+
+do{       
+let json = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions())
+let lang:AnyObject = json.objectForKey(&quot;language&quot;)!
+print(lang)           
+}catch{
+print(error)
+}
+</code></pre><h1 id="生成JSON数据"><a href="#生成JSON数据" class="headerlink" title="生成JSON数据"></a>生成JSON数据</h1><pre><code>let dict = [&quot;name&quot;:&quot;jikexueyuan&quot;,&quot;age&quot;:1]
+do{
+    let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions())
+    let str = NSString(data: jsonData, encoding: NSUTF8StringEncoding)!
+    print(str)
+}catch{
+    print(error)
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/19/iOS数据存储-CoreData/" itemprop="url">
                   iOS数据存储-CoreData
                 </a>
@@ -962,219 +1095,12 @@ transition.subtype = kCATransitionFromRight;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/17/iOS项目015-CALayer简介/" itemprop="url">
-                  iOS项目015.CALayer简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T10:35:01+10:00" content="2016-05-17">
-              2016-05-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/17/iOS项目015-CALayer简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目015-CALayer简介/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Set-UIImageView-CALayer"><a href="#Set-UIImageView-CALayer" class="headerlink" title="Set UIImageView CALayer"></a>Set UIImageView CALayer</h1><pre><code>- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;1.jpg&quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScreenHeight - 200)/2, 200, 200);
-[self.view addSubview:imgView];
-.............
-}
-</code></pre><h2 id="图像的CALayer层-阴影"><a href="#图像的CALayer层-阴影" class="headerlink" title="图像的CALayer层 - 阴影"></a>图像的CALayer层 - 阴影</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015sShadow.png" alt=""></p>
-<pre><code>//1.设置阴影
-imgView.layer.shadowColor = [UIColor yellowColor].CGColor;
-//2.阴影的偏移大小
-imgView.layer.shadowOffset = CGSizeMake(10, 10);
-//3.阴影的不透明度
-imgView.layer.shadowOpacity = 0.5;
-</code></pre><h2 id="图像的CALayer层-圆角"><a href="#图像的CALayer层-圆角" class="headerlink" title="图像的CALayer层 - 圆角"></a>图像的CALayer层 - 圆角</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Round.png" alt=""></p>
-<pre><code>//4.设置圆角大小
-imgView.layer.cornerRadius = 10;//设置圆角半径为10
-imgView.layer.masksToBounds = YES;//强制内部的所有子层支持圆角效果，少了这个设置，UIImageView是不会有圆角效果的。设置之后，没有阴影效果
-</code></pre><h2 id="图像的CALayer层-边框"><a href="#图像的CALayer层-边框" class="headerlink" title="图像的CALayer层 - 边框"></a>图像的CALayer层 - 边框</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Frame.png" alt=""></p>
-<pre><code>//5.设置边框
-imgView.layer.borderWidth = 5;
-imgView.layer.borderColor = [UIColor grayColor].CGColor;
-</code></pre><h2 id="图像的CALayer层-3D旋转"><a href="#图像的CALayer层-3D旋转" class="headerlink" title="图像的CALayer层 - 3D旋转"></a>图像的CALayer层 - 3D旋转</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Rotate.png" alt=""></p>
-<pre><code>//6.设置旋转 :利用transform属性可以设置旋转
-//imgView.layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);//顺时针旋转45°,在x，y轴
-</code></pre><h2 id="图像的CALayer层-缩放"><a href="#图像的CALayer层-缩放" class="headerlink" title="图像的CALayer层 - 缩放"></a>图像的CALayer层 - 缩放</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Scale.png" alt=""></p>
-<pre><code>6.设置旋转 :利用transform属性可以设置缩放
-imgView.layer.transform = CATransform3DMakeScale(0.5, 1, 0);//缩小0.5倍
-</code></pre><h1 id="Add-CALayer-in-View"><a href="#Add-CALayer-in-View" class="headerlink" title="Add CALayer in View"></a>Add CALayer in View</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerInView.png" alt=""></p>
-<p>UIView里有CALayer这个图层</p>
-<pre><code>- (void)imageLayer{
-CALayer *layer = [CALayer layer];
-layer.backgroundColor = [UIColor grayColor].CGColor;
-layer.bounds = CGRectMake(0, 0, 100, 100);
-layer.position = CGPointMake(200, 200);
-layer.anchorPoint = CGPointMake(0, 1);
-layer.cornerRadius = 10;
-layer.masksToBounds = YES;
-layer.contents = (id)[UIImage imageNamed:@&quot;1.jpg&quot;].CGImage;
-layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);
-[self.view.layer addSublayer:layer];
-}
-</code></pre><h2 id="QuartzCore-for-CALayer"><a href="#QuartzCore-for-CALayer" class="headerlink" title="QuartzCore for CALayer"></a>QuartzCore for CALayer</h2><pre><code>//导入框架 
-#import &lt;QuartzCore/QuartzCore.h&gt;
-
-CALayer *layer = [CALayer layer];
-</code></pre><h2 id="Position-vs-anchorPoint"><a href="#Position-vs-anchorPoint" class="headerlink" title="Position vs anchorPoint"></a>Position vs anchorPoint</h2><ol>
-<li>position 设置CALayer在父图层中的位置，以父层的左上角为原点（0，0）</li>
-<li>anchorPoint锚点(定位点)决定CALayer的哪个点在position属性所指的位置,以自己的左上角为原点（0，0），默认值（0.5，0.5），x~y取值是0~1，右下角（1，1）</li>
-<li>即：哪个anchor点在position的位置</li>
-</ol>
-<h3 id="anchor-point-0-0"><a href="#anchor-point-0-0" class="headerlink" title="anchor point (0,0)"></a>anchor point (0,0)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor1.png" alt=""></p>
-<h3 id="anchor-point-1-1"><a href="#anchor-point-1-1" class="headerlink" title="anchor point (1,1)"></a>anchor point (1,1)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor2.png" alt=""></p>
-<h3 id="anchor-point-0-1"><a href="#anchor-point-0-1" class="headerlink" title="anchor point (0,1)"></a>anchor point (0,1)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor3.png" alt=""></p>
-<h1 id="Customized-CALayer"><a href="#Customized-CALayer" class="headerlink" title="Customized CALayer"></a>Customized CALayer</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerCustomized.png" alt=""></p>
-<h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1."></a>Method 1.</h2><p><strong>子类继承于CALayer，实现 drawInContext</strong></p>
-<p>JKLayer</p>
-<pre><code>#import &quot;JKLayer.h&quot;
-
-@implementation JKLayer
--(void)drawInContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
-}
-@end
-</code></pre><p>ViewController</p>
-<pre><code>- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-}
-</code></pre><h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2."></a>Method 2.</h2><p><strong>在控制器中设置代理，实现代理方法来画图层</strong></p>
-<p>ViewController</p>
-<pre><code>- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-layer.delegate = self;//不用协议，任何对象可以作为代理
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-
-}
-
-#pragma mark 代理方法
--(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1215,7 +1141,7 @@ CGContextFillPath(ctx);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
