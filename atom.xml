@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-20T06:15:30.000Z</updated>
+  <updated>2016-05-20T07:04:58.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS数据存储-沙盒数据</title>
+    <link href="http://jackliu17.github.io/2016/05/20/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-%E6%B2%99%E7%9B%92%E6%95%B0%E6%8D%AE/"/>
+    <id>http://jackliu17.github.io/2016/05/20/iOS数据存储-沙盒数据/</id>
+    <published>2016-05-20T07:04:03.000Z</published>
+    <updated>2016-05-20T07:04:58.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Sandbox-path&quot;&gt;&lt;a href=&quot;#Sandbox-path&quot; class=&quot;headerlink&quot; title=&quot;Sandbox path&quot;&gt;&lt;/a&gt;Sandbox path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
+
+if sp.count &amp;gt; 0{
+    let url = NSURL(fileURLWithPath: &amp;quot;\(sp[0])/data.txt&amp;quot;)
+    print(url)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Write-Data&quot;&gt;&lt;a href=&quot;#Write-Data&quot; class=&quot;headerlink&quot; title=&quot;Write Data&quot;&gt;&lt;/a&gt;Write Data&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let data = NSMutableData()
+data.appendData(&amp;quot;Hello Swift\n&amp;quot;.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+data.writeToFile(url.path!, atomically: true)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Read-Data-Method-1&quot;&gt;&lt;a href=&quot;#Read-Data-Method-1&quot; class=&quot;headerlink&quot; title=&quot;Read Data - Method 1&quot;&gt;&lt;/a&gt;Read Data - Method 1&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;do {
+    let str1 = try NSString (contentsOfURL: url, encoding: NSUTF8StringEncoding)
+    print(str1)
+}catch{
+    print(error)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Read-Data-Method-2&quot;&gt;&lt;a href=&quot;#Read-Data-Method-2&quot; class=&quot;headerlink&quot; title=&quot;Read Data - Method 2&quot;&gt;&lt;/a&gt;Read Data - Method 2&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfFile: url.path!)
+let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+print(str)
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Sandbox-path&quot;&gt;&lt;a href=&quot;#Sandbox-path&quot; class=&quot;headerlink&quot; title=&quot;Sandbox path&quot;&gt;&lt;/a&gt;Sandbox path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var sp = NSSearchPathF
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS数据存储-NSUserDefault</title>
@@ -1461,9 +1503,9 @@ self.colorView.percent   = 0.5;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -1825,9 +1867,9 @@ return _value;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -2867,219 +2909,6 @@ imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用maskView设计动画及遮盖</title>
-    <link href="http://jackliu17.github.io/2016/05/03/%E4%BD%BF%E7%94%A8maskView%E8%AE%BE%E8%AE%A1%E5%8A%A8%E7%94%BB%E5%8F%8A%E9%81%AE%E7%9B%96/"/>
-    <id>http://jackliu17.github.io/2016/05/03/使用maskView设计动画及遮盖/</id>
-    <published>2016-05-03T11:47:38.000Z</published>
-    <updated>2016-05-03T11:50:53.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;maskView（maskLayer）基本原理&quot;&gt;&lt;a href=&quot;#maskView（maskLayer）基本原理&quot; class=&quot;headerlink&quot; title=&quot;maskView（maskLayer）基本原理&quot;&gt;&lt;/a&gt;maskView（maskLayer）基本原理&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;png图片透明像素的原理 （只有png才有透明度概念，jpg没有）&lt;/li&gt;
-&lt;li&gt;maskView（maskLayer）可类比于多张png图片的叠加遮罩，原理类似&lt;/li&gt;
-&lt;li&gt;maskView是iOS8以上才有的，如果要考虑兼容低版本，用maskLayer替换&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/maskerView.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;// 使用maskView的情况
-
-UIImageView *mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
-mask.image = [UIImage imageNamed:@&amp;quot;mask&amp;quot;];
-
-self.addImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20 + (width + 20) * 2, width, width)];
-self.addImageView.image = [UIImage imageNamed:@&amp;quot;base&amp;quot;];
-// maskView并不能用addSubview来添加遮罩,这点千万注意
-self.addImageView.maskView = mask;
-[self.view addSubview:self.addImageView];
-
-//赋值给上面的mask，在iOS8以下采用
-//self.addImageView.layer.mask
-//CALayer *layer,
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;maskView配合CAGradientLayer的使用&quot;&gt;&lt;a href=&quot;#maskView配合CAGradientLayer的使用&quot; class=&quot;headerlink&quot; title=&quot;maskView配合CAGradientLayer的使用&quot;&gt;&lt;/a&gt;maskView配合CAGradientLayer的使用&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;用CAGradientLayer直接产生带透明像素通道的layer&lt;/li&gt;
-&lt;li&gt;用maskView直接加载带CAGradientLayer的view&lt;/li&gt;
-&lt;li&gt;可以通过对CAGradientLayer进行动画的操作实现动画效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;代码-1&quot;&gt;&lt;a href=&quot;#代码-1&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 加载图片
-UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
-imageView.image        = [UIImage imageNamed:@&amp;quot;base&amp;quot;];
-[self.view addSubview:imageView];
-
-// 创建出CAGradientLayer
-CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-gradientLayer.frame            = imageView.bounds;
-gradientLayer.colors           = @[(__bridge id)[UIColor clearColor].CGColor,
-                                   (__bridge id)[UIColor blackColor].CGColor,
-                                   (__bridge id)[UIColor clearColor].CGColor];
-gradientLayer.locations        = @[@(0.25), @(0.5), @(0.75)];
-gradientLayer.startPoint       = CGPointMake(0, 0);
-gradientLayer.endPoint         = CGPointMake(1, 0);
-
-// 容器view --&amp;gt; 用于加载创建出的CAGradientLayer
-UIView *containerView = [[UIView alloc] initWithFrame:imageView.bounds];
-[containerView.layer addSublayer:gradientLayer];
-
-// 设定maskView
-imageView.maskView  = containerView;
-
-CGRect frame        = containerView.frame;
-frame.origin.x     -= 200;
-
-// 重新赋值
-containerView.frame = frame;
-
-// 给maskView做动画效果
-[UIView animateWithDuration:3.f animations:^{
-    // 改变位移
-    CGRect frame        = containerView.frame;
-    frame.origin.x     += 400;
-
-    // 重新赋值
-    containerView.frame = frame;
-}];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;maskView配合带alpha通道图片的使用&quot;&gt;&lt;a href=&quot;#maskView配合带alpha通道图片的使用&quot; class=&quot;headerlink&quot; title=&quot;maskView配合带alpha通道图片的使用&quot;&gt;&lt;/a&gt;maskView配合带alpha通道图片的使用&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;直接使用带alpha通道的png图片比用CAGradientLayer的方式更加高效&lt;/li&gt;
-&lt;li&gt;可以使用技巧在maskView上添加多张图片&lt;/li&gt;
-&lt;li&gt;在maskView中做简单的动画&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;代码-2&quot;&gt;&lt;a href=&quot;#代码-2&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 前景图
-UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-background.image        = [UIImage imageNamed:@&amp;quot;base&amp;quot;];
-background.center       = self.view.center;
-[self.view addSubview:background];
-
-
-// 背景图
-UIImageView *upGround = [[UIImageView alloc] initWithFrame:background.frame];
-upGround.image        = [UIImage imageNamed:@&amp;quot;background&amp;quot;];
-[self.view addSubview:upGround];
-
-
-// maskView
-UIView *mask      = [[UIView alloc] initWithFrame:upGround.bounds];
-upGround.maskView = mask;
-
-
-// 图片1
-UIImageView *picOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
-picOne.image        = [UIImage imageNamed:@&amp;quot;1&amp;quot;];
-[mask addSubview:picOne];
-
-
-// 图片2
-UIImageView *picTwo = [[UIImageView alloc] initWithFrame:CGRectMake(100, -200, 100, 400)];
-picTwo.image        = [UIImage imageNamed:@&amp;quot;2&amp;quot;];
-[mask addSubview:picTwo];
-
-
-// 动画
-[UIView animateWithDuration:4.f delay:5.f options:0 animations:^{
-    picOne.y -= 400;
-    picTwo.y += 400;
-} completion:^(BOOL finished) {
-
-}];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;设计文本横向渐变消失的控件&quot;&gt;&lt;a href=&quot;#设计文本横向渐变消失的控件&quot; class=&quot;headerlink&quot; title=&quot;设计文本横向渐变消失的控件&quot;&gt;&lt;/a&gt;设计文本横向渐变消失的控件&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;接口的设计&lt;/li&gt;
-&lt;li&gt;封装CAGradientLayer用以提供mask遮罩&lt;/li&gt;
-&lt;li&gt;动画样式的分析与设计&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;设计动画函数的格式&quot;&gt;&lt;a href=&quot;#设计动画函数的格式&quot; class=&quot;headerlink&quot; title=&quot;设计动画函数的格式&quot;&gt;&lt;/a&gt;设计动画函数的格式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;// - (void)fadeRight
-//将持续时间和是否执行动画设计进去
-- (void)fadeRightWithDuration:(NSTimeInterval)duration animated:(BOOL)animated;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;代码-3&quot;&gt;&lt;a href=&quot;#代码-3&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-
-    // 创建出label
-    [self createLabel:self.bounds];
-
-    // 创建出mask
-    [self createMask:self.bounds];
-
-}
-return self;
-}
-
-- (void)createLabel:(CGRect)frame {
-self.label               = [[UILabel alloc] initWithFrame:frame];
-self.label.font          = [UIFont systemFontOfSize:30.f];
-self.label.textAlignment = NSTextAlignmentCenter;
-self.label.textColor     = [UIColor redColor];
-
-[self addSubview:self.label];
-}
-
-- (void)createMask:(CGRect)frame {
-
-// 创建出渐变的layer
-CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-gradientLayer.frame            = frame;
-gradientLayer.colors           = @[(__bridge id)[UIColor clearColor].CGColor,
-                                   (__bridge id)[UIColor blackColor].CGColor,
-                                   (__bridge id)[UIColor blackColor].CGColor,
-                                   (__bridge id)[UIColor clearColor].CGColor];
-gradientLayer.locations        = @[@(0.01), @(0.1), @(0.9), @(0.99)];
-gradientLayer.startPoint       = CGPointMake(0, 0);
-gradientLayer.endPoint         = CGPointMake(1, 0);
-
-// 创建并接管mask
-self.mask     = [[UIView alloc] initWithFrame:frame];
-
-// mask获取渐变layer
-[self.mask.layer addSublayer:gradientLayer];
-
-self.maskView = self.mask;
-}
-
-- (void)fadeRight {
-
-[UIView animateWithDuration:3.f animations:^{
-    CGRect frame    = self.mask.frame;
-    frame.origin.x += frame.size.width;
-
-    self.mask.frame = frame;
-}];
-
-}
-
-//重写setter,getter方法
-
-@synthesize text = _text;
-- (void)setText:(NSString *)text {
-_text           = text;
-self.label.text = text;
-}
-- (NSString *)text {
-return _text;
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;maskView（maskLayer）基本原理&quot;&gt;&lt;a href=&quot;#maskView（maskLayer）基本原理&quot; class=&quot;headerlink&quot; title=&quot;maskView（maskLayer）基本原理&quot;&gt;&lt;/a&gt;maskView（maskLaye
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
     
   </entry>
   
