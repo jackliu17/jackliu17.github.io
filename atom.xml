@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-19T06:47:08.000Z</updated>
+  <updated>2016-05-20T02:48:14.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,111 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS数据存储-XML</title>
+    <link href="http://jackliu17.github.io/2016/05/20/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-XML/"/>
+    <id>http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/</id>
+    <published>2016-05-20T02:45:50.000Z</published>
+    <updated>2016-05-20T02:48:14.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Start-parse-XML&quot;&gt;&lt;a href=&quot;#Start-parse-XML&quot; class=&quot;headerlink&quot; title=&quot;Start parse XML&quot;&gt;&lt;/a&gt;Start parse XML&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;注意要遵循协议NSXMLParserDelegate&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class ViewController: UIViewController,NSXMLParserDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let filePath = NSBundle.mainBundle().pathForResource(&amp;quot;data&amp;quot;, ofType: &amp;quot;xml&amp;quot;)!
+        let fileUrl = NSURL(fileURLWithPath: filePath )
+        let parser = NSXMLParser(contentsOfURL:fileUrl)
+
+        parser!.delegate = self
+        parser!.parse()
+
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Parse-to-get-node-and-attribute&quot;&gt;&lt;a href=&quot;#Parse-to-get-node-and-attribute&quot; class=&quot;headerlink&quot; title=&quot;Parse to get node and attribute&quot;&gt;&lt;/a&gt;Parse to get node and attribute&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var currentNodeName:String!
+
+func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {      
+    currentNodeName = elementName
+    if elementName == &amp;quot;person&amp;quot; { 
+        //需要判断，如果是空值的话，也不会报错
+        if let age: AnyObject=attributeDict[&amp;quot;age&amp;quot;]{
+            print(&amp;quot;age:\(age)&amp;quot;)
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Parse-to-get-Value-in-node&quot;&gt;&lt;a href=&quot;#Parse-to-get-Value-in-node&quot; class=&quot;headerlink&quot; title=&quot;Parse to get Value in node&quot;&gt;&lt;/a&gt;Parse to get Value in node&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//获得节点的实际内容
+func parser(parser: NSXMLParser, foundCharacters string: String) {
+
+    let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+    if str != &amp;quot;&amp;quot;{
+
+        print(&amp;quot;current node : \(currentNodeName), value: \(str)&amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;剔除空格的字符串&quot;&gt;&lt;a href=&quot;#剔除空格的字符串&quot; class=&quot;headerlink&quot; title=&quot;剔除空格的字符串&quot;&gt;&lt;/a&gt;剔除空格的字符串&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;判断不为空&quot;&gt;&lt;a href=&quot;#判断不为空&quot; class=&quot;headerlink&quot; title=&quot;判断不为空&quot;&gt;&lt;/a&gt;判断不为空&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;if str != &amp;quot;&amp;quot;{
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Question-Project&quot;&gt;&lt;a href=&quot;#Question-Project&quot; class=&quot;headerlink&quot; title=&quot;Question Project&quot;&gt;&lt;/a&gt;Question Project&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Qustion-Model&quot;&gt;&lt;a href=&quot;#Qustion-Model&quot; class=&quot;headerlink&quot; title=&quot;Qustion Model&quot;&gt;&lt;/a&gt;Qustion Model&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;class Question: NSObject {
+
+var question:String!
+var right:String!
+var anwserA:String!
+var anwserB:String!
+var anwserC:String!
+var anwserD:String!
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Parse-all-node-automatically-without-loop&quot;&gt;&lt;a href=&quot;#Parse-all-node-automatically-without-loop&quot; class=&quot;headerlink&quot; title=&quot;Parse all node automatically without loop&quot;&gt;&lt;/a&gt;Parse all node automatically without loop&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var questions:Array&amp;lt;Question&amp;gt; = []    
+var currentQuestion:Question!
+
+func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+
+    if elementName == &amp;quot;question&amp;quot; {
+
+        currentQuestion = Question()
+        questions.append(currentQuestion)
+        currentQuestion.question = attributeDict[&amp;quot;text&amp;quot;]! as String
+        currentQuestion.right = attributeDict[&amp;quot;right&amp;quot;]! as String
+
+    } else if elementName == &amp;quot;anwser&amp;quot; {
+
+        let tag = attributeDict[&amp;quot;tag&amp;quot;]! as String
+
+        if tag == &amp;quot;A&amp;quot;{
+            currentQuestion.anwserA = attributeDict[&amp;quot;text&amp;quot;]! as String
+        }else if tag == &amp;quot;B&amp;quot;{
+            currentQuestion.anwserB = attributeDict[&amp;quot;text&amp;quot;]! as String
+        }else if tag == &amp;quot;C&amp;quot;{
+            currentQuestion.anwserC = attributeDict[&amp;quot;text&amp;quot;]! as String
+        }else if tag == &amp;quot;D&amp;quot;{
+            currentQuestion.anwserD = attributeDict[&amp;quot;text&amp;quot;]! as String
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;After-Parse-finish&quot;&gt;&lt;a href=&quot;#After-Parse-finish&quot; class=&quot;headerlink&quot; title=&quot;After Parse finish&quot;&gt;&lt;/a&gt;After Parse finish&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;func parserDidEndDocument(parser: NSXMLParser) {
+...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Add-new-element-to-Array&quot;&gt;&lt;a href=&quot;#Add-new-element-to-Array&quot; class=&quot;headerlink&quot; title=&quot;Add new element to Array&quot;&gt;&lt;/a&gt;Add new element to Array&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;questions.append(currentQuestion)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Judge-if-equal-or-not&quot;&gt;&lt;a href=&quot;#Judge-if-equal-or-not&quot; class=&quot;headerlink&quot; title=&quot;Judge if equal or not&quot;&gt;&lt;/a&gt;Judge if equal or not&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;if tag == &amp;quot;A&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Start-parse-XML&quot;&gt;&lt;a href=&quot;#Start-parse-XML&quot; class=&quot;headerlink&quot; title=&quot;Start parse XML&quot;&gt;&lt;/a&gt;Start parse XML&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;注意要遵循协议NSX
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS数据存储-JSON</title>
@@ -1302,9 +1407,9 @@ self.colorView.percent   = 0.5;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -1666,9 +1771,9 @@ return _value;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -2069,9 +2174,9 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
       <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
   </entry>
   
@@ -2918,9 +3023,9 @@ return _text;
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
       <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
@@ -3160,114 +3265,6 @@ blurDownloadView.contentMode = UIViewContentModeScaleAspectFit;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目9.三级视图控制器</title>
-    <link href="http://jackliu17.github.io/2016/04/30/iOS%E9%A1%B9%E7%9B%AE9-%E4%B8%89%E7%BA%A7%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8/"/>
-    <id>http://jackliu17.github.io/2016/04/30/iOS项目9-三级视图控制器/</id>
-    <published>2016-04-30T12:14:13.000Z</published>
-    <updated>2016-05-12T12:05:11.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;项目分析&quot;&gt;&lt;a href=&quot;#项目分析&quot; class=&quot;headerlink&quot; title=&quot;项目分析&quot;&gt;&lt;/a&gt;项目分析&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;三级视图控制器&quot;&gt;&lt;a href=&quot;#三级视图控制器&quot; class=&quot;headerlink&quot; title=&quot;三级视图控制器&quot;&gt;&lt;/a&gt;三级视图控制器&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;标签控制器 -&amp;gt; 导航控制器 -&amp;gt; 视图控制器，这就叫三级视图控制器&lt;/li&gt;
-&lt;li&gt;一个导航控制器对应于一个视图控制器，&lt;/li&gt;
-&lt;li&gt;标签控制器是管理固定的几个视图控制器，子控制器是并列的。&lt;/li&gt;
-&lt;li&gt;UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;设置window&quot;&gt;&lt;a href=&quot;#设置window&quot; class=&quot;headerlink&quot; title=&quot;设置window&quot;&gt;&lt;/a&gt;设置window&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-self.window.backgroundColor = [UIColor whiteColor];
-[self.window makeKeyAndVisible];
-RootViewController *rootVC = [[RootViewController alloc] init];
-//权限最高的给根视图控制器
-self.window.rootViewController = rootVC; 
-// Override point for customization after application launch.
-return YES;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组赋值示例&quot;&gt;&lt;a href=&quot;#数组赋值示例&quot; class=&quot;headerlink&quot; title=&quot;数组赋值示例&quot;&gt;&lt;/a&gt;数组赋值示例&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSArray *vcArray = @[profielVC,messageVC,colaVC,userVC,moreVC];
-NSMutableArray *tabArray = [NSMutableArray arrayWithCapacity:vcArray.count];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;背景颜色赋值为图片&quot;&gt;&lt;a href=&quot;#背景颜色赋值为图片&quot; class=&quot;headerlink&quot; title=&quot;背景颜色赋值为图片&quot;&gt;&lt;/a&gt;背景颜色赋值为图片&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;_tabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@&amp;quot;mask_navbar&amp;quot;]];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIButton设tag值&quot;&gt;&lt;a href=&quot;#UIButton设tag值&quot; class=&quot;headerlink&quot; title=&quot;UIButton设tag值&quot;&gt;&lt;/a&gt;UIButton设tag值&lt;/h1&gt;&lt;pre&gt;&lt;code&gt; //区分是点击了哪个button
-//iOS中100以前的tag值有特殊用法，所以最好在100以后
-btn.tag = 100 + i; 
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UITabBarController的属性&quot;&gt;&lt;a href=&quot;#UITabBarController的属性&quot; class=&quot;headerlink&quot; title=&quot;UITabBarController的属性&quot;&gt;&lt;/a&gt;UITabBarController的属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//选择的是哪个tab
-self.selectedIndex = button.tag - 100;
-
-//隐藏系统默认的样式
-self.tabBar.hidden = YES;
-
-//用数组管理视图控制器
-self.viewControllers = tabArray;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Tab子视图调用根视图方法-UITabBarController&quot;&gt;&lt;a href=&quot;#Tab子视图调用根视图方法-UITabBarController&quot; class=&quot;headerlink&quot; title=&quot;Tab子视图调用根视图方法(UITabBarController)&quot;&gt;&lt;/a&gt;Tab子视图调用根视图方法(UITabBarController)&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;动画效果在于CGPoint-or-frame的改变&quot;&gt;&lt;a href=&quot;#动画效果在于CGPoint-or-frame的改变&quot; class=&quot;headerlink&quot; title=&quot;动画效果在于CGPoint or frame的改变&quot;&gt;&lt;/a&gt;动画效果在于CGPoint or frame的改变&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[UIView animateWithDuration:0.2 animations:^{
-    _selectView.center = button.center;
-} completion:nil];
-
-
-//重新赋值frame,让tabBar消失
-[UIView animateWithDuration:0.2 animations:^{
-    self.tabBarView.frame = frame;
-} completion:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIButton的设置&quot;&gt;&lt;a href=&quot;#UIButton的设置&quot; class=&quot;headerlink&quot; title=&quot;UIButton的设置&quot;&gt;&lt;/a&gt;UIButton的设置&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//需要custom类型才能设置图片
-UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-//[pushButton setImage:(UIImage *) forState:(UIControlState)]
-//标题和图片不能同时设置
-[pushButton setTitle:@&amp;quot;Push&amp;quot; forState:UIControlStateNormal];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;视图顶部导航栏左右按钮&quot;&gt;&lt;a href=&quot;#视图顶部导航栏左右按钮&quot; class=&quot;headerlink&quot; title=&quot;视图顶部导航栏左右按钮&quot;&gt;&lt;/a&gt;视图顶部导航栏左右按钮&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//自定义导航栏按钮
-- (void)initNavButton{
-
-UIButton *writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//导航按钮的xy值没有用
-writeBtn.frame = CGRectMake(0, 0, writeButtonWidth, writeButtonHeight);
-[writeBtn setBackgroundImage:[UIImage imageNamed:@&amp;quot;write&amp;quot;] forState:UIControlStateNormal];
-[writeBtn addTarget:self action:@selector(presentAction) forControlEvents:UIControlEventTouchUpInside];
-//添加自定义按钮
-UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:writeBtn];
-self.navigationItem.rightBarButtonItem = item;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;视图跳转-模态视图&quot;&gt;&lt;a href=&quot;#视图跳转-模态视图&quot; class=&quot;headerlink&quot; title=&quot;视图跳转 - 模态视图&quot;&gt;&lt;/a&gt;视图跳转 - 模态视图&lt;/h1&gt;&lt;h2 id=&quot;呈现使用present&quot;&gt;&lt;a href=&quot;#呈现使用present&quot; class=&quot;headerlink&quot; title=&quot;呈现使用present&quot;&gt;&lt;/a&gt;呈现使用present&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[self presentViewController:modalVC animated:YES completion:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;退出使用dissmiss&quot;&gt;&lt;a href=&quot;#退出使用dissmiss&quot; class=&quot;headerlink&quot; title=&quot;退出使用dissmiss&quot;&gt;&lt;/a&gt;退出使用dissmiss&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)dismissAction{
-[self dismissViewControllerAnimated:YES completion:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;视图跳转-push视图&quot;&gt;&lt;a href=&quot;#视图跳转-push视图&quot; class=&quot;headerlink&quot; title=&quot;视图跳转 - push视图&quot;&gt;&lt;/a&gt;视图跳转 - push视图&lt;/h1&gt;&lt;h2 id=&quot;呈现用导航视图push-show&quot;&gt;&lt;a href=&quot;#呈现用导航视图push-show&quot; class=&quot;headerlink&quot; title=&quot;呈现用导航视图push/show&quot;&gt;&lt;/a&gt;呈现用导航视图push/show&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)pushAction{
-PushViewController *pushVC = [[PushViewController alloc] init];
-[self.navigationController pushViewController:pushVC animated:YES];
-//[self.navigationController showViewController:pushVC sender:nil];
-RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-}    
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;退出用pop-的三种方式&quot;&gt;&lt;a href=&quot;#退出用pop-的三种方式&quot; class=&quot;headerlink&quot; title=&quot;退出用pop 的三种方式&quot;&gt;&lt;/a&gt;退出用pop 的三种方式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)popAction{
-
-    // 回到上级视图
-    [self.navigationController popViewControllerAnimated:YES];
-
-    // 跳转到某视图
-    //[self.navigationController popToViewController:&amp;lt;#(nonnull UIViewController *)#&amp;gt; animated:&amp;lt;#(BOOL)#&amp;gt;]
-
-    // 跳转到根视图
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png&quot; 
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   
