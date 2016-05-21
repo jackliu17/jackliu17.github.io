@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-20T07:04:58.000Z</updated>
+  <updated>2016-05-21T03:14:46.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS-HTTP通信</title>
+    <link href="http://jackliu17.github.io/2016/05/21/iOS-HTTP%E9%80%9A%E4%BF%A1/"/>
+    <id>http://jackliu17.github.io/2016/05/21/iOS-HTTP通信/</id>
+    <published>2016-05-21T03:11:52.000Z</published>
+    <updated>2016-05-21T03:14:46.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;URL-path&quot;&gt;&lt;a href=&quot;#URL-path&quot; class=&quot;headerlink&quot; title=&quot;URL path&quot;&gt;&lt;/a&gt;URL path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath = NSURL(string:&amp;quot;http://jikexueyuan.com&amp;quot; )
+let httpRequest = NSURLRequest(URL: httpPath!)
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;打印HTML代码&quot;&gt;&lt;a href=&quot;#打印HTML代码&quot; class=&quot;headerlink&quot; title=&quot;打印HTML代码&quot;&gt;&lt;/a&gt;打印HTML代码&lt;/h1&gt;&lt;h2 id=&quot;字符串类型输出&quot;&gt;&lt;a href=&quot;#字符串类型输出&quot; class=&quot;headerlink&quot; title=&quot;字符串类型输出&quot;&gt;&lt;/a&gt;字符串类型输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;do {
+    let httpCode = try NSString(contentsOfURL: httpPath!, encoding: NSUTF8StringEncoding)
+    print(httpCode)
+}catch{
+    print(error)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;二进制类型输出&quot;&gt;&lt;a href=&quot;#二进制类型输出&quot; class=&quot;headerlink&quot; title=&quot;二进制类型输出&quot;&gt;&lt;/a&gt;二进制类型输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfURL:httpPath!)
+print(data!)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;二进制转字符串输出&quot;&gt;&lt;a href=&quot;#二进制转字符串输出&quot; class=&quot;headerlink&quot; title=&quot;二进制转字符串输出&quot;&gt;&lt;/a&gt;二进制转字符串输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfURL:httpPath!)
+print(NSString(data:data!, encoding: NSUTF8StringEncoding))
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;同步请求&quot;&gt;&lt;a href=&quot;#同步请求&quot; class=&quot;headerlink&quot; title=&quot;同步请求&quot;&gt;&lt;/a&gt;同步请求&lt;/h1&gt;&lt;h2 id=&quot;打印HTML代码-1&quot;&gt;&lt;a href=&quot;#打印HTML代码-1&quot; class=&quot;headerlink&quot; title=&quot;打印HTML代码&quot;&gt;&lt;/a&gt;打印HTML代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;do{
+    let data = try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: nil)
+    print(NSString(data:data, encoding: NSUTF8StringEncoding))
+}catch{
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;打印HTTP-header&quot;&gt;&lt;a href=&quot;#打印HTTP-header&quot; class=&quot;headerlink&quot; title=&quot;打印HTTP header&quot;&gt;&lt;/a&gt;打印HTTP header&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var resp:NSURLResponse?
+
+    do{
+     try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: &amp;amp;resp)
+    }catch{
+    }
+
+    if let r = resp{
+       print(r)
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;异步请求&quot;&gt;&lt;a href=&quot;#异步请求&quot; class=&quot;headerlink&quot; title=&quot;异步请求&quot;&gt;&lt;/a&gt;异步请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
+    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
+
+    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Get-communication&quot;&gt;&lt;a href=&quot;#Get-communication&quot; class=&quot;headerlink&quot; title=&quot;Get communication&quot;&gt;&lt;/a&gt;Get communication&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath:NSURL? = NSURL(string:&amp;quot;http://localhost:8080/MyServer/Hello.jsp?name=\(self.tvInput.text)&amp;quot;)       
+let httpRequest:NSURLRequest = NSURLRequest(URL:httpPath!)
+
+NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
+(resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
+    dispatch_sync(dispatch_get_main_queue(), {
+        self.tvOut.text = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+    })
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;Get方式是将传输数据放在地址栏&lt;/li&gt;
+&lt;li&gt;改变UI界面需要在主线程执行&lt;/li&gt;
+&lt;li&gt;不能传输庞大的数据&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;Post-communication&quot;&gt;&lt;a href=&quot;#Post-communication&quot; class=&quot;headerlink&quot; title=&quot;Post communication&quot;&gt;&lt;/a&gt;Post communication&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpUrl = NSURL(string: &amp;quot;http://localhost:8080/MyServer/hello.jsp&amp;quot;)
+let req = NSMutableURLRequest(URL:httpUrl!)
+req.HTTPMethod = &amp;quot;POST&amp;quot;
+req.HTTPBody = NSString(string:&amp;quot;name=\(tvInput.text)&amp;quot;).dataUsingEncoding(NSUTF8StringEncoding)
+
+NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
+
+    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
+
+    if let d = data {
+        dispatch_sync(dispatch_get_main_queue(), {
+            self.tvOut.text = NSString(data: d, encoding: NSUTF8StringEncoding)! as String
+        })}
+    }
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;URL-path&quot;&gt;&lt;a href=&quot;#URL-path&quot; class=&quot;headerlink&quot; title=&quot;URL path&quot;&gt;&lt;/a&gt;URL path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath = NSURL(string:&amp;quot;http
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_web" scheme="http://jackliu17.github.io/tags/iOS-web/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS数据存储-沙盒数据</title>
@@ -2270,9 +2355,9 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
       <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
+    
+      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
   </entry>
   
@@ -2852,54 +2937,6 @@ imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
       &lt;h1 id=&quot;缓动函数简介&quot;&gt;&lt;a href=&quot;#缓动函数简介&quot; class=&quot;headerlink&quot; title=&quot;缓动函数简介&quot;&gt;&lt;/a&gt;缓动函数简介&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;缓动函数的动画效果是建立在CALayer层级的关键帧动画基础之上&lt;/li&gt;
 &lt;li&gt;缓动函数是一
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Facebook开源动画库POP实现真实衰减与弹簧动画</title>
-    <link href="http://jackliu17.github.io/2016/05/05/Facebook%E5%BC%80%E6%BA%90%E5%8A%A8%E7%94%BB%E5%BA%93POP%E5%AE%9E%E7%8E%B0%E7%9C%9F%E5%AE%9E%E8%A1%B0%E5%87%8F%E4%B8%8E%E5%BC%B9%E7%B0%A7%E5%8A%A8%E7%94%BB/"/>
-    <id>http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/</id>
-    <published>2016-05-05T04:36:15.000Z</published>
-    <updated>2016-05-05T04:37:27.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;POP动画引擎简介&quot;&gt;&lt;a href=&quot;#POP动画引擎简介&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎简介&quot;&gt;&lt;/a&gt;POP动画引擎简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;POP动画引擎是Facebook公司开源的&lt;/li&gt;
-&lt;li&gt;POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)&lt;/li&gt;
-&lt;li&gt;POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)&lt;/li&gt;
-&lt;li&gt;POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;a href=&quot;#POP动画引擎中Layer与CALayer的区别&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;/a&gt;POP动画引擎中Layer与CALayer的区别&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;使用POP动画与使用CALayer动画非常相似&lt;/li&gt;
-&lt;li&gt;POP动画的执行没有中间状态&lt;/li&gt;
-&lt;li&gt;POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果&lt;/li&gt;
-&lt;li&gt;POP动画可以作用在任何对象上，不仅仅是CALayer&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;POP动画引擎中Layer与CALayer的区别-1&quot;&gt;&lt;a href=&quot;#POP动画引擎中Layer与CALayer的区别-1&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎中Layer与CALayer的区别&quot;&gt;&lt;/a&gt;POP动画引擎中Layer与CALayer的区别&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/pop.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;用POP动画引擎实现衰减动画&quot;&gt;&lt;a href=&quot;#用POP动画引擎实现衰减动画&quot; class=&quot;headerlink&quot; title=&quot;用POP动画引擎实现衰减动画&quot;&gt;&lt;/a&gt;用POP动画引擎实现衰减动画&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;衰减动画由POPDecayAnimation来实现&lt;/li&gt;
-&lt;li&gt;需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;用POP动画引擎实现弹簧动画&quot;&gt;&lt;a href=&quot;#用POP动画引擎实现弹簧动画&quot; class=&quot;headerlink&quot; title=&quot;用POP动画引擎实现弹簧动画&quot;&gt;&lt;/a&gt;用POP动画引擎实现弹簧动画&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;弹簧动画由POPSpringAnimation来实现&lt;/li&gt;
-&lt;li&gt;弹簧的质量速度时间等值都是可以设置的&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;For more information , go to &lt;a href=&quot;https://github.com/facebook/pop&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/facebook/pop&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;POP动画引擎简介&quot;&gt;&lt;a href=&quot;#POP动画引擎简介&quot; class=&quot;headerlink&quot; title=&quot;POP动画引擎简介&quot;&gt;&lt;/a&gt;POP动画引擎简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;POP动画引擎是Facebook公司开源的&lt;/li&gt;
-&lt;li&gt;POP动画
     
     </summary>
     

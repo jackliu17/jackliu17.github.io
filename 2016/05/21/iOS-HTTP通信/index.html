@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="iOS,iOS_web," />
 
 
 
@@ -61,43 +61,25 @@
 
 
 
-<meta name="description" content="项目结构
-视图分析
-加载plist数据将数据的初始化放在了数据模型里
-JKQuestionInfo
-+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
-
-NSArray *array = [">
+<meta name="description" content="URL pathlet httpPath = NSURL(string:&amp;quot;http://jikexueyuan.com&amp;quot; )
+let httpRequest = NSURLRequest(URL: httpPath!)
+打印HTML代码字符串类型输出do {
+    let httpCode = try NSString(contentsOfURL: httpPath!, en">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目7.超级猜图">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/28/iOS项目7-超级猜图/index.html">
+<meta property="og:title" content="iOS-HTTP通信">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/21/iOS-HTTP通信/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="项目结构
-视图分析
-加载plist数据将数据的初始化放在了数据模型里
-JKQuestionInfo
-+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
-
-NSArray *array = [">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png">
-<meta property="og:updated_time" content="2016-05-11T09:05:10.000Z">
+<meta property="og:description" content="URL pathlet httpPath = NSURL(string:&amp;quot;http://jikexueyuan.com&amp;quot; )
+let httpRequest = NSURLRequest(URL: httpPath!)
+打印HTML代码字符串类型输出do {
+    let httpCode = try NSString(contentsOfURL: httpPath!, en">
+<meta property="og:updated_time" content="2016-05-21T03:14:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目7.超级猜图">
-<meta name="twitter:description" content="项目结构
-视图分析
-加载plist数据将数据的初始化放在了数据模型里
-JKQuestionInfo
-+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&amp;quot;questions&amp;quot; ofType:@&amp;quot;plist&amp;quot;];
-
-NSArray *array = [">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png">
+<meta name="twitter:title" content="iOS-HTTP通信">
+<meta name="twitter:description" content="URL pathlet httpPath = NSURL(string:&amp;quot;http://jikexueyuan.com&amp;quot; )
+let httpRequest = NSURLRequest(URL: httpPath!)
+打印HTML代码字符串类型输出do {
+    let httpCode = try NSString(contentsOfURL: httpPath!, en">
 
 
 
@@ -115,7 +97,7 @@ NSArray *array = [">
   };
 </script>
 
-  <title> iOS项目7.超级猜图 | Cowboy Tech </title>
+  <title> iOS-HTTP通信 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +239,7 @@ NSArray *array = [">
             
             
               
-                iOS项目7.超级猜图
+                iOS-HTTP通信
               
             
           </h1>
@@ -269,8 +251,8 @@ NSArray *array = [">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T13:05:41+10:00" content="2016-04-28">
-              2016-04-28
+            <time itemprop="dateCreated" datetime="2016-05-21T13:11:52+10:00" content="2016-05-21">
+              2016-05-21
             </time>
           </span>
 
@@ -299,8 +281,8 @@ NSArray *array = [">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/28/iOS项目7-超级猜图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/28/iOS项目7-超级猜图/" itemprop="commentsCount"></span>
+                <a href="/2016/05/21/iOS-HTTP通信/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS-HTTP通信/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,66 +304,67 @@ NSArray *array = [">
       
 
       
-        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png" alt=""></p>
-<h1 id="视图分析"><a href="#视图分析" class="headerlink" title="视图分析"></a>视图分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/guessImage.png" alt=""></p>
-<h1 id="加载plist数据"><a href="#加载plist数据" class="headerlink" title="加载plist数据"></a>加载plist数据</h1><p><strong>将数据的初始化放在了数据模型里</strong></p>
-<p>JKQuestionInfo</p>
-<pre><code>+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;questions&quot; ofType:@&quot;plist&quot;];
-
-NSArray *array = [NSArray arrayWithContentsOfFile:path];
-
-NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
-
-for (NSDictionary *dict in array) {
-
-    [arrayM addObject:[self questionWithDict:dict]];
+        <h1 id="URL-path"><a href="#URL-path" class="headerlink" title="URL path"></a>URL path</h1><pre><code>let httpPath = NSURL(string:&quot;http://jikexueyuan.com&quot; )
+let httpRequest = NSURLRequest(URL: httpPath!)
+</code></pre><h1 id="打印HTML代码"><a href="#打印HTML代码" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h1><h2 id="字符串类型输出"><a href="#字符串类型输出" class="headerlink" title="字符串类型输出"></a>字符串类型输出</h2><pre><code>do {
+    let httpCode = try NSString(contentsOfURL: httpPath!, encoding: NSUTF8StringEncoding)
+    print(httpCode)
+}catch{
+    print(error)
 }
-return [arrayM copy];
+</code></pre><h2 id="二进制类型输出"><a href="#二进制类型输出" class="headerlink" title="二进制类型输出"></a>二进制类型输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
+print(data!)
+</code></pre><h2 id="二进制转字符串输出"><a href="#二进制转字符串输出" class="headerlink" title="二进制转字符串输出"></a>二进制转字符串输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
+print(NSString(data:data!, encoding: NSUTF8StringEncoding))
+</code></pre><h1 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h1><h2 id="打印HTML代码-1"><a href="#打印HTML代码-1" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h2><pre><code>do{
+    let data = try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: nil)
+    print(NSString(data:data, encoding: NSUTF8StringEncoding))
+}catch{
 }
-</code></pre><p>ViewController</p>
-<pre><code>- (NSArray *)questions {
-if (nil == _questions) {
-    _questions = [JKQuestionInfo questions];
+</code></pre><h2 id="打印HTTP-header"><a href="#打印HTTP-header" class="headerlink" title="打印HTTP header"></a>打印HTTP header</h2><pre><code>var resp:NSURLResponse?
+
+    do{
+     try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: &amp;resp)
+    }catch{
+    }
+
+    if let r = resp{
+       print(r)
+    }
+</code></pre><h1 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h1><pre><code>NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
+    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
+
+    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+
 }
-return _questions;
+</code></pre><h1 id="Get-communication"><a href="#Get-communication" class="headerlink" title="Get communication"></a>Get communication</h1><pre><code>let httpPath:NSURL? = NSURL(string:&quot;http://localhost:8080/MyServer/Hello.jsp?name=\(self.tvInput.text)&quot;)       
+let httpRequest:NSURLRequest = NSURLRequest(URL:httpPath!)
+
+NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
+(resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
+    dispatch_sync(dispatch_get_main_queue(), {
+        self.tvOut.text = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+    })
 }
-</code></pre><h1 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h1><h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>//需要计算的话，用宏,否则用const,如下
+</code></pre><ol>
+<li>Get方式是将传输数据放在地址栏</li>
+<li>改变UI界面需要在主线程执行</li>
+<li>不能传输庞大的数据</li>
+</ol>
+<h1 id="Post-communication"><a href="#Post-communication" class="headerlink" title="Post communication"></a>Post communication</h1><pre><code>let httpUrl = NSURL(string: &quot;http://localhost:8080/MyServer/hello.jsp&quot;)
+let req = NSMutableURLRequest(URL:httpUrl!)
+req.HTTPMethod = &quot;POST&quot;
+req.HTTPBody = NSString(string:&quot;name=\(tvInput.text)&quot;).dataUsingEncoding(NSUTF8StringEncoding)
 
-//图片按钮的宽度
-#define imgW self.imgInsideBtn.bounds.size.width
+NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
 
-//答案按钮宽
-CGFloat const kBtnW = 35;
-</code></pre><h2 id="UIButton-配置"><a href="#UIButton-配置" class="headerlink" title="UIButton 配置"></a>UIButton 配置</h2><pre><code>//为按钮设置背景图片
-[self.imgInsideBtn setImage:question.image forState:UIControlStateNormal];
+    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
 
-//设定按钮高亮下的背景图片
-[btn setBackgroundImage:[UIImage imageNamed:@&quot;btn_answer_highlighted&quot;] forState:UIControlStateHighlighted];
-
-//设定按钮常规下的字体颜色
-[btn setTitleColor:kAnswerBtnTitleColor forState:UIControlStateNormal];
-
-//设定按钮的点击方法
-[btn addTarget:self action:@selector(answerBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-
-//设定按钮上的字符
-[answerBtn setTitle:nil forState:UIControlStateNormal];
-
-//alpha值切换按钮的不同状态
-self.cover.alpha = 0.0;
-</code></pre><h2 id="遍历移除所有子视图"><a href="#遍历移除所有子视图" class="headerlink" title="遍历移除所有子视图"></a>遍历移除所有子视图</h2><pre><code>for (UIButton *btn in self.answerView.subviews) {
-    [btn removeFromSuperview];
-}
-</code></pre><h2 id="UIView-配置"><a href="#UIView-配置" class="headerlink" title="UIView 配置"></a>UIView 配置</h2><pre><code>//该按钮不隐藏
-optionBtn.hidden = NO;
-
-//该view是否具有互动性
-self.optionsView.userInteractionEnabled = YES;
-
-//将中间图片按钮设置成是离屏幕最近一层,所有子视图的最上面
-[self.view bringSubviewToFront:self.imgInsideBtn];
+    if let d = data {
+        dispatch_sync(dispatch_get_main_queue(), {
+            self.tvOut.text = NSString(data: d, encoding: NSUTF8StringEncoding)! as String
+        })}
+    }
 </code></pre>
       
     </div>
@@ -398,7 +381,7 @@ self.optionsView.userInteractionEnabled = YES;
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-web/" rel="tag">#iOS_web</a>
           
         </div>
       
@@ -407,17 +390,13 @@ self.optionsView.userInteractionEnabled = YES;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/26/Android-Studio相关操作/" rel="next" title="Android_Studio相关操作">
-                <i class="fa fa-chevron-left"></i> Android_Studio相关操作
+              <a href="/2016/05/20/iOS数据存储-沙盒数据/" rel="next" title="iOS数据存储-沙盒数据">
+                <i class="fa fa-chevron-left"></i> iOS数据存储-沙盒数据
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/29/iOS项目8-QQ下拉菜单/" rel="prev" title="iOS项目8.QQ下拉菜单">
-                iOS项目8.QQ下拉菜单 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,7 +528,7 @@ self.optionsView.userInteractionEnabled = YES;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图分析"><span class="nav-number">2.</span> <span class="nav-text">视图分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载plist数据"><span class="nav-number">3.</span> <span class="nav-text">加载plist数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController"><span class="nav-number">4.</span> <span class="nav-text">ViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义常量"><span class="nav-number">4.1.</span> <span class="nav-text">定义常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton-配置"><span class="nav-number">4.2.</span> <span class="nav-text">UIButton 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历移除所有子视图"><span class="nav-number">4.3.</span> <span class="nav-text">遍历移除所有子视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView-配置"><span class="nav-number">4.4.</span> <span class="nav-text">UIView 配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#URL-path"><span class="nav-number">1.</span> <span class="nav-text">URL path</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打印HTML代码"><span class="nav-number">2.</span> <span class="nav-text">打印HTML代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串类型输出"><span class="nav-number">2.1.</span> <span class="nav-text">字符串类型输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制类型输出"><span class="nav-number">2.2.</span> <span class="nav-text">二进制类型输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转字符串输出"><span class="nav-number">2.3.</span> <span class="nav-text">二进制转字符串输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步请求"><span class="nav-number">3.</span> <span class="nav-text">同步请求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打印HTML代码-1"><span class="nav-number">3.1.</span> <span class="nav-text">打印HTML代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打印HTTP-header"><span class="nav-number">3.2.</span> <span class="nav-text">打印HTTP header</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步请求"><span class="nav-number">4.</span> <span class="nav-text">异步请求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Get-communication"><span class="nav-number">5.</span> <span class="nav-text">Get communication</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Post-communication"><span class="nav-number">6.</span> <span class="nav-text">Post communication</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -807,9 +786,9 @@ self.optionsView.userInteractionEnabled = YES;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/28/iOS项目7-超级猜图/';
-      var disqus_title = 'iOS项目7.超级猜图';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/28/iOS项目7-超级猜图/';
+      var disqus_identifier = '2016/05/21/iOS-HTTP通信/';
+      var disqus_title = 'iOS-HTTP通信';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/21/iOS-HTTP通信/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

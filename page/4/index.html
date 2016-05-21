@@ -238,6 +238,457 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/08/CAShapeLayer的使用/" itemprop="url">
+                  CAShapeLayer的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-08T19:58:30+10:00" content="2016-05-08">
+              2016-05-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/08/CAShapeLayer的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CAShapeLayer的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CAShapeLayer简介"><a href="#CAShapeLayer简介" class="headerlink" title="CAShapeLayer简介"></a>CAShapeLayer简介</h1><ol>
+<li>CAShapeLayer继承至CALayer，可以使用CALayer的所有属性值</li>
+<li>CAShapeLayer需要与贝塞尔曲线配合使用才有意义</li>
+<li>使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形</li>
+<li>CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRect方法使用CPU渲染而言，其效率极高，能大大优化内存使用情况</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+@property (nonatomic, strong) NSTimer      *timer;
+@property (nonatomic, strong) CAShapeLayer *shapeLayer;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建shapeLayer
+_shapeLayer = [CAShapeLayer layer];
+_shapeLayer.frame         = (CGRect){CGPointMake(0, 0), CGSizeMake(200, 200)};
+_shapeLayer.position      = self.view.center;
+_shapeLayer.path          = [self getStar1BezierPath].CGPath;
+_shapeLayer.fillColor     = [UIColor clearColor].CGColor;
+_shapeLayer.strokeColor   = [UIColor redColor].CGColor;
+_shapeLayer.lineWidth     = 2.f;
+[self.view.layer addSublayer:_shapeLayer];
+
+// 创建定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(pathAnimation)
+                                        userInfo:nil
+                                         repeats:YES];
+}
+
+/**
+ *  执行path的动画
+ */
+- (void)pathAnimation {
+static int i = 0;
+if (i++ % 2 == 0) {
+    CABasicAnimation *circleAnim = [CABasicAnimation animationWithKeyPath:@&quot;path&quot;];
+    circleAnim.removedOnCompletion = NO;
+    circleAnim.duration            = 1;
+    circleAnim.fromValue           = (__bridge id)[self getStar1BezierPath].CGPath;
+    circleAnim.toValue             = (__bridge id)[self getStar2BezierPath].CGPath;
+    _shapeLayer.path               = [self getStar2BezierPath].CGPath;
+    [_shapeLayer addAnimation:circleAnim forKey:@&quot;animateCirclePath&quot;];
+} else {
+    CABasicAnimation *circleAnim = [CABasicAnimation animationWithKeyPath:@&quot;path&quot;];
+    circleAnim.removedOnCompletion = NO;
+    circleAnim.duration            = 1;
+    circleAnim.fromValue           = (__bridge id)[self getStar2BezierPath].CGPath;
+    circleAnim.toValue             = (__bridge id)[self getStar1BezierPath].CGPath;
+    _shapeLayer.path               = [self getStar1BezierPath].CGPath;
+    [_shapeLayer addAnimation:circleAnim forKey:@&quot;animateCirclePath&quot;];
+}
+}
+
+/**
+ *  贝塞尔曲线1
+ *
+ *  @return 贝塞尔曲线
+ */
+-(UIBezierPath *)getStar1BezierPath {
+//// Star Drawing
+UIBezierPath* starPath = [UIBezierPath bezierPath];
+[starPath moveToPoint: CGPointMake(22.5, 2.5)];
+[starPath addLineToPoint: CGPointMake(28.32, 14.49)];
+[starPath addLineToPoint: CGPointMake(41.52, 16.32)];
+[starPath addLineToPoint: CGPointMake(31.92, 25.56)];
+[starPath addLineToPoint: CGPointMake(34.26, 38.68)];
+[starPath addLineToPoint: CGPointMake(22.5, 32.4)];
+[starPath addLineToPoint: CGPointMake(10.74, 38.68)];
+[starPath addLineToPoint: CGPointMake(13.08, 25.56)];
+[starPath addLineToPoint: CGPointMake(3.48, 16.32)];
+[starPath addLineToPoint: CGPointMake(16.68, 14.49)];
+[starPath closePath];
+
+return starPath;
+}
+
+/**
+ *  贝塞尔曲线2
+ *
+ *  @return 贝塞尔曲线
+ */
+-(UIBezierPath *)getStar2BezierPath {
+//// Star Drawing
+UIBezierPath* starPath = [UIBezierPath bezierPath];
+[starPath moveToPoint: CGPointMake(22.5, 2.5)];
+[starPath addLineToPoint: CGPointMake(32.15, 9.21)];
+[starPath addLineToPoint: CGPointMake(41.52, 16.32)];
+[starPath addLineToPoint: CGPointMake(38.12, 27.57)];
+[starPath addLineToPoint: CGPointMake(34.26, 38.68)];
+[starPath addLineToPoint: CGPointMake(22.5, 38.92)];
+[starPath addLineToPoint: CGPointMake(10.74, 38.68)];
+[starPath addLineToPoint: CGPointMake(6.88, 27.57)];
+[starPath addLineToPoint: CGPointMake(3.48, 16.32)];
+[starPath addLineToPoint: CGPointMake(12.85, 9.21)];
+[starPath closePath];
+
+return starPath;
+}
+@end
+</code></pre><h1 id="贝塞尔曲线与CAShapeLayer的关系"><a href="#贝塞尔曲线与CAShapeLayer的关系" class="headerlink" title="贝塞尔曲线与CAShapeLayer的关系"></a>贝塞尔曲线与CAShapeLayer的关系</h1><ol>
+<li>CAShapeLayer中有Shape这个单词，顾名思义，它需要一个形状才能生效</li>
+<li>贝塞尔曲线可以创建基于矢量的路径</li>
+<li>贝塞尔曲线给CAShapeLayer提供路径，CAShapeLayer在提供的路径中进行渲染，路径会闭环，所以路径绘制出了Shape</li>
+<li>用于CAShapeLayer的贝塞尔曲线作为path，其path是一个首尾相接的闭环的曲线，即使该贝塞尔曲线不是一个闭环的曲线</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer02.png" alt=""></p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建椭圆形贝塞尔曲线
+UIBezierPath *oval = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 200, 100)];
+
+// 创建矩形贝塞尔曲线
+UIBezierPath *rect = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 200, 100)];
+
+// 创建圆形贝塞尔曲线
+UIBezierPath *circle = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)];
+
+// 创建CAShapeLayer
+CAShapeLayer *shape = [CAShapeLayer layer];
+shape.frame         = CGRectMake(0, 0, 200, 50);
+shape.position      = self.view.center;
+
+// 显示CAShapeLayer的边界
+shape.borderWidth   = 1.f;
+
+// 禁止内容显示超出CAShapeLayer的frame值
+shape.masksToBounds = YES;
+
+// 修改贝塞尔曲线的填充颜色
+shape.fillColor     = [UIColor redColor].CGColor;
+
+// 建立贝塞尔曲线与CAShapeLayer之间的关联
+shape.path = circle.CGPath;
+
+// 添加并显示
+[self.view.layer addSublayer:shape];
+}
+</code></pre><h1 id="StrokeStart与StrokeEnd动画"><a href="#StrokeStart与StrokeEnd动画" class="headerlink" title="StrokeStart与StrokeEnd动画"></a>StrokeStart与StrokeEnd动画</h1><p><strong>进度条效果 - 利用GPU实现，不占内存</strong></p>
+<ol>
+<li>将ShapeLayer的fillColor设置成透明背景</li>
+<li>设置线条的宽度（lineWidth）的值</li>
+<li>设置线条的颜色</li>
+<li>将strokeStart值设定成0，然后让strokeEnd的值变化触发隐式动画</li>
+<li>strokeStart的值一定小于strokeEnd</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer03.gif" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
+
+@interface ViewController ()
+@property (nonatomic, strong) NSTimer      *timer;      // 定时器
+@property (nonatomic, strong) CAShapeLayer *shapeLayer; // 形状layer
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 设置背景色
+self.view.backgroundColor = [UIColor colorWithRed:0.878 green:0.878 blue:0.878 alpha:1];
+
+// 创建椭圆形贝塞尔曲线
+UIBezierPath *oval        = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)];
+
+// 创建CAShapeLayer
+_shapeLayer               = [CAShapeLayer layer];
+_shapeLayer.frame         = CGRectMake(0, 0, 100, 100);
+_shapeLayer.position      = self.view.center;
+
+// 修改CAShapeLayer的线条相关值
+_shapeLayer.fillColor     = [UIColor clearColor].CGColor;
+_shapeLayer.strokeColor   = [UIColor redColor].CGColor;
+_shapeLayer.lineWidth     = 2.f;
+_shapeLayer.strokeStart   = 0.f;
+_shapeLayer.strokeEnd     = 0.f;
+
+// 建立贝塞尔曲线与CAShapeLayer之间的关联
+_shapeLayer.path          = oval.CGPath;
+
+// 添加并显示
+[self.view.layer addSublayer:_shapeLayer];
+
+// 创建定时器
+_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                          target:self
+                                        selector:@selector(animationEventTypeTwo)
+                                        userInfo:nil
+                                         repeats:YES];
+                                     }
+
+/**
+ *  动画效果1
+*/
+- (void)animationEventTypeOne {
+// 执行隐式动画
+_shapeLayer.strokeEnd = arc4random() % 100 / 100.f;
+}
+
+/**
+ *  动画效果2
+ */
+ - (void)animationEventTypeTwo {
+CGFloat valueOne = arc4random() % 100 / 100.f;
+CGFloat valueTwo = arc4random() % 100 / 100.f;
+
+// 执行隐式动画
+_shapeLayer.strokeStart = valueOne &lt; valueTwo ? valueOne : valueTwo;
+_shapeLayer.strokeEnd   = valueOne &gt; valueTwo ? valueOne : valueTwo;
+}
+</code></pre><h1 id="用CAShapeLayer实现圆形进度条效果"><a href="#用CAShapeLayer实现圆形进度条效果" class="headerlink" title="用CAShapeLayer实现圆形进度条效果"></a>用CAShapeLayer实现圆形进度条效果</h1><ol>
+<li>确定需要设定的参数</li>
+<li>实现细节</li>
+<li>进行测试</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer04.gif" alt=""></p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;CircleView.h&quot;
+@interface ViewController ()
+{
+CircleView *circle;
+}
+@end
+
+@implementation ViewController
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+circle             = [[CircleView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+circle.center      = self.view.center;
+circle.startValue  = 0.5;
+circle.lineWidth   = 3.f;
+circle.lineColor   = [UIColor grayColor];
+[self.view addSubview:circle];
+
+[self performSelector:@selector(delayAnimation)
+           withObject:nil
+           afterDelay:3.f];
+       }
+
+- (void)delayAnimation {
+circle.value = 1.f;
+}
+</code></pre><p>circleView.h</p>
+<pre><code>#import &lt;UIKit/UIKit.h&gt;
+
+@interface CircleView : UIView
+@property (nonatomic, assign) CGFloat  startValue; // 起始值（0~1）
+@property (nonatomic, assign) CGFloat  lineWidth;  // 线宽(&gt;0)
+@property (nonatomic, strong) UIColor *lineColor;  // 线条颜色
+@property (nonatomic, assign) CGFloat  value;      // 变化的值
+
+@end
+</code></pre><p>circleView.m</p>
+<pre><code>#import &quot;CircleView.h&quot;
+@interface CircleView ()
+
+@property (nonatomic, strong) CAShapeLayer *shapeLayer;
+
+@end
+@implementation CircleView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+    // 创建出CAShapeLayer
+    _shapeLayer       = [CAShapeLayer layer];
+    _shapeLayer.frame = self.bounds;
+
+    // 创建出贝塞尔曲线
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
+
+    // 贝塞尔曲线与CAShapeLayer产生关联
+    _shapeLayer.path = path.CGPath;
+
+    // 基本配置
+    _shapeLayer.fillColor   = [UIColor clearColor].CGColor;
+    _shapeLayer.lineWidth   = 1.f;
+    _shapeLayer.strokeColor = [UIColor redColor].CGColor;
+    _shapeLayer.strokeEnd   = 0.f;
+
+    // 添加到当前view
+    [self.layer addSublayer:_shapeLayer];
+}
+return self;
+}
+
+@synthesize startValue = _startValue;
+- (void)setStartValue:(CGFloat)startValue {
+_startValue           = startValue;
+_shapeLayer.strokeEnd = startValue;
+}
+- (CGFloat)startValue {
+return _startValue;
+}
+
+@synthesize lineWidth = _lineWidth;
+- (void)setLineWidth:(CGFloat)lineWidth {
+_lineWidth            = lineWidth;
+_shapeLayer.lineWidth = lineWidth;
+}
+- (CGFloat)lineWidth {
+return _lineWidth;
+}
+
+@synthesize lineColor = _lineColor;
+- (void)setLineColor:(UIColor *)lineColor {
+_lineColor              = lineColor;
+_shapeLayer.strokeColor = lineColor.CGColor;
+}
+- (UIColor *)lineColor {
+return _lineColor;
+}
+
+@synthesize value = _value;
+- (void)setValue:(CGFloat)value {
+_value                = value;
+_shapeLayer.strokeEnd = value;
+}
+- (CGFloat)value {
+return _value;
+}
+
+
+@end
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/08/CALayer的使用/" itemprop="url">
                   CALayer的使用
                 </a>
@@ -1562,142 +2013,6 @@ imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="url">
-                  Facebook开源动画库POP实现真实衰减与弹簧动画
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-05T14:36:15+10:00" content="2016-05-05">
-              2016-05-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="POP动画引擎简介"><a href="#POP动画引擎简介" class="headerlink" title="POP动画引擎简介"></a>POP动画引擎简介</h1><ol>
-<li>POP动画引擎是Facebook公司开源的</li>
-<li>POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)</li>
-<li>POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)</li>
-<li>POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似</li>
-</ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别"><a href="#POP动画引擎中Layer与CALayer的区别" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><ol>
-<li>使用POP动画与使用CALayer动画非常相似</li>
-<li>POP动画的执行没有中间状态</li>
-<li>POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果</li>
-<li>POP动画可以作用在任何对象上，不仅仅是CALayer</li>
-</ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别-1"><a href="#POP动画引擎中Layer与CALayer的区别-1" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png" alt=""></p>
-<h1 id="用POP动画引擎实现衰减动画"><a href="#用POP动画引擎实现衰减动画" class="headerlink" title="用POP动画引擎实现衰减动画"></a>用POP动画引擎实现衰减动画</h1><ol>
-<li>衰减动画由POPDecayAnimation来实现</li>
-<li>需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果</li>
-</ol>
-<h1 id="用POP动画引擎实现弹簧动画"><a href="#用POP动画引擎实现弹簧动画" class="headerlink" title="用POP动画引擎实现弹簧动画"></a>用POP动画引擎实现弹簧动画</h1><ol>
-<li>弹簧动画由POPSpringAnimation来实现</li>
-<li>弹簧的质量速度时间等值都是可以设置的</li>
-</ol>
-<p>For more information , go to <a href="https://github.com/facebook/pop" target="_blank" rel="external">https://github.com/facebook/pop</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1744,7 +2059,7 @@ imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1761,7 +2076,7 @@ imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
