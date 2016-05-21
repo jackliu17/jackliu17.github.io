@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_dataStorage," />
+  <meta name="keywords" content="iOS,iOS_media," />
 
 
 
@@ -61,22 +61,43 @@
 
 
 
-<meta name="description" content="读取JSON文件let filePath: NSString = NSBundle.mainBundle().pathForResource(&amp;quot;obj&amp;quot;, ofType: &amp;quot;json&amp;quot;)!
-let jsonUrl = NSURL(fileURLWithPath: filePath as String)
-let jsonData = NSData(conten">
+<meta name="description" content="Play Videoimport UIKit
+import MediaPlayer
+
+class ViewController: UIViewController {
+
+var pc:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    pc = MPMoviePlaye">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS数据存储-JSON">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/19/iOS数据存储-JSON/index.html">
+<meta property="og:title" content="iOS视频播放和录制">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/21/iOS视频播放和录制/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="读取JSON文件let filePath: NSString = NSBundle.mainBundle().pathForResource(&amp;quot;obj&amp;quot;, ofType: &amp;quot;json&amp;quot;)!
-let jsonUrl = NSURL(fileURLWithPath: filePath as String)
-let jsonData = NSData(conten">
-<meta property="og:updated_time" content="2016-05-19T06:47:08.000Z">
+<meta property="og:description" content="Play Videoimport UIKit
+import MediaPlayer
+
+class ViewController: UIViewController {
+
+var pc:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    pc = MPMoviePlaye">
+<meta property="og:updated_time" content="2016-05-21T05:40:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS数据存储-JSON">
-<meta name="twitter:description" content="读取JSON文件let filePath: NSString = NSBundle.mainBundle().pathForResource(&amp;quot;obj&amp;quot;, ofType: &amp;quot;json&amp;quot;)!
-let jsonUrl = NSURL(fileURLWithPath: filePath as String)
-let jsonData = NSData(conten">
+<meta name="twitter:title" content="iOS视频播放和录制">
+<meta name="twitter:description" content="Play Videoimport UIKit
+import MediaPlayer
+
+class ViewController: UIViewController {
+
+var pc:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    pc = MPMoviePlaye">
 
 
 
@@ -94,7 +115,7 @@ let jsonData = NSData(conten">
   };
 </script>
 
-  <title> iOS数据存储-JSON | Cowboy Tech </title>
+  <title> iOS视频播放和录制 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +257,7 @@ let jsonData = NSData(conten">
             
             
               
-                iOS数据存储-JSON
+                iOS视频播放和录制
               
             
           </h1>
@@ -248,8 +269,8 @@ let jsonData = NSData(conten">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-19T16:44:42+10:00" content="2016-05-19">
-              2016-05-19
+            <time itemprop="dateCreated" datetime="2016-05-21T15:39:21+10:00" content="2016-05-21">
+              2016-05-21
             </time>
           </span>
 
@@ -278,8 +299,8 @@ let jsonData = NSData(conten">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/19/iOS数据存储-JSON/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/iOS数据存储-JSON/" itemprop="commentsCount"></span>
+                <a href="/2016/05/21/iOS视频播放和录制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS视频播放和录制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -301,24 +322,60 @@ let jsonData = NSData(conten">
       
 
       
-        <h1 id="读取JSON文件"><a href="#读取JSON文件" class="headerlink" title="读取JSON文件"></a>读取JSON文件</h1><pre><code>let filePath: NSString = NSBundle.mainBundle().pathForResource(&quot;obj&quot;, ofType: &quot;json&quot;)!
-let jsonUrl = NSURL(fileURLWithPath: filePath as String)
-let jsonData = NSData(contentsOfURL: jsonUrl)
+        <h1 id="Play-Video"><a href="#Play-Video" class="headerlink" title="Play Video"></a>Play Video</h1><pre><code>import UIKit
+import MediaPlayer
 
-do{       
-let json = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions())
-let lang:AnyObject = json.objectForKey(&quot;language&quot;)!
-print(lang)           
-}catch{
-print(error)
+class ViewController: UIViewController {
+
+var pc:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&quot;video&quot;, withExtension: &quot;mp4&quot;))
+    presentViewController(pc, animated: true, completion: nil)
 }
-</code></pre><h1 id="生成JSON数据"><a href="#生成JSON数据" class="headerlink" title="生成JSON数据"></a>生成JSON数据</h1><pre><code>let dict = [&quot;name&quot;:&quot;jikexueyuan&quot;,&quot;age&quot;:1]
-do{
-    let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions())
-    let str = NSString(data: jsonData, encoding: NSUTF8StringEncoding)!
-    print(str)
-}catch{
-    print(error)
+}
+</code></pre><h1 id="Record-Video"><a href="#Record-Video" class="headerlink" title="Record Video"></a>Record Video</h1><pre><code>import UIKit
+import MobileCoreServices
+import MediaPlayer
+
+class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
+
+var picker:UIImagePickerController!
+var videoUrl:NSURL?
+var player:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    if let url = videoUrl{
+        player = MPMoviePlayerViewController(contentURL: url)
+        presentViewController(player, animated: true, completion: nil)
+    }
+}
+
+
+@IBAction func recVideoBtnClicked(sender: AnyObject) {
+
+    picker = UIImagePickerController()
+    picker.mediaTypes = [kUTTypeMovie as String]
+    picker.sourceType = UIImagePickerControllerSourceType.Camera
+    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+    picker.delegate = self
+
+    presentViewController(picker, animated: true, completion: nil) 
+}
+
+
+func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+
+    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
+
+    picker.dismissViewControllerAnimated(true, completion: nil)
+}
+
+func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+}
 }
 </code></pre>
       
@@ -336,7 +393,7 @@ do{
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-dataStorage/" rel="tag">#iOS_dataStorage</a>
+            <a href="/tags/iOS-media/" rel="tag">#iOS_media</a>
           
         </div>
       
@@ -345,17 +402,13 @@ do{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/19/iOS数据存储-CoreData/" rel="next" title="iOS数据存储-CoreData">
-                <i class="fa fa-chevron-left"></i> iOS数据存储-CoreData
+              <a href="/2016/05/21/iOS-HTTP通信/" rel="next" title="iOS-HTTP通信">
+                <i class="fa fa-chevron-left"></i> iOS-HTTP通信
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/20/iOS数据存储-XML/" rel="prev" title="iOS数据存储-XML">
-                iOS数据存储-XML <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,7 +540,7 @@ do{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#读取JSON文件"><span class="nav-number">1.</span> <span class="nav-text">读取JSON文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成JSON数据"><span class="nav-number">2.</span> <span class="nav-text">生成JSON数据</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Play-Video"><span class="nav-number">1.</span> <span class="nav-text">Play Video</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Record-Video"><span class="nav-number">2.</span> <span class="nav-text">Record Video</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -745,9 +798,9 @@ do{
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/19/iOS数据存储-JSON/';
-      var disqus_title = 'iOS数据存储-JSON';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/19/iOS数据存储-JSON/';
+      var disqus_identifier = '2016/05/21/iOS视频播放和录制/';
+      var disqus_title = 'iOS视频播放和录制';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/21/iOS视频播放和录制/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
