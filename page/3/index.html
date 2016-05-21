@@ -238,6 +238,231 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/17/iOS项目018-CAAnimation简介/" itemprop="url">
+                  iOS项目018.CAAnimation简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T10:40:57+10:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/iOS项目018-CAAnimation简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目018-CAAnimation简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CAAnimation"><a href="#CAAnimation" class="headerlink" title="CAAnimation"></a>CAAnimation</h1><ol>
+<li>基础动画 CABasicAnimation</li>
+<li>关键帧动画CAKeyframeAnimation</li>
+<li>转场动画 CATransition</li>
+<li>动画组 CAAnimationGroup</li>
+</ol>
+<p>以上基础动画和关键帧动画是隐式动画，比如bound值是animable的</p>
+<h1 id="CABasicAnimation"><a href="#CABasicAnimation" class="headerlink" title="CABasicAnimation"></a>CABasicAnimation</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01801.png" alt=""></p>
+<p>viewController</p>
+<pre><code>@property (nonatomic, strong) CALayer *layer;
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+CALayer *layer =[CALayer layer];
+layer.bounds = CGRectMake(0, 0, 100, 100);
+layer.position = CGPointMake(100,100);
+layer.backgroundColor = [UIColor yellowColor].CGColor;
+[self.view.layer addSublayer:layer];
+self.layer = layer;  
+
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+//[self animationScale];
+//[self animationRotation];
+//[self animationTranslate];
+}
+</code></pre><h2 id="keyPath-toValue-fromValue-byValue"><a href="#keyPath-toValue-fromValue-byValue" class="headerlink" title="keyPath, toValue, fromValue, byValue"></a>keyPath, toValue, fromValue, byValue</h2><ol>
+<li>keyPath  决定了执行怎样的动画</li>
+<li>toValue 到达哪个点</li>
+<li>byValue 是增加多少值</li>
+<li>fromValue 从哪个点开始移动</li>
+</ol>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><pre><code>- (void)animationScale{
+
+CABasicAnimation *animation = [CABasicAnimation animation];
+
+animation.keyPath = @&quot;bounds&quot;;
+animation.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 50, 50)];
+
+animation.duration = 2;
+animation.removedOnCompletion = NO;
+animation.fillMode = @&quot;forwards&quot;;
+
+[self.layer addAnimation:animation forKey:nil];
+}
+</code></pre><h2 id="平移"><a href="#平移" class="headerlink" title="平移"></a>平移</h2><pre><code>//toValue是到达哪个点
+animation.keyPath = @&quot;position&quot;;
+animation.toValue = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
+
+//byValue是xy轴分别增加多少
+animation.keyPath = @&quot;position&quot;;
+animation.byValue = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
+</code></pre><h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><pre><code>animation.keyPath = @&quot;transform&quot;;
+animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_4, 1, 1, 0)];
+</code></pre><h1 id="CAKeyframeAnimation"><a href="#CAKeyframeAnimation" class="headerlink" title="CAKeyframeAnimation"></a>CAKeyframeAnimation</h1><p>效果：方块绕椭圆轨迹运动</p>
+<pre><code>- (void)keyAnimation{
+CAKeyframeAnimation *anim = [CAKeyframeAnimation animation];
+
+//这些是和CABasicAnimation一样的
+anim.keyPath = @&quot;position&quot;;
+anim.removedOnCompletion = NO;
+anim.fillMode = kCAFillModeForwards;
+anim.duration = 2.0;
+
+//设置动画的路径
+CGMutablePathRef path = CGPathCreateMutable();
+CGPathAddEllipseInRect(path, NULL, CGRectMake(100, 100, 200, 200));
+anim.path = path;
+CGPathRelease(path);
+
+// 设置动画的执行节奏
+// kCAMediaTimingFunctionEaseInEaseOut : 一开始比较慢, 中间会加速,  临近结束的时候, 会变慢
+anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+//可以执行代理方法
+anim.delegate = self;
+
+[self.layer addAnimation:anim forKey:nil];
+}
+</code></pre><h1 id="CATransition"><a href="#CATransition" class="headerlink" title="CATransition"></a>CATransition</h1><h2 id="导航视图切换"><a href="#导航视图切换" class="headerlink" title="导航视图切换"></a>导航视图切换</h2><pre><code>-(IBAction)pushAction{
+
+CATransition *transition = [CATransition animation];
+transition.duration = 1;
+transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+//私有API
+//transition.type = @&quot;pageCurl&quot;;
+transition.type = @&quot;cube&quot;;//立体动画效果
+
+[self.navigationController.view.layer addAnimation:transition forKey:@&quot;navAnimation&quot;];
+DetailViewController *detailVC = [[DetailViewController alloc]init];
+[self.navigationController showViewController:detailVC sender:nil];
+}
+</code></pre><h2 id="View切换"><a href="#View切换" class="headerlink" title="View切换"></a>View切换</h2><p>这里的animaView是UIViewController  —&gt; view 里的subView</p>
+<pre><code>-(IBAction)exchangeView{
+CATransition *transition = [CATransition animation];
+transition.duration = 1;
+transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+//私有API
+//transition.type = @&quot;pageCurl&quot;;
+transition.type = @&quot;fade&quot;;
+transition.subtype = kCATransitionFromRight;
+
+//设置具体动画
+[_animaView exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
+[_animaView.layer addAnimation:transition forKey:@&quot;myAnimation&quot;];
+
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/iOS项目015-CALayer简介/" itemprop="url">
                   iOS项目015.CALayer简介
                 </a>
@@ -1077,127 +1302,6 @@ longPress.minimumPressDuration = 2;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/12/iOS数据存储/" itemprop="url">
-                  iOS数据存储
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-12T11:52:26+10:00" content="2016-05-12">
-              2016-05-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/12/iOS数据存储/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/12/iOS数据存储/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="存储的方法"><a href="#存储的方法" class="headerlink" title="存储的方法"></a>存储的方法</h1><ol>
-<li>plist 需要知道文件名 只适合NSArray，NSString等基本数据类型</li>
-<li>偏好设置 不需要知道文件名，小型数据 NSUserDefaults，是以字典的方式存储</li>
-<li>对象归档  NSKeyedArchiver 必须实现NSCoding协议方法</li>
-<li>core Data 大型数据</li>
-<li>sqlite3</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1244,7 +1348,7 @@ longPress.minimumPressDuration = 2;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1261,7 +1365,7 @@ longPress.minimumPressDuration = 2;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
