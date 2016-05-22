@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-22T00:50:59.000Z</updated>
+  <updated>2016-05-22T23:29:01.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,260 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-适配器</title>
+    <link href="http://jackliu17.github.io/2016/05/23/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8/"/>
+    <id>http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/</id>
+    <published>2016-05-22T23:26:19.000Z</published>
+    <updated>2016-05-22T23:29:01.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;视图在中央&quot;&gt;&lt;a href=&quot;#视图在中央&quot; class=&quot;headerlink&quot; title=&quot;视图在中央&quot;&gt;&lt;/a&gt;视图在中央&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;cardView.center = self.view.center;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;直接赋值的弊端&quot;&gt;&lt;a href=&quot;#直接赋值的弊端&quot; class=&quot;headerlink&quot; title=&quot;直接赋值的弊端&quot;&gt;&lt;/a&gt;直接赋值的弊端&lt;/h1&gt;&lt;p&gt;如果要修改的话，需要修改所有赋值(目前有三处)&lt;/p&gt;
+&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&amp;quot;Hello&amp;quot;;
+cardView.lineColor   = [UIColor redColor];
+cardView.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;对象赋值-封装&quot;&gt;&lt;a href=&quot;#对象赋值-封装&quot; class=&quot;headerlink&quot; title=&quot;对象赋值(封装)&quot;&gt;&lt;/a&gt;对象赋值(封装)&lt;/h1&gt;&lt;p&gt;以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+
+Model *model      = [[Model alloc] init];
+model.name        = @&amp;quot;Hello&amp;quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
+
+[cardView loadData:model];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用适配器模式&quot;&gt;&lt;a href=&quot;#使用适配器模式&quot; class=&quot;headerlink&quot; title=&quot;使用适配器模式&quot;&gt;&lt;/a&gt;使用适配器模式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;创建抽象适配器对象&lt;/li&gt;
+&lt;li&gt;适配器与视图层建立输出联系&lt;/li&gt;
+&lt;li&gt;适配器与数据层建立输入联系&lt;/li&gt;
+&lt;li&gt;类适配器与对象适配器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Protocl-Adapter&quot;&gt;&lt;a href=&quot;#Protocl-Adapter&quot; class=&quot;headerlink&quot; title=&quot;Protocl + Adapter&quot;&gt;&lt;/a&gt;Protocl + Adapter&lt;/h2&gt;&lt;p&gt;BusinessCardAdapterProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//输出的数据一致性
+@protocol BusinessCardAdapterProtocol &amp;lt;NSObject&amp;gt;
+
+- (NSString *)name;
+- (UIColor *)lineColor;
+- (NSString *)phoneNumber;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BusinessCardAdapter (空实现，用来让子类继承)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface BusinessCardAdapter : NSObject &amp;lt;BusinessCardAdapterProtocol&amp;gt;
+@property (nonatomic, weak) id data;
+- (instancetype)initWithData:(id)data;
+
+@implementation BusinessCardAdapter
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {
+    self.data = data;
+}
+return self;
+}
+
+- (NSString *)name {
+return nil;
+}
+
+- (UIColor *)lineColor {
+return nil;
+}
+
+- (NSString *)phoneNumber {
+return nil;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BusinessCardView&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
+- (void)loadData:(id &amp;lt;BusinessCardAdapterProtocol&amp;gt;)data {
+self.name        = [data name];
+self.lineColor   = [data lineColor];
+self.phoneNumber = [data phoneNumber];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;针对Model-class-的类适配器&quot;&gt;&lt;a href=&quot;#针对Model-class-的类适配器&quot; class=&quot;headerlink&quot; title=&quot;针对Model class 的类适配器&quot;&gt;&lt;/a&gt;针对Model class 的类适配器&lt;/h2&gt;&lt;p&gt;Model&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Model : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIColor  *lineColor;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ModelAdapter(类适配器)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ModelAdapter : BusinessCardAdapter
+
+@end
+
+@implementation ModelAdapter
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {        
+    self.data = data;
+}  
+return self;
+}
+
+- (NSString *)name {  
+Model *data = self.data; 
+return data.name;
+}
+
+- (UIColor *)lineColor {
+Model *data = self.data; 
+return data.lineColor;
+}
+
+- (NSString *)phoneNumber {
+Model *data = self.data;
+return data.phoneNumber;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+Model *model      = [[Model alloc] init];
+model.name        = @&amp;quot;JiKeXueYuan&amp;quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
+
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
+
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;针对NewCardModel的类适配器&quot;&gt;&lt;a href=&quot;#针对NewCardModel的类适配器&quot; class=&quot;headerlink&quot; title=&quot;针对NewCardModel的类适配器&quot;&gt;&lt;/a&gt;针对NewCardModel的类适配器&lt;/h2&gt;&lt;p&gt;NewCardModel&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface NewCardModel : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *colorHexString;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NewCardModelApater (类适配器)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface NewCardModelApater : BusinessCardAdapter
+
+@end
+
+@implementation NewCardModelApater
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {
+    self.data = data;
+}
+return self;
+}
+
+- (NSString *)name {
+NewCardModel *data = self.data;
+return data.name;
+}
+
+- (UIColor *)lineColor {
+NewCardModel *data = self.data;
+// todo
+if ([data.colorHexString isEqualToString:@&amp;quot;black&amp;quot;]) {
+    return [UIColor blackColor];
+} else {
+    return [UIColor redColor];
+}
+}
+
+- (NSString *)phoneNumber {
+NewCardModel *data = self.data;
+return data.phoneNumber;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+
+NewCardModel *newCardModel  = [[NewCardModel alloc] init];
+newCardModel.name           = @&amp;quot;JiKeXueYuan&amp;quot;;
+newCardModel.colorHexString = @&amp;quot;black&amp;quot;;
+newCardModel.phoneNumber    = @&amp;quot;101 - 5687 - 000&amp;quot;;
+
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
+
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;对象适配器-万能&quot;&gt;&lt;a href=&quot;#对象适配器-万能&quot; class=&quot;headerlink&quot; title=&quot;对象适配器(万能)&quot;&gt;&lt;/a&gt;对象适配器(万能)&lt;/h2&gt;&lt;p&gt;一个适配器解决所有数据模型，代码里会显得很臃肿&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CardAdapter : BusinessCardAdapter
+
+@end
+
+#import &amp;quot;CardAdapter.h&amp;quot;
+#import &amp;quot;Model.h&amp;quot;
+#import &amp;quot;NewCardModel.h&amp;quot;
+
+@implementation CardAdapter
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {      
+    self.data = data;
+} 
+return self;
+}
+
+- (NSString *)name {
+NSString *name = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    name         = model.name;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    name                = model.name;
+}
+return name;
+}
+
+- (UIColor *)lineColor {
+UIColor *lineColor = nil;
+if ([self.data isMemberOfClass:[Model class]]) { 
+    Model *model = self.data;
+    lineColor    = model.lineColor; 
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    if ([model.colorHexString isEqualToString:@&amp;quot;black&amp;quot;]) {
+        lineColor = [UIColor blackColor];  
+    } else { 
+        lineColor = [UIColor redColor];
+    }
+}
+return lineColor;
+}
+
+- (NSString *)phoneNumber {
+NSString *phoneNumber = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    phoneNumber  = model.phoneNumber;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    phoneNumber         = model.phoneNumber;
+}
+return phoneNumber;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;适配器的优点和缺点&quot;&gt;&lt;a href=&quot;#适配器的优点和缺点&quot; class=&quot;headerlink&quot; title=&quot;适配器的优点和缺点&quot;&gt;&lt;/a&gt;适配器的优点和缺点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;降低视图层和数据层的耦合度&lt;/li&gt;
+&lt;li&gt;让一个类在不经过修改的情况下适应更多的情形&lt;/li&gt;
+&lt;li&gt;代码可读性差，比较繁琐&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;视图在中央&quot;&gt;&lt;a href=&quot;#视图在中央&quot; class=&quot;headerlink&quot; title=&quot;视图在中央&quot;&gt;&lt;/a&gt;视图在中央&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;cardView.center = self.view.center;
+&lt;/code&gt;&lt;/pre&gt;&lt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS播放音频简介</title>
@@ -2176,409 +2430,6 @@ return _value;
       <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CALayer的使用</title>
-    <link href="http://jackliu17.github.io/2016/05/08/CALayer%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://jackliu17.github.io/2016/05/08/CALayer的使用/</id>
-    <published>2016-05-08T07:07:09.000Z</published>
-    <updated>2016-05-08T07:08:57.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;CALayer简介&quot;&gt;&lt;a href=&quot;#CALayer简介&quot; class=&quot;headerlink&quot; title=&quot;CALayer简介&quot;&gt;&lt;/a&gt;CALayer简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;CALayer一般作为UIView的容器而使用&lt;/li&gt;
-&lt;li&gt;CALayer是一个管理着图片载体（image-based content）的层结构, &lt;strong&gt;UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;直接修改单独创建出的CALayer的属性可以触发隐式动画&lt;/li&gt;
-&lt;li&gt;UIView中的CALayer动画必须显式触发才能生效&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;用CALayer定制下载进度条控件&quot;&gt;&lt;a href=&quot;#用CALayer定制下载进度条控件&quot; class=&quot;headerlink&quot; title=&quot;用CALayer定制下载进度条控件&quot;&gt;&lt;/a&gt;用CALayer定制下载进度条控件&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;单独创建出CALayer&lt;/li&gt;
-&lt;li&gt;直接修改CALayer的frame值执行隐式动画，实现进度条效果&lt;/li&gt;
-&lt;li&gt;用定时器（NSTimer）模拟网络下载时提供的百分比数据&lt;/li&gt;
-&lt;li&gt;将CALayer封装进UIView子类中定制进度条控件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;隐式动画进度条&quot;&gt;&lt;a href=&quot;#隐式动画进度条&quot; class=&quot;headerlink&quot; title=&quot;隐式动画进度条&quot;&gt;&lt;/a&gt;隐式动画进度条&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) NSTimer *timer; // 定时器
-@property (nonatomic, strong) CALayer *layer; // layer
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 设置背景色
-self.view.backgroundColor = [UIColor blackColor];
-
-// CALayer
-_layer                 = [CALayer layer];
-_layer.frame           = CGRectMake(50, 50, 200, 2);
-_layer.backgroundColor = [UIColor redColor].CGColor;
-[self.view.layer addSublayer:_layer];
-
-// 定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(timerEvent)
-                                        userInfo:nil
-                                         repeats:YES];
-                                     }
-
-
-- (void)timerEvent {
-// 执行layer的隐式动画（取随机值模拟下载进度）
-_layer.frame = CGRectMake(50, 50, arc4random()%200, 2);
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;封装UIView实现进度条&quot;&gt;&lt;a href=&quot;#封装UIView实现进度条&quot; class=&quot;headerlink&quot; title=&quot;封装UIView实现进度条&quot;&gt;&lt;/a&gt;封装UIView实现进度条&lt;/h2&gt;&lt;p&gt;progressView.h&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;
-
-@interface ProgressView : UIView
-
-@property (nonatomic, assign) CGFloat  progress;   // 进度参数（取值范围为 %0 ~ %100）
-@property (nonatomic, strong) UIColor *layerColor; // 修改layer的颜色
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;progressView.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;ProgressView.h&amp;quot;
-
-@interface ProgressView ()
-
-@property (nonatomic, strong) CALayer *progressLayer;
-@property (nonatomic, assign) CGFloat  currentViewWidth;
-
-@end
-
-@implementation ProgressView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-self = [super initWithFrame:frame];
-if (self) {
-    self.progressLayer       = [CALayer layer];
-    self.progressLayer.frame = CGRectMake(0, 0, 0, frame.size.height);
-    self.progressLayer.backgroundColor = [UIColor redColor].CGColor;
-    [self.layer addSublayer:self.progressLayer];
-
-    // 存储当前view的宽度值
-    self.currentViewWidth = frame.size.width;
-}
-return self;
-}
-
-#pragma mark - 重写setter，getter方法
-@synthesize progress = _progress;
-
-- (void)setProgress:(CGFloat)progress {
-_progress = progress;
-
-if (progress &amp;lt;= 0) {
-    self.progressLayer.frame = CGRectMake(0, 0, 0, self.frame.size.height);
-} else if (progress &amp;lt;= 1) {
-    self.progressLayer.frame = CGRectMake(0, 0,
-                                          progress * self.currentViewWidth,
-                                          self.frame.size.height);
-} else {
-    self.progressLayer.frame = CGRectMake(0, 0, self.currentViewWidth,
-                                          self.frame.size.height);
-}
-}
-
-- (CGFloat)progress {
-return _progress;
-}
-
-@synthesize layerColor = _layerColor;
-
-- (void)setLayerColor:(UIColor *)layerColor {
-_layerColor = layerColor;
-self.progressLayer.backgroundColor = layerColor.CGColor;
-}
-
-- (UIColor *)layerColor {
-return _layerColor;
-}
-
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;viewController.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-#import &amp;quot;ProgressView.h&amp;quot;
-@interface ViewController ()
-@property (nonatomic, strong) ProgressView *progressView;
-@property (nonatomic, strong) NSTimer      *timer;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-self.progressView            = [[ProgressView alloc] initWithFrame:CGRectMake(20, 20, 290, 3)];
-self.progressView.layerColor = [UIColor yellowColor];
-[self.view addSubview:self.progressView];
-
-// 创建定时器，每一秒执行一回
-self.timer = [NSTimer scheduledTimerWithTimeInterval:1
-                                              target:self
-                                            selector:@selector(layerAnimation)
-                                            userInfo:nil
-                                             repeats:YES];
-                                         }
-
-- (void)layerAnimation {
-// 随机获取 0% ~ 100% 给layer赋值
-self.progressView.progress = arc4random() % 100 / 100.f;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用CALayer定制UIImageView淡入淡出切换图片效果&quot;&gt;&lt;a href=&quot;#用CALayer定制UIImageView淡入淡出切换图片效果&quot; class=&quot;headerlink&quot; title=&quot;用CALayer定制UIImageView淡入淡出切换图片效果&quot;&gt;&lt;/a&gt;用CALayer定制UIImageView淡入淡出切换图片效果&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;操作UIImageView的CALayer修改其bounds值进行显式动画&lt;/li&gt;
-&lt;li&gt;修改UIImageView的CALayer中的contents属性实现切换图片的动画&lt;/li&gt;
-&lt;li&gt;用CAAnimationGroup将bounds动画与contents动画组合起来&lt;/li&gt;
-&lt;li&gt;将上述效果封装进UIView的子类中生成控件&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-#define NO_EXECUTE  0  // 不执行
-#define EXECUTE     1  // 执行
-
-
-@interface ViewController ()
-@property (nonatomic, strong) CALayer *imageLayer;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 创建出独立的layer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(0, 0, 302, 707);
-// 给layer的contents属性设置图片
-self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;起始图片&amp;quot;].CGImage);
-[self.view.layer addSublayer:self.imageLayer];
-
-
-// 3s后执行layer动画
-[self performSelector:@selector(layerAnimation)
-           withObject:nil
-           afterDelay:3.f];
-       }
-
-- (void)layerAnimation {
-
-if (NO_EXECUTE) {
-    // 执行隐式动画（你自己无法控制持续时间等等的参数）
-    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-}
-
-if (NO_EXECUTE) {
-    // 执行显式动画
-
-    // 设定基本动画参数
-    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;contents&amp;quot;];
-    contentsAnimation.fromValue         =  self.imageLayer.contents;
-    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-    contentsAnimation.duration          = 3.f;
-
-    // 设定layer动画结束后的contents值
-    self.imageLayer.contents         = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-
-    // 让layer开始执行动画
-    [self.imageLayer addAnimation:contentsAnimation forKey:nil];
-}
-
-if (EXECUTE) {
-    // 执行显式动画
-
-    // 基于图片的动画
-    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;contents&amp;quot;];
-    contentsAnimation.fromValue         =  self.imageLayer.contents;
-    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-    contentsAnimation.duration          = 0.5f;
-
-    // 基于bounds的动画
-    CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@&amp;quot;bounds&amp;quot;];
-    boundsAnimation.fromValue         = [NSValue valueWithCGRect:self.imageLayer.bounds];
-    boundsAnimation.toValue           = [NSValue valueWithCGRect:CGRectMake(0, 0, 302/2.f, 707/2.f)];
-    boundsAnimation.duration          = 0.5f;
-
-    // 将基于图片的动画与基于bounds的动画组合起来
-    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
-    groupAnimation.animations        = @[contentsAnimation, boundsAnimation];
-    groupAnimation.duration          = 0.5f;
-
-    // 设定layer动画结束后的contents值
-    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-    self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
-
-    // 让layer开始执行动画
-    [self.imageLayer addAnimation:groupAnimation forKey:nil];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用CALayer实现复杂遮罩效果&quot;&gt;&lt;a href=&quot;#用CALayer实现复杂遮罩效果&quot; class=&quot;headerlink&quot; title=&quot;用CALayer实现复杂遮罩效果&quot;&gt;&lt;/a&gt;用CALayer实现复杂遮罩效果&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;遮罩原理的分析&lt;/li&gt;
-&lt;li&gt;用png图片作为CALayer中mask属性的遮罩Layer&lt;/li&gt;
-&lt;li&gt;移动该CALayer的mask的frame值实现遮罩动画效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;CALayer实现遮罩淡化滤镜&quot;&gt;&lt;a href=&quot;#CALayer实现遮罩淡化滤镜&quot; class=&quot;headerlink&quot; title=&quot;CALayer实现遮罩淡化滤镜&quot;&gt;&lt;/a&gt;CALayer实现遮罩淡化滤镜&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) CALayer *imageLayer;
-@property (nonatomic, strong) CALayer *maskLayer;
-
-@property (nonatomic, strong) UIImage *contentImage;
-@property (nonatomic, strong) UIImage *maskImage;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 处理图片
-self.contentImage = [UIImage imageNamed:@&amp;quot;原始图片&amp;quot;];
-self.maskImage    = [UIImage imageNamed:@&amp;quot;maskLayerContents&amp;quot;];
-
-
-// 生成maskLayer
-self.maskLayer          = [CALayer layer];
-self.maskLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
-self.maskLayer.contents = (__bridge id)(self.maskImage.CGImage);
-
-
-// 生成contentsLayer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
-self.imageLayer.contents = (__bridge id)(self.contentImage.CGImage);
-
-
-// 给contentsLayer设定mask值
-self.imageLayer.mask     = self.maskLayer;
-
-
-// 将contentsLayer添加到layer中
-[self.view.layer addSublayer:self.imageLayer];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CALayer实现遮罩平移&quot;&gt;&lt;a href=&quot;#CALayer实现遮罩平移&quot; class=&quot;headerlink&quot; title=&quot;CALayer实现遮罩平移&quot;&gt;&lt;/a&gt;CALayer实现遮罩平移&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-@interface ViewController ()
-@property (nonatomic, strong) CALayer *imageLayer;
-@property (nonatomic, strong) CALayer *maskLayer;
-
-@property (nonatomic, strong) UIImage *imageContents;
-@property (nonatomic, strong) UIImage *maskContents;
-
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 获取图片
-self.imageContents = [UIImage imageNamed:@&amp;quot;原始图片&amp;quot;];
-self.maskContents  = [UIImage imageNamed:@&amp;quot;maskLayerContents&amp;quot;];
-
-// 创建出图片layer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(50, 50, 200, 200);
-self.imageLayer.contents = (__bridge id)(self.imageContents.CGImage);
-[self.view.layer addSublayer:self.imageLayer];
-
-// 创建出遮罩layer
-self.maskLayer          = [CALayer layer];
-self.maskLayer.frame    = self.imageLayer.bounds;
-self.maskLayer.contents = (__bridge id)(self.maskContents.CGImage);
-self.maskLayer.backgroundColor = [UIColor whiteColor].CGColor;
-
-// 给图片layer提供遮罩的layer
-self.imageLayer.mask = self.maskLayer;
-
-// 3秒钟之后做maskLayer动画
-[self performSelector:@selector(maskLayerAnimation)
-           withObject:nil
-           afterDelay:3.f];
-       }
-
-- (void)maskLayerAnimation {
-self.maskLayer.frame = CGRectMake(50, 50, 200, 200);
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定时执行某方法&quot;&gt;&lt;a href=&quot;#定时执行某方法&quot; class=&quot;headerlink&quot; title=&quot;定时执行某方法&quot;&gt;&lt;/a&gt;定时执行某方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;// 定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(timerEvent)
-                                        userInfo:nil
-                                         repeats:YES];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;随机取值&quot;&gt;&lt;a href=&quot;#随机取值&quot; class=&quot;headerlink&quot; title=&quot;随机取值&quot;&gt;&lt;/a&gt;随机取值&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//随机取0-200中的值
-arc4random()%200
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;进度参数&quot;&gt;&lt;a href=&quot;#进度参数&quot; class=&quot;headerlink&quot; title=&quot;进度参数&quot;&gt;&lt;/a&gt;进度参数&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//（取值范围为 %0 ~ %100）
-@property (nonatomic, assign) CGFloat  progress;  
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;方法执行开关&quot;&gt;&lt;a href=&quot;#方法执行开关&quot; class=&quot;headerlink&quot; title=&quot;方法执行开关&quot;&gt;&lt;/a&gt;方法执行开关&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#define NO_EXECUTE  0  // 不执行
-#define EXECUTE     1  // 执行
-
-// 不执行
-if (NO_EXECUTE) {
-....
-}
-
-// 执行
-if (EXECUTE) {
-.....
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;动画执行与最终设定&quot;&gt;&lt;a href=&quot;#动画执行与最终设定&quot; class=&quot;headerlink&quot; title=&quot;动画执行与最终设定&quot;&gt;&lt;/a&gt;动画执行与最终设定&lt;/h1&gt;&lt;p&gt;此类动画只是一种提交，并没有最终改变layer的设定。如果结束后，会很快返回到原先的设定。所以要在动画执行前设定好layer值&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 设定layer动画结束后的contents值
-self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&amp;quot;结束图片&amp;quot;].CGImage);
-self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
-
-// 让layer开始执行动画
-[self.imageLayer addAnimation:groupAnimation forKey:nil];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CALayer简介&quot;&gt;&lt;a href=&quot;#CALayer简介&quot; class=&quot;headerlink&quot; title=&quot;CALayer简介&quot;&gt;&lt;/a&gt;CALayer简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;CALayer一般作为UIView的容器而使用&lt;/li&gt;
-&lt;li&gt;CAL
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
-      <category term="iOS_image" scheme="http://jackliu17.github.io/tags/iOS-image/"/>
     
   </entry>
   

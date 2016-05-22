@@ -238,6 +238,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/20/iOS数据存储-沙盒数据/" itemprop="url">
+                  iOS数据存储-沙盒数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-20T17:04:03+10:00" content="2016-05-20">
+              2016-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/20/iOS数据存储-沙盒数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-沙盒数据/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sandbox-path"><a href="#Sandbox-path" class="headerlink" title="Sandbox path"></a>Sandbox path</h1><pre><code>var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
+
+if sp.count &gt; 0{
+    let url = NSURL(fileURLWithPath: &quot;\(sp[0])/data.txt&quot;)
+    print(url)
+}
+</code></pre><h1 id="Write-Data"><a href="#Write-Data" class="headerlink" title="Write Data"></a>Write Data</h1><pre><code>let data = NSMutableData()
+data.appendData(&quot;Hello Swift\n&quot;.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+data.writeToFile(url.path!, atomically: true)
+</code></pre><h1 id="Read-Data-Method-1"><a href="#Read-Data-Method-1" class="headerlink" title="Read Data - Method 1"></a>Read Data - Method 1</h1><pre><code>do {
+    let str1 = try NSString (contentsOfURL: url, encoding: NSUTF8StringEncoding)
+    print(str1)
+}catch{
+    print(error)
+}
+</code></pre><h1 id="Read-Data-Method-2"><a href="#Read-Data-Method-2" class="headerlink" title="Read Data - Method 2"></a>Read Data - Method 2</h1><pre><code>let data = NSData(contentsOfFile: url.path!)
+let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+print(str)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/20/iOS数据存储-NSUserDefault/" itemprop="url">
                   iOS数据存储-NSUserDefault
                 </a>
@@ -959,127 +1091,6 @@ do{
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/18/iOS数据存储-plist文件/" itemprop="url">
-                  iOS数据存储-plist文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-18T12:39:46+10:00" content="2016-05-18">
-              2016-05-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/18/iOS数据存储-plist文件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/18/iOS数据存储-plist文件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="读取数组"><a href="#读取数组" class="headerlink" title="读取数组"></a>读取数组</h1><pre><code>let arr = NSArray(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&quot;arr&quot;, ofType: &quot;plist&quot;)!))
-print(arr)
-</code></pre><h1 id="读取字典"><a href="#读取字典" class="headerlink" title="读取字典"></a>读取字典</h1><pre><code>let dict = NSDictionary(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&quot;data&quot;, ofType: &quot;plist&quot;)!))
-print(dict)
-
-let name:String = dict![&quot;name&quot;] as! String
-print(&quot;name : \(name)&quot;)
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1126,7 +1137,7 @@ print(&quot;name : \(name)&quot;)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

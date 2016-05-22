@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_animation," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,42 +61,28 @@
 
 
 
-<meta name="description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView">
+<meta name="description" content="视图在中央cardView.center = self.view.center;
+直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
+ViewController
+BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&amp;qu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计复杂的iOS动画效果">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/30/设计复杂的iOS动画效果/index.html">
+<meta property="og:title" content="iOS设计模式-适配器">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png">
-<meta property="og:updated_time" content="2016-04-30T10:04:26.000Z">
+<meta property="og:description" content="视图在中央cardView.center = self.view.center;
+直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
+ViewController
+BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&amp;qu">
+<meta property="og:updated_time" content="2016-05-22T23:29:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计复杂的iOS动画效果">
-<meta name="twitter:description" content="动画效果的UIView Object
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png">
+<meta name="twitter:title" content="iOS设计模式-适配器">
+<meta name="twitter:description" content="视图在中央cardView.center = self.view.center;
+直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
+ViewController
+BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&amp;qu">
 
 
 
@@ -114,7 +100,7 @@
   };
 </script>
 
-  <title> 设计复杂的iOS动画效果 | Cowboy Tech </title>
+  <title> iOS设计模式-适配器 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +242,7 @@
             
             
               
-                设计复杂的iOS动画效果
+                iOS设计模式-适配器
               
             
           </h1>
@@ -268,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T18:56:02+10:00" content="2016-04-30">
-              2016-04-30
+            <time itemprop="dateCreated" datetime="2016-05-23T09:26:19+10:00" content="2016-05-23">
+              2016-05-23
             </time>
           </span>
 
@@ -298,8 +284,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/30/设计复杂的iOS动画效果/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/设计复杂的iOS动画效果/" itemprop="commentsCount"></span>
+                <a href="/2016/05/23/iOS设计模式-适配器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/23/iOS设计模式-适配器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -321,171 +307,236 @@
       
 
       
-        <h1 id="动画效果的UIView-Object"><a href="#动画效果的UIView-Object" class="headerlink" title="动画效果的UIView Object"></a>动画效果的UIView Object</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_animate_001.png" alt=""></p>
-<pre><code>// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
+        <h1 id="视图在中央"><a href="#视图在中央" class="headerlink" title="视图在中央"></a>视图在中央</h1><pre><code>cardView.center = self.view.center;
+</code></pre><h1 id="直接赋值的弊端"><a href="#直接赋值的弊端" class="headerlink" title="直接赋值的弊端"></a>直接赋值的弊端</h1><p>如果要修改的话，需要修改所有赋值(目前有三处)</p>
+<p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&quot;Hello&quot;;
+cardView.lineColor   = [UIColor redColor];
+cardView.phoneNumber = @&quot;101 - 5687 - 000&quot;;
+</code></pre><h1 id="对象赋值-封装"><a href="#对象赋值-封装" class="headerlink" title="对象赋值(封装)"></a>对象赋值(封装)</h1><p>以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
 
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
+Model *model      = [[Model alloc] init];
+model.name        = @&quot;Hello&quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
 
-// 创建view
-- (void)buildView;
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent;
-</code></pre><h1 id="制定统一的动画接口"><a href="#制定统一的动画接口" class="headerlink" title="制定统一的动画接口"></a>制定统一的动画接口</h1><p>即：相关有动画效果的类，有同一的动画方法命名</p>
-<ol>
-<li>为了实现后续复杂的动画组合</li>
-<li>后续的代码维护极为方便</li>
-<li>优先考虑里氏代换原则</li>
+[cardView loadData:model];
+</code></pre><h1 id="使用适配器模式"><a href="#使用适配器模式" class="headerlink" title="使用适配器模式"></a>使用适配器模式</h1><ol>
+<li>创建抽象适配器对象</li>
+<li>适配器与视图层建立输出联系</li>
+<li>适配器与数据层建立输入联系</li>
+<li>类适配器与对象适配器</li>
 </ol>
-<h1 id="动画中的高内聚低耦合原理"><a href="#动画中的高内聚低耦合原理" class="headerlink" title="动画中的高内聚低耦合原理"></a>动画中的高内聚低耦合原理</h1><ol>
-<li>高内聚：有动画效果的类，自身具有动画方法</li>
-<li>不要把实现动画的细节暴露在外</li>
-<li>设计动画类尽量要符合单一职能原则，以便后续方便组合成复杂的动画效果</li>
-</ol>
-<h1 id="设计动画函数的注意事项"><a href="#设计动画函数的注意事项" class="headerlink" title="设计动画函数的注意事项"></a>设计动画函数的注意事项</h1><ol>
-<li>动画方法的命名统一</li>
-<li>预留非动画情形的设计（tableView等reuse情况）</li>
-<li>用百分比来表示动画的执行程度</li>
-<li>懒加载的使用</li>
-</ol>
-<h1 id="动画效果就是frame值的重新设定"><a href="#动画效果就是frame值的重新设定" class="headerlink" title="动画效果就是frame值的重新设定"></a>动画效果就是frame值的重新设定</h1><pre><code>[UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-</code></pre><h1 id="一个具有动画效果的类"><a href="#一个具有动画效果的类" class="headerlink" title="一个具有动画效果的类"></a>一个具有动画效果的类</h1><pre><code>#import &quot;LineView.h&quot;
+<p><img src="" alt=""></p>
+<h2 id="Protocl-Adapter"><a href="#Protocl-Adapter" class="headerlink" title="Protocl + Adapter"></a>Protocl + Adapter</h2><p>BusinessCardAdapterProtocol</p>
+<pre><code>//输出的数据一致性
+@protocol BusinessCardAdapterProtocol &lt;NSObject&gt;
 
-@interface LineView ()
-@property (nonatomic) CGRect startRect;
-@property (nonatomic) CGRect midRect;
-@property (nonatomic) CGRect endRect;
+- (NSString *)name;
+- (UIColor *)lineColor;
+- (NSString *)phoneNumber;
+</code></pre><p>BusinessCardAdapter (空实现，用来让子类继承)</p>
+<pre><code>@interface BusinessCardAdapter : NSObject &lt;BusinessCardAdapterProtocol&gt;
+@property (nonatomic, weak) id data;
+- (instancetype)initWithData:(id)data;
+
+@implementation BusinessCardAdapter
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {
+    self.data = data;
+}
+return self;
+}
+
+- (NSString *)name {
+return nil;
+}
+
+- (UIColor *)lineColor {
+return nil;
+}
+
+- (NSString *)phoneNumber {
+return nil;
+}
+</code></pre><p>BusinessCardView</p>
+<pre><code>//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
+- (void)loadData:(id &lt;BusinessCardAdapterProtocol&gt;)data {
+self.name        = [data name];
+self.lineColor   = [data lineColor];
+self.phoneNumber = [data phoneNumber];
+}
+</code></pre><h2 id="针对Model-class-的类适配器"><a href="#针对Model-class-的类适配器" class="headerlink" title="针对Model class 的类适配器"></a>针对Model class 的类适配器</h2><p>Model</p>
+<pre><code>@interface Model : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIColor  *lineColor;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+</code></pre><p>ModelAdapter(类适配器)</p>
+<pre><code>@interface ModelAdapter : BusinessCardAdapter
+
 @end
 
-@implementation LineView
+@implementation ModelAdapter
 
-- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {        
+    self.data = data;
+}  
+return self;
+}
+
+- (NSString *)name {  
+Model *data = self.data; 
+return data.name;
+}
+
+- (UIColor *)lineColor {
+Model *data = self.data; 
+return data.lineColor;
+}
+
+- (NSString *)phoneNumber {
+Model *data = self.data;
+return data.phoneNumber;
+}
+
+@end
+</code></pre><p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+Model *model      = [[Model alloc] init];
+model.name        = @&quot;JiKeXueYuan&quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
+
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
+
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+</code></pre><h2 id="针对NewCardModel的类适配器"><a href="#针对NewCardModel的类适配器" class="headerlink" title="针对NewCardModel的类适配器"></a>针对NewCardModel的类适配器</h2><p>NewCardModel</p>
+<pre><code>@interface NewCardModel : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *colorHexString;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+</code></pre><p>NewCardModelApater (类适配器)</p>
+<pre><code>@interface NewCardModelApater : BusinessCardAdapter
+
+@end
+
+@implementation NewCardModelApater
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
 if (self) {
-    self.alpha = 0.f;
+    self.data = data;
 }
 return self;
 }
 
-// 创建view
-- (void)buildView {
+- (NSString *)name {
+NewCardModel *data = self.data;
+return data.name;
+}
+
+- (UIColor *)lineColor {
+NewCardModel *data = self.data;
 // todo
-self.startRect = self.frame;
-self.midRect   = CGRectMake(self.startRect.origin.x + self.offsetX,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-self.endRect   = CGRectMake(self.startRect.origin.x + self.offsetX * 2,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-                        }
-
-
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
+if ([data.colorHexString isEqualToString:@&quot;black&quot;]) {
+    return [UIColor blackColor];
 } else {
-    self.frame = self.midRect;
-    self.alpha = 1.f;
+    return [UIColor redColor];
 }
 }
 
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.endRect;
-        self.alpha = 0.f;
-    } completion:^(BOOL finished) {
-        self.frame = self.startRect;
-    }];
-} else {
-    self.frame = self.startRect;
-    self.alpha = 0.f;
+- (NSString *)phoneNumber {
+NewCardModel *data = self.data;
+return data.phoneNumber;
 }
-}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
 
+NewCardModel *newCardModel  = [[NewCardModel alloc] init];
+newCardModel.name           = @&quot;JiKeXueYuan&quot;;
+newCardModel.colorHexString = @&quot;black&quot;;
+newCardModel.phoneNumber    = @&quot;101 - 5687 - 000&quot;;
 
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
 
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent {
-CGFloat tmpOffsetX = 0;
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+</code></pre><h2 id="对象适配器-万能"><a href="#对象适配器-万能" class="headerlink" title="对象适配器(万能)"></a>对象适配器(万能)</h2><p>一个适配器解决所有数据模型，代码里会显得很臃肿</p>
+<pre><code>@interface CardAdapter : BusinessCardAdapter
 
-if (percent &lt;= 0) {
-    tmpOffsetX = 0;
-} else if (percent &gt;= 1) {
-    tmpOffsetX = self.offsetX;
-} else {
-    tmpOffsetX = percent * self.offsetX;
-}
+@end
 
-self.frame = CGRectMake(self.startRect.origin.x + tmpOffsetX,
-                        self.startRect.origin.y,
-                        self.startRect.size.width,
-                        self.startRect.size.height);
-}
-</code></pre><h1 id="里氏代换原则处理动画类的继承问题"><a href="#里氏代换原则处理动画类的继承问题" class="headerlink" title="里氏代换原则处理动画类的继承问题"></a>里氏代换原则处理动画类的继承问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SourceView *tmpView = [[ChildTwoView alloc] init];</span><br><span class="line">[tmpView show];</span><br></pre></td></tr></table></figure>
-<ol>
-<li>里氏代换原则的基本原理 (多态)</li>
-<li>设计中要确保父类可以直接调用子类的方法</li>
-<li>将父类设计成虚类</li>
-</ol>
-<h1 id="动画中的模块化设计"><a href="#动画中的模块化设计" class="headerlink" title="动画中的模块化设计"></a>动画中的模块化设计</h1><ol>
-<li>动画效果实现难度的判断</li>
-<li>将看到的动画效果拆分成小模块</li>
-<li>将写好的小模块组合成你所需要的动画效果</li>
-</ol>
-<p>ViewController.m</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
+#import &quot;CardAdapter.h&quot;
+#import &quot;Model.h&quot;
+#import &quot;NewCardModel.h&quot;
 
-// 复杂的动画被写进了BaseAnimationView当中，没有暴露不必要的细节
-BaseAnimationView *baseView = [[BaseAnimationView alloc] initWithFrame:CGRectZero];
-[self.view addSubview:baseView];
-[baseView show];
-}
-</code></pre><p>BaseAnimation.m</p>
-<pre><code>- (void)show {
-[self.circleView show];
-[self.lineView show];
-}
+@implementation CardAdapter
 
-- (void)hide {
-[self.circleView hide];
-[self.lineView hide];
-}
-
-- (void)buildView {
-self.circleView = [[CircleView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.circleView];
-
-self.lineView = [[RectView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.lineView];
-}
-</code></pre><p>circleView.m / lineView.m</p>
-<pre><code>- (void)show {}
-- (void)hide {}
-- (void)buildView {}
-</code></pre><h1 id="延时执行某方法"><a href="#延时执行某方法" class="headerlink" title="延时执行某方法"></a>延时执行某方法</h1><pre><code>[self performSelector:@selector(excuteAfterDelay) withObject:nil afterDelay:6];
-</code></pre><h1 id="初始化UIView"><a href="#初始化UIView" class="headerlink" title="初始化UIView"></a>初始化UIView</h1><pre><code>- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.rect = frame;
-}
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {      
+    self.data = data;
+} 
 return self;
 }
-</code></pre>
+
+- (NSString *)name {
+NSString *name = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    name         = model.name;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    name                = model.name;
+}
+return name;
+}
+
+- (UIColor *)lineColor {
+UIColor *lineColor = nil;
+if ([self.data isMemberOfClass:[Model class]]) { 
+    Model *model = self.data;
+    lineColor    = model.lineColor; 
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    if ([model.colorHexString isEqualToString:@&quot;black&quot;]) {
+        lineColor = [UIColor blackColor];  
+    } else { 
+        lineColor = [UIColor redColor];
+    }
+}
+return lineColor;
+}
+
+- (NSString *)phoneNumber {
+NSString *phoneNumber = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    phoneNumber  = model.phoneNumber;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    phoneNumber         = model.phoneNumber;
+}
+return phoneNumber;
+}
+@end
+</code></pre><h1 id="适配器的优点和缺点"><a href="#适配器的优点和缺点" class="headerlink" title="适配器的优点和缺点"></a>适配器的优点和缺点</h1><ol>
+<li>降低视图层和数据层的耦合度</li>
+<li>让一个类在不经过修改的情况下适应更多的情形</li>
+<li>代码可读性差，比较繁琐</li>
+</ol>
+
       
     </div>
 
@@ -501,7 +552,7 @@ return self;
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-animation/" rel="tag">#iOS_animation</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -510,17 +561,13 @@ return self;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/29/iOS项目8-QQ下拉菜单/" rel="next" title="iOS项目8.QQ下拉菜单">
-                <i class="fa fa-chevron-left"></i> iOS项目8.QQ下拉菜单
+              <a href="/2016/05/22/iOS播放音频简介/" rel="next" title="iOS播放音频简介">
+                <i class="fa fa-chevron-left"></i> iOS播放音频简介
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/30/iOS项目9-三级视图控制器/" rel="prev" title="iOS项目9.三级视图控制器">
-                iOS项目9.三级视图控制器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -652,7 +699,7 @@ return self;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果的UIView-Object"><span class="nav-number">1.</span> <span class="nav-text">动画效果的UIView Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#制定统一的动画接口"><span class="nav-number">2.</span> <span class="nav-text">制定统一的动画接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画中的高内聚低耦合原理"><span class="nav-number">3.</span> <span class="nav-text">动画中的高内聚低耦合原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计动画函数的注意事项"><span class="nav-number">4.</span> <span class="nav-text">设计动画函数的注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画效果就是frame值的重新设定"><span class="nav-number">5.</span> <span class="nav-text">动画效果就是frame值的重新设定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个具有动画效果的类"><span class="nav-number">6.</span> <span class="nav-text">一个具有动画效果的类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏代换原则处理动画类的继承问题"><span class="nav-number">7.</span> <span class="nav-text">里氏代换原则处理动画类的继承问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画中的模块化设计"><span class="nav-number">8.</span> <span class="nav-text">动画中的模块化设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延时执行某方法"><span class="nav-number">9.</span> <span class="nav-text">延时执行某方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化UIView"><span class="nav-number">10.</span> <span class="nav-text">初始化UIView</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#视图在中央"><span class="nav-number">1.</span> <span class="nav-text">视图在中央</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#直接赋值的弊端"><span class="nav-number">2.</span> <span class="nav-text">直接赋值的弊端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象赋值-封装"><span class="nav-number">3.</span> <span class="nav-text">对象赋值(封装)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用适配器模式"><span class="nav-number">4.</span> <span class="nav-text">使用适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocl-Adapter"><span class="nav-number">4.1.</span> <span class="nav-text">Protocl + Adapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对Model-class-的类适配器"><span class="nav-number">4.2.</span> <span class="nav-text">针对Model class 的类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对NewCardModel的类适配器"><span class="nav-number">4.3.</span> <span class="nav-text">针对NewCardModel的类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器-万能"><span class="nav-number">4.4.</span> <span class="nav-text">对象适配器(万能)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器的优点和缺点"><span class="nav-number">5.</span> <span class="nav-text">适配器的优点和缺点</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -910,9 +957,9 @@ return self;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/30/设计复杂的iOS动画效果/';
-      var disqus_title = '设计复杂的iOS动画效果';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/30/设计复杂的iOS动画效果/';
+      var disqus_identifier = '2016/05/23/iOS设计模式-适配器/';
+      var disqus_title = 'iOS设计模式-适配器';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
