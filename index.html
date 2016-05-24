@@ -238,6 +238,235 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/24/iOS设计模式-策略/" itemprop="url">
+                  iOS设计模式-策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-24T19:10:03+10:00" content="2016-05-24">
+              2016-05-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/24/iOS设计模式-策略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/iOS设计模式-策略/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png" alt=""></p>
+<p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
+<pre><code>typedef enum : NSUInteger {
+
+EType_01,
+EType_02,
+EType_03,
+EType_04,
+EType_05,
+EType_06,
+EType_07,
+EType_08,
+EType_09,
+
+} ETypes;
+
+// 输入条件
+ETypes type = EType_01;
+
+// 输出条件
+NSString *showString = nil;
+
+if (type == EType_01) {
+
+    // showString = ...
+
+} else if (type == EType_02) {
+
+    // showString = ...
+
+} else if (type == EType_03) {
+
+    // showStri
+    ......
+</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png" alt=""></p>
+<ol>
+<li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
+<li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
+<li>判断的每个条件生成对应的一个对象</li>
+<li>需要事先知道输入的条件</li>
+<li>策略类对象属于使用场景的一部分</li>
+</ol>
+<h1 id="策略的使用案例"><a href="#策略的使用案例" class="headerlink" title="策略的使用案例"></a>策略的使用案例</h1><h2 id="抽象的策略-Strategy"><a href="#抽象的策略-Strategy" class="headerlink" title="抽象的策略 (Strategy)"></a>抽象的策略 (Strategy)</h2><p>CustomField: 内含inputValidator验证策略</p>
+<pre><code>@interface CustomField : UITextField
+
+@property (nonatomic, strong) InputValidator *validator;
+
+- (BOOL)validate {
+return [self.validator validateInput:self];
+}
+@end
+</code></pre><p>InputValidator:策略的输入</p>
+<pre><code>@interface InputValidator : NSObject
+
+@property (nonatomic, strong) NSString *errorMessage;
+
+- (BOOL)validateInput:(UITextField *)input {
+return NO;
+}
+</code></pre><h2 id="Email的验证-Strategy-A"><a href="#Email的验证-Strategy-A" class="headerlink" title="Email的验证 (Strategy A)"></a>Email的验证 (Strategy A)</h2><p>EmailValidator:重载了父类的验证方法</p>
+<pre><code>@interface EmailValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的邮箱&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="Phone的验证-Strategy-B"><a href="#Phone的验证-Strategy-B" class="headerlink" title="Phone的验证  (Strategy B)"></a>Phone的验证  (Strategy B)</h2><p>PhoneNumberValidator :重载了父类的验证方法</p>
+<pre><code>@interface PhoneNumberValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的手机号码&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>ViewController</p>
+<pre><code>@property (nonatomic, strong) CustomField  *emailField;
+@property (nonatomic, strong) CustomField  *phoneNumberField;
+
+......
+self.emailField.validator   = [EmailValidator new];
+......
+self.phoneNumberField.validator   = [PhoneNumberValidator new];
+......
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+CustomField *customField = (CustomField *)textField;
+if ([customField validate] == NO) {
+    [UIInfomationView showAlertViewWithTitle:nil
+                                     message:customField.validator.errorMessage
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@[@&quot;确定&quot;]
+                                clickAtIndex:^(NSInteger buttonIndex) {
+
+                                }];
+}
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/23/food/" itemprop="url">
                   food
                 </a>
@@ -977,181 +1206,12 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/21/iOS视频播放和录制/" itemprop="url">
-                  iOS视频播放和录制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T15:39:21+10:00" content="2016-05-21">
-              2016-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS视频播放和录制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS视频播放和录制/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Play-Video"><a href="#Play-Video" class="headerlink" title="Play Video"></a>Play Video</h1><pre><code>import UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&quot;video&quot;, withExtension: &quot;mp4&quot;))
-    presentViewController(pc, animated: true, completion: nil)
-}
-}
-</code></pre><h1 id="Record-Video"><a href="#Record-Video" class="headerlink" title="Record Video"></a>Record Video</h1><pre><code>import UIKit
-import MobileCoreServices
-import MediaPlayer
-
-class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
-
-var picker:UIImagePickerController!
-var videoUrl:NSURL?
-var player:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    if let url = videoUrl{
-        player = MPMoviePlayerViewController(contentURL: url)
-        presentViewController(player, animated: true, completion: nil)
-    }
-}
-
-
-@IBAction func recVideoBtnClicked(sender: AnyObject) {
-
-    picker = UIImagePickerController()
-    picker.mediaTypes = [kUTTypeMovie as String]
-    picker.sourceType = UIImagePickerControllerSourceType.Camera
-    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-    picker.delegate = self
-
-    presentViewController(picker, animated: true, completion: nil) 
-}
-
-
-func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
-
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-
-func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1192,7 +1252,7 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
