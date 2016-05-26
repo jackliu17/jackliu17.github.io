@@ -103,7 +103,7 @@ EType_09,
 ETypes">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png">
 <meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png">
-<meta property="og:updated_time" content="2016-05-24T09:12:32.000Z">
+<meta property="og:updated_time" content="2016-05-24T09:29:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-策略">
 <meta name="twitter:description" content="if-else的问题
@@ -454,6 +454,9 @@ self.phoneNumberField.validator   = [PhoneNumberValidator new];
 ......
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 CustomField *customField = (CustomField *)textField;
+
+//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
+
 if ([customField validate] == NO) {
     [UIInfomationView showAlertViewWithTitle:nil
                                      message:customField.validator.errorMessage
@@ -496,6 +499,10 @@ if ([customField validate] == NO) {
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/26/iOS设计模式-观察者/" rel="prev" title="iOS设计模式-观察者">
+                iOS设计模式-观察者 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -570,7 +577,7 @@ if ([customField validate] == NO) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-count">61</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

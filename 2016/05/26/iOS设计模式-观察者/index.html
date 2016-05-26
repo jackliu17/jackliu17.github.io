@@ -1,0 +1,979 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,iOS_designPattern," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="通知中心业务逻辑
+
+订阅中心是单例模式，只有一个
+订阅中心维护书刊的信息，书刊号维护用户的信息
+用户信息是某种集合(NSDictionary, NSSet, NSArray)
+观察者(用户)是被动接收消息的，不会影响到订阅中心的发布
+
+抽象接口设计按照业务逻辑，和涉及的对象，将逻辑理顺，不需要考虑如何实现，先设计接口。例如，通知中心可以这样:
+维护订阅信息
+//创建订阅号
++ (void)crea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS设计模式-观察者">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/26/iOS设计模式-观察者/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="通知中心业务逻辑
+
+订阅中心是单例模式，只有一个
+订阅中心维护书刊的信息，书刊号维护用户的信息
+用户信息是某种集合(NSDictionary, NSSet, NSArray)
+观察者(用户)是被动接收消息的，不会影响到订阅中心的发布
+
+抽象接口设计按照业务逻辑，和涉及的对象，将逻辑理顺，不需要考虑如何实现，先设计接口。例如，通知中心可以这样:
+维护订阅信息
+//创建订阅号
++ (void)crea">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0401.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0402.png">
+<meta property="og:updated_time" content="2016-05-26T09:49:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS设计模式-观察者">
+<meta name="twitter:description" content="通知中心业务逻辑
+
+订阅中心是单例模式，只有一个
+订阅中心维护书刊的信息，书刊号维护用户的信息
+用户信息是某种集合(NSDictionary, NSSet, NSArray)
+观察者(用户)是被动接收消息的，不会影响到订阅中心的发布
+
+抽象接口设计按照业务逻辑，和涉及的对象，将逻辑理顺，不需要考虑如何实现，先设计接口。例如，通知中心可以这样:
+维护订阅信息
+//创建订阅号
++ (void)crea">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0401.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iOS设计模式-观察者 | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS设计模式-观察者
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-26T19:46:49+10:00" content="2016-05-26">
+              2016-05-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/26/iOS设计模式-观察者/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/26/iOS设计模式-观察者/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="通知中心业务逻辑"><a href="#通知中心业务逻辑" class="headerlink" title="通知中心业务逻辑"></a>通知中心业务逻辑</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0401.png" alt=""></p>
+<ol>
+<li>订阅中心是单例模式，只有一个</li>
+<li>订阅中心维护书刊的信息，书刊号维护用户的信息</li>
+<li>用户信息是某种集合(NSDictionary, NSSet, NSArray)</li>
+<li>观察者(用户)是被动接收消息的，不会影响到订阅中心的发布</li>
+</ol>
+<h1 id="抽象接口设计"><a href="#抽象接口设计" class="headerlink" title="抽象接口设计"></a>抽象接口设计</h1><p>按照业务逻辑，和涉及的对象，将逻辑理顺，<strong>不需要考虑如何实现</strong>，先设计接口。例如，通知中心可以这样:</p>
+<p>维护订阅信息</p>
+<pre><code>//创建订阅号
++ (void)createSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//移除订阅号
++ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><p>维护客户信息</p>
+<pre><code>//添加客户到具体的订阅号当中
++ (void)addCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//从具体的订阅号当中移除客户
++ (void)removeCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><p>发送消息</p>
+<pre><code>//发送消息到具体的订阅号当中
++ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><h1 id="通知中心与用户的消息传递-协议"><a href="#通知中心与用户的消息传递-协议" class="headerlink" title="通知中心与用户的消息传递(协议)"></a>通知中心与用户的消息传递(协议)</h1><p>消息传递，就让它遵循某类协议，例如订阅的用户</p>
+<pre><code>id &lt;SubscriptionServiceCenterProtocol&gt;
+</code></pre><h1 id="订阅中心实例"><a href="#订阅中心实例" class="headerlink" title="订阅中心实例"></a>订阅中心实例</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0402.png" alt=""></p>
+<ol>
+<li>NSHashTable对持有的对象是weak引用。这里的例子用来存储”订阅杂志的用户集合”</li>
+<li>NSSet, NSArray, NSDictionary中对持有对象是strong引用</li>
+<li>NSParameterAssert判断不能为nil，否则程序会奔溃</li>
+</ol>
+<h2 id="订阅中心创建发行杂志的集合"><a href="#订阅中心创建发行杂志的集合" class="headerlink" title="订阅中心创建发行杂志的集合"></a>订阅中心创建发行杂志的集合</h2><p>发行杂志的集合:NSMutableDictionary</p>
+<pre><code>+ (void)initialize {
+
+if (self == [SubscriptionServiceCenter class]) {
+
+    _subscriptionDictionary = [NSMutableDictionary dictionary];
+}
+}
+</code></pre><h2 id="获得某订阅号的用户集合"><a href="#获得某订阅号的用户集合" class="headerlink" title="获得某订阅号的用户集合"></a>获得某订阅号的用户集合</h2><p>用户集合:NSHashTable</p>
+<pre><code>+ (NSHashTable *)existSubscriptionNumber:(NSString *)subscriptionNumber {
+
+return [_subscriptionDictionary objectForKey:subscriptionNumber];
+}
+</code></pre><h2 id="创建订阅号"><a href="#创建订阅号" class="headerlink" title="创建订阅号"></a>创建订阅号</h2><p>创建订阅号，实质上是创建它的用户集合</p>
+<pre><code>+ (void)createSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+//如果这杂志的用户集合不存在，则创建
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+
+if (hashTable == nil) {
+    hashTable = [NSHashTable weakObjectsHashTable];
+    [_subscriptionDictionary setObject:hashTable forKey:subscriptionNumber];
+}
+}
+</code></pre><h2 id="移除订阅号"><a href="#移除订阅号" class="headerlink" title="移除订阅号"></a>移除订阅号</h2><p>移除订阅号，实质上是移除它的用户集合</p>
+<pre><code>+ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    [_subscriptionDictionary removeObjectForKey:subscriptionNumber];
+}
+}
+</code></pre><h2 id="添加客户到具体的订阅号当中"><a href="#添加客户到具体的订阅号当中" class="headerlink" title="添加客户到具体的订阅号当中"></a>添加客户到具体的订阅号当中</h2><p>根据订阅号，取出用户集合，并添加至NSHashTable集合中</p>
+<pre><code>+ (void)addCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(customer);
+NSParameterAssert(subscriptionNumber);
+
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable addObject:customer];
+}
+</code></pre><h2 id="从具体的订阅号当中移除客户"><a href="#从具体的订阅号当中移除客户" class="headerlink" title="从具体的订阅号当中移除客户"></a>从具体的订阅号当中移除客户</h2><p>根据订阅号，取出用户集合，从NSHashTable集合中删除，这里customer可以为nil，因为该customer可能本来就没有订阅。所以不需要NSParameterAssert判断</p>
+<pre><code>+ (void)removeCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable removeObject:customer];
+}
+</code></pre><h2 id="订阅中心发行期刊"><a href="#订阅中心发行期刊" class="headerlink" title="订阅中心发行期刊"></a>订阅中心发行期刊</h2><p>从用户集合中，遍历取出每个用户，只要它实现了协议，就可以获得消息</p>
+<pre><code>+ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    NSEnumerator *enumerator = [hashTable objectEnumerator];
+    id &lt;SubscriptionServiceCenterProtocol&gt; object = nil;
+    while (object = [enumerator nextObject]) {
+
+        if ([object respondsToSelector:@selector(subscriptionMessage:subscriptionNumber:)]) {
+
+            [object subscriptionMessage:message subscriptionNumber:subscriptionNumber];
+        }
+    }
+}
+}
+</code></pre><h2 id="订阅中心的工作过程"><a href="#订阅中心的工作过程" class="headerlink" title="订阅中心的工作过程"></a>订阅中心的工作过程</h2><pre><code>// 创建订阅号SCIENCE
+[SubscriptionServiceCenter createSubscriptionNumber:SCIENCE];
+
+// 添加订阅的用户到指定的刊物
+[SubscriptionServiceCenter addCustomer:self(这里是viewcontroller,只要实现了协议，任何对象都可以)
+                withSubscriptionNumber:SCIENCE];
+
+// 发行机构发送消息
+[SubscriptionServiceCenter sendMessage:@&quot;V1.0&quot; toSubscriptionNumber:SCIENCE];
+</code></pre><h2 id="用户接收消息的实现"><a href="#用户接收消息的实现" class="headerlink" title="用户接收消息的实现"></a>用户接收消息的实现</h2><pre><code>- (void)subscriptionMessage:(id)message subscriptionNumber:(NSString *)subscriptionNumber {
+NSLog(@&quot;%@  %@&quot;, message, subscriptionNumber);
+}
+</code></pre><h1 id="框架级别的观察者模式1-NSNotificationCenter"><a href="#框架级别的观察者模式1-NSNotificationCenter" class="headerlink" title="框架级别的观察者模式1:NSNotificationCenter"></a>框架级别的观察者模式1:NSNotificationCenter</h1><pre><code>// 添加客户到指定的订阅号中
+[[NSNotificationCenter defaultCenter] addObserver:self  (用户)
+                                         selector:@selector(notificationCenterEvent:)
+                                             name:SCIENCE（订阅号）
+                                           object:nil];
+
+// 发送信息到指定的订阅号当中
+[[NSNotificationCenter defaultCenter] postNotificationName:SCIENCE
+                                                    object:@&quot;V1.0&quot;];
+
+
+
+//通知中心方法
+- (void)notificationCenterEvent:(id)sender {
+NSLog(@&quot;%@&quot;, sender);
+}
+
+- (void)dealloc {
+
+// 移除通知中心
+[[NSNotificationCenter defaultCenter] removeObserver:self
+                                          forKeyPath:SCIENCE];
+                                      }
+</code></pre><h1 id="框架级别的观察者模式2-KVO"><a href="#框架级别的观察者模式2-KVO" class="headerlink" title="框架级别的观察者模式2:KVO"></a>框架级别的观察者模式2:KVO</h1><p>kVO(key value obeserveing)是一种非常重要的机制，他允许监听对象属性的变化</p>
+<pre><code>// 创建订阅中心
+self.model = [Model new];
+
+// 客户添加了订阅中心的&quot;name&quot;服务
+[self.model addObserver:self （用户）
+             forKeyPath:@&quot;name&quot; （订阅号）
+                options:NSKeyValueObservingOptionNew (当订阅号改变时，需要传递什么值给监听器（枚举类型）)
+                context:nil];
+
+// 订阅中心发送消息(通过修改属性值)
+self.model.name = @&quot;V1.0&quot;;
+
+//KVO方法
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+        ofObject:(id)object 
+        change:(NSDictionary *)change 
+        context:(void *)context {
+
+NSLog(@&quot;%@&quot;, change);
+}
+
+
+- (void)dealloc {
+// 移除KVO
+[self.model removeObserver:self forKeyPath:@&quot;name&quot;];
+
+}
+</code></pre><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="强引用和弱引用的叙述-转载"><a href="#强引用和弱引用的叙述-转载" class="headerlink" title="强引用和弱引用的叙述(转载)"></a>强引用和弱引用的叙述(转载)</h2><p>一个对象:类比为一条狗,释放对象:类比为狗要跑掉</p>
+<ol>
+<li>strong类型的指针就像是栓住的狗，只要你用绳子拴住狗，那么狗就不会跑掉.——- (一个对象new过以后，不会自动的释放)</li>
+<li>如果有5个人都牵着这一条狗(5条绳子栓一只狗)——- (5个strong类型指针指向一个对象.)</li>
+<li>除非5个绳子都脱落，否则狗是不会跑掉的———— 5个strong指针都=nil，则该对象释放</li>
+<li>weak型指针就像是一个小孩子指着狗喊道：“看，有一只狗在那里”，只要狗一直被拴着，那么小孩子就能看到狗（weak指针）会一直指向它，</li>
+<li>只要狗的绳子脱落，那么狗就会跑掉，不管有多少的小孩在看着它。</li>
+<li>只要最后一个strong型指针不再指向对象，那么对象就会被释放，同时所有的weak型指针都将会被清除。</li>
+</ol>
+<h2 id="NSEnumerator遍历"><a href="#NSEnumerator遍历" class="headerlink" title="NSEnumerator遍历"></a>NSEnumerator遍历</h2><pre><code>NSEnumerator *enumerator = [hashTable objectEnumerator];
+id object = nil
+while (object = [enumerator nextObject]) {
+
+}
+</code></pre><h2 id="NSParameterAssert"><a href="#NSParameterAssert" class="headerlink" title="NSParameterAssert"></a>NSParameterAssert</h2><p>判断不能为nil，否则程序会奔溃</p>
+<h2 id="判断对象存在与否"><a href="#判断对象存在与否" class="headerlink" title="判断对象存在与否"></a>判断对象存在与否</h2><pre><code>//对象存在
+if (hashTable) {...}
+
+//对象不存在
+if (hashTable == nil) {....}
+</code></pre><h2 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h2><p>每个对象都具有的初始化方法，只执行一次</p>
+<pre><code>+ (void)initialize {...}    
+</code></pre><h2 id="KVC-key-value-coding"><a href="#KVC-key-value-coding" class="headerlink" title="KVC (key value coding)"></a>KVC (key value coding)</h2><p>使用valueforKey:获取Student对象的name。</p>
+<pre><code>NSString *name = [Student valueForKey :@&quot;name&quot;];
+</code></pre><p>使用setValue：ForKey:设置student对象的name。</p>
+<pre><code>[Student setVlue:@&quot;zhangjl&quot; forKey:@&quot;name&quot;];
+</code></pre><p>支持通过键路径(key path)进行访问和赋值。比如：利用键路径对Student对象的Card对象的no属性进行访问和赋值</p>
+<pre><code>[Student setValue:@&quot;1234&quot; forKeyPath: @&quot;card.no&quot;];
+[Student valueForKeyPath:@&quot;card.no&quot;]
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/24/iOS设计模式-策略/" rel="next" title="iOS设计模式-策略">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-策略
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">61</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#通知中心业务逻辑"><span class="nav-number">1.</span> <span class="nav-text">通知中心业务逻辑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象接口设计"><span class="nav-number">2.</span> <span class="nav-text">抽象接口设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通知中心与用户的消息传递-协议"><span class="nav-number">3.</span> <span class="nav-text">通知中心与用户的消息传递(协议)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#订阅中心实例"><span class="nav-number">4.</span> <span class="nav-text">订阅中心实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#订阅中心创建发行杂志的集合"><span class="nav-number">4.1.</span> <span class="nav-text">订阅中心创建发行杂志的集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得某订阅号的用户集合"><span class="nav-number">4.2.</span> <span class="nav-text">获得某订阅号的用户集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建订阅号"><span class="nav-number">4.3.</span> <span class="nav-text">创建订阅号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除订阅号"><span class="nav-number">4.4.</span> <span class="nav-text">移除订阅号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加客户到具体的订阅号当中"><span class="nav-number">4.5.</span> <span class="nav-text">添加客户到具体的订阅号当中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从具体的订阅号当中移除客户"><span class="nav-number">4.6.</span> <span class="nav-text">从具体的订阅号当中移除客户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#订阅中心发行期刊"><span class="nav-number">4.7.</span> <span class="nav-text">订阅中心发行期刊</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#订阅中心的工作过程"><span class="nav-number">4.8.</span> <span class="nav-text">订阅中心的工作过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户接收消息的实现"><span class="nav-number">4.9.</span> <span class="nav-text">用户接收消息的实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架级别的观察者模式1-NSNotificationCenter"><span class="nav-number">5.</span> <span class="nav-text">框架级别的观察者模式1:NSNotificationCenter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架级别的观察者模式2-KVO"><span class="nav-number">6.</span> <span class="nav-text">框架级别的观察者模式2:KVO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#强引用和弱引用的叙述-转载"><span class="nav-number">7.1.</span> <span class="nav-text">强引用和弱引用的叙述(转载)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSEnumerator遍历"><span class="nav-number">7.2.</span> <span class="nav-text">NSEnumerator遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSParameterAssert"><span class="nav-number">7.3.</span> <span class="nav-text">NSParameterAssert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断对象存在与否"><span class="nav-number">7.4.</span> <span class="nav-text">判断对象存在与否</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initialize"><span class="nav-number">7.5.</span> <span class="nav-text">initialize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KVC-key-value-coding"><span class="nav-number">7.6.</span> <span class="nav-text">KVC (key value coding)</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/05/26/iOS设计模式-观察者/';
+      var disqus_title = 'iOS设计模式-观察者';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/26/iOS设计模式-观察者/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

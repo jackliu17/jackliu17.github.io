@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-24T09:12:32.000Z</updated>
+  <updated>2016-05-26T09:49:18.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,11 +16,232 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>iOS设计模式-观察者</title>
+    <link href="http://jackliu17.github.io/2016/05/26/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85/"/>
+    <id>http://jackliu17.github.io/2016/05/26/iOS设计模式-观察者/</id>
+    <published>2016-05-26T09:46:49.000Z</published>
+    <updated>2016-05-26T09:49:18.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;通知中心业务逻辑&quot;&gt;&lt;a href=&quot;#通知中心业务逻辑&quot; class=&quot;headerlink&quot; title=&quot;通知中心业务逻辑&quot;&gt;&lt;/a&gt;通知中心业务逻辑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0401.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;订阅中心是单例模式，只有一个&lt;/li&gt;
+&lt;li&gt;订阅中心维护书刊的信息，书刊号维护用户的信息&lt;/li&gt;
+&lt;li&gt;用户信息是某种集合(NSDictionary, NSSet, NSArray)&lt;/li&gt;
+&lt;li&gt;观察者(用户)是被动接收消息的，不会影响到订阅中心的发布&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;抽象接口设计&quot;&gt;&lt;a href=&quot;#抽象接口设计&quot; class=&quot;headerlink&quot; title=&quot;抽象接口设计&quot;&gt;&lt;/a&gt;抽象接口设计&lt;/h1&gt;&lt;p&gt;按照业务逻辑，和涉及的对象，将逻辑理顺，&lt;strong&gt;不需要考虑如何实现&lt;/strong&gt;，先设计接口。例如，通知中心可以这样:&lt;/p&gt;
+&lt;p&gt;维护订阅信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//创建订阅号
++ (void)createSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//移除订阅号
++ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;维护客户信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//添加客户到具体的订阅号当中
++ (void)addCustomer:(id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//从具体的订阅号当中移除客户
++ (void)removeCustomer:(id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;发送消息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//发送消息到具体的订阅号当中
++ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;通知中心与用户的消息传递-协议&quot;&gt;&lt;a href=&quot;#通知中心与用户的消息传递-协议&quot; class=&quot;headerlink&quot; title=&quot;通知中心与用户的消息传递(协议)&quot;&gt;&lt;/a&gt;通知中心与用户的消息传递(协议)&lt;/h1&gt;&lt;p&gt;消息传递，就让它遵循某类协议，例如订阅的用户&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;订阅中心实例&quot;&gt;&lt;a href=&quot;#订阅中心实例&quot; class=&quot;headerlink&quot; title=&quot;订阅中心实例&quot;&gt;&lt;/a&gt;订阅中心实例&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0402.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;NSHashTable对持有的对象是weak引用。这里的例子用来存储”订阅杂志的用户集合”&lt;/li&gt;
+&lt;li&gt;NSSet, NSArray, NSDictionary中对持有对象是strong引用&lt;/li&gt;
+&lt;li&gt;NSParameterAssert判断不能为nil，否则程序会奔溃&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;订阅中心创建发行杂志的集合&quot;&gt;&lt;a href=&quot;#订阅中心创建发行杂志的集合&quot; class=&quot;headerlink&quot; title=&quot;订阅中心创建发行杂志的集合&quot;&gt;&lt;/a&gt;订阅中心创建发行杂志的集合&lt;/h2&gt;&lt;p&gt;发行杂志的集合:NSMutableDictionary&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)initialize {
+
+if (self == [SubscriptionServiceCenter class]) {
+
+    _subscriptionDictionary = [NSMutableDictionary dictionary];
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;获得某订阅号的用户集合&quot;&gt;&lt;a href=&quot;#获得某订阅号的用户集合&quot; class=&quot;headerlink&quot; title=&quot;获得某订阅号的用户集合&quot;&gt;&lt;/a&gt;获得某订阅号的用户集合&lt;/h2&gt;&lt;p&gt;用户集合:NSHashTable&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (NSHashTable *)existSubscriptionNumber:(NSString *)subscriptionNumber {
+
+return [_subscriptionDictionary objectForKey:subscriptionNumber];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建订阅号&quot;&gt;&lt;a href=&quot;#创建订阅号&quot; class=&quot;headerlink&quot; title=&quot;创建订阅号&quot;&gt;&lt;/a&gt;创建订阅号&lt;/h2&gt;&lt;p&gt;创建订阅号，实质上是创建它的用户集合&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)createSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+//如果这杂志的用户集合不存在，则创建
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+
+if (hashTable == nil) {
+    hashTable = [NSHashTable weakObjectsHashTable];
+    [_subscriptionDictionary setObject:hashTable forKey:subscriptionNumber];
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;移除订阅号&quot;&gt;&lt;a href=&quot;#移除订阅号&quot; class=&quot;headerlink&quot; title=&quot;移除订阅号&quot;&gt;&lt;/a&gt;移除订阅号&lt;/h2&gt;&lt;p&gt;移除订阅号，实质上是移除它的用户集合&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    [_subscriptionDictionary removeObjectForKey:subscriptionNumber];
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;添加客户到具体的订阅号当中&quot;&gt;&lt;a href=&quot;#添加客户到具体的订阅号当中&quot; class=&quot;headerlink&quot; title=&quot;添加客户到具体的订阅号当中&quot;&gt;&lt;/a&gt;添加客户到具体的订阅号当中&lt;/h2&gt;&lt;p&gt;根据订阅号，取出用户集合，并添加至NSHashTable集合中&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)addCustomer:(id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(customer);
+NSParameterAssert(subscriptionNumber);
+
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable addObject:customer];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;从具体的订阅号当中移除客户&quot;&gt;&lt;a href=&quot;#从具体的订阅号当中移除客户&quot; class=&quot;headerlink&quot; title=&quot;从具体的订阅号当中移除客户&quot;&gt;&lt;/a&gt;从具体的订阅号当中移除客户&lt;/h2&gt;&lt;p&gt;根据订阅号，取出用户集合，从NSHashTable集合中删除，这里customer可以为nil，因为该customer可能本来就没有订阅。所以不需要NSParameterAssert判断&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)removeCustomer:(id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable removeObject:customer];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;订阅中心发行期刊&quot;&gt;&lt;a href=&quot;#订阅中心发行期刊&quot; class=&quot;headerlink&quot; title=&quot;订阅中心发行期刊&quot;&gt;&lt;/a&gt;订阅中心发行期刊&lt;/h2&gt;&lt;p&gt;从用户集合中，遍历取出每个用户，只要它实现了协议，就可以获得消息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    NSEnumerator *enumerator = [hashTable objectEnumerator];
+    id &amp;lt;SubscriptionServiceCenterProtocol&amp;gt; object = nil;
+    while (object = [enumerator nextObject]) {
+
+        if ([object respondsToSelector:@selector(subscriptionMessage:subscriptionNumber:)]) {
+
+            [object subscriptionMessage:message subscriptionNumber:subscriptionNumber];
+        }
+    }
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;订阅中心的工作过程&quot;&gt;&lt;a href=&quot;#订阅中心的工作过程&quot; class=&quot;headerlink&quot; title=&quot;订阅中心的工作过程&quot;&gt;&lt;/a&gt;订阅中心的工作过程&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;// 创建订阅号SCIENCE
+[SubscriptionServiceCenter createSubscriptionNumber:SCIENCE];
+
+// 添加订阅的用户到指定的刊物
+[SubscriptionServiceCenter addCustomer:self(这里是viewcontroller,只要实现了协议，任何对象都可以)
+                withSubscriptionNumber:SCIENCE];
+
+// 发行机构发送消息
+[SubscriptionServiceCenter sendMessage:@&amp;quot;V1.0&amp;quot; toSubscriptionNumber:SCIENCE];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;用户接收消息的实现&quot;&gt;&lt;a href=&quot;#用户接收消息的实现&quot; class=&quot;headerlink&quot; title=&quot;用户接收消息的实现&quot;&gt;&lt;/a&gt;用户接收消息的实现&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)subscriptionMessage:(id)message subscriptionNumber:(NSString *)subscriptionNumber {
+NSLog(@&amp;quot;%@  %@&amp;quot;, message, subscriptionNumber);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;框架级别的观察者模式1-NSNotificationCenter&quot;&gt;&lt;a href=&quot;#框架级别的观察者模式1-NSNotificationCenter&quot; class=&quot;headerlink&quot; title=&quot;框架级别的观察者模式1:NSNotificationCenter&quot;&gt;&lt;/a&gt;框架级别的观察者模式1:NSNotificationCenter&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;// 添加客户到指定的订阅号中
+[[NSNotificationCenter defaultCenter] addObserver:self  (用户)
+                                         selector:@selector(notificationCenterEvent:)
+                                             name:SCIENCE（订阅号）
+                                           object:nil];
+
+// 发送信息到指定的订阅号当中
+[[NSNotificationCenter defaultCenter] postNotificationName:SCIENCE
+                                                    object:@&amp;quot;V1.0&amp;quot;];
+
+
+
+//通知中心方法
+- (void)notificationCenterEvent:(id)sender {
+NSLog(@&amp;quot;%@&amp;quot;, sender);
+}
+
+- (void)dealloc {
+
+// 移除通知中心
+[[NSNotificationCenter defaultCenter] removeObserver:self
+                                          forKeyPath:SCIENCE];
+                                      }
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;框架级别的观察者模式2-KVO&quot;&gt;&lt;a href=&quot;#框架级别的观察者模式2-KVO&quot; class=&quot;headerlink&quot; title=&quot;框架级别的观察者模式2:KVO&quot;&gt;&lt;/a&gt;框架级别的观察者模式2:KVO&lt;/h1&gt;&lt;p&gt;kVO(key value obeserveing)是一种非常重要的机制，他允许监听对象属性的变化&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 创建订阅中心
+self.model = [Model new];
+
+// 客户添加了订阅中心的&amp;quot;name&amp;quot;服务
+[self.model addObserver:self （用户）
+             forKeyPath:@&amp;quot;name&amp;quot; （订阅号）
+                options:NSKeyValueObservingOptionNew (当订阅号改变时，需要传递什么值给监听器（枚举类型）)
+                context:nil];
+
+// 订阅中心发送消息(通过修改属性值)
+self.model.name = @&amp;quot;V1.0&amp;quot;;
+
+//KVO方法
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+        ofObject:(id)object 
+        change:(NSDictionary *)change 
+        context:(void *)context {
+
+NSLog(@&amp;quot;%@&amp;quot;, change);
+}
+
+
+- (void)dealloc {
+// 移除KVO
+[self.model removeObserver:self forKeyPath:@&amp;quot;name&amp;quot;];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h1&gt;&lt;h2 id=&quot;强引用和弱引用的叙述-转载&quot;&gt;&lt;a href=&quot;#强引用和弱引用的叙述-转载&quot; class=&quot;headerlink&quot; title=&quot;强引用和弱引用的叙述(转载)&quot;&gt;&lt;/a&gt;强引用和弱引用的叙述(转载)&lt;/h2&gt;&lt;p&gt;一个对象:类比为一条狗,释放对象:类比为狗要跑掉&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;strong类型的指针就像是栓住的狗，只要你用绳子拴住狗，那么狗就不会跑掉.——- (一个对象new过以后，不会自动的释放)&lt;/li&gt;
+&lt;li&gt;如果有5个人都牵着这一条狗(5条绳子栓一只狗)——- (5个strong类型指针指向一个对象.)&lt;/li&gt;
+&lt;li&gt;除非5个绳子都脱落，否则狗是不会跑掉的———— 5个strong指针都=nil，则该对象释放&lt;/li&gt;
+&lt;li&gt;weak型指针就像是一个小孩子指着狗喊道：“看，有一只狗在那里”，只要狗一直被拴着，那么小孩子就能看到狗（weak指针）会一直指向它，&lt;/li&gt;
+&lt;li&gt;只要狗的绳子脱落，那么狗就会跑掉，不管有多少的小孩在看着它。&lt;/li&gt;
+&lt;li&gt;只要最后一个strong型指针不再指向对象，那么对象就会被释放，同时所有的weak型指针都将会被清除。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;NSEnumerator遍历&quot;&gt;&lt;a href=&quot;#NSEnumerator遍历&quot; class=&quot;headerlink&quot; title=&quot;NSEnumerator遍历&quot;&gt;&lt;/a&gt;NSEnumerator遍历&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSEnumerator *enumerator = [hashTable objectEnumerator];
+id object = nil
+while (object = [enumerator nextObject]) {
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;NSParameterAssert&quot;&gt;&lt;a href=&quot;#NSParameterAssert&quot; class=&quot;headerlink&quot; title=&quot;NSParameterAssert&quot;&gt;&lt;/a&gt;NSParameterAssert&lt;/h2&gt;&lt;p&gt;判断不能为nil，否则程序会奔溃&lt;/p&gt;
+&lt;h2 id=&quot;判断对象存在与否&quot;&gt;&lt;a href=&quot;#判断对象存在与否&quot; class=&quot;headerlink&quot; title=&quot;判断对象存在与否&quot;&gt;&lt;/a&gt;判断对象存在与否&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//对象存在
+if (hashTable) {...}
+
+//对象不存在
+if (hashTable == nil) {....}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;initialize&quot;&gt;&lt;a href=&quot;#initialize&quot; class=&quot;headerlink&quot; title=&quot;initialize&quot;&gt;&lt;/a&gt;initialize&lt;/h2&gt;&lt;p&gt;每个对象都具有的初始化方法，只执行一次&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)initialize {...}    
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;KVC-key-value-coding&quot;&gt;&lt;a href=&quot;#KVC-key-value-coding&quot; class=&quot;headerlink&quot; title=&quot;KVC (key value coding)&quot;&gt;&lt;/a&gt;KVC (key value coding)&lt;/h2&gt;&lt;p&gt;使用valueforKey:获取Student对象的name。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *name = [Student valueForKey :@&amp;quot;name&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用setValue：ForKey:设置student对象的name。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Student setVlue:@&amp;quot;zhangjl&amp;quot; forKey:@&amp;quot;name&amp;quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;支持通过键路径(key path)进行访问和赋值。比如：利用键路径对Student对象的Card对象的no属性进行访问和赋值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Student setValue:@&amp;quot;1234&amp;quot; forKeyPath: @&amp;quot;card.no&amp;quot;];
+[Student valueForKeyPath:@&amp;quot;card.no&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;通知中心业务逻辑&quot;&gt;&lt;a href=&quot;#通知中心业务逻辑&quot; class=&quot;headerlink&quot; title=&quot;通知中心业务逻辑&quot;&gt;&lt;/a&gt;通知中心业务逻辑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.co
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>iOS设计模式-策略</title>
     <link href="http://jackliu17.github.io/2016/05/24/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/"/>
     <id>http://jackliu17.github.io/2016/05/24/iOS设计模式-策略/</id>
     <published>2016-05-24T09:10:03.000Z</published>
-    <updated>2016-05-24T09:12:32.000Z</updated>
+    <updated>2016-05-24T09:29:00.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;if-else的问题&quot;&gt;&lt;a href=&quot;#if-else的问题&quot; class=&quot;headerlink&quot; title=&quot;if-else的问题&quot;&gt;&lt;/a&gt;if-else的问题&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象&lt;/p&gt;
@@ -127,6 +348,9 @@ self.phoneNumberField.validator   = [PhoneNumberValidator new];
 ......
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 CustomField *customField = (CustomField *)textField;
+
+//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
+
 if ([customField validate] == NO) {
     [UIInfomationView showAlertViewWithTitle:nil
                                      message:customField.validator.errorMessage
@@ -1885,326 +2109,6 @@ longPress.minimumPressDuration = 2;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CAGradientLayer的使用</title>
-    <link href="http://jackliu17.github.io/2016/05/09/CAGradientLayer%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://jackliu17.github.io/2016/05/09/CAGradientLayer的使用/</id>
-    <published>2016-05-09T02:18:17.000Z</published>
-    <updated>2016-05-09T06:09:32.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;CAGradientLayer简介&quot;&gt;&lt;a href=&quot;#CAGradientLayer简介&quot; class=&quot;headerlink&quot; title=&quot;CAGradientLayer简介&quot;&gt;&lt;/a&gt;CAGradientLayer简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;CAGradientLayer是用于处理渐变色的层结构&lt;/li&gt;
-&lt;li&gt;CAGradientLayer的渐变色可以做隐式动画&lt;/li&gt;
-&lt;li&gt;大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的&lt;/li&gt;
-&lt;li&gt;CAGradientLayer可以用作png遮罩效果&lt;/li&gt;
-&lt;/ol&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;多彩圆环&lt;/th&gt;
-&lt;th&gt;多彩进度条&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample2.gif&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;动态多彩遮罩&lt;/th&gt;
-&lt;th&gt;动态图像遮罩&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample3.png&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample4.png&quot; alt=&quot;&quot;&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id=&quot;CAGradientLayer坐标系统&quot;&gt;&lt;a href=&quot;#CAGradientLayer坐标系统&quot; class=&quot;headerlink&quot; title=&quot;CAGradientLayer坐标系统&quot;&gt;&lt;/a&gt;CAGradientLayer坐标系统&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerCoordinate.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;CAGradientLayer的坐标系统是从坐标（0，0）到（1，1）绘制的矩形&lt;/li&gt;
-&lt;li&gt;CAGradientLayer的frame值的size不为正方形的话，坐标系统会被拉伸&lt;/li&gt;
-&lt;li&gt;CAGradientLayer的startPoint与endPoint会直接影响颜色的绘制方向&lt;/li&gt;
-&lt;li&gt;CAGradientLayer的颜色分割点是以0到1的比例来计算的&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-@interface ViewController ()
-@property (strong, nonatomic) CAGradientLayer *gradientLayer;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-// 创建并初始化
-self.gradientLayer             = [CAGradientLayer layer];
-self.gradientLayer.frame       = CGRectMake(0, 0, 200, 200);
-self.gradientLayer.position    = self.view.center;
-self.gradientLayer.borderWidth = 1.f;
-[self.view.layer addSublayer:self.gradientLayer];
-
-// 设置颜色
-self.gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,
-                              (__bridge id)[UIColor greenColor].CGColor,
-                              (__bridge id)[UIColor blueColor].CGColor];
-
-// 设置颜色渐变方向
-self.gradientLayer.startPoint = CGPointMake(0, 0);
-self.gradientLayer.endPoint   = CGPointMake(1, 0);
-
-// 设置颜色分割点
-self.gradientLayer.locations  = @[@(0.25), @(0.5), @(0.75)];
-
-
-// 延时3秒钟执行
-[self performSelector:@selector(gradientLayerLocationAnimation)
-           withObject:nil
-           afterDelay:3.f];
-
-       }
-
-- (void)gradientLayerLocationAnimation {
-// 颜色分割点效果
-self.gradientLayer.locations = @[@(0.01), @(0.5), @(0.99)];
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;色差动画实现&quot;&gt;&lt;a href=&quot;#色差动画实现&quot; class=&quot;headerlink&quot; title=&quot;色差动画实现&quot;&gt;&lt;/a&gt;色差动画实现&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerColor.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;确定渐变色渐变方向&lt;/li&gt;
-&lt;li&gt;设定两种颜色，其中一种是透明色，另外一种是自定义颜色&lt;/li&gt;
-&lt;li&gt;设定好location颜色分割点值&lt;/li&gt;
-&lt;li&gt;CAGradientLayer的颜色分割点是以0到1的比例来计算的&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码-1&quot;&gt;&lt;a href=&quot;#代码-1&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) CAGradientLayer *gradientLayer; // 渐变层
-@property (nonatomic, strong) NSTimer         *timer;         // 定时器
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 创建背景图片
-UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&amp;quot;bg&amp;quot;]];
-imageView.center       = self.view.center;
-[self.view addSubview:imageView];
-
-// 初始化渐变层
-self.gradientLayer       = [CAGradientLayer layer];
-self.gradientLayer.frame = imageView.bounds;
-[imageView.layer addSublayer:self.gradientLayer];
-
-// 设定颜色渐变方向
-self.gradientLayer.startPoint = CGPointMake(0, 0);
-self.gradientLayer.endPoint   = CGPointMake(0, 1);
-
-// 设定颜色组
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)[UIColor redColor].CGColor];
-
-// 设定颜色分割点
-self.gradientLayer.locations = @[@(0.5f), @(1.f)];
-
-// 初始化定时器
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.f
-                                              target:self
-                                            selector:@selector(timerEvent)
-                                            userInfo:nil
-                                             repeats:YES];
-                                         }
-
-- (void)timerEvent {
-// 设定颜色组动画
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)[UIColor colorWithRed:arc4random() % 255 / 255.f
-                                                           green:arc4random() % 255 / 255.f
-                                                            blue:arc4random() % 255 / 255.f
-                                                           alpha:1].CGColor];
-
-// 设定颜色分割点动画
-self.gradientLayer.locations = @[@(arc4random() % 10 / 10.f), @(1.f)];
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;用CAGradientLayer封装带色差动画的View&quot;&gt;&lt;a href=&quot;#用CAGradientLayer封装带色差动画的View&quot; class=&quot;headerlink&quot; title=&quot;用CAGradientLayer封装带色差动画的View&quot;&gt;&lt;/a&gt;用CAGradientLayer封装带色差动画的View&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;确定几个属性值&lt;/li&gt;
-&lt;li&gt;确定可以做动画的参数&lt;/li&gt;
-&lt;li&gt;重写setter方法做动画&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码-2&quot;&gt;&lt;a href=&quot;#代码-2&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;p&gt;ColorUIImageView.h&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;lt;UIKit/UIKit.h&amp;gt;
-
-typedef enum : NSUInteger {
-UP,    // 从上往下
-DOWN,  // 从下往上
-RIGHT, // 从右往左
-LEFT,  // 从左往右
-} EColorDirection;
-
-@interface ColorUIImageView : UIImageView
-
-/**
- *  确定方向（可以做动画）
- */
-@property (nonatomic, assign) EColorDirection  direction;
-
-/**
- *  颜色（可以做动画）
- */
- @property (nonatomic, strong) UIColor  *color;
-
- /**
- *  百分比（可以做动画）
- */
-@property (nonatomic, assign) CGFloat   percent;
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ColorUIImageView.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;ColorUIImageView.h&amp;quot;
-
-@interface ColorUIImageView ()
-
-@property (nonatomic, strong) CAGradientLayer *gradientLayer;
-
-@end
-
-@implementation ColorUIImageView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-self = [super initWithFrame:frame];
-if (self) {
-    // 初始化CAGradientLayer
-    self.gradientLayer           = [CAGradientLayer layer];
-    self.gradientLayer.frame     = self.bounds;
-
-    self.gradientLayer.colors    = @[(__bridge id)[UIColor clearColor].CGColor,
-                                     (__bridge id)[UIColor redColor].CGColor];
-    self.gradientLayer.locations = @[@(1), @(1)];
-
-    [self.layer addSublayer:self.gradientLayer];
-}
-return self;
-}
-
-#pragma mark - 重写setter，getter方法
-@synthesize color = _color;
-- (void)setColor:(UIColor *)color {
-_color = color;
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)color.CGColor];
-                          }
-- (UIColor *)color {
-return _color;
-}
-
-@synthesize percent = _percent;
-- (void)setPercent:(CGFloat)percent {
-_percent = percent;
-self.gradientLayer.locations = @[@(percent), @(1)];
-}
-- (CGFloat)percent {
-return _percent;
-}
-
-@synthesize direction = _direction;
-- (void)setDirection:(EColorDirection)direction {
-_direction = direction;
-if (direction == UP) {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 1);
-} else if (direction == DOWN) {
-    self.gradientLayer.startPoint = CGPointMake(0, 1);
-    self.gradientLayer.endPoint   = CGPointMake(0, 0);
-} else if (direction == RIGHT) {
-    self.gradientLayer.startPoint = CGPointMake(1, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 0);
-} else if (direction == LEFT) {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(1, 0);
-} else {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 1);
-}
-}
-- (EColorDirection)direction {
-return _direction;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController.m&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-#import &amp;quot;ColorUIImageView.h&amp;quot;
-@interface ViewController ()
-@property (nonatomic, strong) ColorUIImageView *colorView;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-
-self.colorView        = [[ColorUIImageView alloc] initWithFrame:CGRectMake(0, 0, 198, 253)];
-self.colorView.center = self.view.center;
-self.colorView.image  = [UIImage imageNamed:@&amp;quot;bg&amp;quot;];
-[self.view addSubview:self.colorView];
-
-[self performSelector:@selector(event)
-           withObject:nil
-           afterDelay:2.f];
-       }
-
-- (void)event {
-self.colorView.direction = DOWN;
-self.colorView.color     = [UIColor cyanColor];
-self.colorView.percent   = 0.5;
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CAGradientLayer简介&quot;&gt;&lt;a href=&quot;#CAGradientLayer简介&quot; class=&quot;headerlink&quot; title=&quot;CAGradientLayer简介&quot;&gt;&lt;/a&gt;CAGradientLayer简介&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;CAGr
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
-    
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
     
   </entry>
   
