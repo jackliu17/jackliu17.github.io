@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-27T02:38:59.000Z</updated>
+  <updated>2016-05-27T05:11:10.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-外观</title>
+    <link href="http://jackliu17.github.io/2016/05/27/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/"/>
+    <id>http://jackliu17.github.io/2016/05/27/iOS设计模式-外观/</id>
+    <published>2016-05-27T05:09:48.000Z</published>
+    <updated>2016-05-27T05:11:10.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;外观模式解决的问题&quot;&gt;&lt;a href=&quot;#外观模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;外观模式解决的问题&quot;&gt;&lt;/a&gt;外观模式解决的问题&lt;/h1&gt;&lt;p&gt;如果在viewController里绘制图形，需要单独的写很多行代码，耦合性很高&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 绘制了一个圆
+Circle *circle = [Circle new];
+circle.radius  = 10.f;
+[circle draw];
+
+// 绘制了一个矩形
+Rectangle *rectangle = [Rectangle new];
+rectangle.width      = 10.f;
+rectangle.height     = 20.f;
+[rectangle draw];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;外观模式&quot;&gt;&lt;a href=&quot;#外观模式&quot; class=&quot;headerlink&quot; title=&quot;外观模式&quot;&gt;&lt;/a&gt;外观模式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;用一个类将复杂的子系统隔离开来解耦合&lt;/li&gt;
+&lt;li&gt;如果在同一文件内就是封装，用不同的文件来隔离就是外观模式。&lt;/li&gt;
+&lt;li&gt;主系统只考虑输入什么参数，不必考虑系统内的细节&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0601.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;基类shape&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)draw {
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;子类Rectangle&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Rectangle : Shape
+@property (nonatomic) CGFloat  width;
+@property (nonatomic) CGFloat  height;
+
+- (void)draw;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;子类Circle&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Circle : Shape
+@property (nonatomic) CGFloat  radius;
+
+- (void)draw;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ShapeMaker&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ (void)drawCircleWithParas:(NSDictionary *)paras {
+
+// 绘制了一个圆
+Circle *circle = [Circle new];
+circle.radius  = 10.f; // paras里取
+[circle draw];
+}
+
++ (void)drawCircleAndRectangle:(NSDictionary *)paras {
+// 绘制了一个圆
+Circle *circle = [Circle new];
+circle.radius  = 10.f; // paras里取
+[circle draw];
+
+// 绘制了一个矩形
+Rectangle *rectangle = [Rectangle new];
+rectangle.width      = 10.f; // paras里取
+rectangle.height     = 20.f; // paras里取
+[rectangle draw];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// 绘制一个圆的操作
+[ShapeMaker drawCircleWithParas:@{@&amp;quot;a&amp;quot; : @&amp;quot;b&amp;quot;}];
+
+// 绘制圆 + 矩形操作
+[ShapeMaker drawCircleAndRectangle:@{@&amp;quot;a&amp;quot; : @&amp;quot;b&amp;quot;, @&amp;quot;c&amp;quot; : @&amp;quot;d&amp;quot;}];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;外观模式解决的问题&quot;&gt;&lt;a href=&quot;#外观模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;外观模式解决的问题&quot;&gt;&lt;/a&gt;外观模式解决的问题&lt;/h1&gt;&lt;p&gt;如果在viewController里绘制图形，需要单独的写很多行代码，耦合性很高&lt;/
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-原型</title>
@@ -2112,113 +2198,6 @@ for (int i = 0; i &amp;lt; self.selectedBtns.count; i++) {
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目13-手势识别</title>
-    <link href="http://jackliu17.github.io/2016/05/13/iOS%E9%A1%B9%E7%9B%AE13-%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/"/>
-    <id>http://jackliu17.github.io/2016/05/13/iOS项目13-手势识别/</id>
-    <published>2016-05-13T02:07:26.000Z</published>
-    <updated>2016-05-13T02:10:35.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;手势的种类&quot;&gt;&lt;a href=&quot;#手势的种类&quot; class=&quot;headerlink&quot; title=&quot;手势的种类&quot;&gt;&lt;/a&gt;手势的种类&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;UITapGestureRecognizer   &lt;/li&gt;
-&lt;li&gt;UIPinGestureRecognizer   Pinch 捏合&lt;/li&gt;
-&lt;li&gt;UIRotationGestureRecognizer  Rotation 旋转&lt;/li&gt;
-&lt;li&gt;UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向&lt;/li&gt;
-&lt;li&gt;UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏移量&lt;/li&gt;
-&lt;li&gt;UILongPressGestureRecognizer LongPress 长按&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;Tap点击&quot;&gt;&lt;a href=&quot;#Tap点击&quot; class=&quot;headerlink&quot; title=&quot;Tap点击&quot;&gt;&lt;/a&gt;Tap点击&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;/*  一个手指单击*/
-UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SignleTap:)];
-tap.numberOfTapsRequired = 1;
-tap.numberOfTouchesRequired = 1;
-[self.view addGestureRecognizer:tap];
-
-/*一个手指双击*/
-UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];
-tap2.numberOfTapsRequired = 2;
-[self.view addGestureRecognizer:tap2];
-
-//当tap 和 tap2同时出现在视图上，取消tap
-[tap requireGestureRecognizerToFail:tap2];
-
-/* 两个手指单击*/
-UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SigleTwoFingerTap:)];
-tap3.numberOfTouchesRequired = 2;
-[self.view addGestureRecognizer:tap3];
-//当tap2 和 tap3同时出现在视图上，取消tap2
-[tap2 requireGestureRecognizerToFail:tap3];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Tap互斥&quot;&gt;&lt;a href=&quot;#Tap互斥&quot; class=&quot;headerlink&quot; title=&quot;Tap互斥&quot;&gt;&lt;/a&gt;Tap互斥&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;/*
-[A requireGestureRecognizerToFail:B]
-当A手势发生时，即便A已经满足条件，但要等到B手势失败后才触发
-*/
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Swipe轻扫手势&quot;&gt;&lt;a href=&quot;#Swipe轻扫手势&quot; class=&quot;headerlink&quot; title=&quot;Swipe轻扫手势&quot;&gt;&lt;/a&gt;Swipe轻扫手势&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(SwipeAction:)];
-swipe.direction = UISwipeGestureRecognizerDirectionLeft;
-[self.view addGestureRecognizer:swipe];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Pinch捏合手势&quot;&gt;&lt;a href=&quot;#Pinch捏合手势&quot; class=&quot;headerlink&quot; title=&quot;Pinch捏合手势&quot;&gt;&lt;/a&gt;Pinch捏合手势&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)PinchGesture{
-UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(PinchAction:)];
-[self.view addGestureRecognizer:pinch];
-}
-
-//pin的缩放
-- (void)PinchAction:(UIPinchGestureRecognizer *)pinch{
-float scale = pinch.scale;
-pinch.view.transform = CGAffineTransformScale(pinch.view.transform, scale, scale);
-if (scale &amp;gt; 1) {
-    _genstureLabel.text = @&amp;quot;捏合放大&amp;quot;;
-}else if (scale &amp;lt; 1){
-    _genstureLabel.text = @&amp;quot;捏合缩小&amp;quot;;
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Pan拖移手势&quot;&gt;&lt;a href=&quot;#Pan拖移手势&quot; class=&quot;headerlink&quot; title=&quot;Pan拖移手势&quot;&gt;&lt;/a&gt;Pan拖移手势&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)PanGesture{
-UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
-[_genstureLabel addGestureRecognizer:pan];
-}
-
-- (void)PanAction:(UIPanGestureRecognizer *)pan{
-//移动的坐标值
-CGPoint translation = [pan translationInView:self.view];
-//移动后的坐标
-pan.view.center = CGPointMake(pan.view.center.x + translation.x, pan.view.center.y + translation.y);
-//设置坐标和速度
-[pan setTranslation:CGPointZero inView:self.view];
-_genstureLabel.text = @&amp;quot;把我放哪啊&amp;quot;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Rotation旋转手势&quot;&gt;&lt;a href=&quot;#Rotation旋转手势&quot; class=&quot;headerlink&quot; title=&quot;Rotation旋转手势&quot;&gt;&lt;/a&gt;Rotation旋转手势&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)RotationGesture{
-UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(RotationAction:)];
-[_genstureLabel addGestureRecognizer:rotation];
-}
-
-- (void)RotationAction:(UIRotationGestureRecognizer *)rotationGes{  
-rotationGes.view.transform = CGAffineTransformRotate(rotationGes.view.transform, rotationGes.rotation);
-rotationGes.rotation = M_PI;
-_genstureLabel.text = @&amp;quot;旋转&amp;quot;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;LongPress长按手势&quot;&gt;&lt;a href=&quot;#LongPress长按手势&quot; class=&quot;headerlink&quot; title=&quot;LongPress长按手势&quot;&gt;&lt;/a&gt;LongPress长按手势&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)LongPressGesture{
-UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressAction:)];
-longPress.minimumPressDuration = 2;
-[self.view addGestureRecognizer:longPress];  
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;手势的种类&quot;&gt;&lt;a href=&quot;#手势的种类&quot; class=&quot;headerlink&quot; title=&quot;手势的种类&quot;&gt;&lt;/a&gt;手势的种类&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;UITapGestureRecognizer   &lt;/li&gt;
-&lt;li&gt;UIPinGestureRecog
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-      <category term="iOS_Gesture" scheme="http://jackliu17.github.io/tags/iOS-Gesture/"/>
     
   </entry>
   
