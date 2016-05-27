@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-26T09:49:18.000Z</updated>
+  <updated>2016-05-27T02:38:59.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,149 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-原型</title>
+    <link href="http://jackliu17.github.io/2016/05/27/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8E%9F%E5%9E%8B/"/>
+    <id>http://jackliu17.github.io/2016/05/27/iOS设计模式-原型/</id>
+    <published>2016-05-27T02:34:13.000Z</published>
+    <updated>2016-05-27T02:38:59.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;原型模式解决的问题&quot;&gt;&lt;a href=&quot;#原型模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;原型模式解决的问题&quot;&gt;&lt;/a&gt;原型模式解决的问题&lt;/h1&gt;&lt;p&gt;每个对象需要重新创建&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;StudentModel *stu1 = [[StudentModel alloc] init];
+stu1.name          = @&amp;quot;小王&amp;quot;;
+stu1.age           = @(19);
+stu1.address       = @&amp;quot;中关村&amp;quot;;
+stu1.totalScore    = @(100);
+
+
+StudentModel *stu2 = [[StudentModel alloc] init];
+stu1.name          = @&amp;quot;小刘&amp;quot;;
+stu1.age           = @(19);
+stu1.address       = @&amp;quot;中关村&amp;quot;;
+stu1.totalScore    = @(100);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;原型设计-自我拷贝&quot;&gt;&lt;a href=&quot;#原型设计-自我拷贝&quot; class=&quot;headerlink&quot; title=&quot;原型设计:自我拷贝&quot;&gt;&lt;/a&gt;原型设计:自我拷贝&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;使用场景：对象创建特别复杂，两个对象在抽象逻辑完全一致，只是在实例化的细节略有差异，如果要重新创建一个对象，不如拷贝自己再去修改&lt;/p&gt;
+&lt;p&gt;ProtoypeCopyProtocol    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol ProtoypeCopyProtocol &amp;lt;NSObject&amp;gt;
+@required
+- (id)clone;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;StudentModel&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface StudentModel : NSObject &amp;lt;ProtoypeCopyProtocol&amp;gt;
+
+@property (nonatomic, strong) NSString  *name;
+@property (nonatomic, strong) NSNumber  *age;
+@property (nonatomic, strong) NSString  *address;
+@property (nonatomic, strong) NSNumber  *totalScore;
+
+- (id)clone;
+@end
+
+@implementation StudentModel
+
+- (id)clone {
+
+    StudentModel *student = [[[self class] alloc] init];
+
+    // 完成复杂操作的所有作业
+    student.name       = self.name;
+    student.age        = self.age;
+    student.address    = self.address;
+    student.totalScore = self.totalScore;
+    return student;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;viewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    // 学生1
+    StudentModel *stu1 = [[StudentModel alloc] init];
+    stu1.name          = @&amp;quot;小王&amp;quot;;
+    stu1.age           = @(19);
+    stu1.address       = @&amp;quot;中关村&amp;quot;;
+    stu1.totalScore    = @(100);
+
+    // 学生2
+    StudentModel *stu2 = [stu1 clone];
+    stu2.name          = @&amp;quot;小红&amp;quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;框架级别的原型模式-NSCopying&quot;&gt;&lt;a href=&quot;#框架级别的原型模式-NSCopying&quot; class=&quot;headerlink&quot; title=&quot;框架级别的原型模式:NSCopying&quot;&gt;&lt;/a&gt;框架级别的原型模式:NSCopying&lt;/h1&gt;&lt;p&gt;BasCopyObject&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//遵循NSCopying协议
+@interface BasCopyObject : NSObject &amp;lt;NSCopying&amp;gt;
+
+
+//子类不要重载这个方法
+- (id)copyWithZone:(NSZone *)zone {
+    .........
+BasCopyObject *copyObject = [[self class] allocWithZone:zone];
+
+// 赋值操作作业，//由子类重载实现
+[self copyOperationWithObject:copyObject];
+return copyObject;
+}
+
+- (void)copyOperationWithObject:(id)object {
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;StudentModel&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//继承基类
+@interface StudentModel : BasCopyObject
+
+- (void)copyOperationWithObject:(StudentModel *)object {  
+object.name = self.name;
+object.age  = self.age;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;StudentModel *stu1 = [[StudentModel alloc] init];
+StudentModel *stu2 = stu1.copy;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;深拷贝与浅拷贝&quot;&gt;&lt;a href=&quot;#深拷贝与浅拷贝&quot; class=&quot;headerlink&quot; title=&quot;深拷贝与浅拷贝&quot;&gt;&lt;/a&gt;深拷贝与浅拷贝&lt;/h1&gt;&lt;h2 id=&quot;浅拷贝&quot;&gt;&lt;a href=&quot;#浅拷贝&quot; class=&quot;headerlink&quot; title=&quot;浅拷贝&quot;&gt;&lt;/a&gt;浅拷贝&lt;/h2&gt;&lt;p&gt;ClassModel&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)copyOperationWithObject:(ClassModel *)object {
+object.className = self.className;
+object.students = self.students;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ClassModel *class1 = [[ClassModel alloc] init];
+class1.className   = @&amp;quot;班级1&amp;quot;;
+class1.students    = @[stu1, stu2];
+
+ClassModel *class2 = class1.copy;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样拷贝出来的数组students内存地址一样。说明数组拷贝没有成功。就好像student既属于A班，又属于B班&lt;/p&gt;
+&lt;h2 id=&quot;深拷贝&quot;&gt;&lt;a href=&quot;#深拷贝&quot; class=&quot;headerlink&quot; title=&quot;深拷贝&quot;&gt;&lt;/a&gt;深拷贝&lt;/h2&gt;&lt;p&gt;同时要求数组里的每个对象也要实现NSCopying协议&lt;/p&gt;
+&lt;p&gt;ClassModel&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)copyOperationWithObject:(ClassModel *)object {
+
+    object.className = self.className;
+    // 完成了深拷贝(完整的复制了集合里面的对象)
+    object.students  = [[NSArray alloc] initWithArray:self.students copyItems:YES];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ClassModel *class1 = [[ClassModel alloc] init];
+class1.className   = @&amp;quot;班级1&amp;quot;;
+class1.students    = @[stu1, stu2];
+
+ClassModel *class2 = class1.copy;    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样拷贝出来的class2中的数组对象students才能与class1中的数组对象students有不同的内存地址&lt;/p&gt;
+&lt;h1 id=&quot;self-class&quot;&gt;&lt;a href=&quot;#self-class&quot; class=&quot;headerlink&quot; title=&quot;[self class]&quot;&gt;&lt;/a&gt;[self class]&lt;/h1&gt;&lt;p&gt;这里使用self，是因为StudentModel可能会被子类继承&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;StudentModel *student = [[[self class] alloc] init];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;原型模式解决的问题&quot;&gt;&lt;a href=&quot;#原型模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;原型模式解决的问题&quot;&gt;&lt;/a&gt;原型模式解决的问题&lt;/h1&gt;&lt;p&gt;每个对象需要重新创建&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;StudentModel *st
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-观察者</title>
@@ -2076,39 +2219,6 @@ longPress.minimumPressDuration = 2;
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
       <category term="iOS_Gesture" scheme="http://jackliu17.github.io/tags/iOS-Gesture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS数据存储</title>
-    <link href="http://jackliu17.github.io/2016/05/12/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
-    <id>http://jackliu17.github.io/2016/05/12/iOS数据存储/</id>
-    <published>2016-05-12T01:52:26.000Z</published>
-    <updated>2016-05-12T01:54:02.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;存储的方法&quot;&gt;&lt;a href=&quot;#存储的方法&quot; class=&quot;headerlink&quot; title=&quot;存储的方法&quot;&gt;&lt;/a&gt;存储的方法&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;plist 需要知道文件名 只适合NSArray，NSString等基本数据类型&lt;/li&gt;
-&lt;li&gt;偏好设置 不需要知道文件名，小型数据 NSUserDefaults，是以字典的方式存储&lt;/li&gt;
-&lt;li&gt;对象归档  NSKeyedArchiver 必须实现NSCoding协议方法&lt;/li&gt;
-&lt;li&gt;core Data 大型数据&lt;/li&gt;
-&lt;li&gt;sqlite3&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;存储的方法&quot;&gt;&lt;a href=&quot;#存储的方法&quot; class=&quot;headerlink&quot; title=&quot;存储的方法&quot;&gt;&lt;/a&gt;存储的方法&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;plist 需要知道文件名 只适合NSArray，NSString等基本数据类型&lt;/li&gt;
-&lt;li&gt;偏好
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
     
   </entry>
   
