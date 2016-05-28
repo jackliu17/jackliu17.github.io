@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_dataStorage," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,36 +61,57 @@
 
 
 
-<meta name="description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta name="description" content="装饰模式
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+使用场景
+比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能
+不想要过多的子类，不想通过继承来实现新方法
 
-        let filePath = NSBundle.m">
+原理
+
+装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。
+装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。
+
+魂斗罗游戏案例GamePad
+//在游戏开始时作弊，需要按下很多按钮，能否设置一个按钮来">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS数据存储-XML">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/index.html">
+<meta property="og:title" content="iOS设计模式-装饰">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/28/iOS设计模式-装饰/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta property="og:description" content="装饰模式
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+使用场景
+比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能
+不想要过多的子类，不想通过继承来实现新方法
 
-        let filePath = NSBundle.m">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png">
-<meta property="og:updated_time" content="2016-05-20T02:48:14.000Z">
+原理
+
+装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。
+装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。
+
+魂斗罗游戏案例GamePad
+//在游戏开始时作弊，需要按下很多按钮，能否设置一个按钮来">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate04.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate03.png">
+<meta property="og:updated_time" content="2016-05-28T05:35:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS数据存储-XML">
-<meta name="twitter:description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta name="twitter:title" content="iOS设计模式-装饰">
+<meta name="twitter:description" content="装饰模式
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+使用场景
+比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能
+不想要过多的子类，不想通过继承来实现新方法
 
-        let filePath = NSBundle.m">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png">
+原理
+
+装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。
+装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。
+
+魂斗罗游戏案例GamePad
+//在游戏开始时作弊，需要按下很多按钮，能否设置一个按钮来">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate01.png">
 
 
 
@@ -108,7 +129,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
   };
 </script>
 
-  <title> iOS数据存储-XML | Cowboy Tech </title>
+  <title> iOS设计模式-装饰 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +271,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
             
             
               
-                iOS数据存储-XML
+                iOS设计模式-装饰
               
             
           </h1>
@@ -262,8 +283,8 @@ class ViewController: UIViewController,NSXMLParserDelegate {
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T12:45:50+10:00" content="2016-05-20">
-              2016-05-20
+            <time itemprop="dateCreated" datetime="2016-05-28T15:29:51+10:00" content="2016-05-28">
+              2016-05-28
             </time>
           </span>
 
@@ -292,8 +313,8 @@ class ViewController: UIViewController,NSXMLParserDelegate {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/20/iOS数据存储-XML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-XML/" itemprop="commentsCount"></span>
+                <a href="/2016/05/28/iOS设计模式-装饰/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/28/iOS设计模式-装饰/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,87 +336,127 @@ class ViewController: UIViewController,NSXMLParserDelegate {
       
 
       
-        <h1 id="Start-parse-XML"><a href="#Start-parse-XML" class="headerlink" title="Start parse XML"></a>Start parse XML</h1><p><strong>注意要遵循协议NSXMLParserDelegate</strong></p>
-<pre><code>class ViewController: UIViewController,NSXMLParserDelegate {
+        <h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate02.png" alt=""></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
+<li>比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能</li>
+<li>不想要过多的子类，不想通过继承来实现新方法</li>
+</ol>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate04.png" alt=""></p>
+<ol>
+<li>装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。</li>
+<li>装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。</li>
+</ol>
+<h1 id="魂斗罗游戏案例"><a href="#魂斗罗游戏案例" class="headerlink" title="魂斗罗游戏案例"></a>魂斗罗游戏案例</h1><p>GamePad</p>
+<pre><code>//在游戏开始时作弊，需要按下很多按钮，能否设置一个按钮来快捷实现
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        let filePath = NSBundle.mainBundle().pathForResource(&quot;data&quot;, ofType: &quot;xml&quot;)!
-        let fileUrl = NSURL(fileURLWithPath: filePath )
-        let parser = NSXMLParser(contentsOfURL:fileUrl)
-
-        parser!.delegate = self
-        parser!.parse()
-
-    }
-</code></pre><h1 id="Parse-to-get-node-and-attribute"><a href="#Parse-to-get-node-and-attribute" class="headerlink" title="Parse to get node and attribute"></a>Parse to get node and attribute</h1><pre><code>var currentNodeName:String!
-
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {      
-    currentNodeName = elementName
-    if elementName == &quot;person&quot; { 
-        //需要判断，如果是空值的话，也不会报错
-        if let age: AnyObject=attributeDict[&quot;age&quot;]{
-            print(&quot;age:\(age)&quot;)
-        }
-    }
+- (void)up {
+NSLog(@&quot;up&quot;);
 }
-</code></pre><h1 id="Parse-to-get-Value-in-node"><a href="#Parse-to-get-Value-in-node" class="headerlink" title="Parse to get Value in node"></a>Parse to get Value in node</h1><pre><code>//获得节点的实际内容
-func parser(parser: NSXMLParser, foundCharacters string: String) {
 
-    let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-
-    if str != &quot;&quot;{
-
-        print(&quot;current node : \(currentNodeName), value: \(str)&quot;)
-    }
+- (void)down {
+NSLog(@&quot;down&quot;);
 }
-</code></pre><h2 id="剔除空格的字符串"><a href="#剔除空格的字符串" class="headerlink" title="剔除空格的字符串"></a>剔除空格的字符串</h2><pre><code>let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-</code></pre><h2 id="判断不为空"><a href="#判断不为空" class="headerlink" title="判断不为空"></a>判断不为空</h2><pre><code>if str != &quot;&quot;{
-    ...
+</code></pre><p>GamePadDecorator</p>
+<pre><code>//装饰基类，持有这个原始类的引用，让原始类引用调用自己的方法去实现
+
+
+@property (nonatomic, strong) GamePad *gamePad;
+
+- (instancetype)init {
+self = [super init];
+if (self) {
+    self.gamePad = [[GamePad alloc] init];
 }
-</code></pre><h1 id="Question-Project"><a href="#Question-Project" class="headerlink" title="Question Project"></a>Question Project</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png" alt=""></p>
-<h2 id="Qustion-Model"><a href="#Qustion-Model" class="headerlink" title="Qustion Model"></a>Qustion Model</h2><pre><code>class Question: NSObject {
-
-var question:String!
-var right:String!
-var anwserA:String!
-var anwserB:String!
-var anwserC:String!
-var anwserD:String!
+return self;
 }
-</code></pre><h2 id="Parse-all-node-automatically-without-loop"><a href="#Parse-all-node-automatically-without-loop" class="headerlink" title="Parse all node automatically without loop"></a>Parse all node automatically without loop</h2><pre><code>var questions:Array&lt;Question&gt; = []    
-var currentQuestion:Question!
 
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-
-    if elementName == &quot;question&quot; {
-
-        currentQuestion = Question()
-        questions.append(currentQuestion)
-        currentQuestion.question = attributeDict[&quot;text&quot;]! as String
-        currentQuestion.right = attributeDict[&quot;right&quot;]! as String
-
-    } else if elementName == &quot;anwser&quot; {
-
-        let tag = attributeDict[&quot;tag&quot;]! as String
-
-        if tag == &quot;A&quot;{
-            currentQuestion.anwserA = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;B&quot;{
-            currentQuestion.anwserB = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;C&quot;{
-            currentQuestion.anwserC = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;D&quot;{
-            currentQuestion.anwserD = attributeDict[&quot;text&quot;]! as String
-        }
-    }
+- (void)up {
+[self.gamePad up];
 }
-</code></pre><h2 id="After-Parse-finish"><a href="#After-Parse-finish" class="headerlink" title="After Parse finish"></a>After Parse finish</h2><pre><code>func parserDidEndDocument(parser: NSXMLParser) {
-...
+
+- (void)down {
+[self.gamePad down];
 }
-</code></pre><h2 id="Add-new-element-to-Array"><a href="#Add-new-element-to-Array" class="headerlink" title="Add new element to Array"></a>Add new element to Array</h2><pre><code>questions.append(currentQuestion)
-</code></pre><h2 id="Judge-if-equal-or-not"><a href="#Judge-if-equal-or-not" class="headerlink" title="Judge if equal or not"></a>Judge if equal or not</h2><pre><code>if tag == &quot;A&quot;
+</code></pre><p>CheatGamePadDecorator </p>
+<pre><code>//实例化装饰基类，添加新的方法
+
+
+@interface CheatGamePadDecorator : GamePadDecorator
+
+- (void)cheat {
+[self up];
+[self down];
+[self up];
+[self down];
+[self left];
+[self right];
+[self left];
+[self right];
+[self commandA];
+[self commandB];
+[self commandA];
+[self commandB];
+}
+</code></pre><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+GamePadDecorator *gamePadDecorator = [[GamePadDecorator alloc] init];
+[gamePadDecorator up];
+
+CheatGamePadDecorator *cheatPamePad = [[CheatGamePadDecorator alloc] init];
+[cheatPamePad cheat];
+
+}
+</code></pre><h1 id="框架级别的装饰-Category"><a href="#框架级别的装饰-Category" class="headerlink" title="框架级别的装饰:Category"></a>框架级别的装饰:Category</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate03.png" alt=""></p>
+<p>category 和装饰模式有细微的区别</p>
+<ol>
+<li>category给对象添加属性,可能会用刀objective-C runtime</li>
+<li>category重写被装饰对象方法,如果不小心在category里重写了被装饰对象的方法，即使没有引用这个category，使用的时候，也会执行override后的新方法</li>
+</ol>
+<p><strong>千万不要重写原始类的方法，否则会改变原始类的行为</strong></p>
+<p>GamePad(Cheat)</p>
+<pre><code>@implementation GamePad (Cheat)
+
+- (void)cheat {
+
+[self up];
+[self down];
+......
+}
+</code></pre><p>GamePad (Coin)</p>
+<pre><code>//需要用到objective-C runtime
+@property (nonatomic) NSInteger  coin;
+
+#import &lt;objc/runtime.h&gt;
+#import &lt;Foundation/Foundation.h&gt;
+
+@implementation GamePad (Coin)
+
+static const NSString *_coinStr = @&quot;_coinStr&quot;;
+- (void)setCoin:(NSInteger)coin {
+objc_setAssociatedObject(self, (__bridge const void *)_coinStr, @(coin), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (NSInteger)coin {
+NSNumber *number = objc_getAssociatedObject(self, (__bridge const void *)_coinStr);  
+return number.integerValue;
+}
+</code></pre><p>ViewController    </p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+GamePad *gamePad = [[GamePad alloc] init];
+[gamePad up];
+
+//被装饰后的新属性
+gamePad.coin = 10;
+NSLog(@&quot;coin %ld&quot;, (long)gamePad.coin);
+
+}
 </code></pre>
       
     </div>
@@ -412,7 +473,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-dataStorage/" rel="tag">#iOS_dataStorage</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -421,17 +482,13 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/19/iOS数据存储-JSON/" rel="next" title="iOS数据存储-JSON">
-                <i class="fa fa-chevron-left"></i> iOS数据存储-JSON
+              <a href="/2016/05/27/iOS设计模式-外观/" rel="next" title="iOS设计模式-外观">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-外观
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/20/iOS数据存储-NSUserDefault/" rel="prev" title="iOS数据存储-NSUserDefault">
-                iOS数据存储-NSUserDefault <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +620,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Start-parse-XML"><span class="nav-number">1.</span> <span class="nav-text">Start parse XML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-node-and-attribute"><span class="nav-number">2.</span> <span class="nav-text">Parse to get node and attribute</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-Value-in-node"><span class="nav-number">3.</span> <span class="nav-text">Parse to get Value in node</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#剔除空格的字符串"><span class="nav-number">3.1.</span> <span class="nav-text">剔除空格的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断不为空"><span class="nav-number">3.2.</span> <span class="nav-text">判断不为空</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question-Project"><span class="nav-number">4.</span> <span class="nav-text">Question Project</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Qustion-Model"><span class="nav-number">4.1.</span> <span class="nav-text">Qustion Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parse-all-node-automatically-without-loop"><span class="nav-number">4.2.</span> <span class="nav-text">Parse all node automatically without loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#After-Parse-finish"><span class="nav-number">4.3.</span> <span class="nav-text">After Parse finish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-new-element-to-Array"><span class="nav-number">4.4.</span> <span class="nav-text">Add new element to Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Judge-if-equal-or-not"><span class="nav-number">4.5.</span> <span class="nav-text">Judge if equal or not</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#装饰模式"><span class="nav-number">1.</span> <span class="nav-text">装饰模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">1.1.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#魂斗罗游戏案例"><span class="nav-number">2.</span> <span class="nav-text">魂斗罗游戏案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架级别的装饰-Category"><span class="nav-number">3.</span> <span class="nav-text">框架级别的装饰:Category</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -821,9 +878,9 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/20/iOS数据存储-XML/';
-      var disqus_title = 'iOS数据存储-XML';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/';
+      var disqus_identifier = '2016/05/28/iOS设计模式-装饰/';
+      var disqus_title = 'iOS设计模式-装饰';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/28/iOS设计模式-装饰/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

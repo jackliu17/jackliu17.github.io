@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-27T05:11:10.000Z</updated>
+  <updated>2016-05-28T05:35:38.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,151 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-装饰</title>
+    <link href="http://jackliu17.github.io/2016/05/28/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%A3%85%E9%A5%B0/"/>
+    <id>http://jackliu17.github.io/2016/05/28/iOS设计模式-装饰/</id>
+    <published>2016-05-28T05:29:51.000Z</published>
+    <updated>2016-05-28T05:35:38.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;装饰模式&quot;&gt;&lt;a href=&quot;#装饰模式&quot; class=&quot;headerlink&quot; title=&quot;装饰模式&quot;&gt;&lt;/a&gt;装饰模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;使用场景&quot;&gt;&lt;a href=&quot;#使用场景&quot; class=&quot;headerlink&quot; title=&quot;使用场景&quot;&gt;&lt;/a&gt;使用场景&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能&lt;/li&gt;
+&lt;li&gt;不想要过多的子类，不想通过继承来实现新方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。&lt;/li&gt;
+&lt;li&gt;装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;魂斗罗游戏案例&quot;&gt;&lt;a href=&quot;#魂斗罗游戏案例&quot; class=&quot;headerlink&quot; title=&quot;魂斗罗游戏案例&quot;&gt;&lt;/a&gt;魂斗罗游戏案例&lt;/h1&gt;&lt;p&gt;GamePad&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//在游戏开始时作弊，需要按下很多按钮，能否设置一个按钮来快捷实现
+
+
+- (void)up {
+NSLog(@&amp;quot;up&amp;quot;);
+}
+
+- (void)down {
+NSLog(@&amp;quot;down&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GamePadDecorator&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//装饰基类，持有这个原始类的引用，让原始类引用调用自己的方法去实现
+
+
+@property (nonatomic, strong) GamePad *gamePad;
+
+- (instancetype)init {
+self = [super init];
+if (self) {
+    self.gamePad = [[GamePad alloc] init];
+}
+return self;
+}
+
+- (void)up {
+[self.gamePad up];
+}
+
+- (void)down {
+[self.gamePad down];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CheatGamePadDecorator &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//实例化装饰基类，添加新的方法
+
+
+@interface CheatGamePadDecorator : GamePadDecorator
+
+- (void)cheat {
+[self up];
+[self down];
+[self up];
+[self down];
+[self left];
+[self right];
+[self left];
+[self right];
+[self commandA];
+[self commandB];
+[self commandA];
+[self commandB];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+GamePadDecorator *gamePadDecorator = [[GamePadDecorator alloc] init];
+[gamePadDecorator up];
+
+CheatGamePadDecorator *cheatPamePad = [[CheatGamePadDecorator alloc] init];
+[cheatPamePad cheat];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;框架级别的装饰-Category&quot;&gt;&lt;a href=&quot;#框架级别的装饰-Category&quot; class=&quot;headerlink&quot; title=&quot;框架级别的装饰:Category&quot;&gt;&lt;/a&gt;框架级别的装饰:Category&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;category 和装饰模式有细微的区别&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;category给对象添加属性,可能会用刀objective-C runtime&lt;/li&gt;
+&lt;li&gt;category重写被装饰对象方法,如果不小心在category里重写了被装饰对象的方法，即使没有引用这个category，使用的时候，也会执行override后的新方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;千万不要重写原始类的方法，否则会改变原始类的行为&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;GamePad(Cheat)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@implementation GamePad (Cheat)
+
+- (void)cheat {
+
+[self up];
+[self down];
+......
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GamePad (Coin)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//需要用到objective-C runtime
+@property (nonatomic) NSInteger  coin;
+
+#import &amp;lt;objc/runtime.h&amp;gt;
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
+
+@implementation GamePad (Coin)
+
+static const NSString *_coinStr = @&amp;quot;_coinStr&amp;quot;;
+- (void)setCoin:(NSInteger)coin {
+objc_setAssociatedObject(self, (__bridge const void *)_coinStr, @(coin), OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (NSInteger)coin {
+NSNumber *number = objc_getAssociatedObject(self, (__bridge const void *)_coinStr);  
+return number.integerValue;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+
+GamePad *gamePad = [[GamePad alloc] init];
+[gamePad up];
+
+//被装饰后的新属性
+gamePad.coin = 10;
+NSLog(@&amp;quot;coin %ld&amp;quot;, (long)gamePad.coin);
+
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;装饰模式&quot;&gt;&lt;a href=&quot;#装饰模式&quot; class=&quot;headerlink&quot; title=&quot;装饰模式&quot;&gt;&lt;/a&gt;装饰模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPatt
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-外观</title>
@@ -2076,119 +2221,6 @@ CGContextStrokePath(context);
     <summary type="html">
     
       &lt;h1 id=&quot;Quartz-2D&quot;&gt;&lt;a href=&quot;#Quartz-2D&quot; class=&quot;headerlink&quot; title=&quot;Quartz 2D&quot;&gt;&lt;/a&gt;Quartz 2D&lt;/h1&gt;&lt;h2 id=&quot;什么是Quartz-2D&quot;&gt;&lt;a href=&quot;#什么是Quartz-2D&quot;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目014.九宫格手势解锁</title>
-    <link href="http://jackliu17.github.io/2016/05/14/iOS%E9%A1%B9%E7%9B%AE014-%E4%B9%9D%E5%AE%AB%E6%A0%BC%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81/"/>
-    <id>http://jackliu17.github.io/2016/05/14/iOS项目014-九宫格手势解锁/</id>
-    <published>2016-05-14T03:02:55.000Z</published>
-    <updated>2016-05-16T06:43:14.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;项目结构&quot;&gt;&lt;a href=&quot;#项目结构&quot; class=&quot;headerlink&quot; title=&quot;项目结构&quot;&gt;&lt;/a&gt;项目结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj014Structure.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;常量的定义&quot;&gt;&lt;a href=&quot;#常量的定义&quot; class=&quot;headerlink&quot; title=&quot;常量的定义&quot;&gt;&lt;/a&gt;常量的定义&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
-CGFloat const btnCount = 9;
-
-// define只是字符的转换
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIView的两种init方法&quot;&gt;&lt;a href=&quot;#UIView的两种init方法&quot; class=&quot;headerlink&quot; title=&quot;UIView的两种init方法&quot;&gt;&lt;/a&gt;UIView的两种init方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//通过代码创建会调用这个方法
-- (instancetype)initWithFrame:(CGRect)frame{
-if (self = [super initWithFrame:frame]) {
-    [self AddButton];
-}
-return self;
-}
-
-//通过storyboard 或者 xib 文件创建的时候会调用
--(id)initWithCoder:(NSCoder *)aDecoder{
-if (self = [super initWithCoder:aDecoder]) {
-    [self AddButton];
-}
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;常用插件&quot;&gt;&lt;a href=&quot;#常用插件&quot; class=&quot;headerlink&quot; title=&quot;常用插件&quot;&gt;&lt;/a&gt;常用插件&lt;/h1&gt;&lt;p&gt;在github上查找，然后下载，完成之后运行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;KSImageNamed
-VVDocumenter-Xcode
-ColorSense-for-Xcode-master
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸方法&quot;&gt;&lt;a href=&quot;#触摸方法&quot; class=&quot;headerlink&quot; title=&quot;触摸方法&quot;&gt;&lt;/a&gt;触摸方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-[self touchesEnded:touches withEvent:event];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸点的坐标&quot;&gt;&lt;a href=&quot;#触摸点的坐标&quot; class=&quot;headerlink&quot; title=&quot;触摸点的坐标&quot;&gt;&lt;/a&gt;触摸点的坐标&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UITouch *touch = [touches anyObject];
-CGPoint point = [touch locationInView:self];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;触摸的按钮&quot;&gt;&lt;a href=&quot;#触摸的按钮&quot; class=&quot;headerlink&quot; title=&quot;触摸的按钮&quot;&gt;&lt;/a&gt;触摸的按钮&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (UIButton *)buttonWithPoint:(CGPoint)point{
-for (UIButton *btn in self.subviews) {
-    if (CGRectContainsPoint(btn.frame, point)) {
-        return btn;
-    }
-}
-return nil;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;点是否在指定CGRect内&quot;&gt;&lt;a href=&quot;#点是否在指定CGRect内&quot; class=&quot;headerlink&quot; title=&quot;点是否在指定CGRect内&quot;&gt;&lt;/a&gt;点是否在指定CGRect内&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;bool CGRectContainsPoint (
-    CGRect rect,
-    CGPoint point
-);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;m-里声明私有属性&quot;&gt;&lt;a href=&quot;#m-里声明私有属性&quot; class=&quot;headerlink&quot; title=&quot;.m 里声明私有属性&quot;&gt;&lt;/a&gt;.m 里声明私有属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//匿名扩展（类目的特例） ：可以声明属性,私有的
-@interface JKLockView ()
-@property (nonatomic, strong) NSMutableArray *selectedBtns;
-@property (nonatomic, assign) CGPoint currentPoint;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组或字典添加对象需要先判断&quot;&gt;&lt;a href=&quot;#数组或字典添加对象需要先判断&quot; class=&quot;headerlink&quot; title=&quot;数组或字典添加对象需要先判断&quot;&gt;&lt;/a&gt;数组或字典添加对象需要先判断&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;if (btn) {
-[self.selectedBtns addObject:btn];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;开始绘图&quot;&gt;&lt;a href=&quot;#开始绘图&quot; class=&quot;headerlink&quot; title=&quot;开始绘图&quot;&gt;&lt;/a&gt;开始绘图&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[self setNeedsDisplay];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;绘制贝塞尔曲线&quot;&gt;&lt;a href=&quot;#绘制贝塞尔曲线&quot; class=&quot;headerlink&quot; title=&quot;绘制贝塞尔曲线&quot;&gt;&lt;/a&gt;绘制贝塞尔曲线&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UIBezierPath *path = [UIBezierPath bezierPath];
-path.lineWidth = 8;
-path.lineJoinStyle = kCGLineJoinRound;
-[[UIColor colorWithRed:32/255.0 green:210/255.0 blue:254/255.0 alpha:0.5] set];
-
-//遍历按钮
-for (int i = 0; i &amp;lt; self.selectedBtns.count; i++) {
-    UIButton *button = self.selectedBtns[i];
-    if (i == 0) {
-
-        //设置起点
-        [path moveToPoint:button.center];
-
-    }else{//连线
-
-        [path addLineToPoint:button.center];
-    }
-}
-
-[path addLineToPoint:self.currentPoint];
-[path stroke];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组中每个对象执行某方法&quot;&gt;&lt;a href=&quot;#数组中每个对象执行某方法&quot; class=&quot;headerlink&quot; title=&quot;数组中每个对象执行某方法&quot;&gt;&lt;/a&gt;数组中每个对象执行某方法&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;//makeObjectsPerformSelector  
-//每个按钮设为没有选中状态
-//向数组中的每一个对象发送方法 setSelected:，方法参数为 NO
-[self.selectedBtns makeObjectsPerformSelector:@selector(setSelected:) withObject:NO];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;IBOutlet-和-delegate连接&quot;&gt;&lt;a href=&quot;#IBOutlet-和-delegate连接&quot; class=&quot;headerlink&quot; title=&quot;IBOutlet 和 delegate连接&quot;&gt;&lt;/a&gt;IBOutlet 和 delegate连接&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, assign) IBOutlet id&amp;lt;JKLockViewDelegate&amp;gt; delegate;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UIAlertController&quot;&gt;&lt;a href=&quot;#UIAlertController&quot; class=&quot;headerlink&quot; title=&quot;UIAlertController&quot;&gt;&lt;/a&gt;UIAlertController&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;UIAlertController *alert = [UIAlertController alertControllerWithTitle:@&amp;quot;密码正确&amp;quot; message:nil preferredStyle:UIAlertControllerStyleAlert];
-[alert addAction:[UIAlertAction actionWithTitle:@&amp;quot;确定&amp;quot; style:UIAlertActionStyleDestructive handler:nil]];
-[alert addAction:[UIAlertAction actionWithTitle:@&amp;quot;取消&amp;quot; style:UIAlertActionStyleCancel handler:nil]];
-[self presentViewController:alert animated:YES completion:nil];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;连接字符串&quot;&gt;&lt;a href=&quot;#连接字符串&quot; class=&quot;headerlink&quot; title=&quot;连接字符串&quot;&gt;&lt;/a&gt;连接字符串&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[path appendFormat:@&amp;quot;%ld&amp;quot;,(long)btn.tag];
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png&quot;
     
     </summary>
     
