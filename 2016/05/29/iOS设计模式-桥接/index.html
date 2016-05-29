@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,16 +61,56 @@
 
 
 
-<meta name="description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="description" content="遥控器和电视机
+每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类
+通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键
+
+桥接模式
+把抽象层次结构从具体的实现中分离出来，使其能够独立变更。
+抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。
+实现类的引用被封装到抽象层的实例中，桥接就形成了。
+
+
+
+
+抽象类AbstractSyst">
 <meta property="og:type" content="article">
-<meta property="og:title" content="今天">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/04/今天/index.html">
+<meta property="og:title" content="iOS设计模式-桥接">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/29/iOS设计模式-桥接/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
-<meta property="og:updated_time" content="2016-03-04T06:50:31.000Z">
+<meta property="og:description" content="遥控器和电视机
+每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类
+通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键
+
+桥接模式
+把抽象层次结构从具体的实现中分离出来，使其能够独立变更。
+抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。
+实现类的引用被封装到抽象层的实例中，桥接就形成了。
+
+
+
+
+抽象类AbstractSyst">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge03.png">
+<meta property="og:updated_time" content="2016-05-29T09:21:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今天">
-<meta name="twitter:description" content="今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…不知写啥，就将这作为我的第一篇吧.">
+<meta name="twitter:title" content="iOS设计模式-桥接">
+<meta name="twitter:description" content="遥控器和电视机
+每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类
+通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键
+
+桥接模式
+把抽象层次结构从具体的实现中分离出来，使其能够独立变更。
+抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。
+实现类的引用被封装到抽象层的实例中，桥接就形成了。
+
+
+
+
+抽象类AbstractSyst">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png">
 
 
 
@@ -88,7 +128,7 @@
   };
 </script>
 
-  <title> 今天 | Cowboy Tech </title>
+  <title> iOS设计模式-桥接 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -230,7 +270,7 @@
             
             
               
-                今天
+                iOS设计模式-桥接
               
             
           </h1>
@@ -242,19 +282,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
+            <time itemprop="dateCreated" datetime="2016-05-29T19:20:04+10:00" content="2016-05-29">
+              2016-05-29
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
+                <a href="/2016/05/29/iOS设计模式-桥接/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/iOS设计模式-桥接/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,8 +335,129 @@
       
 
       
-        <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
+        <h1 id="遥控器和电视机"><a href="#遥控器和电视机" class="headerlink" title="遥控器和电视机"></a>遥控器和电视机</h1><ol>
+<li>每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类</li>
+<li>通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键</li>
+</ol>
+<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><ol>
+<li>把抽象层次结构从具体的实现中分离出来，使其能够独立变更。</li>
+<li>抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。</li>
+<li>实现类的引用被封装到抽象层的实例中，桥接就形成了。</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge02.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge03.png" alt=""></p>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>AbstractSystem</p>
+<pre><code>//拥有执行者的引用，让执行者去执行
 
+@property (nonatomic, strong) AbstractImplementor  *implementor;
+
+- (void)command_up {
+[self.implementor loadCommand:kUp];
+}
+
+- (void)command_down {
+[self.implementor loadCommand:kDown];
+}
+
+- (void)loadSystem {    
+}
+</code></pre><p>AbstractImplementor</p>
+<pre><code>//执行类要包含所有情形，例如KO, KX只是某个子类才有的特性，但也要包含在这里
+
+typedef enum : NSUInteger {
+
+kUp,
+kDown,
+kLeft,
+kRight,
+kA,
+kB,
+
+KO,
+KX,
+
+} EcommandType;
+
+- (void)loadCommand:(EcommandType)command {
+
+}
+</code></pre><h1 id="实现层1"><a href="#实现层1" class="headerlink" title="实现层1"></a>实现层1</h1><p>GBASystem </p>
+<pre><code>@interface GBASystem : AbstractSystem
+
+- (void)loadSystem {   
+NSLog(@&quot;GBASystem&quot;);
+}
+</code></pre><p>GBAImplementor</p>
+<pre><code>@interface GBAImplementor : AbstractImplementor
+
+- (void)loadCommand:(EcommandType)command {
+
+switch (command) {
+
+    case kUp:
+
+        NSLog(@&quot;GBA up&quot;);
+        break;
+
+    case kDown:
+
+        NSLog(@&quot;GBA down&quot;);
+        break;
+
+        ......
+}
+</code></pre><h1 id="实现层2"><a href="#实现层2" class="headerlink" title="实现层2"></a>实现层2</h1><p>PSPSystem</p>
+<pre><code>@interface PSPSystem : AbstractSystem
+
+- (void)loadSystem {   
+NSLog(@&quot;PSPSystem&quot;);
+}
+
+- (void)command_X {
+[self.implementor loadCommand:KX];
+}
+
+- (void)command_O {
+[self.implementor loadCommand:KO];
+}
+</code></pre><p>PSPImplementor</p>
+<pre><code>@interface PSPImplementor : AbstractImplementor
+
+- (void)loadCommand:(EcommandType)command {
+
+switch (command) {
+  ....
+      case KO:
+
+        NSLog(@&quot;PSP O&quot;);
+        break;
+
+    case KX:
+
+        NSLog(@&quot;PSP X&quot;);
+        break;
+}
+</code></pre><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><pre><code>@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// GBA系统 + GBA执行器
+AbstractSystem *gbaSystem = [[GBASystem alloc] init];
+gbaSystem.implementor     = [[GBAImplementor alloc] init];
+
+[gbaSystem loadSystem];
+[gbaSystem command_up];
+
+// PSP系统 + PSP执行器
+PSPSystem *pspSystem  = [[PSPSystem alloc] init];
+pspSystem.implementor = [[PSPImplementor alloc] init];
+
+[pspSystem loadSystem];
+[pspSystem command_X];
+}
+</code></pre>
       
     </div>
 
@@ -289,18 +469,26 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/29/iOS设计模式-工厂/" rel="next" title="iOS设计模式-工厂">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-工厂
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/09/Git本地操作/" rel="prev" title="Git本地操作">
-                Git本地操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,7 +620,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#遥控器和电视机"><span class="nav-number">1.</span> <span class="nav-text">遥控器和电视机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桥接模式"><span class="nav-number">2.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象类"><span class="nav-number">3.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现层1"><span class="nav-number">4.</span> <span class="nav-text">实现层1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现层2"><span class="nav-number">5.</span> <span class="nav-text">实现层2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">6.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -690,9 +878,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/04/今天/';
-      var disqus_title = '今天';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/04/今天/';
+      var disqus_identifier = '2016/05/29/iOS设计模式-桥接/';
+      var disqus_title = 'iOS设计模式-桥接';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/29/iOS设计模式-桥接/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

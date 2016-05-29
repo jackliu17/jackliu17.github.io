@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-29T05:27:04.000Z</updated>
+  <updated>2016-05-29T09:21:49.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,154 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-桥接</title>
+    <link href="http://jackliu17.github.io/2016/05/29/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5/"/>
+    <id>http://jackliu17.github.io/2016/05/29/iOS设计模式-桥接/</id>
+    <published>2016-05-29T09:20:04.000Z</published>
+    <updated>2016-05-29T09:21:49.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
+&lt;li&gt;通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;桥接模式&quot;&gt;&lt;a href=&quot;#桥接模式&quot; class=&quot;headerlink&quot; title=&quot;桥接模式&quot;&gt;&lt;/a&gt;桥接模式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;把抽象层次结构从具体的实现中分离出来，使其能够独立变更。&lt;/li&gt;
+&lt;li&gt;抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。&lt;/li&gt;
+&lt;li&gt;实现类的引用被封装到抽象层的实例中，桥接就形成了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h1&gt;&lt;p&gt;AbstractSystem&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//拥有执行者的引用，让执行者去执行
+
+@property (nonatomic, strong) AbstractImplementor  *implementor;
+
+- (void)command_up {
+[self.implementor loadCommand:kUp];
+}
+
+- (void)command_down {
+[self.implementor loadCommand:kDown];
+}
+
+- (void)loadSystem {    
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractImplementor&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//执行类要包含所有情形，例如KO, KX只是某个子类才有的特性，但也要包含在这里
+
+typedef enum : NSUInteger {
+
+kUp,
+kDown,
+kLeft,
+kRight,
+kA,
+kB,
+
+KO,
+KX,
+
+} EcommandType;
+
+- (void)loadCommand:(EcommandType)command {
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现层1&quot;&gt;&lt;a href=&quot;#实现层1&quot; class=&quot;headerlink&quot; title=&quot;实现层1&quot;&gt;&lt;/a&gt;实现层1&lt;/h1&gt;&lt;p&gt;GBASystem &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface GBASystem : AbstractSystem
+
+- (void)loadSystem {   
+NSLog(@&amp;quot;GBASystem&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GBAImplementor&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface GBAImplementor : AbstractImplementor
+
+- (void)loadCommand:(EcommandType)command {
+
+switch (command) {
+
+    case kUp:
+
+        NSLog(@&amp;quot;GBA up&amp;quot;);
+        break;
+
+    case kDown:
+
+        NSLog(@&amp;quot;GBA down&amp;quot;);
+        break;
+
+        ......
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现层2&quot;&gt;&lt;a href=&quot;#实现层2&quot; class=&quot;headerlink&quot; title=&quot;实现层2&quot;&gt;&lt;/a&gt;实现层2&lt;/h1&gt;&lt;p&gt;PSPSystem&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface PSPSystem : AbstractSystem
+
+- (void)loadSystem {   
+NSLog(@&amp;quot;PSPSystem&amp;quot;);
+}
+
+- (void)command_X {
+[self.implementor loadCommand:KX];
+}
+
+- (void)command_O {
+[self.implementor loadCommand:KO];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PSPImplementor&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface PSPImplementor : AbstractImplementor
+
+- (void)loadCommand:(EcommandType)command {
+
+switch (command) {
+  ....
+      case KO:
+
+        NSLog(@&amp;quot;PSP O&amp;quot;);
+        break;
+
+    case KX:
+
+        NSLog(@&amp;quot;PSP X&amp;quot;);
+        break;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// GBA系统 + GBA执行器
+AbstractSystem *gbaSystem = [[GBASystem alloc] init];
+gbaSystem.implementor     = [[GBAImplementor alloc] init];
+
+[gbaSystem loadSystem];
+[gbaSystem command_up];
+
+// PSP系统 + PSP执行器
+PSPSystem *pspSystem  = [[PSPSystem alloc] init];
+pspSystem.implementor = [[PSPImplementor alloc] init];
+
+[pspSystem loadSystem];
+[pspSystem command_X];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
+&lt;li&gt;通用的功能抽
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-工厂</title>
@@ -2209,125 +2357,6 @@ transition.subtype = kCATransitionFromRight;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目015.CALayer简介</title>
-    <link href="http://jackliu17.github.io/2016/05/17/iOS%E9%A1%B9%E7%9B%AE015-CALayer%E7%AE%80%E4%BB%8B/"/>
-    <id>http://jackliu17.github.io/2016/05/17/iOS项目015-CALayer简介/</id>
-    <published>2016-05-17T00:35:01.000Z</published>
-    <updated>2016-05-17T00:37:36.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Set-UIImageView-CALayer&quot;&gt;&lt;a href=&quot;#Set-UIImageView-CALayer&quot; class=&quot;headerlink&quot; title=&quot;Set UIImageView CALayer&quot;&gt;&lt;/a&gt;Set UIImageView CALayer&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScreenHeight - 200)/2, 200, 200);
-[self.view addSubview:imgView];
-.............
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像的CALayer层-阴影&quot;&gt;&lt;a href=&quot;#图像的CALayer层-阴影&quot; class=&quot;headerlink&quot; title=&quot;图像的CALayer层 - 阴影&quot;&gt;&lt;/a&gt;图像的CALayer层 - 阴影&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015sShadow.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//1.设置阴影
-imgView.layer.shadowColor = [UIColor yellowColor].CGColor;
-//2.阴影的偏移大小
-imgView.layer.shadowOffset = CGSizeMake(10, 10);
-//3.阴影的不透明度
-imgView.layer.shadowOpacity = 0.5;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像的CALayer层-圆角&quot;&gt;&lt;a href=&quot;#图像的CALayer层-圆角&quot; class=&quot;headerlink&quot; title=&quot;图像的CALayer层 - 圆角&quot;&gt;&lt;/a&gt;图像的CALayer层 - 圆角&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Round.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//4.设置圆角大小
-imgView.layer.cornerRadius = 10;//设置圆角半径为10
-imgView.layer.masksToBounds = YES;//强制内部的所有子层支持圆角效果，少了这个设置，UIImageView是不会有圆角效果的。设置之后，没有阴影效果
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像的CALayer层-边框&quot;&gt;&lt;a href=&quot;#图像的CALayer层-边框&quot; class=&quot;headerlink&quot; title=&quot;图像的CALayer层 - 边框&quot;&gt;&lt;/a&gt;图像的CALayer层 - 边框&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Frame.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//5.设置边框
-imgView.layer.borderWidth = 5;
-imgView.layer.borderColor = [UIColor grayColor].CGColor;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像的CALayer层-3D旋转&quot;&gt;&lt;a href=&quot;#图像的CALayer层-3D旋转&quot; class=&quot;headerlink&quot; title=&quot;图像的CALayer层 - 3D旋转&quot;&gt;&lt;/a&gt;图像的CALayer层 - 3D旋转&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Rotate.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//6.设置旋转 :利用transform属性可以设置旋转
-//imgView.layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);//顺时针旋转45°,在x，y轴
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;图像的CALayer层-缩放&quot;&gt;&lt;a href=&quot;#图像的CALayer层-缩放&quot; class=&quot;headerlink&quot; title=&quot;图像的CALayer层 - 缩放&quot;&gt;&lt;/a&gt;图像的CALayer层 - 缩放&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Scale.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;6.设置旋转 :利用transform属性可以设置缩放
-imgView.layer.transform = CATransform3DMakeScale(0.5, 1, 0);//缩小0.5倍
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Add-CALayer-in-View&quot;&gt;&lt;a href=&quot;#Add-CALayer-in-View&quot; class=&quot;headerlink&quot; title=&quot;Add CALayer in View&quot;&gt;&lt;/a&gt;Add CALayer in View&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerInView.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;UIView里有CALayer这个图层&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)imageLayer{
-CALayer *layer = [CALayer layer];
-layer.backgroundColor = [UIColor grayColor].CGColor;
-layer.bounds = CGRectMake(0, 0, 100, 100);
-layer.position = CGPointMake(200, 200);
-layer.anchorPoint = CGPointMake(0, 1);
-layer.cornerRadius = 10;
-layer.masksToBounds = YES;
-layer.contents = (id)[UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;].CGImage;
-layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);
-[self.view.layer addSublayer:layer];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;QuartzCore-for-CALayer&quot;&gt;&lt;a href=&quot;#QuartzCore-for-CALayer&quot; class=&quot;headerlink&quot; title=&quot;QuartzCore for CALayer&quot;&gt;&lt;/a&gt;QuartzCore for CALayer&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//导入框架 
-#import &amp;lt;QuartzCore/QuartzCore.h&amp;gt;
-
-CALayer *layer = [CALayer layer];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Position-vs-anchorPoint&quot;&gt;&lt;a href=&quot;#Position-vs-anchorPoint&quot; class=&quot;headerlink&quot; title=&quot;Position vs anchorPoint&quot;&gt;&lt;/a&gt;Position vs anchorPoint&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;position 设置CALayer在父图层中的位置，以父层的左上角为原点（0，0）&lt;/li&gt;
-&lt;li&gt;anchorPoint锚点(定位点)决定CALayer的哪个点在position属性所指的位置,以自己的左上角为原点（0，0），默认值（0.5，0.5），x~y取值是0~1，右下角（1，1）&lt;/li&gt;
-&lt;li&gt;即：哪个anchor点在position的位置&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;anchor-point-0-0&quot;&gt;&lt;a href=&quot;#anchor-point-0-0&quot; class=&quot;headerlink&quot; title=&quot;anchor point (0,0)&quot;&gt;&lt;/a&gt;anchor point (0,0)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;anchor-point-1-1&quot;&gt;&lt;a href=&quot;#anchor-point-1-1&quot; class=&quot;headerlink&quot; title=&quot;anchor point (1,1)&quot;&gt;&lt;/a&gt;anchor point (1,1)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;anchor-point-0-1&quot;&gt;&lt;a href=&quot;#anchor-point-0-1&quot; class=&quot;headerlink&quot; title=&quot;anchor point (0,1)&quot;&gt;&lt;/a&gt;anchor point (0,1)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Customized-CALayer&quot;&gt;&lt;a href=&quot;#Customized-CALayer&quot; class=&quot;headerlink&quot; title=&quot;Customized CALayer&quot;&gt;&lt;/a&gt;Customized CALayer&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerCustomized.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Method-1&quot;&gt;&lt;a href=&quot;#Method-1&quot; class=&quot;headerlink&quot; title=&quot;Method 1.&quot;&gt;&lt;/a&gt;Method 1.&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;子类继承于CALayer，实现 drawInContext&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;JKLayer&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;JKLayer.h&amp;quot;
-
-@implementation JKLayer
--(void)drawInContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Method-2&quot;&gt;&lt;a href=&quot;#Method-2&quot; class=&quot;headerlink&quot; title=&quot;Method 2.&quot;&gt;&lt;/a&gt;Method 2.&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;在控制器中设置代理，实现代理方法来画图层&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-layer.delegate = self;//不用协议，任何对象可以作为代理
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-
-}
-
-#pragma mark 代理方法
--(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Set-UIImageView-CALayer&quot;&gt;&lt;a href=&quot;#Set-UIImageView-CALayer&quot; class=&quot;headerlink&quot; title=&quot;Set UIImageView CALayer&quot;&gt;&lt;/a&gt;Set UIImageView C
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_CALayer" scheme="http://jackliu17.github.io/tags/iOS-CALayer/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
