@@ -61,30 +61,82 @@
 
 
 
-<meta name="description" content="视图在中央cardView.center = self.view.center;
-直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
-ViewController
-BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&amp;qu">
+<meta name="description" content="工厂工厂
+
+制造产品
+将制造工艺进行了封装
+
+客户
+
+不参与手机制造流程
+客户需要使用固定的产品(客户提出需求)
+
+
+简单工厂使用场景
+简化生产流程
+隔离生产产品的细节
+不同类型的产品之间有着一些共同的功能
+一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器
+
+
+
+产品协议规范同一接口PhoneProtocol
+@protocol PhoneProtocol &amp;lt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-适配器">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/index.html">
+<meta property="og:title" content="iOS设计模式-工厂">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/29/iOS设计模式-工厂/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="视图在中央cardView.center = self.view.center;
-直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
-ViewController
-BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&amp;qu">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png">
-<meta property="og:updated_time" content="2016-05-23T00:09:33.000Z">
+<meta property="og:description" content="工厂工厂
+
+制造产品
+将制造工艺进行了封装
+
+客户
+
+不参与手机制造流程
+客户需要使用固定的产品(客户提出需求)
+
+
+简单工厂使用场景
+简化生产流程
+隔离生产产品的细节
+不同类型的产品之间有着一些共同的功能
+一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器
+
+
+
+产品协议规范同一接口PhoneProtocol
+@protocol PhoneProtocol &amp;lt;">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory03.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory05.png">
+<meta property="og:updated_time" content="2016-05-29T05:27:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-适配器">
-<meta name="twitter:description" content="视图在中央cardView.center = self.view.center;
-直接赋值的弊端如果要修改的话，需要修改所有赋值(目前有三处)
-ViewController
-BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&amp;qu">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png">
+<meta name="twitter:title" content="iOS设计模式-工厂">
+<meta name="twitter:description" content="工厂工厂
+
+制造产品
+将制造工艺进行了封装
+
+客户
+
+不参与手机制造流程
+客户需要使用固定的产品(客户提出需求)
+
+
+简单工厂使用场景
+简化生产流程
+隔离生产产品的细节
+不同类型的产品之间有着一些共同的功能
+一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器
+
+
+
+产品协议规范同一接口PhoneProtocol
+@protocol PhoneProtocol &amp;lt;">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png">
 
 
 
@@ -102,7 +154,7 @@ cardView.name        = @&amp;qu">
   };
 </script>
 
-  <title> iOS设计模式-适配器 | Cowboy Tech </title>
+  <title> iOS设计模式-工厂 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +296,7 @@ cardView.name        = @&amp;qu">
             
             
               
-                iOS设计模式-适配器
+                iOS设计模式-工厂
               
             
           </h1>
@@ -256,8 +308,8 @@ cardView.name        = @&amp;qu">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-23T09:26:19+10:00" content="2016-05-23">
-              2016-05-23
+            <time itemprop="dateCreated" datetime="2016-05-29T15:20:41+10:00" content="2016-05-29">
+              2016-05-29
             </time>
           </span>
 
@@ -286,8 +338,8 @@ cardView.name        = @&amp;qu">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/23/iOS设计模式-适配器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/23/iOS设计模式-适配器/" itemprop="commentsCount"></span>
+                <a href="/2016/05/29/iOS设计模式-工厂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/iOS设计模式-工厂/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,236 +361,243 @@ cardView.name        = @&amp;qu">
       
 
       
-        <h1 id="视图在中央"><a href="#视图在中央" class="headerlink" title="视图在中央"></a>视图在中央</h1><pre><code>cardView.center = self.view.center;
-</code></pre><h1 id="直接赋值的弊端"><a href="#直接赋值的弊端" class="headerlink" title="直接赋值的弊端"></a>直接赋值的弊端</h1><p>如果要修改的话，需要修改所有赋值(目前有三处)</p>
-<p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&quot;Hello&quot;;
-cardView.lineColor   = [UIColor redColor];
-cardView.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-</code></pre><h1 id="对象赋值-封装"><a href="#对象赋值-封装" class="headerlink" title="对象赋值(封装)"></a>对象赋值(封装)</h1><p>以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-Model *model      = [[Model alloc] init];
-model.name        = @&quot;Hello&quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-
-[cardView loadData:model];
-</code></pre><h1 id="使用适配器模式"><a href="#使用适配器模式" class="headerlink" title="使用适配器模式"></a>使用适配器模式</h1><ol>
-<li>创建抽象适配器对象</li>
-<li>适配器与视图层建立输出联系</li>
-<li>适配器与数据层建立输入联系</li>
-<li>类适配器与对象适配器</li>
+        <h1 id="工厂"><a href="#工厂" class="headerlink" title="工厂"></a>工厂</h1><p>工厂</p>
+<ol>
+<li>制造产品</li>
+<li>将制造工艺进行了封装</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png" alt=""></p>
-<h2 id="Protocl-Adapter"><a href="#Protocl-Adapter" class="headerlink" title="Protocl + Adapter"></a>Protocl + Adapter</h2><p>BusinessCardAdapterProtocol</p>
-<pre><code>//输出的数据一致性
-@protocol BusinessCardAdapterProtocol &lt;NSObject&gt;
-
-- (NSString *)name;
-- (UIColor *)lineColor;
-- (NSString *)phoneNumber;
-</code></pre><p>BusinessCardAdapter (空实现，用来让子类继承)</p>
-<pre><code>@interface BusinessCardAdapter : NSObject &lt;BusinessCardAdapterProtocol&gt;
-@property (nonatomic, weak) id data;
-- (instancetype)initWithData:(id)data;
-
-@implementation BusinessCardAdapter
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-return nil;
-}
-
-- (UIColor *)lineColor {
-return nil;
-}
-
-- (NSString *)phoneNumber {
-return nil;
-}
-</code></pre><p>BusinessCardView</p>
-<pre><code>//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
-- (void)loadData:(id &lt;BusinessCardAdapterProtocol&gt;)data {
-self.name        = [data name];
-self.lineColor   = [data lineColor];
-self.phoneNumber = [data phoneNumber];
-}
-</code></pre><h2 id="针对Model-class-的类适配器"><a href="#针对Model-class-的类适配器" class="headerlink" title="针对Model class 的类适配器"></a>针对Model class 的类适配器</h2><p>Model</p>
-<pre><code>@interface Model : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) UIColor  *lineColor;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-</code></pre><p>ModelAdapter(类适配器)</p>
-<pre><code>@interface ModelAdapter : BusinessCardAdapter
-
-@end
-
-@implementation ModelAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {        
-    self.data = data;
-}  
-return self;
-}
-
-- (NSString *)name {  
-Model *data = self.data; 
-return data.name;
-}
-
-- (UIColor *)lineColor {
-Model *data = self.data; 
-return data.lineColor;
-}
-
-- (NSString *)phoneNumber {
-Model *data = self.data;
-return data.phoneNumber;
-}
-
-@end
-</code></pre><p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-Model *model      = [[Model alloc] init];
-model.name        = @&quot;JiKeXueYuan&quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-</code></pre><h2 id="针对NewCardModel的类适配器"><a href="#针对NewCardModel的类适配器" class="headerlink" title="针对NewCardModel的类适配器"></a>针对NewCardModel的类适配器</h2><p>NewCardModel</p>
-<pre><code>@interface NewCardModel : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *colorHexString;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-</code></pre><p>NewCardModelApater (类适配器)</p>
-<pre><code>@interface NewCardModelApater : BusinessCardAdapter
-
-@end
-
-@implementation NewCardModelApater
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-NewCardModel *data = self.data;
-return data.name;
-}
-
-- (UIColor *)lineColor {
-NewCardModel *data = self.data;
-// todo
-if ([data.colorHexString isEqualToString:@&quot;black&quot;]) {
-    return [UIColor blackColor];
-} else {
-    return [UIColor redColor];
-}
-}
-
-- (NSString *)phoneNumber {
-NewCardModel *data = self.data;
-return data.phoneNumber;
-}
-@end
-</code></pre><p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-NewCardModel *newCardModel  = [[NewCardModel alloc] init];
-newCardModel.name           = @&quot;JiKeXueYuan&quot;;
-newCardModel.colorHexString = @&quot;black&quot;;
-newCardModel.phoneNumber    = @&quot;101 - 5687 - 000&quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-</code></pre><h2 id="对象适配器-万能"><a href="#对象适配器-万能" class="headerlink" title="对象适配器(万能)"></a>对象适配器(万能)</h2><p>一个适配器解决所有数据模型，代码里会显得很臃肿</p>
-<pre><code>@interface CardAdapter : BusinessCardAdapter
-
-@end
-
-#import &quot;CardAdapter.h&quot;
-#import &quot;Model.h&quot;
-#import &quot;NewCardModel.h&quot;
-
-@implementation CardAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {      
-    self.data = data;
-} 
-return self;
-}
-
-- (NSString *)name {
-NSString *name = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    name         = model.name;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    name                = model.name;
-}
-return name;
-}
-
-- (UIColor *)lineColor {
-UIColor *lineColor = nil;
-if ([self.data isMemberOfClass:[Model class]]) { 
-    Model *model = self.data;
-    lineColor    = model.lineColor; 
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    if ([model.colorHexString isEqualToString:@&quot;black&quot;]) {
-        lineColor = [UIColor blackColor];  
-    } else { 
-        lineColor = [UIColor redColor];
-    }
-}
-return lineColor;
-}
-
-- (NSString *)phoneNumber {
-NSString *phoneNumber = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    phoneNumber  = model.phoneNumber;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    phoneNumber         = model.phoneNumber;
-}
-return phoneNumber;
-}
-@end
-</code></pre><h1 id="适配器的优点和缺点"><a href="#适配器的优点和缺点" class="headerlink" title="适配器的优点和缺点"></a>适配器的优点和缺点</h1><ol>
-<li>降低视图层和数据层的耦合度</li>
-<li>让一个类在不经过修改的情况下适应更多的情形</li>
-<li>代码可读性差，比较繁琐</li>
+<p>客户</p>
+<ol>
+<li>不参与手机制造流程</li>
+<li>客户需要使用固定的产品(客户提出需求)</li>
 </ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png" alt=""></p>
+<h1 id="简单工厂使用场景"><a href="#简单工厂使用场景" class="headerlink" title="简单工厂使用场景"></a>简单工厂使用场景</h1><ol>
+<li>简化生产流程</li>
+<li>隔离生产产品的细节</li>
+<li>不同类型的产品之间有着一些共同的功能</li>
+<li>一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory02.png" alt=""></p>
+<h2 id="产品协议规范同一接口"><a href="#产品协议规范同一接口" class="headerlink" title="产品协议规范同一接口"></a>产品协议规范同一接口</h2><p>PhoneProtocol</p>
+<pre><code>@protocol PhoneProtocol &lt;NSObject&gt;
 
+- (void)phoneCall;
+
+- (void)sendMessage;
+</code></pre><h2 id="产品基类"><a href="#产品基类" class="headerlink" title="产品基类"></a>产品基类</h2><p>BaseDevie</p>
+<pre><code>@interface BaseDevie : NSObject &lt;PhoneProtocol&gt;
+
+- (void)phoneCall {
+}
+
+- (void)sendMessage {
+}
+</code></pre><h2 id="具体产品"><a href="#具体产品" class="headerlink" title="具体产品"></a>具体产品</h2><p>AndroidDevice</p>
+<pre><code>@interface AndroidDevice : BaseDevie
+
+- (void)phoneCall {
+NSLog(@&quot;Android phoneCall&quot;);
+}
+
+- (void)sendMessage {   
+NSLog(@&quot;Android sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)customTheme {
+NSLog(@&quot;Android customTheme&quot;);
+}
+</code></pre><p>iPhoneDevice</p>
+<pre><code>@interface iPhoneDevice : BaseDevie
+
+- (void)phoneCall {
+NSLog(@&quot;iPhone phoneCall&quot;);
+}
+
+- (void)sendMessage {   
+NSLog(@&quot;iPhone sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)fingerprintIndetification {
+NSLog(@&quot;iPhone fingerprintIndetification&quot;);
+}
+</code></pre><p>NokiaDevice</p>
+<pre><code>@interface NokiaDevice : BaseDevie
+
+- (void)phoneCall { 
+NSLog(@&quot;Nokia phoneCall&quot;);
+}
+
+- (void)sendMessage {
+NSLog(@&quot;Nokia sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)knockWalnut {
+NSLog(@&quot;Nokia knockWalnut&quot;);
+}
+</code></pre><h2 id="工厂-1"><a href="#工厂-1" class="headerlink" title="工厂"></a>工厂</h2><p>DeviceFactory</p>
+<pre><code>typedef enum : NSUInteger {
+kiPhone   = 0x11,
+kAndroid,
+kNokia,
+
+} EDevieType;
+
+//根据用户提交的指令创建出具体的手机
++ (BaseDevie &lt;PhoneProtocol&gt; *)deviceFactoryWithDevieType:(EDevieType)type {
+
+BaseDevie &lt;PhoneProtocol&gt; *device = nil;  
+
+if (type == kiPhone) { 
+
+    device = [[iPhoneDevice alloc] init];
+
+}  else if (type == kAndroid) {
+
+    device = [[AndroidDevice alloc] init];
+
+}  else if (type == kNokia) {
+
+    device = [[NokiaDevice alloc] init];
+
+}
+
+return device;
+}
+</code></pre><h2 id="工厂的使用"><a href="#工厂的使用" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 工厂中创建出具体产品，如果仅仅是使用通用的功能sendMsg,phoneCall，类型为BaseDevice也可以
+
+iPhoneDevice *iPhone = (iPhoneDevice *)[DeviceFactory deviceFactoryWithDevieType:kiPhone];
+
+// 使用产品的功能
+[iPhone fingerprintIndetification];
+}
+</code></pre><h1 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h1><ol>
+<li>工厂是抽象类，需要实例化子类</li>
+<li>抽象工厂使用比简单工厂更加灵活，因为可以动态的切换工厂</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory03.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory05.png" alt=""></p>
+<h2 id="产品-Phone"><a href="#产品-Phone" class="headerlink" title="产品 Phone"></a>产品 Phone</h2><p>Phone基类</p>
+<pre><code>@interface BasePhone : NSObject
+
+@end
+</code></pre><p>Phone子类之Android</p>
+<pre><code>@interface Android : BasePhone
+
+@end
+</code></pre><p>Phone子类之iPhone</p>
+<pre><code>@interface iPhone : BasePhone
+
+@end
+</code></pre><h2 id="产品-Watch"><a href="#产品-Watch" class="headerlink" title="产品 Watch"></a>产品 Watch</h2><p>Whatch产品基类</p>
+<pre><code>@interface BaseWatch : NSObject
+
+@end
+</code></pre><p>Whatch产品子类之iWatch</p>
+<pre><code>@interface iWatch : BaseWatch
+
+@end
+</code></pre><p>Whatch产品子类之AndroidWatch</p>
+<pre><code>@interface AndroidWatch : BaseWatch
+
+@end
+</code></pre><h2 id="工厂-2"><a href="#工厂-2" class="headerlink" title="工厂"></a>工厂</h2><p>工厂基类</p>
+<pre><code>@implementation BaseFactory
+
+- (BasePhone *)createPhone {
+
+return nil;
+}
+
+- (BaseWatch *)createWatch {
+
+return nil;
+}
+</code></pre><p>工厂子类Apple</p>
+<pre><code>@interface AppleFactory : BaseFactory
+
+- (BasePhone *)createPhone {
+
+return [[iPhone alloc] init];
+}
+
+- (BaseWatch *)createWatch {
+
+return [[iWatch alloc] init];
+}
+</code></pre><p>工厂子类Google</p>
+<pre><code>@interface GoogleFactory : BaseFactory
+
+- (BasePhone *)createPhone {
+
+return [[Android alloc] init];
+}
+
+- (BaseWatch *)createWatch {
+
+return [[AndroidWatch alloc] init];
+}
+</code></pre><h2 id="创建具体工厂"><a href="#创建具体工厂" class="headerlink" title="创建具体工厂"></a>创建具体工厂</h2><p>FactoryManager</p>
+<pre><code>typedef enum : NSUInteger {
+
+kApple   = 0x11,
+kGoogle,
+
+} EFactoryType;
+
+@interface FactoryManager : NSObject
+
++ (BaseFactory *)factoryWithBrand:(EFactoryType)factoryType {
+
+BaseFactory *factory = nil;
+
+if (factoryType == kApple) {
+
+    factory = [[AppleFactory alloc] init];
+
+} else if (factoryType == kGoogle) {
+
+    factory = [[GoogleFactory alloc] init];
+}
+
+return factory;
+}
+</code></pre><h2 id="工厂的使用-1"><a href="#工厂的使用-1" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 获取工厂
+BaseFactory *factory = [FactoryManager factoryWithBrand:kGoogle];
+
+// 创建商品
+BasePhone *phone = [factory createPhone];
+BaseWatch *watch = [factory createWatch];
+
+NSLog(@&quot;%@ %@&quot;, phone, watch);
+}
+</code></pre><h1 id="框架级别的工厂类-NSNumber"><a href="#框架级别的工厂类-NSNumber" class="headerlink" title="框架级别的工厂类:NSNumber"></a>框架级别的工厂类:NSNumber</h1><p>因为NSNumber是抽象类，所以以下代码结果为null，NSNumber是一个抽象类，其父类NSValue也是</p>
+<pre><code>NSLog(@&quot;%@&quot;, [[NSNumber alloc] init]);
+</code></pre><p>根据客户需求，制造出相关工厂</p>
+<pre><code>NSNumber *number     = [NSNumber numberWithInt:100];
+NSNumber *floatValue = [NSNumber numberWithFloat:100.f];
+</code></pre><p>以下结果都为d,产品可以互相转换，因为NSNumber只处理数值型的数据.这是和普通抽象工厂不同的地方</p>
+<pre><code>NSLog(@&quot;%c&quot;, [number charValue]);
+NSLog(@&quot;%c&quot;, [floatValue charValue]);
+</code></pre><h1 id="枚举类型的定义"><a href="#枚举类型的定义" class="headerlink" title="枚举类型的定义"></a>枚举类型的定义</h1><p>使用枚举定义手机的类型，注意起名字时，用大写的E+名字 = EDevieType</p>
+<pre><code>typedef enum : NSUInteger {
+kiPhone   = 0x11,
+kAndroid,
+kNokia,
+
+} EDevieType;    
+</code></pre>
       
     </div>
 
@@ -563,17 +622,13 @@ return phoneNumber;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/22/iOS播放音频简介/" rel="next" title="iOS播放音频简介">
-                <i class="fa fa-chevron-left"></i> iOS播放音频简介
+              <a href="/2016/05/28/iOS设计模式-装饰/" rel="next" title="iOS设计模式-装饰">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-装饰
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/24/iOS设计模式-策略/" rel="prev" title="iOS设计模式-策略">
-                iOS设计模式-策略 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -705,7 +760,7 @@ return phoneNumber;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#视图在中央"><span class="nav-number">1.</span> <span class="nav-text">视图在中央</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#直接赋值的弊端"><span class="nav-number">2.</span> <span class="nav-text">直接赋值的弊端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象赋值-封装"><span class="nav-number">3.</span> <span class="nav-text">对象赋值(封装)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用适配器模式"><span class="nav-number">4.</span> <span class="nav-text">使用适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocl-Adapter"><span class="nav-number">4.1.</span> <span class="nav-text">Protocl + Adapter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对Model-class-的类适配器"><span class="nav-number">4.2.</span> <span class="nav-text">针对Model class 的类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对NewCardModel的类适配器"><span class="nav-number">4.3.</span> <span class="nav-text">针对NewCardModel的类适配器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象适配器-万能"><span class="nav-number">4.4.</span> <span class="nav-text">对象适配器(万能)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适配器的优点和缺点"><span class="nav-number">5.</span> <span class="nav-text">适配器的优点和缺点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂"><span class="nav-number">1.</span> <span class="nav-text">工厂</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单工厂使用场景"><span class="nav-number">2.</span> <span class="nav-text">简单工厂使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产品协议规范同一接口"><span class="nav-number">2.1.</span> <span class="nav-text">产品协议规范同一接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品基类"><span class="nav-number">2.2.</span> <span class="nav-text">产品基类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体产品"><span class="nav-number">2.3.</span> <span class="nav-text">具体产品</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂-1"><span class="nav-number">2.4.</span> <span class="nav-text">工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂的使用"><span class="nav-number">2.5.</span> <span class="nav-text">工厂的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象工厂"><span class="nav-number">3.</span> <span class="nav-text">抽象工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#产品-Phone"><span class="nav-number">3.1.</span> <span class="nav-text">产品 Phone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品-Watch"><span class="nav-number">3.2.</span> <span class="nav-text">产品 Watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂-2"><span class="nav-number">3.3.</span> <span class="nav-text">工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建具体工厂"><span class="nav-number">3.4.</span> <span class="nav-text">创建具体工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂的使用-1"><span class="nav-number">3.5.</span> <span class="nav-text">工厂的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架级别的工厂类-NSNumber"><span class="nav-number">4.</span> <span class="nav-text">框架级别的工厂类:NSNumber</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举类型的定义"><span class="nav-number">5.</span> <span class="nav-text">枚举类型的定义</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -963,9 +1018,9 @@ return phoneNumber;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/23/iOS设计模式-适配器/';
-      var disqus_title = 'iOS设计模式-适配器';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/';
+      var disqus_identifier = '2016/05/29/iOS设计模式-工厂/';
+      var disqus_title = 'iOS设计模式-工厂';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/29/iOS设计模式-工厂/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
