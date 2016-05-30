@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-05-29T09:21:49.000Z</updated>
+  <updated>2016-05-30T05:14:50.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,134 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-代理</title>
+    <link href="http://jackliu17.github.io/2016/05/30/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86/"/>
+    <id>http://jackliu17.github.io/2016/05/30/iOS设计模式-代理/</id>
+    <published>2016-05-30T05:12:37.000Z</published>
+    <updated>2016-05-30T05:14:50.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Customer-amp-使用代理的注意事项&quot;&gt;&lt;a href=&quot;#Customer-amp-使用代理的注意事项&quot; class=&quot;headerlink&quot; title=&quot;Customer  &amp;amp; 使用代理的注意事项&quot;&gt;&lt;/a&gt;Customer  &amp;amp; 使用代理的注意事项&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;@class, 提示协议方法有该类的引用&lt;/li&gt;
+&lt;li&gt;weak 防止循环引用&lt;/li&gt;
+&lt;li&gt;@required or @Optional 要写清楚&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Customer&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@class Customer;
+
+@protocol CustomerDelegate &amp;lt;NSObject&amp;gt;
+
+@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
+
+@interface Customer : NSObject
+
+// 经销商
+@property (nonatomic, weak) id &amp;lt;CustomerDelegate&amp;gt; delegate;
+
+// 顾客买卖行为
+- (void)buyItemCount:(NSInteger)count;
+@end
+
+- (void)buyItemCount:(NSInteger)count {
+    if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;ViewController&quot;&gt;&lt;a href=&quot;#ViewController&quot; class=&quot;headerlink&quot; title=&quot;ViewController&quot;&gt;&lt;/a&gt;ViewController&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;Customer.h&amp;quot;
+
+// 经销商
+@interface ViewController ()&amp;lt;CustomerDelegate&amp;gt;
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
+}
+
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&amp;quot;%ld&amp;quot;, (long)count);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用场景：用于类与类之间的值传递&quot;&gt;&lt;a href=&quot;#使用场景：用于类与类之间的值传递&quot; class=&quot;headerlink&quot; title=&quot;使用场景：用于类与类之间的值传递&quot;&gt;&lt;/a&gt;使用场景：用于类与类之间的值传递&lt;/h2&gt;&lt;p&gt;Customer设定消息接受方的遵循条件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
+
+@interface Customer : NSObject
+
+// 经销商
+@property (nonatomic, weak) id &amp;lt;CustomerDelegate&amp;gt; delegate;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Customer发送消息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)buyItemCount:(NSInteger)count {
+
+    //代理存在，并且代理能响应这个方法
+
+    if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController准备接收&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()&amp;lt;CustomerDelegate&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController获得所传递的消息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
+}
+
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&amp;quot;%ld&amp;quot;, (long)count);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;代理使用验证&quot;&gt;&lt;a href=&quot;#代理使用验证&quot; class=&quot;headerlink&quot; title=&quot;代理使用验证&quot;&gt;&lt;/a&gt;代理使用验证&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//代理存在，并且代理能响应这个方法
+
+if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+    [self.delegate custmer:self buyItemCount:count];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;协议使用场景&quot;&gt;&lt;a href=&quot;#协议使用场景&quot; class=&quot;headerlink&quot; title=&quot;协议使用场景&quot;&gt;&lt;/a&gt;协议使用场景&lt;/h1&gt;&lt;p&gt;约束对象，筛选对象。比如传递的对象，必须实现某种方法&lt;/p&gt;
+&lt;h2 id=&quot;协议&quot;&gt;&lt;a href=&quot;#协议&quot; class=&quot;headerlink&quot; title=&quot;协议&quot;&gt;&lt;/a&gt;协议&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@protocol TCPProtocol &amp;lt;NSObject&amp;gt;
+@required
+// 获取源端口号
+- (NSInteger)sourcePort;
+// 获取目的地端口号
+- (NSInteger)destinationPort;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;遵循协议的类&quot;&gt;&lt;a href=&quot;#遵循协议的类&quot; class=&quot;headerlink&quot; title=&quot;遵循协议的类&quot;&gt;&lt;/a&gt;遵循协议的类&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface Model : NSObject &amp;lt;TCPProtocol&amp;gt;
+// 获取源端口号
+- (NSInteger)sourcePort {
+return 10;
+}
+
+// 获取目的地端口号
+- (NSInteger)destinationPort {
+return 20;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;传递遵循协议的对象&quot;&gt;&lt;a href=&quot;#传递遵循协议的对象&quot; class=&quot;headerlink&quot; title=&quot;传递遵循协议的对象&quot;&gt;&lt;/a&gt;传递遵循协议的对象&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)accessTCPData:(id &amp;lt;TCPProtocol&amp;gt;)data { 
+self.sourcePort      = [data sourcePort];
+self.destinationPort = [data destinationPort];
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-桥接</title>
@@ -2209,145 +2337,6 @@ CGImageRef smallImage = CGImageCreateWithImageInRect(img.CGImage, smallRect);
     <summary type="html">
     
       &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01701.png&quot;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目018.CAAnimation简介</title>
-    <link href="http://jackliu17.github.io/2016/05/17/iOS%E9%A1%B9%E7%9B%AE018-CAAnimation%E7%AE%80%E4%BB%8B/"/>
-    <id>http://jackliu17.github.io/2016/05/17/iOS项目018-CAAnimation简介/</id>
-    <published>2016-05-17T00:40:57.000Z</published>
-    <updated>2016-05-17T03:30:37.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;CAAnimation&quot;&gt;&lt;a href=&quot;#CAAnimation&quot; class=&quot;headerlink&quot; title=&quot;CAAnimation&quot;&gt;&lt;/a&gt;CAAnimation&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;基础动画 CABasicAnimation&lt;/li&gt;
-&lt;li&gt;关键帧动画CAKeyframeAnimation&lt;/li&gt;
-&lt;li&gt;转场动画 CATransition&lt;/li&gt;
-&lt;li&gt;动画组 CAAnimationGroup&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;以上基础动画和关键帧动画是隐式动画，比如bound值是animable的&lt;/p&gt;
-&lt;h1 id=&quot;CABasicAnimation&quot;&gt;&lt;a href=&quot;#CABasicAnimation&quot; class=&quot;headerlink&quot; title=&quot;CABasicAnimation&quot;&gt;&lt;/a&gt;CABasicAnimation&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01801.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;viewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@property (nonatomic, strong) CALayer *layer;
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-CALayer *layer =[CALayer layer];
-layer.bounds = CGRectMake(0, 0, 100, 100);
-layer.position = CGPointMake(100,100);
-layer.backgroundColor = [UIColor yellowColor].CGColor;
-[self.view.layer addSublayer:layer];
-self.layer = layer;  
-
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//[self animationScale];
-//[self animationRotation];
-//[self animationTranslate];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;keyPath-toValue-fromValue-byValue&quot;&gt;&lt;a href=&quot;#keyPath-toValue-fromValue-byValue&quot; class=&quot;headerlink&quot; title=&quot;keyPath, toValue, fromValue, byValue&quot;&gt;&lt;/a&gt;keyPath, toValue, fromValue, byValue&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;keyPath  决定了执行怎样的动画&lt;/li&gt;
-&lt;li&gt;toValue 到达哪个点&lt;/li&gt;
-&lt;li&gt;byValue 是增加多少值&lt;/li&gt;
-&lt;li&gt;fromValue 从哪个点开始移动&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;缩放&quot;&gt;&lt;a href=&quot;#缩放&quot; class=&quot;headerlink&quot; title=&quot;缩放&quot;&gt;&lt;/a&gt;缩放&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)animationScale{
-
-CABasicAnimation *animation = [CABasicAnimation animation];
-
-animation.keyPath = @&amp;quot;bounds&amp;quot;;
-animation.toValue = [NSValue valueWithCGRect:CGRectMake(0, 0, 50, 50)];
-
-animation.duration = 2;
-animation.removedOnCompletion = NO;
-animation.fillMode = @&amp;quot;forwards&amp;quot;;
-
-[self.layer addAnimation:animation forKey:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;平移&quot;&gt;&lt;a href=&quot;#平移&quot; class=&quot;headerlink&quot; title=&quot;平移&quot;&gt;&lt;/a&gt;平移&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//toValue是到达哪个点
-animation.keyPath = @&amp;quot;position&amp;quot;;
-animation.toValue = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
-
-//byValue是xy轴分别增加多少
-animation.keyPath = @&amp;quot;position&amp;quot;;
-animation.byValue = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;旋转&quot;&gt;&lt;a href=&quot;#旋转&quot; class=&quot;headerlink&quot; title=&quot;旋转&quot;&gt;&lt;/a&gt;旋转&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;animation.keyPath = @&amp;quot;transform&amp;quot;;
-animation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI_4, 1, 1, 0)];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;CAKeyframeAnimation&quot;&gt;&lt;a href=&quot;#CAKeyframeAnimation&quot; class=&quot;headerlink&quot; title=&quot;CAKeyframeAnimation&quot;&gt;&lt;/a&gt;CAKeyframeAnimation&lt;/h1&gt;&lt;p&gt;效果：方块绕椭圆轨迹运动&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)keyAnimation{
-CAKeyframeAnimation *anim = [CAKeyframeAnimation animation];
-
-//这些是和CABasicAnimation一样的
-anim.keyPath = @&amp;quot;position&amp;quot;;
-anim.removedOnCompletion = NO;
-anim.fillMode = kCAFillModeForwards;
-anim.duration = 2.0;
-
-//设置动画的路径
-CGMutablePathRef path = CGPathCreateMutable();
-CGPathAddEllipseInRect(path, NULL, CGRectMake(100, 100, 200, 200));
-anim.path = path;
-CGPathRelease(path);
-
-// 设置动画的执行节奏
-// kCAMediaTimingFunctionEaseInEaseOut : 一开始比较慢, 中间会加速,  临近结束的时候, 会变慢
-anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
-//可以执行代理方法
-anim.delegate = self;
-
-[self.layer addAnimation:anim forKey:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;CATransition&quot;&gt;&lt;a href=&quot;#CATransition&quot; class=&quot;headerlink&quot; title=&quot;CATransition&quot;&gt;&lt;/a&gt;CATransition&lt;/h1&gt;&lt;h2 id=&quot;导航视图切换&quot;&gt;&lt;a href=&quot;#导航视图切换&quot; class=&quot;headerlink&quot; title=&quot;导航视图切换&quot;&gt;&lt;/a&gt;导航视图切换&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;-(IBAction)pushAction{
-
-CATransition *transition = [CATransition animation];
-transition.duration = 1;
-transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
-//私有API
-//transition.type = @&amp;quot;pageCurl&amp;quot;;
-transition.type = @&amp;quot;cube&amp;quot;;//立体动画效果
-
-[self.navigationController.view.layer addAnimation:transition forKey:@&amp;quot;navAnimation&amp;quot;];
-DetailViewController *detailVC = [[DetailViewController alloc]init];
-[self.navigationController showViewController:detailVC sender:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;View切换&quot;&gt;&lt;a href=&quot;#View切换&quot; class=&quot;headerlink&quot; title=&quot;View切换&quot;&gt;&lt;/a&gt;View切换&lt;/h2&gt;&lt;p&gt;这里的animaView是UIViewController  —&amp;gt; view 里的subView&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-(IBAction)exchangeView{
-CATransition *transition = [CATransition animation];
-transition.duration = 1;
-transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
-//私有API
-//transition.type = @&amp;quot;pageCurl&amp;quot;;
-transition.type = @&amp;quot;fade&amp;quot;;
-transition.subtype = kCATransitionFromRight;
-
-//设置具体动画
-[_animaView exchangeSubviewAtIndex:0 withSubviewAtIndex:1];
-[_animaView.layer addAnimation:transition forKey:@&amp;quot;myAnimation&amp;quot;];
-
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;CAAnimation&quot;&gt;&lt;a href=&quot;#CAAnimation&quot; class=&quot;headerlink&quot; title=&quot;CAAnimation&quot;&gt;&lt;/a&gt;CAAnimation&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;基础动画 CABasicAnimation&lt;/li&gt;
-&lt;
     
     </summary>
     

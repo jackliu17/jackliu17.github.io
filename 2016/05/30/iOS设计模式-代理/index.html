@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_media," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,28 +61,54 @@
 
 
 
-<meta name="description" content="Play Sound onlyimport AVFoundation
+<meta name="description" content="代理模式的原理一个对象和另一个对象耦合，代理模式是为了降低耦合度
 
-let fileUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;sound&amp;quot;, ofType: &amp;quot;mp3&amp;quot;)!)
+Customer  &amp;amp; 使用代理的注意事项
+@class, 提示协议方法有该类的引用
+weak 防止循环引用
+@required or @Optional 要写清楚
 
-aPlayer = try? AVAudioPlayer(contentsOfURL">
+Customer
+@class Customer;
+
+@protocol CustomerDelegate &amp;lt;NSObject&amp;gt;
+
+@requi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS播放音频简介">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/22/iOS播放音频简介/index.html">
+<meta property="og:title" content="iOS设计模式-代理">
+<meta property="og:url" content="http://jackliu17.github.io/2016/05/30/iOS设计模式-代理/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Play Sound onlyimport AVFoundation
+<meta property="og:description" content="代理模式的原理一个对象和另一个对象耦合，代理模式是为了降低耦合度
 
-let fileUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;sound&amp;quot;, ofType: &amp;quot;mp3&amp;quot;)!)
+Customer  &amp;amp; 使用代理的注意事项
+@class, 提示协议方法有该类的引用
+weak 防止循环引用
+@required or @Optional 要写清楚
 
-aPlayer = try? AVAudioPlayer(contentsOfURL">
-<meta property="og:updated_time" content="2016-05-22T00:50:59.000Z">
+Customer
+@class Customer;
+
+@protocol CustomerDelegate &amp;lt;NSObject&amp;gt;
+
+@requi">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png">
+<meta property="og:updated_time" content="2016-05-30T05:14:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS播放音频简介">
-<meta name="twitter:description" content="Play Sound onlyimport AVFoundation
+<meta name="twitter:title" content="iOS设计模式-代理">
+<meta name="twitter:description" content="代理模式的原理一个对象和另一个对象耦合，代理模式是为了降低耦合度
 
-let fileUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;sound&amp;quot;, ofType: &amp;quot;mp3&amp;quot;)!)
+Customer  &amp;amp; 使用代理的注意事项
+@class, 提示协议方法有该类的引用
+weak 防止循环引用
+@required or @Optional 要写清楚
 
-aPlayer = try? AVAudioPlayer(contentsOfURL">
+Customer
+@class Customer;
+
+@protocol CustomerDelegate &amp;lt;NSObject&amp;gt;
+
+@requi">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png">
 
 
 
@@ -100,7 +126,7 @@ aPlayer = try? AVAudioPlayer(contentsOfURL">
   };
 </script>
 
-  <title> iOS播放音频简介 | Cowboy Tech </title>
+  <title> iOS设计模式-代理 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +268,7 @@ aPlayer = try? AVAudioPlayer(contentsOfURL">
             
             
               
-                iOS播放音频简介
+                iOS设计模式-代理
               
             
           </h1>
@@ -254,8 +280,8 @@ aPlayer = try? AVAudioPlayer(contentsOfURL">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-22T10:27:59+10:00" content="2016-05-22">
-              2016-05-22
+            <time itemprop="dateCreated" datetime="2016-05-30T15:12:37+10:00" content="2016-05-30">
+              2016-05-30
             </time>
           </span>
 
@@ -284,8 +310,8 @@ aPlayer = try? AVAudioPlayer(contentsOfURL">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/22/iOS播放音频简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/22/iOS播放音频简介/" itemprop="commentsCount"></span>
+                <a href="/2016/05/30/iOS设计模式-代理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/iOS设计模式-代理/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,57 +333,108 @@ aPlayer = try? AVAudioPlayer(contentsOfURL">
       
 
       
-        <h1 id="Play-Sound-only"><a href="#Play-Sound-only" class="headerlink" title="Play Sound only"></a>Play Sound only</h1><pre><code>import AVFoundation
+        <h1 id="代理模式的原理"><a href="#代理模式的原理" class="headerlink" title="代理模式的原理"></a>代理模式的原理</h1><p>一个对象和另一个对象耦合，代理模式是为了降低耦合度</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png" alt=""></p>
+<h2 id="Customer-amp-使用代理的注意事项"><a href="#Customer-amp-使用代理的注意事项" class="headerlink" title="Customer  &amp; 使用代理的注意事项"></a>Customer  &amp; 使用代理的注意事项</h2><ol>
+<li>@class, 提示协议方法有该类的引用</li>
+<li>weak 防止循环引用</li>
+<li>@required or @Optional 要写清楚</li>
+</ol>
+<p>Customer</p>
+<pre><code>@class Customer;
 
-let fileUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&quot;sound&quot;, ofType: &quot;mp3&quot;)!)
+@protocol CustomerDelegate &lt;NSObject&gt;
 
-aPlayer = try? AVAudioPlayer(contentsOfURL:fileUrl);
+@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
 
-aPlayer.play();
+@interface Customer : NSObject
 
-aPlayer.pause()
+// 经销商
+@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
 
-//stop and reset to starting point      
-aPlayer.stop()
-aPlayer.currentTime = 0
-</code></pre><h1 id="Play-Sound-with-UI"><a href="#Play-Sound-with-UI" class="headerlink" title="Play Sound with UI"></a>Play Sound with UI</h1><pre><code>import MediaPlayer            
+// 顾客买卖行为
+- (void)buyItemCount:(NSInteger)count;
+@end
 
-let p = MPMoviePlayerViewController(contentURL: fileUrl);
+- (void)buyItemCount:(NSInteger)count {
+    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+</code></pre><h2 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h2><pre><code>#import &quot;ViewController.h&quot;
+#import &quot;Customer.h&quot;
 
-presentViewController(p, animated: true, completion: nil)
-</code></pre><h1 id="Record-and-Play-Sound"><a href="#Record-and-Play-Sound" class="headerlink" title="Record and Play Sound"></a>Record and Play Sound</h1><pre><code>import AVFoundation
+// 经销商
+@interface ViewController ()&lt;CustomerDelegate&gt;
 
-var avRec:AVAudioRecorder!
-var audioFileUrl:NSURL!
-var avPlayer:AVAudioPlayer!
+- (void)viewDidLoad {
+[super viewDidLoad];
 
-override func viewDidLoad() {
-
-    super.viewDidLoad()
-
-    FileUrl = (NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.AllDomainsMask)[0] as NSURL)
-        .URLByAppendingPathComponent(&quot;rec&quot;)
-
-    avRec = try? AVAudioRecorder(URL:audioFileUrl, settings: [:])
-
-    avRec.prepareToRecord()
+Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
 }
 
-@IBAction func playRecBtnClicked(sender: AnyObject) {
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&quot;%ld&quot;, (long)count);
+}
+</code></pre><h2 id="使用场景：用于类与类之间的值传递"><a href="#使用场景：用于类与类之间的值传递" class="headerlink" title="使用场景：用于类与类之间的值传递"></a>使用场景：用于类与类之间的值传递</h2><p>Customer设定消息接受方的遵循条件</p>
+<pre><code>@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
 
-    avPlayer = try? AVAudioPlayer(contentsOfURL: audioFileUrl)
-    avPlayer.prepareToPlay()
-    avPlayer.play()
+@interface Customer : NSObject
+
+// 经销商
+@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
+</code></pre><p>Customer发送消息</p>
+<pre><code>- (void)buyItemCount:(NSInteger)count {
+
+    //代理存在，并且代理能响应这个方法
+
+    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+</code></pre><p>ViewController准备接收</p>
+<pre><code>@interface ViewController ()&lt;CustomerDelegate&gt;
+</code></pre><p>ViewController获得所传递的消息</p>
+<pre><code>Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
 }
 
-@IBAction func stopRecBtnClicked(sender: AnyObject) {
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&quot;%ld&quot;, (long)count);
+}
+</code></pre><h2 id="代理使用验证"><a href="#代理使用验证" class="headerlink" title="代理使用验证"></a>代理使用验证</h2><pre><code>//代理存在，并且代理能响应这个方法
 
-    avRec.stop()
+if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+    [self.delegate custmer:self buyItemCount:count];
+}
+</code></pre><h1 id="协议使用场景"><a href="#协议使用场景" class="headerlink" title="协议使用场景"></a>协议使用场景</h1><p>约束对象，筛选对象。比如传递的对象，必须实现某种方法</p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><pre><code>@protocol TCPProtocol &lt;NSObject&gt;
+@required
+// 获取源端口号
+- (NSInteger)sourcePort;
+// 获取目的地端口号
+- (NSInteger)destinationPort;
+@end
+</code></pre><h2 id="遵循协议的类"><a href="#遵循协议的类" class="headerlink" title="遵循协议的类"></a>遵循协议的类</h2><pre><code>@interface Model : NSObject &lt;TCPProtocol&gt;
+// 获取源端口号
+- (NSInteger)sourcePort {
+return 10;
 }
 
-@IBAction func startRecBtnClicked(sender: AnyObject) {
-
-    avRec.record()
+// 获取目的地端口号
+- (NSInteger)destinationPort {
+return 20;
+}
+</code></pre><h2 id="传递遵循协议的对象"><a href="#传递遵循协议的对象" class="headerlink" title="传递遵循协议的对象"></a>传递遵循协议的对象</h2><pre><code>- (void)accessTCPData:(id &lt;TCPProtocol&gt;)data { 
+self.sourcePort      = [data sourcePort];
+self.destinationPort = [data destinationPort];
 }
 </code></pre>
       
@@ -375,7 +452,7 @@ override func viewDidLoad() {
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-media/" rel="tag">#iOS_media</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -384,17 +461,13 @@ override func viewDidLoad() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/21/iOS设计模式简介/" rel="next" title="iOS设计模式简介">
-                <i class="fa fa-chevron-left"></i> iOS设计模式简介
+              <a href="/2016/05/29/iOS设计模式-桥接/" rel="next" title="iOS设计模式-桥接">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-桥接
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/23/iOS设计模式-适配器/" rel="prev" title="iOS设计模式-适配器">
-                iOS设计模式-适配器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +599,7 @@ override func viewDidLoad() {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Play-Sound-only"><span class="nav-number">1.</span> <span class="nav-text">Play Sound only</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Play-Sound-with-UI"><span class="nav-number">2.</span> <span class="nav-text">Play Sound with UI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Record-and-Play-Sound"><span class="nav-number">3.</span> <span class="nav-text">Record and Play Sound</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代理模式的原理"><span class="nav-number">1.</span> <span class="nav-text">代理模式的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Customer-amp-使用代理的注意事项"><span class="nav-number">1.1.</span> <span class="nav-text">Customer  & 使用代理的注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewController"><span class="nav-number">1.2.</span> <span class="nav-text">ViewController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景：用于类与类之间的值传递"><span class="nav-number">1.3.</span> <span class="nav-text">使用场景：用于类与类之间的值传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理使用验证"><span class="nav-number">1.4.</span> <span class="nav-text">代理使用验证</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协议使用场景"><span class="nav-number">2.</span> <span class="nav-text">协议使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-number">2.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遵循协议的类"><span class="nav-number">2.2.</span> <span class="nav-text">遵循协议的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递遵循协议的对象"><span class="nav-number">2.3.</span> <span class="nav-text">传递遵循协议的对象</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -784,9 +857,9 @@ override func viewDidLoad() {
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/22/iOS播放音频简介/';
-      var disqus_title = 'iOS播放音频简介';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/22/iOS播放音频简介/';
+      var disqus_identifier = '2016/05/30/iOS设计模式-代理/';
+      var disqus_title = 'iOS设计模式-代理';
+      var disqus_url = 'http://jackliu17.github.io/2016/05/30/iOS设计模式-代理/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
