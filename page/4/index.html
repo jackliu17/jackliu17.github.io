@@ -238,6 +238,150 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/20/iOS数据存储-NSUserDefault/" itemprop="url">
+                  iOS数据存储-NSUserDefault
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-20T16:13:21+10:00" content="2016-05-20">
+              2016-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/20/iOS数据存储-NSUserDefault/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-NSUserDefault/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="读取数据-from-NSUserDeafult"><a href="#读取数据-from-NSUserDeafult" class="headerlink" title="读取数据 from NSUserDeafult"></a>读取数据 from NSUserDeafult</h1><pre><code>var ud:NSUserDefaults!
+
+ud = NSUserDefaults.standardUserDefaults()
+
+    if let value: AnyObject = ud.objectForKey(&quot;data&quot;){
+
+        inputTxt.text = value as! String
+
+    }else{
+
+        inputTxt.text = &quot;No value&quot;
+    }
+</code></pre><h1 id="保存数据-to-NSUserDefaults"><a href="#保存数据-to-NSUserDefaults" class="headerlink" title="保存数据 to NSUserDefaults"></a>保存数据 to NSUserDefaults</h1><pre><code>ud.setObject(inputTxt.text, forKey: &quot;data&quot;)
+</code></pre><h1 id="AnyObject"><a href="#AnyObject" class="headerlink" title="AnyObject ?"></a>AnyObject ?</h1><p>如果发现返回值有问号 AnyObject?，有可能为空。最好先做如下判断</p>
+<pre><code>if let value: AnyObject = ud.objectForKey(&quot;data&quot;){
+
+    inputTxt.text = value as! String
+
+}else{
+
+    inputTxt.text = &quot;No value&quot;
+}
+</code></pre><h1 id="ShowTips-proj"><a href="#ShowTips-proj" class="headerlink" title="ShowTips proj"></a>ShowTips proj</h1><h2 id="Global-setting"><a href="#Global-setting" class="headerlink" title="Global setting"></a>Global setting</h2><pre><code>var ud:NSUserDefaults!
+ud = NSUserDefaults.standardUserDefaults()
+</code></pre><h2 id="Get-data"><a href="#Get-data" class="headerlink" title="Get data"></a>Get data</h2><pre><code>mySwitch.on = ud.boolForKey(&quot;showTips&quot;)
+
+if mySwitch.on{
+    UIAlertView(title: &quot;提示&quot;, message: &quot;今天要下雨，出门要带雨具哦！&quot;, delegate: nil, cancelButtonTitle: &quot;好的&quot;).show()
+}
+</code></pre><h2 id="Save-data"><a href="#Save-data" class="headerlink" title="Save data"></a>Save data</h2><pre><code>ud.setBool(mySwitch.on, forKey: &quot;showTips&quot;)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/20/iOS数据存储-XML/" itemprop="url">
                   iOS数据存储-XML
                 </a>
@@ -936,135 +1080,6 @@ print(&quot;name : \(name)&quot;)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/17/iOS项目017-转盘抽奖/" itemprop="url">
-                  iOS项目017.转盘抽奖
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T16:18:42+10:00" content="2016-05-17">
-              2016-05-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/17/iOS项目017-转盘抽奖/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目017-转盘抽奖/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01701.png" alt=""></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><h1 id="匿名类目-vs-IBOutlet"><a href="#匿名类目-vs-IBOutlet" class="headerlink" title="匿名类目 vs IBOutlet"></a>匿名类目 vs IBOutlet</h1><p>只有在.m文件中建立了匿名类目，才能连接storyBoard中的IBOutlet</p>
-<p>view.m</p>
-<pre><code>@interface WheelView ()
-@property (weak, nonatomic) IBOutlet UIImageView *centerView;
-@end
-</code></pre><h1 id="加载xib文件"><a href="#加载xib文件" class="headerlink" title="加载xib文件"></a>加载xib文件</h1><pre><code>+ (instancetype)wheelView{
-return [[[NSBundle mainBundle] loadNibNamed:@&quot;WheelView&quot; owner:nil options:nil] lastObject];
-}
-</code></pre><h1 id="裁剪图片"><a href="#裁剪图片" class="headerlink" title="裁剪图片"></a>裁剪图片</h1><pre><code>UIImage *img = [UIImage imageNamed:@&quot;LuckyAstrology&quot;];
-CGFloat smallW = img.size.width / 12 * [UIScreen mainScreen].scale;
-CGFloat smallH = img.size.height * [UIScreen mainScreen].scale; 
-CGRect smallRect = CGRectMake(index * smallW, 0, smallW, smallH);
-CGImageRef smallImage = CGImageCreateWithImageInRect(img.CGImage, smallRect);
-[btn setImage:[UIImage imageWithCGImage:smallImage] forState:UIControlStateNormal];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1111,7 +1126,7 @@ CGImageRef smallImage = CGImageCreateWithImageInRect(img.CGImage, smallRect);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

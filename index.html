@@ -238,6 +238,319 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/30/iOS设计模式-单例/" itemprop="url">
+                  iOS设计模式-单例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-30T19:09:56+10:00" content="2016-05-30">
+              2016-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/30/iOS设计模式-单例/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/iOS设计模式-单例/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ol>
+<li>共享信息，管理中心</li>
+<li>单例类基本是用来管理某种资源的，而这种资源是可以全局共享的</li>
+<li><strong>只有一个实例</strong></li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png" alt=""></p>
+<h1 id="Cocoa系统中的单例应用"><a href="#Cocoa系统中的单例应用" class="headerlink" title="Cocoa系统中的单例应用"></a>Cocoa系统中的单例应用</h1><pre><code>[[UIApplication sharedApplication]statusBarStyle];
+
+[[NSNotificationCenter defaultCenter]addObserver:&lt;#(nonnull id)#&gt;
+                                        selector:&lt;#(nonnull SEL)#&gt;
+                                            name:&lt;#(nullable NSString *)#&gt;
+                                          object:&lt;#(nullable id)#&gt;];
+
+
+[[NSUserDefaults standardUserDefaults]setObject:&lt;#(nullable id)#&gt;
+                                         forKey:&lt;#(nonnull NSString *)#&gt;];
+
+
+[NSFileManager defaultManager];
+</code></pre><h1 id="单例创建的三种方法"><a href="#单例创建的三种方法" class="headerlink" title="单例创建的三种方法"></a>单例创建的三种方法</h1><p>UserInfoManagerCenter</p>
+<pre><code>@interface UserInfoManagerCenter : NSObject
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSNumber *age;
+</code></pre><p>方法1. 任何类调用其他方法前，先调用此方法</p>
+<pre><code>+ (void)initialize {
+
+static UserInfoManagerCenter *center = nil;
+
+if (self == [UserInfoManagerCenter class]) {
+
+    center = [[UserInfoManagerCenter alloc] init];
+}
+}
+</code></pre><p>方法2. 有弊端。如果AppDelegate里，也同时以此方法创建单例，程序就会奔溃</p>
+<pre><code>+ (instancetype)managerCenter {
+
+static UserInfoManagerCenter *center = nil;
+
+if (center == nil) {
+
+    center = [[UserInfoManagerCenter alloc] init];
+}
+
+return center;
+}
+</code></pre><p>方法3. 最佳</p>
+<pre><code>+ (instancetype)managerCenter {
+
+static UserInfoManagerCenter *center = nil;
+
+static dispatch_once_t predicate;
+dispatch_once(&amp;predicate, ^{
+
+    center = [[UserInfoManagerCenter alloc] init];
+});
+
+return center;
+}
+</code></pre><h1 id="单例数据共享"><a href="#单例数据共享" class="headerlink" title="单例数据共享"></a>单例数据共享</h1><p>AppDelegate: 在此创建单例并赋值</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+// Override point for customization after application launch.
+UserInfoManagerCenter *center = [UserInfoManagerCenter managerCenter];
+center.name = @&quot;极客学院&quot;;
+
+return YES;
+}
+</code></pre><p>ViewController: 在此获取单例的数据</p>
+<pre><code>UserInfoManagerCenter *center = [UserInfoManagerCenter managerCenter];
+NSLog(@&quot;%@&quot;, center.name);
+</code></pre><h1 id="编写严格的单例"><a href="#编写严格的单例" class="headerlink" title="编写严格的单例"></a>编写严格的单例</h1><h2 id="防止子类继承"><a href="#防止子类继承" class="headerlink" title="防止子类继承"></a>防止子类继承</h2><pre><code>@implementation UserInfoManagerCenter
+
++ (instancetype)managerCenter {
+
+static dispatch_once_t predicate;
+dispatch_once(&amp;predicate, ^{
+
+    center = [[UserInfoManagerCenter alloc] init];
+});
+
+// 防止子类使用
+NSString *classString = NSStringFromClass([self class]);
+if ([classString isEqualToString:@&quot;UserInfoManagerCenter&quot;] == NO) {
+
+    NSParameterAssert(nil);
+}
+
+return center;
+}
+</code></pre><h2 id="确保实例对象只有一个"><a href="#确保实例对象只有一个" class="headerlink" title="确保实例对象只有一个"></a>确保实例对象只有一个</h2><p>因为单例管理的是系统资源，一个对象非常耗资源，所以要避免不能用alloc init方法创建</p>
+<pre><code>#import &quot;UserInfoManagerCenter.h&quot;
+static UserInfoManagerCenter *center = nil;
+@implementation UserInfoManagerCenter
+
++ (instancetype)managerCenter {
+
+static dispatch_once_t predicate;
+dispatch_once(&amp;predicate, ^{
+
+    center = (UserInfoManagerCenter *)@&quot;UserInfoManagerCenter&quot;;
+    center = [[UserInfoManagerCenter alloc] init];
+});
+
+// 防止子类使用
+NSString *classString = NSStringFromClass([self class]);
+if ([classString isEqualToString:@&quot;UserInfoManagerCenter&quot;] == NO) {
+
+    NSParameterAssert(nil);
+}
+
+return center;
+}
+
+- (instancetype)init {
+
+NSString *string = (NSString *)center;
+if ([string isKindOfClass:[NSString class]] == YES &amp;&amp; [string isEqualToString:@&quot;UserInfoManagerCenter&quot;]) {
+
+    self = [super init];
+    if (self) {
+
+        // 防止子类使用
+        NSString *classString = NSStringFromClass([self class]);
+        if ([classString isEqualToString:@&quot;UserInfoManagerCenter&quot;] == NO) {
+
+            NSParameterAssert(nil);
+        }
+    }
+
+    return self;
+
+} else {
+
+    return nil;
+}
+}
+@end
+</code></pre><h2 id="防止调用alloc-init细节阐述"><a href="#防止调用alloc-init细节阐述" class="headerlink" title="防止调用alloc init细节阐述"></a>防止调用alloc init细节阐述</h2><p>首先center的实际值设为一个字符串</p>
+<pre><code>center = (UserInfoManagerCenter *)@&quot;UserInfoManagerCenter&quot;;
+</code></pre><p>然后在随后调用的init里进行判断，只有经历过 + managerCenter方法的才能创建实例，如果直接调用allo init的，那返回是空值</p>
+<pre><code>- (instancetype)init {
+
+NSString *string = (NSString *)center;
+if ([string isKindOfClass:[NSString class]] == YES &amp;&amp; [string isEqualToString:@&quot;UserInfoManagerCenter&quot;]) {
+
+}
+</code></pre><h1 id="单例模式优化本地存储"><a href="#单例模式优化本地存储" class="headerlink" title="单例模式优化本地存储"></a>单例模式优化本地存储</h1><h2 id="第三方库-FastCoding"><a href="#第三方库-FastCoding" class="headerlink" title="第三方库:FastCoding"></a>第三方库:FastCoding</h2><p>替换NSCoding协议, plist, JSON等，直接将数据存为NSData类型</p>
+<p>下载地址:<a href="https://github.com/nicklockwood/FastCoding" target="_blank" rel="external">FastCoding</a></p>
+<h2 id="关闭ARC"><a href="#关闭ARC" class="headerlink" title="关闭ARC"></a>关闭ARC</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton02.png" alt=""></p>
+<h2 id="用单例设计存储数据接口"><a href="#用单例设计存储数据接口" class="headerlink" title="用单例设计存储数据接口"></a>用单例设计存储数据接口</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key;
+- (id)valueWithKey:(NSString *)key;
+</code></pre><h2 id="用单例接口隔离实现细节"><a href="#用单例接口隔离实现细节" class="headerlink" title="用单例接口隔离实现细节"></a>用单例接口隔离实现细节</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key {
+
+NSParameterAssert(value);
+NSParameterAssert(key);
+
+NSData *data = [FastCoder dataWithRootObject:value];
+if (data) {
+
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
+}
+}
+
+
+
+- (id)valueWithKey:(NSString *)key {
+
+NSParameterAssert(key);
+
+NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+
+return [FastCoder objectWithData:data];
+}
+</code></pre><h2 id="在单例提供接口的基础上进行上层封装"><a href="#在单例提供接口的基础上进行上层封装" class="headerlink" title="在单例提供接口的基础上进行上层封装"></a>在单例提供接口的基础上进行上层封装</h2><h2 id="封装前"><a href="#封装前" class="headerlink" title="封装前"></a>封装前</h2><pre><code>StudentModel *student = [[StudentModel alloc] init];
+student.name          = @&quot;A&quot;;
+NSArray *array        = @[[InfoModel new], [InfoModel new], [InfoModel new]];
+student.datas         = array;
+
+//每次都要得到这个单例
+[[StoreValue sharedInstance] storeValue:student withKey:@&quot;FastCoding&quot;];
+</code></pre><h2 id="封装后"><a href="#封装后" class="headerlink" title="封装后"></a>封装后</h2><pre><code>StudentModel *student = [[StudentModel alloc] init];
+student.name          = @&quot;A&quot;;
+NSArray *array        = @[[InfoModel new], [InfoModel new], [InfoModel new]];
+student.datas         = array;
+[student storeValueWithKey:@&quot;FastCoding&quot;];
+</code></pre><h2 id="如何封装"><a href="#如何封装" class="headerlink" title="如何封装"></a>如何封装</h2><p>新建category: StoreValue</p>
+<pre><code>@implementation NSObject (StoreValue)
+
+//这样student对象就可以直接调用该方法来存储
+
+- (void)storeValueWithKey:(NSString *)key {
+[[StoreValue sharedInstance] storeValue:self withKey:key];
+}
+
+//studentModel可以直接调用类方法来存储
+
++ (id)valueByKey:(NSString *)key {
+return [[StoreValue sharedInstance] valueWithKey:key];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/30/iOS设计模式-代理/" itemprop="url">
                   iOS设计模式-代理
                 </a>
@@ -1255,182 +1568,6 @@ NSLog(@&quot;coin %ld&quot;, (long)gamePad.coin);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/27/iOS设计模式-外观/" itemprop="url">
-                  iOS设计模式-外观
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-27T15:09:48+10:00" content="2016-05-27">
-              2016-05-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/27/iOS设计模式-外观/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/27/iOS设计模式-外观/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="外观模式解决的问题"><a href="#外观模式解决的问题" class="headerlink" title="外观模式解决的问题"></a>外观模式解决的问题</h1><p>如果在viewController里绘制图形，需要单独的写很多行代码，耦合性很高</p>
-<pre><code>// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f;
-[circle draw];
-
-// 绘制了一个矩形
-Rectangle *rectangle = [Rectangle new];
-rectangle.width      = 10.f;
-rectangle.height     = 20.f;
-[rectangle draw];
-</code></pre><h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><ol>
-<li>用一个类将复杂的子系统隔离开来解耦合</li>
-<li>如果在同一文件内就是封装，用不同的文件来隔离就是外观模式。</li>
-<li>主系统只考虑输入什么参数，不必考虑系统内的细节</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0601.png" alt=""></p>
-<p>基类shape</p>
-<pre><code>- (void)draw {
-
-}
-</code></pre><p>子类Rectangle</p>
-<pre><code>@interface Rectangle : Shape
-@property (nonatomic) CGFloat  width;
-@property (nonatomic) CGFloat  height;
-
-- (void)draw;
-</code></pre><p>子类Circle</p>
-<pre><code>@interface Circle : Shape
-@property (nonatomic) CGFloat  radius;
-
-- (void)draw;
-</code></pre><p>ShapeMaker</p>
-<pre><code>+ (void)drawCircleWithParas:(NSDictionary *)paras {
-
-// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f; // paras里取
-[circle draw];
-}
-
-+ (void)drawCircleAndRectangle:(NSDictionary *)paras {
-// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f; // paras里取
-[circle draw];
-
-// 绘制了一个矩形
-Rectangle *rectangle = [Rectangle new];
-rectangle.width      = 10.f; // paras里取
-rectangle.height     = 20.f; // paras里取
-[rectangle draw];
-}
-</code></pre><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// 绘制一个圆的操作
-[ShapeMaker drawCircleWithParas:@{@&quot;a&quot; : @&quot;b&quot;}];
-
-// 绘制圆 + 矩形操作
-[ShapeMaker drawCircleAndRectangle:@{@&quot;a&quot; : @&quot;b&quot;, @&quot;c&quot; : @&quot;d&quot;}];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1477,7 +1614,7 @@ rectangle.height     = 20.f; // paras里取
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
