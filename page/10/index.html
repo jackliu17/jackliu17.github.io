@@ -238,6 +238,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/20/iOS项目5-UIPickerView国家选择/" itemprop="url">
+                  iOS项目5.UIPickerView国家选择
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T17:14:27+10:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/20/iOS项目5-UIPickerView国家选择/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/20/iOS项目5-UIPickerView国家选择/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png" alt="效果图"></p>
+<h1 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png" alt="项目架构"></p>
+<h1 id="设置xib"><a href="#设置xib" class="headerlink" title="设置xib"></a>设置xib</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIPickerViewDataSource.png" alt="设置xib"></p>
+<h1 id="数据模型创建"><a href="#数据模型创建" class="headerlink" title="数据模型创建"></a>数据模型创建</h1><p>自定义国家子视图和数据模型的创建如前例</p>
+<h1 id="滚轮中的每一行的视图设定"><a href="#滚轮中的每一行的视图设定" class="headerlink" title="滚轮中的每一行的视图设定"></a>滚轮中的每一行的视图设定</h1><p>因为是reuse的，所以不用像前例一样懒加载视图，只需要加载数据</p>
+<pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+
+JKCountryFlagView *countryView = (JKCountryFlagView *)view;
+
+if (!countryView) {
+    countryView = [JKCountryFlagView countryView];
+}
+
+countryView.countryModel = self.dataArray[row];
+
+return countryView;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/20/iOS项目4-应用程序管理/" itemprop="url">
                   iOS项目4.应用程序管理
                 </a>
@@ -864,126 +995,6 @@ if(!self.textTwo.hasText()){...}
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/4月12日之夜梦/" itemprop="url">
-                  4月12日之夜梦
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T10:53:22+10:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/情感杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">情感杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/12/4月12日之夜梦/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/12/4月12日之夜梦/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>昨夜梦见D君了。</p>
-<p>他是多年前的朋友。一晃眼就14年了。那时我大学刚毕业，懵懂的来到广州找工作，托这个破专业的福，我误打误撞的进入了这个连锁餐厅当见习经理。他也是，只不过比我早点进去而已。那段日子，每日起早贪黑的在厨房忙碌着，期间多少心酸的感受，以后再找机会写吧。记得2003年新年除夕的那一天，结束了单位的庆祝活动后，从餐厅出来，我们俩坐在惠福西路寺庙前的石墩上，仰望星空，探究着自己不可测的未来。那一幕，那一满夜空的星星，时至今日，依然记忆犹新。</p>
-<p>长话短说，先把昨天的梦记录完，有时间再写当年的往事吧。</p>
-<p>昨夜梦见他在自己创业的小店里，给我做饭，为了煎一条鱼，花了五十多分钟。我笑着对他说：这也太慢了，顾客都等急了。然后我又搬出了自己自以为擅长的市场分析理论，“来快餐店吃饭的顾客有两种，第一是要赶时间的，第二是慢吞吞吃饭的，你们的店只能招待第二类顾客了”。他的店里能提供很多各式各样的广式煲汤，我一直很好奇，这库存怎么管理，如果每天做了很多汤，又吃不完卖不掉呢？</p>
-<p>他在现实中创业了，在沉淀了十多年的餐饮行业开始了扬帆前行。真羡慕，祝福他，也勉励自己。</p>
-<p>最近老是做一些梦，想起很多人很多事。也许我们怀念一个人，更确切的是，通过他来怀念自己的过去吧。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1030,7 +1041,7 @@ if(!self.textTwo.hasText()){...}
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

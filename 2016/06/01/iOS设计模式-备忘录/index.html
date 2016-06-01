@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -61,46 +61,53 @@
 
 
 
-<meta name="description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
+<meta name="description" content="备忘录模式
+备忘录模式，什么都可以存！
+先设计抽象接口，再去考虑实现细节
+
+
+
+
+设计存储中心MementoCenter
++ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
+
++ (id)mementoObjectWithKey:(NSString *)key;
+指定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/index.html">
+<meta property="og:title" content="iOS设计模式-备忘录">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png">
-<meta property="og:updated_time" content="2016-05-11T06:06:49.000Z">
+<meta property="og:description" content="备忘录模式
+备忘录模式，什么都可以存！
+先设计抽象接口，再去考虑实现细节
+
+
+
+
+设计存储中心MementoCenter
++ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
+
++ (id)mementoObjectWithKey:(NSString *)key;
+指定">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo03.png">
+<meta property="og:updated_time" content="2016-06-01T02:05:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta name="twitter:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
+<meta name="twitter:title" content="iOS设计模式-备忘录">
+<meta name="twitter:description" content="备忘录模式
+备忘录模式，什么都可以存！
+先设计抽象接口，再去考虑实现细节
+
+
+
+
+设计存储中心MementoCenter
++ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
+
++ (id)mementoObjectWithKey:(NSString *)key;
+指定">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png">
 
 
 
@@ -118,7 +125,7 @@ CGFloa">
   };
 </script>
 
-  <title> iOS项目6.UIScrollView图片自动滚动 | Cowboy Tech </title>
+  <title> iOS设计模式-备忘录 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +267,7 @@ CGFloa">
             
             
               
-                iOS项目6.UIScrollView图片自动滚动
+                iOS设计模式-备忘录
               
             
           </h1>
@@ -272,38 +279,19 @@ CGFloa">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2016-06-01T11:01:54+10:00" content="2016-06-01">
+              2016-06-01
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
+                <a href="/2016/06/01/iOS设计模式-备忘录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/01/iOS设计模式-备忘录/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,54 +313,177 @@ CGFloa">
       
 
       
-        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png" alt="效果图"></p>
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png" alt="功能分析"></p>
-<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
+        <h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><ol>
+<li>备忘录模式，什么都可以存！</li>
+<li>先设计抽象接口，再去考虑实现细节</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo02.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo03.png" alt=""></p>
+<h2 id="设计存储中心"><a href="#设计存储中心" class="headerlink" title="设计存储中心"></a>设计存储中心</h2><p>MementoCenter</p>
+<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key;
+
++ (id)mementoObjectWithKey:(NSString *)key;
+</code></pre><h2 id="指定存储接口-编码-amp-解码"><a href="#指定存储接口-编码-amp-解码" class="headerlink" title="指定存储接口(编码&amp;解码)"></a>指定存储接口(编码&amp;解码)</h2><p>MementoCenterProtocol</p>
+<pre><code>@protocol MementoCenterProtocol &lt;NSObject&gt;
+
+@required
+
+//编码
+- (id)currentState;
+
+//解码
+- (void)recoverFromState:(id)state;
+
+@end
+</code></pre><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Apple</p>
+<pre><code>@interface Apple : NSObject &lt;MementoCenterProtocol&gt;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSNumber *age;
+@end
+@implementation Apple
+
+//编码
+- (id)currentState {
+return @{@&quot;name&quot;: self.name,
+         @&quot;age&quot; : self.age};
+     }
 
 
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
+//解码
+- (void)recoverFromState:(id)state {
 
-
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
-
-
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
+NSDictionary *data = state;
+self.name = data[@&quot;name&quot;];
+self.age  = data[@&quot;age&quot;];
 }
 
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+@end
+</code></pre><h2 id="实现存储机制"><a href="#实现存储机制" class="headerlink" title="实现存储机制"></a>实现存储机制</h2><p>MementoCenter</p>
+<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key {
 
+NSParameterAssert(object);
+NSParameterAssert(key);
+
+// 获取data
+id      data    = [object currentState];
+NSData *tmpData = [FastCoder dataWithRootObject:data];
+
+// 进行存储
+if (tmpData) {
+
+    [[NSUserDefaults standardUserDefaults] setObject:tmpData
+                                              forKey:key];
+}
 }
 
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
 
-//停止定时器
-[self.timer invalidate];
-</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
++ (id)mementoObjectWithKey:(NSString *)key {
+
+NSParameterAssert(key);
+
+id      data    = nil;
+NSData *tmpData = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+
+if (tmpData) {
+
+    data = [FastCoder objectWithData:tmpData];
+}
+
+return data;
+}
+</code></pre><h2 id="存储与获取"><a href="#存储与获取" class="headerlink" title="存储与获取"></a>存储与获取</h2><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+Apple *apple = [[Apple alloc] init];
+apple.name = @&quot;JiKeXueYuan&quot;;
+apple.age  = @(30);
+
+// save state
+[MementoCenter saveMementoObject:apple withKey:@&quot;Apple&quot;];
+
+// get state
+[apple recoverFromState:[MementoCenter mementoObjectWithKey:@&quot;Apple&quot;]];
+
+NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
+}
+</code></pre><h2 id="通过category优化"><a href="#通过category优化" class="headerlink" title="通过category优化"></a>通过category优化</h2><p>NSObject + MementoCenter</p>
+<pre><code>@implementation NSObject (MementoCenter)
+
+- (void)saveStateWithKey:(NSString *)key {
+
+NSParameterAssert(key);
+
+id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
+
+if ([obj respondsToSelector:@selector(currentState)]) {
+
+    [MementoCenter saveMementoObject:obj withKey:key];
+}
+}
+
+
+- (void)recoverFromStateWithKey:(NSString *)key {
+
+NSParameterAssert(key);
+
+id                         state = [MementoCenter mementoObjectWithKey:key];
+
+id &lt;MementoCenterProtocol&gt; obj   = (id &lt;MementoCenterProtocol&gt;)self;
+
+if ([obj respondsToSelector:@selector(recoverFromStateWithKey:)]) {
+
+    [obj recoverFromState:state];
+}
+}
+</code></pre><h2 id="传递协议对象所必须的判断"><a href="#传递协议对象所必须的判断" class="headerlink" title="传递协议对象所必须的判断"></a>传递协议对象所必须的判断</h2><pre><code>id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
+
+if ([obj respondsToSelector:@selector(currentState)]) {
+[MementoCenter saveMementoObject:obj withKey:key];
+}
+</code></pre><h2 id="优化后的存储与获取"><a href="#优化后的存储与获取" class="headerlink" title="优化后的存储与获取"></a>优化后的存储与获取</h2><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+Apple *apple = [[Apple alloc] init];
+apple.name = @&quot;JiKeXueYuan&quot;;
+apple.age  = @(30);
+
+[apple saveStateWithKey:@&quot;Ben&quot;];
+[apple recoverFromStateWithKey:@&quot;Ben&quot;];
+
+NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
+}
+</code></pre><h1 id="备忘录模式恢复UIView状态"><a href="#备忘录模式恢复UIView状态" class="headerlink" title="备忘录模式恢复UIView状态"></a>备忘录模式恢复UIView状态</h1><p>使用场景:UIView有NSCoding协议，意味着可以本地存储，但没有NSCopying，意味着如果要将一个view完整的复制过来，那是一个棘手的问题。</p>
+<p><strong>一个对象状态的存储并不是要整个对象，也有可能是其部分的属性,由需求来定</strong></p>
+<p>DemoView</p>
+<pre><code>@interface DemoView : UIView &lt;MementoCenterProtocol&gt;
+
+@end
+
+@implementation DemoView
+
+- (id)currentState {
+return @{@&quot;frame&quot; : NSStringFromCGRect(self.frame)};
+}
+
+- (void)recoverFromState:(id)state {
+NSDictionary *data = state;
+self.frame         = CGRectFromString(data[@&quot;frame&quot;]);
+}
+</code></pre><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+
+[super viewDidLoad];
+
+DemoView *demoView = [[DemoView alloc] init];
+demoView.frame     = CGRectMake(100, 100, 100, 100);
+[demoView saveStateWithKey:@&quot;A&quot;];
+
+[demoView recoverFromStateWithKey:@&quot;A&quot;];
+NSLog(@&quot;%@&quot;, demoView);
+}
 </code></pre>
       
     </div>
@@ -385,30 +496,18 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/iOS项目5-UIPickerView国家选择/" rel="next" title="iOS项目5.UIPickerView国家选择">
-                <i class="fa fa-chevron-left"></i> iOS项目5.UIPickerView国家选择
+              <a href="/2016/05/30/iOS设计模式-单例/" rel="next" title="iOS设计模式-单例">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-单例
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/24/OpenGL-ES/" rel="prev" title="OpenGL_ES">
-                OpenGL_ES <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +639,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能分析"><span class="nav-number">2.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义常量的两种方式"><span class="nav-number">3.</span> <span class="nav-text">定义常量的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIScrollView的配置"><span class="nav-number">4.</span> <span class="nav-text">UIScrollView的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加视图-插入"><span class="nav-number">5.</span> <span class="nav-text">添加视图 - 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器添加和停止"><span class="nav-number">6.</span> <span class="nav-text">定时器添加和停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环调用"><span class="nav-number">7.</span> <span class="nav-text">循环调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#备忘录模式"><span class="nav-number">1.</span> <span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计存储中心"><span class="nav-number">1.1.</span> <span class="nav-text">设计存储中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定存储接口-编码-amp-解码"><span class="nav-number">1.2.</span> <span class="nav-text">指定存储接口(编码&解码)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现存储机制"><span class="nav-number">1.4.</span> <span class="nav-text">实现存储机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储与获取"><span class="nav-number">1.5.</span> <span class="nav-text">存储与获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过category优化"><span class="nav-number">1.6.</span> <span class="nav-text">通过category优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递协议对象所必须的判断"><span class="nav-number">1.7.</span> <span class="nav-text">传递协议对象所必须的判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的存储与获取"><span class="nav-number">1.8.</span> <span class="nav-text">优化后的存储与获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备忘录模式恢复UIView状态"><span class="nav-number">2.</span> <span class="nav-text">备忘录模式恢复UIView状态</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -798,9 +897,9 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
-      var disqus_title = 'iOS项目6.UIScrollView图片自动滚动';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
+      var disqus_identifier = '2016/06/01/iOS设计模式-备忘录/';
+      var disqus_title = 'iOS设计模式-备忘录';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
