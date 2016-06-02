@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-01T02:07:19.000Z</updated>
+  <updated>2016-06-02T10:52:30.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,264 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-生成器</title>
+    <link href="http://jackliu17.github.io/2016/06/02/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <id>http://jackliu17.github.io/2016/06/02/iOS设计模式-生成器/</id>
+    <published>2016-06-02T00:58:50.000Z</published>
+    <updated>2016-06-02T10:52:30.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;生成器与建造房子&quot;&gt;&lt;a href=&quot;#生成器与建造房子&quot; class=&quot;headerlink&quot; title=&quot;生成器与建造房子&quot;&gt;&lt;/a&gt;生成器与建造房子&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类&lt;/li&gt;
+&lt;li&gt;建造过程的模块化处理,不同模块找不同的承包商&lt;/li&gt;
+&lt;li&gt;生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;生成器模式实例&quot;&gt;&lt;a href=&quot;#生成器模式实例&quot; class=&quot;headerlink&quot; title=&quot;生成器模式实例&quot;&gt;&lt;/a&gt;生成器模式实例&lt;/h1&gt;&lt;p&gt;需要注意的是，这里有两个协议需要具体承包商来遵循&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;总协议.对所有模块承包商的要求 (BuilderProtocol)&lt;/li&gt;
+&lt;li&gt;类别协议。分别对各自类别的承包商要求 (AbstractPartOne , AbstractPartTwo)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;AbstractPartOne&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol AbstractPartOne &amp;lt;NSObject&amp;gt;
+@required
+- (void)partOneBuilder;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractPartTwo&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol AbstractPartTwo &amp;lt;NSObject&amp;gt;
+@required
+- (void)buildTree;
+- (void)buildSoureWithNumber;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BuilderProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol BuilderProtocol &amp;lt;NSObject&amp;gt;
+
+@required
+- (id)build;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Builder&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Builder : NSObject
+@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractPartOne&amp;gt; partOne;
+@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractPartTwo&amp;gt; partTwo;
+
+- (id)builderAll;
+
+@end
+
+@implementation Builder
+
+- (id)builderAll {
+
+Builder *builder = [[[self class] alloc] init];
+[builder.partOne build];
+[builder.partOne build];
+
+return builder;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;生成器与生产汽车&quot;&gt;&lt;a href=&quot;#生成器与生产汽车&quot; class=&quot;headerlink&quot; title=&quot;生成器与生产汽车&quot;&gt;&lt;/a&gt;生成器与生产汽车&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;装配车间和组装产品-总指挥&quot;&gt;&lt;a href=&quot;#装配车间和组装产品-总指挥&quot; class=&quot;headerlink&quot; title=&quot;装配车间和组装产品(总指挥)&quot;&gt;&lt;/a&gt;装配车间和组装产品(总指挥)&lt;/h2&gt;&lt;p&gt;BuilderProtocol （这是对所有承包商的要求）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol BuilderProtocol &amp;lt;NSObject&amp;gt;
+
+@required
+- (id)build;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Builder&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Builder : NSObject
+
+@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractEngine&amp;gt; engine;
+@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractWheels&amp;gt; wheels;
+@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractDoor&amp;gt;   door;
+@property (nonatomic, strong) NSDictionary *productsInfo;
+
+- (void)buildAllParts;
+
+@end
+
+@implementation Builder
+
+- (void)buildAllParts {
+
+// 创建所有部件
+[self.engine build];
+[self.wheels build];
+[self.door build];
+
+NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+
+// 组装产品
+dataDic[@&amp;quot;engine&amp;quot;] = [self.engine infomation];
+dataDic[@&amp;quot;wheels&amp;quot;] = [self.wheels infomation];
+dataDic[@&amp;quot;door&amp;quot;]   = [self.door infomation];
+
+self.productsInfo = dataDic;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;设计各个部件的生成器-模块承包&quot;&gt;&lt;a href=&quot;#设计各个部件的生成器-模块承包&quot; class=&quot;headerlink&quot; title=&quot;设计各个部件的生成器(模块承包)&quot;&gt;&lt;/a&gt;设计各个部件的生成器(模块承包)&lt;/h2&gt;&lt;p&gt;AbstractDoor （对门模块承包商的要求）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol AbstractDoor &amp;lt;NSObject&amp;gt;
+@required
+- (void)doorColor:(UIColor *)color;
+- (NSString *)infomation;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractEngine （对引擎模块承包商的要求）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol AbstractEngine &amp;lt;NSObject&amp;gt;
+
+@required
+- (void)engineScale:(CGFloat)scale;
+- (void)engineWeight:(CGFloat)kg;
+- (NSString *)infomation;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractWheels （对轮子模块承包商的要求）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol AbstractWheels &amp;lt;NSObject&amp;gt;
+
+@required
+- (void)wheelsNumber:(NSNumber *)number;
+- (NSString *)infomation;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;产品制造-具体施工队&quot;&gt;&lt;a href=&quot;#产品制造-具体施工队&quot; class=&quot;headerlink&quot; title=&quot;产品制造(具体施工队)&quot;&gt;&lt;/a&gt;产品制造(具体施工队)&lt;/h2&gt;&lt;p&gt;Door &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Door : NSObject &amp;lt;AbstractDoor, BuilderProtocol&amp;gt;
+
+@end
+
+- (void)doorColor:(UIColor *)color {
+// todo
+}
+
+- (NSString *)infomation {
+return @&amp;quot;X1-door, color : red&amp;quot;;
+}
+
+- (id)build {
+// todo
+return nil;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Engine&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Engine : NSObject &amp;lt;AbstractEngine, BuilderProtocol&amp;gt;
+
+@end
+
+@implementation Engine
+
+- (void)engineScale:(CGFloat)scale {
+// todo
+}
+
+- (void)engineWeight:(CGFloat)kg {
+// todo
+}
+
+- (NSString *)infomation {
+return @&amp;quot;X1-Engine, scale : 10, weight : 100&amp;quot;;
+}
+
+- (id)build {
+// todo   
+return nil;
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Wheels&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Wheels : NSObject &amp;lt;BuilderProtocol, AbstractWheels&amp;gt;
+
+@end
+
+@implementation Wheels
+
+- (void)wheelsNumber:(NSNumber *)number {
+// todo
+}
+
+- (NSString *)infomation {
+return @&amp;quot;X1-wheels, number : 4&amp;quot;;
+}
+
+- (id)build {  
+// todo  
+return nil;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;YEngine(替换Engine)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface YEngine : NSObject &amp;lt;AbstractEngine, BuilderProtocol&amp;gt;
+
+@end
+
+@implementation YEngine
+
+- (void)engineScale:(CGFloat)scale {    
+// todo
+}
+
+- (void)engineWeight:(CGFloat)kg {   
+// todo
+}
+
+- (NSString *)infomation {  
+return @&amp;quot;Y-Engine, scale : 20, weight : 58&amp;quot;;
+}
+
+- (id)build {   
+// todo   
+return nil;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;开始生产&quot;&gt;&lt;a href=&quot;#开始生产&quot; class=&quot;headerlink&quot; title=&quot;开始生产&quot;&gt;&lt;/a&gt;开始生产&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+
+@property (nonatomic, strong) Builder *builder;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建组装者
+self.builder = [[Builder alloc] init];
+
+// 指定承包商
+self.builder.engine = [[YEngine alloc] init];
+self.builder.wheels = [[Wheels alloc] init];
+self.builder.door   = [[Door alloc] init];
+
+// 构建所有的部件
+[self.builder buildAllParts];
+
+// 获取产品
+NSLog(@&amp;quot;%@&amp;quot;, self.builder.productsInfo);
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;什么时候用protocol&quot;&gt;&lt;a href=&quot;#什么时候用protocol&quot; class=&quot;headerlink&quot; title=&quot;什么时候用protocol&quot;&gt;&lt;/a&gt;什么时候用protocol&lt;/h1&gt;&lt;p&gt;1.对持有的属性有一定的要求，比如要求该属性必须实现某种方法。这时可以要求它遵循一个或多个协议，比如:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@property (nonatomic, strong) id &amp;lt;BuilderProtocol, AbstractPartOne&amp;gt; partOne;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.对传入的值对象有一定的要求，比如比如要求它必须实现某种方法或返回某种类型。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;生成器与建造房子&quot;&gt;&lt;a href=&quot;#生成器与建造房子&quot; class=&quot;headerlink&quot; title=&quot;生成器与建造房子&quot;&gt;&lt;/a&gt;生成器与建造房子&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类&lt;/li&gt;
+&lt;l
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-备忘录</title>
@@ -2512,186 +2770,6 @@ do{
     <summary type="html">
     
       &lt;h1 id=&quot;读取JSON文件&quot;&gt;&lt;a href=&quot;#读取JSON文件&quot; class=&quot;headerlink&quot; title=&quot;读取JSON文件&quot;&gt;&lt;/a&gt;读取JSON文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let filePath: NSString = NSBundle.main
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS数据存储-CoreData</title>
-    <link href="http://jackliu17.github.io/2016/05/19/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-CoreData/"/>
-    <id>http://jackliu17.github.io/2016/05/19/iOS数据存储-CoreData/</id>
-    <published>2016-05-19T02:51:09.000Z</published>
-    <updated>2016-05-19T02:56:52.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;保存数据&quot;&gt;&lt;a href=&quot;#保存数据&quot; class=&quot;headerlink&quot; title=&quot;保存数据&quot;&gt;&lt;/a&gt;保存数据&lt;/h1&gt;&lt;h2 id=&quot;新建Entity&quot;&gt;&lt;a href=&quot;#新建Entity&quot; class=&quot;headerlink&quot; title=&quot;新建Entity&quot;&gt;&lt;/a&gt;新建Entity&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot; title=&quot;代码实现&quot;&gt;&lt;/a&gt;代码实现&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-import CoreData
-
-class ViewController: UIViewController {
-
-override func viewDidLoad(){
-    super.viewDidLoad()
-
-    let context = (UIApplication.sharedApplication()
-        .delegate as! AppDelegate)
-        .managedObjectContext
-
-
-    let row:AnyObject = NSEntityDescription.insertNewObjectForEntityForName(&amp;quot;Users&amp;quot;, inManagedObjectContext: context)
-
-    row.setValue(&amp;quot;jikexueyuan&amp;quot;, forKey: &amp;quot;name&amp;quot;)
-    row.setValue(1, forKey: &amp;quot;age&amp;quot;)
-
-    do{
-     try context.save()
-    }catch{
-    print(error)
-    }
-
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;注意要导入CoreData&lt;/li&gt;
-&lt;li&gt;这样赋值只能是单个数据，如果要添加多条数据，需要循环&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;打印数据文件路径&quot;&gt;&lt;a href=&quot;#打印数据文件路径&quot; class=&quot;headerlink&quot; title=&quot;打印数据文件路径&quot;&gt;&lt;/a&gt;打印数据文件路径&lt;/h2&gt;&lt;p&gt;AppDelegate&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-
-    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(&amp;quot;SingleViewCoreData.sqlite&amp;quot;)
-    print(url)
-    ......
-
-//Result
-file:///Users/jackliu/Library/Developer/CoreSimulator/Devices/A2C2C116-004D-4A10-95F0-654B4D89D1EB/data/Containers
-/Data/Application/F3D3A90B-A29D-42C9-A699-3FC44EF0D2CA/Documents/
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Application-Sqlitebrowser&quot;&gt;&lt;a href=&quot;#Application-Sqlitebrowser&quot; class=&quot;headerlink&quot; title=&quot;Application Sqlitebrowser&quot;&gt;&lt;/a&gt;Application Sqlitebrowser&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoreData2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;读取数据&quot;&gt;&lt;a href=&quot;#读取数据&quot; class=&quot;headerlink&quot; title=&quot;读取数据&quot;&gt;&lt;/a&gt;读取数据&lt;/h1&gt;&lt;h2 id=&quot;配置环境&quot;&gt;&lt;a href=&quot;#配置环境&quot; class=&quot;headerlink&quot; title=&quot;配置环境&quot;&gt;&lt;/a&gt;配置环境&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-import CoreData
-
-class UsersTableViewController: UITableViewController {
-
-    var dataArr:Array&amp;lt;AnyObject&amp;gt; = []
-    var context:NSManagedObjectContext!
-
-override func viewDidLoad() {
-        super.viewDidLoad()
-
-    context = (UIApplication.sharedApplication()
-                .delegate as! AppDelegate)
-                .managedObjectContext
-
-            refreshData()
-    }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;从sqlite数据库中读取&quot;&gt;&lt;a href=&quot;#从sqlite数据库中读取&quot; class=&quot;headerlink&quot; title=&quot;从sqlite数据库中读取&quot;&gt;&lt;/a&gt;从sqlite数据库中读取&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;func refreshData(){ 
-
-let f = NSFetchRequest(entityName: &amp;quot;Users&amp;quot;)
-
-do{
-try dataArr = context.executeFetchRequest(f)
-}catch{
-print(error)
-}
-tableView.reloadData()
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;KV取值配置Cell&quot;&gt;&lt;a href=&quot;#KV取值配置Cell&quot; class=&quot;headerlink&quot; title=&quot;KV取值配置Cell&quot;&gt;&lt;/a&gt;KV取值配置Cell&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -&amp;gt; UITableViewCell {
-
-    let cell = tableView.dequeueReusableCellWithIdentifier(&amp;quot;cell&amp;quot;, forIndexPath: indexPath)as UITableViewCell
-
-    let label = cell.viewWithTag(2) as! UILabel
-
-    let name: AnyObject! = dataArr[indexPath.row].valueForKey(&amp;quot;name&amp;quot;)
-    let age: AnyObject! = dataArr[indexPath.row].valueForKey(&amp;quot;age&amp;quot;)
-
-    label.text =  &amp;quot;name:\(name),age:\(age)&amp;quot;
-    return cell
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;viewWithTag&quot;&gt;&lt;a href=&quot;#viewWithTag&quot; class=&quot;headerlink&quot; title=&quot;viewWithTag( )&quot;&gt;&lt;/a&gt;viewWithTag( )&lt;/h2&gt;&lt;p&gt;通过标签找到子视图&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;let label = cell.viewWithTag(2) as! UILabel
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;点击Cell跳转视图&quot;&gt;&lt;a href=&quot;#点击Cell跳转视图&quot; class=&quot;headerlink&quot; title=&quot;点击Cell跳转视图&quot;&gt;&lt;/a&gt;点击Cell跳转视图&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-    let data = dataArr[indexPath.row] as! NSManagedObject
-
-    let vc = storyboard!.instantiateViewControllerWithIdentifier(&amp;quot;UserContent&amp;quot;)as! UserContentViewController
-
-    vc.data = data
-
-    presentViewController(vc, animated: true, completion: nil)
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;视图跳转-StoryboardId&quot;&gt;&lt;a href=&quot;#视图跳转-StoryboardId&quot; class=&quot;headerlink&quot; title=&quot;视图跳转 - StoryboardId&quot;&gt;&lt;/a&gt;视图跳转 - StoryboardId&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let vc = storyboard!.instantiateViewControllerWithIdentifier(&amp;quot;UserContent&amp;quot;)as! UserContentViewController
-
-vc.data = data
-
-presentViewController(vc, animated: true, completion: nil)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;返回到tableView视图时&quot;&gt;&lt;a href=&quot;#返回到tableView视图时&quot; class=&quot;headerlink&quot; title=&quot;返回到tableView视图时&quot;&gt;&lt;/a&gt;返回到tableView视图时&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func viewWillAppear(animated: Bool) {
-    refreshData()
-}
-
-func refreshData(){ 
-
-let f = NSFetchRequest(entityName: &amp;quot;Users&amp;quot;)
-
-do{
-try dataArr = context.executeFetchRequest(f)
-}catch{
-print(error)
-}
-tableView.reloadData()
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;删除数据&quot;&gt;&lt;a href=&quot;#删除数据&quot; class=&quot;headerlink&quot; title=&quot;删除数据&quot;&gt;&lt;/a&gt;删除数据&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;override func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -&amp;gt; Bool {
-
-    return true
-}
-
-
-override func tableView(tableView: UITableView,commitEditingStyle editingStyle: UITableViewCellEditingStyle,forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-
-        //从数据库删除
-        context.deleteObject(dataArr[indexPath.row] as! NSManagedObject)
-
-        //存档
-        do {
-          try context.save()
-        } catch _ {
-        }
-
-        //刷新
-        refreshData()
-
-    } else if editingStyle == .Insert {
-
-    }    
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;接收到传递过来的CoreData数据&quot;&gt;&lt;a href=&quot;#接收到传递过来的CoreData数据&quot; class=&quot;headerlink&quot; title=&quot;接收到传递过来的CoreData数据&quot;&gt;&lt;/a&gt;接收到传递过来的CoreData数据&lt;/h1&gt;&lt;p&gt;UserContentViewController&lt;/p&gt;
-&lt;h2 id=&quot;取值&quot;&gt;&lt;a href=&quot;#取值&quot; class=&quot;headerlink&quot; title=&quot;取值&quot;&gt;&lt;/a&gt;取值&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var data:NSManagedObject!
-
-tfName.text = data.valueForKey(&amp;quot;name&amp;quot;) as? String        
-let age: AnyObject! = data.valueForKey(&amp;quot;age&amp;quot;)
-tfAge.text = &amp;quot;\(age)&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;赋值存档&quot;&gt;&lt;a href=&quot;#赋值存档&quot; class=&quot;headerlink&quot; title=&quot;赋值存档&quot;&gt;&lt;/a&gt;赋值存档&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;data.setValue(tfName.text, forKey: &amp;quot;name&amp;quot;)
-data.setValue(Int(tfAge.text!), forKey: &amp;quot;age&amp;quot;)
-
-do{
-    try data.managedObjectContext!.save()
-}catch{
-    print(error)
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;保存数据&quot;&gt;&lt;a href=&quot;#保存数据&quot; class=&quot;headerlink&quot; title=&quot;保存数据&quot;&gt;&lt;/a&gt;保存数据&lt;/h1&gt;&lt;h2 id=&quot;新建Entity&quot;&gt;&lt;a href=&quot;#新建Entity&quot; class=&quot;headerlink&quot; title=&quot;新
     
     </summary>
     

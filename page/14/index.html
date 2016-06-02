@@ -238,6 +238,379 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/11/Swift中的函数和闭包/" itemprop="url">
+                  Swift中的函数和闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:16+11:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/Swift中的函数和闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift中的函数和闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="定义和调用函数"><a href="#定义和调用函数" class="headerlink" title="定义和调用函数"></a>定义和调用函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fun 函数名（形参列表）-&gt; 返回值类型 &#123;</span><br><span class="line">//可执行语句组成的函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="两个参数"><a href="#两个参数" class="headerlink" title="两个参数"></a>两个参数</h3><pre><code>func sayHello(personName:String)-&gt; String {
+
+  return &quot;Hello ,&quot; + personName + &quot;!&quot;
+}
+
+print(sayHello(&quot;Anna&quot;))
+</code></pre><h3 id="没有参数"><a href="#没有参数" class="headerlink" title="没有参数"></a>没有参数</h3><pre><code>func sayHellloWorld() -&gt; String{
+
+return &quot;Hello world!&quot;
+}
+</code></pre><h2 id="函数形参和实参"><a href="#函数形参和实参" class="headerlink" title="函数形参和实参"></a>函数形参和实参</h2><pre><code>func max(x:Int, y:Int)-&gt;Int { //这里的xy就是形参
+
+return x&gt;y ? x:y  
+
+}
+
+print(max(3,5)) //这里的3，5是实参
+</code></pre><h3 id="外部参数名"><a href="#外部参数名" class="headerlink" title="外部参数名"></a>外部参数名</h3><pre><code>func area (宽 width:Double ,高 height:Double ) -&gt;Double {
+
+return width * height
+}
+
+print (area(宽:3.4,高:4.7)) //宽和高为外部函数名
+</code></pre><h3 id="以-代替外部参数名-Swift-1-x"><a href="#以-代替外部参数名-Swift-1-x" class="headerlink" title="以#代替外部参数名 (Swift 1.x)"></a>以#代替外部参数名 (Swift 1.x)</h3><p>如果外部参数名和局部参数一样的话，只需要在局部参数前加 #</p>
+<pre><code>func area (#width:Double ,#height:Double ) -&gt;Double {
+
+return width * height
+}
+
+print (area(width:3.4,height:4.7)) //width和height为外部函数名
+</code></pre><h3 id="数组参数"><a href="#数组参数" class="headerlink" title="数组参数"></a>数组参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func sum(numbers:Int...)-&gt;Int &#123;</span><br><span class="line">var total: Int = 0</span><br><span class="line">for num in numbers &#123;</span><br><span class="line">   total += num</span><br><span class="line">&#125;</span><br><span class="line">print(total)</span><br><span class="line">return total</span><br><span class="line">&#125;</span><br><span class="line">sum(1,3,4,5)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在参数类型后面添加…表示该参数可以接受多个参数值</li>
+<li>一个函数当中只有一个数组参数,并且位于列表的最后</li>
+</ol>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> func sayHi(msg:String, name:String=&quot;Lily&quot;)&#123;</span><br><span class="line"> print (&quot;\(name),\(msg)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;, name:&quot;Tom&quot;) //如果传入了，就使用传入的新值</span><br></pre></td></tr></table></figure>
+<h3 id="忽略形参名，添加下划线"><a href="#忽略形参名，添加下划线" class="headerlink" title="忽略形参名，添加下划线 _"></a>忽略形参名，添加下划线 _</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func sayHi(msg:String, _name:String=&quot;Lily&quot;)&#123; </span><br><span class="line"> print (&quot;\(name),\(msg)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;,&quot;Tom&quot;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>如果函数里有可变参数也有默认参数，数组参数放在最后面，默认参数出现在次后面</li>
+</ol>
+<h3 id="变量形参-swift3将取消"><a href="#变量形参-swift3将取消" class="headerlink" title="变量形参 (swift3将取消)"></a>变量形参 (swift3将取消)</h3><pre><code>//这里的形参是个变量，如果去掉var就是个常量，因为形参默认是常量constant
+func factorial(var number:Int) -&gt; Int{
+var result:Int = 1
+while number &gt; 1 {
+    result = result * number
+    number -= 1
+}
+return result
+}
+print(factorial(3))
+</code></pre><h3 id="In-out形参"><a href="#In-out形参" class="headerlink" title="In-out形参"></a>In-out形参</h3><pre><code>func swap (inout a:Int, inout b:Int){
+let tmp = a
+a = b
+b = tmp
+}
+
+var a:Int = 1
+var b:Int = 3
+swap(&amp;a,&amp;b)
+print(&quot;交换之后的结构为:a=\(a),b=\(b)&quot;)
+</code></pre><ol>
+<li>In-out参数就是强制传递变量的指针，因为在swift里，大多是值类型，而不是指针类型</li>
+<li>只能传入变量作为实参</li>
+<li>输入输出不能带有默认值</li>
+<li>如果你用关键字inout标记了一个参数，这个参数不能再用var或者let去标记</li>
+</ol>
+<h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2><h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><p>没有指定返回类型的函数总返回void,在swift中，void可以理解为空元组</p>
+<pre><code>func sayHi2(){
+print(&quot;welcome&quot;)
+}
+sayHi2()
+</code></pre><h3 id="多个返回值"><a href="#多个返回值" class="headerlink" title="多个返回值"></a>多个返回值</h3><pre><code>func area(width:Double,height:Double)-&gt;(Double,Double){
+let s = width * height
+let c = (width + height) * 2
+return (s,c)
+}
+print(area(3.1, height: 3.4))
+</code></pre><h2 id="函数使用"><a href="#函数使用" class="headerlink" title="函数使用"></a>函数使用</h2><h3 id="函数作为变量"><a href="#函数作为变量" class="headerlink" title="函数作为变量"></a>函数作为变量</h3><pre><code>func addTwoInts(a:Int,b:Int)-&gt;Int{
+return a+b
+}
+
+func multiplyTwoInts(a:Int,b:Int)-&gt;Int{ 
+return a*b
+}
+
+var mathFunction:(Int,Int) -&gt; Int = multiplyTwoInts
+print(&quot;Result:\(mathFunction(2,3))&quot;)
+</code></pre><h3 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h3><pre><code>func addTwoInts(a:Int,b:Int)-&gt;Int{
+return a+b
+}
+
+func multiplyTwoInts(a:Int,b:Int)-&gt;Int{
+return a*b
+}
+
+func printMathResult(mathFunction:(Int,Int)-&gt;Int,a:Int,b:Int){
+print(&quot;Result:\(mathFunction(a,b))&quot;)
+}
+
+printMathResult(addTwoInts,a: 3,b: 5)
+</code></pre><h3 id="函数类型作为返回值类型"><a href="#函数类型作为返回值类型" class="headerlink" title="函数类型作为返回值类型"></a>函数类型作为返回值类型</h3><pre><code>func squre(num:Int) -&gt;Int{
+return num * num
+}
+
+func cube(num:Int) -&gt;Int{
+return num * num * num
+}
+
+func getMathFunc (jack: String)-&gt; (Int)-&gt;Int {
+
+switch (jack){
+case &quot;squre&quot;:
+    return squre
+default:
+    return cube
+}
+}
+
+var mathFunc = getMathFunc(&quot;other&quot;) // 返回的值是需要传入整数的函数
+print(mathFunc(5)) //所以这里传入整数
+</code></pre><h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>形参和返回值不一样的同名函数</p>
+<pre><code>//1.
+func test(){
+print(&quot;无参数的test()函数&quot;)
+}
+
+//2.
+func test (msg: String){
+print(&quot;重载的test()函数\(msg)&quot;)
+}
+
+//3.
+func test(msg: String) -&gt; String {
+print(&quot;重载的test()函数\(msg),带返回值&quot;)
+return &quot;test&quot;
+}
+
+//4 这不算重载, 仅有形参名一样是不行的
+func test(message:String){
+print(&quot;重载的test()函数\(message)&quot;)
+}
+
+//调用1
+test()
+
+//调用2
+var result:Void = test(&quot;Jike&quot;)
+
+//调用3
+var result2: String = test(&quot;Welcome , Geek&quot;)
+</code></pre><h2 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h2><p>函数体内部所定义的函数</p>
+<pre><code>func getMathFunc(jackliu: String) -&gt; (Int) -&gt;Int{
+
+func squre (num:Int) -&gt; Int{
+    return num * num
+}
+
+func cube (num:Int) -&gt;Int{
+    return num * num * num
+}
+
+switch(jackliu){
+case &quot;squre&quot;:
+    return squre
+default: 
+    return cube
+}
+}
+
+var mathFunc:(Int)-&gt;Int  = getMathFunc (&quot;squre&quot;)
+var mathFunc = getMathFunc (&quot;squre&quot;) // 这样写说明即使不写变量的类型，系统也会进行推断
+print(mathFunc(4)) //outcome is 16
+
+mathFunc = getMathFunc (&quot;other&quot;)
+print(mathFunc(4)) //outcome is 64
+</code></pre><h1 id="闭包表达式"><a href="#闭包表达式" class="headerlink" title="闭包表达式"></a>闭包表达式</h1><h2 id="闭包的写法"><a href="#闭包的写法" class="headerlink" title="闭包的写法"></a>闭包的写法</h2><p>将嵌套函数改写，去掉函数名。因为嵌套函数的函数名已经可以省略了。类似于OC的block</p>
+<pre><code>{ （形参列表）-&gt; 返回值类型 in
+   可执行表达式
+}
+</code></pre><h2 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h2><pre><code>func getMathFunc(jackliu: String) -&gt; (Int) -&gt;Int{
+
+switch(jackliu){
+case &quot;squre&quot;:
+    return { (num: Int) -&gt; Int in
+        return num * num
+    }
+default:
+    return { (num:Int) -&gt; Int in
+        return num * num * num
+
+    }
+}
+}
+
+var mathFunc = getMathFunc(&quot;squre&quot;)
+print(mathFunc(5)) //outcome is 25
+mathFunc = getMathFunc (&quot;other&quot;)
+print(mathFunc(5)) //outcome is 125
+</code></pre><h2 id="利用上下文推断类型"><a href="#利用上下文推断类型" class="headerlink" title="利用上下文推断类型"></a>利用上下文推断类型</h2><p>Swift可以推断闭包的形参类型和返回值类型<br>函数和闭包是统一的，函数和闭包都是引用类型，当赋值给变量时，不会复制，而是指向同一个闭包   </p>
+<p>省略形参类型，因为从左侧就可以推断了</p>
+<pre><code>var squre:(Int) -&gt; Int = {(num) in return num * num}
+print(squre(3))   //outcome is 9
+</code></pre><p>因为可以推断，所以小括号也是可以省略的</p>
+<pre><code>var squre:(Int) -&gt; Int = {num in return num * num}
+print(squre(3))   //outcome is 9
+</code></pre><p>如果闭包表达式只有一行代码，而且这行代码就是返回值，也可以省略return。通过$0,$1…来引用第一个，第二个参数</p>
+<pre><code>var squre:(Int) -&gt; Int = {$0 * $0}
+print(squre(3))  //out come is 9
+
+var result: Int = { //这里的Int不是返回值类型，而是形参
+    var result = 1
+for i in 1...$1{
+   result *= $0
+}
+return result
+}(4,3)
+print(result) //outcome is 64
+</code></pre><h2 id="尾随闭包"><a href="#尾随闭包" class="headerlink" title="尾随闭包"></a>尾随闭包</h2><pre><code>func someFunction(num:Int, fn:(Int) -&gt;()){
+
+}
+</code></pre><p>本来应该是这样 </p>
+<pre><code>someFunctioin (20,{}) //only in Swift 1.0
+</code></pre><p>可以将小括号提前提高可读性，这就是尾随闭包</p>
+<pre><code>someFunction(20){}  //only in Swift 1.0
+someFunction(20){_ in } //Swift 2.2
+</code></pre><h2 id="捕获上下文中的变量或者常量"><a href="#捕获上下文中的变量或者常量" class="headerlink" title="捕获上下文中的变量或者常量"></a>捕获上下文中的变量或者常量</h2><p>闭包（嵌套函数）可以访问或者修改其所在上下文中的变量或常量</p>
+<pre><code>func makeArr(ele:String) -&gt; () -&gt; [String]{
+
+//创建一个不包含任何元素的数组
+var arr: [String] = []
+func addElement() -&gt;[String]{
+
+//向arr数组中添加一个元素
+arr.append(ele)
+
+return arr
+}
+return addElement
+}
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><ol>
+<li>函数的形参是标识，实参是传入的值</li>
+<li>数组参数，参数可以接受多个参数值，位于列表最后，传入一个数组</li>
+<li>默认参数，在函数的形参列表里都设定好了一个默认值</li>
+<li>变量形参，详见后文</li>
+<li>In-out形参，详见后文</li>
+</ol>
+<h2 id="函数的使用"><a href="#函数的使用" class="headerlink" title="函数的使用"></a>函数的使用</h2><ol>
+<li>作为变量,在定义变量的类型时，列出所需函数的形参和返回值即可。注意右侧的函数不带括号，否则就是执行函数了</li>
+<li>作为函数参数,在定义形参的类型时，列出所需函数的形参和返回值即可。</li>
+<li>作为函数返回值类型, 注意有两个箭头。如果将具有函数返回值的函数设为变量，因为可以根据右侧推断，左侧的变量可以不用写变量类型了。</li>
+<li>函数重载，形参和返回值不一样的同名函数.仅有形参名一样是不行的</li>
+</ol>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包{ }"></a>闭包{ }</h2><ol>
+<li>函数和闭包是统一的，函数和闭包都是引用类型，当赋值给变量时，不会复制，而是指向同一个闭包 </li>
+<li>将闭包设为变量就相当于将函数设为变量，如果左侧写明了变量类型，那系统会自动推断右侧的闭包形参和返回值类型。</li>
+<li>尾随闭包，也就是将闭包当做形参传入</li>
+<li>闭包或者嵌套函数，可以访问上下文中的变量或者常量</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/10/Swift中的字符串和集合/" itemprop="url">
                   Swift中的字符串和集合
                 </a>
@@ -1049,7 +1422,7 @@ willUnderflow = willUnderflow &amp;-1 //下溢
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">69</span>
+              <span class="site-state-item-count">70</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

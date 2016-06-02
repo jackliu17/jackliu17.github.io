@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_dataStorage," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,36 +61,50 @@
 
 
 
-<meta name="description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta name="description" content="生成器与建造房子
+起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类
+建造过程的模块化处理,不同模块找不同的承包商
+生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        let filePath = NSBundle.m">
+
+生成器模式实例需要注意的是，这里有两个协议需要具体承包商来遵循
+
+总协议.对所有模块承包商的要求 (BuilderProtocol)
+类别协议。分别对各自类别的承包商要求 (AbstractPar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS数据存储-XML">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/index.html">
+<meta property="og:title" content="iOS设计模式-生成器">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/02/iOS设计模式-生成器/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta property="og:description" content="生成器与建造房子
+起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类
+建造过程的模块化处理,不同模块找不同的承包商
+生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        let filePath = NSBundle.m">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png">
-<meta property="og:updated_time" content="2016-05-20T02:48:14.000Z">
+
+生成器模式实例需要注意的是，这里有两个协议需要具体承包商来遵循
+
+总协议.对所有模块承包商的要求 (BuilderProtocol)
+类别协议。分别对各自类别的承包商要求 (AbstractPar">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png">
+<meta property="og:updated_time" content="2016-06-02T10:52:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS数据存储-XML">
-<meta name="twitter:description" content="Start parse XML注意要遵循协议NSXMLParserDelegate
-class ViewController: UIViewController,NSXMLParserDelegate {
+<meta name="twitter:title" content="iOS设计模式-生成器">
+<meta name="twitter:description" content="生成器与建造房子
+起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类
+建造过程的模块化处理,不同模块找不同的承包商
+生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        let filePath = NSBundle.m">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png">
+
+生成器模式实例需要注意的是，这里有两个协议需要具体承包商来遵循
+
+总协议.对所有模块承包商的要求 (BuilderProtocol)
+类别协议。分别对各自类别的承包商要求 (AbstractPar">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png">
 
 
 
@@ -108,7 +122,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
   };
 </script>
 
-  <title> iOS数据存储-XML | Cowboy Tech </title>
+  <title> iOS设计模式-生成器 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -250,7 +264,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
             
             
               
-                iOS数据存储-XML
+                iOS设计模式-生成器
               
             
           </h1>
@@ -262,8 +276,8 @@ class ViewController: UIViewController,NSXMLParserDelegate {
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T12:45:50+10:00" content="2016-05-20">
-              2016-05-20
+            <time itemprop="dateCreated" datetime="2016-06-02T10:58:50+10:00" content="2016-06-02">
+              2016-06-02
             </time>
           </span>
 
@@ -292,8 +306,8 @@ class ViewController: UIViewController,NSXMLParserDelegate {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/20/iOS数据存储-XML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-XML/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/iOS设计模式-生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/02/iOS设计模式-生成器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -315,88 +329,239 @@ class ViewController: UIViewController,NSXMLParserDelegate {
       
 
       
-        <h1 id="Start-parse-XML"><a href="#Start-parse-XML" class="headerlink" title="Start parse XML"></a>Start parse XML</h1><p><strong>注意要遵循协议NSXMLParserDelegate</strong></p>
-<pre><code>class ViewController: UIViewController,NSXMLParserDelegate {
+        <h1 id="生成器与建造房子"><a href="#生成器与建造房子" class="headerlink" title="生成器与建造房子"></a>生成器与建造房子</h1><ol>
+<li>起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类</li>
+<li>建造过程的模块化处理,不同模块找不同的承包商</li>
+<li>生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png" alt=""></p>
+<h1 id="生成器模式实例"><a href="#生成器模式实例" class="headerlink" title="生成器模式实例"></a>生成器模式实例</h1><p>需要注意的是，这里有两个协议需要具体承包商来遵循</p>
+<ol>
+<li>总协议.对所有模块承包商的要求 (BuilderProtocol)</li>
+<li>类别协议。分别对各自类别的承包商要求 (AbstractPartOne , AbstractPartTwo)</li>
+</ol>
+<p>AbstractPartOne</p>
+<pre><code>@protocol AbstractPartOne &lt;NSObject&gt;
+@required
+- (void)partOneBuilder;
+@end
+</code></pre><p>AbstractPartTwo</p>
+<pre><code>@protocol AbstractPartTwo &lt;NSObject&gt;
+@required
+- (void)buildTree;
+- (void)buildSoureWithNumber;
+@end
+</code></pre><p>BuilderProtocol</p>
+<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+@required
+- (id)build;
+@end
+</code></pre><p>Builder</p>
+<pre><code>@interface Builder : NSObject
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartTwo&gt; partTwo;
 
-        let filePath = NSBundle.mainBundle().pathForResource(&quot;data&quot;, ofType: &quot;xml&quot;)!
-        let fileUrl = NSURL(fileURLWithPath: filePath )
-        let parser = NSXMLParser(contentsOfURL:fileUrl)
+- (id)builderAll;
 
-        parser!.delegate = self
-        parser!.parse()
+@end
 
-    }
-</code></pre><h1 id="Parse-to-get-node-and-attribute"><a href="#Parse-to-get-node-and-attribute" class="headerlink" title="Parse to get node and attribute"></a>Parse to get node and attribute</h1><pre><code>var currentNodeName:String!
+@implementation Builder
 
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {      
-    currentNodeName = elementName
-    if elementName == &quot;person&quot; { 
-        //需要判断，如果是空值的话，也不会报错
-        if let age: AnyObject=attributeDict[&quot;age&quot;]{
-            print(&quot;age:\(age)&quot;)
-        }
-    }
+- (id)builderAll {
+
+Builder *builder = [[[self class] alloc] init];
+[builder.partOne build];
+[builder.partOne build];
+
+return builder;
 }
-</code></pre><h1 id="Parse-to-get-Value-in-node"><a href="#Parse-to-get-Value-in-node" class="headerlink" title="Parse to get Value in node"></a>Parse to get Value in node</h1><pre><code>//获得节点的实际内容
-func parser(parser: NSXMLParser, foundCharacters string: String) {
 
-    let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+@end
+</code></pre><h1 id="生成器与生产汽车"><a href="#生成器与生产汽车" class="headerlink" title="生成器与生产汽车"></a>生成器与生产汽车</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png" alt=""></p>
+<h2 id="装配车间和组装产品-总指挥"><a href="#装配车间和组装产品-总指挥" class="headerlink" title="装配车间和组装产品(总指挥)"></a>装配车间和组装产品(总指挥)</h2><p>BuilderProtocol （这是对所有承包商的要求）</p>
+<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
 
-    if str != &quot;&quot;{
+@required
+- (id)build;
 
-        print(&quot;current node : \(currentNodeName), value: \(str)&quot;)
-    }
+@end
+</code></pre><p>Builder</p>
+<pre><code>@interface Builder : NSObject
+
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractEngine&gt; engine;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractWheels&gt; wheels;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractDoor&gt;   door;
+@property (nonatomic, strong) NSDictionary *productsInfo;
+
+- (void)buildAllParts;
+
+@end
+
+@implementation Builder
+
+- (void)buildAllParts {
+
+// 创建所有部件
+[self.engine build];
+[self.wheels build];
+[self.door build];
+
+NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+
+// 组装产品
+dataDic[@&quot;engine&quot;] = [self.engine infomation];
+dataDic[@&quot;wheels&quot;] = [self.wheels infomation];
+dataDic[@&quot;door&quot;]   = [self.door infomation];
+
+self.productsInfo = dataDic;
 }
-</code></pre><h2 id="剔除空格的字符串"><a href="#剔除空格的字符串" class="headerlink" title="剔除空格的字符串"></a>剔除空格的字符串</h2><pre><code>let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-</code></pre><h2 id="判断不为空"><a href="#判断不为空" class="headerlink" title="判断不为空"></a>判断不为空</h2><pre><code>if str != &quot;&quot;{
-    ...
+
+@end
+</code></pre><h2 id="设计各个部件的生成器-模块承包"><a href="#设计各个部件的生成器-模块承包" class="headerlink" title="设计各个部件的生成器(模块承包)"></a>设计各个部件的生成器(模块承包)</h2><p>AbstractDoor （对门模块承包商的要求）</p>
+<pre><code>@protocol AbstractDoor &lt;NSObject&gt;
+@required
+- (void)doorColor:(UIColor *)color;
+- (NSString *)infomation;
+@end
+</code></pre><p>AbstractEngine （对引擎模块承包商的要求）</p>
+<pre><code>@protocol AbstractEngine &lt;NSObject&gt;
+
+@required
+- (void)engineScale:(CGFloat)scale;
+- (void)engineWeight:(CGFloat)kg;
+- (NSString *)infomation;
+
+@end
+</code></pre><p>AbstractWheels （对轮子模块承包商的要求）</p>
+<pre><code>@protocol AbstractWheels &lt;NSObject&gt;
+
+@required
+- (void)wheelsNumber:(NSNumber *)number;
+- (NSString *)infomation;
+
+@end
+</code></pre><h2 id="产品制造-具体施工队"><a href="#产品制造-具体施工队" class="headerlink" title="产品制造(具体施工队)"></a>产品制造(具体施工队)</h2><p>Door </p>
+<pre><code>@interface Door : NSObject &lt;AbstractDoor, BuilderProtocol&gt;
+
+@end
+
+- (void)doorColor:(UIColor *)color {
+// todo
 }
-</code></pre><h1 id="Question-Project"><a href="#Question-Project" class="headerlink" title="Question Project"></a>Question Project</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png" alt=""></p>
-<h2 id="Qustion-Model"><a href="#Qustion-Model" class="headerlink" title="Qustion Model"></a>Qustion Model</h2><pre><code>class Question: NSObject {
 
-var question:String!
-var right:String!
-var anwserA:String!
-var anwserB:String!
-var anwserC:String!
-var anwserD:String!
+- (NSString *)infomation {
+return @&quot;X1-door, color : red&quot;;
 }
-</code></pre><h2 id="Parse-all-node-automatically-without-loop"><a href="#Parse-all-node-automatically-without-loop" class="headerlink" title="Parse all node automatically without loop"></a>Parse all node automatically without loop</h2><pre><code>var questions:Array&lt;Question&gt; = []    
-var currentQuestion:Question!
 
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-
-    if elementName == &quot;question&quot; {
-
-        currentQuestion = Question()
-        questions.append(currentQuestion)
-        currentQuestion.question = attributeDict[&quot;text&quot;]! as String
-        currentQuestion.right = attributeDict[&quot;right&quot;]! as String
-
-    } else if elementName == &quot;anwser&quot; {
-
-        let tag = attributeDict[&quot;tag&quot;]! as String
-
-        if tag == &quot;A&quot;{
-            currentQuestion.anwserA = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;B&quot;{
-            currentQuestion.anwserB = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;C&quot;{
-            currentQuestion.anwserC = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;D&quot;{
-            currentQuestion.anwserD = attributeDict[&quot;text&quot;]! as String
-        }
-    }
+- (id)build {
+// todo
+return nil;
 }
-</code></pre><h2 id="After-Parse-finish"><a href="#After-Parse-finish" class="headerlink" title="After Parse finish"></a>After Parse finish</h2><pre><code>func parserDidEndDocument(parser: NSXMLParser) {
-...
+@end
+</code></pre><p>Engine</p>
+<pre><code>@interface Engine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
+
+@end
+
+@implementation Engine
+
+- (void)engineScale:(CGFloat)scale {
+// todo
 }
-</code></pre><h2 id="Add-new-element-to-Array"><a href="#Add-new-element-to-Array" class="headerlink" title="Add new element to Array"></a>Add new element to Array</h2><pre><code>questions.append(currentQuestion)
-</code></pre><h2 id="Judge-if-equal-or-not"><a href="#Judge-if-equal-or-not" class="headerlink" title="Judge if equal or not"></a>Judge if equal or not</h2><pre><code>if tag == &quot;A&quot;
-</code></pre>
+
+- (void)engineWeight:(CGFloat)kg {
+// todo
+}
+
+- (NSString *)infomation {
+return @&quot;X1-Engine, scale : 10, weight : 100&quot;;
+}
+
+- (id)build {
+// todo   
+return nil;
+}
+@end
+</code></pre><p>Wheels</p>
+<pre><code>@interface Wheels : NSObject &lt;BuilderProtocol, AbstractWheels&gt;
+
+@end
+
+@implementation Wheels
+
+- (void)wheelsNumber:(NSNumber *)number {
+// todo
+}
+
+- (NSString *)infomation {
+return @&quot;X1-wheels, number : 4&quot;;
+}
+
+- (id)build {  
+// todo  
+return nil;
+}
+
+@end
+</code></pre><p>YEngine(替换Engine)</p>
+<pre><code>@interface YEngine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
+
+@end
+
+@implementation YEngine
+
+- (void)engineScale:(CGFloat)scale {    
+// todo
+}
+
+- (void)engineWeight:(CGFloat)kg {   
+// todo
+}
+
+- (NSString *)infomation {  
+return @&quot;Y-Engine, scale : 20, weight : 58&quot;;
+}
+
+- (id)build {   
+// todo   
+return nil;
+}
+
+@end
+</code></pre><h2 id="开始生产"><a href="#开始生产" class="headerlink" title="开始生产"></a>开始生产</h2><p>ViewController</p>
+<pre><code>@interface ViewController ()
+
+@property (nonatomic, strong) Builder *builder;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建组装者
+self.builder = [[Builder alloc] init];
+
+// 指定承包商
+self.builder.engine = [[YEngine alloc] init];
+self.builder.wheels = [[Wheels alloc] init];
+self.builder.door   = [[Door alloc] init];
+
+// 构建所有的部件
+[self.builder buildAllParts];
+
+// 获取产品
+NSLog(@&quot;%@&quot;, self.builder.productsInfo);
+}
+
+@end
+</code></pre><h1 id="什么时候用protocol"><a href="#什么时候用protocol" class="headerlink" title="什么时候用protocol"></a>什么时候用protocol</h1><p>1.对持有的属性有一定的要求，比如要求该属性必须实现某种方法。这时可以要求它遵循一个或多个协议，比如:</p>
+<pre><code>@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
+</code></pre><p>2.对传入的值对象有一定的要求，比如比如要求它必须实现某种方法或返回某种类型。</p>
+
       
     </div>
 
@@ -412,7 +577,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-dataStorage/" rel="tag">#iOS_dataStorage</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -421,17 +586,13 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/19/iOS数据存储-JSON/" rel="next" title="iOS数据存储-JSON">
-                <i class="fa fa-chevron-left"></i> iOS数据存储-JSON
+              <a href="/2016/06/01/iOS设计模式-备忘录/" rel="next" title="iOS设计模式-备忘录">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-备忘录
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/20/iOS数据存储-NSUserDefault/" rel="prev" title="iOS数据存储-NSUserDefault">
-                iOS数据存储-NSUserDefault <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +724,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Start-parse-XML"><span class="nav-number">1.</span> <span class="nav-text">Start parse XML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-node-and-attribute"><span class="nav-number">2.</span> <span class="nav-text">Parse to get node and attribute</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-Value-in-node"><span class="nav-number">3.</span> <span class="nav-text">Parse to get Value in node</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#剔除空格的字符串"><span class="nav-number">3.1.</span> <span class="nav-text">剔除空格的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断不为空"><span class="nav-number">3.2.</span> <span class="nav-text">判断不为空</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question-Project"><span class="nav-number">4.</span> <span class="nav-text">Question Project</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Qustion-Model"><span class="nav-number">4.1.</span> <span class="nav-text">Qustion Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parse-all-node-automatically-without-loop"><span class="nav-number">4.2.</span> <span class="nav-text">Parse all node automatically without loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#After-Parse-finish"><span class="nav-number">4.3.</span> <span class="nav-text">After Parse finish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-new-element-to-Array"><span class="nav-number">4.4.</span> <span class="nav-text">Add new element to Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Judge-if-equal-or-not"><span class="nav-number">4.5.</span> <span class="nav-text">Judge if equal or not</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生成器与建造房子"><span class="nav-number">1.</span> <span class="nav-text">生成器与建造房子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成器模式实例"><span class="nav-number">2.</span> <span class="nav-text">生成器模式实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成器与生产汽车"><span class="nav-number">3.</span> <span class="nav-text">生成器与生产汽车</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#装配车间和组装产品-总指挥"><span class="nav-number">3.1.</span> <span class="nav-text">装配车间和组装产品(总指挥)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计各个部件的生成器-模块承包"><span class="nav-number">3.2.</span> <span class="nav-text">设计各个部件的生成器(模块承包)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品制造-具体施工队"><span class="nav-number">3.3.</span> <span class="nav-text">产品制造(具体施工队)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始生产"><span class="nav-number">3.4.</span> <span class="nav-text">开始生产</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么时候用protocol"><span class="nav-number">4.</span> <span class="nav-text">什么时候用protocol</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -821,9 +982,9 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/20/iOS数据存储-XML/';
-      var disqus_title = 'iOS数据存储-XML';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/';
+      var disqus_identifier = '2016/06/02/iOS设计模式-生成器/';
+      var disqus_title = 'iOS设计模式-生成器';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/02/iOS设计模式-生成器/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
