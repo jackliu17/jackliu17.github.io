@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample,iOS_Gesture," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,31 +61,38 @@
 
 
 
-<meta name="description" content="手势的种类
-UITapGestureRecognizer   
-UIPinGestureRecognizer   Pinch 捏合
-UIRotationGestureRecognizer  Rotation 旋转
-UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
-UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
+<meta name="description" content="电视机、遥控器与接收器之间的关系
+遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以
+接收器转换遥控器的信号
+
+
+
+命令模式在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目13-手势识别">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/13/iOS项目13-手势识别/index.html">
+<meta property="og:title" content="iOS设计模式-命令">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/03/iOS设计模式-命令/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="手势的种类
-UITapGestureRecognizer   
-UIPinGestureRecognizer   Pinch 捏合
-UIRotationGestureRecognizer  Rotation 旋转
-UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
-UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
-<meta property="og:updated_time" content="2016-05-13T02:10:35.000Z">
+<meta property="og:description" content="电视机、遥控器与接收器之间的关系
+遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以
+接收器转换遥控器的信号
+
+
+
+命令模式在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png">
+<meta property="og:updated_time" content="2016-06-03T09:05:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目13-手势识别">
-<meta name="twitter:description" content="手势的种类
-UITapGestureRecognizer   
-UIPinGestureRecognizer   Pinch 捏合
-UIRotationGestureRecognizer  Rotation 旋转
-UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向
-UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
+<meta name="twitter:title" content="iOS设计模式-命令">
+<meta name="twitter:description" content="电视机、遥控器与接收器之间的关系
+遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以
+接收器转换遥控器的信号
+
+
+
+命令模式在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png">
 
 
 
@@ -103,7 +110,7 @@ UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
   };
 </script>
 
-  <title> iOS项目13-手势识别 | Cowboy Tech </title>
+  <title> iOS设计模式-命令 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -245,7 +252,7 @@ UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
             
             
               
-                iOS项目13-手势识别
+                iOS设计模式-命令
               
             
           </h1>
@@ -257,8 +264,8 @@ UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:07:26+10:00" content="2016-05-13">
-              2016-05-13
+            <time itemprop="dateCreated" datetime="2016-06-03T10:14:07+10:00" content="2016-06-03">
+              2016-06-03
             </time>
           </span>
 
@@ -287,8 +294,8 @@ UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/13/iOS项目13-手势识别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/13/iOS项目13-手势识别/" itemprop="commentsCount"></span>
+                <a href="/2016/06/03/iOS设计模式-命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/03/iOS设计模式-命令/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -310,86 +317,432 @@ UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏">
       
 
       
-        <h1 id="手势的种类"><a href="#手势的种类" class="headerlink" title="手势的种类"></a>手势的种类</h1><ol>
-<li>UITapGestureRecognizer   </li>
-<li>UIPinGestureRecognizer   Pinch 捏合</li>
-<li>UIRotationGestureRecognizer  Rotation 旋转</li>
-<li>UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向</li>
-<li>UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏移量</li>
-<li>UILongPressGestureRecognizer LongPress 长按</li>
+        <h1 id="电视机、遥控器与接收器之间的关系"><a href="#电视机、遥控器与接收器之间的关系" class="headerlink" title="电视机、遥控器与接收器之间的关系"></a>电视机、遥控器与接收器之间的关系</h1><ol>
+<li>遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以</li>
+<li>接收器转换遥控器的信号</li>
 </ol>
-<h1 id="Tap点击"><a href="#Tap点击" class="headerlink" title="Tap点击"></a>Tap点击</h1><pre><code>/*  一个手指单击*/
-UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SignleTap:)];
-tap.numberOfTapsRequired = 1;
-tap.numberOfTouchesRequired = 1;
-[self.view addGestureRecognizer:tap];
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png" alt=""></p>
+<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途</p>
+<ol>
+<li>Client:可以有多个实体，client即使没有receiver，自身也能操作。</li>
+<li>Receiver: 持有了client的引用,将遥控器的指令翻译成电视机能接收的,它的方法就是针对client的操作。</li>
+<li>CommandProtocol:所有对象必须遵循的规范。</li>
+<li>Command: 每个命令抽象成一个对象，且必须遵循命令协议。好比遥控器上的每个按钮。</li>
+<li>Invoker:单例，存储命令的地方。好比一个含有很多按钮的遥控器。</li>
+</ol>
+<p>CommandProtocol</p>
+<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
 
-/*一个手指双击*/
-UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];
-tap2.numberOfTapsRequired = 2;
-[self.view addGestureRecognizer:tap2];
+@required
 
-//当tap 和 tap2同时出现在视图上，取消tap
-[tap requireGestureRecognizerToFail:tap2];
+//命令的执行
+- (void)excute;
 
-/* 两个手指单击*/
-UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SigleTwoFingerTap:)];
-tap3.numberOfTouchesRequired = 2;
-[self.view addGestureRecognizer:tap3];
-//当tap2 和 tap3同时出现在视图上，取消tap2
-[tap2 requireGestureRecognizerToFail:tap3];
-</code></pre><h2 id="Tap互斥"><a href="#Tap互斥" class="headerlink" title="Tap互斥"></a>Tap互斥</h2><pre><code>/*
-[A requireGestureRecognizerToFail:B]
-当A手势发生时，即便A已经满足条件，但要等到B手势失败后才触发
-*/
-</code></pre><h1 id="Swipe轻扫手势"><a href="#Swipe轻扫手势" class="headerlink" title="Swipe轻扫手势"></a>Swipe轻扫手势</h1><pre><code>UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(SwipeAction:)];
-swipe.direction = UISwipeGestureRecognizerDirectionLeft;
-[self.view addGestureRecognizer:swipe];
-</code></pre><h1 id="Pinch捏合手势"><a href="#Pinch捏合手势" class="headerlink" title="Pinch捏合手势"></a>Pinch捏合手势</h1><pre><code>- (void)PinchGesture{
-UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(PinchAction:)];
-[self.view addGestureRecognizer:pinch];
-}
+//与接收器绑定并设置参数
+- (void)initWithReceiver:(Receiver *)receiver paramter:(id)paramter;
+</code></pre><p>Invoker ： </p>
+<pre><code>@interface Invoker : NSObject
 
-//pin的缩放
-- (void)PinchAction:(UIPinchGestureRecognizer *)pinch{
-float scale = pinch.scale;
-pinch.view.transform = CGAffineTransformScale(pinch.view.transform, scale, scale);
-if (scale &gt; 1) {
-    _genstureLabel.text = @&quot;捏合放大&quot;;
-}else if (scale &lt; 1){
-    _genstureLabel.text = @&quot;捏合缩小&quot;;
-}
-}
-</code></pre><h1 id="Pan拖移手势"><a href="#Pan拖移手势" class="headerlink" title="Pan拖移手势"></a>Pan拖移手势</h1><pre><code>- (void)PanGesture{
-UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
-[_genstureLabel addGestureRecognizer:pan];
-}
+//回退操作
+- (void)rollBack;
 
-- (void)PanAction:(UIPanGestureRecognizer *)pan{
-//移动的坐标值
-CGPoint translation = [pan translationInView:self.view];
-//移动后的坐标
-pan.view.center = CGPointMake(pan.view.center.x + translation.x, pan.view.center.y + translation.y);
-//设置坐标和速度
-[pan setTranslation:CGPointZero inView:self.view];
-_genstureLabel.text = @&quot;把我放哪啊&quot;;
-}
-</code></pre><h1 id="Rotation旋转手势"><a href="#Rotation旋转手势" class="headerlink" title="Rotation旋转手势"></a>Rotation旋转手势</h1><pre><code>- (void)RotationGesture{
-UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(RotationAction:)];
-[_genstureLabel addGestureRecognizer:rotation];
+//添加指令操作
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
+@end
+
+@interface Invoker ()
+
+@property (nonatomic, strong) NSMutableArray  *queue;
+@end
+
+@implementation Invoker
+
++ (instancetype)shareInstance {
+
+static Invoker *shareInstanceValue = nil;
+static dispatch_once_t oncePredicate;
+
+dispatch_once(&amp;oncePredicate, ^{
+
+    shareInstanceValue       = [[Invoker alloc] init];
+    shareInstanceValue.queue = [NSMutableArray array];
+});
+
+return shareInstanceValue;
 }
 
-- (void)RotationAction:(UIRotationGestureRecognizer *)rotationGes{  
-rotationGes.view.transform = CGAffineTransformRotate(rotationGes.view.transform, rotationGes.rotation);
-rotationGes.rotation = M_PI;
-_genstureLabel.text = @&quot;旋转&quot;;
+- (void)rollBack {
+
+// todo
 }
-</code></pre><h1 id="LongPress长按手势"><a href="#LongPress长按手势" class="headerlink" title="LongPress长按手势"></a>LongPress长按手势</h1><pre><code>- (void)LongPressGesture{
-UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressAction:)];
-longPress.minimumPressDuration = 2;
-[self.view addGestureRecognizer:longPress];  
+
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
+
+NSParameterAssert(command);
+
+[self.queue addObject:command];
+[command excute];
 }
-</code></pre>
+</code></pre><p>Receiver </p>
+<pre><code>@interface Receiver : NSObject
+//被服务对象
+@property (nonatomic, strong) id client;
+//增加频道
+- (void)addNum:(NSNumber *)num;
+//减少频道
+- (void)delNum:(NSNumber *)num;
+
+@end
+
+@implementation Receiver
+
+- (void)addNum:(NSNumber *)num {
+
+// todo
+}
+
+- (void)delNum:(NSNumber *)num {
+
+// todo
+}
+@end
+</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png" alt=""></p>
+<p>ViewController</p>
+<pre><code>typedef enum : NSUInteger {
+
+kAddButtonTag = 10, // 增加按钮枚举值
+kDelButtonTag,      // 减少按钮枚举值
+kRolButtonTag,      // 回退按钮枚举值
+
+} ViewControllerEnumValue;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIButton *delButton;
+@property (nonatomic, strong) UIButton *rolButton;
+@property (nonatomic, strong) Receiver *receiver;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 接收器
+self.receiver            = [[Receiver alloc] init];
+self.receiver.clientView = self.view;
+
+// 初始化按钮
+[self initButtons];
+}
+
+- (void)buttonsEvent:(UIButton *)button {
+
+if (button.tag == kAddButtonTag) {
+
+    NSLog(@&quot;增加操作&quot;);
+    LighterCommond *commond = [[LighterCommond alloc] initWithReceiver:self.receiver paramter:0.1];
+    [[Invoker shareInstance] addAndExcute:commond];
+
+} else if (button.tag == kDelButtonTag) {
+
+    NSLog(@&quot;减少操作&quot;);
+    DarkerCommand *commond = [[DarkerCommand alloc] initWithReceiver:self.receiver paramter:0.1];
+    [[Invoker shareInstance] addAndExcute:commond];
+
+} else if (button.tag == kRolButtonTag) {
+
+    NSLog(@&quot;回退操作&quot;);
+    [[Invoker shareInstance] rollBack];
+}
+}
+
+#pragma mark - 无关初始化
+- (void)initButtons {
+
+// delButton
+self.delButton     = [[UIButton alloc] initWithFrame:CGRectMake(10, 25, 30, 30)];
+
+self.delButton.tag               = kDelButtonTag;
+self.delButton.layer.borderWidth = 1.f;
+
+[self.delButton setTitle:@&quot;-&quot;
+                forState:UIControlStateNormal];
+
+[self.delButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.delButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.delButton];
+
+// addButton
+self.addButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 40, 25, 30, 30)];
+
+self.addButton.tag               = kAddButtonTag;
+self.addButton.layer.borderWidth = 1.f;
+
+[self.addButton setTitle:@&quot;+&quot;
+                forState:UIControlStateNormal];
+
+[self.addButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.addButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.addButton];
+
+// rolButton
+self.rolButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 80, 25, 90, 30)];
+
+self.rolButton.tag               = kRolButtonTag;
+self.rolButton.layer.borderWidth = 1.f;
+
+[self.rolButton setTitle:@&quot;rollBack&quot;
+                forState:UIControlStateNormal];
+
+[self.rolButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.rolButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.rolButton];
+}
+</code></pre><p>CommandProtocol</p>
+<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
+
+@required
+
+//执行命令
+- (void)excute;
+//撤销命令
+- (void)rollBackExcute;
+
+@end
+</code></pre><p>DarkerCommand</p>
+<pre><code>@interface DarkerCommand : NSObject &lt;CommandProtocol&gt;
+//与接收器绑定并设置参数
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
+
+@end
+
+@interface DarkerCommand ()
+
+@property (nonatomic, weak) Receiver *receiver;
+@property (nonatomic)       CGFloat   paramter;
+
+@end
+
+@implementation DarkerCommand
+
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
+
+self = [super init];
+if (self) {
+
+    self.receiver = receiver;
+    self.paramter = paramter;
+}
+
+return self;
+}
+
+- (void)excute {
+
+[self.receiver makeDarker:self.paramter];
+}
+
+- (void)rollBackExcute {
+
+[self.receiver makeLighter:self.paramter];
+}
+
+@end
+</code></pre><p>LighterCommond </p>
+<pre><code>@interface LighterCommond : NSObject &lt;CommandProtocol&gt;
+
+//与接收器绑定并设置参数
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
+@end
+
+
+@interface LighterCommond ()
+
+@property (nonatomic, weak) Receiver *receiver;
+@property (nonatomic)       CGFloat   paramter;
+
+@end
+
+@implementation LighterCommond
+
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
+
+    self = [super init];
+    if (self) {
+
+        self.receiver = receiver;
+        self.paramter = paramter;
+    }
+
+    return self;
+}
+
+- (void)excute {
+
+    [self.receiver makeLighter:self.paramter];
+}
+
+- (void)rollBackExcute {
+
+    [self.receiver makeDarker:self.paramter];
+}
+@end
+</code></pre><p>Invoker </p>
+<pre><code>@interface Invoker : NSObject
+
++ (instancetype)shareInstance;
+//回退操作
+- (void)rollBack;
+
+//添加指令操作
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
+
+@end
+
+@interface Invoker ()
+
+@property (nonatomic, strong) NSMutableArray  *queue;
+
+@end
+
+@implementation Invoker
+
++ (instancetype)shareInstance {
+
+static Invoker *shareInstanceValue = nil;
+static dispatch_once_t oncePredicate;
+
+dispatch_once(&amp;oncePredicate, ^{
+
+    shareInstanceValue       = [[Invoker alloc] init];
+    shareInstanceValue.queue = [NSMutableArray array];
+});
+
+return shareInstanceValue;
+}
+
+- (void)rollBack {
+
+id &lt;CommandProtocol&gt; command = self.queue.lastObject;
+[command rollBackExcute];
+
+[self.queue removeLastObject];
+}
+
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
+
+NSParameterAssert(command);
+
+[self.queue addObject:command];
+[command excute];
+}
+
+@end
+</code></pre><p>Receiver</p>
+<pre><code>@interface Receiver : NSObject {
+
+CGFloat _hud;
+CGFloat _saturation;
+CGFloat _brightness;
+CGFloat _alpha;
+}
+
+//被服务对象
+@property (nonatomic, weak) UIView  *clientView;
+//变暗
+- (void)makeDarker:(CGFloat)pamameter;
+//变亮
+- (void)makeLighter:(CGFloat)pamameter;
+@end
+
+@implementation Receiver
+
+//根据传入的UIView，获取各个维度的值
+
+- (void)setClientView:(UIView *)clientView {
+
+_clientView    = clientView;
+UIColor *color = _clientView.backgroundColor;
+
+//获取背景色各个维度的值
+[color getHue:&amp;_hud
+   saturation:&amp;_saturation
+   brightness:&amp;_brightness
+        alpha:&amp;_alpha];
+    }
+
+    - (void)makeDarker:(CGFloat)pamameter {
+
+_brightness -= pamameter;
+_brightness  = MAX(0, _brightness);
+
+_clientView.backgroundColor = [UIColor colorWithHue:_hud
+                                         saturation:_saturation
+                                         brightness:_brightness
+                                              alpha:_alpha];
+                                          }
+
+- (void)makeLighter:(CGFloat)pamameter {
+
+_brightness += pamameter;
+_brightness  = MIN(1, _brightness);
+
+_clientView.backgroundColor = [UIColor colorWithHue:_hud
+                                         saturation:_saturation
+                                         brightness:_brightness
+                                              alpha:_alpha];
+                                          }
+
+@end
+</code></pre><h1 id="Tag-for-Button"><a href="#Tag-for-Button" class="headerlink" title="Tag for Button"></a>Tag for Button</h1><p>通过设定tag值，来调用相对应的button</p>
+<pre><code>typedef enum : NSUInteger {
+
+kAddButtonTag = 10, // 增加按钮枚举值
+kDelButtonTag,      // 减少按钮枚举值
+kRolButtonTag,      // 回退按钮枚举值
+
+} ViewControllerEnumValue;
+
+..........
+
+self.delButton.tag = kDelButtonTag;
+self.addButton.tag = kAddButtonTag;
+self.rolButton.tag = kRolButtonTag;
+
+..........
+
+if (button.tag == kAddButtonTag) {
+
+
+} else if (button.tag == kDelButtonTag) {
+
+
+} else if (button.tag == kRolButtonTag) {
+
+
+}
+</code></pre><h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议就是抽象归纳出某一类对象共同拥有的特性</p>
+
       
     </div>
 
@@ -405,9 +758,7 @@ longPress.minimumPressDuration = 2;
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
-          
-            <a href="/tags/iOS-Gesture/" rel="tag">#iOS_Gesture</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -416,17 +767,13 @@ longPress.minimumPressDuration = 2;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/12/iOS数据存储/" rel="next" title="iOS数据存储">
-                <i class="fa fa-chevron-left"></i> iOS数据存储
+              <a href="/2016/06/02/iOS设计模式-生成器/" rel="next" title="iOS设计模式-生成器">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-生成器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/14/iOS项目014-九宫格手势解锁/" rel="prev" title="iOS项目014.九宫格手势解锁">
-                iOS项目014.九宫格手势解锁 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,7 +905,7 @@ longPress.minimumPressDuration = 2;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#手势的种类"><span class="nav-number">1.</span> <span class="nav-text">手势的种类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tap点击"><span class="nav-number">2.</span> <span class="nav-text">Tap点击</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tap互斥"><span class="nav-number">2.1.</span> <span class="nav-text">Tap互斥</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swipe轻扫手势"><span class="nav-number">3.</span> <span class="nav-text">Swipe轻扫手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pinch捏合手势"><span class="nav-number">4.</span> <span class="nav-text">Pinch捏合手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pan拖移手势"><span class="nav-number">5.</span> <span class="nav-text">Pan拖移手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rotation旋转手势"><span class="nav-number">6.</span> <span class="nav-text">Rotation旋转手势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LongPress长按手势"><span class="nav-number">7.</span> <span class="nav-text">LongPress长按手势</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#电视机、遥控器与接收器之间的关系"><span class="nav-number">1.</span> <span class="nav-text">电视机、遥控器与接收器之间的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令模式"><span class="nav-number">2.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改变一个视图的明暗程度"><span class="nav-number">3.</span> <span class="nav-text">改变一个视图的明暗程度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tag-for-Button"><span class="nav-number">4.</span> <span class="nav-text">Tag for Button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协议"><span class="nav-number">5.</span> <span class="nav-text">协议</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -816,9 +1163,9 @@ longPress.minimumPressDuration = 2;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/13/iOS项目13-手势识别/';
-      var disqus_title = 'iOS项目13-手势识别';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/13/iOS项目13-手势识别/';
+      var disqus_identifier = '2016/06/03/iOS设计模式-命令/';
+      var disqus_title = 'iOS设计模式-命令';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/03/iOS设计模式-命令/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
