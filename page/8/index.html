@@ -238,6 +238,298 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/06/使用带粒子效果的CAEmitterLayer/" itemprop="url">
+                  使用带粒子效果的CAEmitterLayer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T16:34:55+10:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/06/使用带粒子效果的CAEmitterLayer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/06/使用带粒子效果的CAEmitterLayer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="用CAEmitterLayer产生粒子效果"><a href="#用CAEmitterLayer产生粒子效果" class="headerlink" title="用CAEmitterLayer产生粒子效果"></a>用CAEmitterLayer产生粒子效果</h1><ol>
+<li>CAEmitterLayer的用途</li>
+<li>CAEmitterLayer的一些重要参数</li>
+<li>为什么要使用CAEmitterLayer</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建出Layer
+CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
+// 显示边框
+emitterLayer.borderWidth = 1.f;
+
+// 给定尺寸
+emitterLayer.frame = CGRectMake(100, 100, 100, 100);
+
+// 发射点
+emitterLayer.emitterPosition = CGPointMake(0, 0);
+
+// 发射模式
+emitterLayer.emitterMode = kCAEmitterLayerSurface;
+
+// 发射形状
+emitterLayer.emitterShape = kCAEmitterLayerLine;
+
+// 添加layer
+[self.view.layer addSublayer:emitterLayer];
+
+// 创建粒子
+CAEmitterCell *cell = [CAEmitterCell emitterCell];
+
+// 粒子产生率
+cell.birthRate = 10.f;
+
+// 粒子生命周期
+cell.lifetime = 10.f;
+
+// 速度值
+cell.velocity = 10;
+
+// 速度值的微调值
+cell.velocityRange = 3.f;
+
+// y轴加速度
+cell.yAcceleration = 2.f;
+
+// 发射角度
+cell.emissionRange = 4.f * M_1_PI;
+
+// 设置粒子颜色
+cell.color = [UIColor blackColor].CGColor;
+
+// 设置图片
+cell.contents = (__bridge id)([UIImage imageNamed:@&quot;snow&quot;].CGImage);
+
+// 让CAEmitterCell与CAEmitterLayer产生关联
+emitterLayer.emitterCells = @[cell];
+}
+</code></pre><h1 id="封装CAEmitterLayer"><a href="#封装CAEmitterLayer" class="headerlink" title="封装CAEmitterLayer"></a>封装CAEmitterLayer</h1><ol>
+<li>替换CAEmitterLayer成UIView子类的backedLayer</li>
+<li>将CAEmitterLayer封装的类作为“抽象”父类</li>
+</ol>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;CAEmitterLayerView.h&quot;
+@interface ViewController ()
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+CAEmitterLayerView *layerView = [[CAEmitterLayerView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+NSLog(@&quot;%@&quot;, layerView.layer);
+}
+
+@end
+</code></pre><p>CAEmitterLayerView.m</p>
+<pre><code>#import &quot;CAEmitterLayerView.h&quot;
+
+@interface CAEmitterLayerView () {
+CAEmitterLayer  *_emitterLayer;
+}
+@end
+
+@implementation CAEmitterLayerView
+
++ (Class)layerClass {
+return [CAEmitterLayer class];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {    
+    _emitterLayer = (CAEmitterLayer *)self.layer;
+}
+return self;
+}
+
+- (void)show {
+}
+
+- (void)hide {
+}
+
+- (void)setEmitterLayer:(CAEmitterLayer *)layer {
+_emitterLayer = layer;
+}
+
+- (CAEmitterLayer *)emitterLayer {
+return _emitterLayer;
+}
+@end
+</code></pre><h1 id="封装下雪下雨的粒子效果控件"><a href="#封装下雪下雨的粒子效果控件" class="headerlink" title="封装下雪下雨的粒子效果控件"></a>封装下雪下雨的粒子效果控件</h1><ol>
+<li>从封装CAEmitterLayer的“抽象”父类继承的原因</li>
+<li>下雪、下雨效果参数的设置</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAEmitterLayer.png" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+UIImageView *alphaView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+alphaView1.image        = [UIImage imageNamed:@&quot;alpha&quot;];
+
+// 添加下雪效果
+CAEmitterLayerView *snowView = [[SnowView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+snowView.maskView            = alphaView1;
+[self.view addSubview:snowView];
+[snowView show];
+
+}
+</code></pre><p>SnowView.m (继承CAEmitterLayerView，见上)</p>
+<pre><code>#import &quot;SnowView.h&quot;
+
+@implementation SnowView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+    // 初始化设置
+    [self setup];
+}
+return self;
+}
+
+- (void)setup {
+self.emitterLayer.masksToBounds   = YES;
+self.emitterLayer.emitterShape    = kCAEmitterLayerLine;
+self.emitterLayer.emitterMode     = kCAEmitterLayerSurface;
+self.emitterLayer.emitterSize     = self.frame.size;
+self.emitterLayer.emitterPosition = CGPointMake(self.bounds.size.width / 2.f, - 20);
+}
+
+- (void)show {
+// 配置
+CAEmitterCell *snowflake  = [CAEmitterCell emitterCell];
+snowflake.birthRate       = 1.f;
+snowflake.speed           = 10.f;
+snowflake.velocity        = 2.f;
+snowflake.velocityRange   = 10.f;
+snowflake.yAcceleration   = 10.f;
+snowflake.emissionRange   = 0.5 * M_PI;
+snowflake.spinRange       = 0.25 * M_PI;
+snowflake.contents        = (__bridge id)([UIImage imageNamed:@&quot;snow&quot;].CGImage);
+snowflake.color           = [UIColor redColor].CGColor;
+snowflake.lifetime        = 60.f;
+snowflake.scale           = 0.5;
+snowflake.scaleRange      = 0.3;
+
+// 添加动画
+self.emitterLayer.emitterCells = @[snowflake];
+}
+
+@end
+</code></pre><h1 id="指定UIView的layer-class"><a href="#指定UIView的layer-class" class="headerlink" title="指定UIView的layer class"></a>指定UIView的layer class</h1><pre><code>+ (Class)layerClass {
+return [CAEmitterLayer class];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/05/缓动函数与关键帧动画/" itemprop="url">
                   缓动函数与关键帧动画
                 </a>
@@ -1269,204 +1561,6 @@ blurDownloadView.contentMode = UIViewContentModeScaleAspectFit;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/30/iOS项目9-三级视图控制器/" itemprop="url">
-                  iOS项目9.三级视图控制器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T22:14:13+10:00" content="2016-04-30">
-              2016-04-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/30/iOS项目9-三级视图控制器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/iOS项目9-三级视图控制器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00901.png" alt=""></p>
-<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOSproj00902.png" alt=""></p>
-<h1 id="三级视图控制器"><a href="#三级视图控制器" class="headerlink" title="三级视图控制器"></a>三级视图控制器</h1><ol>
-<li>标签控制器 -&gt; 导航控制器 -&gt; 视图控制器，这就叫三级视图控制器</li>
-<li>一个导航控制器对应于一个视图控制器，</li>
-<li>标签控制器是管理固定的几个视图控制器，子控制器是并列的。</li>
-<li>UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系</li>
-</ol>
-<h1 id="设置window"><a href="#设置window" class="headerlink" title="设置window"></a>设置window</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-self.window.backgroundColor = [UIColor whiteColor];
-[self.window makeKeyAndVisible];
-RootViewController *rootVC = [[RootViewController alloc] init];
-//权限最高的给根视图控制器
-self.window.rootViewController = rootVC; 
-// Override point for customization after application launch.
-return YES;
-}
-</code></pre><h1 id="数组赋值示例"><a href="#数组赋值示例" class="headerlink" title="数组赋值示例"></a>数组赋值示例</h1><pre><code>NSArray *vcArray = @[profielVC,messageVC,colaVC,userVC,moreVC];
-NSMutableArray *tabArray = [NSMutableArray arrayWithCapacity:vcArray.count];
-</code></pre><h1 id="背景颜色赋值为图片"><a href="#背景颜色赋值为图片" class="headerlink" title="背景颜色赋值为图片"></a>背景颜色赋值为图片</h1><pre><code>_tabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@&quot;mask_navbar&quot;]];
-</code></pre><h1 id="UIButton设tag值"><a href="#UIButton设tag值" class="headerlink" title="UIButton设tag值"></a>UIButton设tag值</h1><pre><code> //区分是点击了哪个button
-//iOS中100以前的tag值有特殊用法，所以最好在100以后
-btn.tag = 100 + i; 
-</code></pre><h1 id="UITabBarController的属性"><a href="#UITabBarController的属性" class="headerlink" title="UITabBarController的属性"></a>UITabBarController的属性</h1><pre><code>//选择的是哪个tab
-self.selectedIndex = button.tag - 100;
-
-//隐藏系统默认的样式
-self.tabBar.hidden = YES;
-
-//用数组管理视图控制器
-self.viewControllers = tabArray;
-</code></pre><h1 id="Tab子视图调用根视图方法-UITabBarController"><a href="#Tab子视图调用根视图方法-UITabBarController" class="headerlink" title="Tab子视图调用根视图方法(UITabBarController)"></a>Tab子视图调用根视图方法(UITabBarController)</h1><pre><code>RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-</code></pre><h1 id="动画效果在于CGPoint-or-frame的改变"><a href="#动画效果在于CGPoint-or-frame的改变" class="headerlink" title="动画效果在于CGPoint or frame的改变"></a>动画效果在于CGPoint or frame的改变</h1><pre><code>[UIView animateWithDuration:0.2 animations:^{
-    _selectView.center = button.center;
-} completion:nil];
-
-
-//重新赋值frame,让tabBar消失
-[UIView animateWithDuration:0.2 animations:^{
-    self.tabBarView.frame = frame;
-} completion:nil];
-</code></pre><h1 id="UIButton的设置"><a href="#UIButton的设置" class="headerlink" title="UIButton的设置"></a>UIButton的设置</h1><pre><code>//需要custom类型才能设置图片
-UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-//[pushButton setImage:(UIImage *) forState:(UIControlState)]
-//标题和图片不能同时设置
-[pushButton setTitle:@&quot;Push&quot; forState:UIControlStateNormal];
-</code></pre><h1 id="视图顶部导航栏左右按钮"><a href="#视图顶部导航栏左右按钮" class="headerlink" title="视图顶部导航栏左右按钮"></a>视图顶部导航栏左右按钮</h1><pre><code>//自定义导航栏按钮
-- (void)initNavButton{
-
-UIButton *writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//导航按钮的xy值没有用
-writeBtn.frame = CGRectMake(0, 0, writeButtonWidth, writeButtonHeight);
-[writeBtn setBackgroundImage:[UIImage imageNamed:@&quot;write&quot;] forState:UIControlStateNormal];
-[writeBtn addTarget:self action:@selector(presentAction) forControlEvents:UIControlEventTouchUpInside];
-//添加自定义按钮
-UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:writeBtn];
-self.navigationItem.rightBarButtonItem = item;
-}
-</code></pre><h1 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h1><h2 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h2><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
-</code></pre><h2 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h2><pre><code>- (void)dismissAction{
-[self dismissViewControllerAnimated:YES completion:nil];
-}
-</code></pre><h1 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h1><h2 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h2><pre><code>- (void)pushAction{
-PushViewController *pushVC = [[PushViewController alloc] init];
-[self.navigationController pushViewController:pushVC animated:YES];
-//[self.navigationController showViewController:pushVC sender:nil];
-RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-}    
-</code></pre><h2 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h2><pre><code>- (void)popAction{
-
-    // 回到上级视图
-    [self.navigationController popViewControllerAnimated:YES];
-
-    // 跳转到某视图
-    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
-
-    // 跳转到根视图
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1513,7 +1607,7 @@ RootViewController *rootVC = (RootViewController *)self.tabBarController;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

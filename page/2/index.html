@@ -238,6 +238,223 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/30/iOS设计模式-代理/" itemprop="url">
+                  iOS设计模式-代理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-30T15:12:37+10:00" content="2016-05-30">
+              2016-05-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/30/iOS设计模式-代理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/iOS设计模式-代理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代理模式的原理"><a href="#代理模式的原理" class="headerlink" title="代理模式的原理"></a>代理模式的原理</h1><p>一个对象和另一个对象耦合，代理模式是为了降低耦合度</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png" alt=""></p>
+<h2 id="Customer-amp-使用代理的注意事项"><a href="#Customer-amp-使用代理的注意事项" class="headerlink" title="Customer  &amp; 使用代理的注意事项"></a>Customer  &amp; 使用代理的注意事项</h2><ol>
+<li>@class, 提示协议方法有该类的引用</li>
+<li>weak 防止循环引用</li>
+<li>@required or @Optional 要写清楚</li>
+</ol>
+<p>Customer</p>
+<pre><code>@class Customer;
+
+@protocol CustomerDelegate &lt;NSObject&gt;
+
+@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
+
+@interface Customer : NSObject
+
+// 经销商
+@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
+
+// 顾客买卖行为
+- (void)buyItemCount:(NSInteger)count;
+@end
+
+- (void)buyItemCount:(NSInteger)count {
+    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+</code></pre><h2 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h2><pre><code>#import &quot;ViewController.h&quot;
+#import &quot;Customer.h&quot;
+
+// 经销商
+@interface ViewController ()&lt;CustomerDelegate&gt;
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
+}
+
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&quot;%ld&quot;, (long)count);
+}
+</code></pre><h2 id="使用场景：用于类与类之间的值传递"><a href="#使用场景：用于类与类之间的值传递" class="headerlink" title="使用场景：用于类与类之间的值传递"></a>使用场景：用于类与类之间的值传递</h2><p>Customer设定消息接受方的遵循条件</p>
+<pre><code>@required
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
+@end
+
+@interface Customer : NSObject
+
+// 经销商
+@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
+</code></pre><p>Customer发送消息</p>
+<pre><code>- (void)buyItemCount:(NSInteger)count {
+
+    //代理存在，并且代理能响应这个方法
+
+    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+        [self.delegate custmer:self buyItemCount:count];
+    }
+}
+</code></pre><p>ViewController准备接收</p>
+<pre><code>@interface ViewController ()&lt;CustomerDelegate&gt;
+</code></pre><p>ViewController获得所传递的消息</p>
+<pre><code>Customer *customer  = [[Customer alloc] init];
+customer.delegate   = self;  
+[customer buyItemCount:5];
+}
+
+- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
+NSLog(@&quot;%ld&quot;, (long)count);
+}
+</code></pre><h2 id="代理使用验证"><a href="#代理使用验证" class="headerlink" title="代理使用验证"></a>代理使用验证</h2><pre><code>//代理存在，并且代理能响应这个方法
+
+if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
+    [self.delegate custmer:self buyItemCount:count];
+}
+</code></pre><h1 id="协议使用场景"><a href="#协议使用场景" class="headerlink" title="协议使用场景"></a>协议使用场景</h1><p>约束对象，筛选对象。比如传递的对象，必须实现某种方法</p>
+<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><pre><code>@protocol TCPProtocol &lt;NSObject&gt;
+@required
+// 获取源端口号
+- (NSInteger)sourcePort;
+// 获取目的地端口号
+- (NSInteger)destinationPort;
+@end
+</code></pre><h2 id="遵循协议的类"><a href="#遵循协议的类" class="headerlink" title="遵循协议的类"></a>遵循协议的类</h2><pre><code>@interface Model : NSObject &lt;TCPProtocol&gt;
+// 获取源端口号
+- (NSInteger)sourcePort {
+return 10;
+}
+
+// 获取目的地端口号
+- (NSInteger)destinationPort {
+return 20;
+}
+</code></pre><h2 id="传递遵循协议的对象"><a href="#传递遵循协议的对象" class="headerlink" title="传递遵循协议的对象"></a>传递遵循协议的对象</h2><pre><code>- (void)accessTCPData:(id &lt;TCPProtocol&gt;)data { 
+self.sourcePort      = [data sourcePort];
+self.destinationPort = [data destinationPort];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/29/iOS设计模式-桥接/" itemprop="url">
                   iOS设计模式-桥接
                 </a>
@@ -1214,238 +1431,6 @@ rectangle.height     = 20.f; // paras里取
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/27/iOS设计模式-原型/" itemprop="url">
-                  iOS设计模式-原型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-27T12:34:13+10:00" content="2016-05-27">
-              2016-05-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/27/iOS设计模式-原型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/27/iOS设计模式-原型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="原型模式解决的问题"><a href="#原型模式解决的问题" class="headerlink" title="原型模式解决的问题"></a>原型模式解决的问题</h1><p>每个对象需要重新创建</p>
-<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
-stu1.name          = @&quot;小王&quot;;
-stu1.age           = @(19);
-stu1.address       = @&quot;中关村&quot;;
-stu1.totalScore    = @(100);
-
-
-StudentModel *stu2 = [[StudentModel alloc] init];
-stu1.name          = @&quot;小刘&quot;;
-stu1.age           = @(19);
-stu1.address       = @&quot;中关村&quot;;
-stu1.totalScore    = @(100);
-</code></pre><h1 id="原型设计-自我拷贝"><a href="#原型设计-自我拷贝" class="headerlink" title="原型设计:自我拷贝"></a>原型设计:自我拷贝</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png" alt=""></p>
-<p>使用场景：对象创建特别复杂，两个对象在抽象逻辑完全一致，只是在实例化的细节略有差异，如果要重新创建一个对象，不如拷贝自己再去修改</p>
-<p>ProtoypeCopyProtocol    </p>
-<pre><code>@protocol ProtoypeCopyProtocol &lt;NSObject&gt;
-@required
-- (id)clone;
-@end
-</code></pre><p>StudentModel</p>
-<pre><code>@interface StudentModel : NSObject &lt;ProtoypeCopyProtocol&gt;
-
-@property (nonatomic, strong) NSString  *name;
-@property (nonatomic, strong) NSNumber  *age;
-@property (nonatomic, strong) NSString  *address;
-@property (nonatomic, strong) NSNumber  *totalScore;
-
-- (id)clone;
-@end
-
-@implementation StudentModel
-
-- (id)clone {
-
-    StudentModel *student = [[[self class] alloc] init];
-
-    // 完成复杂操作的所有作业
-    student.name       = self.name;
-    student.age        = self.age;
-    student.address    = self.address;
-    student.totalScore = self.totalScore;
-    return student;
-}
-@end
-</code></pre><p>viewController</p>
-<pre><code>- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    // 学生1
-    StudentModel *stu1 = [[StudentModel alloc] init];
-    stu1.name          = @&quot;小王&quot;;
-    stu1.age           = @(19);
-    stu1.address       = @&quot;中关村&quot;;
-    stu1.totalScore    = @(100);
-
-    // 学生2
-    StudentModel *stu2 = [stu1 clone];
-    stu2.name          = @&quot;小红&quot;;
-}
-</code></pre><h1 id="框架级别的原型模式-NSCopying"><a href="#框架级别的原型模式-NSCopying" class="headerlink" title="框架级别的原型模式:NSCopying"></a>框架级别的原型模式:NSCopying</h1><p>BasCopyObject</p>
-<pre><code>//遵循NSCopying协议
-@interface BasCopyObject : NSObject &lt;NSCopying&gt;
-
-
-//子类不要重载这个方法
-- (id)copyWithZone:(NSZone *)zone {
-    .........
-BasCopyObject *copyObject = [[self class] allocWithZone:zone];
-
-// 赋值操作作业，//由子类重载实现
-[self copyOperationWithObject:copyObject];
-return copyObject;
-}
-
-- (void)copyOperationWithObject:(id)object {
-
-}
-</code></pre><p>StudentModel</p>
-<pre><code>//继承基类
-@interface StudentModel : BasCopyObject
-
-- (void)copyOperationWithObject:(StudentModel *)object {  
-object.name = self.name;
-object.age  = self.age;
-}
-</code></pre><p>ViewController</p>
-<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
-StudentModel *stu2 = stu1.copy;
-</code></pre><h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>ClassModel</p>
-<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
-object.className = self.className;
-object.students = self.students;
-}
-</code></pre><p>ViewController</p>
-<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
-class1.className   = @&quot;班级1&quot;;
-class1.students    = @[stu1, stu2];
-
-ClassModel *class2 = class1.copy;
-</code></pre><p>这样拷贝出来的数组students内存地址一样。说明数组拷贝没有成功。就好像student既属于A班，又属于B班</p>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>同时要求数组里的每个对象也要实现NSCopying协议</p>
-<p>ClassModel</p>
-<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
-
-    object.className = self.className;
-    // 完成了深拷贝(完整的复制了集合里面的对象)
-    object.students  = [[NSArray alloc] initWithArray:self.students copyItems:YES];
-}
-</code></pre><p>ViewController</p>
-<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
-class1.className   = @&quot;班级1&quot;;
-class1.students    = @[stu1, stu2];
-
-ClassModel *class2 = class1.copy;    
-</code></pre><p>这样拷贝出来的class2中的数组对象students才能与class1中的数组对象students有不同的内存地址</p>
-<h1 id="self-class"><a href="#self-class" class="headerlink" title="[self class]"></a>[self class]</h1><p>这里使用self，是因为StudentModel可能会被子类继承</p>
-<pre><code>StudentModel *student = [[[self class] alloc] init];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1492,7 +1477,7 @@ ClassModel *class2 = class1.copy;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">72</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
