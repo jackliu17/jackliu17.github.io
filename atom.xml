@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-04T08:01:22.000Z</updated>
+  <updated>2016-06-05T01:14:00.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,370 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-迭代器</title>
+    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
+    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-迭代器/</id>
+    <published>2016-06-05T01:10:44.000Z</published>
+    <updated>2016-06-05T01:14:00.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;线性表&quot;&gt;&lt;a href=&quot;#线性表&quot; class=&quot;headerlink&quot; title=&quot;线性表&quot;&gt;&lt;/a&gt;线性表&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的&lt;/li&gt;
+&lt;li&gt;种类:链表，栈，队列&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;单链表&quot;&gt;&lt;a href=&quot;#单链表&quot; class=&quot;headerlink&quot; title=&quot;单链表&quot;&gt;&lt;/a&gt;单链表&lt;/h1&gt;&lt;p&gt;Node&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Node : NSObject
+//指向下一个节点
+@property (nonatomic, strong) Node  *nextNode;
+//节点挂载的对象
+@property (nonatomic, strong) id     item;
+//便利构造器
++ (instancetype)nodeWithItem:(id)item;
+@end
+---------------------------------------------------
+@implementation Node
+
++ (instancetype)nodeWithItem:(id)item {
+
+Node *node = [[[self class] alloc] init];
+node.item  = item;
+
+return node;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedList&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface LinkedList : NSObject
+
+//头节点
+@property (nonatomic, strong, readonly) Node *headNode;
+
+//有几个节点
+
+@property (nonatomic, readonly) NSInteger  numberOfNodes;
+
+//节点挂载的对象
+- (void)addItem:(id)item;
+
+@end
+----------------------------------------------------------
+
+@interface LinkedList ()
+
+@property (nonatomic, strong) Node       *headNode;
+@property (nonatomic)         NSInteger   numberOfNodes;
+
+@end
+
+@implementation LinkedList
+
+- (void)addItem:(id)item {
+
+if (self.headNode == nil) {
+
+    // 创建头结点
+    self.headNode = [Node nodeWithItem:item];
+
+} else {
+
+    [self addItem:item node:self.headNode];
+}
+
+self.numberOfNodes++;
+}
+
+#pragma mark - 私有方法
+- (void)addItem:(id)item node:(Node *)node {
+
+if (node.nextNode == nil) {
+
+    node.nextNode = [Node nodeWithItem:item];
+
+} else {
+
+    [self addItem:item node:node.nextNode];
+}
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;系统迭代器-NSEnumerator&quot;&gt;&lt;a href=&quot;#系统迭代器-NSEnumerator&quot; class=&quot;headerlink&quot; title=&quot;系统迭代器: NSEnumerator&quot;&gt;&lt;/a&gt;系统迭代器: NSEnumerator&lt;/h1&gt;&lt;p&gt;迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIter04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 创建集合对象, 可以是数组，字典，集合等..
+NSArray *datas = @[@&amp;quot;A&amp;quot;, @&amp;quot;B&amp;quot;, @&amp;quot;C&amp;quot;, @&amp;quot;D&amp;quot;];
+
+// 从集合对象创建迭代器
+NSEnumerator *iterator = [datas objectEnumerator];
+
+// 从集合对象中访问元素, 头元素已经实现了空实现
+id arrayObj = nil;
+while (arrayObj = [iterator nextObject]) {
+    NSLog(@&amp;quot;%@&amp;quot;, arrayObj);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;迭代器模式&quot;&gt;&lt;a href=&quot;#迭代器模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器模式&quot;&gt;&lt;/a&gt;迭代器模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;LinkedList:头元素必须已经实现了空实现&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (instancetype)init{
+
+self = [super init];
+if (self) {
+
+    self.headNode = [Node new];
+}
+
+return self;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;IteratorProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol IteratorProtocol &amp;lt;NSObject&amp;gt;
+
+@required
+//下一个对象
+- (id)nextObject;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedListIterator&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface LinkedListIterator : NSObject &amp;lt;IteratorProtocol&amp;gt;
++ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList;
+
+@end
+
+@interface LinkedListIterator ()
+
+@property (nonatomic, strong) LinkedList *linkedList;
+@property (nonatomic, strong) Node       *currentNode;
+
+@end
+
+@implementation LinkedListIterator
+
++ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList {
+
+LinkedListIterator *linkedListIterator = [LinkedListIterator new];
+linkedListIterator.linkedList  = linkedList;
+linkedListIterator.currentNode = linkedList.headNode;    
+return linkedListIterator;
+}
+
+- (id)nextObject {
+self.currentNode = self.currentNode.nextNode;
+return self.currentNode;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic, strong) LinkedList *list;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建集合对象
+self.list = [[LinkedList alloc] init];
+[self.list addItem:@&amp;quot;A&amp;quot;];
+[self.list addItem:@&amp;quot;B&amp;quot;];
+[self.list addItem:@&amp;quot;C&amp;quot;];
+[self.list addItem:@&amp;quot;D&amp;quot;];
+
+// 从集合对象创建迭代器
+LinkedListIterator *linkedIterator = [LinkedListIterator linkedListIteratorWithLinkedList:self.list];
+
+// 从集合对象中访问元素
+Node *node = nil;
+while (node = [linkedIterator nextObject]) {    
+    NSLog(@&amp;quot;%@&amp;quot;, node.item);
+}
+
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现组合对象的迭代器&quot;&gt;&lt;a href=&quot;#实现组合对象的迭代器&quot; class=&quot;headerlink&quot; title=&quot;实现组合对象的迭代器&quot;&gt;&lt;/a&gt;实现组合对象的迭代器&lt;/h1&gt;&lt;p&gt;Node&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Node : NSObject
+@property (nonatomic, strong) Node  *nextNode;
+
+//节点挂载的对象, 注意这里是weak，因为customView已经持有那些对象了
+@property (nonatomic, weak)   id     item;
+
++ (instancetype)nodeWithItem:(id)item;
+@end
+
+--------------------------------------------
+
+@implementation Node
+
++ (instancetype)nodeWithItem:(id)item {
+
+    Node *node = [[[self class] alloc] init];
+    node.item  = item;
+
+    return node;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedList    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface LinkedList : NSObject
+@property (nonatomic, strong, readonly) Node *headNode;
+@property (nonatomic, readonly) NSInteger  numberOfNodes;
+- (void)addItem:(id)item;
+@end
+
+@interface LinkedList ()
+@property (nonatomic, strong) Node       *headNode;
+@property (nonatomic)         NSInteger   numberOfNodes;
+@end
+
+@implementation LinkedList
+
+- (instancetype)init{
+
+self = [super init];
+if (self) {
+
+    self.headNode = [Node new];
+}
+
+return self;
+}
+
+- (void)addItem:(id)item {
+
+if (self.headNode == nil) {
+
+    // 创建头结点
+    self.headNode = [Node nodeWithItem:item];
+
+} else {
+
+    [self addItem:item node:self.headNode];
+}
+
+self.numberOfNodes++;
+}
+
+#pragma mark - 私有方法
+- (void)addItem:(id)item node:(Node *)node {
+
+if (node.nextNode == nil) {
+
+    node.nextNode = [Node nodeWithItem:item];
+
+} else {
+
+    [self addItem:item node:node.nextNode];
+}
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;IteratorProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol IteratorProtocol &amp;lt;NSObject&amp;gt;
+
+- (id)nextObject;
+- (void)resetIterator;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CustomView&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CustomView : UIView &amp;lt;IteratorProtocol&amp;gt;
+
+@end
+
+@interface CustomView ()
+@property (nonatomic, strong) UIButton    *button;
+@property (nonatomic, strong) UILabel     *label;
+@property (nonatomic, strong) UITextField *field;
+@property (nonatomic, strong) LinkedList  *list;
+@property (nonatomic, strong) Node        *currentNode;
+
+@end
+
+@implementation CustomView
+
+- (instancetype)initWithFrame:(CGRect)frame{
+
+    self = [super initWithFrame:frame];
+    if (self) {
+
+        self.button = [[UIButton alloc] initWithFrame:self.bounds];
+        self.label  = [[UILabel alloc] initWithFrame:self.bounds];
+        self.field  = [[UITextField alloc] initWithFrame:self.bounds];
+
+        [self addSubview:self.button];
+        [self addSubview:self.label];
+        [self addSubview:self.field];
+
+        self.list = [[LinkedList alloc] init];
+        [self.list addItem:self.button];
+        [self.list addItem:self.label];
+        [self.list addItem:self.field];
+
+        self.currentNode = self.list.headNode;
+    }
+
+    return self;
+}
+
+- (id)nextObject {
+
+    self.currentNode = self.currentNode.nextNode;
+    return self.currentNode;
+}
+
+- (void)resetIterator {
+
+    self.currentNode = self.list.headNode;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+CustomView *customView = [[CustomView alloc] initWithFrame:self.view.bounds];
+
+Node *node = nil;
+
+[customView resetIterator];
+while (node = [customView nextObject]) {
+
+    NSLog(@&amp;quot;%@&amp;quot;, node.item);
+}
+
+[customView resetIterator];
+while (node = [customView nextObject]) {
+
+    NSLog(@&amp;quot;%@&amp;quot;, node.item);
+}
+
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;最小知识原则&quot;&gt;&lt;a href=&quot;#最小知识原则&quot; class=&quot;headerlink&quot; title=&quot;最小知识原则&quot;&gt;&lt;/a&gt;最小知识原则&lt;/h1&gt;&lt;p&gt;让使用者不用了解过多的细节，暴露在.h的文件越少越好，如果可以写在.m里最好&lt;/p&gt;
+&lt;h1 id=&quot;迭代器筛选&quot;&gt;&lt;a href=&quot;#迭代器筛选&quot; class=&quot;headerlink&quot; title=&quot;迭代器筛选&quot;&gt;&lt;/a&gt;迭代器筛选&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[customView resetIterator];
+while (node = [customView nextObject]) {
+
+    NSLog(@&amp;quot;%@&amp;quot;, node.item);
+
+    if ([node.item isKindOfClass:[UIButton class]]){
+
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;线性表&quot;&gt;&lt;a href=&quot;#线性表&quot; class=&quot;headerlink&quot; title=&quot;线性表&quot;&gt;&lt;/a&gt;线性表&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的&lt;/li&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-组合</title>
@@ -3618,60 +3982,6 @@ print(str)
     <summary type="html">
     
       &lt;h1 id=&quot;Sandbox-path&quot;&gt;&lt;a href=&quot;#Sandbox-path&quot; class=&quot;headerlink&quot; title=&quot;Sandbox path&quot;&gt;&lt;/a&gt;Sandbox path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var sp = NSSearchPathF
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS数据存储-NSUserDefault</title>
-    <link href="http://jackliu17.github.io/2016/05/20/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-NSUserDefault/"/>
-    <id>http://jackliu17.github.io/2016/05/20/iOS数据存储-NSUserDefault/</id>
-    <published>2016-05-20T06:13:21.000Z</published>
-    <updated>2016-05-20T06:15:30.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;读取数据-from-NSUserDeafult&quot;&gt;&lt;a href=&quot;#读取数据-from-NSUserDeafult&quot; class=&quot;headerlink&quot; title=&quot;读取数据 from NSUserDeafult&quot;&gt;&lt;/a&gt;读取数据 from NSUserDeafult&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var ud:NSUserDefaults!
-
-ud = NSUserDefaults.standardUserDefaults()
-
-    if let value: AnyObject = ud.objectForKey(&amp;quot;data&amp;quot;){
-
-        inputTxt.text = value as! String
-
-    }else{
-
-        inputTxt.text = &amp;quot;No value&amp;quot;
-    }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;保存数据-to-NSUserDefaults&quot;&gt;&lt;a href=&quot;#保存数据-to-NSUserDefaults&quot; class=&quot;headerlink&quot; title=&quot;保存数据 to NSUserDefaults&quot;&gt;&lt;/a&gt;保存数据 to NSUserDefaults&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;ud.setObject(inputTxt.text, forKey: &amp;quot;data&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;AnyObject&quot;&gt;&lt;a href=&quot;#AnyObject&quot; class=&quot;headerlink&quot; title=&quot;AnyObject ?&quot;&gt;&lt;/a&gt;AnyObject ?&lt;/h1&gt;&lt;p&gt;如果发现返回值有问号 AnyObject?，有可能为空。最好先做如下判断&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if let value: AnyObject = ud.objectForKey(&amp;quot;data&amp;quot;){
-
-    inputTxt.text = value as! String
-
-}else{
-
-    inputTxt.text = &amp;quot;No value&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;ShowTips-proj&quot;&gt;&lt;a href=&quot;#ShowTips-proj&quot; class=&quot;headerlink&quot; title=&quot;ShowTips proj&quot;&gt;&lt;/a&gt;ShowTips proj&lt;/h1&gt;&lt;h2 id=&quot;Global-setting&quot;&gt;&lt;a href=&quot;#Global-setting&quot; class=&quot;headerlink&quot; title=&quot;Global setting&quot;&gt;&lt;/a&gt;Global setting&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var ud:NSUserDefaults!
-ud = NSUserDefaults.standardUserDefaults()
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Get-data&quot;&gt;&lt;a href=&quot;#Get-data&quot; class=&quot;headerlink&quot; title=&quot;Get data&quot;&gt;&lt;/a&gt;Get data&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;mySwitch.on = ud.boolForKey(&amp;quot;showTips&amp;quot;)
-
-if mySwitch.on{
-    UIAlertView(title: &amp;quot;提示&amp;quot;, message: &amp;quot;今天要下雨，出门要带雨具哦！&amp;quot;, delegate: nil, cancelButtonTitle: &amp;quot;好的&amp;quot;).show()
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Save-data&quot;&gt;&lt;a href=&quot;#Save-data&quot; class=&quot;headerlink&quot; title=&quot;Save data&quot;&gt;&lt;/a&gt;Save data&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;ud.setBool(mySwitch.on, forKey: &amp;quot;showTips&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;读取数据-from-NSUserDeafult&quot;&gt;&lt;a href=&quot;#读取数据-from-NSUserDeafult&quot; class=&quot;headerlink&quot; title=&quot;读取数据 from NSUserDeafult&quot;&gt;&lt;/a&gt;读取数据 from NSUserD
     
     </summary>
     
