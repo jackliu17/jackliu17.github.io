@@ -238,6 +238,356 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/29/iOS设计模式-工厂/" itemprop="url">
+                  iOS设计模式-工厂
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-29T15:20:41+10:00" content="2016-05-29">
+              2016-05-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/29/iOS设计模式-工厂/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/iOS设计模式-工厂/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="工厂"><a href="#工厂" class="headerlink" title="工厂"></a>工厂</h1><p>工厂</p>
+<ol>
+<li>制造产品</li>
+<li>将制造工艺进行了封装</li>
+</ol>
+<p>客户</p>
+<ol>
+<li>不参与手机制造流程</li>
+<li>客户需要使用固定的产品(客户提出需求)</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png" alt=""></p>
+<h1 id="简单工厂使用场景"><a href="#简单工厂使用场景" class="headerlink" title="简单工厂使用场景"></a>简单工厂使用场景</h1><ol>
+<li>简化生产流程</li>
+<li>隔离生产产品的细节</li>
+<li>不同类型的产品之间有着一些共同的功能</li>
+<li>一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory01.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory02.png" alt=""></p>
+<h2 id="产品协议规范同一接口"><a href="#产品协议规范同一接口" class="headerlink" title="产品协议规范同一接口"></a>产品协议规范同一接口</h2><p>PhoneProtocol</p>
+<pre><code>@protocol PhoneProtocol &lt;NSObject&gt;
+
+- (void)phoneCall;
+
+- (void)sendMessage;
+</code></pre><h2 id="产品基类"><a href="#产品基类" class="headerlink" title="产品基类"></a>产品基类</h2><p>BaseDevie</p>
+<pre><code>@interface BaseDevie : NSObject &lt;PhoneProtocol&gt;
+
+- (void)phoneCall {
+}
+
+- (void)sendMessage {
+}
+</code></pre><h2 id="具体产品"><a href="#具体产品" class="headerlink" title="具体产品"></a>具体产品</h2><p>AndroidDevice</p>
+<pre><code>@interface AndroidDevice : BaseDevie
+
+- (void)phoneCall {
+NSLog(@&quot;Android phoneCall&quot;);
+}
+
+- (void)sendMessage {   
+NSLog(@&quot;Android sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)customTheme {
+NSLog(@&quot;Android customTheme&quot;);
+}
+</code></pre><p>iPhoneDevice</p>
+<pre><code>@interface iPhoneDevice : BaseDevie
+
+- (void)phoneCall {
+NSLog(@&quot;iPhone phoneCall&quot;);
+}
+
+- (void)sendMessage {   
+NSLog(@&quot;iPhone sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)fingerprintIndetification {
+NSLog(@&quot;iPhone fingerprintIndetification&quot;);
+}
+</code></pre><p>NokiaDevice</p>
+<pre><code>@interface NokiaDevice : BaseDevie
+
+- (void)phoneCall { 
+NSLog(@&quot;Nokia phoneCall&quot;);
+}
+
+- (void)sendMessage {
+NSLog(@&quot;Nokia sendMessage&quot;);
+}
+
+//特有功能，需要写在.h文件里
+- (void)knockWalnut {
+NSLog(@&quot;Nokia knockWalnut&quot;);
+}
+</code></pre><h2 id="工厂-1"><a href="#工厂-1" class="headerlink" title="工厂"></a>工厂</h2><p>DeviceFactory</p>
+<pre><code>typedef enum : NSUInteger {
+kiPhone   = 0x11,
+kAndroid,
+kNokia,
+
+} EDevieType;
+
+//根据用户提交的指令创建出具体的手机
++ (BaseDevie &lt;PhoneProtocol&gt; *)deviceFactoryWithDevieType:(EDevieType)type {
+
+BaseDevie &lt;PhoneProtocol&gt; *device = nil;  
+
+if (type == kiPhone) { 
+
+    device = [[iPhoneDevice alloc] init];
+
+}  else if (type == kAndroid) {
+
+    device = [[AndroidDevice alloc] init];
+
+}  else if (type == kNokia) {
+
+    device = [[NokiaDevice alloc] init];
+
+}
+
+return device;
+}
+</code></pre><h2 id="工厂的使用"><a href="#工厂的使用" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 工厂中创建出具体产品，如果仅仅是使用通用的功能sendMsg,phoneCall，类型为BaseDevice也可以
+
+iPhoneDevice *iPhone = (iPhoneDevice *)[DeviceFactory deviceFactoryWithDevieType:kiPhone];
+
+// 使用产品的功能
+[iPhone fingerprintIndetification];
+}
+</code></pre><h1 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h1><ol>
+<li>工厂是抽象类，需要实例化子类</li>
+<li>抽象工厂使用比简单工厂更加灵活，因为可以动态的切换工厂</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory03.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory05.png" alt=""></p>
+<h2 id="产品-Phone"><a href="#产品-Phone" class="headerlink" title="产品 Phone"></a>产品 Phone</h2><p>Phone基类</p>
+<pre><code>@interface BasePhone : NSObject
+
+@end
+</code></pre><p>Phone子类之Android</p>
+<pre><code>@interface Android : BasePhone
+
+@end
+</code></pre><p>Phone子类之iPhone</p>
+<pre><code>@interface iPhone : BasePhone
+
+@end
+</code></pre><h2 id="产品-Watch"><a href="#产品-Watch" class="headerlink" title="产品 Watch"></a>产品 Watch</h2><p>Whatch产品基类</p>
+<pre><code>@interface BaseWatch : NSObject
+
+@end
+</code></pre><p>Whatch产品子类之iWatch</p>
+<pre><code>@interface iWatch : BaseWatch
+
+@end
+</code></pre><p>Whatch产品子类之AndroidWatch</p>
+<pre><code>@interface AndroidWatch : BaseWatch
+
+@end
+</code></pre><h2 id="工厂-2"><a href="#工厂-2" class="headerlink" title="工厂"></a>工厂</h2><p>工厂基类</p>
+<pre><code>@implementation BaseFactory
+
+- (BasePhone *)createPhone {
+
+return nil;
+}
+
+- (BaseWatch *)createWatch {
+
+return nil;
+}
+</code></pre><p>工厂子类Apple</p>
+<pre><code>@interface AppleFactory : BaseFactory
+
+- (BasePhone *)createPhone {
+
+return [[iPhone alloc] init];
+}
+
+- (BaseWatch *)createWatch {
+
+return [[iWatch alloc] init];
+}
+</code></pre><p>工厂子类Google</p>
+<pre><code>@interface GoogleFactory : BaseFactory
+
+- (BasePhone *)createPhone {
+
+return [[Android alloc] init];
+}
+
+- (BaseWatch *)createWatch {
+
+return [[AndroidWatch alloc] init];
+}
+</code></pre><h2 id="创建具体工厂"><a href="#创建具体工厂" class="headerlink" title="创建具体工厂"></a>创建具体工厂</h2><p>FactoryManager</p>
+<pre><code>typedef enum : NSUInteger {
+
+kApple   = 0x11,
+kGoogle,
+
+} EFactoryType;
+
+@interface FactoryManager : NSObject
+
++ (BaseFactory *)factoryWithBrand:(EFactoryType)factoryType {
+
+BaseFactory *factory = nil;
+
+if (factoryType == kApple) {
+
+    factory = [[AppleFactory alloc] init];
+
+} else if (factoryType == kGoogle) {
+
+    factory = [[GoogleFactory alloc] init];
+}
+
+return factory;
+}
+</code></pre><h2 id="工厂的使用-1"><a href="#工厂的使用-1" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 获取工厂
+BaseFactory *factory = [FactoryManager factoryWithBrand:kGoogle];
+
+// 创建商品
+BasePhone *phone = [factory createPhone];
+BaseWatch *watch = [factory createWatch];
+
+NSLog(@&quot;%@ %@&quot;, phone, watch);
+}
+</code></pre><h1 id="框架级别的工厂类-NSNumber"><a href="#框架级别的工厂类-NSNumber" class="headerlink" title="框架级别的工厂类:NSNumber"></a>框架级别的工厂类:NSNumber</h1><p>因为NSNumber是抽象类，所以以下代码结果为null，NSNumber是一个抽象类，其父类NSValue也是</p>
+<pre><code>NSLog(@&quot;%@&quot;, [[NSNumber alloc] init]);
+</code></pre><p>根据客户需求，制造出相关工厂</p>
+<pre><code>NSNumber *number     = [NSNumber numberWithInt:100];
+NSNumber *floatValue = [NSNumber numberWithFloat:100.f];
+</code></pre><p>以下结果都为d,产品可以互相转换，因为NSNumber只处理数值型的数据.这是和普通抽象工厂不同的地方</p>
+<pre><code>NSLog(@&quot;%c&quot;, [number charValue]);
+NSLog(@&quot;%c&quot;, [floatValue charValue]);
+</code></pre><h1 id="枚举类型的定义"><a href="#枚举类型的定义" class="headerlink" title="枚举类型的定义"></a>枚举类型的定义</h1><p>使用枚举定义手机的类型，注意起名字时，用大写的E+名字 = EDevieType</p>
+<pre><code>typedef enum : NSUInteger {
+kiPhone   = 0x11,
+kAndroid,
+kNokia,
+
+} EDevieType;    
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/28/iOS设计模式-装饰/" itemprop="url">
                   iOS设计模式-装饰
                 </a>
@@ -1171,238 +1521,6 @@ if (hashTable == nil) {....}
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/24/iOS设计模式-策略/" itemprop="url">
-                  iOS设计模式-策略
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T19:10:03+10:00" content="2016-05-24">
-              2016-05-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/24/iOS设计模式-策略/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/iOS设计模式-策略/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png" alt=""></p>
-<p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
-<pre><code>typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes type = EType_01;
-
-// 输出条件
-NSString *showString = nil;
-
-if (type == EType_01) {
-
-    // showString = ...
-
-} else if (type == EType_02) {
-
-    // showString = ...
-
-} else if (type == EType_03) {
-
-    // showStri
-    ......
-</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png" alt=""></p>
-<ol>
-<li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
-<li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
-<li>判断的每个条件生成对应的一个对象</li>
-<li>需要事先知道输入的条件</li>
-<li>策略类对象属于使用场景的一部分</li>
-</ol>
-<h1 id="策略的使用案例"><a href="#策略的使用案例" class="headerlink" title="策略的使用案例"></a>策略的使用案例</h1><h2 id="抽象的策略-Strategy"><a href="#抽象的策略-Strategy" class="headerlink" title="抽象的策略 (Strategy)"></a>抽象的策略 (Strategy)</h2><p>CustomField: 内含inputValidator验证策略</p>
-<pre><code>@interface CustomField : UITextField
-
-@property (nonatomic, strong) InputValidator *validator;
-
-- (BOOL)validate {
-return [self.validator validateInput:self];
-}
-@end
-</code></pre><p>InputValidator:策略的输入</p>
-<pre><code>@interface InputValidator : NSObject
-
-@property (nonatomic, strong) NSString *errorMessage;
-
-- (BOOL)validateInput:(UITextField *)input {
-return NO;
-}
-</code></pre><h2 id="Email的验证-Strategy-A"><a href="#Email的验证-Strategy-A" class="headerlink" title="Email的验证 (Strategy A)"></a>Email的验证 (Strategy A)</h2><p>EmailValidator:重载了父类的验证方法</p>
-<pre><code>@interface EmailValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &lt;= 0) {
-    self.errorMessage = @&quot;没有输入&quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&quot;请输入正确的邮箱&quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-return self.errorMessage == nil ? YES : NO;
-}
-</code></pre><h2 id="Phone的验证-Strategy-B"><a href="#Phone的验证-Strategy-B" class="headerlink" title="Phone的验证  (Strategy B)"></a>Phone的验证  (Strategy B)</h2><p>PhoneNumberValidator :重载了父类的验证方法</p>
-<pre><code>@interface PhoneNumberValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &lt;= 0) {
-    self.errorMessage = @&quot;没有输入&quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&quot;请输入正确的手机号码&quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-
-return self.errorMessage == nil ? YES : NO;
-}
-</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>ViewController</p>
-<pre><code>@property (nonatomic, strong) CustomField  *emailField;
-@property (nonatomic, strong) CustomField  *phoneNumberField;
-
-......
-self.emailField.validator   = [EmailValidator new];
-......
-self.phoneNumberField.validator   = [PhoneNumberValidator new];
-......
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-CustomField *customField = (CustomField *)textField;
-
-//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
-
-if ([customField validate] == NO) {
-    [UIInfomationView showAlertViewWithTitle:nil
-                                     message:customField.validator.errorMessage
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[@&quot;确定&quot;]
-                                clickAtIndex:^(NSInteger buttonIndex) {
-
-                                }];
-}
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1449,7 +1567,7 @@ if ([customField validate] == NO) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">74</span>
+              <span class="site-state-item-count">75</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

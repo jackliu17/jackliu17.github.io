@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,46 +61,55 @@
 
 
 
-<meta name="description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
+<meta name="description" content="请客吃饭与模板模式
+张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        
+联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，
+
+
+模板模式特点
+过程殊途同归 
+将共同行为/流程抽象成算法的骨架
+利用OO的多态，让子类继承重写
+
+
+Cocoa 框架中用到的模板模式(Override)CustomCell
+@interface">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/index.html">
+<meta property="og:title" content="iOS设计模式-模板">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/05/iOS设计模式-模板/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png">
-<meta property="og:updated_time" content="2016-05-11T06:06:49.000Z">
+<meta property="og:description" content="请客吃饭与模板模式
+张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        
+联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，
+
+
+模板模式特点
+过程殊途同归 
+将共同行为/流程抽象成算法的骨架
+利用OO的多态，让子类继承重写
+
+
+Cocoa 框架中用到的模板模式(Override)CustomCell
+@interface">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png">
+<meta property="og:updated_time" content="2016-06-05T08:38:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta name="twitter:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png">
+<meta name="twitter:title" content="iOS设计模式-模板">
+<meta name="twitter:description" content="请客吃饭与模板模式
+张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        
+联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，
+
+
+模板模式特点
+过程殊途同归 
+将共同行为/流程抽象成算法的骨架
+利用OO的多态，让子类继承重写
+
+
+Cocoa 框架中用到的模板模式(Override)CustomCell
+@interface">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png">
 
 
 
@@ -118,7 +127,7 @@ CGFloa">
   };
 </script>
 
-  <title> iOS项目6.UIScrollView图片自动滚动 | Cowboy Tech </title>
+  <title> iOS设计模式-模板 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +269,7 @@ CGFloa">
             
             
               
-                iOS项目6.UIScrollView图片自动滚动
+                iOS设计模式-模板
               
             
           </h1>
@@ -272,8 +281,8 @@ CGFloa">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2016-06-05T16:12:40+10:00" content="2016-06-05">
+              2016-06-05
             </time>
           </span>
 
@@ -302,8 +311,8 @@ CGFloa">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
+                <a href="/2016/06/05/iOS设计模式-模板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-模板/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,54 +334,160 @@ CGFloa">
       
 
       
-        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/uiscrollViewPlay.png" alt="效果图"></p>
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png" alt="功能分析"></p>
-<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
+        <h1 id="请客吃饭与模板模式"><a href="#请客吃饭与模板模式" class="headerlink" title="请客吃饭与模板模式"></a>请客吃饭与模板模式</h1><ol>
+<li>张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        </li>
+<li>联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png" alt=""></p>
+<h1 id="模板模式特点"><a href="#模板模式特点" class="headerlink" title="模板模式特点"></a>模板模式特点</h1><ol>
+<li>过程殊途同归 </li>
+<li>将共同行为/流程抽象成算法的骨架</li>
+<li>利用OO的多态，让子类继承重写</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png" alt=""></p>
+<h1 id="Cocoa-框架中用到的模板模式-Override"><a href="#Cocoa-框架中用到的模板模式-Override" class="headerlink" title="Cocoa 框架中用到的模板模式(Override)"></a>Cocoa 框架中用到的模板模式(Override)</h1><p>CustomCell</p>
+<pre><code>@interface CustomCell : UITableViewCell
 
+- (void)setupCell;
+- (void)buildSubView;
+@end
+----------------------------------------
+@implementation CustomCell
 
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 
+if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
+    [self setupCell];
 
+    [self buildSubView];
+}
 
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+return self;
+}
+
+- (void)setupCell {
 
 }
 
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+- (void)buildSubView {
 
 }
 
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
+@end
+</code></pre><p>ModelCell</p>
+<pre><code>@interface ModelCell : CustomCell
 
-//停止定时器
-[self.timer invalidate];
-</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
+@end
+
+@implementation ModelCell
+
+- (void)setupCell {
+
+// setup cell.
+}
+
+- (void)buildSubView {
+
+// build subView.
+}
+
+@end
+</code></pre><h1 id="游戏从开始到结束的各个阶段详解"><a href="#游戏从开始到结束的各个阶段详解" class="headerlink" title="游戏从开始到结束的各个阶段详解"></a>游戏从开始到结束的各个阶段详解</h1><ol>
+<li>各个阶段的分解</li>
+<li>将分解出来的阶段模板化    </li>
+</ol>
+<p>Game</p>
+<pre><code>@interface Game : NSObject
+- (void)initGame;
+- (void)pause;
+- (void)save;
+- (void)exitGame;
+- (void)startPlay;
+@end
+
+@implementation Game
+
+- (void)initGame {
+}
+
+- (void)pause {
+}
+
+- (void)save {
+}
+
+- (void)exitGame {
+}
+
+- (void)startPlay {
+}
+@end
+</code></pre><p>Chess</p>
+<pre><code>@interface Chess : Game
+
+@end
+
+@implementation Chess
+
+- (void)initGame {
+
+NSLog(@&quot;init chess game.&quot;);
+}
+
+- (void)pause {
+
+NSLog(@&quot;pasue chess game.&quot;);
+}
+
+- (void)save {
+
+NSLog(@&quot;save chess game.&quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&quot;exit chess game.&quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&quot;play chess game.&quot;);
+}
+
+@end
+</code></pre><p>Football</p>
+<pre><code>@interface Football : Game
+
+@end
+@implementation Football
+
+- (void)initGame {
+
+NSLog(@&quot;init football game.&quot;);
+}
+
+- (void)pause {
+
+NSLog(@&quot;pasue football game.&quot;);
+}
+
+- (void)save {
+
+NSLog(@&quot;save football game.&quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&quot;exit football game.&quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&quot;play football game.&quot;);
+}
+
+@end
 </code></pre>
       
     </div>
@@ -389,7 +504,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -398,17 +513,13 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/iOS项目5-UIPickerView国家选择/" rel="next" title="iOS项目5.UIPickerView国家选择">
-                <i class="fa fa-chevron-left"></i> iOS项目5.UIPickerView国家选择
+              <a href="/2016/06/05/iOS设计模式-享元/" rel="next" title="iOS设计模式-享元">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-享元
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/24/OpenGL-ES/" rel="prev" title="OpenGL_ES">
-                OpenGL_ES <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +651,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能分析"><span class="nav-number">2.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义常量的两种方式"><span class="nav-number">3.</span> <span class="nav-text">定义常量的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIScrollView的配置"><span class="nav-number">4.</span> <span class="nav-text">UIScrollView的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加视图-插入"><span class="nav-number">5.</span> <span class="nav-text">添加视图 - 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器添加和停止"><span class="nav-number">6.</span> <span class="nav-text">定时器添加和停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环调用"><span class="nav-number">7.</span> <span class="nav-text">循环调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#请客吃饭与模板模式"><span class="nav-number">1.</span> <span class="nav-text">请客吃饭与模板模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板模式特点"><span class="nav-number">2.</span> <span class="nav-text">模板模式特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cocoa-框架中用到的模板模式-Override"><span class="nav-number">3.</span> <span class="nav-text">Cocoa 框架中用到的模板模式(Override)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏从开始到结束的各个阶段详解"><span class="nav-number">4.</span> <span class="nav-text">游戏从开始到结束的各个阶段详解</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -798,9 +909,9 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
-      var disqus_title = 'iOS项目6.UIScrollView图片自动滚动';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
+      var disqus_identifier = '2016/06/05/iOS设计模式-模板/';
+      var disqus_title = 'iOS设计模式-模板';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/05/iOS设计模式-模板/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

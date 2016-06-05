@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-05T05:45:09.000Z</updated>
+  <updated>2016-06-05T08:38:53.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,185 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-模板</title>
+    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF/"/>
+    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-模板/</id>
+    <published>2016-06-05T06:12:40.000Z</published>
+    <updated>2016-06-05T08:38:53.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        &lt;/li&gt;
+&lt;li&gt;联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;模板模式特点&quot;&gt;&lt;a href=&quot;#模板模式特点&quot; class=&quot;headerlink&quot; title=&quot;模板模式特点&quot;&gt;&lt;/a&gt;模板模式特点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;过程殊途同归 &lt;/li&gt;
+&lt;li&gt;将共同行为/流程抽象成算法的骨架&lt;/li&gt;
+&lt;li&gt;利用OO的多态，让子类继承重写&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Cocoa-框架中用到的模板模式-Override&quot;&gt;&lt;a href=&quot;#Cocoa-框架中用到的模板模式-Override&quot; class=&quot;headerlink&quot; title=&quot;Cocoa 框架中用到的模板模式(Override)&quot;&gt;&lt;/a&gt;Cocoa 框架中用到的模板模式(Override)&lt;/h1&gt;&lt;p&gt;CustomCell&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CustomCell : UITableViewCell
+
+- (void)setupCell;
+- (void)buildSubView;
+@end
+----------------------------------------
+@implementation CustomCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+
+if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+
+    [self setupCell];
+
+    [self buildSubView];
+}
+
+return self;
+}
+
+- (void)setupCell {
+
+}
+
+- (void)buildSubView {
+
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ModelCell&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ModelCell : CustomCell
+
+@end
+
+@implementation ModelCell
+
+- (void)setupCell {
+
+// setup cell.
+}
+
+- (void)buildSubView {
+
+// build subView.
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;游戏从开始到结束的各个阶段详解&quot;&gt;&lt;a href=&quot;#游戏从开始到结束的各个阶段详解&quot; class=&quot;headerlink&quot; title=&quot;游戏从开始到结束的各个阶段详解&quot;&gt;&lt;/a&gt;游戏从开始到结束的各个阶段详解&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;各个阶段的分解&lt;/li&gt;
+&lt;li&gt;将分解出来的阶段模板化    &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Game&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Game : NSObject
+- (void)initGame;
+- (void)pause;
+- (void)save;
+- (void)exitGame;
+- (void)startPlay;
+@end
+
+@implementation Game
+
+- (void)initGame {
+}
+
+- (void)pause {
+}
+
+- (void)save {
+}
+
+- (void)exitGame {
+}
+
+- (void)startPlay {
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Chess&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Chess : Game
+
+@end
+
+@implementation Chess
+
+- (void)initGame {
+
+NSLog(@&amp;quot;init chess game.&amp;quot;);
+}
+
+- (void)pause {
+
+NSLog(@&amp;quot;pasue chess game.&amp;quot;);
+}
+
+- (void)save {
+
+NSLog(@&amp;quot;save chess game.&amp;quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&amp;quot;exit chess game.&amp;quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&amp;quot;play chess game.&amp;quot;);
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Football&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Football : Game
+
+@end
+@implementation Football
+
+- (void)initGame {
+
+NSLog(@&amp;quot;init football game.&amp;quot;);
+}
+
+- (void)pause {
+
+NSLog(@&amp;quot;pasue football game.&amp;quot;);
+}
+
+- (void)save {
+
+NSLog(@&amp;quot;save football game.&amp;quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&amp;quot;exit football game.&amp;quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&amp;quot;play football game.&amp;quot;);
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-享元</title>
@@ -4041,91 +4220,6 @@ import MediaPlaye
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_media" scheme="http://jackliu17.github.io/tags/iOS-media/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS-HTTP通信</title>
-    <link href="http://jackliu17.github.io/2016/05/21/iOS-HTTP%E9%80%9A%E4%BF%A1/"/>
-    <id>http://jackliu17.github.io/2016/05/21/iOS-HTTP通信/</id>
-    <published>2016-05-21T03:11:52.000Z</published>
-    <updated>2016-05-21T03:14:46.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;URL-path&quot;&gt;&lt;a href=&quot;#URL-path&quot; class=&quot;headerlink&quot; title=&quot;URL path&quot;&gt;&lt;/a&gt;URL path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath = NSURL(string:&amp;quot;http://jikexueyuan.com&amp;quot; )
-let httpRequest = NSURLRequest(URL: httpPath!)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;打印HTML代码&quot;&gt;&lt;a href=&quot;#打印HTML代码&quot; class=&quot;headerlink&quot; title=&quot;打印HTML代码&quot;&gt;&lt;/a&gt;打印HTML代码&lt;/h1&gt;&lt;h2 id=&quot;字符串类型输出&quot;&gt;&lt;a href=&quot;#字符串类型输出&quot; class=&quot;headerlink&quot; title=&quot;字符串类型输出&quot;&gt;&lt;/a&gt;字符串类型输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;do {
-    let httpCode = try NSString(contentsOfURL: httpPath!, encoding: NSUTF8StringEncoding)
-    print(httpCode)
-}catch{
-    print(error)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;二进制类型输出&quot;&gt;&lt;a href=&quot;#二进制类型输出&quot; class=&quot;headerlink&quot; title=&quot;二进制类型输出&quot;&gt;&lt;/a&gt;二进制类型输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfURL:httpPath!)
-print(data!)
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;二进制转字符串输出&quot;&gt;&lt;a href=&quot;#二进制转字符串输出&quot; class=&quot;headerlink&quot; title=&quot;二进制转字符串输出&quot;&gt;&lt;/a&gt;二进制转字符串输出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfURL:httpPath!)
-print(NSString(data:data!, encoding: NSUTF8StringEncoding))
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;同步请求&quot;&gt;&lt;a href=&quot;#同步请求&quot; class=&quot;headerlink&quot; title=&quot;同步请求&quot;&gt;&lt;/a&gt;同步请求&lt;/h1&gt;&lt;h2 id=&quot;打印HTML代码-1&quot;&gt;&lt;a href=&quot;#打印HTML代码-1&quot; class=&quot;headerlink&quot; title=&quot;打印HTML代码&quot;&gt;&lt;/a&gt;打印HTML代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;do{
-    let data = try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: nil)
-    print(NSString(data:data, encoding: NSUTF8StringEncoding))
-}catch{
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;打印HTTP-header&quot;&gt;&lt;a href=&quot;#打印HTTP-header&quot; class=&quot;headerlink&quot; title=&quot;打印HTTP header&quot;&gt;&lt;/a&gt;打印HTTP header&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var resp:NSURLResponse?
-
-    do{
-     try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: &amp;amp;resp)
-    }catch{
-    }
-
-    if let r = resp{
-       print(r)
-    }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;异步请求&quot;&gt;&lt;a href=&quot;#异步请求&quot; class=&quot;headerlink&quot; title=&quot;异步请求&quot;&gt;&lt;/a&gt;异步请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
-
-    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Get-communication&quot;&gt;&lt;a href=&quot;#Get-communication&quot; class=&quot;headerlink&quot; title=&quot;Get communication&quot;&gt;&lt;/a&gt;Get communication&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath:NSURL? = NSURL(string:&amp;quot;http://localhost:8080/MyServer/Hello.jsp?name=\(self.tvInput.text)&amp;quot;)       
-let httpRequest:NSURLRequest = NSURLRequest(URL:httpPath!)
-
-NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-(resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
-    dispatch_sync(dispatch_get_main_queue(), {
-        self.tvOut.text = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;Get方式是将传输数据放在地址栏&lt;/li&gt;
-&lt;li&gt;改变UI界面需要在主线程执行&lt;/li&gt;
-&lt;li&gt;不能传输庞大的数据&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;Post-communication&quot;&gt;&lt;a href=&quot;#Post-communication&quot; class=&quot;headerlink&quot; title=&quot;Post communication&quot;&gt;&lt;/a&gt;Post communication&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpUrl = NSURL(string: &amp;quot;http://localhost:8080/MyServer/hello.jsp&amp;quot;)
-let req = NSMutableURLRequest(URL:httpUrl!)
-req.HTTPMethod = &amp;quot;POST&amp;quot;
-req.HTTPBody = NSString(string:&amp;quot;name=\(tvInput.text)&amp;quot;).dataUsingEncoding(NSUTF8StringEncoding)
-
-NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
-
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&amp;gt; Void in
-
-    if let d = data {
-        dispatch_sync(dispatch_get_main_queue(), {
-            self.tvOut.text = NSString(data: d, encoding: NSUTF8StringEncoding)! as String
-        })}
-    }
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;URL-path&quot;&gt;&lt;a href=&quot;#URL-path&quot; class=&quot;headerlink&quot; title=&quot;URL path&quot;&gt;&lt;/a&gt;URL path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let httpPath = NSURL(string:&amp;quot;http
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_web" scheme="http://jackliu17.github.io/tags/iOS-web/"/>
     
   </entry>
   
