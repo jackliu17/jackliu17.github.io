@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,49 +61,30 @@
 
 
 
-<meta name="description" content="效果图
-项目结构
-字符串型和整型互转//字符串转整型
-var num1 = Int(self.textOne.text!)
+<meta name="description" content="享元模式交叉的圆环，提取出公共部分进行复用。
 
-//整型转为字符串
-let resultStr = &amp;quot;\(resultNum)&amp;quot;
-判断文本框是否为空if(self.textOne.text!.isEmpty){...}
-
-if(!self.textTwo.hasText()){...}
-编辑结束时移除">
+定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
+步骤: 共享物件的提取 —&amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目1.加法计算器">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/18/iOS项目1-加法计算器/index.html">
+<meta property="og:title" content="iOS设计模式-享元">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="效果图
-项目结构
-字符串型和整型互转//字符串转整型
-var num1 = Int(self.textOne.text!)
+<meta property="og:description" content="享元模式交叉的圆环，提取出公共部分进行复用。
 
-//整型转为字符串
-let resultStr = &amp;quot;\(resultNum)&amp;quot;
-判断文本框是否为空if(self.textOne.text!.isEmpty){...}
-
-if(!self.textTwo.hasText()){...}
-编辑结束时移除">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A82.png">
-<meta property="og:updated_time" content="2016-05-10T01:22:09.000Z">
+定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
+步骤: 共享物件的提取 —&amp;gt;">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png">
+<meta property="og:updated_time" content="2016-06-05T05:45:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目1.加法计算器">
-<meta name="twitter:description" content="效果图
-项目结构
-字符串型和整型互转//字符串转整型
-var num1 = Int(self.textOne.text!)
+<meta name="twitter:title" content="iOS设计模式-享元">
+<meta name="twitter:description" content="享元模式交叉的圆环，提取出公共部分进行复用。
 
-//整型转为字符串
-let resultStr = &amp;quot;\(resultNum)&amp;quot;
-判断文本框是否为空if(self.textOne.text!.isEmpty){...}
-
-if(!self.textTwo.hasText()){...}
-编辑结束时移除">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8.png">
+定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
+步骤: 共享物件的提取 —&amp;gt;">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png">
 
 
 
@@ -121,7 +102,7 @@ if(!self.textTwo.hasText()){...}
   };
 </script>
 
-  <title> iOS项目1.加法计算器 | Cowboy Tech </title>
+  <title> iOS设计模式-享元 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +244,7 @@ if(!self.textTwo.hasText()){...}
             
             
               
-                iOS项目1.加法计算器
+                iOS设计模式-享元
               
             
           </h1>
@@ -275,8 +256,8 @@ if(!self.textTwo.hasText()){...}
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T11:31:59+10:00" content="2016-04-18">
-              2016-04-18
+            <time itemprop="dateCreated" datetime="2016-06-05T15:43:19+10:00" content="2016-06-05">
+              2016-06-05
             </time>
           </span>
 
@@ -305,8 +286,8 @@ if(!self.textTwo.hasText()){...}
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/18/iOS项目1-加法计算器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目1-加法计算器/" itemprop="commentsCount"></span>
+                <a href="/2016/06/05/iOS设计模式-享元/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-享元/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,17 +309,157 @@ if(!self.textTwo.hasText()){...}
       
 
       
-        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8.png" alt="加法计算器1"></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A82.png" alt="加法计算器2"></p>
-<h1 id="字符串型和整型互转"><a href="#字符串型和整型互转" class="headerlink" title="字符串型和整型互转"></a>字符串型和整型互转</h1><pre><code>//字符串转整型
-var num1 = Int(self.textOne.text!)
+        <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>交叉的圆环，提取出公共部分进行复用。</p>
+<ol>
+<li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
+<li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png" alt=""></p>
+<pre><code>@interface ViewController ()
 
-//整型转为字符串
-let resultStr = &quot;\(resultNum)&quot;
-</code></pre><h1 id="判断文本框是否为空"><a href="#判断文本框是否为空" class="headerlink" title="判断文本框是否为空"></a>判断文本框是否为空</h1><pre><code>if(self.textOne.text!.isEmpty){...}
+@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
 
-if(!self.textTwo.hasText()){...}
-</code></pre><h1 id="编辑结束时移除光标"><a href="#编辑结束时移除光标" class="headerlink" title="编辑结束时移除光标"></a>编辑结束时移除光标</h1><pre><code>self.textOne.endEditing(true)
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.flyweightFactory = [NSMutableDictionary dictionary];
+
+[self.flyweightFactory setObject:[Model new] forKey:@&quot;A&quot;];
+
+//方式一: 直接提取
+//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
+//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
+
+
+//方式二: 享元模式(有,则返回，无则创建返回)
+NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
+NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
+}
+
+- (id)ModelWithName:(NSString *)name {
+
+if (self.flyweightFactory[name]==nil) {
+
+    self.flyweightFactory[name] = [Model new];
+
+    return self.flyweightFactory[name];
+
+}else{
+
+    return self.flyweightFactory[name];
+
+}       
+}
+@end
+</code></pre><h1 id="咖啡厅案例"><a href="#咖啡厅案例" class="headerlink" title="咖啡厅案例"></a>咖啡厅案例</h1><p>分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面</p>
+<p>共享同种类的对象,三种对象:</p>
+<ol>
+<li>咖啡店</li>
+<li>咖啡table</li>
+<li>咖啡清单</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png" alt=""></p>
+<p>CoffeeFlavor</p>
+<pre><code>@interface CoffeeFlavor : NSObject
+@property (nonatomic, strong) NSString *flavor;
+@end
+</code></pre><p>Menu (相当于一个池子，将所有的享元咖啡存储在里面)</p>
+<pre><code>@interface Menu : NSObject
+
+//获取指定味道的咖啡（如果没有则创建）
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
+@end
+
+@interface Menu ()
+@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
+@end
+
+@implementation Menu
+
+- (instancetype)init {   
+    self = [super init];  
+    if (self) {  
+        self.flavors = [NSMutableDictionary dictionary];
+    }   
+    return self;
+}
+
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
+    NSParameterAssert(flavor);
+    if ([self.flavors objectForKey:flavor] == nil) {       
+        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
+        coffeeFlavor.flavor        = flavor;     
+        self.flavors[flavor] = coffeeFlavor;
+    }  
+    return [self.flavors objectForKey:flavor];
+}
+@end
+</code></pre><p>CoffeeShop</p>
+<pre><code>@interface CoffeeShop : NSObject
+- (void)takeOrder:(NSString *)flavor table:(int)table;
+- (void)serve;
+@end
+
+@interface CoffeeShop ()
+
+@property (nonatomic, strong) NSMutableDictionary &lt;NSNumber *, CoffeeFlavor *&gt;  *orders;
+@property (nonatomic, strong) Menu *menu;
+
+@end
+
+@implementation CoffeeShop
+
+- (instancetype)init {  
+    self = [super init];
+    if (self) { 
+        self.orders = [NSMutableDictionary dictionary];
+        self.menu   = [[Menu alloc] init];
+    }
+    return self;
+}
+
+- (void)takeOrder:(NSString *)flavor table:(int)table {
+    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
+                    forKey:@(table)];
+}
+
+- (void)serve {
+    NSArray *allKeys = self.orders.allKeys;
+    for (id key in allKeys) {  
+        NSLog(@&quot;[%@] Serving %@ to table %@&quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
+    }
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) CoffeeShop *coffeeShop;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 创建咖啡厅
+    self.coffeeShop = [[CoffeeShop alloc] init];
+    // 相同类型的数据公用
+    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:1];
+    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:10];
+    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:6];
+    [self.coffeeShop takeOrder:@&quot;Espresso&quot;   table:9];
+    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:8];
+
+    // 开始服务
+    [self.coffeeShop serve];
+}
+@end
+</code></pre><h1 id="字典属性"><a href="#字典属性" class="headerlink" title="字典属性"></a>字典属性</h1><pre><code>@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
 </code></pre>
       
     </div>
@@ -355,7 +476,7 @@ if(!self.textTwo.hasText()){...}
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -364,17 +485,13 @@ if(!self.textTwo.hasText()){...}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/12/4月12日之夜梦/" rel="next" title="4月12日之夜梦">
-                <i class="fa fa-chevron-left"></i> 4月12日之夜梦
+              <a href="/2016/06/05/iOS设计模式-迭代器/" rel="next" title="iOS设计模式-迭代器">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-迭代器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/18/iOS项目2-图片浏览器/" rel="prev" title="iOS项目2.图片浏览器">
-                iOS项目2.图片浏览器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -506,7 +623,7 @@ if(!self.textTwo.hasText()){...}
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串型和整型互转"><span class="nav-number">3.</span> <span class="nav-text">字符串型和整型互转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断文本框是否为空"><span class="nav-number">4.</span> <span class="nav-text">判断文本框是否为空</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑结束时移除光标"><span class="nav-number">5.</span> <span class="nav-text">编辑结束时移除光标</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#享元模式"><span class="nav-number">1.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#咖啡厅案例"><span class="nav-number">2.</span> <span class="nav-text">咖啡厅案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典属性"><span class="nav-number">3.</span> <span class="nav-text">字典属性</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -764,9 +881,9 @@ if(!self.textTwo.hasText()){...}
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/18/iOS项目1-加法计算器/';
-      var disqus_title = 'iOS项目1.加法计算器';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/18/iOS项目1-加法计算器/';
+      var disqus_identifier = '2016/06/05/iOS设计模式-享元/';
+      var disqus_title = 'iOS设计模式-享元';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

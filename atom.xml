@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-05T01:14:00.000Z</updated>
+  <updated>2016-06-05T05:45:09.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,183 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-享元</title>
+    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83/"/>
+    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/</id>
+    <published>2016-06-05T05:43:19.000Z</published>
+    <updated>2016-06-05T05:45:09.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h1&gt;&lt;p&gt;交叉的圆环，提取出公共部分进行复用。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。&lt;/li&gt;
+&lt;li&gt;步骤: 共享物件的提取 —&amp;gt; 管理共享对象 —&amp;gt; 获取共享对象&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+
+@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.flyweightFactory = [NSMutableDictionary dictionary];
+
+[self.flyweightFactory setObject:[Model new] forKey:@&amp;quot;A&amp;quot;];
+
+//方式一: 直接提取
+//    NSLog(@&amp;quot;%@&amp;quot;,self.flyweightFactory[@&amp;quot;A&amp;quot;]);
+//    NSLog(@&amp;quot;%@&amp;quot;,self.flyweightFactory[@&amp;quot;A&amp;quot;]);
+
+
+//方式二: 享元模式(有,则返回，无则创建返回)
+NSLog(@&amp;quot;%@&amp;quot;,[self ModelWithName:@&amp;quot;A&amp;quot;]);
+NSLog(@&amp;quot;%@&amp;quot;,[self ModelWithName:@&amp;quot;A&amp;quot;]);
+}
+
+- (id)ModelWithName:(NSString *)name {
+
+if (self.flyweightFactory[name]==nil) {
+
+    self.flyweightFactory[name] = [Model new];
+
+    return self.flyweightFactory[name];
+
+}else{
+
+    return self.flyweightFactory[name];
+
+}       
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;咖啡厅案例&quot;&gt;&lt;a href=&quot;#咖啡厅案例&quot; class=&quot;headerlink&quot; title=&quot;咖啡厅案例&quot;&gt;&lt;/a&gt;咖啡厅案例&lt;/h1&gt;&lt;p&gt;分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面&lt;/p&gt;
+&lt;p&gt;共享同种类的对象,三种对象:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;咖啡店&lt;/li&gt;
+&lt;li&gt;咖啡table&lt;/li&gt;
+&lt;li&gt;咖啡清单&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;CoffeeFlavor&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CoffeeFlavor : NSObject
+@property (nonatomic, strong) NSString *flavor;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Menu (相当于一个池子，将所有的享元咖啡存储在里面)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface Menu : NSObject
+
+//获取指定味道的咖啡（如果没有则创建）
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
+@end
+
+@interface Menu ()
+@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSString *, CoffeeFlavor *&amp;gt;  *flavors;
+@end
+
+@implementation Menu
+
+- (instancetype)init {   
+    self = [super init];  
+    if (self) {  
+        self.flavors = [NSMutableDictionary dictionary];
+    }   
+    return self;
+}
+
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
+    NSParameterAssert(flavor);
+    if ([self.flavors objectForKey:flavor] == nil) {       
+        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
+        coffeeFlavor.flavor        = flavor;     
+        self.flavors[flavor] = coffeeFlavor;
+    }  
+    return [self.flavors objectForKey:flavor];
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CoffeeShop&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface CoffeeShop : NSObject
+- (void)takeOrder:(NSString *)flavor table:(int)table;
+- (void)serve;
+@end
+
+@interface CoffeeShop ()
+
+@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSNumber *, CoffeeFlavor *&amp;gt;  *orders;
+@property (nonatomic, strong) Menu *menu;
+
+@end
+
+@implementation CoffeeShop
+
+- (instancetype)init {  
+    self = [super init];
+    if (self) { 
+        self.orders = [NSMutableDictionary dictionary];
+        self.menu   = [[Menu alloc] init];
+    }
+    return self;
+}
+
+- (void)takeOrder:(NSString *)flavor table:(int)table {
+    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
+                    forKey:@(table)];
+}
+
+- (void)serve {
+    NSArray *allKeys = self.orders.allKeys;
+    for (id key in allKeys) {  
+        NSLog(@&amp;quot;[%@] Serving %@ to table %@&amp;quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
+    }
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic, strong) CoffeeShop *coffeeShop;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 创建咖啡厅
+    self.coffeeShop = [[CoffeeShop alloc] init];
+    // 相同类型的数据公用
+    [self.coffeeShop takeOrder:@&amp;quot;Cappuccino&amp;quot; table:1];
+    [self.coffeeShop takeOrder:@&amp;quot;Frappe&amp;quot;     table:10];
+    [self.coffeeShop takeOrder:@&amp;quot;Cappuccino&amp;quot; table:6];
+    [self.coffeeShop takeOrder:@&amp;quot;Espresso&amp;quot;   table:9];
+    [self.coffeeShop takeOrder:@&amp;quot;Frappe&amp;quot;     table:8];
+
+    // 开始服务
+    [self.coffeeShop serve];
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;字典属性&quot;&gt;&lt;a href=&quot;#字典属性&quot; class=&quot;headerlink&quot; title=&quot;字典属性&quot;&gt;&lt;/a&gt;字典属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSString *, CoffeeFlavor *&amp;gt;  *flavors;
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h1&gt;&lt;p&gt;交叉的圆环，提取出公共部分进行复用。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;定义:享元模式（英语：Flyweight Pattern）是
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-迭代器</title>
@@ -3949,48 +4126,6 @@ NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_web" scheme="http://jackliu17.github.io/tags/iOS-web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS数据存储-沙盒数据</title>
-    <link href="http://jackliu17.github.io/2016/05/20/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-%E6%B2%99%E7%9B%92%E6%95%B0%E6%8D%AE/"/>
-    <id>http://jackliu17.github.io/2016/05/20/iOS数据存储-沙盒数据/</id>
-    <published>2016-05-20T07:04:03.000Z</published>
-    <updated>2016-05-20T07:04:58.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Sandbox-path&quot;&gt;&lt;a href=&quot;#Sandbox-path&quot; class=&quot;headerlink&quot; title=&quot;Sandbox path&quot;&gt;&lt;/a&gt;Sandbox path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
-
-if sp.count &amp;gt; 0{
-    let url = NSURL(fileURLWithPath: &amp;quot;\(sp[0])/data.txt&amp;quot;)
-    print(url)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Write-Data&quot;&gt;&lt;a href=&quot;#Write-Data&quot; class=&quot;headerlink&quot; title=&quot;Write Data&quot;&gt;&lt;/a&gt;Write Data&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let data = NSMutableData()
-data.appendData(&amp;quot;Hello Swift\n&amp;quot;.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
-data.writeToFile(url.path!, atomically: true)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Read-Data-Method-1&quot;&gt;&lt;a href=&quot;#Read-Data-Method-1&quot; class=&quot;headerlink&quot; title=&quot;Read Data - Method 1&quot;&gt;&lt;/a&gt;Read Data - Method 1&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;do {
-    let str1 = try NSString (contentsOfURL: url, encoding: NSUTF8StringEncoding)
-    print(str1)
-}catch{
-    print(error)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Read-Data-Method-2&quot;&gt;&lt;a href=&quot;#Read-Data-Method-2&quot; class=&quot;headerlink&quot; title=&quot;Read Data - Method 2&quot;&gt;&lt;/a&gt;Read Data - Method 2&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let data = NSData(contentsOfFile: url.path!)
-let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-print(str)
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Sandbox-path&quot;&gt;&lt;a href=&quot;#Sandbox-path&quot; class=&quot;headerlink&quot; title=&quot;Sandbox path&quot;&gt;&lt;/a&gt;Sandbox path&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var sp = NSSearchPathF
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_dataStorage" scheme="http://jackliu17.github.io/tags/iOS-dataStorage/"/>
     
   </entry>
   
