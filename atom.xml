@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-05T08:38:53.000Z</updated>
+  <updated>2016-06-06T06:44:52.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,464 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS设计模式-责任链</title>
+    <link href="http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%B4%A3%E4%BB%BB%E9%93%BE/"/>
+    <id>http://jackliu17.github.io/2016/06/06/iOS设计模式-责任链/</id>
+    <published>2016-06-06T03:33:31.000Z</published>
+    <updated>2016-06-06T06:44:52.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;快递分拣中心&quot;&gt;&lt;a href=&quot;#快递分拣中心&quot; class=&quot;headerlink&quot; title=&quot;快递分拣中心&quot;&gt;&lt;/a&gt;快递分拣中心&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;传送带 —&amp;gt; 线性表&lt;/li&gt;
+&lt;li&gt;包裹   —&amp;gt; 符合某种规范的物品&lt;/li&gt;
+&lt;li&gt;货物种类 —&amp;gt; 特定种类的货物&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;特点:提升效率&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;责任链模式&quot;&gt;&lt;a href=&quot;#责任链模式&quot; class=&quot;headerlink&quot; title=&quot;责任链模式&quot;&gt;&lt;/a&gt;责任链模式&lt;/h1&gt;&lt;p&gt;定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。&lt;/p&gt;
+&lt;p&gt;步骤:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将责任抽象成对象&lt;/li&gt;
+&lt;li&gt;将责任对象链接起来&lt;/li&gt;
+&lt;li&gt;处理输入的事件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;ChainProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;protocol ChainProtocol &amp;lt;NSObject&amp;gt;
+
+//设置继任者
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor;
+
+//获取继任者
+- (id &amp;lt;ChainProtocol&amp;gt;)successor;
+
+//处理请求
+- (void)handleRequest:(id)request;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;对输入文本进行类别检测&quot;&gt;&lt;a href=&quot;#对输入文本进行类别检测&quot; class=&quot;headerlink&quot; title=&quot;对输入文本进行类别检测&quot;&gt;&lt;/a&gt;对输入文本进行类别检测&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;职能分解,有电话号码检测，邮箱检测，用户名检测。类似不同种类的包裹&lt;/li&gt;
+&lt;li&gt;设定共有的接口。比如不同种类的产品都能装入一个纸箱&lt;/li&gt;
+&lt;li&gt;严格说来还要设定一个尾节点，处理什么都不是的情况&lt;/li&gt;
+&lt;li&gt;如果用if else的话，就不能进行拆解&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;ChainProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol ChainProtocol &amp;lt;NSObject&amp;gt;
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor;
+- (id &amp;lt;ChainProtocol&amp;gt;)successor;
+- (void)handleRequest:(id)request;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;EmailChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface EmailChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&amp;quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&amp;quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&amp;quot;%@ 是邮箱&amp;quot;, string);
+}
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PhoneNumChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface PhoneNumChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&amp;quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&amp;quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&amp;quot;%@ 是电话号码&amp;quot;, string);
+}
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;UserNameChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface UserNameChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&amp;quot;^[A-Za-z0-9]{6,20}+$&amp;quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&amp;quot;%@ 是用户名&amp;quot;, string);
+}
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HeadChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface HeadChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+    self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+    return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+    [self.nextSuccessor handleRequest:request];
+}
+
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // 创建责任对象
+    self.head     = [HeadChain new];
+    self.phoneNum = [PhoneNumChain new];
+    self.email    = [EmailChain new];
+    self.userName = [UserNameChain new];
+
+    // 链接责任链对象
+    self.head.successor     = self.phoneNum;
+    self.phoneNum.successor = self.email;
+    self.email.successor    = self.userName;
+
+    // 处理请求
+    [self.head handleRequest:@&amp;quot;349323YX&amp;quot;];
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;对输入文本进行”全类别”检测&quot;&gt;&lt;a href=&quot;#对输入文本进行”全类别”检测&quot; class=&quot;headerlink&quot; title=&quot;对输入文本进行”全类别”检测&quot;&gt;&lt;/a&gt;对输入文本进行”全类别”检测&lt;/h1&gt;&lt;p&gt;ChainProtocol&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@protocol ChainProtocol &amp;lt;NSObject&amp;gt;
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor;
+- (id &amp;lt;ChainProtocol&amp;gt;)successor;
+- (void)handleRequest:(id)request;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HeadChain &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface HeadChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+[self.nextSuccessor handleRequest:request];
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;RequestEvent&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface RequestEvent : NSObject
+
+@property (nonatomic, strong) NSString            *string;
+@property (nonatomic, strong) NSMutableDictionary *infomation;
+
+@end
+
+@implementation RequestEvent
+
+- (instancetype)init {
+
+    self = [super init];
+
+    if (self) {
+
+        self.infomation = [NSMutableDictionary dictionary];
+    }
+
+    return self;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;EmailChain    &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface EmailChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&amp;quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&amp;quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&amp;quot;Email&amp;quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&amp;quot;Email&amp;quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PhoneNumChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface PhoneNumChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&amp;quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&amp;quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&amp;quot;PhoneNumber&amp;quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&amp;quot;PhoneNumber&amp;quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;UserNameChain&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface UserNameChain : NSObject &amp;lt;ChainProtocol&amp;gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &amp;lt;ChainProtocol&amp;gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &amp;lt;ChainProtocol&amp;gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&amp;quot;^[A-Za-z0-9]{6,20}+$&amp;quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&amp;quot;UserName&amp;quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&amp;quot;UserName&amp;quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建责任对象
+self.head     = [HeadChain new];
+self.phoneNum = [PhoneNumChain new];
+self.email    = [EmailChain new];
+self.userName = [UserNameChain new];
+
+// 链接责任链对象
+self.head.successor     = self.phoneNum;
+self.phoneNum.successor = self.email;
+self.email.successor    = self.userName;
+
+RequestEvent *event = [RequestEvent new];
+event.string        = @&amp;quot;349323YX@qq.com&amp;quot;;
+
+// 处理请求
+[self.head handleRequest:event];
+
+NSLog(@&amp;quot;%@&amp;quot;, event.infomation);
+
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;快递分拣中心&quot;&gt;&lt;a href=&quot;#快递分拣中心&quot; class=&quot;headerlink&quot; title=&quot;快递分拣中心&quot;&gt;&lt;/a&gt;快递分拣中心&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;传送带 —&amp;gt; 线性表&lt;/li&gt;
+&lt;li&gt;包裹   —&amp;gt; 符合某种规范的物品&lt;/li&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-模板</title>
@@ -4140,86 +4598,6 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS视频播放和录制</title>
-    <link href="http://jackliu17.github.io/2016/05/21/iOS%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%92%8C%E5%BD%95%E5%88%B6/"/>
-    <id>http://jackliu17.github.io/2016/05/21/iOS视频播放和录制/</id>
-    <published>2016-05-21T05:39:21.000Z</published>
-    <updated>2016-05-21T05:40:01.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Play-Video&quot;&gt;&lt;a href=&quot;#Play-Video&quot; class=&quot;headerlink&quot; title=&quot;Play Video&quot;&gt;&lt;/a&gt;Play Video&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&amp;quot;video&amp;quot;, withExtension: &amp;quot;mp4&amp;quot;))
-    presentViewController(pc, animated: true, completion: nil)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Record-Video&quot;&gt;&lt;a href=&quot;#Record-Video&quot; class=&quot;headerlink&quot; title=&quot;Record Video&quot;&gt;&lt;/a&gt;Record Video&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-import MobileCoreServices
-import MediaPlayer
-
-class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
-
-var picker:UIImagePickerController!
-var videoUrl:NSURL?
-var player:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    if let url = videoUrl{
-        player = MPMoviePlayerViewController(contentURL: url)
-        presentViewController(player, animated: true, completion: nil)
-    }
-}
-
-
-@IBAction func recVideoBtnClicked(sender: AnyObject) {
-
-    picker = UIImagePickerController()
-    picker.mediaTypes = [kUTTypeMovie as String]
-    picker.sourceType = UIImagePickerControllerSourceType.Camera
-    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-    picker.delegate = self
-
-    presentViewController(picker, animated: true, completion: nil) 
-}
-
-
-func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
-
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-
-func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Play-Video&quot;&gt;&lt;a href=&quot;#Play-Video&quot; class=&quot;headerlink&quot; title=&quot;Play Video&quot;&gt;&lt;/a&gt;Play Video&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-import MediaPlaye
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_media" scheme="http://jackliu17.github.io/tags/iOS-media/"/>
     
   </entry>
   

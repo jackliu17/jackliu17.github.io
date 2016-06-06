@@ -238,6 +238,137 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/18/iOS项目2-图片浏览器/" itemprop="url">
+                  iOS项目2.图片浏览器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-18T15:57:39+10:00" content="2016-04-18">
+              2016-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/18/iOS项目2-图片浏览器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目2-图片浏览器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E5%B1%95%E7%A4%BA.png" alt="效果图"></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="project structure"></p>
+<h1 id="加载plist中的数据"><a href="#加载plist中的数据" class="headerlink" title="加载plist中的数据"></a>加载plist中的数据</h1><p><strong>该方法并不用在viewDidLoad中调用，而是在实际取值时调用</strong></p>
+<pre><code>- (NSArray *)imageDicts
+{
+//判断数组为空时建立
+if (!_imageDicts) {
+   //从NSBundle中读取路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;imageDate.plist&quot; ofType:nil];
+    //利用文件路创建数组
+    _imageDicts = [NSArray arrayWithContentsOfFile:path];
+}
+//返回数组
+return _imageDicts;
+}
+</code></pre><h1 id="条件语句设置BOOL值"><a href="#条件语句设置BOOL值" class="headerlink" title="条件语句设置BOOL值"></a>条件语句设置BOOL值</h1><pre><code>self.leftBtn.enabled = (self.index != 0);
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><pre><code>如果每一次的按钮需要和对应的数据呈现对应，那么需要设置索引号index
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/18/iOS项目1-加法计算器/" itemprop="url">
                   iOS项目1.加法计算器
                 </a>
@@ -916,210 +1047,12 @@ self.savebtn.hidden = YES;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/17/UIStoryboard的相关操作/" itemprop="url">
-                  UIStoryboard的相关操作
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-17T13:18:16+11:00" content="2016-03-17">
-              2016-03-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/17/UIStoryboard的相关操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/17/UIStoryboard的相关操作/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Xcode建立文件夹"><a href="#Xcode建立文件夹" class="headerlink" title="Xcode建立文件夹"></a>Xcode建立文件夹</h1><ol>
-<li>如果仅是在xcode里创建，那文件夹不会在存在finder里，实际上相关文件还是存在一个目录下</li>
-<li>需要在Xcode里左下角，”add new file to ….project” –&gt; create new folder –&gt; add,这样创建的文件夹可以存在finder里</li>
-</ol>
-<h1 id="指定启动视图"><a href="#指定启动视图" class="headerlink" title="指定启动视图"></a>指定启动视图</h1><h2 id="指定启动的storyboard"><a href="#指定启动的storyboard" class="headerlink" title="指定启动的storyboard"></a>指定启动的storyboard</h2><p>在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard%20mainname.png" alt="info.plist"></p>
-<h2 id="指定启动的视图控制器"><a href="#指定启动的视图控制器" class="headerlink" title="指定启动的视图控制器"></a>指定启动的视图控制器</h2><p>箭头指向</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIStoryboard.png" alt="箭头所指"></p>
-<p>配置属性</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/initialViewController.png" alt=""></p>
-<h1 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h1><h2 id="导航视图顶部自定义"><a href="#导航视图顶部自定义" class="headerlink" title="导航视图顶部自定义"></a>导航视图顶部自定义</h2><p>UINavigationItem + UIBarbuttonItem</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/custom_bar_button_item.png" alt="自定义标题栏"></p>
-<h1 id="UITablViewController"><a href="#UITablViewController" class="headerlink" title="UITablViewController"></a>UITablViewController</h1><h2 id="TableView视图连接的设置"><a href="#TableView视图连接的设置" class="headerlink" title="TableView视图连接的设置"></a>TableView视图连接的设置</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/tableViewDelegate.png" alt="TableView的设置"></p>
-<h2 id="TableViewCell"><a href="#TableViewCell" class="headerlink" title="TableViewCell"></a>TableViewCell</h2><h3 id="设置静态tableViewCell（cell可以复制粘贴）"><a href="#设置静态tableViewCell（cell可以复制粘贴）" class="headerlink" title="设置静态tableViewCell（cell可以复制粘贴）"></a>设置静态tableViewCell（cell可以复制粘贴）</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/staticCell.png" alt=""></p>
-<h3 id="Static-TableViewCell"><a href="#Static-TableViewCell" class="headerlink" title="Static TableViewCell"></a>Static TableViewCell</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/TableViewcellToViewController.png" alt=""></p>
-<h3 id="Dynamic-TableViewCell"><a href="#Dynamic-TableViewCell" class="headerlink" title="Dynamic TableViewCell"></a>Dynamic TableViewCell</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/tableViewCell.png" alt="UITableView Cell"></p>
-<h1 id="UITabBarController"><a href="#UITabBarController" class="headerlink" title="UITabBarController"></a>UITabBarController</h1><h2 id="新建new-tab"><a href="#新建new-tab" class="headerlink" title="新建new tab"></a>新建new tab</h2><p>按住ctrl 键拖入到新的视图，选择 <strong>Relationship Segue — view controllers</strong></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new%20tab.png" alt="new tab"></p>
-<h1 id="视图的跳转和连接"><a href="#视图的跳转和连接" class="headerlink" title="视图的跳转和连接"></a>视图的跳转和连接</h1><h2 id="创建新的rootViewController"><a href="#创建新的rootViewController" class="headerlink" title="创建新的rootViewController"></a>创建新的rootViewController</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/new_root_controller.png" alt="new root view controller"></p>
-<h2 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h2><h3 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h3><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
-</code></pre><h3 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h3><pre><code>- (void)dismissAction{
-[self dismissViewControllerAnimated:YES completion:nil];
-}
-</code></pre><h2 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h2><h3 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h3><pre><code>- (void)pushAction{
-PushViewController *pushVC = [[PushViewController alloc] init];
-[self.navigationController pushViewController:pushVC animated:YES];
-//[self.navigationController showViewController:pushVC sender:nil];
-RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-}    
-</code></pre><h3 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h3><pre><code>- (void)popAction{
-
-    // 回到上级视图
-    [self.navigationController popViewControllerAnimated:YES];
-
-    // 跳转到某视图
-    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
-
-    // 跳转到根视图
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-}
-</code></pre><h2 id="无Segue连接-StoryboardId"><a href="#无Segue连接-StoryboardId" class="headerlink" title="无Segue连接 - StoryboardId"></a>无Segue连接 - StoryboardId</h2><pre><code>let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController  
-vc.data = data  
-presentViewController(vc, animated: true, completion: nil)
-</code></pre><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageCoredata03.png" alt=""></p>
-<h2 id="Segue自动连接-button"><a href="#Segue自动连接-button" class="headerlink" title="Segue自动连接(button)"></a>Segue自动连接(button)</h2><ol>
-<li>点住Button or Cell,按住ctrl，向新的viewController拖动,选择segue模式,点击后不需任何方法，会自动跳转到目的视图</li>
-<li>可以在prepareForSegue中进行数据传递(optional)</li>
-<li>从新视图的返回，使用如下代码: </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
-<p>or </p>
-<pre><code>[self.navigationController popViewControllerAnimated:YES];
-</code></pre><h2 id="Segue手动连接-login"><a href="#Segue手动连接-login" class="headerlink" title="Segue手动连接(login)"></a>Segue手动连接(login)</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png" alt=""></p>
-<pre><code>//一般在这里给下一个控制器传值这个sender是当初performSegueWithIdentifier方法传入的sender
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-UIViewController *contactVc = segue.destinationViewController;
-contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
- }
- .........
-
- - (IBAction)loginAction {
- [self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];}
-</code></pre><h1 id="视图中传值"><a href="#视图中传值" class="headerlink" title="视图中传值"></a>视图中传值</h1><h2 id="自动跳转传值"><a href="#自动跳转传值" class="headerlink" title="自动跳转传值"></a>自动跳转传值</h2><p><strong>在第一个视图中创建新视图的同时，就将其属性配置好</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@IBOutlet var input:UITextField</span><br><span class="line">@IBAction func nextBtn&#123;</span><br><span class="line">let vc = MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil)</span><br><span class="line">vc.labelContent = input.text</span><br><span class="line">&#125;</span><br><span class="line">self.presentModalViewController(vc,animated:true)</span><br></pre></td></tr></table></figure></p>
-<p><strong>在第二个视图中</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var labelContent:String = &quot;&quot;</span><br><span class="line">func viewDidLoad()&#123;</span><br><span class="line">myLabel.text = labelContent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>返回时传值:在第二个视图中，通过如下代码，访问到前一个视图</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.parentViewController</span><br></pre></td></tr></table></figure>
-<h2 id="Segue跳转传值"><a href="#Segue跳转传值" class="headerlink" title="Segue跳转传值"></a>Segue跳转传值</h2><pre><code>//一般在这里给下一个控制器传值这个sender是当初performSegueWithIdentifier方法传入的sender
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-//1.取得目标控制器
-UIViewController *contactVc = segue.destinationViewController;
-//2.设置标题（传值）
-contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
-}
-.........
-
-- (IBAction)loginAction {
-[self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];}
-</code></pre><h1 id="UI-Element"><a href="#UI-Element" class="headerlink" title="UI Element"></a>UI Element</h1><h2 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/button_image.png" alt="button_image"></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/UIButton.png" alt="UIButton"></p>
-<h2 id="UIBarbutton"><a href="#UIBarbutton" class="headerlink" title="UIBarbutton"></a>UIBarbutton</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Bar_button_item__.png" alt=""></p>
-<h2 id="UITextfield"><a href="#UITextfield" class="headerlink" title="UITextfield"></a>UITextfield</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/TextField.png" alt="TextField"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1160,7 +1093,7 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-count">76</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

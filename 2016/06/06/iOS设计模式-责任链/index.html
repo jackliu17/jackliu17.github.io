@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_animation," />
+  <meta name="keywords" content="iOS,iOS_designPattern," />
 
 
 
@@ -61,39 +61,41 @@
 
 
 
-<meta name="description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta name="description" content="快递分拣中心
+传送带 —&amp;gt; 线性表
+包裹   —&amp;gt; 符合某种规范的物品
+货物种类 —&amp;gt; 特定种类的货物
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
+特点:提升效率
+
+责任链模式定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/index.html">
+<meta property="og:title" content="iOS设计模式-责任链">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/06/iOS设计模式-责任链/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta property="og:description" content="快递分拣中心
+传送带 —&amp;gt; 线性表
+包裹   —&amp;gt; 符合某种规范的物品
+货物种类 —&amp;gt; 特定种类的货物
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
-<meta property="og:updated_time" content="2016-05-05T04:37:27.000Z">
+特点:提升效率
+
+责任链模式定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains03.png">
+<meta property="og:updated_time" content="2016-06-06T06:44:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Facebook开源动画库POP实现真实衰减与弹簧动画">
-<meta name="twitter:description" content="POP动画引擎简介
-POP动画引擎是Facebook公司开源的
-POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)
-POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)
-POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似
+<meta name="twitter:title" content="iOS设计模式-责任链">
+<meta name="twitter:description" content="快递分拣中心
+传送带 —&amp;gt; 线性表
+包裹   —&amp;gt; 符合某种规范的物品
+货物种类 —&amp;gt; 特定种类的货物
 
-POP动画引擎中Layer与CALayer的区别
-使用POP动画与使用CALayer动">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png">
+特点:提升效率
+
+责任链模式定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png">
 
 
 
@@ -111,7 +113,7 @@ POP动画引擎中Layer与CALayer的区别
   };
 </script>
 
-  <title> Facebook开源动画库POP实现真实衰减与弹簧动画 | Cowboy Tech </title>
+  <title> iOS设计模式-责任链 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +255,7 @@ POP动画引擎中Layer与CALayer的区别
             
             
               
-                Facebook开源动画库POP实现真实衰减与弹簧动画
+                iOS设计模式-责任链
               
             
           </h1>
@@ -265,8 +267,8 @@ POP动画引擎中Layer与CALayer的区别
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-05T14:36:15+10:00" content="2016-05-05">
-              2016-05-05
+            <time itemprop="dateCreated" datetime="2016-06-06T13:33:31+10:00" content="2016-06-06">
+              2016-06-06
             </time>
           </span>
 
@@ -295,8 +297,8 @@ POP动画引擎中Layer与CALayer的区别
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="commentsCount"></span>
+                <a href="/2016/06/06/iOS设计模式-责任链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/iOS设计模式-责任链/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -318,29 +320,439 @@ POP动画引擎中Layer与CALayer的区别
       
 
       
-        <h1 id="POP动画引擎简介"><a href="#POP动画引擎简介" class="headerlink" title="POP动画引擎简介"></a>POP动画引擎简介</h1><ol>
-<li>POP动画引擎是Facebook公司开源的</li>
-<li>POP动画引擎主要实现了真实物理系的动画效果(弹簧效果与衰减效果)</li>
-<li>POP动画引擎的动画效果非常流畅，因为它使用了CADisplayLink来刷新画面(帧)</li>
-<li>POP动画引擎自成体系，与系统的CoreAnimation有着很大的区别，但使用非常类似</li>
+        <h1 id="快递分拣中心"><a href="#快递分拣中心" class="headerlink" title="快递分拣中心"></a>快递分拣中心</h1><ol>
+<li>传送带 —&gt; 线性表</li>
+<li>包裹   —&gt; 符合某种规范的物品</li>
+<li>货物种类 —&gt; 特定种类的货物</li>
 </ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别"><a href="#POP动画引擎中Layer与CALayer的区别" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><ol>
-<li>使用POP动画与使用CALayer动画非常相似</li>
-<li>POP动画的执行没有中间状态</li>
-<li>POP动画是对CALayer动画的扩充，但不能实现所有的CALayer的动画效果</li>
-<li>POP动画可以作用在任何对象上，不仅仅是CALayer</li>
+<p>特点:提升效率</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png" alt=""></p>
+<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><p>定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。</p>
+<p>步骤:</p>
+<ol>
+<li>将责任抽象成对象</li>
+<li>将责任对象链接起来</li>
+<li>处理输入的事件</li>
 </ol>
-<h1 id="POP动画引擎中Layer与CALayer的区别-1"><a href="#POP动画引擎中Layer与CALayer的区别-1" class="headerlink" title="POP动画引擎中Layer与CALayer的区别"></a>POP动画引擎中Layer与CALayer的区别</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/pop.png" alt=""></p>
-<h1 id="用POP动画引擎实现衰减动画"><a href="#用POP动画引擎实现衰减动画" class="headerlink" title="用POP动画引擎实现衰减动画"></a>用POP动画引擎实现衰减动画</h1><ol>
-<li>衰减动画由POPDecayAnimation来实现</li>
-<li>需要精确计算停止运动瞬间的加速度才能够用衰减动画做出真实的效果</li>
-</ol>
-<h1 id="用POP动画引擎实现弹簧动画"><a href="#用POP动画引擎实现弹簧动画" class="headerlink" title="用POP动画引擎实现弹簧动画"></a>用POP动画引擎实现弹簧动画</h1><ol>
-<li>弹簧动画由POPSpringAnimation来实现</li>
-<li>弹簧的质量速度时间等值都是可以设置的</li>
-</ol>
-<p>For more information , go to <a href="https://github.com/facebook/pop" target="_blank" rel="external">https://github.com/facebook/pop</a></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains02.png" alt=""></p>
+<p>ChainProtocol</p>
+<pre><code>protocol ChainProtocol &lt;NSObject&gt;
 
+//设置继任者
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+
+//获取继任者
+- (id &lt;ChainProtocol&gt;)successor;
+
+//处理请求
+- (void)handleRequest:(id)request;
+
+@end
+</code></pre><h1 id="对输入文本进行类别检测"><a href="#对输入文本进行类别检测" class="headerlink" title="对输入文本进行类别检测"></a>对输入文本进行类别检测</h1><ol>
+<li>职能分解,有电话号码检测，邮箱检测，用户名检测。类似不同种类的包裹</li>
+<li>设定共有的接口。比如不同种类的产品都能装入一个纸箱</li>
+<li>严格说来还要设定一个尾节点，处理什么都不是的情况</li>
+<li>如果用if else的话，就不能进行拆解</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains03.png" alt=""></p>
+<p>ChainProtocol</p>
+<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+- (id &lt;ChainProtocol&gt;)successor;
+- (void)handleRequest:(id)request;
+@end
+</code></pre><p>EmailChain</p>
+<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是邮箱&quot;, string);
+}
+}
+
+@end
+</code></pre><p>PhoneNumChain</p>
+<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是电话号码&quot;, string);
+}
+}
+
+@end
+</code></pre><p>UserNameChain</p>
+<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是用户名&quot;, string);
+}
+}
+
+@end
+</code></pre><p>HeadChain</p>
+<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+    self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+    return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+    [self.nextSuccessor handleRequest:request];
+}
+
+
+@end
+</code></pre><p>ViewController    </p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // 创建责任对象
+    self.head     = [HeadChain new];
+    self.phoneNum = [PhoneNumChain new];
+    self.email    = [EmailChain new];
+    self.userName = [UserNameChain new];
+
+    // 链接责任链对象
+    self.head.successor     = self.phoneNum;
+    self.phoneNum.successor = self.email;
+    self.email.successor    = self.userName;
+
+    // 处理请求
+    [self.head handleRequest:@&quot;349323YX&quot;];
+}
+@end
+</code></pre><h1 id="对输入文本进行”全类别”检测"><a href="#对输入文本进行”全类别”检测" class="headerlink" title="对输入文本进行”全类别”检测"></a>对输入文本进行”全类别”检测</h1><p>ChainProtocol</p>
+<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+- (id &lt;ChainProtocol&gt;)successor;
+- (void)handleRequest:(id)request;
+
+@end
+</code></pre><p>HeadChain </p>
+<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+[self.nextSuccessor handleRequest:request];
+}
+@end
+</code></pre><p>RequestEvent</p>
+<pre><code>@interface RequestEvent : NSObject
+
+@property (nonatomic, strong) NSString            *string;
+@property (nonatomic, strong) NSMutableDictionary *infomation;
+
+@end
+
+@implementation RequestEvent
+
+- (instancetype)init {
+
+    self = [super init];
+
+    if (self) {
+
+        self.infomation = [NSMutableDictionary dictionary];
+    }
+
+    return self;
+}
+
+@end
+</code></pre><p>EmailChain    </p>
+<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;Email&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;Email&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>PhoneNumChain</p>
+<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;PhoneNumber&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;PhoneNumber&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>UserNameChain</p>
+<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;UserName&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;UserName&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建责任对象
+self.head     = [HeadChain new];
+self.phoneNum = [PhoneNumChain new];
+self.email    = [EmailChain new];
+self.userName = [UserNameChain new];
+
+// 链接责任链对象
+self.head.successor     = self.phoneNum;
+self.phoneNum.successor = self.email;
+self.email.successor    = self.userName;
+
+RequestEvent *event = [RequestEvent new];
+event.string        = @&quot;349323YX@qq.com&quot;;
+
+// 处理请求
+[self.head handleRequest:event];
+
+NSLog(@&quot;%@&quot;, event.infomation);
+
+}
+@end
+</code></pre>
       
     </div>
 
@@ -356,7 +768,7 @@ POP动画引擎中Layer与CALayer的区别
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-animation/" rel="tag">#iOS_animation</a>
+            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
           
         </div>
       
@@ -365,17 +777,13 @@ POP动画引擎中Layer与CALayer的区别
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/03/使用maskView设计动画及遮盖/" rel="next" title="使用maskView设计动画及遮盖">
-                <i class="fa fa-chevron-left"></i> 使用maskView设计动画及遮盖
+              <a href="/2016/06/05/iOS设计模式-模板/" rel="next" title="iOS设计模式-模板">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-模板
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/05/缓动函数与关键帧动画/" rel="prev" title="缓动函数与关键帧动画">
-                缓动函数与关键帧动画 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,7 +915,7 @@ POP动画引擎中Layer与CALayer的区别
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎简介"><span class="nav-number">1.</span> <span class="nav-text">POP动画引擎简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别"><span class="nav-number">2.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POP动画引擎中Layer与CALayer的区别-1"><span class="nav-number">3.</span> <span class="nav-text">POP动画引擎中Layer与CALayer的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现衰减动画"><span class="nav-number">4.</span> <span class="nav-text">用POP动画引擎实现衰减动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用POP动画引擎实现弹簧动画"><span class="nav-number">5.</span> <span class="nav-text">用POP动画引擎实现弹簧动画</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快递分拣中心"><span class="nav-number">1.</span> <span class="nav-text">快递分拣中心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#责任链模式"><span class="nav-number">2.</span> <span class="nav-text">责任链模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对输入文本进行类别检测"><span class="nav-number">3.</span> <span class="nav-text">对输入文本进行类别检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对输入文本进行”全类别”检测"><span class="nav-number">4.</span> <span class="nav-text">对输入文本进行”全类别”检测</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -765,9 +1173,9 @@ POP动画引擎中Layer与CALayer的区别
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
-      var disqus_title = 'Facebook开源动画库POP实现真实衰减与弹簧动画';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/';
+      var disqus_identifier = '2016/06/06/iOS设计模式-责任链/';
+      var disqus_title = 'iOS设计模式-责任链';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/06/iOS设计模式-责任链/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
