@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-06T11:37:32.000Z</updated>
+  <updated>2016-06-07T03:38:25.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85/"/>
     <id>http://jackliu17.github.io/2016/06/06/iOS设计模式-中介者/</id>
     <published>2016-06-06T06:54:09.000Z</published>
-    <updated>2016-06-06T11:37:32.000Z</updated>
+    <updated>2016-06-07T03:38:25.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;中介模式&quot;&gt;&lt;a href=&quot;#中介模式&quot; class=&quot;headerlink&quot; title=&quot;中介模式&quot;&gt;&lt;/a&gt;中介模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。&lt;/li&gt;
@@ -86,7 +86,7 @@
 &lt;li&gt;为何要使用中介者：解决复杂的交互问题，对象之间有大量的交互逻辑，彼此互相关联&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designpatternMediator05.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Colleague&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface Colleague : AbstractColleague
 
