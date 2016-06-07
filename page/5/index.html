@@ -238,6 +238,161 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/21/iOS设计模式简介/" itemprop="url">
+                  iOS设计模式简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T18:23:12+10:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/iOS设计模式简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS设计模式简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="设计模式的基本原则"><a href="#设计模式的基本原则" class="headerlink" title="设计模式的基本原则"></a>设计模式的基本原则</h1><h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p>扩展开放，修改关闭, 比如继承base类</p>
+<pre><code>#import &quot;BaseAnimationView.h&quot;
+@interface FadeAnimationView : BaseAnimationView
+@end
+</code></pre><h2 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h2><p>子类父类相互替换，使用相互的方法</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
+[animationView changeToDisableStateAnimated:YES duration:0.5f];
+}
+</code></pre><p>空实现：建立一个类，并不是直接使用，而是把他当做抽象的父类来使用,在.m中进行空实现</p>
+<pre><code>- (void)changeToDisableStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration {
+
+}
+</code></pre><h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><p>抽象的方法可以暴露在.h文件，但具体的实现，即私有方法，不应该暴露</p>
+<pre><code>- (void)fadeAnimated:(BOOL)animated {
+
+// todo
+}
+
+- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration {
+
+[self fadeAnimated:animated];
+}
+</code></pre><h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>接口只做必要的事情，比如</p>
+<pre><code>- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration;
+</code></pre><p>如果是这样，添加了frame值，就没必要。frame值完全没必要暴露出来</p>
+<pre><code>- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration frame:(CGRect)frame;
+</code></pre><h2 id="合成-聚合复用"><a href="#合成-聚合复用" class="headerlink" title="合成/聚合复用"></a>合成/聚合复用</h2><p>如果BaseAnimation中的方法满足不了需求了，不需要继承它创建新类,而是用一个类作为容器将其聚合</p>
+<pre><code>@interface AnimationView : UIView
+
+@property (nonatomic, strong) FadeAnimationView *fadeAnimationView;
+
+- (void)changeToErrorStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration;
+</code></pre><h1 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0101.png" alt=""></p>
+<p>两本书推荐阅读</p>
+<ol>
+<li>Pro Design Patterns in Swift  (By Adam Freeman)</li>
+<li>Pro Objective-C Design Patterns for iOS (By Carlo Chung)</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/21/iOS视频播放和录制/" itemprop="url">
                   iOS视频播放和录制
                 </a>
@@ -837,201 +992,6 @@ if mySwitch.on{
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/20/iOS数据存储-XML/" itemprop="url">
-                  iOS数据存储-XML
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T12:45:50+10:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/20/iOS数据存储-XML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-XML/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Start-parse-XML"><a href="#Start-parse-XML" class="headerlink" title="Start parse XML"></a>Start parse XML</h1><p><strong>注意要遵循协议NSXMLParserDelegate</strong></p>
-<pre><code>class ViewController: UIViewController,NSXMLParserDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let filePath = NSBundle.mainBundle().pathForResource(&quot;data&quot;, ofType: &quot;xml&quot;)!
-        let fileUrl = NSURL(fileURLWithPath: filePath )
-        let parser = NSXMLParser(contentsOfURL:fileUrl)
-
-        parser!.delegate = self
-        parser!.parse()
-
-    }
-</code></pre><h1 id="Parse-to-get-node-and-attribute"><a href="#Parse-to-get-node-and-attribute" class="headerlink" title="Parse to get node and attribute"></a>Parse to get node and attribute</h1><pre><code>var currentNodeName:String!
-
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {      
-    currentNodeName = elementName
-    if elementName == &quot;person&quot; { 
-        //需要判断，如果是空值的话，也不会报错
-        if let age: AnyObject=attributeDict[&quot;age&quot;]{
-            print(&quot;age:\(age)&quot;)
-        }
-    }
-}
-</code></pre><h1 id="Parse-to-get-Value-in-node"><a href="#Parse-to-get-Value-in-node" class="headerlink" title="Parse to get Value in node"></a>Parse to get Value in node</h1><pre><code>//获得节点的实际内容
-func parser(parser: NSXMLParser, foundCharacters string: String) {
-
-    let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-
-    if str != &quot;&quot;{
-
-        print(&quot;current node : \(currentNodeName), value: \(str)&quot;)
-    }
-}
-</code></pre><h2 id="剔除空格的字符串"><a href="#剔除空格的字符串" class="headerlink" title="剔除空格的字符串"></a>剔除空格的字符串</h2><pre><code>let str = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-</code></pre><h2 id="判断不为空"><a href="#判断不为空" class="headerlink" title="判断不为空"></a>判断不为空</h2><pre><code>if str != &quot;&quot;{
-    ...
-}
-</code></pre><h1 id="Question-Project"><a href="#Question-Project" class="headerlink" title="Question Project"></a>Question Project</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_dataStorageXmlProj.png" alt=""></p>
-<h2 id="Qustion-Model"><a href="#Qustion-Model" class="headerlink" title="Qustion Model"></a>Qustion Model</h2><pre><code>class Question: NSObject {
-
-var question:String!
-var right:String!
-var anwserA:String!
-var anwserB:String!
-var anwserC:String!
-var anwserD:String!
-}
-</code></pre><h2 id="Parse-all-node-automatically-without-loop"><a href="#Parse-all-node-automatically-without-loop" class="headerlink" title="Parse all node automatically without loop"></a>Parse all node automatically without loop</h2><pre><code>var questions:Array&lt;Question&gt; = []    
-var currentQuestion:Question!
-
-func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-
-    if elementName == &quot;question&quot; {
-
-        currentQuestion = Question()
-        questions.append(currentQuestion)
-        currentQuestion.question = attributeDict[&quot;text&quot;]! as String
-        currentQuestion.right = attributeDict[&quot;right&quot;]! as String
-
-    } else if elementName == &quot;anwser&quot; {
-
-        let tag = attributeDict[&quot;tag&quot;]! as String
-
-        if tag == &quot;A&quot;{
-            currentQuestion.anwserA = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;B&quot;{
-            currentQuestion.anwserB = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;C&quot;{
-            currentQuestion.anwserC = attributeDict[&quot;text&quot;]! as String
-        }else if tag == &quot;D&quot;{
-            currentQuestion.anwserD = attributeDict[&quot;text&quot;]! as String
-        }
-    }
-}
-</code></pre><h2 id="After-Parse-finish"><a href="#After-Parse-finish" class="headerlink" title="After Parse finish"></a>After Parse finish</h2><pre><code>func parserDidEndDocument(parser: NSXMLParser) {
-...
-}
-</code></pre><h2 id="Add-new-element-to-Array"><a href="#Add-new-element-to-Array" class="headerlink" title="Add new element to Array"></a>Add new element to Array</h2><pre><code>questions.append(currentQuestion)
-</code></pre><h2 id="Judge-if-equal-or-not"><a href="#Judge-if-equal-or-not" class="headerlink" title="Judge if equal or not"></a>Judge if equal or not</h2><pre><code>if tag == &quot;A&quot;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1078,7 +1038,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

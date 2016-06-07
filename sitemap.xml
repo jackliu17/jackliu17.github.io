@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/03/16/iOS%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95/</loc>
+    
+    <lastmod>2016-06-07T01:45:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85/</loc>
+    
+    <lastmod>2016-06-06T11:37:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%B4%A3%E4%BB%BB%E9%93%BE/</loc>
     
     <lastmod>2016-06-06T06:44:52.000Z</lastmod>
@@ -355,13 +369,6 @@
     <loc>http://jackliu17.github.io/2016/05/06/%E4%BD%BF%E7%94%A8%E5%B8%A6%E7%B2%92%E5%AD%90%E6%95%88%E6%9E%9C%E7%9A%84CAEmitterLayer/</loc>
     
     <lastmod>2016-05-06T06:36:05.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/16/iOS%E5%BC%80%E5%8F%91%E9%9D%A2%E8%AF%95/</loc>
-    
-    <lastmod>2016-05-06T03:00:51.000Z</lastmod>
     
   </url>
   

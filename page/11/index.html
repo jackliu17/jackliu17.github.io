@@ -238,6 +238,598 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/24/使用OpenGL-ES显示图像/" itemprop="url">
+                  使用OpenGL_ES显示图像
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T16:58:54+10:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/24/使用OpenGL-ES显示图像/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/24/使用OpenGL-ES显示图像/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://wiki.jikexueyuan.com/project/android-training-geek/opengl-index.html" target="_blank" rel="external">转载</a><br><a href="http://developer.android.com/training/graphics/opengl/index.html" target="_blank" rel="external">原文</a></p>
+<p>Android框架提供了大量的标准工具，用来创建吸引人的，功能丰富的图形界面。然而，如果我们希望应用在屏幕上所绘制的内容进行更多的控制，或者正在尝试建立三维图像，那么我们就需要一个不同的工具了。由Android框架提供的OpenGL ES接口给予我们一组可以显示高级动画和图形的工具集，它的功能仅仅受限于我们自身的想象力。同时，在许多Android设备上搭载的图形处理单元（GPU）都能为其提供GPU加速等性能优化。</p>
+<p>这系列课程将展示如何使用OpenGL构建应用的基础知识，包括配置，绘制对象，移动图形元素以及响应点击事件。</p>
+<p>这系列课程所涉及的样例代码使用的是OpenGL ES 2.0接口，这是当前Android设备所推荐的接口版本。关于更多OpenGL ES的版本信息，可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version" target="_blank" rel="external">OpenGL开发手册</a>。</p>
+<blockquote>
+<p>Note：注意不要把OpenGL ES 1.x版本的接口和OpenGL ES 2.0的接口混合调用。这两种版本的接口不是通用的。如果尝试混用它们可能会让你感到无奈和沮丧。</p>
+</blockquote>
+<h1 id="建立OpenGL-ES的环境"><a href="#建立OpenGL-ES的环境" class="headerlink" title="建立OpenGL ES的环境"></a>建立OpenGL ES的环境</h1><p>要在应用中使用OpenGL ES绘制图像，我们必须为它们创建一个View容器。一种比较直接的方法是实现<code>GLSurfaceView</code>类和<code>GLSurfaceView.Renderer</code>类。其中，<code>GLSurfaceView</code>是一个View容器，它用来存放使用OpenGL绘制的图形，而<code>GLSurfaceView.Renderer</code>则用来控制在该View中绘制的内容。关于这两个类的更多信息，你可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html" target="_blank" rel="external">OpenGL ES开发手册</a></p>
+<p>使用<code>GLSurfaceView</code>是一种将OpenGL ES集成到应用中的方法之一。对于一个全屏的或者接近全屏的图形View，使用它是一个理想的选择。开发者如果希望把OpenGL ES的图形集成在布局的一小部分里面，那么可以考虑使用<code>TextureView</code>。对于喜欢自己动手实现的开发者来说，还可以通过使用<code>SurfaceView</code>搭建一个OpenGL ES View，但这将需要编写更多的代码。</p>
+<p>在这节课中，我们将展示如何在一个的<code>Activity</code>中完成<code>GLSurfaceView</code>和<code>GLSurfaceView.Renderer</code>的最简单的实现</p>
+<h2 id="在Manifest配置文件中声明使用OpenGL-ES"><a href="#在Manifest配置文件中声明使用OpenGL-ES" class="headerlink" title="在Manifest配置文件中声明使用OpenGL ES"></a>在Manifest配置文件中声明使用OpenGL ES</h2><p>为了让应用能够使用OpenGL ES 2.0接口，我们必须将下列声明添加到Manifest配置文件当中：</p>
+<pre><code>&lt;uses-feature android:glEsVersion=&quot;0x00020000&quot; android:required=&quot;true&quot; /&gt;
+</code></pre><p>如果我们的应用使用纹理压缩（Texture Compression），那么我们必须对支持的压缩格式也进行声明，确保应用仅安装在可以兼容的设备上：</p>
+<pre><code>&lt;supports-gl-texture android:name=&quot;GL_OES_compressed_ETC1_RGB8_texture&quot; /&gt;
+&lt;supports-gl-texture android:name=&quot;GL_OES_compressed_paletted_texture&quot; /&gt;
+</code></pre><p>更多关于纹理压缩的内容，可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html#textures" target="_blank" rel="external">OpenGL开发手册</a></p>
+<h2 id="为OpenGL-ES图形创建一个activity"><a href="#为OpenGL-ES图形创建一个activity" class="headerlink" title="为OpenGL ES图形创建一个activity"></a>为OpenGL ES图形创建一个activity</h2><p>使用OpenGL ES的安卓应用就像其它类型的应用一样有自己的用户接口，即也拥有多个Activity。主要的区别体现在Acitivity布局内容上的差异。在许多应用中你可能会使用<code>TextView</code>，<code>Button</code>和<code>ListView</code>等，而在使用OpenGL ES的应用中，我们还可以添加一个<code>GLSurfaceView</code>。</p>
+<p>下面的代码展示了一个使用<code>GLSurfaceView</code>作为其主View的Activity：</p>
+<pre><code>public class OpenGLES20Activity extends Activity {
+
+private GLSurfaceView mGLView;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Create a GLSurfaceView instance and set it
+    // as the ContentView for this Activity.
+    mGLView = new MyGLSurfaceView(this);
+    setContentView(mGLView);
+}
+}
+</code></pre><blockquote>
+<p>Note：OpenGL ES 2.0需要Android 2.2（API Level 8）或更高版本的系统，所以确保你的Android项目的API版本满足该要求。</p>
+</blockquote>
+<h2 id="构建一个GLSurfaceView对象"><a href="#构建一个GLSurfaceView对象" class="headerlink" title="构建一个GLSurfaceView对象"></a>构建一个GLSurfaceView对象</h2><p><code>GLSurfaceView</code>是一种比较特殊的View，我们可以在该View中绘制OpenGL ES图形，不过它自己并不做太多和绘制图形相关的任务。绘制对象的任务是由你在该View中配置的<code>GLSurfaceView.Renderer</code>所控制的。事实上，这个对象的代码非常简短，你可能会希望不要继承它，直接创建一个未经修改的<code>GLSurfaceView</code>实例，不过请不要这么做，因为我们需要继承该类来捕捉触控事件，这方面知识会在响应触摸事件（该系列课程的最后一节课）中做进一步的介绍。</p>
+<p><code>GLSurfaceView</code>的核心代码非常简短，所以对于一个快速的实现而言，我们通常可以在Acitvity中创建一个内部类并使用它：</p>
+<pre><code>class MyGLSurfaceView extends GLSurfaceView {
+
+private final MyGLRenderer mRenderer;
+
+public MyGLSurfaceView(Context context){
+    super(context);
+
+    // Create an OpenGL ES 2.0 context
+    setEGLContextClientVersion(2);
+
+    mRenderer = new MyGLRenderer();
+
+    // Set the Renderer for drawing on the GLSurfaceView
+    setRenderer(mRenderer);
+}
+}
+</code></pre><p>另一个对于<code>GLSurfaceView</code>实现的可选选项，是将渲染模式设置为：<code>GLSurfaceView.RENDERMODE_WHEN_DIRTY</code>，其含义是：仅在你的绘制数据发生变化时才在视图中进行绘制操作：</p>
+<pre><code>// Render the view only when there is a change in the drawing data
+setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+</code></pre><p>如果选用这一配置选项，那么除非调用了<code>requestRender()</code>，否则<code>GLSurfaceView</code>不会被重新绘制，这样做可以让应用的性能及效率得到提高。</p>
+<h2 id="构建一个渲染类"><a href="#构建一个渲染类" class="headerlink" title="构建一个渲染类"></a>构建一个渲染类</h2><p>在一个使用OpenGL ES的应用中，一个<code>GLSurfaceView.Renderer</code>类的实现（或者我们将其称之为渲染器），正是事情变得有趣的地方。该类会控制和其相关联的<code>GLSurfaceView</code>，具体而言，它会控制在<code>GLSurfaceView</code>上绘制的内容。在渲染器中，一共有三个方法会被Android系统调用，以此来明确要在<code>GLSurfaceView</code>上绘制的内容以及如何绘制：</p>
+<ol>
+<li><code>onSurfaceCreated()</code>：调用一次，用来配置View的OpenGL ES环境。</li>
+<li><code>onDrawFrame()</code>：每次重新绘制View时被调用。</li>
+<li><code>onSurfaceChanged()</code>：如果View的几何形态发生变化时会被调用，例如当设备的屏幕方向发生改变时。</li>
+</ol>
+<p>下面是一个非常基本的OpenGL ES渲染器的实现，它仅仅在<code>GLSurfaceView</code>中画一个黑色的背景：</p>
+<pre><code>public class MyGLRenderer implements GLSurfaceView.Renderer {
+
+public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    // Set the background frame color
+    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+public void onDrawFrame(GL10 unused) {
+    // Redraw background color
+    GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+}
+
+public void onSurfaceChanged(GL10 unused, int width, int height) {
+    GLES20.glViewport(0, 0, width, height);
+}
+}
+</code></pre><p>就是这样！上面的代码创建了一个简单地应用程序，它使用OpenGL让屏幕呈现为黑色。虽然它的代码看上去并没有做什么非常有意思的事情，但是通过创建这些类，我们已经对使用OpenGL绘制图形有了基本的认识和铺垫。</p>
+<blockquote>
+<p>Note：你可能想知道，自己明明使用的是OpenGL ES 2.0接口，为什么这些方法会有一个GL10的参数。这是因为这些方法的签名（Method Signature）在2.0接口中被简&gt;单地重用了，以此来保持Android框架的代码尽量简单。</p>
+</blockquote>
+<p>如果你对OpenGL ES接口很熟悉，那么你现在就可以在你的应用中构建一个OpenGL ES的环境并绘制图形了。当然， 如果你希望获取更多的帮助来学会使用OpenGL，那么请继续学习下一节课程获取更多的知识。</p>
+<h1 id="定义形状"><a href="#定义形状" class="headerlink" title="定义形状"></a>定义形状</h1><p>在一个OpenGL ES View的上下文（Context）中定义形状，是创建你的杰作所需要的第一步。在了解关于OpenGL ES如何定义图形对象的基本知识之前，通过OpenGL ES 绘图可能会有些困难。</p>
+<p>这节课将讲解OpenGL ES相对于Android设备屏幕的坐标系，定义形状和形状表面的基本知识，如定义一个三角形和一个矩形。</p>
+<h2 id="定义一个三角形"><a href="#定义一个三角形" class="headerlink" title="定义一个三角形"></a>定义一个三角形</h2><p>OpenGL ES允许我们使用三维空间的坐标来定义绘画对象。所以在我们能画三角形之前，必须先定义它的坐标。在OpenGL 中，典型的办法是为坐标定义一个浮点型的顶点数组。为了高效起见，我们可以将坐标写入一个<code>ByteBuffer</code>，它将会传入OpenGl ES的图形处理流程中：</p>
+<pre><code>public class Triangle {
+
+private FloatBuffer vertexBuffer;
+
+// number of coordinates per vertex in this array
+static final int COORDS_PER_VERTEX = 3;
+static float triangleCoords[] = {   // in counterclockwise order:
+         0.0f,  0.622008459f, 0.0f, // top
+        -0.5f, -0.311004243f, 0.0f, // bottom left
+         0.5f, -0.311004243f, 0.0f  // bottom right
+};
+
+// Set color with red, green, blue and alpha (opacity) values
+float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+
+public Triangle() {
+    // initialize vertex byte buffer for shape coordinates
+    ByteBuffer bb = ByteBuffer.allocateDirect(
+            // (number of coordinate values * 4 bytes per float)
+            triangleCoords.length * 4);
+    // use the device hardware&apos;s native byte order
+    bb.order(ByteOrder.nativeOrder());
+
+    // create a floating point buffer from the ByteBuffer
+    vertexBuffer = bb.asFloatBuffer();
+    // add the coordinates to the FloatBuffer
+    vertexBuffer.put(triangleCoords);
+    // set the buffer to read the first coordinate
+    vertexBuffer.position(0);
+}
+}
+</code></pre><p>默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（分别对应X轴坐标, Y轴坐标, Z轴坐标）对应的是GLSurfaceView的中心。[1, 1, 0]对应的是右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding" target="_blank" rel="external">OpenGL ES开发手册</a>。</p>
+<h2 id="定义一个矩形"><a href="#定义一个矩形" class="headerlink" title="定义一个矩形"></a>定义一个矩形</h2><p>在OpenGL中定义三角形非常简单，那么你是否想要来点更复杂的呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/openGL.png" alt="定义一个矩形"></p>
+<p>再一次地，我们需要逆时针地为三角形顶点定义坐标来表现这个图形，并将值放入一个<code>ByteBuffer</code>中。为了避免由两个三角形重合的那条边的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：</p>
+<pre><code>public class Square {
+
+private FloatBuffer vertexBuffer;
+private ShortBuffer drawListBuffer;
+
+// number of coordinates per vertex in this array
+static final int COORDS_PER_VERTEX = 3;
+static float squareCoords[] = {
+        -0.5f,  0.5f, 0.0f,   // top left
+        -0.5f, -0.5f, 0.0f,   // bottom left
+         0.5f, -0.5f, 0.0f,   // bottom right
+         0.5f,  0.5f, 0.0f }; // top right
+
+private short drawOrder[] = { 0, 1, 2, 0, 2, 3 }; // order to draw vertices
+
+public Square() {
+    // initialize vertex byte buffer for shape coordinates
+    ByteBuffer bb = ByteBuffer.allocateDirect(
+    // (# of coordinate values * 4 bytes per float)
+            squareCoords.length * 4);
+    bb.order(ByteOrder.nativeOrder());
+    vertexBuffer = bb.asFloatBuffer();
+    vertexBuffer.put(squareCoords);
+    vertexBuffer.position(0);
+
+    // initialize byte buffer for the draw list
+    ByteBuffer dlb = ByteBuffer.allocateDirect(
+    // (# of coordinate values * 2 bytes per short)
+            drawOrder.length * 2);
+    dlb.order(ByteOrder.nativeOrder());
+    drawListBuffer = dlb.asShortBuffer();
+    drawListBuffer.put(drawOrder);
+    drawListBuffer.position(0);
+}
+}
+</code></pre><p>该样例可以看作是一个如何使用OpenGL创建复杂图形的启发，通常来说，我们需要使用三角形的集合来绘制对象。在下一节课中，我们将学习如何在屏幕上画这些形状</p>
+<h1 id="绘制形状"><a href="#绘制形状" class="headerlink" title="绘制形状"></a>绘制形状</h1><p>在定义了使用OpenGL绘制的形状之后，你可能希望绘制出它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中更复杂一些，因为API中提供了大量对于图形渲染流程的控制。</p>
+<p>这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的形状。</p>
+<h2 id="初始化形状"><a href="#初始化形状" class="headerlink" title="初始化形状"></a>初始化形状</h2><p>在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的onSurfaceCreated()方法中初始化它们，这样做是出于内存和执行效率的考量。</p>
+<pre><code>public class MyGLRenderer implements GLSurfaceView.Renderer {
+
+...
+private Triangle mTriangle;
+private Square   mSquare;
+
+public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    ...
+
+    // initialize a triangle
+    mTriangle = new Triangle();
+    // initialize a square
+    mSquare = new Square();
+}
+...
+}
+</code></pre><h2 id="画一个形状"><a href="#画一个形状" class="headerlink" title="画一个形状"></a>画一个形状</h2><p>使用OpenGL ES 2.0画一个定义好的形状需要较多代码，因为你需要提供很多图形渲染流程的细节。具体而言，你必须定义如下几项：</p>
+<ol>
+<li>顶点着色器（Vertex Shader）：用来渲染形状顶点的OpenGL ES代码。</li>
+<li>片段着色器（Fragment Shader）：使用颜色或纹理渲染形状表面的OpenGL ES代码。</li>
+<li>程式（Program）：一个OpenGL ES对象，包含了你希望用来绘制一个或更多图形所要用到的着色器。</li>
+</ol>
+<p>你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个OpenGL ES Program当中，并利用它来绘制形状。下面的代码在Triangle类中定义了基本的着色器，我们可以利用它们绘制出一个图形：</p>
+<pre><code>public class Triangle {
+
+private final String vertexShaderCode =
+    &quot;attribute vec4 vPosition;&quot; +
+    &quot;void main() {&quot; +
+    &quot;  gl_Position = vPosition;&quot; +
+    &quot;}&quot;;
+
+private final String fragmentShaderCode =
+    &quot;precision mediump float;&quot; +
+    &quot;uniform vec4 vColor;&quot; +
+    &quot;void main() {&quot; +
+    &quot;  gl_FragColor = vColor;&quot; +
+    &quot;}&quot;;
+
+...
+}
+</code></pre><p>着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：</p>
+<pre><code>public static int loadShader(int type, String shaderCode){
+
+// create a vertex shader type (GLES20.GL_VERTEX_SHADER)
+// or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)
+int shader = GLES20.glCreateShader(type);
+
+// add the source code to the shader and compile it
+GLES20.glShaderSource(shader, shaderCode);
+GLES20.glCompileShader(shader);
+
+return shader;
+}
+</code></pre><p>为了绘制你的图形，你必须编译着色器代码，将它们添加至一个OpenGL ES Program对象中，然后执行链接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次</p>
+<blockquote>
+<p>Note：编译OpenGL ES着色器及链接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果在执行期间不知道着色器的内容，那么你应该在构建你的应用时，确保它们只被创建了一次，并且缓存以备后续使用。</p>
+</blockquote>
+<pre><code>public class Triangle() {
+...
+
+private final int mProgram;
+
+public Triangle() {
+    ...
+
+    int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+                                    vertexShaderCode);
+    int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+                                    fragmentShaderCode);
+
+    // create empty OpenGL ES Program
+    mProgram = GLES20.glCreateProgram();
+
+    // add the vertex shader to program
+    GLES20.glAttachShader(mProgram, vertexShader);
+
+    // add the fragment shader to program
+    GLES20.glAttachShader(mProgram, fragmentShader);
+
+    // creates OpenGL ES program executables
+    GLES20.glLinkProgram(mProgram);
+}
+}
+</code></pre><p>至此，你已经完全准备好添加实际的调用语句来绘制你的图形了。使用OpenGL ES绘制图形需要你定义一些变量来告诉渲染流程你需要绘制的内容以及如何绘制。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。</p>
+<p>创建一个<code>draw()</code>方法来绘制图形。下面的代码为形状的顶点着色器和形状着色器设置了位置和颜色值，然后执行绘制函数：</p>
+<pre><code>private int mPositionHandle;
+private int mColorHandle;
+
+private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
+private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+
+public void draw() {
+// Add program to OpenGL ES environment
+GLES20.glUseProgram(mProgram);
+
+// get handle to vertex shader&apos;s vPosition member
+mPositionHandle = GLES20.glGetAttribLocation(mProgram, &quot;vPosition&quot;);
+
+// Enable a handle to the triangle vertices
+GLES20.glEnableVertexAttribArray(mPositionHandle);
+
+// Prepare the triangle coordinate data
+GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
+                             GLES20.GL_FLOAT, false,
+                             vertexStride, vertexBuffer);
+
+// get handle to fragment shader&apos;s vColor member
+mColorHandle = GLES20.glGetUniformLocation(mProgram, &quot;vColor&quot;);
+
+// Set color for drawing the triangle
+GLES20.glUniform4fv(mColorHandle, 1, color, 0);
+
+// Draw the triangle
+GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+
+// Disable vertex array
+GLES20.glDisableVertexAttribArray(mPositionHandle);
+}
+</code></pre><p>一旦你完成了上述所有代码，仅需要在你渲染器的<code>onDrawFrame()</code>方法中调用<code>draw()</code>方法就可以画出我们想要画的对象了：</p>
+<pre><code>public void onDrawFrame(GL10 unused) {
+...
+
+mTriangle.draw();
+}
+</code></pre><p>当你运行这个应用时，它看上去会像是这样：</p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/openGL2.png" alt="openGL2"></p>
+<p>在这个代码样例中，还存在一些问题。首先，它无法给用户带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。发生形变的原因是因为对象的顶点没有根据显示<code>GLSurfaceView</code>的屏幕区域的长宽比进行修正。你可以在下一节课中使用投影（Projection）或者相机视角（Camera View）来解决这个问题。</p>
+<p>最后，这个三角形是静止的，这看上去有些无聊。在添加移动课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程中更加新奇的用法。</p>
+<h1 id="运用投影与相机视角"><a href="#运用投影与相机视角" class="headerlink" title="运用投影与相机视角"></a>运用投影与相机视角</h1><p>在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于我们用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：</p>
+<ol>
+<li>投影（Projection）：这个变换会基于显示它们的<code>GLSurfaceView</code>的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于其长宽比例和View窗口比例的不一致而发生形变。一个投影变换一般仅当OpenGL View的比例在渲染器的<code>onSurfaceChanged()</code>方法中建立或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping" target="_blank" rel="external">Mapping Coordinates for Drawn Objects</a>。</li>
+<li>相机视角（Camera View）：这个变换会基于一个虚拟相机位置改变绘图对象的坐标。注意到OpenGL ES并没有定义一个实际的相机对象，取而代之的，它提供了一些辅助方法，通过对绘图对象的变换来模拟相机视角。一个相机视角变换可能仅在建立你的<code>GLSurfaceView</code>时计算一次，也可能根据用户的行为或者你的应用的功能进行动态调整。</li>
+</ol>
+<p>这节课将解释如何创建一个投影和一个相机视角，并应用它们到<code>GLSurfaceView</code>中的绘制图像上。</p>
+<h2 id="定义一个投影"><a href="#定义一个投影" class="headerlink" title="定义一个投影"></a>定义一个投影</h2><p>投影变换的数据会在<code>GLSurfaceView.Renderer</code>类的<code>onSurfaceChanged()</code>方法中被计算。下面的代码首先接收<code>GLSurfaceView</code>的高和宽，然后利用它并使用<code>Matrix.frustumM()</code>方法来填充一个投影变换矩阵（Projection Transformation Matrix）</p>
+<pre><code>// mMVPMatrix is an abbreviation for &quot;Model View Projection Matrix&quot;
+private final float[] mMVPMatrix = new float[16];
+private final float[] mProjectionMatrix = new float[16];
+private final float[] mViewMatrix = new float[16];
+
+@Override
+public void onSurfaceChanged(GL10 unused, int width, int height) {
+GLES20.glViewport(0, 0, width, height);
+
+float ratio = (float) width / height;
+
+// this projection matrix is applied to object coordinates
+// in the onDrawFrame() method
+Matrix.frustumM(mProjectionMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+}
+</code></pre><p>该代码填充了一个投影矩阵：<code>mProjectionMatrix</code>，在下一节中，我们可以在<code>onDrawFrame()</code>方法中将它和一个相机视角变换结合起来。</p>
+<blockquote>
+<p>Note：在绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，我们还要实现一个相机视角，使得所有对象出现在屏幕上。</p>
+</blockquote>
+<h2 id="定义一个相机视角"><a href="#定义一个相机视角" class="headerlink" title="定义一个相机视角"></a>定义一个相机视角</h2><p>在渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成我们的绘图对象所需变换的所有步骤。在下面的代码中，使用<code>Matrix.setLookAtM()</code>方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：</p>
+<pre><code>@Override
+public void onDrawFrame(GL10 unused) {
+...
+// Set the camera position (View matrix)
+Matrix.setLookAtM(mViewMatrix, 0, 0, 0, -3, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+
+// Calculate the projection and view transformation
+Matrix.multiplyMM(mMVPMatrix, 0, mProjectionMatrix, 0, mViewMatrix, 0);
+
+// Draw shape
+mTriangle.draw(mMVPMatrix);
+}
+</code></pre><h2 id="应用投影和相机变换"><a href="#应用投影和相机变换" class="headerlink" title="应用投影和相机变换"></a>应用投影和相机变换</h2><p>为了使用在之前章节中结合了的相机视角变换和投影变换，我们首先为之前在Triangle类中定义的顶点着色器添加一个Matrix变量：</p>
+<pre><code>public class Triangle {
+
+private final String vertexShaderCode =
+    // This matrix member variable provides a hook to manipulate
+    // the coordinates of the objects that use this vertex shader
+    &quot;uniform mat4 uMVPMatrix;&quot; +
+    &quot;attribute vec4 vPosition;&quot; +
+    &quot;void main() {&quot; +
+    // the matrix must be included as a modifier of gl_Position
+    // Note that the uMVPMatrix factor *must be first* in order
+    // for the matrix multiplication product to be correct.
+    &quot;  gl_Position = uMVPMatrix * vPosition;&quot; +
+    &quot;}&quot;;
+
+// Use to access and set the view transformation
+private int mMVPMatrixHandle;
+
+...
+}
+</code></pre><p>之后，修改图形对象的<code>draw()</code>方法，使得它接收组合后的变换矩阵，并将它应用到图形上：</p>
+<pre><code>public void draw(float[] mvpMatrix) { // pass in the calculated transformation matrix
+...
+
+// get handle to shape&apos;s transformation matrix
+mMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, &quot;uMVPMatrix&quot;);
+
+// Pass the projection and view transformation to the shader
+GLES20.glUniformMatrix4fv(mMVPMatrixHandle, 1, false, mvpMatrix, 0);
+
+// Draw the triangle
+GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
+
+// Disable vertex array
+GLES20.glDisableVertexAttribArray(mPositionHandle);
+}
+</code></pre><p>一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:<br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/OpenGL3.png" alt="OPENGL3"></p>
+<p>现在，应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！</p>
+<h1 id="添加移动"><a href="#添加移动" class="headerlink" title="添加移动"></a>添加移动</h1><p>在屏幕上绘制图形是OpenGL的一个基本特性，当然我们也可以通过其它的Android图形框架类做这些事情，包括<code>Canvas</code>和<code>Drawable</code>对象。OpenGL ES的特别之处在于，它还提供了其它的一些功能，比如在三维空间中对绘制图形进行移动和变换操作，或者通过其它独有的方法创建出引人入胜的用户体验。</p>
+<p>在这节课中，我们会更深入地学习OpenGL ES的知识：对一个图形添加旋转动画。</p>
+<h2 id="旋转一个形状"><a href="#旋转一个形状" class="headerlink" title="旋转一个形状"></a>旋转一个形状</h2><p>使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。在渲染器中，创建另一个变换矩阵（一个旋转矩阵），并且将它和我们的投影变换矩阵以及相机视角变换矩阵结合在一起：</p>
+<pre><code>private float[] mRotationMatrix = new float[16];
+public void onDrawFrame(GL10 gl) {
+float[] scratch = new float[16];
+
+...
+
+// Create a rotation transformation for the triangle
+long time = SystemClock.uptimeMillis() % 4000L;
+float angle = 0.090f * ((int) time);
+Matrix.setRotateM(mRotationMatrix, 0, angle, 0, 0, -1.0f);
+
+// Combine the rotation matrix with the projection and camera view
+// Note that the mMVPMatrix factor *must be first* in order
+// for the matrix multiplication product to be correct.
+Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+// Draw triangle
+mTriangle.draw(scratch);
+}
+</code></pre><p>如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将启用<code>GLSurfaceView.RENDERMODE_WHEN_DIRTY</code>的这一配置所对应的代码注释掉了，有关该方面的知识会在下一节中展开。</p>
+<h2 id="启用连续渲染"><a href="#启用连续渲染" class="headerlink" title="启用连续渲染"></a>启用连续渲染</h2><p>如果严格按照这节课的样例代码走到了现在这一步，那么请确认一下是否将设置渲染模式为<code>RENDERMODE_WHEN_DIRTY</code>的那行代码注释了，不然的话OpenGL只会对这个形状执行一次旋转，然后就等待<code>GLSurfaceView</code>容器的<code>requestRender()</code>方法被调用后才会继续执行渲染操作。</p>
+<pre><code>public MyGLSurfaceView(Context context) {
+...
+// Render the view only when there is a change in the drawing data.
+// To allow the triangle to rotate automatically, this line is commented out:
+//setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+}
+</code></pre><p>除非某个对象，它的变化和用户的交互无关，不然的话一般还是建议将这个配置打开。在下一节课中的内容将会把这个注释放开，再次设定这一配置选项。</p>
+<h1 id="响应触摸事件"><a href="#响应触摸事件" class="headerlink" title="响应触摸事件"></a>响应触摸事件</h1><p>让对象根据预设的程序运动（如让一个三角形旋转），可以有效地引起用户的注意，但是如果希望让OpenGL ES的图形对象与用户交互呢？让我们的OpenGL ES应用可以支持触控交互的关键点在于，拓展<code>GLSurfaceView</code>的实现，重写<code>onTouchEvent()</code>方法来监听触摸事件。</p>
+<p>这节课将会向你展示如何监听触控事件，让用户旋转一个OpenGL ES对象。</p>
+<h2 id="配置触摸监听器"><a href="#配置触摸监听器" class="headerlink" title="配置触摸监听器"></a>配置触摸监听器</h2><p>为了让我们的OpenGL ES应用响应触控事件，我们必须实现<code>GLSurfaceView</code>类中的<code>onTouchEvent()</code>方法。下面的例子展示了如何监听<code>MotionEvent.ACTION_MOVE</code>事件，并将事件转换为形状旋转的角度：</p>
+<pre><code>private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
+private float mPreviousX;
+private float mPreviousY;
+
+@Override
+public boolean onTouchEvent(MotionEvent e) {
+// MotionEvent reports input details from the touch screen
+// and other input controls. In this case, you are only
+// interested in events where the touch position changed.
+
+float x = e.getX();
+float y = e.getY();
+
+switch (e.getAction()) {
+    case MotionEvent.ACTION_MOVE:
+
+        float dx = x - mPreviousX;
+        float dy = y - mPreviousY;
+
+        // reverse direction of rotation above the mid-line
+        if (y &gt; getHeight() / 2) {
+          dx = dx * -1 ;
+        }
+
+        // reverse direction of rotation to left of the mid-line
+        if (x &lt; getWidth() / 2) {
+          dy = dy * -1 ;
+        }
+
+        mRenderer.setAngle(
+                mRenderer.getAngle() +
+                ((dx + dy) * TOUCH_SCALE_FACTOR));
+        requestRender();
+}
+mPreviousX = x;
+mPreviousY = y;
+return true;
+}
+</code></pre><p>注意在计算旋转角度后，该方法会调用<code>requestRender()</code>来告诉渲染器现在可以进行渲染了。这种办法对于这个例子来说是最有效的，因为图形并不需要重新绘制，除非有一个旋转角度的变化。当然，为了能够真正实现执行效率的提高，记得使用<code>setRenderMode()</code>方法以保证渲染器仅在数据发生变化时才会重新绘制图形，所以请确保这一行代码没有被注释掉：</p>
+<pre><code>public MyGLSurfaceView(Context context) {
+...
+// Render the view only when there is a change in the drawing data
+setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+}
+</code></pre><h2 id="公开旋转角度"><a href="#公开旋转角度" class="headerlink" title="公开旋转角度"></a>公开旋转角度</h2><p>上述样例代码需要我们公开旋转的角度，具体来说，是在渲染器中添加一个<code>public</code>成员变量。由于渲染器代码运行在一个独立的线程中（非主UI线程），我们必须同时将该变量声明为volatile。注意下面声明该变量的代码，另外对应的get和set方法也被声明为了<code>public</code>成员函数：</p>
+<pre><code>public class MyGLRenderer implements GLSurfaceView.Renderer {
+...
+
+public volatile float mAngle;
+
+public float getAngle() {
+    return mAngle;
+}
+
+public void setAngle(float angle) {
+    mAngle = angle;
+}
+}
+</code></pre><h2 id="应用旋转"><a href="#应用旋转" class="headerlink" title="应用旋转"></a>应用旋转</h2><p>为了应用触控输入所生成的旋转，注释掉创建旋转角度的代码，然后添加mAngle，该变量包含了触控输入所生成的角度：</p>
+<pre><code>public void onDrawFrame(GL10 gl) {
+...
+float[] scratch = new float[16];
+
+// Create a rotation for the triangle
+// long time = SystemClock.uptimeMillis() % 4000L;
+// float angle = 0.090f * ((int) time);
+Matrix.setRotateM(mRotationMatrix, 0, mAngle, 0, 0, -1.0f);
+
+// Combine the rotation matrix with the projection and camera view
+// Note that the mMVPMatrix factor *must be first* in order
+// for the matrix multiplication product to be correct.
+Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+// Draw triangle
+mTriangle.draw(scratch);
+}
+</code></pre><p>当完成了上述步骤，我们就可以运行这个程序，并通过手指在屏幕上的滑动旋转三角形了：<br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/opengl4.png" alt="opengl4"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/24/OpenGL-ES/" itemprop="url">
                   OpenGL_ES
                 </a>
@@ -887,172 +1479,6 @@ return [[[NSBundle mainBundle]loadNibNamed:@&quot;JKAppView&quot; owner:nil opti
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/18/iOS项目3-英雄图片表视图展示/" itemprop="url">
-                  iOS项目3.英雄图片表视图展示
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T17:40:30+10:00" content="2016-04-18">
-              2016-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/18/iOS项目3-英雄图片表视图展示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目3-英雄图片表视图展示/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%B1%95%E7%A4%BA%E7%BC%A9%E5%B0%8F%E7%89%88.png" alt="效果图"></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><strong>直接在Main Storyboard中拖入一个TableView</strong></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%8B%B1%E9%9B%84%E5%9B%BE%E7%89%87%E8%A1%A8%E8%A7%86%E5%9B%BE%E5%B1%95%E7%A4%BA.png" alt="项目结构"></p>
-<h1 id="字典加载数据模型"><a href="#字典加载数据模型" class="headerlink" title="字典加载数据模型"></a>字典加载数据模型</h1><pre><code>-  (instancetype)initWithDict:(NSDictionary *)dict{
-
-if (self=[super init]) {
-    [self setValuesForKeysWithDictionary:dict];
-}
-return self;
-}
-</code></pre><h1 id="加载plist中的数组数据"><a href="#加载plist中的数组数据" class="headerlink" title="加载plist中的数组数据"></a>加载plist中的数组数据</h1><p><strong>采用MVC模式，和前一项目相比，其数据加载时创建了一个Model</strong></p>
-<pre><code>- (NSArray *)heros{
-
-if (!_heros) {
-    NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;heros&quot; ofType:@&quot;plist&quot;];
-    NSArray *array = [NSArray arrayWithContentsOfFile:path];
-    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
-
-    for (NSDictionary *dict in array) {
-
-        JKHero *hero =  [JKHero heroWithDict:dict];
-
-        [arrayM addObject:hero];
-    }
-
-    _heros = [arrayM copy];
-}
-return _heros;
-}
-</code></pre><h1 id="表视图cell的配置"><a href="#表视图cell的配置" class="headerlink" title="表视图cell的配置"></a>表视图cell的配置</h1><pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-static NSString *identifier = @&quot;heroCell&quot;;
-
-UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-if (!cell) {
-    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-}
-
-JKHero *hero = self.heros[indexPath.row];
-
-cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-cell.textLabel.text = hero.name;
-cell.detailTextLabel.text = hero.intro;
-cell.detailTextLabel.textColor = [UIColor orangeColor];
-cell.imageView.image = [UIImage imageNamed:hero.icon];
-
-return cell;
-}
-</code></pre><h1 id="隐藏状态栏"><a href="#隐藏状态栏" class="headerlink" title="隐藏状态栏"></a>隐藏状态栏</h1><pre><code>- (BOOL)prefersStatusBarHidden{
-return YES;
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1099,7 +1525,7 @@ return YES;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

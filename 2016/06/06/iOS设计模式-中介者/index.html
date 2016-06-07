@@ -61,33 +61,105 @@
 
 
 
-<meta name="description" content="原型模式解决的问题每个对象需要重新创建
-StudentModel *stu1 = [[StudentModel alloc] init];
-stu1.name          = @&amp;quot;小王&amp;quot;;
-stu1.age           = @(19);
-stu1.address       = @&amp;quot;中关村&amp;quot;;
-stu1.totalScore    = @(10">
+<meta name="description" content="中介模式
+中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
+中介者模式解决的问题:解耦 / 降低复杂度，从混乱的网状结构变成线状 / 增加程序可维护性
+
+
+
+
+情形1:
+情形2:
+情形3:
+
+
+
+
+B:9500
+B:8000
+B:11000
+
+
+D:9000
+D:8000
+D:11000 
+
+
+
+
+
+
+Abs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-原型">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/27/iOS设计模式-原型/index.html">
+<meta property="og:title" content="iOS设计模式-中介者">
+<meta property="og:url" content="http://jackliu17.github.io/2016/06/06/iOS设计模式-中介者/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="原型模式解决的问题每个对象需要重新创建
-StudentModel *stu1 = [[StudentModel alloc] init];
-stu1.name          = @&amp;quot;小王&amp;quot;;
-stu1.age           = @(19);
-stu1.address       = @&amp;quot;中关村&amp;quot;;
-stu1.totalScore    = @(10">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png">
-<meta property="og:updated_time" content="2016-05-27T02:38:59.000Z">
+<meta property="og:description" content="中介模式
+中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
+中介者模式解决的问题:解耦 / 降低复杂度，从混乱的网状结构变成线状 / 增加程序可维护性
+
+
+
+
+情形1:
+情形2:
+情形3:
+
+
+
+
+B:9500
+B:8000
+B:11000
+
+
+D:9000
+D:8000
+D:11000 
+
+
+
+
+
+
+Abs">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator02.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator03.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator01.png">
+<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator04.png">
+<meta property="og:updated_time" content="2016-06-06T11:37:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-原型">
-<meta name="twitter:description" content="原型模式解决的问题每个对象需要重新创建
-StudentModel *stu1 = [[StudentModel alloc] init];
-stu1.name          = @&amp;quot;小王&amp;quot;;
-stu1.age           = @(19);
-stu1.address       = @&amp;quot;中关村&amp;quot;;
-stu1.totalScore    = @(10">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png">
+<meta name="twitter:title" content="iOS设计模式-中介者">
+<meta name="twitter:description" content="中介模式
+中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。
+中介者模式解决的问题:解耦 / 降低复杂度，从混乱的网状结构变成线状 / 增加程序可维护性
+
+
+
+
+情形1:
+情形2:
+情形3:
+
+
+
+
+B:9500
+B:8000
+B:11000
+
+
+D:9000
+D:8000
+D:11000 
+
+
+
+
+
+
+Abs">
+<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator02.png">
 
 
 
@@ -105,7 +177,7 @@ stu1.totalScore    = @(10">
   };
 </script>
 
-  <title> iOS设计模式-原型 | Cowboy Tech </title>
+  <title> iOS设计模式-中介者 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +319,7 @@ stu1.totalScore    = @(10">
             
             
               
-                iOS设计模式-原型
+                iOS设计模式-中介者
               
             
           </h1>
@@ -259,8 +331,8 @@ stu1.totalScore    = @(10">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-27T12:34:13+10:00" content="2016-05-27">
-              2016-05-27
+            <time itemprop="dateCreated" datetime="2016-06-06T16:54:09+10:00" content="2016-06-06">
+              2016-06-06
             </time>
           </span>
 
@@ -289,8 +361,8 @@ stu1.totalScore    = @(10">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/27/iOS设计模式-原型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/27/iOS设计模式-原型/" itemprop="commentsCount"></span>
+                <a href="/2016/06/06/iOS设计模式-中介者/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/iOS设计模式-中介者/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,124 +384,167 @@ stu1.totalScore    = @(10">
       
 
       
-        <h1 id="原型模式解决的问题"><a href="#原型模式解决的问题" class="headerlink" title="原型模式解决的问题"></a>原型模式解决的问题</h1><p>每个对象需要重新创建</p>
-<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
-stu1.name          = @&quot;小王&quot;;
-stu1.age           = @(19);
-stu1.address       = @&quot;中关村&quot;;
-stu1.totalScore    = @(100);
+        <h1 id="中介模式"><a href="#中介模式" class="headerlink" title="中介模式"></a>中介模式</h1><ol>
+<li>中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</li>
+<li>中介者模式解决的问题:解耦 / 降低复杂度，从混乱的网状结构变成线状 / 增加程序可维护性</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>情形1:</th>
+<th>情形2:</th>
+<th>情形3:</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B:9500</td>
+<td>B:8000</td>
+<td>B:11000</td>
+</tr>
+<tr>
+<td>D:9000</td>
+<td>D:8000</td>
+<td>D:11000 </td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator02.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator03.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator01.png" alt=""></p>
+<p>AbstractMediator</p>
+<pre><code>@interface AbstractMediator : NSObject &lt;ColleagueDelegate&gt;
 
-
-StudentModel *stu2 = [[StudentModel alloc] init];
-stu1.name          = @&quot;小刘&quot;;
-stu1.age           = @(19);
-stu1.address       = @&quot;中关村&quot;;
-stu1.totalScore    = @(100);
-</code></pre><h1 id="原型设计-自我拷贝"><a href="#原型设计-自我拷贝" class="headerlink" title="原型设计:自我拷贝"></a>原型设计:自我拷贝</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png" alt=""></p>
-<p>使用场景：对象创建特别复杂，两个对象在抽象逻辑完全一致，只是在实例化的细节略有差异，如果要重新创建一个对象，不如拷贝自己再去修改</p>
-<p>ProtoypeCopyProtocol    </p>
-<pre><code>@protocol ProtoypeCopyProtocol &lt;NSObject&gt;
-@required
-- (id)clone;
 @end
-</code></pre><p>StudentModel</p>
-<pre><code>@interface StudentModel : NSObject &lt;ProtoypeCopyProtocol&gt;
 
-@property (nonatomic, strong) NSString  *name;
-@property (nonatomic, strong) NSNumber  *age;
-@property (nonatomic, strong) NSString  *address;
-@property (nonatomic, strong) NSNumber  *totalScore;
+@implementation AbstractMediator
 
-- (id)clone;
-@end
+- (void)colleagueEvent:(AbstractColleague *)event {
 
-@implementation StudentModel
-
-- (id)clone {
-
-    StudentModel *student = [[[self class] alloc] init];
-
-    // 完成复杂操作的所有作业
-    student.name       = self.name;
-    student.age        = self.age;
-    student.address    = self.address;
-    student.totalScore = self.totalScore;
-    return student;
 }
 @end
-</code></pre><p>viewController</p>
-<pre><code>- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    // 学生1
-    StudentModel *stu1 = [[StudentModel alloc] init];
-    stu1.name          = @&quot;小王&quot;;
-    stu1.age           = @(19);
-    stu1.address       = @&quot;中关村&quot;;
-    stu1.totalScore    = @(100);
+</code></pre><p>AbstractColleague</p>
+<pre><code>@class AbstractColleague;
 
-    // 学生2
-    StudentModel *stu2 = [stu1 clone];
-    stu2.name          = @&quot;小红&quot;;
+@protocol ColleagueDelegate &lt;NSObject&gt;
+
+@optional
+
+//colleague对象的交互
+- (void)colleagueEvent:(AbstractColleague *)event;
+
+@end
+
+@interface AbstractColleague : NSObject
+
+@property (nonatomic, weak) id &lt;ColleagueDelegate&gt; delegate;
+
+@end
+@implementation AbstractColleague
+
+@end
+</code></pre><h1 id="MVC与中介者"><a href="#MVC与中介者" class="headerlink" title="MVC与中介者"></a>MVC与中介者</h1><ol>
+<li>MVC中的控制器viewController就相当于中介</li>
+<li>为何要使用中介者：解决复杂的交互问题，对象之间有大量的交互逻辑，彼此互相关联</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator04.png" alt=""></p>
+<p><img src="" alt=""></p>
+<p>Colleague</p>
+<pre><code>@interface Colleague : AbstractColleague
+
+@property (nonatomic) CGFloat value;
+
+- (void)changeValue:(CGFloat)value;
+
+@end
+
+@implementation Colleague
+
+- (void)changeValue:(CGFloat)value {
+
+self.value = value;
+
+if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(colleagueEvent:)]) {
+
+    [self.delegate colleagueEvent:self];
 }
-</code></pre><h1 id="框架级别的原型模式-NSCopying"><a href="#框架级别的原型模式-NSCopying" class="headerlink" title="框架级别的原型模式:NSCopying"></a>框架级别的原型模式:NSCopying</h1><p>BasCopyObject</p>
-<pre><code>//遵循NSCopying协议
-@interface BasCopyObject : NSObject &lt;NSCopying&gt;
-
-
-//子类不要重载这个方法
-- (id)copyWithZone:(NSZone *)zone {
-    .........
-BasCopyObject *copyObject = [[self class] allocWithZone:zone];
-
-// 赋值操作作业，//由子类重载实现
-[self copyOperationWithObject:copyObject];
-return copyObject;
 }
 
-- (void)copyOperationWithObject:(id)object {
+@end
+</code></pre><p>TypeOneMediator</p>
+<pre><code>@interface TypeOneMediator : AbstractMediator
 
-}
-</code></pre><p>StudentModel</p>
-<pre><code>//继承基类
-@interface StudentModel : BasCopyObject
+@property (nonatomic, strong) Colleague  *colleagueA;
+@property (nonatomic, strong) Colleague  *colleagueB;
+@property (nonatomic, strong) Colleague  *colleagueC;
 
-- (void)copyOperationWithObject:(StudentModel *)object {  
-object.name = self.name;
-object.age  = self.age;
+- (NSDictionary *)values;
+
+@end
+
+@implementation TypeOneMediator
+
+- (void)colleagueEvent:(AbstractColleague *)event {
+
+if ([event isEqual:self.colleagueA]) {
+
+    self.colleagueB.value = self.colleagueA.value * 2;
+    self.colleagueC.value = self.colleagueA.value * 4;
+
+} else if ([event isEqual:self.colleagueB]) {
+
+    self.colleagueA.value = self.colleagueB.value / 2.f;
+    self.colleagueC.value = self.colleagueB.value * 2.f;
+
+} else {
+
+    self.colleagueA.value = self.colleagueC.value / 4.f;
+    self.colleagueB.value = self.colleagueC.value / 2.f;
 }
+}
+
+- (NSDictionary *)values {
+
+return @{@&quot;A&quot; : @(self.colleagueA.value),
+         @&quot;B&quot; : @(self.colleagueB.value),
+         @&quot;C&quot; : @(self.colleagueC.value)};
+}
+
+@end
 </code></pre><p>ViewController</p>
-<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
-StudentModel *stu2 = stu1.copy;
-</code></pre><h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>ClassModel</p>
-<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
-object.className = self.className;
-object.students = self.students;
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) TypeTwoMediator  *mediator;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.mediator = [TypeTwoMediator new];
+
+Colleague *colleagueA = [Colleague new];
+Colleague *colleagueB = [Colleague new];
+Colleague *colleagueC = [Colleague new];
+
+self.mediator.colleagueA = colleagueA;
+self.mediator.colleagueB = colleagueB;
+self.mediator.colleagueC = colleagueC;
+
+colleagueA.delegate = self.mediator;
+colleagueB.delegate = self.mediator;
+colleagueC.delegate = self.mediator;
+
+[colleagueA changeValue:2.f];
+NSLog(@&quot;%@&quot;, [self.mediator values]);
+
+[colleagueA changeValue:1.f];
+NSLog(@&quot;%@&quot;, [self.mediator values]);
+
+[colleagueA changeValue:3.f];
+NSLog(@&quot;%@&quot;, [self.mediator values]);
 }
-</code></pre><p>ViewController</p>
-<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
-class1.className   = @&quot;班级1&quot;;
-class1.students    = @[stu1, stu2];
-
-ClassModel *class2 = class1.copy;
-</code></pre><p>这样拷贝出来的数组students内存地址一样。说明数组拷贝没有成功。就好像student既属于A班，又属于B班</p>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>同时要求数组里的每个对象也要实现NSCopying协议</p>
-<p>ClassModel</p>
-<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
-
-    object.className = self.className;
-    // 完成了深拷贝(完整的复制了集合里面的对象)
-    object.students  = [[NSArray alloc] initWithArray:self.students copyItems:YES];
-}
-</code></pre><p>ViewController</p>
-<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
-class1.className   = @&quot;班级1&quot;;
-class1.students    = @[stu1, stu2];
-
-ClassModel *class2 = class1.copy;    
-</code></pre><p>这样拷贝出来的class2中的数组对象students才能与class1中的数组对象students有不同的内存地址</p>
-<h1 id="self-class"><a href="#self-class" class="headerlink" title="[self class]"></a>[self class]</h1><p>这里使用self，是因为StudentModel可能会被子类继承</p>
-<pre><code>StudentModel *student = [[[self class] alloc] init];
 </code></pre>
       
     </div>
@@ -455,17 +570,13 @@ ClassModel *class2 = class1.copy;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/26/iOS设计模式-观察者/" rel="next" title="iOS设计模式-观察者">
-                <i class="fa fa-chevron-left"></i> iOS设计模式-观察者
+              <a href="/2016/06/06/iOS设计模式-责任链/" rel="next" title="iOS设计模式-责任链">
+                <i class="fa fa-chevron-left"></i> iOS设计模式-责任链
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/27/iOS设计模式-外观/" rel="prev" title="iOS设计模式-外观">
-                iOS设计模式-外观 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -597,7 +708,7 @@ ClassModel *class2 = class1.copy;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型模式解决的问题"><span class="nav-number">1.</span> <span class="nav-text">原型模式解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型设计-自我拷贝"><span class="nav-number">2.</span> <span class="nav-text">原型设计:自我拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架级别的原型模式-NSCopying"><span class="nav-number">3.</span> <span class="nav-text">框架级别的原型模式:NSCopying</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">4.</span> <span class="nav-text">深拷贝与浅拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浅拷贝"><span class="nav-number">4.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝"><span class="nav-number">4.2.</span> <span class="nav-text">深拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#self-class"><span class="nav-number">5.</span> <span class="nav-text">[self class]</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中介模式"><span class="nav-number">1.</span> <span class="nav-text">中介模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVC与中介者"><span class="nav-number">2.</span> <span class="nav-text">MVC与中介者</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -855,9 +966,9 @@ ClassModel *class2 = class1.copy;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/27/iOS设计模式-原型/';
-      var disqus_title = 'iOS设计模式-原型';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/27/iOS设计模式-原型/';
+      var disqus_identifier = '2016/06/06/iOS设计模式-中介者/';
+      var disqus_title = 'iOS设计模式-中介者';
+      var disqus_url = 'http://jackliu17.github.io/2016/06/06/iOS设计模式-中介者/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
