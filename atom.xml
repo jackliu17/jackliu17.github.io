@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-07T03:38:25.000Z</updated>
+  <updated>2016-06-07T08:13:02.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS项目19-Swift实现天气预报</title>
+    <link href="http://jackliu17.github.io/2016/06/07/iOS%E9%A1%B9%E7%9B%AE19-Swift%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"/>
+    <id>http://jackliu17.github.io/2016/06/07/iOS项目19-Swift实现天气预报/</id>
+    <published>2016-06-07T08:11:07.000Z</published>
+    <updated>2016-06-07T08:13:02.000Z</updated>
+    
+    <content type="html">&lt;pre&gt;&lt;code&gt;import UIKit
+
+class ViewController: UIViewController {
+
+@IBOutlet var tv:UITextView?
+
+@IBAction func btnPressed(sender:AnyObject){
+
+    loadWeather()
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+
+     loadWeather()
+}
+
+
+func loadWeather(){
+
+    let url = NSURL(string: &amp;quot;http://www.weather.com.cn/data/sk/101010100.html&amp;quot;)
+
+    let weatherData = NSData(contentsOfURL: url!)
+
+    do {
+
+let json =  try NSJSONSerialization.JSONObjectWithData(weatherData!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
+
+        let weatherInfo = json.objectForKey(&amp;quot;weatherinfo&amp;quot;)
+        let city = weatherInfo!.objectForKey(&amp;quot;city&amp;quot;)
+        let temp = weatherInfo!.objectForKey(&amp;quot;temp&amp;quot;)
+        let wind = weatherInfo!.objectForKey(&amp;quot;WD&amp;quot;)
+        let ws : AnyObject! = weatherInfo!.objectForKey(&amp;quot;WS&amp;quot;)
+        tv!.text = &amp;quot;城市：\(city)\n温度：\(temp)\n风：\(wind)\n风级：\(ws)&amp;quot;
+    } catch {
+        print(&amp;quot;Hello&amp;quot;)
+    }
+}
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;import UIKit
+
+class ViewController: UIViewController {
+
+@IBOutlet var tv:UITextView?
+
+@IBAction func btnPressed(sender:AnyObject)
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS设计模式-中介者</title>
@@ -4643,82 +4714,6 @@ return phoneNumber;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS播放音频简介</title>
-    <link href="http://jackliu17.github.io/2016/05/22/iOS%E6%92%AD%E6%94%BE%E9%9F%B3%E9%A2%91%E7%AE%80%E4%BB%8B/"/>
-    <id>http://jackliu17.github.io/2016/05/22/iOS播放音频简介/</id>
-    <published>2016-05-22T00:27:59.000Z</published>
-    <updated>2016-05-22T00:50:59.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;Play-Sound-only&quot;&gt;&lt;a href=&quot;#Play-Sound-only&quot; class=&quot;headerlink&quot; title=&quot;Play Sound only&quot;&gt;&lt;/a&gt;Play Sound only&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import AVFoundation
-
-let fileUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&amp;quot;sound&amp;quot;, ofType: &amp;quot;mp3&amp;quot;)!)
-
-aPlayer = try? AVAudioPlayer(contentsOfURL:fileUrl);
-
-aPlayer.play();
-
-aPlayer.pause()
-
-//stop and reset to starting point      
-aPlayer.stop()
-aPlayer.currentTime = 0
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Play-Sound-with-UI&quot;&gt;&lt;a href=&quot;#Play-Sound-with-UI&quot; class=&quot;headerlink&quot; title=&quot;Play Sound with UI&quot;&gt;&lt;/a&gt;Play Sound with UI&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import MediaPlayer            
-
-let p = MPMoviePlayerViewController(contentURL: fileUrl);
-
-presentViewController(p, animated: true, completion: nil)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Record-and-Play-Sound&quot;&gt;&lt;a href=&quot;#Record-and-Play-Sound&quot; class=&quot;headerlink&quot; title=&quot;Record and Play Sound&quot;&gt;&lt;/a&gt;Record and Play Sound&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import AVFoundation
-
-var avRec:AVAudioRecorder!
-var audioFileUrl:NSURL!
-var avPlayer:AVAudioPlayer!
-
-override func viewDidLoad() {
-
-    super.viewDidLoad()
-
-    FileUrl = (NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.AllDomainsMask)[0] as NSURL)
-        .URLByAppendingPathComponent(&amp;quot;rec&amp;quot;)
-
-    avRec = try? AVAudioRecorder(URL:audioFileUrl, settings: [:])
-
-    avRec.prepareToRecord()
-}
-
-@IBAction func playRecBtnClicked(sender: AnyObject) {
-
-    avPlayer = try? AVAudioPlayer(contentsOfURL: audioFileUrl)
-    avPlayer.prepareToPlay()
-    avPlayer.play()
-}
-
-@IBAction func stopRecBtnClicked(sender: AnyObject) {
-
-    avRec.stop()
-}
-
-@IBAction func startRecBtnClicked(sender: AnyObject) {
-
-    avRec.record()
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Play-Sound-only&quot;&gt;&lt;a href=&quot;#Play-Sound-only&quot; class=&quot;headerlink&quot; title=&quot;Play Sound only&quot;&gt;&lt;/a&gt;Play Sound only&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;import AVF
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_media" scheme="http://jackliu17.github.io/tags/iOS-media/"/>
     
   </entry>
   
