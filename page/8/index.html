@@ -238,6 +238,466 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="url">
+                  iOS项目011-012.绘制图形及小黄人
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-16T16:18:56+10:00" content="2016-05-16">
+              2016-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Quartz-2D"><a href="#Quartz-2D" class="headerlink" title="Quartz 2D"></a>Quartz 2D</h1><h2 id="什么是Quartz-2D"><a href="#什么是Quartz-2D" class="headerlink" title="什么是Quartz 2D"></a>什么是Quartz 2D</h2><p>Quartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想</p>
+<h2 id="Quartz-2D作用"><a href="#Quartz-2D作用" class="headerlink" title="Quartz 2D作用"></a>Quartz 2D作用</h2><ol>
+<li>作用，绘制图形：线条，三角形，矩形，圆形，弧形</li>
+<li>绘制文字</li>
+<li>绘制生成图像</li>
+<li>读取生成PDF</li>
+<li>截图裁剪图片</li>
+<li>自定义UI控件</li>
+</ol>
+<h1 id="图形上下文-Graphics-Context"><a href="#图形上下文-Graphics-Context" class="headerlink" title="图形上下文(Graphics Context)"></a>图形上下文(Graphics Context)</h1><p>是一个CGContextRef类型的数据.作用:</p>
+<ol>
+<li>保存绘图信息，绘图状态</li>
+<li>决定绘制的输出目标，绘制到什么地方去，输出目标可以是PDF文件，Bitmap或者显示器的窗口上</li>
+</ol>
+<h1 id="什么时候自动调用drawRect"><a href="#什么时候自动调用drawRect" class="headerlink" title="什么时候自动调用drawRect"></a>什么时候自动调用drawRect</h1><ol>
+<li>系统自动调用，视图显示在屏幕上的时候调用且调用一次</li>
+<li>需要更新的时候也会被调用，这时需要使seetNeedsDisplay</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line">// Drawing code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png" alt=""></p>
+<pre><code>void drwaline(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+CGContextSaveGState(context);
+
+//第1条线-----------------------------------------
+
+CGContextSetLineWidth(context, 20);
+CGContextSetLineCap(context, kCGLineCapRound);
+CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
+CGContextMoveToPoint(context, 10, 10);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextStrokePath(context);
+
+CGContextRestoreGState(context);
+
+//2条线-------------------------------------------
+
+[[UIColor blueColor] set];
+CGContextSetLineJoin(context, kCGLineJoinRound);
+CGContextMoveToPoint(context, 100, 120);
+CGContextAddLineToPoint(context, 150, 120);
+CGContextAddLineToPoint(context, 150, 180);
+CGContextStrokePath(context);
+
+}
+</code></pre><h2 id="图像保留栈"><a href="#图像保留栈" class="headerlink" title="图像保留栈"></a>图像保留栈</h2><pre><code>//将上下文复制一份放到栈中,防止两个图形互相影响
+CGContextSaveGState(context);
+
+....................
+
+//将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
+CGContextRestoreGState(context);
+</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png" alt=""></p>
+<pre><code>void drawR(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
+[[UIColor purpleColor] setFill];
+CGContextFillPath(context);
+}
+</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png" alt=""></p>
+<pre><code>void drawTriangle(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextMoveToPoint(context, 0, 0);
+CGContextAddLineToPoint(context, 100, 100);
+CGContextAddLineToPoint(context, 150, 100);
+CGContextClosePath(context);
+[[UIColor redColor] set];
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png" alt=""></p>
+<pre><code>void drawCircle(){
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//绘制图形,宽度高度一样就是圆形，不一样就是椭圆
+CGContextAddEllipseInRect(context, CGRectMake(50, 50, 130, 100));
+CGContextSetLineWidth(context, 10);
+
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png" alt=""></p>
+<pre><code>CGFloat arc(CGFloat angle){
+return angle * (M_PI / 180);
+}
+
+void drawArc(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+
+//CGContextAddArc 内各个参数的定义
+// x\y : 圆心
+// radius : 半径
+// startAngle : 开始角度
+// endAngle : 结束角度
+// clockwise : 圆弧的伸展方向(0:顺时针, 1:逆时针)
+
+CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
+
+//CGContextFillPath(context); 如果采用这个方法就是填充弧形
+ CGContextStrokePath(context);
+}
+</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png" alt=""></p>
+<pre><code>void drawText(){
+NSString *str = @&quot;天道酬勤&quot;;
+NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
+attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
+[str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
+}
+</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png" alt=""></p>
+<pre><code>void drawImg(){
+
+UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
+
+//[img drawAtPoint:CGPointMake(50, 50)]; 这个方法是在某个点开始绘制
+//[img drawInRect:CGRectMake(50, 50, 500, 500)]; 在某个矩形框内绘制
+
+//以下方法规定了图片的宽高，以他来进行填充,可以画出格子图案
+[img drawAsPatternInRect:CGRectMake(0, 0, 300, 300)];
+
+NSString *str = @&quot;刘米米爱兔宝宝&quot;;
+[str drawInRect:CGRectMake(0, 0, 100, 30) withAttributes:nil];
+}
+</code></pre><h2 id="JPG-vs-PNG"><a href="#JPG-vs-PNG" class="headerlink" title="JPG vs PNG"></a>JPG vs PNG</h2><pre><code>//取得图片,jpg要后缀名，png不用
+UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
+</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png" alt=""></p>
+<pre><code>void drawBezier(){
+
+CGContextRef context = UIGraphicsGetCurrentContext();
+//起点
+CGContextMoveToPoint(context, 10, 10);
+//2个控制点 和终点
+CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
+//1个控制点
+//CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
+CGContextStrokePath(context);
+}
+</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png" alt=""></p>
+<h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+</code></pre><h2 id="中心的的x坐标"><a href="#中心的的x坐标" class="headerlink" title="中心的的x坐标"></a>中心的的x坐标</h2><pre><code>CGFloat topX = rect.size.width * 0.5;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/14/iOS项目014-九宫格手势解锁/" itemprop="url">
+                  iOS项目014.九宫格手势解锁
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-14T13:02:55+10:00" content="2016-05-14">
+              2016-05-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/14/iOS项目014-九宫格手势解锁/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/14/iOS项目014-九宫格手势解锁/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png" alt=""></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj014Structure.png" alt=""></p>
+<h1 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h1><pre><code>//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
+CGFloat const btnCount = 9;
+
+// define只是字符的转换
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+</code></pre><h1 id="UIView的两种init方法"><a href="#UIView的两种init方法" class="headerlink" title="UIView的两种init方法"></a>UIView的两种init方法</h1><pre><code>//通过代码创建会调用这个方法
+- (instancetype)initWithFrame:(CGRect)frame{
+if (self = [super initWithFrame:frame]) {
+    [self AddButton];
+}
+return self;
+}
+
+//通过storyboard 或者 xib 文件创建的时候会调用
+-(id)initWithCoder:(NSCoder *)aDecoder{
+if (self = [super initWithCoder:aDecoder]) {
+    [self AddButton];
+}
+return self;
+}
+</code></pre><h1 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h1><p>在github上查找，然后下载，完成之后运行</p>
+<pre><code>KSImageNamed
+VVDocumenter-Xcode
+ColorSense-for-Xcode-master
+</code></pre><h1 id="触摸方法"><a href="#触摸方法" class="headerlink" title="触摸方法"></a>触摸方法</h1><pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
+[self touchesEnded:touches withEvent:event];
+}
+</code></pre><h1 id="触摸点的坐标"><a href="#触摸点的坐标" class="headerlink" title="触摸点的坐标"></a>触摸点的坐标</h1><pre><code>UITouch *touch = [touches anyObject];
+CGPoint point = [touch locationInView:self];
+</code></pre><h1 id="触摸的按钮"><a href="#触摸的按钮" class="headerlink" title="触摸的按钮"></a>触摸的按钮</h1><pre><code>- (UIButton *)buttonWithPoint:(CGPoint)point{
+for (UIButton *btn in self.subviews) {
+    if (CGRectContainsPoint(btn.frame, point)) {
+        return btn;
+    }
+}
+return nil;
+}
+</code></pre><h1 id="点是否在指定CGRect内"><a href="#点是否在指定CGRect内" class="headerlink" title="点是否在指定CGRect内"></a>点是否在指定CGRect内</h1><pre><code>bool CGRectContainsPoint (
+    CGRect rect,
+    CGPoint point
+);
+</code></pre><h1 id="m-里声明私有属性"><a href="#m-里声明私有属性" class="headerlink" title=".m 里声明私有属性"></a>.m 里声明私有属性</h1><pre><code>//匿名扩展（类目的特例） ：可以声明属性,私有的
+@interface JKLockView ()
+@property (nonatomic, strong) NSMutableArray *selectedBtns;
+@property (nonatomic, assign) CGPoint currentPoint;
+@end
+</code></pre><h1 id="数组或字典添加对象需要先判断"><a href="#数组或字典添加对象需要先判断" class="headerlink" title="数组或字典添加对象需要先判断"></a>数组或字典添加对象需要先判断</h1><pre><code>if (btn) {
+[self.selectedBtns addObject:btn];
+}
+</code></pre><h1 id="开始绘图"><a href="#开始绘图" class="headerlink" title="开始绘图"></a>开始绘图</h1><pre><code>[self setNeedsDisplay];
+</code></pre><h1 id="绘制贝塞尔曲线"><a href="#绘制贝塞尔曲线" class="headerlink" title="绘制贝塞尔曲线"></a>绘制贝塞尔曲线</h1><pre><code>UIBezierPath *path = [UIBezierPath bezierPath];
+path.lineWidth = 8;
+path.lineJoinStyle = kCGLineJoinRound;
+[[UIColor colorWithRed:32/255.0 green:210/255.0 blue:254/255.0 alpha:0.5] set];
+
+//遍历按钮
+for (int i = 0; i &lt; self.selectedBtns.count; i++) {
+    UIButton *button = self.selectedBtns[i];
+    if (i == 0) {
+
+        //设置起点
+        [path moveToPoint:button.center];
+
+    }else{//连线
+
+        [path addLineToPoint:button.center];
+    }
+}
+
+[path addLineToPoint:self.currentPoint];
+[path stroke];
+</code></pre><h1 id="数组中每个对象执行某方法"><a href="#数组中每个对象执行某方法" class="headerlink" title="数组中每个对象执行某方法"></a>数组中每个对象执行某方法</h1><pre><code>//makeObjectsPerformSelector  
+//每个按钮设为没有选中状态
+//向数组中的每一个对象发送方法 setSelected:，方法参数为 NO
+[self.selectedBtns makeObjectsPerformSelector:@selector(setSelected:) withObject:NO];
+</code></pre><h1 id="IBOutlet-和-delegate连接"><a href="#IBOutlet-和-delegate连接" class="headerlink" title="IBOutlet 和 delegate连接"></a>IBOutlet 和 delegate连接</h1><pre><code>@property (nonatomic, assign) IBOutlet id&lt;JKLockViewDelegate&gt; delegate;
+</code></pre><h1 id="UIAlertController"><a href="#UIAlertController" class="headerlink" title="UIAlertController"></a>UIAlertController</h1><pre><code>UIAlertController *alert = [UIAlertController alertControllerWithTitle:@&quot;密码正确&quot; message:nil preferredStyle:UIAlertControllerStyleAlert];
+[alert addAction:[UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDestructive handler:nil]];
+[alert addAction:[UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:nil]];
+[self presentViewController:alert animated:YES completion:nil];
+</code></pre><h1 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h1><pre><code>[path appendFormat:@&quot;%ld&quot;,(long)btn.tag];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/13/iOS项目13-手势识别/" itemprop="url">
                   iOS项目13-手势识别
                 </a>
@@ -938,946 +1398,6 @@ self.colorView.percent   = 0.5;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/08/CAShapeLayer的使用/" itemprop="url">
-                  CAShapeLayer的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-08T19:58:30+10:00" content="2016-05-08">
-              2016-05-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/08/CAShapeLayer的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CAShapeLayer的使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CAShapeLayer简介"><a href="#CAShapeLayer简介" class="headerlink" title="CAShapeLayer简介"></a>CAShapeLayer简介</h1><ol>
-<li>CAShapeLayer继承至CALayer，可以使用CALayer的所有属性值</li>
-<li>CAShapeLayer需要与贝塞尔曲线配合使用才有意义</li>
-<li>使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形</li>
-<li>CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRect方法使用CPU渲染而言，其效率极高，能大大优化内存使用情况</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-@property (nonatomic, strong) NSTimer      *timer;
-@property (nonatomic, strong) CAShapeLayer *shapeLayer;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 创建shapeLayer
-_shapeLayer = [CAShapeLayer layer];
-_shapeLayer.frame         = (CGRect){CGPointMake(0, 0), CGSizeMake(200, 200)};
-_shapeLayer.position      = self.view.center;
-_shapeLayer.path          = [self getStar1BezierPath].CGPath;
-_shapeLayer.fillColor     = [UIColor clearColor].CGColor;
-_shapeLayer.strokeColor   = [UIColor redColor].CGColor;
-_shapeLayer.lineWidth     = 2.f;
-[self.view.layer addSublayer:_shapeLayer];
-
-// 创建定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(pathAnimation)
-                                        userInfo:nil
-                                         repeats:YES];
-}
-
-/**
- *  执行path的动画
- */
-- (void)pathAnimation {
-static int i = 0;
-if (i++ % 2 == 0) {
-    CABasicAnimation *circleAnim = [CABasicAnimation animationWithKeyPath:@&quot;path&quot;];
-    circleAnim.removedOnCompletion = NO;
-    circleAnim.duration            = 1;
-    circleAnim.fromValue           = (__bridge id)[self getStar1BezierPath].CGPath;
-    circleAnim.toValue             = (__bridge id)[self getStar2BezierPath].CGPath;
-    _shapeLayer.path               = [self getStar2BezierPath].CGPath;
-    [_shapeLayer addAnimation:circleAnim forKey:@&quot;animateCirclePath&quot;];
-} else {
-    CABasicAnimation *circleAnim = [CABasicAnimation animationWithKeyPath:@&quot;path&quot;];
-    circleAnim.removedOnCompletion = NO;
-    circleAnim.duration            = 1;
-    circleAnim.fromValue           = (__bridge id)[self getStar2BezierPath].CGPath;
-    circleAnim.toValue             = (__bridge id)[self getStar1BezierPath].CGPath;
-    _shapeLayer.path               = [self getStar1BezierPath].CGPath;
-    [_shapeLayer addAnimation:circleAnim forKey:@&quot;animateCirclePath&quot;];
-}
-}
-
-/**
- *  贝塞尔曲线1
- *
- *  @return 贝塞尔曲线
- */
--(UIBezierPath *)getStar1BezierPath {
-//// Star Drawing
-UIBezierPath* starPath = [UIBezierPath bezierPath];
-[starPath moveToPoint: CGPointMake(22.5, 2.5)];
-[starPath addLineToPoint: CGPointMake(28.32, 14.49)];
-[starPath addLineToPoint: CGPointMake(41.52, 16.32)];
-[starPath addLineToPoint: CGPointMake(31.92, 25.56)];
-[starPath addLineToPoint: CGPointMake(34.26, 38.68)];
-[starPath addLineToPoint: CGPointMake(22.5, 32.4)];
-[starPath addLineToPoint: CGPointMake(10.74, 38.68)];
-[starPath addLineToPoint: CGPointMake(13.08, 25.56)];
-[starPath addLineToPoint: CGPointMake(3.48, 16.32)];
-[starPath addLineToPoint: CGPointMake(16.68, 14.49)];
-[starPath closePath];
-
-return starPath;
-}
-
-/**
- *  贝塞尔曲线2
- *
- *  @return 贝塞尔曲线
- */
--(UIBezierPath *)getStar2BezierPath {
-//// Star Drawing
-UIBezierPath* starPath = [UIBezierPath bezierPath];
-[starPath moveToPoint: CGPointMake(22.5, 2.5)];
-[starPath addLineToPoint: CGPointMake(32.15, 9.21)];
-[starPath addLineToPoint: CGPointMake(41.52, 16.32)];
-[starPath addLineToPoint: CGPointMake(38.12, 27.57)];
-[starPath addLineToPoint: CGPointMake(34.26, 38.68)];
-[starPath addLineToPoint: CGPointMake(22.5, 38.92)];
-[starPath addLineToPoint: CGPointMake(10.74, 38.68)];
-[starPath addLineToPoint: CGPointMake(6.88, 27.57)];
-[starPath addLineToPoint: CGPointMake(3.48, 16.32)];
-[starPath addLineToPoint: CGPointMake(12.85, 9.21)];
-[starPath closePath];
-
-return starPath;
-}
-@end
-</code></pre><h1 id="贝塞尔曲线与CAShapeLayer的关系"><a href="#贝塞尔曲线与CAShapeLayer的关系" class="headerlink" title="贝塞尔曲线与CAShapeLayer的关系"></a>贝塞尔曲线与CAShapeLayer的关系</h1><ol>
-<li>CAShapeLayer中有Shape这个单词，顾名思义，它需要一个形状才能生效</li>
-<li>贝塞尔曲线可以创建基于矢量的路径</li>
-<li>贝塞尔曲线给CAShapeLayer提供路径，CAShapeLayer在提供的路径中进行渲染，路径会闭环，所以路径绘制出了Shape</li>
-<li>用于CAShapeLayer的贝塞尔曲线作为path，其path是一个首尾相接的闭环的曲线，即使该贝塞尔曲线不是一个闭环的曲线</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer02.png" alt=""></p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-// 创建椭圆形贝塞尔曲线
-UIBezierPath *oval = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 200, 100)];
-
-// 创建矩形贝塞尔曲线
-UIBezierPath *rect = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 200, 100)];
-
-// 创建圆形贝塞尔曲线
-UIBezierPath *circle = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)];
-
-// 创建CAShapeLayer
-CAShapeLayer *shape = [CAShapeLayer layer];
-shape.frame         = CGRectMake(0, 0, 200, 50);
-shape.position      = self.view.center;
-
-// 显示CAShapeLayer的边界
-shape.borderWidth   = 1.f;
-
-// 禁止内容显示超出CAShapeLayer的frame值
-shape.masksToBounds = YES;
-
-// 修改贝塞尔曲线的填充颜色
-shape.fillColor     = [UIColor redColor].CGColor;
-
-// 建立贝塞尔曲线与CAShapeLayer之间的关联
-shape.path = circle.CGPath;
-
-// 添加并显示
-[self.view.layer addSublayer:shape];
-}
-</code></pre><h1 id="StrokeStart与StrokeEnd动画"><a href="#StrokeStart与StrokeEnd动画" class="headerlink" title="StrokeStart与StrokeEnd动画"></a>StrokeStart与StrokeEnd动画</h1><p><strong>进度条效果 - 利用GPU实现，不占内存</strong></p>
-<ol>
-<li>将ShapeLayer的fillColor设置成透明背景</li>
-<li>设置线条的宽度（lineWidth）的值</li>
-<li>设置线条的颜色</li>
-<li>将strokeStart值设定成0，然后让strokeEnd的值变化触发隐式动画</li>
-<li>strokeStart的值一定小于strokeEnd</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer03.gif" alt=""></p>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-@property (nonatomic, strong) NSTimer      *timer;      // 定时器
-@property (nonatomic, strong) CAShapeLayer *shapeLayer; // 形状layer
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 设置背景色
-self.view.backgroundColor = [UIColor colorWithRed:0.878 green:0.878 blue:0.878 alpha:1];
-
-// 创建椭圆形贝塞尔曲线
-UIBezierPath *oval        = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)];
-
-// 创建CAShapeLayer
-_shapeLayer               = [CAShapeLayer layer];
-_shapeLayer.frame         = CGRectMake(0, 0, 100, 100);
-_shapeLayer.position      = self.view.center;
-
-// 修改CAShapeLayer的线条相关值
-_shapeLayer.fillColor     = [UIColor clearColor].CGColor;
-_shapeLayer.strokeColor   = [UIColor redColor].CGColor;
-_shapeLayer.lineWidth     = 2.f;
-_shapeLayer.strokeStart   = 0.f;
-_shapeLayer.strokeEnd     = 0.f;
-
-// 建立贝塞尔曲线与CAShapeLayer之间的关联
-_shapeLayer.path          = oval.CGPath;
-
-// 添加并显示
-[self.view.layer addSublayer:_shapeLayer];
-
-// 创建定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(animationEventTypeTwo)
-                                        userInfo:nil
-                                         repeats:YES];
-                                     }
-
-/**
- *  动画效果1
-*/
-- (void)animationEventTypeOne {
-// 执行隐式动画
-_shapeLayer.strokeEnd = arc4random() % 100 / 100.f;
-}
-
-/**
- *  动画效果2
- */
- - (void)animationEventTypeTwo {
-CGFloat valueOne = arc4random() % 100 / 100.f;
-CGFloat valueTwo = arc4random() % 100 / 100.f;
-
-// 执行隐式动画
-_shapeLayer.strokeStart = valueOne &lt; valueTwo ? valueOne : valueTwo;
-_shapeLayer.strokeEnd   = valueOne &gt; valueTwo ? valueOne : valueTwo;
-}
-</code></pre><h1 id="用CAShapeLayer实现圆形进度条效果"><a href="#用CAShapeLayer实现圆形进度条效果" class="headerlink" title="用CAShapeLayer实现圆形进度条效果"></a>用CAShapeLayer实现圆形进度条效果</h1><ol>
-<li>确定需要设定的参数</li>
-<li>实现细节</li>
-<li>进行测试</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer04.gif" alt=""></p>
-<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
-<pre><code>#import &quot;ViewController.h&quot;
-#import &quot;CircleView.h&quot;
-@interface ViewController ()
-{
-CircleView *circle;
-}
-@end
-
-@implementation ViewController
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-circle             = [[CircleView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-circle.center      = self.view.center;
-circle.startValue  = 0.5;
-circle.lineWidth   = 3.f;
-circle.lineColor   = [UIColor grayColor];
-[self.view addSubview:circle];
-
-[self performSelector:@selector(delayAnimation)
-           withObject:nil
-           afterDelay:3.f];
-       }
-
-- (void)delayAnimation {
-circle.value = 1.f;
-}
-</code></pre><p>circleView.h</p>
-<pre><code>#import &lt;UIKit/UIKit.h&gt;
-
-@interface CircleView : UIView
-@property (nonatomic, assign) CGFloat  startValue; // 起始值（0~1）
-@property (nonatomic, assign) CGFloat  lineWidth;  // 线宽(&gt;0)
-@property (nonatomic, strong) UIColor *lineColor;  // 线条颜色
-@property (nonatomic, assign) CGFloat  value;      // 变化的值
-
-@end
-</code></pre><p>circleView.m</p>
-<pre><code>#import &quot;CircleView.h&quot;
-@interface CircleView ()
-
-@property (nonatomic, strong) CAShapeLayer *shapeLayer;
-
-@end
-@implementation CircleView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    // 创建出CAShapeLayer
-    _shapeLayer       = [CAShapeLayer layer];
-    _shapeLayer.frame = self.bounds;
-
-    // 创建出贝塞尔曲线
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
-
-    // 贝塞尔曲线与CAShapeLayer产生关联
-    _shapeLayer.path = path.CGPath;
-
-    // 基本配置
-    _shapeLayer.fillColor   = [UIColor clearColor].CGColor;
-    _shapeLayer.lineWidth   = 1.f;
-    _shapeLayer.strokeColor = [UIColor redColor].CGColor;
-    _shapeLayer.strokeEnd   = 0.f;
-
-    // 添加到当前view
-    [self.layer addSublayer:_shapeLayer];
-}
-return self;
-}
-
-@synthesize startValue = _startValue;
-- (void)setStartValue:(CGFloat)startValue {
-_startValue           = startValue;
-_shapeLayer.strokeEnd = startValue;
-}
-- (CGFloat)startValue {
-return _startValue;
-}
-
-@synthesize lineWidth = _lineWidth;
-- (void)setLineWidth:(CGFloat)lineWidth {
-_lineWidth            = lineWidth;
-_shapeLayer.lineWidth = lineWidth;
-}
-- (CGFloat)lineWidth {
-return _lineWidth;
-}
-
-@synthesize lineColor = _lineColor;
-- (void)setLineColor:(UIColor *)lineColor {
-_lineColor              = lineColor;
-_shapeLayer.strokeColor = lineColor.CGColor;
-}
-- (UIColor *)lineColor {
-return _lineColor;
-}
-
-@synthesize value = _value;
-- (void)setValue:(CGFloat)value {
-_value                = value;
-_shapeLayer.strokeEnd = value;
-}
-- (CGFloat)value {
-return _value;
-}
-
-
-@end
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/08/CALayer的使用/" itemprop="url">
-                  CALayer的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-08T17:07:09+10:00" content="2016-05-08">
-              2016-05-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/08/CALayer的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CALayer的使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CALayer简介"><a href="#CALayer简介" class="headerlink" title="CALayer简介"></a>CALayer简介</h1><ol>
-<li>CALayer一般作为UIView的容器而使用</li>
-<li>CALayer是一个管理着图片载体（image-based content）的层结构, <strong>UIView中CALayer的值设定(如frame, backgroundColor)可以覆盖其UIView中的设定</strong></li>
-<li>直接修改单独创建出的CALayer的属性可以触发隐式动画</li>
-<li>UIView中的CALayer动画必须显式触发才能生效</li>
-</ol>
-<h1 id="用CALayer定制下载进度条控件"><a href="#用CALayer定制下载进度条控件" class="headerlink" title="用CALayer定制下载进度条控件"></a>用CALayer定制下载进度条控件</h1><ol>
-<li>单独创建出CALayer</li>
-<li>直接修改CALayer的frame值执行隐式动画，实现进度条效果</li>
-<li>用定时器（NSTimer）模拟网络下载时提供的百分比数据</li>
-<li>将CALayer封装进UIView子类中定制进度条控件</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png" alt=""></p>
-<h2 id="隐式动画进度条"><a href="#隐式动画进度条" class="headerlink" title="隐式动画进度条"></a>隐式动画进度条</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) NSTimer *timer; // 定时器
-@property (nonatomic, strong) CALayer *layer; // layer
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 设置背景色
-self.view.backgroundColor = [UIColor blackColor];
-
-// CALayer
-_layer                 = [CALayer layer];
-_layer.frame           = CGRectMake(50, 50, 200, 2);
-_layer.backgroundColor = [UIColor redColor].CGColor;
-[self.view.layer addSublayer:_layer];
-
-// 定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(timerEvent)
-                                        userInfo:nil
-                                         repeats:YES];
-                                     }
-
-
-- (void)timerEvent {
-// 执行layer的隐式动画（取随机值模拟下载进度）
-_layer.frame = CGRectMake(50, 50, arc4random()%200, 2);
-}
-
-@end
-</code></pre><h2 id="封装UIView实现进度条"><a href="#封装UIView实现进度条" class="headerlink" title="封装UIView实现进度条"></a>封装UIView实现进度条</h2><p>progressView.h</p>
-<pre><code>#import &lt;UIKit/UIKit.h&gt;
-
-@interface ProgressView : UIView
-
-@property (nonatomic, assign) CGFloat  progress;   // 进度参数（取值范围为 %0 ~ %100）
-@property (nonatomic, strong) UIColor *layerColor; // 修改layer的颜色
-
-@end
-</code></pre><p>progressView.m</p>
-<pre><code>#import &quot;ProgressView.h&quot;
-
-@interface ProgressView ()
-
-@property (nonatomic, strong) CALayer *progressLayer;
-@property (nonatomic, assign) CGFloat  currentViewWidth;
-
-@end
-
-@implementation ProgressView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-self = [super initWithFrame:frame];
-if (self) {
-    self.progressLayer       = [CALayer layer];
-    self.progressLayer.frame = CGRectMake(0, 0, 0, frame.size.height);
-    self.progressLayer.backgroundColor = [UIColor redColor].CGColor;
-    [self.layer addSublayer:self.progressLayer];
-
-    // 存储当前view的宽度值
-    self.currentViewWidth = frame.size.width;
-}
-return self;
-}
-
-#pragma mark - 重写setter，getter方法
-@synthesize progress = _progress;
-
-- (void)setProgress:(CGFloat)progress {
-_progress = progress;
-
-if (progress &lt;= 0) {
-    self.progressLayer.frame = CGRectMake(0, 0, 0, self.frame.size.height);
-} else if (progress &lt;= 1) {
-    self.progressLayer.frame = CGRectMake(0, 0,
-                                          progress * self.currentViewWidth,
-                                          self.frame.size.height);
-} else {
-    self.progressLayer.frame = CGRectMake(0, 0, self.currentViewWidth,
-                                          self.frame.size.height);
-}
-}
-
-- (CGFloat)progress {
-return _progress;
-}
-
-@synthesize layerColor = _layerColor;
-
-- (void)setLayerColor:(UIColor *)layerColor {
-_layerColor = layerColor;
-self.progressLayer.backgroundColor = layerColor.CGColor;
-}
-
-- (UIColor *)layerColor {
-return _layerColor;
-}
-
-
-@end
-</code></pre><p>viewController.m</p>
-<pre><code>#import &quot;ViewController.h&quot;
-#import &quot;ProgressView.h&quot;
-@interface ViewController ()
-@property (nonatomic, strong) ProgressView *progressView;
-@property (nonatomic, strong) NSTimer      *timer;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-self.progressView            = [[ProgressView alloc] initWithFrame:CGRectMake(20, 20, 290, 3)];
-self.progressView.layerColor = [UIColor yellowColor];
-[self.view addSubview:self.progressView];
-
-// 创建定时器，每一秒执行一回
-self.timer = [NSTimer scheduledTimerWithTimeInterval:1
-                                              target:self
-                                            selector:@selector(layerAnimation)
-                                            userInfo:nil
-                                             repeats:YES];
-                                         }
-
-- (void)layerAnimation {
-// 随机获取 0% ~ 100% 给layer赋值
-self.progressView.progress = arc4random() % 100 / 100.f;
-}
-
-@end
-</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png" alt=""></p>
-<ol>
-<li>操作UIImageView的CALayer修改其bounds值进行显式动画</li>
-<li>修改UIImageView的CALayer中的contents属性实现切换图片的动画</li>
-<li>用CAAnimationGroup将bounds动画与contents动画组合起来</li>
-<li>将上述效果封装进UIView的子类中生成控件</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
-
-#define NO_EXECUTE  0  // 不执行
-#define EXECUTE     1  // 执行
-
-
-@interface ViewController ()
-@property (nonatomic, strong) CALayer *imageLayer;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 创建出独立的layer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(0, 0, 302, 707);
-// 给layer的contents属性设置图片
-self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;起始图片&quot;].CGImage);
-[self.view.layer addSublayer:self.imageLayer];
-
-
-// 3s后执行layer动画
-[self performSelector:@selector(layerAnimation)
-           withObject:nil
-           afterDelay:3.f];
-       }
-
-- (void)layerAnimation {
-
-if (NO_EXECUTE) {
-    // 执行隐式动画（你自己无法控制持续时间等等的参数）
-    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-}
-
-if (NO_EXECUTE) {
-    // 执行显式动画
-
-    // 设定基本动画参数
-    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;contents&quot;];
-    contentsAnimation.fromValue         =  self.imageLayer.contents;
-    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-    contentsAnimation.duration          = 3.f;
-
-    // 设定layer动画结束后的contents值
-    self.imageLayer.contents         = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-
-    // 让layer开始执行动画
-    [self.imageLayer addAnimation:contentsAnimation forKey:nil];
-}
-
-if (EXECUTE) {
-    // 执行显式动画
-
-    // 基于图片的动画
-    CABasicAnimation *contentsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;contents&quot;];
-    contentsAnimation.fromValue         =  self.imageLayer.contents;
-    contentsAnimation.toValue           =  (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-    contentsAnimation.duration          = 0.5f;
-
-    // 基于bounds的动画
-    CABasicAnimation *boundsAnimation = [CABasicAnimation animationWithKeyPath:@&quot;bounds&quot;];
-    boundsAnimation.fromValue         = [NSValue valueWithCGRect:self.imageLayer.bounds];
-    boundsAnimation.toValue           = [NSValue valueWithCGRect:CGRectMake(0, 0, 302/2.f, 707/2.f)];
-    boundsAnimation.duration          = 0.5f;
-
-    // 将基于图片的动画与基于bounds的动画组合起来
-    CAAnimationGroup *groupAnimation = [CAAnimationGroup animation];
-    groupAnimation.animations        = @[contentsAnimation, boundsAnimation];
-    groupAnimation.duration          = 0.5f;
-
-    // 设定layer动画结束后的contents值
-    self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-    self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
-
-    // 让layer开始执行动画
-    [self.imageLayer addAnimation:groupAnimation forKey:nil];
-}
-}
-</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png" alt=""></p>
-<ol>
-<li>遮罩原理的分析</li>
-<li>用png图片作为CALayer中mask属性的遮罩Layer</li>
-<li>移动该CALayer的mask的frame值实现遮罩动画效果</li>
-</ol>
-<h2 id="CALayer实现遮罩淡化滤镜"><a href="#CALayer实现遮罩淡化滤镜" class="headerlink" title="CALayer实现遮罩淡化滤镜"></a>CALayer实现遮罩淡化滤镜</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) CALayer *imageLayer;
-@property (nonatomic, strong) CALayer *maskLayer;
-
-@property (nonatomic, strong) UIImage *contentImage;
-@property (nonatomic, strong) UIImage *maskImage;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 处理图片
-self.contentImage = [UIImage imageNamed:@&quot;原始图片&quot;];
-self.maskImage    = [UIImage imageNamed:@&quot;maskLayerContents&quot;];
-
-
-// 生成maskLayer
-self.maskLayer          = [CALayer layer];
-self.maskLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
-self.maskLayer.contents = (__bridge id)(self.maskImage.CGImage);
-
-
-// 生成contentsLayer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(0, 0, 427/2.f, 427/2.f);
-self.imageLayer.contents = (__bridge id)(self.contentImage.CGImage);
-
-
-// 给contentsLayer设定mask值
-self.imageLayer.mask     = self.maskLayer;
-
-
-// 将contentsLayer添加到layer中
-[self.view.layer addSublayer:self.imageLayer];
-}
-</code></pre><h2 id="CALayer实现遮罩平移"><a href="#CALayer实现遮罩平移" class="headerlink" title="CALayer实现遮罩平移"></a>CALayer实现遮罩平移</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-@property (nonatomic, strong) CALayer *imageLayer;
-@property (nonatomic, strong) CALayer *maskLayer;
-
-@property (nonatomic, strong) UIImage *imageContents;
-@property (nonatomic, strong) UIImage *maskContents;
-
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 获取图片
-self.imageContents = [UIImage imageNamed:@&quot;原始图片&quot;];
-self.maskContents  = [UIImage imageNamed:@&quot;maskLayerContents&quot;];
-
-// 创建出图片layer
-self.imageLayer          = [CALayer layer];
-self.imageLayer.frame    = CGRectMake(50, 50, 200, 200);
-self.imageLayer.contents = (__bridge id)(self.imageContents.CGImage);
-[self.view.layer addSublayer:self.imageLayer];
-
-// 创建出遮罩layer
-self.maskLayer          = [CALayer layer];
-self.maskLayer.frame    = self.imageLayer.bounds;
-self.maskLayer.contents = (__bridge id)(self.maskContents.CGImage);
-self.maskLayer.backgroundColor = [UIColor whiteColor].CGColor;
-
-// 给图片layer提供遮罩的layer
-self.imageLayer.mask = self.maskLayer;
-
-// 3秒钟之后做maskLayer动画
-[self performSelector:@selector(maskLayerAnimation)
-           withObject:nil
-           afterDelay:3.f];
-       }
-
-- (void)maskLayerAnimation {
-self.maskLayer.frame = CGRectMake(50, 50, 200, 200);
-}
-
-@end
-</code></pre><h1 id="定时执行某方法"><a href="#定时执行某方法" class="headerlink" title="定时执行某方法"></a>定时执行某方法</h1><pre><code>// 定时器
-_timer = [NSTimer scheduledTimerWithTimeInterval:1.f
-                                          target:self
-                                        selector:@selector(timerEvent)
-                                        userInfo:nil
-                                         repeats:YES];
-</code></pre><h1 id="随机取值"><a href="#随机取值" class="headerlink" title="随机取值"></a>随机取值</h1><pre><code>//随机取0-200中的值
-arc4random()%200
-</code></pre><h1 id="进度参数"><a href="#进度参数" class="headerlink" title="进度参数"></a>进度参数</h1><pre><code>//（取值范围为 %0 ~ %100）
-@property (nonatomic, assign) CGFloat  progress;  
-</code></pre><h1 id="方法执行开关"><a href="#方法执行开关" class="headerlink" title="方法执行开关"></a>方法执行开关</h1><pre><code>#define NO_EXECUTE  0  // 不执行
-#define EXECUTE     1  // 执行
-
-// 不执行
-if (NO_EXECUTE) {
-....
-}
-
-// 执行
-if (EXECUTE) {
-.....
-}
-</code></pre><h1 id="动画执行与最终设定"><a href="#动画执行与最终设定" class="headerlink" title="动画执行与最终设定"></a>动画执行与最终设定</h1><p>此类动画只是一种提交，并没有最终改变layer的设定。如果结束后，会很快返回到原先的设定。所以要在动画执行前设定好layer值</p>
-<pre><code>// 设定layer动画结束后的contents值
-self.imageLayer.contents = (__bridge id)([UIImage imageNamed:@&quot;结束图片&quot;].CGImage);
-self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
-
-// 让layer开始执行动画
-[self.imageLayer addAnimation:groupAnimation forKey:nil];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1924,7 +1444,7 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

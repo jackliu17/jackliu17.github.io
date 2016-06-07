@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-07T08:13:02.000Z</updated>
+  <updated>2016-06-07T08:47:20.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS推送通知流程</title>
+    <link href="http://jackliu17.github.io/2016/06/07/iOS%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%B5%81%E7%A8%8B/"/>
+    <id>http://jackliu17.github.io/2016/06/07/iOS推送通知流程/</id>
+    <published>2016-06-07T08:46:28.000Z</published>
+    <updated>2016-06-07T08:47:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_pushNotificationProcess.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_pushNotificationProcess.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS项目20-Swift实现PM2.5显示</title>
+    <link href="http://jackliu17.github.io/2016/06/07/iOS%E9%A1%B9%E7%9B%AE20-Swift%E5%AE%9E%E7%8E%B0PM2-5%E6%98%BE%E7%A4%BA/"/>
+    <id>http://jackliu17.github.io/2016/06/07/iOS项目20-Swift实现PM2-5显示/</id>
+    <published>2016-06-07T08:34:45.000Z</published>
+    <updated>2016-06-07T09:13:32.000Z</updated>
+    
+    <content type="html">&lt;pre&gt;&lt;code&gt;func loadPM25Data(){
+
+msgLabel.text = &amp;quot;Loding...&amp;quot;
+
+    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(string:&amp;quot;http://aqicn.org/publishingdata/json&amp;quot;)!), queue: NSOperationQueue.mainQueue()) { (resp:NSURLResponse?, data:NSData?, error:NSError?) in
+
+        do {let jsonArr = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+        let firstData = (jsonArr as! NSArray).objectAtIndex(0)
+        let pollutants = firstData.valueForKey(&amp;quot;pollutants&amp;quot;)
+            let pm2_5 = (pollutants as! NSArray).objectAtIndex(0)
+            let theValue = pm2_5.valueForKey(&amp;quot;value&amp;quot;)
+
+            self.msgLabel.text = &amp;quot;PM2.5:\(theValue!)&amp;quot;
+
+
+        }catch{
+
+        print(&amp;quot;Hello&amp;quot;)
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;func loadPM25Data(){
+
+msgLabel.text = &amp;quot;Loding...&amp;quot;
+
+    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目19-Swift实现天气预报</title>
@@ -4309,402 +4384,6 @@ if (hashTable == nil) {....}
     <summary type="html">
     
       &lt;h1 id=&quot;通知中心业务逻辑&quot;&gt;&lt;a href=&quot;#通知中心业务逻辑&quot; class=&quot;headerlink&quot; title=&quot;通知中心业务逻辑&quot;&gt;&lt;/a&gt;通知中心业务逻辑&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.co
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-策略</title>
-    <link href="http://jackliu17.github.io/2016/05/24/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5/"/>
-    <id>http://jackliu17.github.io/2016/05/24/iOS设计模式-策略/</id>
-    <published>2016-05-24T09:10:03.000Z</published>
-    <updated>2016-05-24T09:29:00.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;if-else的问题&quot;&gt;&lt;a href=&quot;#if-else的问题&quot; class=&quot;headerlink&quot; title=&quot;if-else的问题&quot;&gt;&lt;/a&gt;if-else的问题&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes type = EType_01;
-
-// 输出条件
-NSString *showString = nil;
-
-if (type == EType_01) {
-
-    // showString = ...
-
-} else if (type == EType_02) {
-
-    // showString = ...
-
-} else if (type == EType_03) {
-
-    // showStri
-    ......
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;策略的原理&quot;&gt;&lt;a href=&quot;#策略的原理&quot; class=&quot;headerlink&quot; title=&quot;策略的原理&quot;&gt;&lt;/a&gt;策略的原理&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;相同的输入，不同的输出&lt;/strong&gt;。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装&lt;/li&gt;
-&lt;li&gt;判断的每个条件生成对应的一个对象&lt;/li&gt;
-&lt;li&gt;需要事先知道输入的条件&lt;/li&gt;
-&lt;li&gt;策略类对象属于使用场景的一部分&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;策略的使用案例&quot;&gt;&lt;a href=&quot;#策略的使用案例&quot; class=&quot;headerlink&quot; title=&quot;策略的使用案例&quot;&gt;&lt;/a&gt;策略的使用案例&lt;/h1&gt;&lt;h2 id=&quot;抽象的策略-Strategy&quot;&gt;&lt;a href=&quot;#抽象的策略-Strategy&quot; class=&quot;headerlink&quot; title=&quot;抽象的策略 (Strategy)&quot;&gt;&lt;/a&gt;抽象的策略 (Strategy)&lt;/h2&gt;&lt;p&gt;CustomField: 内含inputValidator验证策略&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomField : UITextField
-
-@property (nonatomic, strong) InputValidator *validator;
-
-- (BOOL)validate {
-return [self.validator validateInput:self];
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;InputValidator:策略的输入&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface InputValidator : NSObject
-
-@property (nonatomic, strong) NSString *errorMessage;
-
-- (BOOL)validateInput:(UITextField *)input {
-return NO;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Email的验证-Strategy-A&quot;&gt;&lt;a href=&quot;#Email的验证-Strategy-A&quot; class=&quot;headerlink&quot; title=&quot;Email的验证 (Strategy A)&quot;&gt;&lt;/a&gt;Email的验证 (Strategy A)&lt;/h2&gt;&lt;p&gt;EmailValidator:重载了父类的验证方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface EmailValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &amp;lt;= 0) {
-    self.errorMessage = @&amp;quot;没有输入&amp;quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&amp;quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&amp;quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&amp;quot;请输入正确的邮箱&amp;quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-return self.errorMessage == nil ? YES : NO;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Phone的验证-Strategy-B&quot;&gt;&lt;a href=&quot;#Phone的验证-Strategy-B&quot; class=&quot;headerlink&quot; title=&quot;Phone的验证  (Strategy B)&quot;&gt;&lt;/a&gt;Phone的验证  (Strategy B)&lt;/h2&gt;&lt;p&gt;PhoneNumberValidator :重载了父类的验证方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface PhoneNumberValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &amp;lt;= 0) {
-    self.errorMessage = @&amp;quot;没有输入&amp;quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&amp;quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&amp;quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&amp;quot;请输入正确的手机号码&amp;quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-
-return self.errorMessage == nil ? YES : NO;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用场景&quot;&gt;&lt;a href=&quot;#使用场景&quot; class=&quot;headerlink&quot; title=&quot;使用场景&quot;&gt;&lt;/a&gt;使用场景&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@property (nonatomic, strong) CustomField  *emailField;
-@property (nonatomic, strong) CustomField  *phoneNumberField;
-
-......
-self.emailField.validator   = [EmailValidator new];
-......
-self.phoneNumberField.validator   = [PhoneNumberValidator new];
-......
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-CustomField *customField = (CustomField *)textField;
-
-//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
-
-if ([customField validate] == NO) {
-    [UIInfomationView showAlertViewWithTitle:nil
-                                     message:customField.validator.errorMessage
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[@&amp;quot;确定&amp;quot;]
-                                clickAtIndex:^(NSInteger buttonIndex) {
-
-                                }];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;if-else的问题&quot;&gt;&lt;a href=&quot;#if-else的问题&quot; class=&quot;headerlink&quot; title=&quot;if-else的问题&quot;&gt;&lt;/a&gt;if-else的问题&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.cl
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-适配器</title>
-    <link href="http://jackliu17.github.io/2016/05/23/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8/"/>
-    <id>http://jackliu17.github.io/2016/05/23/iOS设计模式-适配器/</id>
-    <published>2016-05-22T23:26:19.000Z</published>
-    <updated>2016-05-23T00:09:33.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;视图在中央&quot;&gt;&lt;a href=&quot;#视图在中央&quot; class=&quot;headerlink&quot; title=&quot;视图在中央&quot;&gt;&lt;/a&gt;视图在中央&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;cardView.center = self.view.center;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;直接赋值的弊端&quot;&gt;&lt;a href=&quot;#直接赋值的弊端&quot; class=&quot;headerlink&quot; title=&quot;直接赋值的弊端&quot;&gt;&lt;/a&gt;直接赋值的弊端&lt;/h1&gt;&lt;p&gt;如果要修改的话，需要修改所有赋值(目前有三处)&lt;/p&gt;
-&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&amp;quot;Hello&amp;quot;;
-cardView.lineColor   = [UIColor redColor];
-cardView.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;对象赋值-封装&quot;&gt;&lt;a href=&quot;#对象赋值-封装&quot; class=&quot;headerlink&quot; title=&quot;对象赋值(封装)&quot;&gt;&lt;/a&gt;对象赋值(封装)&lt;/h1&gt;&lt;p&gt;以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-Model *model      = [[Model alloc] init];
-model.name        = @&amp;quot;Hello&amp;quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
-
-[cardView loadData:model];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用适配器模式&quot;&gt;&lt;a href=&quot;#使用适配器模式&quot; class=&quot;headerlink&quot; title=&quot;使用适配器模式&quot;&gt;&lt;/a&gt;使用适配器模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;创建抽象适配器对象&lt;/li&gt;
-&lt;li&gt;适配器与视图层建立输出联系&lt;/li&gt;
-&lt;li&gt;适配器与数据层建立输入联系&lt;/li&gt;
-&lt;li&gt;类适配器与对象适配器&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Protocl-Adapter&quot;&gt;&lt;a href=&quot;#Protocl-Adapter&quot; class=&quot;headerlink&quot; title=&quot;Protocl + Adapter&quot;&gt;&lt;/a&gt;Protocl + Adapter&lt;/h2&gt;&lt;p&gt;BusinessCardAdapterProtocol&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//输出的数据一致性
-@protocol BusinessCardAdapterProtocol &amp;lt;NSObject&amp;gt;
-
-- (NSString *)name;
-- (UIColor *)lineColor;
-- (NSString *)phoneNumber;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BusinessCardAdapter (空实现，用来让子类继承)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface BusinessCardAdapter : NSObject &amp;lt;BusinessCardAdapterProtocol&amp;gt;
-@property (nonatomic, weak) id data;
-- (instancetype)initWithData:(id)data;
-
-@implementation BusinessCardAdapter
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-return nil;
-}
-
-- (UIColor *)lineColor {
-return nil;
-}
-
-- (NSString *)phoneNumber {
-return nil;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;BusinessCardView&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
-- (void)loadData:(id &amp;lt;BusinessCardAdapterProtocol&amp;gt;)data {
-self.name        = [data name];
-self.lineColor   = [data lineColor];
-self.phoneNumber = [data phoneNumber];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;针对Model-class-的类适配器&quot;&gt;&lt;a href=&quot;#针对Model-class-的类适配器&quot; class=&quot;headerlink&quot; title=&quot;针对Model class 的类适配器&quot;&gt;&lt;/a&gt;针对Model class 的类适配器&lt;/h2&gt;&lt;p&gt;Model&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Model : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) UIColor  *lineColor;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ModelAdapter(类适配器)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ModelAdapter : BusinessCardAdapter
-
-@end
-
-@implementation ModelAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {        
-    self.data = data;
-}  
-return self;
-}
-
-- (NSString *)name {  
-Model *data = self.data; 
-return data.name;
-}
-
-- (UIColor *)lineColor {
-Model *data = self.data; 
-return data.lineColor;
-}
-
-- (NSString *)phoneNumber {
-Model *data = self.data;
-return data.phoneNumber;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-Model *model      = [[Model alloc] init];
-model.name        = @&amp;quot;JiKeXueYuan&amp;quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&amp;quot;101 - 5687 - 000&amp;quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;针对NewCardModel的类适配器&quot;&gt;&lt;a href=&quot;#针对NewCardModel的类适配器&quot; class=&quot;headerlink&quot; title=&quot;针对NewCardModel的类适配器&quot;&gt;&lt;/a&gt;针对NewCardModel的类适配器&lt;/h2&gt;&lt;p&gt;NewCardModel&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface NewCardModel : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *colorHexString;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NewCardModelApater (类适配器)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface NewCardModelApater : BusinessCardAdapter
-
-@end
-
-@implementation NewCardModelApater
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-NewCardModel *data = self.data;
-return data.name;
-}
-
-- (UIColor *)lineColor {
-NewCardModel *data = self.data;
-// todo
-if ([data.colorHexString isEqualToString:@&amp;quot;black&amp;quot;]) {
-    return [UIColor blackColor];
-} else {
-    return [UIColor redColor];
-}
-}
-
-- (NSString *)phoneNumber {
-NewCardModel *data = self.data;
-return data.phoneNumber;
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-NewCardModel *newCardModel  = [[NewCardModel alloc] init];
-newCardModel.name           = @&amp;quot;JiKeXueYuan&amp;quot;;
-newCardModel.colorHexString = @&amp;quot;black&amp;quot;;
-newCardModel.phoneNumber    = @&amp;quot;101 - 5687 - 000&amp;quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;对象适配器-万能&quot;&gt;&lt;a href=&quot;#对象适配器-万能&quot; class=&quot;headerlink&quot; title=&quot;对象适配器(万能)&quot;&gt;&lt;/a&gt;对象适配器(万能)&lt;/h2&gt;&lt;p&gt;一个适配器解决所有数据模型，代码里会显得很臃肿&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CardAdapter : BusinessCardAdapter
-
-@end
-
-#import &amp;quot;CardAdapter.h&amp;quot;
-#import &amp;quot;Model.h&amp;quot;
-#import &amp;quot;NewCardModel.h&amp;quot;
-
-@implementation CardAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {      
-    self.data = data;
-} 
-return self;
-}
-
-- (NSString *)name {
-NSString *name = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    name         = model.name;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    name                = model.name;
-}
-return name;
-}
-
-- (UIColor *)lineColor {
-UIColor *lineColor = nil;
-if ([self.data isMemberOfClass:[Model class]]) { 
-    Model *model = self.data;
-    lineColor    = model.lineColor; 
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    if ([model.colorHexString isEqualToString:@&amp;quot;black&amp;quot;]) {
-        lineColor = [UIColor blackColor];  
-    } else { 
-        lineColor = [UIColor redColor];
-    }
-}
-return lineColor;
-}
-
-- (NSString *)phoneNumber {
-NSString *phoneNumber = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    phoneNumber  = model.phoneNumber;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    phoneNumber         = model.phoneNumber;
-}
-return phoneNumber;
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;适配器的优点和缺点&quot;&gt;&lt;a href=&quot;#适配器的优点和缺点&quot; class=&quot;headerlink&quot; title=&quot;适配器的优点和缺点&quot;&gt;&lt;/a&gt;适配器的优点和缺点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;降低视图层和数据层的耦合度&lt;/li&gt;
-&lt;li&gt;让一个类在不经过修改的情况下适应更多的情形&lt;/li&gt;
-&lt;li&gt;代码可读性差，比较繁琐&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;视图在中央&quot;&gt;&lt;a href=&quot;#视图在中央&quot; class=&quot;headerlink&quot; title=&quot;视图在中央&quot;&gt;&lt;/a&gt;视图在中央&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;cardView.center = self.view.center;
-&lt;/code&gt;&lt;/pre&gt;&lt;
     
     </summary>
     

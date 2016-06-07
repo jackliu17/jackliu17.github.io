@@ -238,6 +238,581 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/24/iOS设计模式-策略/" itemprop="url">
+                  iOS设计模式-策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-24T19:10:03+10:00" content="2016-05-24">
+              2016-05-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/24/iOS设计模式-策略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/iOS设计模式-策略/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png" alt=""></p>
+<p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
+<pre><code>typedef enum : NSUInteger {
+
+EType_01,
+EType_02,
+EType_03,
+EType_04,
+EType_05,
+EType_06,
+EType_07,
+EType_08,
+EType_09,
+
+} ETypes;
+
+// 输入条件
+ETypes type = EType_01;
+
+// 输出条件
+NSString *showString = nil;
+
+if (type == EType_01) {
+
+    // showString = ...
+
+} else if (type == EType_02) {
+
+    // showString = ...
+
+} else if (type == EType_03) {
+
+    // showStri
+    ......
+</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png" alt=""></p>
+<ol>
+<li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
+<li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
+<li>判断的每个条件生成对应的一个对象</li>
+<li>需要事先知道输入的条件</li>
+<li>策略类对象属于使用场景的一部分</li>
+</ol>
+<h1 id="策略的使用案例"><a href="#策略的使用案例" class="headerlink" title="策略的使用案例"></a>策略的使用案例</h1><h2 id="抽象的策略-Strategy"><a href="#抽象的策略-Strategy" class="headerlink" title="抽象的策略 (Strategy)"></a>抽象的策略 (Strategy)</h2><p>CustomField: 内含inputValidator验证策略</p>
+<pre><code>@interface CustomField : UITextField
+
+@property (nonatomic, strong) InputValidator *validator;
+
+- (BOOL)validate {
+return [self.validator validateInput:self];
+}
+@end
+</code></pre><p>InputValidator:策略的输入</p>
+<pre><code>@interface InputValidator : NSObject
+
+@property (nonatomic, strong) NSString *errorMessage;
+
+- (BOOL)validateInput:(UITextField *)input {
+return NO;
+}
+</code></pre><h2 id="Email的验证-Strategy-A"><a href="#Email的验证-Strategy-A" class="headerlink" title="Email的验证 (Strategy A)"></a>Email的验证 (Strategy A)</h2><p>EmailValidator:重载了父类的验证方法</p>
+<pre><code>@interface EmailValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的邮箱&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="Phone的验证-Strategy-B"><a href="#Phone的验证-Strategy-B" class="headerlink" title="Phone的验证  (Strategy B)"></a>Phone的验证  (Strategy B)</h2><p>PhoneNumberValidator :重载了父类的验证方法</p>
+<pre><code>@interface PhoneNumberValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的手机号码&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>ViewController</p>
+<pre><code>@property (nonatomic, strong) CustomField  *emailField;
+@property (nonatomic, strong) CustomField  *phoneNumberField;
+
+......
+self.emailField.validator   = [EmailValidator new];
+......
+self.phoneNumberField.validator   = [PhoneNumberValidator new];
+......
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+CustomField *customField = (CustomField *)textField;
+
+//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
+
+if ([customField validate] == NO) {
+    [UIInfomationView showAlertViewWithTitle:nil
+                                     message:customField.validator.errorMessage
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@[@&quot;确定&quot;]
+                                clickAtIndex:^(NSInteger buttonIndex) {
+
+                                }];
+}
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/23/iOS设计模式-适配器/" itemprop="url">
+                  iOS设计模式-适配器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-23T09:26:19+10:00" content="2016-05-23">
+              2016-05-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/23/iOS设计模式-适配器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/23/iOS设计模式-适配器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="视图在中央"><a href="#视图在中央" class="headerlink" title="视图在中央"></a>视图在中央</h1><pre><code>cardView.center = self.view.center;
+</code></pre><h1 id="直接赋值的弊端"><a href="#直接赋值的弊端" class="headerlink" title="直接赋值的弊端"></a>直接赋值的弊端</h1><p>如果要修改的话，需要修改所有赋值(目前有三处)</p>
+<p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+cardView.name        = @&quot;Hello&quot;;
+cardView.lineColor   = [UIColor redColor];
+cardView.phoneNumber = @&quot;101 - 5687 - 000&quot;;
+</code></pre><h1 id="对象赋值-封装"><a href="#对象赋值-封装" class="headerlink" title="对象赋值(封装)"></a>对象赋值(封装)</h1><p>以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+
+Model *model      = [[Model alloc] init];
+model.name        = @&quot;Hello&quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
+
+[cardView loadData:model];
+</code></pre><h1 id="使用适配器模式"><a href="#使用适配器模式" class="headerlink" title="使用适配器模式"></a>使用适配器模式</h1><ol>
+<li>创建抽象适配器对象</li>
+<li>适配器与视图层建立输出联系</li>
+<li>适配器与数据层建立输入联系</li>
+<li>类适配器与对象适配器</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png" alt=""></p>
+<h2 id="Protocl-Adapter"><a href="#Protocl-Adapter" class="headerlink" title="Protocl + Adapter"></a>Protocl + Adapter</h2><p>BusinessCardAdapterProtocol</p>
+<pre><code>//输出的数据一致性
+@protocol BusinessCardAdapterProtocol &lt;NSObject&gt;
+
+- (NSString *)name;
+- (UIColor *)lineColor;
+- (NSString *)phoneNumber;
+</code></pre><p>BusinessCardAdapter (空实现，用来让子类继承)</p>
+<pre><code>@interface BusinessCardAdapter : NSObject &lt;BusinessCardAdapterProtocol&gt;
+@property (nonatomic, weak) id data;
+- (instancetype)initWithData:(id)data;
+
+@implementation BusinessCardAdapter
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {
+    self.data = data;
+}
+return self;
+}
+
+- (NSString *)name {
+return nil;
+}
+
+- (UIColor *)lineColor {
+return nil;
+}
+
+- (NSString *)phoneNumber {
+return nil;
+}
+</code></pre><p>BusinessCardView</p>
+<pre><code>//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
+- (void)loadData:(id &lt;BusinessCardAdapterProtocol&gt;)data {
+self.name        = [data name];
+self.lineColor   = [data lineColor];
+self.phoneNumber = [data phoneNumber];
+}
+</code></pre><h2 id="针对Model-class-的类适配器"><a href="#针对Model-class-的类适配器" class="headerlink" title="针对Model class 的类适配器"></a>针对Model class 的类适配器</h2><p>Model</p>
+<pre><code>@interface Model : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIColor  *lineColor;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+</code></pre><p>ModelAdapter(类适配器)</p>
+<pre><code>@interface ModelAdapter : BusinessCardAdapter
+
+@end
+
+@implementation ModelAdapter
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {        
+    self.data = data;
+}  
+return self;
+}
+
+- (NSString *)name {  
+Model *data = self.data; 
+return data.name;
+}
+
+- (UIColor *)lineColor {
+Model *data = self.data; 
+return data.lineColor;
+}
+
+- (NSString *)phoneNumber {
+Model *data = self.data;
+return data.phoneNumber;
+}
+
+@end
+</code></pre><p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+Model *model      = [[Model alloc] init];
+model.name        = @&quot;JiKeXueYuan&quot;;
+model.lineColor   = [UIColor redColor];
+model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
+
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
+
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+</code></pre><h2 id="针对NewCardModel的类适配器"><a href="#针对NewCardModel的类适配器" class="headerlink" title="针对NewCardModel的类适配器"></a>针对NewCardModel的类适配器</h2><p>NewCardModel</p>
+<pre><code>@interface NewCardModel : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *colorHexString;
+@property (nonatomic, strong) NSString *phoneNumber;
+@end
+</code></pre><p>NewCardModelApater (类适配器)</p>
+<pre><code>@interface NewCardModelApater : BusinessCardAdapter
+
+@end
+
+@implementation NewCardModelApater
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {
+    self.data = data;
+}
+return self;
+}
+
+- (NSString *)name {
+NewCardModel *data = self.data;
+return data.name;
+}
+
+- (UIColor *)lineColor {
+NewCardModel *data = self.data;
+// todo
+if ([data.colorHexString isEqualToString:@&quot;black&quot;]) {
+    return [UIColor blackColor];
+} else {
+    return [UIColor redColor];
+}
+}
+
+- (NSString *)phoneNumber {
+NewCardModel *data = self.data;
+return data.phoneNumber;
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
+
+NewCardModel *newCardModel  = [[NewCardModel alloc] init];
+newCardModel.name           = @&quot;JiKeXueYuan&quot;;
+newCardModel.colorHexString = @&quot;black&quot;;
+newCardModel.phoneNumber    = @&quot;101 - 5687 - 000&quot;;
+
+// 与输入建立联系
+BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
+
+// 与输出建立联系
+[cardView loadData:modelAdapter];
+</code></pre><h2 id="对象适配器-万能"><a href="#对象适配器-万能" class="headerlink" title="对象适配器(万能)"></a>对象适配器(万能)</h2><p>一个适配器解决所有数据模型，代码里会显得很臃肿</p>
+<pre><code>@interface CardAdapter : BusinessCardAdapter
+
+@end
+
+#import &quot;CardAdapter.h&quot;
+#import &quot;Model.h&quot;
+#import &quot;NewCardModel.h&quot;
+
+@implementation CardAdapter
+
+- (instancetype)initWithData:(id)data {
+self = [super init];
+if (self) {      
+    self.data = data;
+} 
+return self;
+}
+
+- (NSString *)name {
+NSString *name = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    name         = model.name;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    name                = model.name;
+}
+return name;
+}
+
+- (UIColor *)lineColor {
+UIColor *lineColor = nil;
+if ([self.data isMemberOfClass:[Model class]]) { 
+    Model *model = self.data;
+    lineColor    = model.lineColor; 
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    if ([model.colorHexString isEqualToString:@&quot;black&quot;]) {
+        lineColor = [UIColor blackColor];  
+    } else { 
+        lineColor = [UIColor redColor];
+    }
+}
+return lineColor;
+}
+
+- (NSString *)phoneNumber {
+NSString *phoneNumber = nil;
+if ([self.data isMemberOfClass:[Model class]]) {
+    Model *model = self.data;
+    phoneNumber  = model.phoneNumber;
+} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
+    NewCardModel *model = self.data;
+    phoneNumber         = model.phoneNumber;
+}
+return phoneNumber;
+}
+@end
+</code></pre><h1 id="适配器的优点和缺点"><a href="#适配器的优点和缺点" class="headerlink" title="适配器的优点和缺点"></a>适配器的优点和缺点</h1><ol>
+<li>降低视图层和数据层的耦合度</li>
+<li>让一个类在不经过修改的情况下适应更多的情形</li>
+<li>代码可读性差，比较繁琐</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/22/iOS播放音频简介/" itemprop="url">
                   iOS播放音频简介
                 </a>
@@ -707,313 +1282,6 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/21/iOS-HTTP通信/" itemprop="url">
-                  iOS-HTTP通信
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T13:11:52+10:00" content="2016-05-21">
-              2016-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS-HTTP通信/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS-HTTP通信/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="URL-path"><a href="#URL-path" class="headerlink" title="URL path"></a>URL path</h1><pre><code>let httpPath = NSURL(string:&quot;http://jikexueyuan.com&quot; )
-let httpRequest = NSURLRequest(URL: httpPath!)
-</code></pre><h1 id="打印HTML代码"><a href="#打印HTML代码" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h1><h2 id="字符串类型输出"><a href="#字符串类型输出" class="headerlink" title="字符串类型输出"></a>字符串类型输出</h2><pre><code>do {
-    let httpCode = try NSString(contentsOfURL: httpPath!, encoding: NSUTF8StringEncoding)
-    print(httpCode)
-}catch{
-    print(error)
-}
-</code></pre><h2 id="二进制类型输出"><a href="#二进制类型输出" class="headerlink" title="二进制类型输出"></a>二进制类型输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
-print(data!)
-</code></pre><h2 id="二进制转字符串输出"><a href="#二进制转字符串输出" class="headerlink" title="二进制转字符串输出"></a>二进制转字符串输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
-print(NSString(data:data!, encoding: NSUTF8StringEncoding))
-</code></pre><h1 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h1><h2 id="打印HTML代码-1"><a href="#打印HTML代码-1" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h2><pre><code>do{
-    let data = try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: nil)
-    print(NSString(data:data, encoding: NSUTF8StringEncoding))
-}catch{
-}
-</code></pre><h2 id="打印HTTP-header"><a href="#打印HTTP-header" class="headerlink" title="打印HTTP header"></a>打印HTTP header</h2><pre><code>var resp:NSURLResponse?
-
-    do{
-     try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: &amp;resp)
-    }catch{
-    }
-
-    if let r = resp{
-       print(r)
-    }
-</code></pre><h1 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h1><pre><code>NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-
-    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-
-}
-</code></pre><h1 id="Get-communication"><a href="#Get-communication" class="headerlink" title="Get communication"></a>Get communication</h1><pre><code>let httpPath:NSURL? = NSURL(string:&quot;http://localhost:8080/MyServer/Hello.jsp?name=\(self.tvInput.text)&quot;)       
-let httpRequest:NSURLRequest = NSURLRequest(URL:httpPath!)
-
-NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-(resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-    dispatch_sync(dispatch_get_main_queue(), {
-        self.tvOut.text = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-    })
-}
-</code></pre><ol>
-<li>Get方式是将传输数据放在地址栏</li>
-<li>改变UI界面需要在主线程执行</li>
-<li>不能传输庞大的数据</li>
-</ol>
-<h1 id="Post-communication"><a href="#Post-communication" class="headerlink" title="Post communication"></a>Post communication</h1><pre><code>let httpUrl = NSURL(string: &quot;http://localhost:8080/MyServer/hello.jsp&quot;)
-let req = NSMutableURLRequest(URL:httpUrl!)
-req.HTTPMethod = &quot;POST&quot;
-req.HTTPBody = NSString(string:&quot;name=\(tvInput.text)&quot;).dataUsingEncoding(NSUTF8StringEncoding)
-
-NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
-
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-
-    if let d = data {
-        dispatch_sync(dispatch_get_main_queue(), {
-            self.tvOut.text = NSString(data: d, encoding: NSUTF8StringEncoding)! as String
-        })}
-    }
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/20/iOS数据存储-沙盒数据/" itemprop="url">
-                  iOS数据存储-沙盒数据
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-20T17:04:03+10:00" content="2016-05-20">
-              2016-05-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/20/iOS数据存储-沙盒数据/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-沙盒数据/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Sandbox-path"><a href="#Sandbox-path" class="headerlink" title="Sandbox path"></a>Sandbox path</h1><pre><code>var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
-
-if sp.count &gt; 0{
-    let url = NSURL(fileURLWithPath: &quot;\(sp[0])/data.txt&quot;)
-    print(url)
-}
-</code></pre><h1 id="Write-Data"><a href="#Write-Data" class="headerlink" title="Write Data"></a>Write Data</h1><pre><code>let data = NSMutableData()
-data.appendData(&quot;Hello Swift\n&quot;.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
-data.writeToFile(url.path!, atomically: true)
-</code></pre><h1 id="Read-Data-Method-1"><a href="#Read-Data-Method-1" class="headerlink" title="Read Data - Method 1"></a>Read Data - Method 1</h1><pre><code>do {
-    let str1 = try NSString (contentsOfURL: url, encoding: NSUTF8StringEncoding)
-    print(str1)
-}catch{
-    print(error)
-}
-</code></pre><h1 id="Read-Data-Method-2"><a href="#Read-Data-Method-2" class="headerlink" title="Read Data - Method 2"></a>Read Data - Method 2</h1><pre><code>let data = NSData(contentsOfFile: url.path!)
-let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-print(str)
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1060,7 +1328,7 @@ print(str)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

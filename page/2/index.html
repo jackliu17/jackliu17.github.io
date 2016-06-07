@@ -238,6 +238,539 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/05/iOS设计模式-模板/" itemprop="url">
+                  iOS设计模式-模板
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-05T16:12:40+10:00" content="2016-06-05">
+              2016-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/05/iOS设计模式-模板/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-模板/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="请客吃饭与模板模式"><a href="#请客吃饭与模板模式" class="headerlink" title="请客吃饭与模板模式"></a>请客吃饭与模板模式</h1><ol>
+<li>张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        </li>
+<li>联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png" alt=""></p>
+<h1 id="模板模式特点"><a href="#模板模式特点" class="headerlink" title="模板模式特点"></a>模板模式特点</h1><ol>
+<li>过程殊途同归 </li>
+<li>将共同行为/流程抽象成算法的骨架</li>
+<li>利用OO的多态，让子类继承重写</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png" alt=""></p>
+<h1 id="Cocoa-框架中用到的模板模式-Override"><a href="#Cocoa-框架中用到的模板模式-Override" class="headerlink" title="Cocoa 框架中用到的模板模式(Override)"></a>Cocoa 框架中用到的模板模式(Override)</h1><p>CustomCell</p>
+<pre><code>@interface CustomCell : UITableViewCell
+
+- (void)setupCell;
+- (void)buildSubView;
+@end
+----------------------------------------
+@implementation CustomCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+
+if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+
+    [self setupCell];
+
+    [self buildSubView];
+}
+
+return self;
+}
+
+- (void)setupCell {
+
+}
+
+- (void)buildSubView {
+
+}
+
+@end
+</code></pre><p>ModelCell</p>
+<pre><code>@interface ModelCell : CustomCell
+
+@end
+
+@implementation ModelCell
+
+- (void)setupCell {
+
+// setup cell.
+}
+
+- (void)buildSubView {
+
+// build subView.
+}
+
+@end
+</code></pre><h1 id="游戏从开始到结束的各个阶段详解"><a href="#游戏从开始到结束的各个阶段详解" class="headerlink" title="游戏从开始到结束的各个阶段详解"></a>游戏从开始到结束的各个阶段详解</h1><ol>
+<li>各个阶段的分解</li>
+<li>将分解出来的阶段模板化    </li>
+</ol>
+<p>Game</p>
+<pre><code>@interface Game : NSObject
+- (void)initGame;
+- (void)pause;
+- (void)save;
+- (void)exitGame;
+- (void)startPlay;
+@end
+
+@implementation Game
+
+- (void)initGame {
+}
+
+- (void)pause {
+}
+
+- (void)save {
+}
+
+- (void)exitGame {
+}
+
+- (void)startPlay {
+}
+@end
+</code></pre><p>Chess</p>
+<pre><code>@interface Chess : Game
+
+@end
+
+@implementation Chess
+
+- (void)initGame {
+
+NSLog(@&quot;init chess game.&quot;);
+}
+
+- (void)pause {
+
+NSLog(@&quot;pasue chess game.&quot;);
+}
+
+- (void)save {
+
+NSLog(@&quot;save chess game.&quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&quot;exit chess game.&quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&quot;play chess game.&quot;);
+}
+
+@end
+</code></pre><p>Football</p>
+<pre><code>@interface Football : Game
+
+@end
+@implementation Football
+
+- (void)initGame {
+
+NSLog(@&quot;init football game.&quot;);
+}
+
+- (void)pause {
+
+NSLog(@&quot;pasue football game.&quot;);
+}
+
+- (void)save {
+
+NSLog(@&quot;save football game.&quot;);
+}
+
+- (void)exitGame {
+
+NSLog(@&quot;exit football game.&quot;);
+}
+
+- (void)startPlay {
+
+NSLog(@&quot;play football game.&quot;);
+}
+
+@end
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/05/iOS设计模式-享元/" itemprop="url">
+                  iOS设计模式-享元
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-05T15:43:19+10:00" content="2016-06-05">
+              2016-06-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/05/iOS设计模式-享元/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-享元/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>交叉的圆环，提取出公共部分进行复用。</p>
+<ol>
+<li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
+<li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png" alt=""></p>
+<pre><code>@interface ViewController ()
+
+@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+self.flyweightFactory = [NSMutableDictionary dictionary];
+
+[self.flyweightFactory setObject:[Model new] forKey:@&quot;A&quot;];
+
+//方式一: 直接提取
+//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
+//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
+
+
+//方式二: 享元模式(有,则返回，无则创建返回)
+NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
+NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
+}
+
+- (id)ModelWithName:(NSString *)name {
+
+if (self.flyweightFactory[name]==nil) {
+
+    self.flyweightFactory[name] = [Model new];
+
+    return self.flyweightFactory[name];
+
+}else{
+
+    return self.flyweightFactory[name];
+
+}       
+}
+@end
+</code></pre><h1 id="咖啡厅案例"><a href="#咖啡厅案例" class="headerlink" title="咖啡厅案例"></a>咖啡厅案例</h1><p>分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面</p>
+<p>共享同种类的对象,三种对象:</p>
+<ol>
+<li>咖啡店</li>
+<li>咖啡table</li>
+<li>咖啡清单</li>
+</ol>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png" alt=""></p>
+<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png" alt=""></p>
+<p>CoffeeFlavor</p>
+<pre><code>@interface CoffeeFlavor : NSObject
+@property (nonatomic, strong) NSString *flavor;
+@end
+</code></pre><p>Menu (相当于一个池子，将所有的享元咖啡存储在里面)</p>
+<pre><code>@interface Menu : NSObject
+
+//获取指定味道的咖啡（如果没有则创建）
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
+@end
+
+@interface Menu ()
+@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
+@end
+
+@implementation Menu
+
+- (instancetype)init {   
+    self = [super init];  
+    if (self) {  
+        self.flavors = [NSMutableDictionary dictionary];
+    }   
+    return self;
+}
+
+- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
+    NSParameterAssert(flavor);
+    if ([self.flavors objectForKey:flavor] == nil) {       
+        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
+        coffeeFlavor.flavor        = flavor;     
+        self.flavors[flavor] = coffeeFlavor;
+    }  
+    return [self.flavors objectForKey:flavor];
+}
+@end
+</code></pre><p>CoffeeShop</p>
+<pre><code>@interface CoffeeShop : NSObject
+- (void)takeOrder:(NSString *)flavor table:(int)table;
+- (void)serve;
+@end
+
+@interface CoffeeShop ()
+
+@property (nonatomic, strong) NSMutableDictionary &lt;NSNumber *, CoffeeFlavor *&gt;  *orders;
+@property (nonatomic, strong) Menu *menu;
+
+@end
+
+@implementation CoffeeShop
+
+- (instancetype)init {  
+    self = [super init];
+    if (self) { 
+        self.orders = [NSMutableDictionary dictionary];
+        self.menu   = [[Menu alloc] init];
+    }
+    return self;
+}
+
+- (void)takeOrder:(NSString *)flavor table:(int)table {
+    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
+                    forKey:@(table)];
+}
+
+- (void)serve {
+    NSArray *allKeys = self.orders.allKeys;
+    for (id key in allKeys) {  
+        NSLog(@&quot;[%@] Serving %@ to table %@&quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
+    }
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) CoffeeShop *coffeeShop;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // 创建咖啡厅
+    self.coffeeShop = [[CoffeeShop alloc] init];
+    // 相同类型的数据公用
+    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:1];
+    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:10];
+    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:6];
+    [self.coffeeShop takeOrder:@&quot;Espresso&quot;   table:9];
+    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:8];
+
+    // 开始服务
+    [self.coffeeShop serve];
+}
+@end
+</code></pre><h1 id="字典属性"><a href="#字典属性" class="headerlink" title="字典属性"></a>字典属性</h1><pre><code>@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/05/iOS设计模式-迭代器/" itemprop="url">
                   iOS设计模式-迭代器
                 </a>
@@ -1894,637 +2427,6 @@ if (button.tag == kAddButtonTag) {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/02/iOS设计模式-生成器/" itemprop="url">
-                  iOS设计模式-生成器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T10:58:50+10:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/iOS设计模式-生成器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/02/iOS设计模式-生成器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="生成器与建造房子"><a href="#生成器与建造房子" class="headerlink" title="生成器与建造房子"></a>生成器与建造房子</h1><ol>
-<li>起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类</li>
-<li>建造过程的模块化处理,不同模块找不同的承包商</li>
-<li>生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png" alt=""></p>
-<h1 id="生成器模式实例"><a href="#生成器模式实例" class="headerlink" title="生成器模式实例"></a>生成器模式实例</h1><p>需要注意的是，这里有两个协议需要具体承包商来遵循</p>
-<ol>
-<li>总协议.对所有模块承包商的要求 (BuilderProtocol)</li>
-<li>类别协议。分别对各自类别的承包商要求 (AbstractPartOne , AbstractPartTwo)</li>
-</ol>
-<p>AbstractPartOne</p>
-<pre><code>@protocol AbstractPartOne &lt;NSObject&gt;
-@required
-- (void)partOneBuilder;
-@end
-</code></pre><p>AbstractPartTwo</p>
-<pre><code>@protocol AbstractPartTwo &lt;NSObject&gt;
-@required
-- (void)buildTree;
-- (void)buildSoureWithNumber;
-@end
-</code></pre><p>BuilderProtocol</p>
-<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
-
-@required
-- (id)build;
-@end
-</code></pre><p>Builder</p>
-<pre><code>@interface Builder : NSObject
-@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
-@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartTwo&gt; partTwo;
-
-- (id)builderAll;
-
-@end
-
-@implementation Builder
-
-- (id)builderAll {
-
-Builder *builder = [[[self class] alloc] init];
-[builder.partOne build];
-[builder.partOne build];
-
-return builder;
-}
-
-@end
-</code></pre><h1 id="生成器与生产汽车"><a href="#生成器与生产汽车" class="headerlink" title="生成器与生产汽车"></a>生成器与生产汽车</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png" alt=""></p>
-<h2 id="装配车间和组装产品-总指挥"><a href="#装配车间和组装产品-总指挥" class="headerlink" title="装配车间和组装产品(总指挥)"></a>装配车间和组装产品(总指挥)</h2><p>BuilderProtocol （这是对所有承包商的要求）</p>
-<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
-
-@required
-- (id)build;
-
-@end
-</code></pre><p>Builder</p>
-<pre><code>@interface Builder : NSObject
-
-@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractEngine&gt; engine;
-@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractWheels&gt; wheels;
-@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractDoor&gt;   door;
-@property (nonatomic, strong) NSDictionary *productsInfo;
-
-- (void)buildAllParts;
-
-@end
-
-@implementation Builder
-
-- (void)buildAllParts {
-
-// 创建所有部件
-[self.engine build];
-[self.wheels build];
-[self.door build];
-
-NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
-
-// 组装产品
-dataDic[@&quot;engine&quot;] = [self.engine infomation];
-dataDic[@&quot;wheels&quot;] = [self.wheels infomation];
-dataDic[@&quot;door&quot;]   = [self.door infomation];
-
-self.productsInfo = dataDic;
-}
-
-@end
-</code></pre><h2 id="设计各个部件的生成器-模块承包"><a href="#设计各个部件的生成器-模块承包" class="headerlink" title="设计各个部件的生成器(模块承包)"></a>设计各个部件的生成器(模块承包)</h2><p>AbstractDoor （对门模块承包商的要求）</p>
-<pre><code>@protocol AbstractDoor &lt;NSObject&gt;
-@required
-- (void)doorColor:(UIColor *)color;
-- (NSString *)infomation;
-@end
-</code></pre><p>AbstractEngine （对引擎模块承包商的要求）</p>
-<pre><code>@protocol AbstractEngine &lt;NSObject&gt;
-
-@required
-- (void)engineScale:(CGFloat)scale;
-- (void)engineWeight:(CGFloat)kg;
-- (NSString *)infomation;
-
-@end
-</code></pre><p>AbstractWheels （对轮子模块承包商的要求）</p>
-<pre><code>@protocol AbstractWheels &lt;NSObject&gt;
-
-@required
-- (void)wheelsNumber:(NSNumber *)number;
-- (NSString *)infomation;
-
-@end
-</code></pre><h2 id="产品制造-具体施工队"><a href="#产品制造-具体施工队" class="headerlink" title="产品制造(具体施工队)"></a>产品制造(具体施工队)</h2><p>Door </p>
-<pre><code>@interface Door : NSObject &lt;AbstractDoor, BuilderProtocol&gt;
-
-@end
-
-- (void)doorColor:(UIColor *)color {
-// todo
-}
-
-- (NSString *)infomation {
-return @&quot;X1-door, color : red&quot;;
-}
-
-- (id)build {
-// todo
-return nil;
-}
-@end
-</code></pre><p>Engine</p>
-<pre><code>@interface Engine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
-
-@end
-
-@implementation Engine
-
-- (void)engineScale:(CGFloat)scale {
-// todo
-}
-
-- (void)engineWeight:(CGFloat)kg {
-// todo
-}
-
-- (NSString *)infomation {
-return @&quot;X1-Engine, scale : 10, weight : 100&quot;;
-}
-
-- (id)build {
-// todo   
-return nil;
-}
-@end
-</code></pre><p>Wheels</p>
-<pre><code>@interface Wheels : NSObject &lt;BuilderProtocol, AbstractWheels&gt;
-
-@end
-
-@implementation Wheels
-
-- (void)wheelsNumber:(NSNumber *)number {
-// todo
-}
-
-- (NSString *)infomation {
-return @&quot;X1-wheels, number : 4&quot;;
-}
-
-- (id)build {  
-// todo  
-return nil;
-}
-
-@end
-</code></pre><p>YEngine(替换Engine)</p>
-<pre><code>@interface YEngine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
-
-@end
-
-@implementation YEngine
-
-- (void)engineScale:(CGFloat)scale {    
-// todo
-}
-
-- (void)engineWeight:(CGFloat)kg {   
-// todo
-}
-
-- (NSString *)infomation {  
-return @&quot;Y-Engine, scale : 20, weight : 58&quot;;
-}
-
-- (id)build {   
-// todo   
-return nil;
-}
-
-@end
-</code></pre><h2 id="开始生产"><a href="#开始生产" class="headerlink" title="开始生产"></a>开始生产</h2><p>ViewController</p>
-<pre><code>@interface ViewController ()
-
-@property (nonatomic, strong) Builder *builder;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 创建组装者
-self.builder = [[Builder alloc] init];
-
-// 指定承包商
-self.builder.engine = [[YEngine alloc] init];
-self.builder.wheels = [[Wheels alloc] init];
-self.builder.door   = [[Door alloc] init];
-
-// 构建所有的部件
-[self.builder buildAllParts];
-
-// 获取产品
-NSLog(@&quot;%@&quot;, self.builder.productsInfo);
-}
-
-@end
-</code></pre><h1 id="什么时候用protocol"><a href="#什么时候用protocol" class="headerlink" title="什么时候用protocol"></a>什么时候用protocol</h1><p>1.对持有的属性有一定的要求，比如要求该属性必须实现某种方法。这时可以要求它遵循一个或多个协议，比如:</p>
-<pre><code>@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
-</code></pre><p>2.对传入的值对象有一定的要求，比如比如要求它必须实现某种方法或返回某种类型。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/01/iOS设计模式-备忘录/" itemprop="url">
-                  iOS设计模式-备忘录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-01T11:01:54+10:00" content="2016-06-01">
-              2016-06-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/01/iOS设计模式-备忘录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/01/iOS设计模式-备忘录/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><ol>
-<li>备忘录模式，什么都可以存！</li>
-<li>先设计抽象接口，再去考虑实现细节</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo03.png" alt=""></p>
-<h2 id="设计存储中心"><a href="#设计存储中心" class="headerlink" title="设计存储中心"></a>设计存储中心</h2><p>MementoCenter</p>
-<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-</code></pre><h2 id="指定存储接口-编码-amp-解码"><a href="#指定存储接口-编码-amp-解码" class="headerlink" title="指定存储接口(编码&amp;解码)"></a>指定存储接口(编码&amp;解码)</h2><p>MementoCenterProtocol</p>
-<pre><code>@protocol MementoCenterProtocol &lt;NSObject&gt;
-
-@required
-
-//编码
-- (id)currentState;
-
-//解码
-- (void)recoverFromState:(id)state;
-
-@end
-</code></pre><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Apple</p>
-<pre><code>@interface Apple : NSObject &lt;MementoCenterProtocol&gt;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *age;
-@end
-@implementation Apple
-
-//编码
-- (id)currentState {
-return @{@&quot;name&quot;: self.name,
-         @&quot;age&quot; : self.age};
-     }
-
-
-//解码
-- (void)recoverFromState:(id)state {
-
-NSDictionary *data = state;
-self.name = data[@&quot;name&quot;];
-self.age  = data[@&quot;age&quot;];
-}
-
-@end
-</code></pre><h2 id="实现存储机制"><a href="#实现存储机制" class="headerlink" title="实现存储机制"></a>实现存储机制</h2><p>MementoCenter</p>
-<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key {
-
-NSParameterAssert(object);
-NSParameterAssert(key);
-
-// 获取data
-id      data    = [object currentState];
-NSData *tmpData = [FastCoder dataWithRootObject:data];
-
-// 进行存储
-if (tmpData) {
-
-    [[NSUserDefaults standardUserDefaults] setObject:tmpData
-                                              forKey:key];
-}
-}
-
-
-+ (id)mementoObjectWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id      data    = nil;
-NSData *tmpData = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-
-if (tmpData) {
-
-    data = [FastCoder objectWithData:tmpData];
-}
-
-return data;
-}
-</code></pre><h2 id="存储与获取"><a href="#存储与获取" class="headerlink" title="存储与获取"></a>存储与获取</h2><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-
-Apple *apple = [[Apple alloc] init];
-apple.name = @&quot;JiKeXueYuan&quot;;
-apple.age  = @(30);
-
-// save state
-[MementoCenter saveMementoObject:apple withKey:@&quot;Apple&quot;];
-
-// get state
-[apple recoverFromState:[MementoCenter mementoObjectWithKey:@&quot;Apple&quot;]];
-
-NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
-}
-</code></pre><h2 id="通过category优化"><a href="#通过category优化" class="headerlink" title="通过category优化"></a>通过category优化</h2><p>NSObject + MementoCenter</p>
-<pre><code>@implementation NSObject (MementoCenter)
-
-- (void)saveStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-
-    [MementoCenter saveMementoObject:obj withKey:key];
-}
-}
-
-
-- (void)recoverFromStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id                         state = [MementoCenter mementoObjectWithKey:key];
-
-id &lt;MementoCenterProtocol&gt; obj   = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(recoverFromStateWithKey:)]) {
-
-    [obj recoverFromState:state];
-}
-}
-</code></pre><h2 id="传递协议对象所必须的判断"><a href="#传递协议对象所必须的判断" class="headerlink" title="传递协议对象所必须的判断"></a>传递协议对象所必须的判断</h2><pre><code>id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-[MementoCenter saveMementoObject:obj withKey:key];
-}
-</code></pre><h2 id="优化后的存储与获取"><a href="#优化后的存储与获取" class="headerlink" title="优化后的存储与获取"></a>优化后的存储与获取</h2><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-
-Apple *apple = [[Apple alloc] init];
-apple.name = @&quot;JiKeXueYuan&quot;;
-apple.age  = @(30);
-
-[apple saveStateWithKey:@&quot;Ben&quot;];
-[apple recoverFromStateWithKey:@&quot;Ben&quot;];
-
-NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
-}
-</code></pre><h1 id="备忘录模式恢复UIView状态"><a href="#备忘录模式恢复UIView状态" class="headerlink" title="备忘录模式恢复UIView状态"></a>备忘录模式恢复UIView状态</h1><p>使用场景:UIView有NSCoding协议，意味着可以本地存储，但没有NSCopying，意味着如果要将一个view完整的复制过来，那是一个棘手的问题。</p>
-<p><strong>一个对象状态的存储并不是要整个对象，也有可能是其部分的属性,由需求来定</strong></p>
-<p>DemoView</p>
-<pre><code>@interface DemoView : UIView &lt;MementoCenterProtocol&gt;
-
-@end
-
-@implementation DemoView
-
-- (id)currentState {
-return @{@&quot;frame&quot; : NSStringFromCGRect(self.frame)};
-}
-
-- (void)recoverFromState:(id)state {
-NSDictionary *data = state;
-self.frame         = CGRectFromString(data[@&quot;frame&quot;]);
-}
-</code></pre><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-
-[super viewDidLoad];
-
-DemoView *demoView = [[DemoView alloc] init];
-demoView.frame     = CGRectMake(100, 100, 100, 100);
-[demoView saveStateWithKey:@&quot;A&quot;];
-
-[demoView recoverFromStateWithKey:@&quot;A&quot;];
-NSLog(@&quot;%@&quot;, demoView);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -2571,7 +2473,7 @@ NSLog(@&quot;%@&quot;, demoView);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
