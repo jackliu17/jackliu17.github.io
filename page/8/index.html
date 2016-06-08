@@ -238,6 +238,213 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/17/iOS项目015-CALayer简介/" itemprop="url">
+                  iOS项目015.CALayer简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T10:35:01+10:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/iOS项目015-CALayer简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目015-CALayer简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Set-UIImageView-CALayer"><a href="#Set-UIImageView-CALayer" class="headerlink" title="Set UIImageView CALayer"></a>Set UIImageView CALayer</h1><pre><code>- (void)initImgView{
+UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;1.jpg&quot;]];
+imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScreenHeight - 200)/2, 200, 200);
+[self.view addSubview:imgView];
+.............
+}
+</code></pre><h2 id="图像的CALayer层-阴影"><a href="#图像的CALayer层-阴影" class="headerlink" title="图像的CALayer层 - 阴影"></a>图像的CALayer层 - 阴影</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015sShadow.png" alt=""></p>
+<pre><code>//1.设置阴影
+imgView.layer.shadowColor = [UIColor yellowColor].CGColor;
+//2.阴影的偏移大小
+imgView.layer.shadowOffset = CGSizeMake(10, 10);
+//3.阴影的不透明度
+imgView.layer.shadowOpacity = 0.5;
+</code></pre><h2 id="图像的CALayer层-圆角"><a href="#图像的CALayer层-圆角" class="headerlink" title="图像的CALayer层 - 圆角"></a>图像的CALayer层 - 圆角</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Round.png" alt=""></p>
+<pre><code>//4.设置圆角大小
+imgView.layer.cornerRadius = 10;//设置圆角半径为10
+imgView.layer.masksToBounds = YES;//强制内部的所有子层支持圆角效果，少了这个设置，UIImageView是不会有圆角效果的。设置之后，没有阴影效果
+</code></pre><h2 id="图像的CALayer层-边框"><a href="#图像的CALayer层-边框" class="headerlink" title="图像的CALayer层 - 边框"></a>图像的CALayer层 - 边框</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Frame.png" alt=""></p>
+<pre><code>//5.设置边框
+imgView.layer.borderWidth = 5;
+imgView.layer.borderColor = [UIColor grayColor].CGColor;
+</code></pre><h2 id="图像的CALayer层-3D旋转"><a href="#图像的CALayer层-3D旋转" class="headerlink" title="图像的CALayer层 - 3D旋转"></a>图像的CALayer层 - 3D旋转</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Rotate.png" alt=""></p>
+<pre><code>//6.设置旋转 :利用transform属性可以设置旋转
+//imgView.layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);//顺时针旋转45°,在x，y轴
+</code></pre><h2 id="图像的CALayer层-缩放"><a href="#图像的CALayer层-缩放" class="headerlink" title="图像的CALayer层 - 缩放"></a>图像的CALayer层 - 缩放</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Scale.png" alt=""></p>
+<pre><code>6.设置旋转 :利用transform属性可以设置缩放
+imgView.layer.transform = CATransform3DMakeScale(0.5, 1, 0);//缩小0.5倍
+</code></pre><h1 id="Add-CALayer-in-View"><a href="#Add-CALayer-in-View" class="headerlink" title="Add CALayer in View"></a>Add CALayer in View</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerInView.png" alt=""></p>
+<p>UIView里有CALayer这个图层</p>
+<pre><code>- (void)imageLayer{
+CALayer *layer = [CALayer layer];
+layer.backgroundColor = [UIColor grayColor].CGColor;
+layer.bounds = CGRectMake(0, 0, 100, 100);
+layer.position = CGPointMake(200, 200);
+layer.anchorPoint = CGPointMake(0, 1);
+layer.cornerRadius = 10;
+layer.masksToBounds = YES;
+layer.contents = (id)[UIImage imageNamed:@&quot;1.jpg&quot;].CGImage;
+layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);
+[self.view.layer addSublayer:layer];
+}
+</code></pre><h2 id="QuartzCore-for-CALayer"><a href="#QuartzCore-for-CALayer" class="headerlink" title="QuartzCore for CALayer"></a>QuartzCore for CALayer</h2><pre><code>//导入框架 
+#import &lt;QuartzCore/QuartzCore.h&gt;
+
+CALayer *layer = [CALayer layer];
+</code></pre><h2 id="Position-vs-anchorPoint"><a href="#Position-vs-anchorPoint" class="headerlink" title="Position vs anchorPoint"></a>Position vs anchorPoint</h2><ol>
+<li>position 设置CALayer在父图层中的位置，以父层的左上角为原点（0，0）</li>
+<li>anchorPoint锚点(定位点)决定CALayer的哪个点在position属性所指的位置,以自己的左上角为原点（0，0），默认值（0.5，0.5），x~y取值是0~1，右下角（1，1）</li>
+<li>即：哪个anchor点在position的位置</li>
+</ol>
+<h3 id="anchor-point-0-0"><a href="#anchor-point-0-0" class="headerlink" title="anchor point (0,0)"></a>anchor point (0,0)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor1.png" alt=""></p>
+<h3 id="anchor-point-1-1"><a href="#anchor-point-1-1" class="headerlink" title="anchor point (1,1)"></a>anchor point (1,1)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor2.png" alt=""></p>
+<h3 id="anchor-point-0-1"><a href="#anchor-point-0-1" class="headerlink" title="anchor point (0,1)"></a>anchor point (0,1)</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015Anchor3.png" alt=""></p>
+<h1 id="Customized-CALayer"><a href="#Customized-CALayer" class="headerlink" title="Customized CALayer"></a>Customized CALayer</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj015CALayerCustomized.png" alt=""></p>
+<h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1."></a>Method 1.</h2><p><strong>子类继承于CALayer，实现 drawInContext</strong></p>
+<p>JKLayer</p>
+<pre><code>#import &quot;JKLayer.h&quot;
+
+@implementation JKLayer
+-(void)drawInContext:(CGContextRef)ctx{
+CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
+CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
+CGContextFillPath(ctx);
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>- (void)initLayer{
+
+JKLayer *layer = [JKLayer layer];
+layer.bounds = CGRectMake(0, 0, 300, 300);
+layer.anchorPoint = CGPointMake(0,0);
+[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
+[self.view.layer addSublayer:layer];
+}
+</code></pre><h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2."></a>Method 2.</h2><p><strong>在控制器中设置代理，实现代理方法来画图层</strong></p>
+<p>ViewController</p>
+<pre><code>- (void)initLayer{
+
+JKLayer *layer = [JKLayer layer];
+layer.bounds = CGRectMake(0, 0, 300, 300);
+layer.anchorPoint = CGPointMake(0,0);
+layer.delegate = self;//不用协议，任何对象可以作为代理
+[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
+[self.view.layer addSublayer:layer];
+
+}
+
+#pragma mark 代理方法
+-(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{
+CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
+CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
+CGContextFillPath(ctx);
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="url">
                   iOS项目011-012.绘制图形及小黄人
                 </a>
@@ -991,419 +1198,12 @@ longPress.minimumPressDuration = 2;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/09/CAGradientLayer的使用/" itemprop="url">
-                  CAGradientLayer的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T12:18:17+10:00" content="2016-05-09">
-              2016-05-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/09/CAGradientLayer的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/09/CAGradientLayer的使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CAGradientLayer简介"><a href="#CAGradientLayer简介" class="headerlink" title="CAGradientLayer简介"></a>CAGradientLayer简介</h1><ol>
-<li>CAGradientLayer是用于处理渐变色的层结构</li>
-<li>CAGradientLayer的渐变色可以做隐式动画</li>
-<li>大部分情况下，CAGradientLayer都是与CAShapeLayer配合使用的</li>
-<li>CAGradientLayer可以用作png遮罩效果</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>多彩圆环</th>
-<th>多彩进度条</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif" alt=""></td>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample2.gif" alt=""></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>动态多彩遮罩</th>
-<th>动态图像遮罩</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample3.png" alt=""></td>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample4.png" alt=""></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h1 id="CAGradientLayer坐标系统"><a href="#CAGradientLayer坐标系统" class="headerlink" title="CAGradientLayer坐标系统"></a>CAGradientLayer坐标系统</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerCoordinate.png" alt=""></p>
-<ol>
-<li>CAGradientLayer的坐标系统是从坐标（0，0）到（1，1）绘制的矩形</li>
-<li>CAGradientLayer的frame值的size不为正方形的话，坐标系统会被拉伸</li>
-<li>CAGradientLayer的startPoint与endPoint会直接影响颜色的绘制方向</li>
-<li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj1.png" alt=""></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-@property (strong, nonatomic) CAGradientLayer *gradientLayer;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-// 创建并初始化
-self.gradientLayer             = [CAGradientLayer layer];
-self.gradientLayer.frame       = CGRectMake(0, 0, 200, 200);
-self.gradientLayer.position    = self.view.center;
-self.gradientLayer.borderWidth = 1.f;
-[self.view.layer addSublayer:self.gradientLayer];
-
-// 设置颜色
-self.gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,
-                              (__bridge id)[UIColor greenColor].CGColor,
-                              (__bridge id)[UIColor blueColor].CGColor];
-
-// 设置颜色渐变方向
-self.gradientLayer.startPoint = CGPointMake(0, 0);
-self.gradientLayer.endPoint   = CGPointMake(1, 0);
-
-// 设置颜色分割点
-self.gradientLayer.locations  = @[@(0.25), @(0.5), @(0.75)];
-
-
-// 延时3秒钟执行
-[self performSelector:@selector(gradientLayerLocationAnimation)
-           withObject:nil
-           afterDelay:3.f];
-
-       }
-
-- (void)gradientLayerLocationAnimation {
-// 颜色分割点效果
-self.gradientLayer.locations = @[@(0.01), @(0.5), @(0.99)];
-}
-
-@end
-</code></pre><h1 id="色差动画实现"><a href="#色差动画实现" class="headerlink" title="色差动画实现"></a>色差动画实现</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerColor.png" alt=""></p>
-<ol>
-<li>确定渐变色渐变方向</li>
-<li>设定两种颜色，其中一种是透明色，另外一种是自定义颜色</li>
-<li>设定好location颜色分割点值</li>
-<li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj2.png" alt=""></p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) CAGradientLayer *gradientLayer; // 渐变层
-@property (nonatomic, strong) NSTimer         *timer;         // 定时器
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.view.backgroundColor = [UIColor blackColor];
-
-// 创建背景图片
-UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;bg&quot;]];
-imageView.center       = self.view.center;
-[self.view addSubview:imageView];
-
-// 初始化渐变层
-self.gradientLayer       = [CAGradientLayer layer];
-self.gradientLayer.frame = imageView.bounds;
-[imageView.layer addSublayer:self.gradientLayer];
-
-// 设定颜色渐变方向
-self.gradientLayer.startPoint = CGPointMake(0, 0);
-self.gradientLayer.endPoint   = CGPointMake(0, 1);
-
-// 设定颜色组
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)[UIColor redColor].CGColor];
-
-// 设定颜色分割点
-self.gradientLayer.locations = @[@(0.5f), @(1.f)];
-
-// 初始化定时器
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.f
-                                              target:self
-                                            selector:@selector(timerEvent)
-                                            userInfo:nil
-                                             repeats:YES];
-                                         }
-
-- (void)timerEvent {
-// 设定颜色组动画
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)[UIColor colorWithRed:arc4random() % 255 / 255.f
-                                                           green:arc4random() % 255 / 255.f
-                                                            blue:arc4random() % 255 / 255.f
-                                                           alpha:1].CGColor];
-
-// 设定颜色分割点动画
-self.gradientLayer.locations = @[@(arc4random() % 10 / 10.f), @(1.f)];
-}
-
-@end
-</code></pre><h1 id="用CAGradientLayer封装带色差动画的View"><a href="#用CAGradientLayer封装带色差动画的View" class="headerlink" title="用CAGradientLayer封装带色差动画的View"></a>用CAGradientLayer封装带色差动画的View</h1><ol>
-<li>确定几个属性值</li>
-<li>确定可以做动画的参数</li>
-<li>重写setter方法做动画</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj3.png" alt=""></p>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>ColorUIImageView.h</p>
-<pre><code>#import &lt;UIKit/UIKit.h&gt;
-
-typedef enum : NSUInteger {
-UP,    // 从上往下
-DOWN,  // 从下往上
-RIGHT, // 从右往左
-LEFT,  // 从左往右
-} EColorDirection;
-
-@interface ColorUIImageView : UIImageView
-
-/**
- *  确定方向（可以做动画）
- */
-@property (nonatomic, assign) EColorDirection  direction;
-
-/**
- *  颜色（可以做动画）
- */
- @property (nonatomic, strong) UIColor  *color;
-
- /**
- *  百分比（可以做动画）
- */
-@property (nonatomic, assign) CGFloat   percent;
-
-@end
-</code></pre><p>ColorUIImageView.m</p>
-<pre><code>#import &quot;ColorUIImageView.h&quot;
-
-@interface ColorUIImageView ()
-
-@property (nonatomic, strong) CAGradientLayer *gradientLayer;
-
-@end
-
-@implementation ColorUIImageView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-self = [super initWithFrame:frame];
-if (self) {
-    // 初始化CAGradientLayer
-    self.gradientLayer           = [CAGradientLayer layer];
-    self.gradientLayer.frame     = self.bounds;
-
-    self.gradientLayer.colors    = @[(__bridge id)[UIColor clearColor].CGColor,
-                                     (__bridge id)[UIColor redColor].CGColor];
-    self.gradientLayer.locations = @[@(1), @(1)];
-
-    [self.layer addSublayer:self.gradientLayer];
-}
-return self;
-}
-
-#pragma mark - 重写setter，getter方法
-@synthesize color = _color;
-- (void)setColor:(UIColor *)color {
-_color = color;
-self.gradientLayer.colors = @[(__bridge id)[UIColor clearColor].CGColor,
-                              (__bridge id)color.CGColor];
-                          }
-- (UIColor *)color {
-return _color;
-}
-
-@synthesize percent = _percent;
-- (void)setPercent:(CGFloat)percent {
-_percent = percent;
-self.gradientLayer.locations = @[@(percent), @(1)];
-}
-- (CGFloat)percent {
-return _percent;
-}
-
-@synthesize direction = _direction;
-- (void)setDirection:(EColorDirection)direction {
-_direction = direction;
-if (direction == UP) {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 1);
-} else if (direction == DOWN) {
-    self.gradientLayer.startPoint = CGPointMake(0, 1);
-    self.gradientLayer.endPoint   = CGPointMake(0, 0);
-} else if (direction == RIGHT) {
-    self.gradientLayer.startPoint = CGPointMake(1, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 0);
-} else if (direction == LEFT) {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(1, 0);
-} else {
-    self.gradientLayer.startPoint = CGPointMake(0, 0);
-    self.gradientLayer.endPoint   = CGPointMake(0, 1);
-}
-}
-- (EColorDirection)direction {
-return _direction;
-}
-
-@end
-</code></pre><p>ViewController.m</p>
-<pre><code>#import &quot;ViewController.h&quot;
-#import &quot;ColorUIImageView.h&quot;
-@interface ViewController ()
-@property (nonatomic, strong) ColorUIImageView *colorView;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-
-self.colorView        = [[ColorUIImageView alloc] initWithFrame:CGRectMake(0, 0, 198, 253)];
-self.colorView.center = self.view.center;
-self.colorView.image  = [UIImage imageNamed:@&quot;bg&quot;];
-[self.view addSubview:self.colorView];
-
-[self performSelector:@selector(event)
-           withObject:nil
-           afterDelay:2.f];
-       }
-
-- (void)event {
-self.colorView.direction = DOWN;
-self.colorView.color     = [UIColor cyanColor];
-self.colorView.percent   = 0.5;
-}
-@end
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1444,7 +1244,7 @@ self.colorView.percent   = 0.5;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1461,7 +1261,7 @@ self.colorView.percent   = 0.5;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
