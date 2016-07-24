@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-06-11T06:33:00.000Z</updated>
+  <updated>2016-07-24T10:48:35.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,154 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>LBS兴趣点搜索</title>
+    <link href="http://jackliu17.github.io/2016/07/24/LBS%E5%85%B4%E8%B6%A3%E7%82%B9%E6%90%9C%E7%B4%A2/"/>
+    <id>http://jackliu17.github.io/2016/07/24/LBS兴趣点搜索/</id>
+    <published>2016-07-24T10:42:27.000Z</published>
+    <updated>2016-07-24T10:48:35.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;代码设置启动界面&quot;&gt;&lt;a href=&quot;#代码设置启动界面&quot; class=&quot;headerlink&quot; title=&quot;代码设置启动界面&quot;&gt;&lt;/a&gt;代码设置启动界面&lt;/h1&gt;&lt;p&gt;AppDelegate.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+ViewController * viewController = [[ViewController alloc] init];
+UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+[_window setRootViewController:navigationController];
+[_window makeKeyAndVisible];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;颜色创建图片&quot;&gt;&lt;a href=&quot;#颜色创建图片&quot; class=&quot;headerlink&quot; title=&quot;颜色创建图片&quot;&gt;&lt;/a&gt;颜色创建图片&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (UIImage *)createImageFromColor:(UIColor *)color imageSize:(CGSize)size {
+
+CGRect frame = CGRectMake(0, 0, size.width, size.height);
+UIGraphicsBeginImageContext(size);
+CGContextRef context = UIGraphicsGetCurrentContext();
+CGContextSetFillColorWithColor(context, [color CGColor]);
+CGContextFillRect(context, frame);
+UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+UIGraphicsEndImageContext();
+return image;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UISearchBar设置背景图片&quot;&gt;&lt;a href=&quot;#UISearchBar设置背景图片&quot; class=&quot;headerlink&quot; title=&quot;UISearchBar设置背景图片&quot;&gt;&lt;/a&gt;UISearchBar设置背景图片&lt;/h1&gt;&lt;p&gt;如果不设置背景图片，SearchBar会有默认的银灰色背景方框&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[_searchBar setBackgroundImage:[self createImageFromColor:[UIColor orangeColor]
+                                               imageSize:CGSizeMake(self.view.frame.size.width, 50)]];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;//当用户第一次搜索未完成时，又执行了第二次搜索，这样就需要cancel掉&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if(_localSearch.searching){
+    [_localSearch cancel];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;键盘退出&quot;&gt;&lt;a href=&quot;#键盘退出&quot; class=&quot;headerlink&quot; title=&quot;键盘退出&quot;&gt;&lt;/a&gt;键盘退出&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[_searchBar resignFirstResponder];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;隐藏导航栏&quot;&gt;&lt;a href=&quot;#隐藏导航栏&quot; class=&quot;headerlink&quot; title=&quot;隐藏导航栏&quot;&gt;&lt;/a&gt;隐藏导航栏&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewWillAppear:(BOOL)animated {
+[super viewWillAppear:animated];
+[self.navigationController setNavigationBarHidden:YES];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Cell-配置&quot;&gt;&lt;a href=&quot;#Cell-配置&quot; class=&quot;headerlink&quot; title=&quot;Cell 配置&quot;&gt;&lt;/a&gt;Cell 配置&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:tableViewKey];
+}
+
+//这样不需要进行if判断                 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {  
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableViewKey forIndexPath:indexPath];
+    NSDictionary *dic = _talbeViewArray[indexPath.row];
+    [cell.textLabel setText:dic[@&amp;quot;site&amp;quot;]];
+    return cell;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;自定义导航视图返回按钮&quot;&gt;&lt;a href=&quot;#自定义导航视图返回按钮&quot; class=&quot;headerlink&quot; title=&quot;自定义导航视图返回按钮&quot;&gt;&lt;/a&gt;自定义导航视图返回按钮&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+[self setTitle:@&amp;quot;线路导航&amp;quot;];
+self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@&amp;quot;返回&amp;quot;
+                                                                         style:UIBarButtonItemStylePlain
+                                                                        target:self
+                                                                        action:@selector(returnPre)];
+                                                                        }
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;枚举识别数个按钮&quot;&gt;&lt;a href=&quot;#枚举识别数个按钮&quot; class=&quot;headerlink&quot; title=&quot;枚举识别数个按钮&quot;&gt;&lt;/a&gt;枚举识别数个按钮&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;typedef NS_ENUM(NSUInteger, FunctionSelet) {
+LBS_GAME = 0,
+LBS_EAT,
+LBS_REST,
+LBSE_BUSSION,
+LBS_OTHER,
+LBS_OTHER1,
+LBS_OTHER2,
+LBS_OTHER3,
+LBS_OTHER4,
+};
+
+NSUInteger dataArr[] = {LBS_GAME,LBS_EAT,LBS_REST,LBSE_BUSSION,LBS_OTHER,LBS_OTHER1,LBS_OTHER2,LBS_OTHER3,LBS_OTHER4};
+
+for .... {
+[btn setTag:dataArr[i]];
+}
+
+- (void)theBtnPressed:(id)sender { 
+UIButton * btn = (UIButton *)sender;
+NSString * userSelectString = nil;
+switch(btn.tag){
+    case LBS_GAME:
+        userSelectString = @&amp;quot;游戏&amp;quot;;
+        NSLog(@&amp;quot;游戏&amp;quot;);
+        break;
+    case LBS_EAT:
+        userSelectString = @&amp;quot;吃喝&amp;quot;;
+        NSLog(@&amp;quot;吃喝&amp;quot;);
+        break;
+    case LBS_REST:
+        userSelectString = @&amp;quot;休息&amp;quot;;
+        NSLog(@&amp;quot;休息&amp;quot;);
+        break;
+    case LBSE_BUSSION:
+        userSelectString = @&amp;quot;狂街&amp;quot;;
+        NSLog(@&amp;quot;逛街&amp;quot;);
+        break;
+    default:
+        userSelectString = @&amp;quot;other&amp;quot;;
+        break;
+}
+
+[self gotoShowDataView:userSelectString];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;MKLocalSearch&quot;&gt;&lt;a href=&quot;#MKLocalSearch&quot; class=&quot;headerlink&quot; title=&quot;MKLocalSearch&quot;&gt;&lt;/a&gt;MKLocalSearch&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;MKLocalSearchRequest * searchRequest = [[MKLocalSearchRequest alloc] init];
+searchRequest.naturalLanguageQuery = self.searchString;
+MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-33.96820, 151.11060), 2000, 2000);
+searchRequest.region = region;
+
+_localSearch = [[MKLocalSearch alloc] initWithRequest:searchRequest];
+[_localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+
+    [loadingLabel removeFromSuperview];
+
+    if(response.mapItems.count == 0 || error){
+        NSLog(@&amp;quot;error:%@&amp;quot;,error);
+    }else{
+        [_talbeViewArray addObjectsFromArray:response.mapItems];
+        self.currentRegion = response.boundingRegion;
+        [self.tableView setBounces:YES];
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        [self.tableView reloadData];
+    }
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现当前位置到兴趣点的导航路线-略&quot;&gt;&lt;a href=&quot;#实现当前位置到兴趣点的导航路线-略&quot; class=&quot;headerlink&quot; title=&quot;实现当前位置到兴趣点的导航路线 (略)&quot;&gt;&lt;/a&gt;实现当前位置到兴趣点的导航路线 (略)&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;MKMapItem属性介绍&lt;/li&gt;
+&lt;li&gt;MKDirectionsRequest属性设置&lt;/li&gt;
+&lt;li&gt;MKDirections使用方法&lt;/li&gt;
+&lt;li&gt;MKDirectionsResponse返回数据处理&lt;/li&gt;
+&lt;li&gt;MKRoute讲解&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;代码设置启动界面&quot;&gt;&lt;a href=&quot;#代码设置启动界面&quot; class=&quot;headerlink&quot; title=&quot;代码设置启动界面&quot;&gt;&lt;/a&gt;代码设置启动界面&lt;/h1&gt;&lt;p&gt;AppDelegate.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;_window = [[UIWin
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_CoreLocation" scheme="http://jackliu17.github.io/tags/iOS-CoreLocation/"/>
+    
+      <category term="iOS_MapKit" scheme="http://jackliu17.github.io/tags/iOS-MapKit/"/>
+    
+  </entry>
   
   <entry>
     <title>CoreLocation框架详解</title>
@@ -4428,92 +4576,6 @@ NSLog(@&amp;quot;coin %ld&amp;quot;, (long)gamePad.coin);
     <summary type="html">
     
       &lt;h1 id=&quot;装饰模式&quot;&gt;&lt;a href=&quot;#装饰模式&quot; class=&quot;headerlink&quot; title=&quot;装饰模式&quot;&gt;&lt;/a&gt;装饰模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPatt
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-外观</title>
-    <link href="http://jackliu17.github.io/2016/05/27/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%96%E8%A7%82/"/>
-    <id>http://jackliu17.github.io/2016/05/27/iOS设计模式-外观/</id>
-    <published>2016-05-27T05:09:48.000Z</published>
-    <updated>2016-05-27T05:11:10.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;外观模式解决的问题&quot;&gt;&lt;a href=&quot;#外观模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;外观模式解决的问题&quot;&gt;&lt;/a&gt;外观模式解决的问题&lt;/h1&gt;&lt;p&gt;如果在viewController里绘制图形，需要单独的写很多行代码，耦合性很高&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f;
-[circle draw];
-
-// 绘制了一个矩形
-Rectangle *rectangle = [Rectangle new];
-rectangle.width      = 10.f;
-rectangle.height     = 20.f;
-[rectangle draw];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;外观模式&quot;&gt;&lt;a href=&quot;#外观模式&quot; class=&quot;headerlink&quot; title=&quot;外观模式&quot;&gt;&lt;/a&gt;外观模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;用一个类将复杂的子系统隔离开来解耦合&lt;/li&gt;
-&lt;li&gt;如果在同一文件内就是封装，用不同的文件来隔离就是外观模式。&lt;/li&gt;
-&lt;li&gt;主系统只考虑输入什么参数，不必考虑系统内的细节&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0601.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;基类shape&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)draw {
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;子类Rectangle&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Rectangle : Shape
-@property (nonatomic) CGFloat  width;
-@property (nonatomic) CGFloat  height;
-
-- (void)draw;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;子类Circle&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Circle : Shape
-@property (nonatomic) CGFloat  radius;
-
-- (void)draw;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ShapeMaker&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (void)drawCircleWithParas:(NSDictionary *)paras {
-
-// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f; // paras里取
-[circle draw];
-}
-
-+ (void)drawCircleAndRectangle:(NSDictionary *)paras {
-// 绘制了一个圆
-Circle *circle = [Circle new];
-circle.radius  = 10.f; // paras里取
-[circle draw];
-
-// 绘制了一个矩形
-Rectangle *rectangle = [Rectangle new];
-rectangle.width      = 10.f; // paras里取
-rectangle.height     = 20.f; // paras里取
-[rectangle draw];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// 绘制一个圆的操作
-[ShapeMaker drawCircleWithParas:@{@&amp;quot;a&amp;quot; : @&amp;quot;b&amp;quot;}];
-
-// 绘制圆 + 矩形操作
-[ShapeMaker drawCircleAndRectangle:@{@&amp;quot;a&amp;quot; : @&amp;quot;b&amp;quot;, @&amp;quot;c&amp;quot; : @&amp;quot;d&amp;quot;}];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;外观模式解决的问题&quot;&gt;&lt;a href=&quot;#外观模式解决的问题&quot; class=&quot;headerlink&quot; title=&quot;外观模式解决的问题&quot;&gt;&lt;/a&gt;外观模式解决的问题&lt;/h1&gt;&lt;p&gt;如果在viewController里绘制图形，需要单独的写很多行代码，耦合性很高&lt;/
     
     </summary>
     
