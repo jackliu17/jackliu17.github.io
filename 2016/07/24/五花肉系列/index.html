@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_media," />
+  <meta name="keywords" content="pork," />
 
 
 
@@ -61,43 +61,16 @@
 
 
 
-<meta name="description" content="Play Videoimport UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlaye">
+<meta name="description" content="蒜泥白肉">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS视频播放和录制">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/21/iOS视频播放和录制/index.html">
+<meta property="og:title" content="五花肉系列">
+<meta property="og:url" content="http://jackliu17.github.io/2016/07/24/五花肉系列/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Play Videoimport UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlaye">
-<meta property="og:updated_time" content="2016-05-21T05:40:01.000Z">
+<meta property="og:description" content="蒜泥白肉">
+<meta property="og:updated_time" content="2016-07-24T11:02:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS视频播放和录制">
-<meta name="twitter:description" content="Play Videoimport UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlaye">
+<meta name="twitter:title" content="五花肉系列">
+<meta name="twitter:description" content="蒜泥白肉">
 
 
 
@@ -115,7 +88,7 @@ var pc:MPMoviePlayerViewController!
   };
 </script>
 
-  <title> iOS视频播放和录制 | Cowboy Tech </title>
+  <title> 五花肉系列 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +230,7 @@ var pc:MPMoviePlayerViewController!
             
             
               
-                iOS视频播放和录制
+                五花肉系列
               
             
           </h1>
@@ -269,8 +242,8 @@ var pc:MPMoviePlayerViewController!
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T15:39:21+10:00" content="2016-05-21">
-              2016-05-21
+            <time itemprop="dateCreated" datetime="2016-07-24T21:01:05+10:00" content="2016-07-24">
+              2016-07-24
             </time>
           </span>
 
@@ -283,8 +256,8 @@ var pc:MPMoviePlayerViewController!
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/情感杂谈/" itemprop="url" rel="index">
+                    <span itemprop="name">情感杂谈</span>
                   </a>
                 </span>
 
@@ -299,8 +272,8 @@ var pc:MPMoviePlayerViewController!
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS视频播放和录制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS视频播放和录制/" itemprop="commentsCount"></span>
+                <a href="/2016/07/24/五花肉系列/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/五花肉系列/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,62 +295,8 @@ var pc:MPMoviePlayerViewController!
       
 
       
-        <h1 id="Play-Video"><a href="#Play-Video" class="headerlink" title="Play Video"></a>Play Video</h1><pre><code>import UIKit
-import MediaPlayer
+        <h1 id="蒜泥白肉"><a href="#蒜泥白肉" class="headerlink" title="蒜泥白肉"></a>蒜泥白肉</h1><div class="video-container"><iframe src="//www.youtube.com/embed/8bIf4ESH1HU" frameborder="0" allowfullscreen></iframe></div>
 
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&quot;video&quot;, withExtension: &quot;mp4&quot;))
-    presentViewController(pc, animated: true, completion: nil)
-}
-}
-</code></pre><h1 id="Record-Video"><a href="#Record-Video" class="headerlink" title="Record Video"></a>Record Video</h1><pre><code>import UIKit
-import MobileCoreServices
-import MediaPlayer
-
-class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
-
-var picker:UIImagePickerController!
-var videoUrl:NSURL?
-var player:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    if let url = videoUrl{
-        player = MPMoviePlayerViewController(contentURL: url)
-        presentViewController(player, animated: true, completion: nil)
-    }
-}
-
-
-@IBAction func recVideoBtnClicked(sender: AnyObject) {
-
-    picker = UIImagePickerController()
-    picker.mediaTypes = [kUTTypeMovie as String]
-    picker.sourceType = UIImagePickerControllerSourceType.Camera
-    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-    picker.delegate = self
-
-    presentViewController(picker, animated: true, completion: nil) 
-}
-
-
-func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
-
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-
-func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-}
-</code></pre>
       
     </div>
 
@@ -391,9 +310,7 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/iOS-media/" rel="tag">#iOS_media</a>
+            <a href="/tags/pork/" rel="tag">#pork</a>
           
         </div>
       
@@ -402,17 +319,13 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/21/iOS-HTTP通信/" rel="next" title="iOS-HTTP通信">
-                <i class="fa fa-chevron-left"></i> iOS-HTTP通信
+              <a href="/2016/07/24/LBS兴趣点搜索/" rel="next" title="LBS兴趣点搜索">
+                <i class="fa fa-chevron-left"></i> LBS兴趣点搜索
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/21/iOS设计模式简介/" rel="prev" title="iOS设计模式简介">
-                iOS设计模式简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,7 +457,7 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Play-Video"><span class="nav-number">1.</span> <span class="nav-text">Play Video</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Record-Video"><span class="nav-number">2.</span> <span class="nav-text">Record Video</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#蒜泥白肉"><span class="nav-number">1.</span> <span class="nav-text">蒜泥白肉</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -802,9 +715,9 @@ func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/21/iOS视频播放和录制/';
-      var disqus_title = 'iOS视频播放和录制';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/21/iOS视频播放和录制/';
+      var disqus_identifier = '2016/07/24/五花肉系列/';
+      var disqus_title = '五花肉系列';
+      var disqus_url = 'http://jackliu17.github.io/2016/07/24/五花肉系列/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
