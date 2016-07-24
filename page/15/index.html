@@ -238,193 +238,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/16/Objective-C语言应用开发基础编程入门/" itemprop="url">
-                  Objective-C语言应用开发基础编程入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T18:40:55+11:00" content="2016-03-16">
-              2016-03-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/Objective-C语言应用开发基础编程入门/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/Objective-C语言应用开发基础编程入门/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><pre><code>NSString *name = @&quot;jikexueyuan&quot;;
-</code></pre><h2 id="以’-’代表对象"><a href="#以’-’代表对象" class="headerlink" title="以’%@’代表对象"></a>以’%@’代表对象</h2><pre><code>NSLog(@&quot;Hello Objective-C&quot;);
-NSLog(@&quot;The number is %d&quot;,1000);
-NSLog(@&quot;Hello %s&quot;,&quot;XiaoLi&quot;);
-NSLog(@&quot;Hello %@&quot;,name);
-NSLog(@&quot;ObjC Object %@&quot;,[[[NSObject alloc] init] description]); //实际上是调用NSObject中的description方法
-</code></pre><h1 id="Class的构成"><a href="#Class的构成" class="headerlink" title="Class的构成"></a>Class的构成</h1><h2 id="h-file"><a href="#h-file" class="headerlink" title=".h file"></a>.h file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface People : NSObject&#123;</span><br><span class="line">    int _age;</span><br><span class="line">    NSString *_name;</span><br><span class="line">&#125;</span><br><span class="line">// class method-------------------------------</span><br><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(id)initWithAge:(int)age andName:(NSString*)name;</span><br><span class="line">-(int)getAge;</span><br><span class="line">-(NSString*)getName;</span><br></pre></td></tr></table></figure>
-<h2 id="m-file"><a href="#m-file" class="headerlink" title=".m file"></a>.m file</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">+(People*)peopleWithAge:(int)age andName:(NSString *)name&#123;</span><br><span class="line">    return [[People alloc] initWithAge:age andName:name];</span><br><span class="line">&#125;</span><br><span class="line">- (instancetype)initWithAge:(int)age andName:(NSString *)name</span><br><span class="line">&#123;</span><br><span class="line">    self = [super init];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        _age = age;</span><br><span class="line">        _name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line">-(int)getAge&#123;</span><br><span class="line">    return _age;</span><br><span class="line">&#125;</span><br><span class="line">-(NSString*)getName&#123;</span><br><span class="line">    return _name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="call-method"><a href="#call-method" class="headerlink" title="call method"></a>call method</h2><pre><code>Hello *h = [[Hello alloc] init];
-[h sayHello];
-</code></pre><h1 id="数组与字典"><a href="#数组与字典" class="headerlink" title="数组与字典"></a>数组与字典</h1><h2 id="非可变数组"><a href="#非可变数组" class="headerlink" title="非可变数组"></a>非可变数组</h2><pre><code>//三种构造方法，可以从plist文件中获取数据
-NSArray *arr = @[@&quot;Hello&quot;,@&quot;jikexueyuan&quot;];
-NSArray *arr = [NSArray arrayWithObjects:@&quot;Hello&quot;, @&quot;jikexueyuan&quot;,nil];
-NSArray *arr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
-
-for (int i=0; i&lt;[arr count]; i++) {
-    NSLog(@&quot;%@&quot;,[arr objectAtIndex:i]);
-}
-</code></pre><h2 id="可变数组"><a href="#可变数组" class="headerlink" title="可变数组"></a>可变数组</h2><pre><code>NSMutableArray *arr = [[NSMutableArray alloc] init];
-
-for (int i=0; i&lt;100; i++) {
-    [arr addObject:[NSString stringWithFormat:@&quot;Item %d&quot;,i]];
-}
-
-NSLog(@&quot;%@&quot;,arr);
-</code></pre><h2 id="数组的plist文件"><a href="#数组的plist文件" class="headerlink" title="数组的plist文件"></a>数组的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/array%20plist%20file.png" alt="数组的plist文件"></p>
-<h2 id="字典的plist文件"><a href="#字典的plist文件" class="headerlink" title="字典的plist文件"></a>字典的plist文件</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/dic%20plist%20file.png" alt="字典的plist文件"></p>
-<h2 id="字典与可变字典"><a href="#字典与可变字典" class="headerlink" title="字典与可变字典"></a>字典与可变字典</h2><pre><code>//字典的构造
-NSDictionary *dict = @{@&quot;name&quot;: @&quot;ZhangSan&quot;,@&quot;sex&quot;:@&quot;male&quot;};    
-NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@&quot;data&quot; ofType:@&quot;plist&quot;]];
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;age&quot;]);
-
-//可变字典
-NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-[dict setObject:@&quot;jikexueyuan&quot; forKey:@&quot;name&quot;];
-
-NSLog(@&quot;%@&quot;,[dict objectForKey:@&quot;name&quot;]);
-</code></pre><h1 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h1><h2 id="h-file-1"><a href="#h-file-1" class="headerlink" title=".h file"></a>.h file</h2><pre><code>#import &lt;Foundation/Foundation.h&gt;
-
-@protocol IPeople &lt;NSObject&gt;
-
--(int)getAge;
--(void)setAge:(int)age;
--(NSString*)getName;
-
-@end
-</code></pre><h2 id="m-file-1"><a href="#m-file-1" class="headerlink" title=".m file"></a>.m file</h2><pre><code>@interface Man : NSObject&lt;IPeople&gt;{
-int _age;
-}
-
--(id)init;
-
--(void)setAge:(int)age;
--(NSString*)getName;
--(int)getAge;
-
-@property id&lt;ManDelegate&gt; delegate;
-
-@end
-</code></pre><h1 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h1><pre><code>@try {
-
-    //需要被捕获异常的代码
-    @throw [NSException exceptionWithName:@&quot;My Error&quot; reason:nil userInfo:nil];
-}
-@catch (NSException *exception) {
-
-    //输出一场信息
-    NSLog(@&quot;%@&quot;,exception);
-}
-@finally {
-    //无论是否有异常，都要执行
-    NSLog(@&quot;run&quot;);
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/03/16/iOS开发面试/" itemprop="url">
                   iOS开发面试
                 </a>
@@ -1123,6 +936,177 @@ int _age;
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/13/Swift中的继承和多态/" itemprop="url">
+                  Swift中的继承和多态
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T15:16:20+11:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/Swift中的继承和多态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift中的继承和多态/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="继承的特点"><a href="#继承的特点" class="headerlink" title="继承的特点"></a>继承的特点</h2><ol>
+<li>单继承，每个子类只有一个直接父类，可以有多个间接父类. 与OC不同，他不继承NSObject。如果不显示父类，就说明没有父类。</li>
+<li>子类继承父类，可以获得父类的属性，方法，下标，也可以进行重写</li>
+<li>swift的类并不是从一个通用的基类继承而来的</li>
+<li>override修饰被重写的部分</li>
+<li>final修饰的类不能被继承，属性，方法和下标不能被重写</li>
+</ol>
+<h2 id="父类的继承"><a href="#父类的继承" class="headerlink" title="父类的继承"></a>父类的继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;  </span><br><span class="line">    var weight = 0.0</span><br><span class="line">    func info()&#123;</span><br><span class="line">        print(&quot;我是一个水果，重\(weight)g!&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var name:String!</span><br><span class="line">    func taste()&#123;</span><br><span class="line">    print(&quot;\(name)吃起来很好吃&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = Apple()</span><br><span class="line">//Apple本身没有weight属性</span><br><span class="line">//因为Apple的父类有weight属性，也可以访问Apple实例的weight属性</span><br><span class="line">a.weight = 56</span><br><span class="line">a.name = &quot;红富士&quot;</span><br><span class="line">//调用Apple实例的info方法</span><br><span class="line">a.info()</span><br><span class="line">a.taste()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class Bird&#123;</span><br><span class="line">    //Bird类的fly()方法</span><br><span class="line">    func fly()&#123;</span><br><span class="line">    print(&quot;我在天空里自由自在的飞翔&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich:Bird &#123;</span><br><span class="line">    //重写Bird类的fly()方法</span><br><span class="line">    override func fly() &#123;</span><br><span class="line">        print(&quot;我只能在地上奔跑...&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//执行Ostrich实例的fly()方法，将输出....</span><br><span class="line">os.fly()</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的属性"><a href="#重写父类的属性" class="headerlink" title="重写父类的属性"></a>重写父类的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;</span><br><span class="line">    //重写Bird类的speed属性</span><br><span class="line">    override var speed:Double&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;正在访问被重写的属性&quot;)</span><br><span class="line">        return super.speed</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">        super.speed = newValue * newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写属性观察者"><a href="#重写属性观察者" class="headerlink" title="重写属性观察者"></a>重写属性观察者</h2><ol>
+<li>不要同时添加set和didSet，因为在didSet里就可以改变属性的值</li>
+<li>不要给常量存储属性和只读计算属性添加属性观察者，因为值是不会变的，观察者又有什么用 </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Bird &#123;</span><br><span class="line">    var speed: Double = 0</span><br><span class="line">&#125;</span><br><span class="line">class Ostrich: Bird &#123;    </span><br><span class="line">    //重写Bird类的speed属性,添加属性观察者  </span><br><span class="line">    override var speed:Double&#123;    </span><br><span class="line">        didSet&#123;</span><br><span class="line">        //属性值被改变完成后，将会自动执行该方法</span><br><span class="line">            print(&quot;改变之前的speed为:\(oldValue)&quot;)</span><br><span class="line">            super.speed *= speed</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//创建Ostrich实例</span><br><span class="line">var os = Ostrich()</span><br><span class="line">//对重写后的属性赋值</span><br><span class="line">os.speed = 20.0</span><br><span class="line">// 访问被重写后的属性</span><br><span class="line">print(&quot;os的速度为:\(os.speed)&quot;)</span><br></pre></td></tr></table></figure>
+<h2 id="重写父类的下标"><a href="#重写父类的下标" class="headerlink" title="重写父类的下标"></a>重写父类的下标</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Base &#123;</span><br><span class="line">    subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">        print(&quot;父类的下标的get方法&quot;)</span><br><span class="line">        return idx + 10</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Sub:Base &#123;</span><br><span class="line">    //重写Base类的下标</span><br><span class="line">    override subscript(idx:Int) -&gt;Int&#123;</span><br><span class="line">        get&#123;</span><br><span class="line">            print(&quot;重写后的下标的get方法&quot;)</span><br><span class="line">            print(&quot;通过super访问被重写之前的下标:\(super[idx])&quot;)</span><br><span class="line">            return idx * idx</span><br><span class="line">        &#125;</span><br><span class="line">        set&#123;</span><br><span class="line">            print(&quot;重写后的下标的setter方法，传入的参数值为:\(newValue)&quot;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var base = Base()</span><br><span class="line">print(base[7]) //输出17</span><br><span class="line">//创建Sub实例</span><br><span class="line">var sub = Sub()</span><br><span class="line">print(sub[7]) //输出49</span><br><span class="line">sub[7] = 90</span><br></pre></td></tr></table></figure>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><ol>
+<li>Swift引用变量有两个类型:编译时类型，运行时类型，编译器只认编译时类型</li>
+<li>编译时类型由声明该变量时使用类型决定，编译器只认变量的编译类型</li>
+<li>运行时类型由实际赋予该变量的实例决定</li>
+<li>多态:相同类型的变量，调用同一个方法时呈现出多种不同的行为特征。也就是编译时类型和运行时类型不一样</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class BaseClass &#123;</span><br><span class="line">    func base()&#123;</span><br><span class="line">    print(&quot;父类的普通方法&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    func test()&#123;</span><br><span class="line">    print(&quot;父类的被覆盖的方法&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class SubClass:BaseClass &#123;</span><br><span class="line">    override func test() &#123;</span><br><span class="line">        print(&quot;子类的覆盖父类的方法&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    func sub()&#123;</span><br><span class="line">        print(&quot;子类的普通方法&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let bc:BaseClass = BaseClass()</span><br><span class="line">//下面两次调用将执行BaseClass的方法</span><br><span class="line">bc.base()</span><br><span class="line">bc.test()</span><br><span class="line">let sc:SubClass = SubClass()</span><br><span class="line">//下面调用将执行从父类继承到的base()方法</span><br><span class="line">sc.base()</span><br><span class="line">//下面调用将执行从当前类的test()方法</span><br><span class="line">sc.test()</span><br><span class="line">sc.sub()</span><br><span class="line">//下面编译时类型和运行时类型不一样，多态发生</span><br><span class="line">//下面将子类实例赋值给父类变量，称为向上转型,由系统自动完成</span><br><span class="line">//编译类型是BaseClass，运行时类型是SubClass</span><br><span class="line">let ploymophicBc: BaseClass = SubClass()</span><br><span class="line">//下面调用将执行父类继承到的base()方法</span><br><span class="line">ploymophicBc.base()</span><br><span class="line">//下面调用将执行从当前类的test()方法</span><br><span class="line">ploymophicBc.test()</span><br><span class="line">//因为ploymophicBc的编译类型是BaseClass</span><br><span class="line">//BaseClass类没有提供sub方法，所以下面代码编译时会出现错误</span><br><span class="line">//ploymophicBc.sub()</span><br></pre></td></tr></table></figure>
+<h1 id="运算符检查类型-（变量-is-类）"><a href="#运算符检查类型-（变量-is-类）" class="headerlink" title="运算符检查类型 （变量 is 类）"></a>运算符检查类型 （变量 is 类）</h1><ol>
+<li>使用is运算符检查类型，返回值为布尔类型，判断前面的引用变量是否引用后面的类或者子类的实例。是则true</li>
+<li>前一个操作数是一个引用类型变量，后一个操作数是一个类</li>
+<li>运算符前面操作数的编译类型要么与后面的类相同，要么具有继承关系，否则编译报错。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//定义一个可被objective-C类使用的协议</span><br><span class="line">@objc protocol TestProtocol&#123;&#125;</span><br><span class="line">let hello:NSObject = &quot;Hello&quot;</span><br><span class="line">print(&quot;字符串是否是NSString类的实例:\(hello is NSString)&quot;)</span><br><span class="line">print(&quot;字符串是否是NSDate类的实例:\(hello is NSDate)&quot;)</span><br><span class="line">print(&quot;字符串是否是TestProtocol协议的实例:\(hello is TestProtocol)&quot;)</span><br><span class="line">let a: NSString = &quot;Hello&quot;</span><br><span class="line">//下面这行代码会报错</span><br><span class="line">//print(&quot;字符串是否是Math类的实例:\(a is NSDate)&quot;)</span><br></pre></td></tr></table></figure>
+<h1 id="转型"><a href="#转型" class="headerlink" title="转型"></a>转型</h1><h2 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h2><p>将子类实例赋值给父类变量，称为向上转型,由系统自动完成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//编译类型是BaseClass，运行时类型是SubClass</span><br><span class="line">let ploymophicBc: BaseClass = SubClass()</span><br></pre></td></tr></table></figure></p>
+<h2 id="向下转型-（父类的对象-as-子类）"><a href="#向下转型-（父类的对象-as-子类）" class="headerlink" title="向下转型 （父类的对象 as! 子类）"></a>向下转型 （父类的对象 as! 子类）</h2><ol>
+<li>使用as运算符向下转型.</li>
+<li>向上转型:把一个子类实例直接赋给一个父类引用变量，不用任何类型转换</li>
+<li>引用变量只能调用其编译时类型的方法，强制转换为其实际类型，可以调用运行时类型的方法，这种强制转换为向下转型</li>
+<li>向下转型运算符: 1. as!强制将运算符前面的引用变量转换为后面的类型。 2.(a..as?…b)!可选形式的向下转换</li>
+<li>向下转换只能在具有继承关系的两个类型之间进行</li>
+</ol>
+<h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//编译类型为NSObject的obj向下转换，程序可以运行</span><br><span class="line">let obj:NSObject = &quot;Hello&quot;</span><br><span class="line">let objStr:NSString = obj as! NSString</span><br><span class="line">print(objStr)</span><br><span class="line">//</span><br><span class="line">//编译类型为NSObject的obj向下转换为NSString，但实际上它运行时的类型为NSNumber。编译没问题，但运行相冲突</span><br><span class="line">let objPri:NSObject = 5</span><br><span class="line">let str:NSString = objPri as! NSString</span><br><span class="line">//</span><br><span class="line">//针对上述代码有以下两个解决方案</span><br><span class="line">//1.------- 先进行判断，再转换</span><br><span class="line">if objPri is NSString &#123; </span><br><span class="line">    let str: NSString = objPri as! NSString</span><br><span class="line">&#125;</span><br><span class="line">//</span><br><span class="line">//2.------- 使用可选类型转换符as?</span><br><span class="line">let str2:NSString = (objPri as? NSString)!</span><br></pre></td></tr></table></figure>
+<h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">    var name:String</span><br><span class="line">    var weight:Double</span><br><span class="line">    init(name:String, weight:Double)&#123;</span><br><span class="line">    self.name = name</span><br><span class="line">    self.weight = weight</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//</span><br><span class="line">class Apple:Fruit &#123;</span><br><span class="line">    var color:String</span><br><span class="line">    init(name: String, weight: Double,color:String) &#123;</span><br><span class="line">        self.color = color</span><br><span class="line">        super.init(name: name, weight: weight)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//</span><br><span class="line">class Grape: Fruit &#123;</span><br><span class="line">    var sugarRate:Double</span><br><span class="line">    init(name: String, weight: Double,sugarRate:Double) &#123;</span><br><span class="line">        self.sugarRate = sugarRate</span><br><span class="line">        super.init(name: name, weight: weight)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//</span><br><span class="line">//定义元素为any的数组，该数组的元素几乎可以放置任何数据</span><br><span class="line">var anyArray:[Any] = [</span><br><span class="line">    &quot;swift&quot;,</span><br><span class="line">    29,</span><br><span class="line">    [&quot;iOS&quot;:89,&quot;android&quot;:92],</span><br><span class="line">    Fruit(name: &quot;Cherry&quot;, weight: 2.3),</span><br><span class="line">    Apple(name: &quot;Pink lady&quot;, weight: 2.4, color: &quot;Pink&quot;)</span><br><span class="line">]</span><br><span class="line">//</span><br><span class="line">//遍历元素为Any的数组</span><br><span class="line">for element in anyArray&#123;</span><br><span class="line">//尝试将数组元素强转为Fruit，然后执行可选绑定</span><br><span class="line">    if let f = element as? Fruit &#123;</span><br><span class="line">        print(&quot;\(f.name)水果重\(f.weight)&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//</span><br><span class="line">//定义元素为AnyObject的数组，该数组的元素只能是对象</span><br><span class="line">var anyObjectArray:[AnyObject] = [</span><br><span class="line">     Fruit(name: &quot;Cherry&quot;, weight: 2.3),</span><br><span class="line">    Apple(name: &quot;Pink lady&quot;, weight: 2.4, color: &quot;Pink&quot;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h1 id="Any和AnyObject"><a href="#Any和AnyObject" class="headerlink" title="Any和AnyObject"></a>Any和AnyObject</h1><ol>
+<li>AnyObject: 可代表任何类的实例</li>
+<li>Any: 可代表任何类型，包括Int,Double等值类型，AnyObject修饰的实例</li>
+</ol>
+<h1 id="嵌套类型"><a href="#嵌套类型" class="headerlink" title="嵌套类型"></a>嵌套类型</h1><ol>
+<li>在一个类型的内部定义另一个类型</li>
+<li>Swift的枚举、类，结构体都可以定义嵌套类型</li>
+<li>Swift的嵌套类型支持多级嵌套</li>
+<li>嵌套类型不允许使用static或者class修饰</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class User &#123;</span><br><span class="line">    var holidays:[Weekday]</span><br><span class="line">    var location:Point</span><br><span class="line">    init(holidays:[Weekday],location:Point)&#123;</span><br><span class="line">    self.holidays = holidays</span><br><span class="line">    self.location = location</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个嵌套类型:结构体Point</span><br><span class="line">    struct Point &#123;</span><br><span class="line">        var latitude:Double</span><br><span class="line">        var longitude:Double</span><br><span class="line">        var position:Orientation</span><br><span class="line">        //嵌套枚举</span><br><span class="line">        enum Orientation&#123;</span><br><span class="line">        case Up,Left,Bottom,Right</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //定义一个嵌套类型:枚举Weekday</span><br><span class="line">    enum Weekday&#123; </span><br><span class="line">    case Monday, Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday</span><br><span class="line">        struct Duration &#123;</span><br><span class="line">            var num:Double</span><br><span class="line">            var unit:String</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;cup</span><br><span class="line">&#125;</span><br><span class="line">//使用嵌套类型时，需要以被嵌套类型的名字为前缀</span><br><span class="line">var user = User(holidays:[],location:User.Point(</span><br><span class="line">    latitude:-23.33,</span><br><span class="line">    longitude:122.11,</span><br><span class="line">    position:User.Point.Orientation.Left))</span><br><span class="line">//引用User.Weekday嵌套枚举</span><br><span class="line">user.holidays.append(User.Weekday.Saturday)</span><br><span class="line">user.holidays.append(User.Weekday.Sunday)</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>继承的特点，一个直接，多个间接，不写则无，不继承NSObject</li>
+<li>因为继承，所以可以重写属性，在重写属性中添加观察者，重写方法，下标，使用override，如果要不被重写，使用final</li>
+<li>多态，就是编译类型和运行类型不同，例如左侧变量属性是父类，右侧赋值是子类对象。</li>
+<li>向上转型:父类变量赋予子类的值，执行子类的方法，前提是该父类的方法被override</li>
+<li>向下转型:（父类的对象 as! 子类）,只能在具有继承关系的两个类型之间进行,转换前最好先进行is判断</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -1169,7 +1153,7 @@ int _age;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">84</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

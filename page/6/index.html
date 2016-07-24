@@ -238,349 +238,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/05/23/iOS设计模式-适配器/" itemprop="url">
-                  iOS设计模式-适配器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-23T09:26:19+10:00" content="2016-05-23">
-              2016-05-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/23/iOS设计模式-适配器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/23/iOS设计模式-适配器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="视图在中央"><a href="#视图在中央" class="headerlink" title="视图在中央"></a>视图在中央</h1><pre><code>cardView.center = self.view.center;
-</code></pre><h1 id="直接赋值的弊端"><a href="#直接赋值的弊端" class="headerlink" title="直接赋值的弊端"></a>直接赋值的弊端</h1><p>如果要修改的话，需要修改所有赋值(目前有三处)</p>
-<p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-cardView.name        = @&quot;Hello&quot;;
-cardView.lineColor   = [UIColor redColor];
-cardView.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-</code></pre><h1 id="对象赋值-封装"><a href="#对象赋值-封装" class="headerlink" title="对象赋值(封装)"></a>对象赋值(封装)</h1><p>以一个类进行封装，降低了耦合度，只需要修改一处(model)。但问题是，如果导入的对象与loadData方法不一致呢？</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-Model *model      = [[Model alloc] init];
-model.name        = @&quot;Hello&quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-
-[cardView loadData:model];
-</code></pre><h1 id="使用适配器模式"><a href="#使用适配器模式" class="headerlink" title="使用适配器模式"></a>使用适配器模式</h1><ol>
-<li>创建抽象适配器对象</li>
-<li>适配器与视图层建立输出联系</li>
-<li>适配器与数据层建立输入联系</li>
-<li>类适配器与对象适配器</li>
-</ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png" alt=""></p>
-<h2 id="Protocl-Adapter"><a href="#Protocl-Adapter" class="headerlink" title="Protocl + Adapter"></a>Protocl + Adapter</h2><p>BusinessCardAdapterProtocol</p>
-<pre><code>//输出的数据一致性
-@protocol BusinessCardAdapterProtocol &lt;NSObject&gt;
-
-- (NSString *)name;
-- (UIColor *)lineColor;
-- (NSString *)phoneNumber;
-</code></pre><p>BusinessCardAdapter (空实现，用来让子类继承)</p>
-<pre><code>@interface BusinessCardAdapter : NSObject &lt;BusinessCardAdapterProtocol&gt;
-@property (nonatomic, weak) id data;
-- (instancetype)initWithData:(id)data;
-
-@implementation BusinessCardAdapter
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-return nil;
-}
-
-- (UIColor *)lineColor {
-return nil;
-}
-
-- (NSString *)phoneNumber {
-return nil;
-}
-</code></pre><p>BusinessCardView</p>
-<pre><code>//加载数据(实现了BusinessCardAdapterProtocol协议的数据)
-- (void)loadData:(id &lt;BusinessCardAdapterProtocol&gt;)data {
-self.name        = [data name];
-self.lineColor   = [data lineColor];
-self.phoneNumber = [data phoneNumber];
-}
-</code></pre><h2 id="针对Model-class-的类适配器"><a href="#针对Model-class-的类适配器" class="headerlink" title="针对Model class 的类适配器"></a>针对Model class 的类适配器</h2><p>Model</p>
-<pre><code>@interface Model : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) UIColor  *lineColor;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-</code></pre><p>ModelAdapter(类适配器)</p>
-<pre><code>@interface ModelAdapter : BusinessCardAdapter
-
-@end
-
-@implementation ModelAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {        
-    self.data = data;
-}  
-return self;
-}
-
-- (NSString *)name {  
-Model *data = self.data; 
-return data.name;
-}
-
-- (UIColor *)lineColor {
-Model *data = self.data; 
-return data.lineColor;
-}
-
-- (NSString *)phoneNumber {
-Model *data = self.data;
-return data.phoneNumber;
-}
-
-@end
-</code></pre><p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-Model *model      = [[Model alloc] init];
-model.name        = @&quot;JiKeXueYuan&quot;;
-model.lineColor   = [UIColor redColor];
-model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[ModalAdapter alloc] initWithData:model];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-</code></pre><h2 id="针对NewCardModel的类适配器"><a href="#针对NewCardModel的类适配器" class="headerlink" title="针对NewCardModel的类适配器"></a>针对NewCardModel的类适配器</h2><p>NewCardModel</p>
-<pre><code>@interface NewCardModel : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *colorHexString;
-@property (nonatomic, strong) NSString *phoneNumber;
-@end
-</code></pre><p>NewCardModelApater (类适配器)</p>
-<pre><code>@interface NewCardModelApater : BusinessCardAdapter
-
-@end
-
-@implementation NewCardModelApater
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {
-    self.data = data;
-}
-return self;
-}
-
-- (NSString *)name {
-NewCardModel *data = self.data;
-return data.name;
-}
-
-- (UIColor *)lineColor {
-NewCardModel *data = self.data;
-// todo
-if ([data.colorHexString isEqualToString:@&quot;black&quot;]) {
-    return [UIColor blackColor];
-} else {
-    return [UIColor redColor];
-}
-}
-
-- (NSString *)phoneNumber {
-NewCardModel *data = self.data;
-return data.phoneNumber;
-}
-@end
-</code></pre><p>ViewController</p>
-<pre><code>BusinessCardView *cardView = [[BusinessCardView alloc] initWithFrame:BUSINESS_FRAME];
-
-NewCardModel *newCardModel  = [[NewCardModel alloc] init];
-newCardModel.name           = @&quot;JiKeXueYuan&quot;;
-newCardModel.colorHexString = @&quot;black&quot;;
-newCardModel.phoneNumber    = @&quot;101 - 5687 - 000&quot;;
-
-// 与输入建立联系
-BusinessCardAdapter *modelAdapter = [[NewCardModelApater alloc] initWithData:NewCardModel];
-
-// 与输出建立联系
-[cardView loadData:modelAdapter];
-</code></pre><h2 id="对象适配器-万能"><a href="#对象适配器-万能" class="headerlink" title="对象适配器(万能)"></a>对象适配器(万能)</h2><p>一个适配器解决所有数据模型，代码里会显得很臃肿</p>
-<pre><code>@interface CardAdapter : BusinessCardAdapter
-
-@end
-
-#import &quot;CardAdapter.h&quot;
-#import &quot;Model.h&quot;
-#import &quot;NewCardModel.h&quot;
-
-@implementation CardAdapter
-
-- (instancetype)initWithData:(id)data {
-self = [super init];
-if (self) {      
-    self.data = data;
-} 
-return self;
-}
-
-- (NSString *)name {
-NSString *name = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    name         = model.name;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    name                = model.name;
-}
-return name;
-}
-
-- (UIColor *)lineColor {
-UIColor *lineColor = nil;
-if ([self.data isMemberOfClass:[Model class]]) { 
-    Model *model = self.data;
-    lineColor    = model.lineColor; 
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    if ([model.colorHexString isEqualToString:@&quot;black&quot;]) {
-        lineColor = [UIColor blackColor];  
-    } else { 
-        lineColor = [UIColor redColor];
-    }
-}
-return lineColor;
-}
-
-- (NSString *)phoneNumber {
-NSString *phoneNumber = nil;
-if ([self.data isMemberOfClass:[Model class]]) {
-    Model *model = self.data;
-    phoneNumber  = model.phoneNumber;
-} else if ([self.data isMemberOfClass:[NewCardModel class]]) {
-    NewCardModel *model = self.data;
-    phoneNumber         = model.phoneNumber;
-}
-return phoneNumber;
-}
-@end
-</code></pre><h1 id="适配器的优点和缺点"><a href="#适配器的优点和缺点" class="headerlink" title="适配器的优点和缺点"></a>适配器的优点和缺点</h1><ol>
-<li>降低视图层和数据层的耦合度</li>
-<li>让一个类在不经过修改的情况下适应更多的情形</li>
-<li>代码可读性差，比较繁琐</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/05/22/iOS播放音频简介/" itemprop="url">
                   iOS播放音频简介
                 </a>
@@ -1225,6 +882,138 @@ NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/20/iOS数据存储-沙盒数据/" itemprop="url">
+                  iOS数据存储-沙盒数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-20T17:04:03+10:00" content="2016-05-20">
+              2016-05-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/20/iOS数据存储-沙盒数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-沙盒数据/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Sandbox-path"><a href="#Sandbox-path" class="headerlink" title="Sandbox path"></a>Sandbox path</h1><pre><code>var sp = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true)
+
+if sp.count &gt; 0{
+    let url = NSURL(fileURLWithPath: &quot;\(sp[0])/data.txt&quot;)
+    print(url)
+}
+</code></pre><h1 id="Write-Data"><a href="#Write-Data" class="headerlink" title="Write Data"></a>Write Data</h1><pre><code>let data = NSMutableData()
+data.appendData(&quot;Hello Swift\n&quot;.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
+data.writeToFile(url.path!, atomically: true)
+</code></pre><h1 id="Read-Data-Method-1"><a href="#Read-Data-Method-1" class="headerlink" title="Read Data - Method 1"></a>Read Data - Method 1</h1><pre><code>do {
+    let str1 = try NSString (contentsOfURL: url, encoding: NSUTF8StringEncoding)
+    print(str1)
+}catch{
+    print(error)
+}
+</code></pre><h1 id="Read-Data-Method-2"><a href="#Read-Data-Method-2" class="headerlink" title="Read Data - Method 2"></a>Read Data - Method 2</h1><pre><code>let data = NSData(contentsOfFile: url.path!)
+let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+print(str)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -1271,7 +1060,7 @@ NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">84</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
