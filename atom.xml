@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-07-25T11:16:33.000Z</updated>
+  <updated>2016-07-29T07:23:56.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>手机屏幕图像尺寸说明</title>
+    <link href="http://jackliu17.github.io/2016/07/29/%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%9B%BE%E5%83%8F%E5%B0%BA%E5%AF%B8%E8%AF%B4%E6%98%8E/"/>
+    <id>http://jackliu17.github.io/2016/07/29/手机屏幕图像尺寸说明/</id>
+    <published>2016-07-29T06:41:29.000Z</published>
+    <updated>2016-07-29T07:23:56.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;屏幕尺寸&quot;&gt;&lt;a href=&quot;#屏幕尺寸&quot; class=&quot;headerlink&quot; title=&quot;屏幕尺寸&quot;&gt;&lt;/a&gt;屏幕尺寸&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize2.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;像素密度&quot;&gt;&lt;a href=&quot;#像素密度&quot; class=&quot;headerlink&quot; title=&quot;像素密度&quot;&gt;&lt;/a&gt;像素密度&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize3.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize4.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;逻辑像素与物理像素&quot;&gt;&lt;a href=&quot;#逻辑像素与物理像素&quot; class=&quot;headerlink&quot; title=&quot;逻辑像素与物理像素&quot;&gt;&lt;/a&gt;逻辑像素与物理像素&lt;/h1&gt;&lt;p&gt;苹果引进一个逻辑像素的概念(pt)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize5.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize6.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize7.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;iPhone手机尺寸&quot;&gt;&lt;a href=&quot;#iPhone手机尺寸&quot; class=&quot;headerlink&quot; title=&quot;iPhone手机尺寸&quot;&gt;&lt;/a&gt;iPhone手机尺寸&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize8.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize9.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Android手机尺寸&quot;&gt;&lt;a href=&quot;#Android手机尺寸&quot; class=&quot;headerlink&quot; title=&quot;Android手机尺寸&quot;&gt;&lt;/a&gt;Android手机尺寸&lt;/h1&gt;&lt;p&gt;Android引进一个逻辑像素概念(dp)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize10.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize11.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize12.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize13.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/MobileImageSize1.p
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
+    
+  </entry>
   
   <entry>
     <title>美食台系列</title>
@@ -4252,273 +4289,6 @@ pspSystem.implementor = [[PSPImplementor alloc] init];
       &lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
 &lt;li&gt;通用的功能抽
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-工厂</title>
-    <link href="http://jackliu17.github.io/2016/05/29/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82/"/>
-    <id>http://jackliu17.github.io/2016/05/29/iOS设计模式-工厂/</id>
-    <published>2016-05-29T05:20:41.000Z</published>
-    <updated>2016-05-29T05:27:04.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;工厂&quot;&gt;&lt;a href=&quot;#工厂&quot; class=&quot;headerlink&quot; title=&quot;工厂&quot;&gt;&lt;/a&gt;工厂&lt;/h1&gt;&lt;p&gt;工厂&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;制造产品&lt;/li&gt;
-&lt;li&gt;将制造工艺进行了封装&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;客户&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;不参与手机制造流程&lt;/li&gt;
-&lt;li&gt;客户需要使用固定的产品(客户提出需求)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;简单工厂使用场景&quot;&gt;&lt;a href=&quot;#简单工厂使用场景&quot; class=&quot;headerlink&quot; title=&quot;简单工厂使用场景&quot;&gt;&lt;/a&gt;简单工厂使用场景&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;简化生产流程&lt;/li&gt;
-&lt;li&gt;隔离生产产品的细节&lt;/li&gt;
-&lt;li&gt;不同类型的产品之间有着一些共同的功能&lt;/li&gt;
-&lt;li&gt;一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;产品协议规范同一接口&quot;&gt;&lt;a href=&quot;#产品协议规范同一接口&quot; class=&quot;headerlink&quot; title=&quot;产品协议规范同一接口&quot;&gt;&lt;/a&gt;产品协议规范同一接口&lt;/h2&gt;&lt;p&gt;PhoneProtocol&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@protocol PhoneProtocol &amp;lt;NSObject&amp;gt;
-
-- (void)phoneCall;
-
-- (void)sendMessage;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;产品基类&quot;&gt;&lt;a href=&quot;#产品基类&quot; class=&quot;headerlink&quot; title=&quot;产品基类&quot;&gt;&lt;/a&gt;产品基类&lt;/h2&gt;&lt;p&gt;BaseDevie&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface BaseDevie : NSObject &amp;lt;PhoneProtocol&amp;gt;
-
-- (void)phoneCall {
-}
-
-- (void)sendMessage {
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;具体产品&quot;&gt;&lt;a href=&quot;#具体产品&quot; class=&quot;headerlink&quot; title=&quot;具体产品&quot;&gt;&lt;/a&gt;具体产品&lt;/h2&gt;&lt;p&gt;AndroidDevice&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface AndroidDevice : BaseDevie
-
-- (void)phoneCall {
-NSLog(@&amp;quot;Android phoneCall&amp;quot;);
-}
-
-- (void)sendMessage {   
-NSLog(@&amp;quot;Android sendMessage&amp;quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)customTheme {
-NSLog(@&amp;quot;Android customTheme&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;iPhoneDevice&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface iPhoneDevice : BaseDevie
-
-- (void)phoneCall {
-NSLog(@&amp;quot;iPhone phoneCall&amp;quot;);
-}
-
-- (void)sendMessage {   
-NSLog(@&amp;quot;iPhone sendMessage&amp;quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)fingerprintIndetification {
-NSLog(@&amp;quot;iPhone fingerprintIndetification&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NokiaDevice&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface NokiaDevice : BaseDevie
-
-- (void)phoneCall { 
-NSLog(@&amp;quot;Nokia phoneCall&amp;quot;);
-}
-
-- (void)sendMessage {
-NSLog(@&amp;quot;Nokia sendMessage&amp;quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)knockWalnut {
-NSLog(@&amp;quot;Nokia knockWalnut&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;工厂-1&quot;&gt;&lt;a href=&quot;#工厂-1&quot; class=&quot;headerlink&quot; title=&quot;工厂&quot;&gt;&lt;/a&gt;工厂&lt;/h2&gt;&lt;p&gt;DeviceFactory&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
-kiPhone   = 0x11,
-kAndroid,
-kNokia,
-
-} EDevieType;
-
-//根据用户提交的指令创建出具体的手机
-+ (BaseDevie &amp;lt;PhoneProtocol&amp;gt; *)deviceFactoryWithDevieType:(EDevieType)type {
-
-BaseDevie &amp;lt;PhoneProtocol&amp;gt; *device = nil;  
-
-if (type == kiPhone) { 
-
-    device = [[iPhoneDevice alloc] init];
-
-}  else if (type == kAndroid) {
-
-    device = [[AndroidDevice alloc] init];
-
-}  else if (type == kNokia) {
-
-    device = [[NokiaDevice alloc] init];
-
-}
-
-return device;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;工厂的使用&quot;&gt;&lt;a href=&quot;#工厂的使用&quot; class=&quot;headerlink&quot; title=&quot;工厂的使用&quot;&gt;&lt;/a&gt;工厂的使用&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 工厂中创建出具体产品，如果仅仅是使用通用的功能sendMsg,phoneCall，类型为BaseDevice也可以
-
-iPhoneDevice *iPhone = (iPhoneDevice *)[DeviceFactory deviceFactoryWithDevieType:kiPhone];
-
-// 使用产品的功能
-[iPhone fingerprintIndetification];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;抽象工厂&quot;&gt;&lt;a href=&quot;#抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;抽象工厂&quot;&gt;&lt;/a&gt;抽象工厂&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;工厂是抽象类，需要实例化子类&lt;/li&gt;
-&lt;li&gt;抽象工厂使用比简单工厂更加灵活，因为可以动态的切换工厂&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory05.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;产品-Phone&quot;&gt;&lt;a href=&quot;#产品-Phone&quot; class=&quot;headerlink&quot; title=&quot;产品 Phone&quot;&gt;&lt;/a&gt;产品 Phone&lt;/h2&gt;&lt;p&gt;Phone基类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface BasePhone : NSObject
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Phone子类之Android&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Android : BasePhone
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Phone子类之iPhone&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface iPhone : BasePhone
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;产品-Watch&quot;&gt;&lt;a href=&quot;#产品-Watch&quot; class=&quot;headerlink&quot; title=&quot;产品 Watch&quot;&gt;&lt;/a&gt;产品 Watch&lt;/h2&gt;&lt;p&gt;Whatch产品基类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface BaseWatch : NSObject
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Whatch产品子类之iWatch&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface iWatch : BaseWatch
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Whatch产品子类之AndroidWatch&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface AndroidWatch : BaseWatch
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;工厂-2&quot;&gt;&lt;a href=&quot;#工厂-2&quot; class=&quot;headerlink&quot; title=&quot;工厂&quot;&gt;&lt;/a&gt;工厂&lt;/h2&gt;&lt;p&gt;工厂基类&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@implementation BaseFactory
-
-- (BasePhone *)createPhone {
-
-return nil;
-}
-
-- (BaseWatch *)createWatch {
-
-return nil;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;工厂子类Apple&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface AppleFactory : BaseFactory
-
-- (BasePhone *)createPhone {
-
-return [[iPhone alloc] init];
-}
-
-- (BaseWatch *)createWatch {
-
-return [[iWatch alloc] init];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;工厂子类Google&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface GoogleFactory : BaseFactory
-
-- (BasePhone *)createPhone {
-
-return [[Android alloc] init];
-}
-
-- (BaseWatch *)createWatch {
-
-return [[AndroidWatch alloc] init];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建具体工厂&quot;&gt;&lt;a href=&quot;#创建具体工厂&quot; class=&quot;headerlink&quot; title=&quot;创建具体工厂&quot;&gt;&lt;/a&gt;创建具体工厂&lt;/h2&gt;&lt;p&gt;FactoryManager&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
-
-kApple   = 0x11,
-kGoogle,
-
-} EFactoryType;
-
-@interface FactoryManager : NSObject
-
-+ (BaseFactory *)factoryWithBrand:(EFactoryType)factoryType {
-
-BaseFactory *factory = nil;
-
-if (factoryType == kApple) {
-
-    factory = [[AppleFactory alloc] init];
-
-} else if (factoryType == kGoogle) {
-
-    factory = [[GoogleFactory alloc] init];
-}
-
-return factory;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;工厂的使用-1&quot;&gt;&lt;a href=&quot;#工厂的使用-1&quot; class=&quot;headerlink&quot; title=&quot;工厂的使用&quot;&gt;&lt;/a&gt;工厂的使用&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 获取工厂
-BaseFactory *factory = [FactoryManager factoryWithBrand:kGoogle];
-
-// 创建商品
-BasePhone *phone = [factory createPhone];
-BaseWatch *watch = [factory createWatch];
-
-NSLog(@&amp;quot;%@ %@&amp;quot;, phone, watch);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;框架级别的工厂类-NSNumber&quot;&gt;&lt;a href=&quot;#框架级别的工厂类-NSNumber&quot; class=&quot;headerlink&quot; title=&quot;框架级别的工厂类:NSNumber&quot;&gt;&lt;/a&gt;框架级别的工厂类:NSNumber&lt;/h1&gt;&lt;p&gt;因为NSNumber是抽象类，所以以下代码结果为null，NSNumber是一个抽象类，其父类NSValue也是&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;%@&amp;quot;, [[NSNumber alloc] init]);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;根据客户需求，制造出相关工厂&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSNumber *number     = [NSNumber numberWithInt:100];
-NSNumber *floatValue = [NSNumber numberWithFloat:100.f];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下结果都为d,产品可以互相转换，因为NSNumber只处理数值型的数据.这是和普通抽象工厂不同的地方&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;%c&amp;quot;, [number charValue]);
-NSLog(@&amp;quot;%c&amp;quot;, [floatValue charValue]);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;枚举类型的定义&quot;&gt;&lt;a href=&quot;#枚举类型的定义&quot; class=&quot;headerlink&quot; title=&quot;枚举类型的定义&quot;&gt;&lt;/a&gt;枚举类型的定义&lt;/h1&gt;&lt;p&gt;使用枚举定义手机的类型，注意起名字时，用大写的E+名字 = EDevieType&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
-kiPhone   = 0x11,
-kAndroid,
-kNokia,
-
-} EDevieType;    
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;工厂&quot;&gt;&lt;a href=&quot;#工厂&quot; class=&quot;headerlink&quot; title=&quot;工厂&quot;&gt;&lt;/a&gt;工厂&lt;/h1&gt;&lt;p&gt;工厂&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;制造产品&lt;/li&gt;
-&lt;li&gt;将制造工艺进行了封装&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;客户&lt;/p&gt;
-&lt;ol&gt;
-&lt;li
     
     </summary>
     
