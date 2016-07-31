@@ -79,10 +79,10 @@
 
 
 命令模式在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png">
-<meta property="og:updated_time" content="2016-06-03T09:05:19.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T05:03:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-命令">
 <meta name="twitter:description" content="电视机、遥控器与接收器之间的关系
@@ -92,7 +92,7 @@
 
 
 命令模式在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1">
 
 
 
@@ -321,8 +321,8 @@
 <li>遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以</li>
 <li>接收器转换遥控器的信号</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1" alt=""></p>
 <h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途</p>
 <ol>
 <li>Client:可以有多个实体，client即使没有receiver，自身也能操作。</li>
@@ -407,7 +407,7 @@ NSParameterAssert(command);
 // todo
 }
 @end
-</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png" alt=""></p>
+</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1" alt=""></p>
 <p>ViewController</p>
 <pre><code>typedef enum : NSUInteger {
 

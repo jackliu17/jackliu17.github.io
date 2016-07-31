@@ -83,9 +83,9 @@ Cocoa系统中的单例应用[[UIApplication sharedApplication]statusBarStyle];
 Cocoa系统中的单例应用[[UIApplication sharedApplication]statusBarStyle];
 
 [[NSNotificationCenter defaultCenter]addObserver:&amp;lt;#(nonnull id)#&amp;gt;">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton02.png">
-<meta property="og:updated_time" content="2016-05-31T03:47:34.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/21iehlpgzexkwqa/iOS_designPatternSingleton02.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T05:01:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-单例">
 <meta name="twitter:description" content="单例模式
@@ -97,7 +97,7 @@ Cocoa系统中的单例应用[[UIApplication sharedApplication]statusBarStyle];
 Cocoa系统中的单例应用[[UIApplication sharedApplication]statusBarStyle];
 
 [[NSNotificationCenter defaultCenter]addObserver:&amp;lt;#(nonnull id)#&amp;gt;">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1">
 
 
 
@@ -327,7 +327,7 @@ Cocoa系统中的单例应用[[UIApplication sharedApplication]statusBarStyle];
 <li>单例类基本是用来管理某种资源的，而这种资源是可以全局共享的</li>
 <li><strong>只有一个实例</strong></li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1" alt=""></p>
 <h1 id="Cocoa系统中的单例应用"><a href="#Cocoa系统中的单例应用" class="headerlink" title="Cocoa系统中的单例应用"></a>Cocoa系统中的单例应用</h1><pre><code>[[UIApplication sharedApplication]statusBarStyle];
 
 [[NSNotificationCenter defaultCenter]addObserver:&lt;#(nonnull id)#&gt;
@@ -470,7 +470,7 @@ if ([string isKindOfClass:[NSString class]] == YES &amp;&amp; [string isEqualToS
 }
 </code></pre><h1 id="单例模式优化本地存储"><a href="#单例模式优化本地存储" class="headerlink" title="单例模式优化本地存储"></a>单例模式优化本地存储</h1><h2 id="第三方库-FastCoding"><a href="#第三方库-FastCoding" class="headerlink" title="第三方库:FastCoding"></a>第三方库:FastCoding</h2><p>替换NSCoding协议, plist, JSON等，直接将数据存为NSData类型</p>
 <p>下载地址:<a href="https://github.com/nicklockwood/FastCoding" target="_blank" rel="external">FastCoding</a></p>
-<h2 id="关闭ARC"><a href="#关闭ARC" class="headerlink" title="关闭ARC"></a>关闭ARC</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton02.png" alt=""></p>
+<h2 id="关闭ARC"><a href="#关闭ARC" class="headerlink" title="关闭ARC"></a>关闭ARC</h2><p><img src="https://www.dropbox.com/s/21iehlpgzexkwqa/iOS_designPatternSingleton02.png?dl=1" alt=""></p>
 <h2 id="用单例设计存储数据接口"><a href="#用单例设计存储数据接口" class="headerlink" title="用单例设计存储数据接口"></a>用单例设计存储数据接口</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key;
 - (id)valueWithKey:(NSString *)key;
 </code></pre><h2 id="用单例接口隔离实现细节"><a href="#用单例接口隔离实现细节" class="headerlink" title="用单例接口隔离实现细节"></a>用单例接口隔离实现细节</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key {

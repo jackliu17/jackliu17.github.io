@@ -73,18 +73,18 @@
 
 定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
 步骤: 共享物件的提取 —&amp;gt;">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png">
-<meta property="og:updated_time" content="2016-06-05T05:45:09.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T04:56:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-享元">
 <meta name="twitter:description" content="享元模式交叉的圆环，提取出公共部分进行复用。
 
 定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
 步骤: 共享物件的提取 —&amp;gt;">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1">
 
 
 
@@ -314,8 +314,8 @@
 <li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
 <li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1" alt=""></p>
 <pre><code>@interface ViewController ()
 
 @property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
@@ -364,8 +364,8 @@ if (self.flyweightFactory[name]==nil) {
 <li>咖啡table</li>
 <li>咖啡清单</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1" alt=""></p>
 <p>CoffeeFlavor</p>
 <pre><code>@interface CoffeeFlavor : NSObject
 @property (nonatomic, strong) NSString *flavor;

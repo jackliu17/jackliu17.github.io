@@ -311,13 +311,13 @@
 <li>张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        </li>
 <li>联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/1mrxd33ritd8fb7/iOS_designPatternTemplate01.png?dl=1" alt=""></p>
 <h1 id="模板模式特点"><a href="#模板模式特点" class="headerlink" title="模板模式特点"></a>模板模式特点</h1><ol>
 <li>过程殊途同归 </li>
 <li>将共同行为/流程抽象成算法的骨架</li>
 <li>利用OO的多态，让子类继承重写</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/qt3gp80jv1i85wo/iOS_designPatternTemplate02.png?dl=1" alt=""></p>
 <h1 id="Cocoa-框架中用到的模板模式-Override"><a href="#Cocoa-框架中用到的模板模式-Override" class="headerlink" title="Cocoa 框架中用到的模板模式(Override)"></a>Cocoa 框架中用到的模板模式(Override)</h1><p>CustomCell</p>
 <pre><code>@interface CustomCell : UITableViewCell
 
@@ -580,8 +580,8 @@ NSLog(@&quot;play football game.&quot;);
 <li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
 <li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1" alt=""></p>
 <pre><code>@interface ViewController ()
 
 @property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
@@ -630,8 +630,8 @@ if (self.flyweightFactory[name]==nil) {
 <li>咖啡table</li>
 <li>咖啡清单</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1" alt=""></p>
 <p>CoffeeFlavor</p>
 <pre><code>@interface CoffeeFlavor : NSObject
 @property (nonatomic, strong) NSString *flavor;
@@ -844,8 +844,8 @@ if (self.flyweightFactory[name]==nil) {
 <li>定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的</li>
 <li>种类:链表，栈，队列</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1" alt=""></p>
 <h1 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h1><p>Node</p>
 <pre><code>@interface Node : NSObject
 //指向下一个节点
@@ -922,7 +922,7 @@ if (node.nextNode == nil) {
 
 @end
 </code></pre><h1 id="系统迭代器-NSEnumerator"><a href="#系统迭代器-NSEnumerator" class="headerlink" title="系统迭代器: NSEnumerator"></a>系统迭代器: NSEnumerator</h1><p>迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIter04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1" alt=""></p>
 <pre><code>// 创建集合对象, 可以是数组，字典，集合等..
 NSArray *datas = @[@&quot;A&quot;, @&quot;B&quot;, @&quot;C&quot;, @&quot;D&quot;];
 
@@ -934,7 +934,7 @@ id arrayObj = nil;
 while (arrayObj = [iterator nextObject]) {
     NSLog(@&quot;%@&quot;, arrayObj);
 }
-</code></pre><h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator01.png" alt=""></p>
+</code></pre><h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p><img src="https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1" alt=""></p>
 <p>LinkedList:头元素必须已经实现了空实现</p>
 <pre><code>- (instancetype)init{
 
@@ -1298,9 +1298,9 @@ while (node = [customView nextObject]) {
 <li>外层和内层具有相似的结构</li>
 <li>可以递归的表示</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite02.png" alt=""></p>
-<h1 id="简易的二叉树"><a href="#简易的二叉树" class="headerlink" title="简易的二叉树"></a>简易的二叉树</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/l1vo0cv0eyojcnm/iOS_designPatternComposite01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/mg3smynabreawjx/iOS_designPatternComposite02.png?dl=1" alt=""></p>
+<h1 id="简易的二叉树"><a href="#简易的二叉树" class="headerlink" title="简易的二叉树"></a>简易的二叉树</h1><p><img src="https://www.dropbox.com/s/pj2coj2fk0le8mt/iOS_designPatternComposite04.png?dl=1" alt=""></p>
 <p>Node</p>
 <pre><code>@interface Node : NSObject
 
@@ -1378,8 +1378,8 @@ if (node.rightNode) {
 <li>组合模式，将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
 <li>掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite03.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite05.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/7t4gchgj3fjl2d3/iOS_designPatternComposite03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/bpvdq156u7hjopy/iOS_designPatternComposite05.png?dl=1" alt=""></p>
 <p>Node </p>
 <pre><code>@interface Node : NSObject
 
@@ -1475,7 +1475,7 @@ Node *c = [Node nodeWithNodeName:@&quot;C&quot;];
 NSLog(@&quot;%@&quot;, self.rootNode.childNodes);
 NSLog(@&quot;%@&quot;, c.childNodes);
 }
-</code></pre><h1 id="编写文件夹系统"><a href="#编写文件夹系统" class="headerlink" title="编写文件夹系统"></a>编写文件夹系统</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite06.png" alt=""></p>
+</code></pre><h1 id="编写文件夹系统"><a href="#编写文件夹系统" class="headerlink" title="编写文件夹系统"></a>编写文件夹系统</h1><p><img src="https://www.dropbox.com/s/mwdqu4m17v8rd01/iOS_designPatternComposite06.png?dl=1" alt=""></p>
 <p>File</p>
 <pre><code>typedef enum : NSUInteger {
 kFile,   // 文件
@@ -1982,8 +1982,8 @@ return cell;
 <li>遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以</li>
 <li>接收器转换遥控器的信号</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1" alt=""></p>
 <h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途</p>
 <ol>
 <li>Client:可以有多个实体，client即使没有receiver，自身也能操作。</li>
@@ -2068,7 +2068,7 @@ NSParameterAssert(command);
 // todo
 }
 @end
-</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png" alt=""></p>
+</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1" alt=""></p>
 <p>ViewController</p>
 <pre><code>typedef enum : NSUInteger {
 

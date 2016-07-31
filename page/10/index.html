@@ -313,7 +313,7 @@
 <li>使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形</li>
 <li>CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRect方法使用CPU渲染而言，其效率极高，能大大优化内存使用情况</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/cvhdro7bp0xx6v5/iOS_CAShaperLayer01.gif?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -421,7 +421,7 @@ return starPath;
 <li>贝塞尔曲线给CAShapeLayer提供路径，CAShapeLayer在提供的路径中进行渲染，路径会闭环，所以路径绘制出了Shape</li>
 <li>用于CAShapeLayer的贝塞尔曲线作为path，其path是一个首尾相接的闭环的曲线，即使该贝塞尔曲线不是一个闭环的曲线</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/7xqahnswjtjcxtr/iOS_CAShaperLayer02.png?dl=1" alt=""></p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
 [super viewDidLoad];
 // Do any additional setup after loading the view, typically from a nib.
@@ -462,7 +462,7 @@ shape.path = circle.CGPath;
 <li>将strokeStart值设定成0，然后让strokeEnd的值变化触发隐式动画</li>
 <li>strokeStart的值一定小于strokeEnd</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer03.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/pn5bbap1s76x5r0/iOS_CAShaperLayer03.gif?dl=1" alt=""></p>
 <h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -533,7 +533,7 @@ _shapeLayer.strokeEnd   = valueOne &gt; valueTwo ? valueOne : valueTwo;
 <li>实现细节</li>
 <li>进行测试</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer04.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/tkrd6wrarlhtudu/iOS_CAShaperLayer04.gif?dl=1" alt=""></p>
 <h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
 <pre><code>#import &quot;ViewController.h&quot;
 #import &quot;CircleView.h&quot;
@@ -770,7 +770,7 @@ return _value;
 <li>用定时器（NSTimer）模拟网络下载时提供的百分比数据</li>
 <li>将CALayer封装进UIView子类中定制进度条控件</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/p85qj9gqy65qp0x/iOS_CALayer_progressView.png?dl=1" alt=""></p>
 <h2 id="隐式动画进度条"><a href="#隐式动画进度条" class="headerlink" title="隐式动画进度条"></a>隐式动画进度条</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -915,14 +915,14 @@ self.progressView.progress = arc4random() % 100 / 100.f;
 }
 
 @end
-</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png" alt=""></p>
+</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="https://www.dropbox.com/s/4hyv6lh6xqqpgrx/iOS_CALayer01.png?dl=1" alt=""></p>
 <ol>
 <li>操作UIImageView的CALayer修改其bounds值进行显式动画</li>
 <li>修改UIImageView的CALayer中的contents属性实现切换图片的动画</li>
 <li>用CAAnimationGroup将bounds动画与contents动画组合起来</li>
 <li>将上述效果封装进UIView的子类中生成控件</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/m5ljnv98uipknys/iOS_CALayer03.png?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 #define NO_EXECUTE  0  // 不执行
@@ -1004,7 +1004,7 @@ if (EXECUTE) {
     [self.imageLayer addAnimation:groupAnimation forKey:nil];
 }
 }
-</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png" alt=""></p>
+</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="https://www.dropbox.com/s/jgruq52nnwtnz69/iOS_CALayer2.png?dl=1" alt=""></p>
 <ol>
 <li>遮罩原理的分析</li>
 <li>用png图片作为CALayer中mask属性的遮罩Layer</li>
@@ -1247,7 +1247,7 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
       
         
           
-            <h1 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawline.png" alt=""></p>
+            <h1 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h1><p><img src="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>class DrawLinesView: UIView {
 
 // Only override drawRect: if you perform custom drawing.
@@ -1280,7 +1280,7 @@ override func drawRect(rect: CGRect) {
     CGContextStrokePath(context)
 
 }
-</code></pre><h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect.png" alt=""></p>
+</code></pre><h1 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h1><p><img src="https://www.dropbox.com/s/yk2pao4t89qow7u/iOS_drawRect.png?dl=1" alt=""></p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
 class DrawRectView: UIView {
@@ -1307,7 +1307,7 @@ let context = UIGraphicsGetCurrentContext()
 
 }
 }
-</code></pre><h1 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle.png" alt=""></p>
+</code></pre><h1 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h1><p><img src="https://www.dropbox.com/s/d0z2crcgf3h8n9x/iOS_drawCircle.png?dl=1" alt=""></p>
 <h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
 class DrawCircle: UIView { 
@@ -1338,7 +1338,7 @@ let context = UIGraphicsGetCurrentContext()
     CGContextStrokePath(context)
 }
 }
-</code></pre><h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage.png" alt=""></p>
+</code></pre><h1 id="绘制图片"><a href="#绘制图片" class="headerlink" title="绘制图片"></a>绘制图片</h1><p><img src="https://www.dropbox.com/s/j1kehrt8ah9inxf/iOS_drawImage.png?dl=1" alt=""></p>
 <h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><pre><code>import UIKit
 
 class DrawImageView: UIView {
@@ -1641,7 +1641,7 @@ return _emitterLayer;
 <li>从封装CAEmitterLayer的“抽象”父类继承的原因</li>
 <li>下雪、下雨效果参数的设置</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAEmitterLayer.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/mite4jgig19v95e/iOS_CAEmitterLayer.png?dl=1" alt=""></p>
 <h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
 <pre><code>- (void)viewDidLoad {
 [super viewDidLoad];
@@ -1822,7 +1822,7 @@ return [CAEmitterLayer class];
 <li>两点之间插的值越多，效果越好，但是会耗费更多的性能</li>
 <li>只有理解了缓动函数的原理才有可能写出自己想要的效果</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/2weqj3n0ctq5otw/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0.png?dl=1" alt=""></p>
 <h1 id="缓动函数与关键帧动画的联系"><a href="#缓动函数与关键帧动画的联系" class="headerlink" title="缓动函数与关键帧动画的联系"></a>缓动函数与关键帧动画的联系</h1><ol>
 <li>关键帧动画需要提供很多的帧来完善动画效果</li>
 <li>关键帧动画的帧可以通过一定的数学计算来提供需要的帧数</li>
@@ -1869,7 +1869,7 @@ showView.center = CGPointMake(200, 200);
 <li>将easeOutElastic创建出来的帧数组添加到关键帧动画中</li>
 <li>弹簧效果用途</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_spring.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/jvva7m0kl11mm8l/iOS_spring.png?dl=1" alt=""></p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 #import &quot;YXEasing.h&quot;
 @interface ViewController ()

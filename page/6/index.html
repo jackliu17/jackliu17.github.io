@@ -307,7 +307,7 @@
       
         
           
-            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png" alt=""></p>
+            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1" alt=""></p>
 <p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
 <pre><code>typedef enum : NSUInteger {
 
@@ -341,7 +341,7 @@ if (type == EType_01) {
 
     // showStri
     ......
-</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png" alt=""></p>
+</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1" alt=""></p>
 <ol>
 <li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
 <li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
@@ -561,7 +561,7 @@ model.phoneNumber = @&quot;101 - 5687 - 000&quot;;
 <li>适配器与数据层建立输入联系</li>
 <li>类适配器与对象适配器</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0201.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/tfzq80tuu5hij9x/iOS_designPattern0201.png?dl=1" alt=""></p>
 <h2 id="Protocl-Adapter"><a href="#Protocl-Adapter" class="headerlink" title="Protocl + Adapter"></a>Protocl + Adapter</h2><p>BusinessCardAdapterProtocol</p>
 <pre><code>//输出的数据一致性
 @protocol BusinessCardAdapterProtocol &lt;NSObject&gt;
@@ -1083,7 +1083,7 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
 @property (nonatomic, strong) FadeAnimationView *fadeAnimationView;
 
 - (void)changeToErrorStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration;
-</code></pre><h1 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0101.png" alt=""></p>
+</code></pre><h1 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h1><p><img src="https://www.dropbox.com/s/8kgygcd374w8m36/iOS_designPattern0101.png?dl=1" alt=""></p>
 <p>两本书推荐阅读</p>
 <ol>
 <li>Pro Design Patterns in Swift  (By Adam Freeman)</li>

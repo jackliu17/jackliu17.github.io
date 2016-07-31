@@ -307,7 +307,7 @@
       
         
           
-            <p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_pushNotificationProcess.png" alt=""></p>
+            <p><img src="https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1" alt=""></p>
 
           
         
@@ -735,9 +735,9 @@ let json =  try NSJSONSerialization.JSONObjectWithData(weatherData!, options: NS
 </tr>
 </tbody>
 </table>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator03.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/y5dx2bzuvl3ruzg/iOS_designPatternMediator02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/hiwds9gy7syplxs/iOS_designPatternMediator03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8sqw87ls7sdyzh9/iOS_designPatternMediator01.png?dl=1" alt=""></p>
 <p>AbstractMediator</p>
 <pre><code>@interface AbstractMediator : NSObject &lt;ColleagueDelegate&gt;
 
@@ -773,8 +773,8 @@ let json =  try NSJSONSerialization.JSONObjectWithData(weatherData!, options: NS
 <li>MVC中的控制器viewController就相当于中介</li>
 <li>为何要使用中介者：解决复杂的交互问题，对象之间有大量的交互逻辑，彼此互相关联</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator04.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designpatternMediator05.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/5sh3jplqfnhlxr0/iOS_designPatternMediator04.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/mlfyqqf2l50irlj/iOS_designpatternMediator05.png?dl=1" alt=""></p>
 <p>Colleague</p>
 <pre><code>@interface Colleague : AbstractColleague
 
@@ -991,7 +991,7 @@ NSLog(@&quot;%@&quot;, [self.mediator values]);
 <li>货物种类 —&gt; 特定种类的货物</li>
 </ol>
 <p>特点:提升效率</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/ifhh4d0f2oxy9zh/iOS_designPatternChains01.png?dl=1" alt=""></p>
 <h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><p>定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。</p>
 <p>步骤:</p>
 <ol>
@@ -999,7 +999,7 @@ NSLog(@&quot;%@&quot;, [self.mediator values]);
 <li>将责任对象链接起来</li>
 <li>处理输入的事件</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/usl9cvfj7aaly1m/iOS_designPatternChains02.png?dl=1" alt=""></p>
 <p>ChainProtocol</p>
 <pre><code>protocol ChainProtocol &lt;NSObject&gt;
 
@@ -1019,7 +1019,7 @@ NSLog(@&quot;%@&quot;, [self.mediator values]);
 <li>严格说来还要设定一个尾节点，处理什么都不是的情况</li>
 <li>如果用if else的话，就不能进行拆解</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/s3c2zqcwuitmeug/iOS_designPatternChains03.png?dl=1" alt=""></p>
 <p>ChainProtocol</p>
 <pre><code>@protocol ChainProtocol &lt;NSObject&gt;
 - (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;

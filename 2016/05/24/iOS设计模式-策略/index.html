@@ -101,9 +101,9 @@ EType_09,
 
 // 输入条件
 ETypes">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png">
-<meta property="og:updated_time" content="2016-05-24T09:29:00.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T05:41:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-策略">
 <meta name="twitter:description" content="if-else的问题
@@ -124,7 +124,7 @@ EType_09,
 
 // 输入条件
 ETypes">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1">
 
 
 
@@ -349,7 +349,7 @@ ETypes">
       
 
       
-        <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0301.png" alt=""></p>
+        <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1" alt=""></p>
 <p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
 <pre><code>typedef enum : NSUInteger {
 
@@ -383,7 +383,7 @@ if (type == EType_01) {
 
     // showStri
     ......
-</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0302.png" alt=""></p>
+</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1" alt=""></p>
 <ol>
 <li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
 <li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>

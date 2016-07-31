@@ -75,19 +75,19 @@ Objective-C有私有方法吗，私有变量呢?Objectivie-C类里面的方法�
 const作用
 欲阻止一个变量被改变，可以使用const关键字
 对指针来">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview01.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview02.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview03.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview04.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview05.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview06.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview07.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview08.png">
-<meta property="og:updated_time" content="2016-06-07T01:45:41.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/nega0usx6oi48up/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/d8h7the90dc74df/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/k29ki9s4xe6jw38/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6b4aaucmt2brqy5/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/kka7ecjtjksf1qy/iOS_interview01.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/2k9gef27xl0u17z/iOS_interview02.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/8jkmqae1kle1plu/iOS_interview03.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6f8k9a5tn7lkp3z/iOS_interview04.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/fclbhqclqlj98py/iOS_interview05.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/laoq5kmvxzrd3wq/iOS_interview06.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/2nuzt7gjh91d9z0/iOS_interview07.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/df3yir03445koq3/iOS_interview08.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T04:40:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发面试">
 <meta name="twitter:description" content="Objective-C有多重继承吗？不是的话有什么替代方法?cocoa中所有的类都是NSObject的子类，多继承在这里是用protocol委托代理实现的
@@ -95,7 +95,7 @@ Objective-C有私有方法吗，私有变量呢?Objectivie-C类里面的方法�
 const作用
 欲阻止一个变量被改变，可以使用const关键字
 对指针来">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/nega0usx6oi48up/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png?dl=1">
 
 
 
@@ -359,9 +359,9 @@ const作用
 <li>通过分配和初始化([[MyClass alloc]init])的方式来创建对象，那就拥有这个对象，需要负责该对象的释放。这个规则在使用NSObject的便利方法new时也同样适用。</li>
 <li>如果您拷贝(copy)一个对象，您也拥有拷贝得到的对象，需要负责该对象的释放。如果您保持(retain)一个对象，你就部分拥有这个对象，需要<br>在不再使用时释放该对象。反过来如果您从其他对象那里接收到一个对象。则您不再拥有该对象。也不应该释放它。</li>
 </ol>
-<h3 id="自动释放池是什么，如何工作"><a href="#自动释放池是什么，如何工作" class="headerlink" title="自动释放池是什么，如何工作"></a>自动释放池是什么，如何工作</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png" alt="自动释放池"></p>
-<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png" alt="堆和栈的区别1"><br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png" alt="堆和栈的区别2"></p>
-<h3 id="swift新特性"><a href="#swift新特性" class="headerlink" title="swift新特性"></a>swift新特性</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png" alt="swift新特性"></p>
+<h3 id="自动释放池是什么，如何工作"><a href="#自动释放池是什么，如何工作" class="headerlink" title="自动释放池是什么，如何工作"></a>自动释放池是什么，如何工作</h3><p><img src="https://www.dropbox.com/s/nega0usx6oi48up/%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0.png?dl=1" alt="自动释放池"></p>
+<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><img src="https://www.dropbox.com/s/d8h7the90dc74df/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB1.png?dl=1" alt="堆和栈的区别1"><br><img src="https://www.dropbox.com/s/k29ki9s4xe6jw38/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB2.png?dl=1" alt="堆和栈的区别2"></p>
+<h3 id="swift新特性"><a href="#swift新特性" class="headerlink" title="swift新特性"></a>swift新特性</h3><p><img src="https://www.dropbox.com/s/6b4aaucmt2brqy5/Swift%E6%96%B0%E7%89%B9%E6%80%A7.png?dl=1" alt="swift新特性"></p>
 <h3 id="MVC的理解"><a href="#MVC的理解" class="headerlink" title="MVC的理解"></a>MVC的理解</h3><p>MVC设计模式考虑三种对象:数据模型对象，视图对象，和控制器对象。</p>
 <ol>
 <li>数据模型:负责存储，定义，操作数据</li>
@@ -415,14 +415,14 @@ const作用
 <li>响应者链表示一系列的响应者对象。事件被交由第一响应者对象处理，如果第一响应者不处理，事件被沿着响应者链向上传递，交给下一个响应者(next responder)</li>
 <li>View -&gt; ViewController -&gt; Window -&gt; application -&gt;丢弃事件</li>
 </ol>
-<h3 id="SVN-Git-使用"><a href="#SVN-Git-使用" class="headerlink" title="SVN Git 使用"></a>SVN Git 使用</h3><h3 id="打包静态库"><a href="#打包静态库" class="headerlink" title="打包静态库"></a>打包静态库</h3><h3 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h3><h3 id="Storyboard的使用"><a href="#Storyboard的使用" class="headerlink" title="Storyboard的使用"></a>Storyboard的使用</h3><h3 id="CALayer与UIView的区别"><a href="#CALayer与UIView的区别" class="headerlink" title="CALayer与UIView的区别"></a>CALayer与UIView的区别</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview01.png" alt=""></p>
-<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview02.png" alt=""></p>
-<h3 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview03.png" alt=""></p>
-<h3 id="Socket与Http连接"><a href="#Socket与Http连接" class="headerlink" title="Socket与Http连接"></a>Socket与Http连接</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview04.png" alt=""></p>
-<h3 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview05.png" alt=""></p>
-<h3 id="iOS中对象的通信方式"><a href="#iOS中对象的通信方式" class="headerlink" title="iOS中对象的通信方式"></a>iOS中对象的通信方式</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview06.png" alt=""></p>
-<h3 id="XML与JSON解析"><a href="#XML与JSON解析" class="headerlink" title="XML与JSON解析"></a>XML与JSON解析</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview07.png" alt=""></p>
-<h3 id="CoreData"><a href="#CoreData" class="headerlink" title="CoreData"></a>CoreData</h3><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_interview08.png" alt=""></p>
+<h3 id="SVN-Git-使用"><a href="#SVN-Git-使用" class="headerlink" title="SVN Git 使用"></a>SVN Git 使用</h3><h3 id="打包静态库"><a href="#打包静态库" class="headerlink" title="打包静态库"></a>打包静态库</h3><h3 id="APP发布的上架流程"><a href="#APP发布的上架流程" class="headerlink" title="APP发布的上架流程"></a>APP发布的上架流程</h3><h3 id="Storyboard的使用"><a href="#Storyboard的使用" class="headerlink" title="Storyboard的使用"></a>Storyboard的使用</h3><h3 id="CALayer与UIView的区别"><a href="#CALayer与UIView的区别" class="headerlink" title="CALayer与UIView的区别"></a>CALayer与UIView的区别</h3><p><img src="https://www.dropbox.com/s/kka7ecjtjksf1qy/iOS_interview01.png?dl=1" alt=""></p>
+<h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p><img src="https://www.dropbox.com/s/2k9gef27xl0u17z/iOS_interview02.png?dl=1" alt=""></p>
+<h3 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h3><p><img src="https://www.dropbox.com/s/8jkmqae1kle1plu/iOS_interview03.png?dl=1" alt=""></p>
+<h3 id="Socket与Http连接"><a href="#Socket与Http连接" class="headerlink" title="Socket与Http连接"></a>Socket与Http连接</h3><p><img src="https://www.dropbox.com/s/6f8k9a5tn7lkp3z/iOS_interview04.png?dl=1" alt=""></p>
+<h3 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h3><p><img src="https://www.dropbox.com/s/fclbhqclqlj98py/iOS_interview05.png?dl=1" alt=""></p>
+<h3 id="iOS中对象的通信方式"><a href="#iOS中对象的通信方式" class="headerlink" title="iOS中对象的通信方式"></a>iOS中对象的通信方式</h3><p><img src="https://www.dropbox.com/s/laoq5kmvxzrd3wq/iOS_interview06.png?dl=1" alt=""></p>
+<h3 id="XML与JSON解析"><a href="#XML与JSON解析" class="headerlink" title="XML与JSON解析"></a>XML与JSON解析</h3><p><img src="https://www.dropbox.com/s/2nuzt7gjh91d9z0/iOS_interview07.png?dl=1" alt=""></p>
+<h3 id="CoreData"><a href="#CoreData" class="headerlink" title="CoreData"></a>CoreData</h3><p><img src="https://www.dropbox.com/s/df3yir03445koq3/iOS_interview08.png?dl=1" alt=""></p>
 
       
     </div>

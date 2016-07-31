@@ -85,16 +85,16 @@ Quartz 2D作用
 自定义UI控件
 
 图形上下文(Graphics Context)是一个CGContextRef类型的数">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png">
-<meta property="og:updated_time" content="2016-05-16T06:23:05.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/d4iqf1wo15ca3ss/iOS_drawRect2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/yhh7qdjwobfvys8/iOS_drawTriangle.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/l4o28syvd2e4shf/iOS_drawCircle2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6r1lsl0d9t84qrt/iOS_drawArc.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/4pbigeiubwao2ba/iOS_drawString.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/t1prpri5g8bb9wl/iOS_drawImage2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/nzwvtjwqmhn5egi/iOS_drawBezier.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/npcekg242pwf6a0/iOS_drawHuman.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T10:57:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS项目011-012.绘制图形及小黄人">
 <meta name="twitter:description" content="Quartz 2D什么是Quartz 2DQuartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想
@@ -107,7 +107,7 @@ Quartz 2D作用
 自定义UI控件
 
 图形上下文(Graphics Context)是一个CGContextRef类型的数">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1">
 
 
 
@@ -351,7 +351,7 @@ Quartz 2D作用
 <li>需要更新的时候也会被调用，这时需要使seetNeedsDisplay</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line">// Drawing code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png" alt=""></p>
+<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1" alt=""></p>
 <pre><code>void drwaline(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -386,7 +386,7 @@ CGContextSaveGState(context);
 
 //将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
 CGContextRestoreGState(context);
-</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png" alt=""></p>
+</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="https://www.dropbox.com/s/d4iqf1wo15ca3ss/iOS_drawRect2.png?dl=1" alt=""></p>
 <pre><code>void drawR(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -394,7 +394,7 @@ CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
 [[UIColor purpleColor] setFill];
 CGContextFillPath(context);
 }
-</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png" alt=""></p>
+</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="https://www.dropbox.com/s/yhh7qdjwobfvys8/iOS_drawTriangle.png?dl=1" alt=""></p>
 <pre><code>void drawTriangle(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -405,7 +405,7 @@ CGContextClosePath(context);
 [[UIColor redColor] set];
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png" alt=""></p>
+</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="https://www.dropbox.com/s/l4o28syvd2e4shf/iOS_drawCircle2.png?dl=1" alt=""></p>
 <pre><code>void drawCircle(){
 CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -415,7 +415,7 @@ CGContextSetLineWidth(context, 10);
 
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png" alt=""></p>
+</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="https://www.dropbox.com/s/6r1lsl0d9t84qrt/iOS_drawArc.png?dl=1" alt=""></p>
 <pre><code>CGFloat arc(CGFloat angle){
 return angle * (M_PI / 180);
 }
@@ -436,7 +436,7 @@ CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
 //CGContextFillPath(context); 如果采用这个方法就是填充弧形
  CGContextStrokePath(context);
 }
-</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png" alt=""></p>
+</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="https://www.dropbox.com/s/4pbigeiubwao2ba/iOS_drawString.png?dl=1" alt=""></p>
 <pre><code>void drawText(){
 NSString *str = @&quot;天道酬勤&quot;;
 NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
@@ -444,7 +444,7 @@ attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
 attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
 [str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
 }
-</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png" alt=""></p>
+</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="https://www.dropbox.com/s/t1prpri5g8bb9wl/iOS_drawImage2.png?dl=1" alt=""></p>
 <pre><code>void drawImg(){
 
 UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
@@ -460,7 +460,7 @@ NSString *str = @&quot;刘米米爱兔宝宝&quot;;
 }
 </code></pre><h2 id="JPG-vs-PNG"><a href="#JPG-vs-PNG" class="headerlink" title="JPG vs PNG"></a>JPG vs PNG</h2><pre><code>//取得图片,jpg要后缀名，png不用
 UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
-</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png" alt=""></p>
+</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="https://www.dropbox.com/s/nzwvtjwqmhn5egi/iOS_drawBezier.png?dl=1" alt=""></p>
 <pre><code>void drawBezier(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -472,7 +472,7 @@ CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
 //CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png" alt=""></p>
+</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="https://www.dropbox.com/s/npcekg242pwf6a0/iOS_drawHuman.png?dl=1" alt=""></p>
 <h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 </code></pre><h2 id="中心的的x坐标"><a href="#中心的的x坐标" class="headerlink" title="中心的的x坐标"></a>中心的的x坐标</h2><pre><code>CGFloat topX = rect.size.width * 0.5;
 </code></pre>

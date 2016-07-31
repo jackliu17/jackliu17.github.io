@@ -79,11 +79,11 @@ CALayer是一个管理着图片载体（image-based content）的层结构, UIVi
 UIView中的CALayer动画必须显式触发才能生效
 
 用CALa">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png">
-<meta property="og:updated_time" content="2016-05-08T07:08:57.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/p85qj9gqy65qp0x/iOS_CALayer_progressView.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/4hyv6lh6xqqpgrx/iOS_CALayer01.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/m5ljnv98uipknys/iOS_CALayer03.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/jgruq52nnwtnz69/iOS_CALayer2.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T03:23:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CALayer的使用">
 <meta name="twitter:description" content="CALayer简介
@@ -93,7 +93,7 @@ CALayer是一个管理着图片载体（image-based content）的层结构, UIVi
 UIView中的CALayer动画必须显式触发才能生效
 
 用CALa">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/p85qj9gqy65qp0x/iOS_CALayer_progressView.png?dl=1">
 
 
 
@@ -330,7 +330,7 @@ UIView中的CALayer动画必须显式触发才能生效
 <li>用定时器（NSTimer）模拟网络下载时提供的百分比数据</li>
 <li>将CALayer封装进UIView子类中定制进度条控件</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer_progressView.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/p85qj9gqy65qp0x/iOS_CALayer_progressView.png?dl=1" alt=""></p>
 <h2 id="隐式动画进度条"><a href="#隐式动画进度条" class="headerlink" title="隐式动画进度条"></a>隐式动画进度条</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -475,14 +475,14 @@ self.progressView.progress = arc4random() % 100 / 100.f;
 }
 
 @end
-</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer01.png" alt=""></p>
+</code></pre><h1 id="用CALayer定制UIImageView淡入淡出切换图片效果"><a href="#用CALayer定制UIImageView淡入淡出切换图片效果" class="headerlink" title="用CALayer定制UIImageView淡入淡出切换图片效果"></a>用CALayer定制UIImageView淡入淡出切换图片效果</h1><p><img src="https://www.dropbox.com/s/4hyv6lh6xqqpgrx/iOS_CALayer01.png?dl=1" alt=""></p>
 <ol>
 <li>操作UIImageView的CALayer修改其bounds值进行显式动画</li>
 <li>修改UIImageView的CALayer中的contents属性实现切换图片的动画</li>
 <li>用CAAnimationGroup将bounds动画与contents动画组合起来</li>
 <li>将上述效果封装进UIView的子类中生成控件</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/m5ljnv98uipknys/iOS_CALayer03.png?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 #define NO_EXECUTE  0  // 不执行
@@ -564,7 +564,7 @@ if (EXECUTE) {
     [self.imageLayer addAnimation:groupAnimation forKey:nil];
 }
 }
-</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CALayer2.png" alt=""></p>
+</code></pre><h1 id="用CALayer实现复杂遮罩效果"><a href="#用CALayer实现复杂遮罩效果" class="headerlink" title="用CALayer实现复杂遮罩效果"></a>用CALayer实现复杂遮罩效果</h1><p><img src="https://www.dropbox.com/s/jgruq52nnwtnz69/iOS_CALayer2.png?dl=1" alt=""></p>
 <ol>
 <li>遮罩原理的分析</li>
 <li>用png图片作为CALayer中mask属性的遮罩Layer</li>

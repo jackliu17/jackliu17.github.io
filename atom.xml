@@ -293,7 +293,7 @@ _localSearch = [[MKLocalSearch alloc] initWithRequest:searchRequest];
     <link href="http://jackliu17.github.io/2016/06/10/CoreLocation%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3/"/>
     <id>http://jackliu17.github.io/2016/06/10/CoreLocation框架详解/</id>
     <published>2016-06-10T03:22:28.000Z</published>
-    <updated>2016-06-11T06:33:00.000Z</updated>
+    <updated>2016-07-31T04:12:37.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;定位基础及权限详解&quot;&gt;&lt;a href=&quot;#定位基础及权限详解&quot; class=&quot;headerlink&quot; title=&quot;定位基础及权限详解&quot;&gt;&lt;/a&gt;定位基础及权限详解&lt;/h1&gt;&lt;p&gt;Core Location框架为定位用户当前位置和方向（Heading）提供支持。负责从设备硬件收集信息并以异步方式报告给应用程序。&lt;/p&gt;
 &lt;ol&gt;
@@ -312,7 +312,7 @@ NSLocationWhenInUseUsageDescription
     [_locationManager requestWhenInUseAuthorization];
     [_locationManager requestAlwaysAuthorization];
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CLLocation01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0yao5q9riovmvu4/iOS_CLLocation01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;位置管理器CLLocationManager&quot;&gt;&lt;a href=&quot;#位置管理器CLLocationManager&quot; class=&quot;headerlink&quot; title=&quot;位置管理器CLLocationManager&quot;&gt;&lt;/a&gt;位置管理器CLLocationManager&lt;/h2&gt;&lt;p&gt;ViewController &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface ViewController () &amp;lt;CLLocationManagerDelegate,MKMapViewDelegate&amp;gt;
 
@@ -518,7 +518,7 @@ return pinAnnotationView;
     <link href="http://jackliu17.github.io/2016/06/08/MapKit%E5%9C%B0%E5%9B%BE%E5%BA%94%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
     <id>http://jackliu17.github.io/2016/06/08/MapKit地图应用基础/</id>
     <published>2016-06-08T05:38:00.000Z</published>
-    <updated>2016-06-08T07:06:54.000Z</updated>
+    <updated>2016-07-31T13:00:11.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;MapKit基础讲解&quot;&gt;&lt;a href=&quot;#MapKit基础讲解&quot; class=&quot;headerlink&quot; title=&quot;MapKit基础讲解&quot;&gt;&lt;/a&gt;MapKit基础讲解&lt;/h1&gt;&lt;p&gt;Map Kit（地图套件）提供了一个接口，可以将地图直接嵌入到自己的视图中。通过Map Kit框架，可以在iOS应用程序中显示地图以及当前位置。通过属性的设定，可以轻松实现位置显示、添加地图注释，通过给定信息查找确定地标信息等相关功能。&lt;/p&gt;
 &lt;ol&gt;
@@ -528,7 +528,7 @@ return pinAnnotationView;
 &lt;li&gt;MKPinAnnotation：通过此类可以对地图标注进行配置。&lt;/li&gt;
 &lt;li&gt;MKAnnotationView：通过此类实现自定义地图标注功能。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_MapKitBasic02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/895ubxdvyo136lh/iOS_MapKitBasic02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;创建地图应用&quot;&gt;&lt;a href=&quot;#创建地图应用&quot; class=&quot;headerlink&quot; title=&quot;创建地图应用&quot;&gt;&lt;/a&gt;创建地图应用&lt;/h1&gt;&lt;h2 id=&quot;添加MKMapView到视图&quot;&gt;&lt;a href=&quot;#添加MKMapView到视图&quot; class=&quot;headerlink&quot; title=&quot;添加MKMapView到视图&quot;&gt;&lt;/a&gt;添加MKMapView到视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;MKMapView * mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
 [self.view addSubview:mapView];
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;MKMapView相关属性&quot;&gt;&lt;a href=&quot;#MKMapView相关属性&quot; class=&quot;headerlink&quot; title=&quot;MKMapView相关属性&quot;&gt;&lt;/a&gt;MKMapView相关属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[mapView setDelegate:self];
@@ -787,14 +787,14 @@ if(selected){
     <link href="http://jackliu17.github.io/2016/06/07/iOS%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%B5%81%E7%A8%8B/"/>
     <id>http://jackliu17.github.io/2016/06/07/iOS推送通知流程/</id>
     <published>2016-06-07T08:46:28.000Z</published>
-    <updated>2016-06-07T08:47:20.000Z</updated>
+    <updated>2016-07-31T04:41:52.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_pushNotificationProcess.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_pushNotificationProcess.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
     
     </summary>
@@ -933,7 +933,7 @@ class ViewController: UIViewController {
     <link href="http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85/"/>
     <id>http://jackliu17.github.io/2016/06/06/iOS设计模式-中介者/</id>
     <published>2016-06-06T06:54:09.000Z</published>
-    <updated>2016-06-07T03:38:25.000Z</updated>
+    <updated>2016-07-31T04:54:50.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;中介模式&quot;&gt;&lt;a href=&quot;#中介模式&quot; class=&quot;headerlink&quot; title=&quot;中介模式&quot;&gt;&lt;/a&gt;中介模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。&lt;/li&gt;
@@ -960,9 +960,9 @@ class ViewController: UIViewController {
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/y5dx2bzuvl3ruzg/iOS_designPatternMediator02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/hiwds9gy7syplxs/iOS_designPatternMediator03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/8sqw87ls7sdyzh9/iOS_designPatternMediator01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;AbstractMediator&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface AbstractMediator : NSObject &amp;lt;ColleagueDelegate&amp;gt;
 
@@ -998,8 +998,8 @@ class ViewController: UIViewController {
 &lt;li&gt;MVC中的控制器viewController就相当于中介&lt;/li&gt;
 &lt;li&gt;为何要使用中介者：解决复杂的交互问题，对象之间有大量的交互逻辑，彼此互相关联&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMediator04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designpatternMediator05.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5sh3jplqfnhlxr0/iOS_designPatternMediator04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mlfyqqf2l50irlj/iOS_designpatternMediator05.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Colleague&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface Colleague : AbstractColleague
 
@@ -1119,7 +1119,7 @@ NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
     <link href="http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%B4%A3%E4%BB%BB%E9%93%BE/"/>
     <id>http://jackliu17.github.io/2016/06/06/iOS设计模式-责任链/</id>
     <published>2016-06-06T03:33:31.000Z</published>
-    <updated>2016-06-06T06:44:52.000Z</updated>
+    <updated>2016-07-31T05:49:50.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;快递分拣中心&quot;&gt;&lt;a href=&quot;#快递分拣中心&quot; class=&quot;headerlink&quot; title=&quot;快递分拣中心&quot;&gt;&lt;/a&gt;快递分拣中心&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;传送带 —&amp;gt; 线性表&lt;/li&gt;
@@ -1127,7 +1127,7 @@ NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
 &lt;li&gt;货物种类 —&amp;gt; 特定种类的货物&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;特点:提升效率&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ifhh4d0f2oxy9zh/iOS_designPatternChains01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;责任链模式&quot;&gt;&lt;a href=&quot;#责任链模式&quot; class=&quot;headerlink&quot; title=&quot;责任链模式&quot;&gt;&lt;/a&gt;责任链模式&lt;/h1&gt;&lt;p&gt;定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。&lt;/p&gt;
 &lt;p&gt;步骤:&lt;/p&gt;
 &lt;ol&gt;
@@ -1135,7 +1135,7 @@ NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
 &lt;li&gt;将责任对象链接起来&lt;/li&gt;
 &lt;li&gt;处理输入的事件&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/usl9cvfj7aaly1m/iOS_designPatternChains02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;ChainProtocol&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;protocol ChainProtocol &amp;lt;NSObject&amp;gt;
 
@@ -1155,7 +1155,7 @@ NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
 &lt;li&gt;严格说来还要设定一个尾节点，处理什么都不是的情况&lt;/li&gt;
 &lt;li&gt;如果用if else的话，就不能进行拆解&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternChains03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s3c2zqcwuitmeug/iOS_designPatternChains03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;ChainProtocol&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@protocol ChainProtocol &amp;lt;NSObject&amp;gt;
 - (void)setSuccessor:(id &amp;lt;ChainProtocol&amp;gt;)successor;
@@ -1577,19 +1577,19 @@ NSLog(@&amp;quot;%@&amp;quot;, event.infomation);
     <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF/"/>
     <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-模板/</id>
     <published>2016-06-05T06:12:40.000Z</published>
-    <updated>2016-06-05T08:38:53.000Z</updated>
+    <updated>2016-07-31T05:39:19.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        &lt;/li&gt;
 &lt;li&gt;联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1mrxd33ritd8fb7/iOS_designPatternTemplate01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;模板模式特点&quot;&gt;&lt;a href=&quot;#模板模式特点&quot; class=&quot;headerlink&quot; title=&quot;模板模式特点&quot;&gt;&lt;/a&gt;模板模式特点&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;过程殊途同归 &lt;/li&gt;
 &lt;li&gt;将共同行为/流程抽象成算法的骨架&lt;/li&gt;
 &lt;li&gt;利用OO的多态，让子类继承重写&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternTemplate02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/qt3gp80jv1i85wo/iOS_designPatternTemplate02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;Cocoa-框架中用到的模板模式-Override&quot;&gt;&lt;a href=&quot;#Cocoa-框架中用到的模板模式-Override&quot; class=&quot;headerlink&quot; title=&quot;Cocoa 框架中用到的模板模式(Override)&quot;&gt;&lt;/a&gt;Cocoa 框架中用到的模板模式(Override)&lt;/h1&gt;&lt;p&gt;CustomCell&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface CustomCell : UITableViewCell
 
@@ -1756,15 +1756,15 @@ NSLog(@&amp;quot;play football game.&amp;quot;);
     <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83/"/>
     <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/</id>
     <published>2016-06-05T05:43:19.000Z</published>
-    <updated>2016-06-05T05:45:09.000Z</updated>
+    <updated>2016-07-31T04:56:21.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h1&gt;&lt;p&gt;交叉的圆环，提取出公共部分进行复用。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。&lt;/li&gt;
 &lt;li&gt;步骤: 共享物件的提取 —&amp;gt; 管理共享对象 —&amp;gt; 获取共享对象&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface ViewController ()
 
 @property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
@@ -1813,8 +1813,8 @@ if (self.flyweightFactory[name]==nil) {
 &lt;li&gt;咖啡table&lt;/li&gt;
 &lt;li&gt;咖啡清单&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFlyweight04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;CoffeeFlavor&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface CoffeeFlavor : NSObject
 @property (nonatomic, strong) NSString *flavor;
@@ -1933,14 +1933,14 @@ if (self.flyweightFactory[name]==nil) {
     <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
     <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-迭代器/</id>
     <published>2016-06-05T01:10:44.000Z</published>
-    <updated>2016-06-05T01:14:00.000Z</updated>
+    <updated>2016-07-31T05:52:11.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;线性表&quot;&gt;&lt;a href=&quot;#线性表&quot; class=&quot;headerlink&quot; title=&quot;线性表&quot;&gt;&lt;/a&gt;线性表&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的&lt;/li&gt;
 &lt;li&gt;种类:链表，栈，队列&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;单链表&quot;&gt;&lt;a href=&quot;#单链表&quot; class=&quot;headerlink&quot; title=&quot;单链表&quot;&gt;&lt;/a&gt;单链表&lt;/h1&gt;&lt;p&gt;Node&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface Node : NSObject
 //指向下一个节点
@@ -2017,7 +2017,7 @@ if (node.nextNode == nil) {
 
 @end
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;系统迭代器-NSEnumerator&quot;&gt;&lt;a href=&quot;#系统迭代器-NSEnumerator&quot; class=&quot;headerlink&quot; title=&quot;系统迭代器: NSEnumerator&quot;&gt;&lt;/a&gt;系统迭代器: NSEnumerator&lt;/h1&gt;&lt;p&gt;迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIter04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 创建集合对象, 可以是数组，字典，集合等..
 NSArray *datas = @[@&amp;quot;A&amp;quot;, @&amp;quot;B&amp;quot;, @&amp;quot;C&amp;quot;, @&amp;quot;D&amp;quot;];
 
@@ -2029,7 +2029,7 @@ id arrayObj = nil;
 while (arrayObj = [iterator nextObject]) {
     NSLog(@&amp;quot;%@&amp;quot;, arrayObj);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;迭代器模式&quot;&gt;&lt;a href=&quot;#迭代器模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器模式&quot;&gt;&lt;/a&gt;迭代器模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;迭代器模式&quot;&gt;&lt;a href=&quot;#迭代器模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器模式&quot;&gt;&lt;/a&gt;迭代器模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;LinkedList:头元素必须已经实现了空实现&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;- (instancetype)init{
 
@@ -2297,16 +2297,16 @@ while (node = [customView nextObject]) {
     <link href="http://jackliu17.github.io/2016/06/04/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88/"/>
     <id>http://jackliu17.github.io/2016/06/04/iOS设计模式-组合/</id>
     <published>2016-06-04T07:56:46.000Z</published>
-    <updated>2016-06-04T08:01:22.000Z</updated>
+    <updated>2016-07-31T05:43:48.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;树形结构&quot;&gt;&lt;a href=&quot;#树形结构&quot; class=&quot;headerlink&quot; title=&quot;树形结构&quot;&gt;&lt;/a&gt;树形结构&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;层次嵌套&lt;/li&gt;
 &lt;li&gt;外层和内层具有相似的结构&lt;/li&gt;
 &lt;li&gt;可以递归的表示&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;简易的二叉树&quot;&gt;&lt;a href=&quot;#简易的二叉树&quot; class=&quot;headerlink&quot; title=&quot;简易的二叉树&quot;&gt;&lt;/a&gt;简易的二叉树&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite04.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l1vo0cv0eyojcnm/iOS_designPatternComposite01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mg3smynabreawjx/iOS_designPatternComposite02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;简易的二叉树&quot;&gt;&lt;a href=&quot;#简易的二叉树&quot; class=&quot;headerlink&quot; title=&quot;简易的二叉树&quot;&gt;&lt;/a&gt;简易的二叉树&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/pj2coj2fk0le8mt/iOS_designPatternComposite04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Node&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface Node : NSObject
 
@@ -2384,8 +2384,8 @@ if (node.rightNode) {
 &lt;li&gt;组合模式，将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。&lt;/li&gt;
 &lt;li&gt;掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite05.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7t4gchgj3fjl2d3/iOS_designPatternComposite03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/bpvdq156u7hjopy/iOS_designPatternComposite05.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Node &lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@interface Node : NSObject
 
@@ -2481,7 +2481,7 @@ Node *c = [Node nodeWithNodeName:@&amp;quot;C&amp;quot;];
 NSLog(@&amp;quot;%@&amp;quot;, self.rootNode.childNodes);
 NSLog(@&amp;quot;%@&amp;quot;, c.childNodes);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;编写文件夹系统&quot;&gt;&lt;a href=&quot;#编写文件夹系统&quot; class=&quot;headerlink&quot; title=&quot;编写文件夹系统&quot;&gt;&lt;/a&gt;编写文件夹系统&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternComposite06.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;编写文件夹系统&quot;&gt;&lt;a href=&quot;#编写文件夹系统&quot; class=&quot;headerlink&quot; title=&quot;编写文件夹系统&quot;&gt;&lt;/a&gt;编写文件夹系统&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mwdqu4m17v8rd01/iOS_designPatternComposite06.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;File&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
 kFile,   // 文件
@@ -2897,14 +2897,14 @@ return cell;
     <link href="http://jackliu17.github.io/2016/06/03/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4/"/>
     <id>http://jackliu17.github.io/2016/06/03/iOS设计模式-命令/</id>
     <published>2016-06-03T00:14:07.000Z</published>
-    <updated>2016-06-03T09:05:19.000Z</updated>
+    <updated>2016-07-31T05:03:35.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;电视机、遥控器与接收器之间的关系&quot;&gt;&lt;a href=&quot;#电视机、遥控器与接收器之间的关系&quot; class=&quot;headerlink&quot; title=&quot;电视机、遥控器与接收器之间的关系&quot;&gt;&lt;/a&gt;电视机、遥控器与接收器之间的关系&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以&lt;/li&gt;
 &lt;li&gt;接收器转换遥控器的信号&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;命令模式&quot;&gt;&lt;a href=&quot;#命令模式&quot; class=&quot;headerlink&quot; title=&quot;命令模式&quot;&gt;&lt;/a&gt;命令模式&lt;/h1&gt;&lt;p&gt;在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Client:可以有多个实体，client即使没有receiver，自身也能操作。&lt;/li&gt;
@@ -2989,7 +2989,7 @@ NSParameterAssert(command);
 // todo
 }
 @end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;改变一个视图的明暗程度&quot;&gt;&lt;a href=&quot;#改变一个视图的明暗程度&quot; class=&quot;headerlink&quot; title=&quot;改变一个视图的明暗程度&quot;&gt;&lt;/a&gt;改变一个视图的明暗程度&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternCommand03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;改变一个视图的明暗程度&quot;&gt;&lt;a href=&quot;#改变一个视图的明暗程度&quot; class=&quot;headerlink&quot; title=&quot;改变一个视图的明暗程度&quot;&gt;&lt;/a&gt;改变一个视图的明暗程度&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;ViewController&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;typedef enum : NSUInteger {
 
@@ -3347,15 +3347,15 @@ if (button.tag == kAddButtonTag) {
     <link href="http://jackliu17.github.io/2016/06/02/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%94%9F%E6%88%90%E5%99%A8/"/>
     <id>http://jackliu17.github.io/2016/06/02/iOS设计模式-生成器/</id>
     <published>2016-06-02T00:58:50.000Z</published>
-    <updated>2016-06-02T10:52:30.000Z</updated>
+    <updated>2016-07-31T05:40:28.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;生成器与建造房子&quot;&gt;&lt;a href=&quot;#生成器与建造房子&quot; class=&quot;headerlink&quot; title=&quot;生成器与建造房子&quot;&gt;&lt;/a&gt;生成器与建造房子&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类&lt;/li&gt;
 &lt;li&gt;建造过程的模块化处理,不同模块找不同的承包商&lt;/li&gt;
 &lt;li&gt;生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7zijdxlvxzcdt1e/iOS_designPatternGenerator01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/tspvv6b2cp1mwll/iOS_designPatternGenerator02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;生成器模式实例&quot;&gt;&lt;a href=&quot;#生成器模式实例&quot; class=&quot;headerlink&quot; title=&quot;生成器模式实例&quot;&gt;&lt;/a&gt;生成器模式实例&lt;/h1&gt;&lt;p&gt;需要注意的是，这里有两个协议需要具体承包商来遵循&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;总协议.对所有模块承包商的要求 (BuilderProtocol)&lt;/li&gt;
@@ -3399,7 +3399,7 @@ return builder;
 }
 
 @end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;生成器与生产汽车&quot;&gt;&lt;a href=&quot;#生成器与生产汽车&quot; class=&quot;headerlink&quot; title=&quot;生成器与生产汽车&quot;&gt;&lt;/a&gt;生成器与生产汽车&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;生成器与生产汽车&quot;&gt;&lt;a href=&quot;#生成器与生产汽车&quot; class=&quot;headerlink&quot; title=&quot;生成器与生产汽车&quot;&gt;&lt;/a&gt;生成器与生产汽车&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kmxignd37yw24yp/iOS_designPatternGenerator03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;装配车间和组装产品-总指挥&quot;&gt;&lt;a href=&quot;#装配车间和组装产品-总指挥&quot; class=&quot;headerlink&quot; title=&quot;装配车间和组装产品(总指挥)&quot;&gt;&lt;/a&gt;装配车间和组装产品(总指挥)&lt;/h2&gt;&lt;p&gt;BuilderProtocol （这是对所有承包商的要求）&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@protocol BuilderProtocol &amp;lt;NSObject&amp;gt;
 
@@ -3605,15 +3605,15 @@ NSLog(@&amp;quot;%@&amp;quot;, self.builder.productsInfo);
     <link href="http://jackliu17.github.io/2016/06/01/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/"/>
     <id>http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/</id>
     <published>2016-06-01T01:01:54.000Z</published>
-    <updated>2016-06-01T02:07:19.000Z</updated>
+    <updated>2016-07-31T05:04:58.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;备忘录模式&quot;&gt;&lt;a href=&quot;#备忘录模式&quot; class=&quot;headerlink&quot; title=&quot;备忘录模式&quot;&gt;&lt;/a&gt;备忘录模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;备忘录模式，什么都可以存！&lt;/li&gt;
 &lt;li&gt;先设计抽象接口，再去考虑实现细节&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5y7k7pluooabrsw/iOS_designPatternmMemo02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/250rfz3yg28erir/iOS_designPatternmMemo03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;设计存储中心&quot;&gt;&lt;a href=&quot;#设计存储中心&quot; class=&quot;headerlink&quot; title=&quot;设计存储中心&quot;&gt;&lt;/a&gt;设计存储中心&lt;/h2&gt;&lt;p&gt;MementoCenter&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
 
@@ -3804,14 +3804,14 @@ NSLog(@&amp;quot;%@&amp;quot;, demoView);
     <link href="http://jackliu17.github.io/2016/05/30/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B/"/>
     <id>http://jackliu17.github.io/2016/05/30/iOS设计模式-单例/</id>
     <published>2016-05-30T09:09:56.000Z</published>
-    <updated>2016-05-31T03:47:34.000Z</updated>
+    <updated>2016-07-31T05:01:00.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;共享信息，管理中心&lt;/li&gt;
 &lt;li&gt;单例类基本是用来管理某种资源的，而这种资源是可以全局共享的&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;只有一个实例&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;Cocoa系统中的单例应用&quot;&gt;&lt;a href=&quot;#Cocoa系统中的单例应用&quot; class=&quot;headerlink&quot; title=&quot;Cocoa系统中的单例应用&quot;&gt;&lt;/a&gt;Cocoa系统中的单例应用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[[UIApplication sharedApplication]statusBarStyle];
 
 [[NSNotificationCenter defaultCenter]addObserver:&amp;lt;#(nonnull id)#&amp;gt;
@@ -3954,7 +3954,7 @@ if ([string isKindOfClass:[NSString class]] == YES &amp;amp;&amp;amp; [string is
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;单例模式优化本地存储&quot;&gt;&lt;a href=&quot;#单例模式优化本地存储&quot; class=&quot;headerlink&quot; title=&quot;单例模式优化本地存储&quot;&gt;&lt;/a&gt;单例模式优化本地存储&lt;/h1&gt;&lt;h2 id=&quot;第三方库-FastCoding&quot;&gt;&lt;a href=&quot;#第三方库-FastCoding&quot; class=&quot;headerlink&quot; title=&quot;第三方库:FastCoding&quot;&gt;&lt;/a&gt;第三方库:FastCoding&lt;/h2&gt;&lt;p&gt;替换NSCoding协议, plist, JSON等，直接将数据存为NSData类型&lt;/p&gt;
 &lt;p&gt;下载地址:&lt;a href=&quot;https://github.com/nicklockwood/FastCoding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FastCoding&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;关闭ARC&quot;&gt;&lt;a href=&quot;#关闭ARC&quot; class=&quot;headerlink&quot; title=&quot;关闭ARC&quot;&gt;&lt;/a&gt;关闭ARC&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;关闭ARC&quot;&gt;&lt;a href=&quot;#关闭ARC&quot; class=&quot;headerlink&quot; title=&quot;关闭ARC&quot;&gt;&lt;/a&gt;关闭ARC&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/21iehlpgzexkwqa/iOS_designPatternSingleton02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;用单例设计存储数据接口&quot;&gt;&lt;a href=&quot;#用单例设计存储数据接口&quot; class=&quot;headerlink&quot; title=&quot;用单例设计存储数据接口&quot;&gt;&lt;/a&gt;用单例设计存储数据接口&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)storeValue:(id)value withKey:(NSString *)key;
 - (id)valueWithKey:(NSString *)key;
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;用单例接口隔离实现细节&quot;&gt;&lt;a href=&quot;#用单例接口隔离实现细节&quot; class=&quot;headerlink&quot; title=&quot;用单例接口隔离实现细节&quot;&gt;&lt;/a&gt;用单例接口隔离实现细节&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)storeValue:(id)value withKey:(NSString *)key {
@@ -4030,10 +4030,10 @@ return [[StoreValue sharedInstance] valueWithKey:key];
     <link href="http://jackliu17.github.io/2016/05/30/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86/"/>
     <id>http://jackliu17.github.io/2016/05/30/iOS设计模式-代理/</id>
     <published>2016-05-30T05:12:37.000Z</published>
-    <updated>2016-05-30T05:14:50.000Z</updated>
+    <updated>2016-07-31T04:57:15.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/voou7iy91ipezcd/iOS_designPattern_Delegate01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Customer-amp-使用代理的注意事项&quot;&gt;&lt;a href=&quot;#Customer-amp-使用代理的注意事项&quot; class=&quot;headerlink&quot; title=&quot;Customer  &amp;amp; 使用代理的注意事项&quot;&gt;&lt;/a&gt;Customer  &amp;amp; 使用代理的注意事项&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;@class, 提示协议方法有该类的引用&lt;/li&gt;
 &lt;li&gt;weak 防止循环引用&lt;/li&gt;
@@ -4140,7 +4140,7 @@ self.destinationPort = [data destinationPort];
     <summary type="html">
     
       &lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://
+&lt;p&gt;&lt;img src=&quot;https:/
     
     </summary>
     
@@ -4158,7 +4158,7 @@ self.destinationPort = [data destinationPort];
     <link href="http://jackliu17.github.io/2016/05/29/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5/"/>
     <id>http://jackliu17.github.io/2016/05/29/iOS设计模式-桥接/</id>
     <published>2016-05-29T09:20:04.000Z</published>
-    <updated>2016-05-29T09:21:49.000Z</updated>
+    <updated>2016-07-31T05:37:42.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
@@ -4169,9 +4169,9 @@ self.destinationPort = [data destinationPort];
 &lt;li&gt;抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。&lt;/li&gt;
 &lt;li&gt;实现类的引用被封装到抽象层的实例中，桥接就形成了。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge02.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge03.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/h3a3xi0l1giqmz0/iOS_designPatternBridge01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vgzti8blkicn769/iOS_designPatternBridge02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5ulsrw1lym0zwhi/iOS_designPatternBridge03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h1&gt;&lt;p&gt;AbstractSystem&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;//拥有执行者的引用，让执行者去执行
 

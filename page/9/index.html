@@ -326,7 +326,7 @@
 <li>需要更新的时候也会被调用，这时需要使seetNeedsDisplay</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line">// Drawing code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawLine.png" alt=""></p>
+<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1" alt=""></p>
 <pre><code>void drwaline(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -361,7 +361,7 @@ CGContextSaveGState(context);
 
 //将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
 CGContextRestoreGState(context);
-</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawRect2.png" alt=""></p>
+</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="https://www.dropbox.com/s/d4iqf1wo15ca3ss/iOS_drawRect2.png?dl=1" alt=""></p>
 <pre><code>void drawR(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -369,7 +369,7 @@ CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
 [[UIColor purpleColor] setFill];
 CGContextFillPath(context);
 }
-</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawTriangle.png" alt=""></p>
+</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="https://www.dropbox.com/s/yhh7qdjwobfvys8/iOS_drawTriangle.png?dl=1" alt=""></p>
 <pre><code>void drawTriangle(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -380,7 +380,7 @@ CGContextClosePath(context);
 [[UIColor redColor] set];
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawCircle2.png" alt=""></p>
+</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="https://www.dropbox.com/s/l4o28syvd2e4shf/iOS_drawCircle2.png?dl=1" alt=""></p>
 <pre><code>void drawCircle(){
 CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -390,7 +390,7 @@ CGContextSetLineWidth(context, 10);
 
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawArc.png" alt=""></p>
+</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="https://www.dropbox.com/s/6r1lsl0d9t84qrt/iOS_drawArc.png?dl=1" alt=""></p>
 <pre><code>CGFloat arc(CGFloat angle){
 return angle * (M_PI / 180);
 }
@@ -411,7 +411,7 @@ CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
 //CGContextFillPath(context); 如果采用这个方法就是填充弧形
  CGContextStrokePath(context);
 }
-</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawString.png" alt=""></p>
+</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="https://www.dropbox.com/s/4pbigeiubwao2ba/iOS_drawString.png?dl=1" alt=""></p>
 <pre><code>void drawText(){
 NSString *str = @&quot;天道酬勤&quot;;
 NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
@@ -419,7 +419,7 @@ attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
 attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
 [str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
 }
-</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawImage2.png" alt=""></p>
+</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="https://www.dropbox.com/s/t1prpri5g8bb9wl/iOS_drawImage2.png?dl=1" alt=""></p>
 <pre><code>void drawImg(){
 
 UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
@@ -435,7 +435,7 @@ NSString *str = @&quot;刘米米爱兔宝宝&quot;;
 }
 </code></pre><h2 id="JPG-vs-PNG"><a href="#JPG-vs-PNG" class="headerlink" title="JPG vs PNG"></a>JPG vs PNG</h2><pre><code>//取得图片,jpg要后缀名，png不用
 UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
-</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawBezier.png" alt=""></p>
+</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="https://www.dropbox.com/s/nzwvtjwqmhn5egi/iOS_drawBezier.png?dl=1" alt=""></p>
 <pre><code>void drawBezier(){
 
 CGContextRef context = UIGraphicsGetCurrentContext();
@@ -447,7 +447,7 @@ CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
 //CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
 CGContextStrokePath(context);
 }
-</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_drawHuman.png" alt=""></p>
+</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="https://www.dropbox.com/s/npcekg242pwf6a0/iOS_drawHuman.png?dl=1" alt=""></p>
 <h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 </code></pre><h2 id="中心的的x坐标"><a href="#中心的的x坐标" class="headerlink" title="中心的的x坐标"></a>中心的的x坐标</h2><pre><code>CGFloat topX = rect.size.width * 0.5;
 </code></pre>
@@ -564,8 +564,8 @@ CGContextStrokePath(context);
       
         
           
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj01401.png" alt=""></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_proj014Structure.png" alt=""></p>
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/or1qww9lfmq74iz/iOS_proj01401.png?dl=1" alt=""></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/3r2hzq3977kdh9q/iOS_proj014Structure.png?dl=1" alt=""></p>
 <h1 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h1><pre><code>//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
 CGFloat const btnCount = 9;
 
@@ -1096,8 +1096,8 @@ longPress.minimumPressDuration = 2;
 </thead>
 <tbody>
 <tr>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample1.gif" alt=""></td>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample2.gif" alt=""></td>
+<td><img src="https://www.dropbox.com/s/zrvlao5q5ts7hh8/iOS_CAGradientLayerExample1.gif?dl=1" alt=""></td>
+<td><img src="https://www.dropbox.com/s/c7j8ruvbkc5vrop/iOS_CAGradientLayerExample2.gif?dl=1" alt=""></td>
 <td></td>
 </tr>
 </tbody>
@@ -1111,20 +1111,20 @@ longPress.minimumPressDuration = 2;
 </thead>
 <tbody>
 <tr>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample3.png" alt=""></td>
-<td><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerExample4.png" alt=""></td>
+<td><img src="https://www.dropbox.com/s/deiuru6wforbkx2/iOS_CAGradientLayerExample3.png?dl=1" alt=""></td>
+<td><img src="https://www.dropbox.com/s/y6jl9bxmqwl2x63/iOS_CAGradientLayerExample4.png?dl=1" alt=""></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<h1 id="CAGradientLayer坐标系统"><a href="#CAGradientLayer坐标系统" class="headerlink" title="CAGradientLayer坐标系统"></a>CAGradientLayer坐标系统</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerCoordinate.png" alt=""></p>
+<h1 id="CAGradientLayer坐标系统"><a href="#CAGradientLayer坐标系统" class="headerlink" title="CAGradientLayer坐标系统"></a>CAGradientLayer坐标系统</h1><p><img src="https://www.dropbox.com/s/3mu8boymlnq6svs/iOS_CAGradientLayerCoordinate.png?dl=1" alt=""></p>
 <ol>
 <li>CAGradientLayer的坐标系统是从坐标（0，0）到（1，1）绘制的矩形</li>
 <li>CAGradientLayer的frame值的size不为正方形的话，坐标系统会被拉伸</li>
 <li>CAGradientLayer的startPoint与endPoint会直接影响颜色的绘制方向</li>
 <li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj1.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/ui80vuajup3ny4v/iOS_CAGradientLayerProj1.png?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -1170,14 +1170,14 @@ self.gradientLayer.locations = @[@(0.01), @(0.5), @(0.99)];
 }
 
 @end
-</code></pre><h1 id="色差动画实现"><a href="#色差动画实现" class="headerlink" title="色差动画实现"></a>色差动画实现</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerColor.png" alt=""></p>
+</code></pre><h1 id="色差动画实现"><a href="#色差动画实现" class="headerlink" title="色差动画实现"></a>色差动画实现</h1><p><img src="https://www.dropbox.com/s/83vxzb4ltwmxsfs/iOS_CAGradientLayerColor.png?dl=1" alt=""></p>
 <ol>
 <li>确定渐变色渐变方向</li>
 <li>设定两种颜色，其中一种是透明色，另外一种是自定义颜色</li>
 <li>设定好location颜色分割点值</li>
 <li>CAGradientLayer的颜色分割点是以0到1的比例来计算的</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj2.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/xbvkdywn4kr4r50/iOS_CAGradientLayerProj2.png?dl=1" alt=""></p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -1241,7 +1241,7 @@ self.gradientLayer.locations = @[@(arc4random() % 10 / 10.f), @(1.f)];
 <li>确定可以做动画的参数</li>
 <li>重写setter方法做动画</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAGradientLayerProj3.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/yv43qqgaqg8bqeq/iOS_CAGradientLayerProj3.png?dl=1" alt=""></p>
 <h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>ColorUIImageView.h</p>
 <pre><code>#import &lt;UIKit/UIKit.h&gt;
 

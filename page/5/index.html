@@ -317,15 +317,15 @@
 <li>不参与手机制造流程</li>
 <li>客户需要使用固定的产品(客户提出需求)</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/dxf95fa27dhyi4h/iOS_designPatternFactory04.png?dl=1" alt=""></p>
 <h1 id="简单工厂使用场景"><a href="#简单工厂使用场景" class="headerlink" title="简单工厂使用场景"></a>简单工厂使用场景</h1><ol>
 <li>简化生产流程</li>
 <li>隔离生产产品的细节</li>
 <li>不同类型的产品之间有着一些共同的功能</li>
 <li>一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/a8j8lvoeuj8fuby/iOS_designPatternFactory01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/gl943pzs6rkek7r/iOS_designPatternFactory02.png?dl=1" alt=""></p>
 <h2 id="产品协议规范同一接口"><a href="#产品协议规范同一接口" class="headerlink" title="产品协议规范同一接口"></a>产品协议规范同一接口</h2><p>PhoneProtocol</p>
 <pre><code>@protocol PhoneProtocol &lt;NSObject&gt;
 
@@ -429,8 +429,8 @@ iPhoneDevice *iPhone = (iPhoneDevice *)[DeviceFactory deviceFactoryWithDevieType
 <li>工厂是抽象类，需要实例化子类</li>
 <li>抽象工厂使用比简单工厂更加灵活，因为可以动态的切换工厂</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory03.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternFactory05.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/wbropkugqsucx15/iOS_designPatternFactory03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/e2o92sf1ud0cvbp/iOS_designPatternFactory05.png?dl=1" alt=""></p>
 <h2 id="产品-Phone"><a href="#产品-Phone" class="headerlink" title="产品 Phone"></a>产品 Phone</h2><p>Phone基类</p>
 <pre><code>@interface BasePhone : NSObject
 
@@ -657,13 +657,13 @@ kNokia,
       
         
           
-            <h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate02.png" alt=""></p>
+            <h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p><img src="https://www.dropbox.com/s/wdnu961f77etsuk/iOS_DesignPattern_decorate01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8k4tpu5nlmt84ev/iOS_DesignPattern_decorate02.png?dl=1" alt=""></p>
 <h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ol>
 <li>比如引入一个静态库，只能导入.h文件。但不知道其具体实现，又想增添其功能</li>
 <li>不想要过多的子类，不想通过继承来实现新方法</li>
 </ol>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate04.png" alt=""></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><img src="https://www.dropbox.com/s/b9gdtfj0bh6xulg/iOS_DesignPattern_decorate04.png?dl=1" alt=""></p>
 <ol>
 <li>装饰类，持有这个原始类的引用，原来对象的功能，装饰对象都有，让原始类引用调用自己的方法去实现。</li>
 <li>装饰类为了扩展它的功能，通过装饰者实例化子类，实现更多的功能。</li>
@@ -732,7 +732,7 @@ CheatGamePadDecorator *cheatPamePad = [[CheatGamePadDecorator alloc] init];
 [cheatPamePad cheat];
 
 }
-</code></pre><h1 id="框架级别的装饰-Category"><a href="#框架级别的装饰-Category" class="headerlink" title="框架级别的装饰:Category"></a>框架级别的装饰:Category</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_DesignPattern_decorate03.png" alt=""></p>
+</code></pre><h1 id="框架级别的装饰-Category"><a href="#框架级别的装饰-Category" class="headerlink" title="框架级别的装饰:Category"></a>框架级别的装饰:Category</h1><p><img src="https://www.dropbox.com/s/ezbahc979sz796g/iOS_DesignPattern_decorate03.png?dl=1" alt=""></p>
 <p>category 和装饰模式有细微的区别</p>
 <ol>
 <li>category给对象添加属性,可能会用刀objective-C runtime</li>
@@ -908,7 +908,7 @@ rectangle.height     = 20.f;
 <li>如果在同一文件内就是封装，用不同的文件来隔离就是外观模式。</li>
 <li>主系统只考虑输入什么参数，不必考虑系统内的细节</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0601.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/7is4icardhpramo/iOS_designPattern0601.png?dl=1" alt=""></p>
 <p>基类shape</p>
 <pre><code>- (void)draw {
 
@@ -1081,7 +1081,7 @@ stu1.name          = @&quot;小刘&quot;;
 stu1.age           = @(19);
 stu1.address       = @&quot;中关村&quot;;
 stu1.totalScore    = @(100);
-</code></pre><h1 id="原型设计-自我拷贝"><a href="#原型设计-自我拷贝" class="headerlink" title="原型设计:自我拷贝"></a>原型设计:自我拷贝</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0501.png" alt=""></p>
+</code></pre><h1 id="原型设计-自我拷贝"><a href="#原型设计-自我拷贝" class="headerlink" title="原型设计:自我拷贝"></a>原型设计:自我拷贝</h1><p><img src="https://www.dropbox.com/s/vrmdd3wift6uxn7/iOS_designPattern0501.png?dl=1" alt=""></p>
 <p>使用场景：对象创建特别复杂，两个对象在抽象逻辑完全一致，只是在实例化的细节略有差异，如果要重新创建一个对象，不如拷贝自己再去修改</p>
 <p>ProtoypeCopyProtocol    </p>
 <pre><code>@protocol ProtoypeCopyProtocol &lt;NSObject&gt;
@@ -1300,7 +1300,7 @@ ClassModel *class2 = class1.copy;
       
         
           
-            <h1 id="通知中心业务逻辑"><a href="#通知中心业务逻辑" class="headerlink" title="通知中心业务逻辑"></a>通知中心业务逻辑</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0401.png" alt=""></p>
+            <h1 id="通知中心业务逻辑"><a href="#通知中心业务逻辑" class="headerlink" title="通知中心业务逻辑"></a>通知中心业务逻辑</h1><p><img src="https://www.dropbox.com/s/jziwyqxoi8ktxvr/iOS_designPattern0401.png?dl=1" alt=""></p>
 <ol>
 <li>订阅中心是单例模式，只有一个</li>
 <li>订阅中心维护书刊的信息，书刊号维护用户的信息</li>
@@ -1325,7 +1325,7 @@ ClassModel *class2 = class1.copy;
 + (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber;
 </code></pre><h1 id="通知中心与用户的消息传递-协议"><a href="#通知中心与用户的消息传递-协议" class="headerlink" title="通知中心与用户的消息传递(协议)"></a>通知中心与用户的消息传递(协议)</h1><p>消息传递，就让它遵循某类协议，例如订阅的用户</p>
 <pre><code>id &lt;SubscriptionServiceCenterProtocol&gt;
-</code></pre><h1 id="订阅中心实例"><a href="#订阅中心实例" class="headerlink" title="订阅中心实例"></a>订阅中心实例</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern0402.png" alt=""></p>
+</code></pre><h1 id="订阅中心实例"><a href="#订阅中心实例" class="headerlink" title="订阅中心实例"></a>订阅中心实例</h1><p><img src="https://www.dropbox.com/s/a0sjohhdcrw40q2/iOS_designPattern0402.png?dl=1" alt=""></p>
 <ol>
 <li>NSHashTable对持有的对象是weak引用。这里的例子用来存储”订阅杂志的用户集合”</li>
 <li>NSSet, NSArray, NSDictionary中对持有对象是strong引用</li>

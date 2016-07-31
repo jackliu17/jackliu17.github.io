@@ -312,8 +312,8 @@
 <li>建造过程的模块化处理,不同模块找不同的承包商</li>
 <li>生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/7zijdxlvxzcdt1e/iOS_designPatternGenerator01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/tspvv6b2cp1mwll/iOS_designPatternGenerator02.png?dl=1" alt=""></p>
 <h1 id="生成器模式实例"><a href="#生成器模式实例" class="headerlink" title="生成器模式实例"></a>生成器模式实例</h1><p>需要注意的是，这里有两个协议需要具体承包商来遵循</p>
 <ol>
 <li>总协议.对所有模块承包商的要求 (BuilderProtocol)</li>
@@ -357,7 +357,7 @@ return builder;
 }
 
 @end
-</code></pre><h1 id="生成器与生产汽车"><a href="#生成器与生产汽车" class="headerlink" title="生成器与生产汽车"></a>生成器与生产汽车</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternGenerator03.png" alt=""></p>
+</code></pre><h1 id="生成器与生产汽车"><a href="#生成器与生产汽车" class="headerlink" title="生成器与生产汽车"></a>生成器与生产汽车</h1><p><img src="https://www.dropbox.com/s/kmxignd37yw24yp/iOS_designPatternGenerator03.png?dl=1" alt=""></p>
 <h2 id="装配车间和组装产品-总指挥"><a href="#装配车间和组装产品-总指挥" class="headerlink" title="装配车间和组装产品(总指挥)"></a>装配车间和组装产品(总指挥)</h2><p>BuilderProtocol （这是对所有承包商的要求）</p>
 <pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
 
@@ -657,9 +657,9 @@ NSLog(@&quot;%@&quot;, self.builder.productsInfo);
 <li>备忘录模式，什么都可以存！</li>
 <li>先设计抽象接口，再去考虑实现细节</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternMemo01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternmMemo03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/5y7k7pluooabrsw/iOS_designPatternmMemo02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/250rfz3yg28erir/iOS_designPatternmMemo03.png?dl=1" alt=""></p>
 <h2 id="设计存储中心"><a href="#设计存储中心" class="headerlink" title="设计存储中心"></a>设计存储中心</h2><p>MementoCenter</p>
 <pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key;
 
@@ -943,7 +943,7 @@ NSLog(@&quot;%@&quot;, demoView);
 <li>单例类基本是用来管理某种资源的，而这种资源是可以全局共享的</li>
 <li><strong>只有一个实例</strong></li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1" alt=""></p>
 <h1 id="Cocoa系统中的单例应用"><a href="#Cocoa系统中的单例应用" class="headerlink" title="Cocoa系统中的单例应用"></a>Cocoa系统中的单例应用</h1><pre><code>[[UIApplication sharedApplication]statusBarStyle];
 
 [[NSNotificationCenter defaultCenter]addObserver:&lt;#(nonnull id)#&gt;
@@ -1086,7 +1086,7 @@ if ([string isKindOfClass:[NSString class]] == YES &amp;&amp; [string isEqualToS
 }
 </code></pre><h1 id="单例模式优化本地存储"><a href="#单例模式优化本地存储" class="headerlink" title="单例模式优化本地存储"></a>单例模式优化本地存储</h1><h2 id="第三方库-FastCoding"><a href="#第三方库-FastCoding" class="headerlink" title="第三方库:FastCoding"></a>第三方库:FastCoding</h2><p>替换NSCoding协议, plist, JSON等，直接将数据存为NSData类型</p>
 <p>下载地址:<a href="https://github.com/nicklockwood/FastCoding" target="_blank" rel="external">FastCoding</a></p>
-<h2 id="关闭ARC"><a href="#关闭ARC" class="headerlink" title="关闭ARC"></a>关闭ARC</h2><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternSingleton02.png" alt=""></p>
+<h2 id="关闭ARC"><a href="#关闭ARC" class="headerlink" title="关闭ARC"></a>关闭ARC</h2><p><img src="https://www.dropbox.com/s/21iehlpgzexkwqa/iOS_designPatternSingleton02.png?dl=1" alt=""></p>
 <h2 id="用单例设计存储数据接口"><a href="#用单例设计存储数据接口" class="headerlink" title="用单例设计存储数据接口"></a>用单例设计存储数据接口</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key;
 - (id)valueWithKey:(NSString *)key;
 </code></pre><h2 id="用单例接口隔离实现细节"><a href="#用单例接口隔离实现细节" class="headerlink" title="用单例接口隔离实现细节"></a>用单例接口隔离实现细节</h2><pre><code>- (void)storeValue:(id)value withKey:(NSString *)key {
@@ -1252,7 +1252,7 @@ return [[StoreValue sharedInstance] valueWithKey:key];
         
           
             <h1 id="代理模式的原理"><a href="#代理模式的原理" class="headerlink" title="代理模式的原理"></a>代理模式的原理</h1><p>一个对象和另一个对象耦合，代理模式是为了降低耦合度</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPattern_Delegate01.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/voou7iy91ipezcd/iOS_designPattern_Delegate01.png?dl=1" alt=""></p>
 <h2 id="Customer-amp-使用代理的注意事项"><a href="#Customer-amp-使用代理的注意事项" class="headerlink" title="Customer  &amp; 使用代理的注意事项"></a>Customer  &amp; 使用代理的注意事项</h2><ol>
 <li>@class, 提示协议方法有该类的引用</li>
 <li>weak 防止循环引用</li>
@@ -1477,9 +1477,9 @@ self.destinationPort = [data destinationPort];
 <li>抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。</li>
 <li>实现类的引用被封装到抽象层的实例中，桥接就形成了。</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge01.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternBridge03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/h3a3xi0l1giqmz0/iOS_designPatternBridge01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/vgzti8blkicn769/iOS_designPatternBridge02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/5ulsrw1lym0zwhi/iOS_designPatternBridge03.png?dl=1" alt=""></p>
 <h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>AbstractSystem</p>
 <pre><code>//拥有执行者的引用，让执行者去执行
 

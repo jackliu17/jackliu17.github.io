@@ -89,11 +89,11 @@
 @property (nonatomic, strong) Node  *nextNode;
 //节点挂载的对象
 @property (nonatomic, st">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator03.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIter04.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator01.png">
-<meta property="og:updated_time" content="2016-06-05T01:14:00.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T05:52:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS设计模式-迭代器">
 <meta name="twitter:description" content="线性表
@@ -108,7 +108,7 @@
 @property (nonatomic, strong) Node  *nextNode;
 //节点挂载的对象
 @property (nonatomic, st">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1">
 
 
 
@@ -337,8 +337,8 @@
 <li>定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的</li>
 <li>种类:链表，栈，队列</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator02.png" alt=""></p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator03.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1" alt=""></p>
 <h1 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h1><p>Node</p>
 <pre><code>@interface Node : NSObject
 //指向下一个节点
@@ -415,7 +415,7 @@ if (node.nextNode == nil) {
 
 @end
 </code></pre><h1 id="系统迭代器-NSEnumerator"><a href="#系统迭代器-NSEnumerator" class="headerlink" title="系统迭代器: NSEnumerator"></a>系统迭代器: NSEnumerator</h1><p>迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIter04.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1" alt=""></p>
 <pre><code>// 创建集合对象, 可以是数组，字典，集合等..
 NSArray *datas = @[@&quot;A&quot;, @&quot;B&quot;, @&quot;C&quot;, @&quot;D&quot;];
 
@@ -427,7 +427,7 @@ id arrayObj = nil;
 while (arrayObj = [iterator nextObject]) {
     NSLog(@&quot;%@&quot;, arrayObj);
 }
-</code></pre><h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_designPatternIterator01.png" alt=""></p>
+</code></pre><h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p><img src="https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1" alt=""></p>
 <p>LinkedList:头元素必须已经实现了空实现</p>
 <pre><code>- (instancetype)init{
 

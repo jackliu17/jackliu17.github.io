@@ -69,16 +69,16 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
 <meta property="og:site_name" content="Cowboy Tech">
 <meta property="og:description" content="转载原文
 Android框架提供了大量的标准工具，用来创建吸引人的，功能丰富的图形界面。然而，如果我们希望应用在屏幕上所绘制的内容进行更多的控制，或者正在尝试建立三维图像，那么我们就需要一个不同的工具了。由Android框架提供的OpenGL ES接口给予我们一组可以显示高级动画和图形的工具集，它的功能仅仅受限于我们自身的想象力。同时，在许多Android设备上搭载的图形处理单元（GPU）都能为其">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/openGL.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/openGL2.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/OpenGL3.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/opengl4.png">
-<meta property="og:updated_time" content="2016-04-24T08:33:52.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/8nuqln88ya5jekx/openGL.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/rdjq1iff3idn1wd/openGL2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/19pidxmtgwelete/OpenGL3.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/lz4n00c744bo23o/opengl4.png?dl=1">
+<meta property="og:updated_time" content="2016-07-31T13:25:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用OpenGL_ES显示图像">
 <meta name="twitter:description" content="转载原文
 Android框架提供了大量的标准工具，用来创建吸引人的，功能丰富的图形界面。然而，如果我们希望应用在屏幕上所绘制的内容进行更多的控制，或者正在尝试建立三维图像，那么我们就需要一个不同的工具了。由Android框架提供的OpenGL ES接口给予我们一组可以显示高级动画和图形的工具集，它的功能仅仅受限于我们自身的想象力。同时，在许多Android设备上搭载的图形处理单元（GPU）都能为其">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/openGL.png">
+<meta name="twitter:image" content="https://www.dropbox.com/s/8nuqln88ya5jekx/openGL.png?dl=1">
 
 
 
@@ -424,7 +424,7 @@ public Triangle() {
 }
 </code></pre><p>默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（分别对应X轴坐标, Y轴坐标, Z轴坐标）对应的是GLSurfaceView的中心。[1, 1, 0]对应的是右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding" target="_blank" rel="external">OpenGL ES开发手册</a>。</p>
 <h2 id="定义一个矩形"><a href="#定义一个矩形" class="headerlink" title="定义一个矩形"></a>定义一个矩形</h2><p>在OpenGL中定义三角形非常简单，那么你是否想要来点更复杂的呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/openGL.png" alt="定义一个矩形"></p>
+<p><img src="https://www.dropbox.com/s/8nuqln88ya5jekx/openGL.png?dl=1" alt="定义一个矩形"></p>
 <p>再一次地，我们需要逆时针地为三角形顶点定义坐标来表现这个图形，并将值放入一个<code>ByteBuffer</code>中。为了避免由两个三角形重合的那条边的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：</p>
 <pre><code>public class Square {
 
@@ -590,7 +590,7 @@ GLES20.glDisableVertexAttribArray(mPositionHandle);
 mTriangle.draw();
 }
 </code></pre><p>当你运行这个应用时，它看上去会像是这样：</p>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/openGL2.png" alt="openGL2"></p>
+<p><img src="https://www.dropbox.com/s/rdjq1iff3idn1wd/openGL2.png?dl=1" alt="openGL2"></p>
 <p>在这个代码样例中，还存在一些问题。首先，它无法给用户带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。发生形变的原因是因为对象的顶点没有根据显示<code>GLSurfaceView</code>的屏幕区域的长宽比进行修正。你可以在下一节课中使用投影（Projection）或者相机视角（Camera View）来解决这个问题。</p>
 <p>最后，这个三角形是静止的，这看上去有些无聊。在添加移动课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程中更加新奇的用法。</p>
 <h1 id="运用投影与相机视角"><a href="#运用投影与相机视角" class="headerlink" title="运用投影与相机视角"></a>运用投影与相机视角</h1><p>在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于我们用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：</p>
@@ -668,7 +668,7 @@ GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
 // Disable vertex array
 GLES20.glDisableVertexAttribArray(mPositionHandle);
 }
-</code></pre><p>一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:<br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/OpenGL3.png" alt="OPENGL3"></p>
+</code></pre><p>一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:<br><img src="https://www.dropbox.com/s/19pidxmtgwelete/OpenGL3.png?dl=1" alt="OPENGL3"></p>
 <p>现在，应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！</p>
 <h1 id="添加移动"><a href="#添加移动" class="headerlink" title="添加移动"></a>添加移动</h1><p>在屏幕上绘制图形是OpenGL的一个基本特性，当然我们也可以通过其它的Android图形框架类做这些事情，包括<code>Canvas</code>和<code>Drawable</code>对象。OpenGL ES的特别之处在于，它还提供了其它的一些功能，比如在三维空间中对绘制图形进行移动和变换操作，或者通过其它独有的方法创建出引人入胜的用户体验。</p>
 <p>在这节课中，我们会更深入地学习OpenGL ES的知识：对一个图形添加旋转动画。</p>
@@ -780,7 +780,7 @@ Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
 // Draw triangle
 mTriangle.draw(scratch);
 }
-</code></pre><p>当完成了上述步骤，我们就可以运行这个程序，并通过手指在屏幕上的滑动旋转三角形了：<br><img src="http://7xrh1x.com1.z0.glb.clouddn.com/opengl4.png" alt="opengl4"></p>
+</code></pre><p>当完成了上述步骤，我们就可以运行这个程序，并通过手指在屏幕上的滑动旋转三角形了：<br><img src="https://www.dropbox.com/s/lz4n00c744bo23o/opengl4.png?dl=1" alt="opengl4"></p>
 
       
     </div>

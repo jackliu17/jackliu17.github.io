@@ -75,11 +75,11 @@ CAShapeLayer继承至CALayer，可以使用CALayer的所有属性值
 CAShapeLayer需要与贝塞尔曲线配合使用才有意义
 使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形
 CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRe">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer02.png">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer03.gif">
-<meta property="og:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer04.gif">
-<meta property="og:updated_time" content="2016-05-08T10:06:53.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/cvhdro7bp0xx6v5/iOS_CAShaperLayer01.gif?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/7xqahnswjtjcxtr/iOS_CAShaperLayer02.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/pn5bbap1s76x5r0/iOS_CAShaperLayer03.gif?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/tkrd6wrarlhtudu/iOS_CAShaperLayer04.gif?dl=1">
+<meta property="og:updated_time" content="2016-07-31T04:09:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CAShapeLayer的使用">
 <meta name="twitter:description" content="CAShapeLayer简介
@@ -87,7 +87,7 @@ CAShapeLayer继承至CALayer，可以使用CALayer的所有属性值
 CAShapeLayer需要与贝塞尔曲线配合使用才有意义
 使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形
 CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRe">
-<meta name="twitter:image" content="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif">
+<meta name="twitter:image" content="https://www.dropbox.com/s/cvhdro7bp0xx6v5/iOS_CAShaperLayer01.gif?dl=1">
 
 
 
@@ -318,7 +318,7 @@ CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的G
 <li>使用CAShapeLayer与贝塞尔曲线可以实现不在view的drawRect方法中画出一些想要的图形</li>
 <li>CAShapeLayer属于CoreAnimation框架，其动画渲染直接提交到手机的GPU当中，相较于view的drawRect方法使用CPU渲染而言，其效率极高，能大大优化内存使用情况</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer01.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/cvhdro7bp0xx6v5/iOS_CAShaperLayer01.gif?dl=1" alt=""></p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -426,7 +426,7 @@ return starPath;
 <li>贝塞尔曲线给CAShapeLayer提供路径，CAShapeLayer在提供的路径中进行渲染，路径会闭环，所以路径绘制出了Shape</li>
 <li>用于CAShapeLayer的贝塞尔曲线作为path，其path是一个首尾相接的闭环的曲线，即使该贝塞尔曲线不是一个闭环的曲线</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer02.png" alt=""></p>
+<p><img src="https://www.dropbox.com/s/7xqahnswjtjcxtr/iOS_CAShaperLayer02.png?dl=1" alt=""></p>
 <h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
 [super viewDidLoad];
 // Do any additional setup after loading the view, typically from a nib.
@@ -467,7 +467,7 @@ shape.path = circle.CGPath;
 <li>将strokeStart值设定成0，然后让strokeEnd的值变化触发隐式动画</li>
 <li>strokeStart的值一定小于strokeEnd</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer03.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/pn5bbap1s76x5r0/iOS_CAShaperLayer03.gif?dl=1" alt=""></p>
 <h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
 
 @interface ViewController ()
@@ -538,7 +538,7 @@ _shapeLayer.strokeEnd   = valueOne &gt; valueTwo ? valueOne : valueTwo;
 <li>实现细节</li>
 <li>进行测试</li>
 </ol>
-<p><img src="http://7xrh1x.com1.z0.glb.clouddn.com/iOS_CAShaperLayer04.gif" alt=""></p>
+<p><img src="https://www.dropbox.com/s/tkrd6wrarlhtudu/iOS_CAShaperLayer04.gif?dl=1" alt=""></p>
 <h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
 <pre><code>#import &quot;ViewController.h&quot;
 #import &quot;CircleView.h&quot;
