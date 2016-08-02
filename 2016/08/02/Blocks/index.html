@@ -1,0 +1,955 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="objective-C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="原文链接:working with block
+什么是block
+块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。
+块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.
+
+没有参数和返回值的块定义一个块
+^{
+     NSLog(@&amp;quot;T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blocks">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/02/Blocks/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="原文链接:working with block
+什么是block
+块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。
+块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.
+
+没有参数和返回值的块定义一个块
+^{
+     NSLog(@&amp;quot;T">
+<meta property="og:updated_time" content="2016-08-02T07:31:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blocks">
+<meta name="twitter:description" content="原文链接:working with block
+什么是block
+块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。
+块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.
+
+没有参数和返回值的块定义一个块
+^{
+     NSLog(@&amp;quot;T">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Blocks | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Blocks
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T15:19:02+10:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/Blocks/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/Blocks/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文链接:<a href="http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html" target="_blank" rel="external">working with block</a></p>
+<h1 id="什么是block"><a href="#什么是block" class="headerlink" title="什么是block"></a>什么是block</h1><ol>
+<li>块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。</li>
+<li>块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.</li>
+</ol>
+<h1 id="没有参数和返回值的块"><a href="#没有参数和返回值的块" class="headerlink" title="没有参数和返回值的块"></a>没有参数和返回值的块</h1><p>定义一个块</p>
+<pre><code>^{
+     NSLog(@&quot;This is a block&quot;);
+}
+</code></pre><p>声明块变量</p>
+<pre><code>void (^simpleBlock)(void);
+</code></pre><p>块变量赋值</p>
+<pre><code>void (^simpleBlock)(void) = ^{
+    NSLog(@&quot;This is a block&quot;);
+};
+</code></pre><p>块变量赋值的简约形式   </p>
+<pre><code>simpleBlock = ^{
+    NSLog(@&quot;This is a block&quot;);
+};
+</code></pre><p>调用块命令</p>
+<pre><code>simpleBlock();
+</code></pre><h1 id="有参数和返回值的块"><a href="#有参数和返回值的块" class="headerlink" title="有参数和返回值的块"></a>有参数和返回值的块</h1><p>定义一个块</p>
+<pre><code>//1.
+
+^ (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+
+//2.
+^ double (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+</code></pre><p>声明块变量</p>
+<pre><code>double (^multiplyTwoValues)(double, double);    
+</code></pre><p>调用块命令</p>
+<pre><code>double (^multiplyTwoValues)(double, double) =
+                          ^(double firstValue, double secondValue) {
+                              return firstValue * secondValue;
+                          };
+
+double result = multiplyTwoValues(2,4);
+
+NSLog(@&quot;The result is %f&quot;, result);
+</code></pre><h1 id="块的值域"><a href="#块的值域" class="headerlink" title="块的值域"></a>块的值域</h1><p>如果你在一个方法中声明了块，他可以捕捉到任何在方法域中可以访问到的值</p>
+<pre><code>- (void)testMethod {
+int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+testBlock();
+}
+</code></pre><p>一旦捕获后，即使在捕获后和调用期间改变值，不受影响.块不能够改变初始变量的值，或者是被捕获的值  </p>
+<pre><code>int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+anInteger = 84;
+
+testBlock();  
+
+//Integer is: 42 
+</code></pre><h1 id="block变量（块变量的改变）"><a href="#block变量（块变量的改变）" class="headerlink" title="__block变量（块变量的改变）"></a>__block变量（块变量的改变）</h1><p>变量和块共享存储空间。变量改变，块内的也改变</p>
+<pre><code>__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+anInteger = 84;
+testBlock(); 
+
+//Integer is：84
+</code></pre><p>变量可以在块内被改变</p>
+<pre><code>__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+    anInteger = 100;
+};
+
+testBlock();
+NSLog(@&quot;Value of original variable is now: %i&quot;, anInteger); 
+
+//Integer is: 42
+//Value of original variable is now: 100  
+</code></pre><h1 id="块作为方法或函数的参数"><a href="#块作为方法或函数的参数" class="headerlink" title="块作为方法或函数的参数"></a>块作为方法或函数的参数</h1><pre><code>- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
+
+
+- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {
+...
+callbackBlock();
+}
+
+- (void)doSomethingWithBlock:(void (^)(double, double))block {
+...
+block(21.0, 2.0);
+}
+</code></pre><p>块应该总是一个方法的最后一个参数</p>
+<pre><code>//声明
+- (void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
+
+//调用
+[self beginTaskWithName:@&quot;MyTask&quot; completion:^{
+    NSLog(@&quot;The task is complete&quot;);
+}];
+</code></pre><p>块也用于回调 — 定义了当一个任务结束时将被执行的代码</p>
+<pre><code>- (IBAction)fetchRemoteInformation:(id)sender {
+[self showProgressIndicator];
+
+XYZWebTask *task = ...
+
+[task beginTaskWithCallbackBlock:^{
+    [self hideProgressIndicator];
+}];
+}
+</code></pre><h1 id="定义块的数据类型"><a href="#定义块的数据类型" class="headerlink" title="定义块的数据类型"></a>定义块的数据类型</h1><pre><code>typedef void (^XYZSimpleBlock)(void);
+
+
+XYZSimpleBlock anotherBlock = ^{
+    ...
+};
+
+
+- (void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {
+
+...
+callbackBlock();
+}
+</code></pre><p>该 complexBlock 变量是指一个块需要另一块作为一个参数（ABLOCK）并返回另一个块</p>
+<pre><code>void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
+...
+return ^{
+    ...
+};
+};
+</code></pre><p>重写代码使用类型定义使其可读性更高，将块定义成数据类型</p>
+<pre><code>XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {
+...
+return ^{
+    ...
+};
+};
+</code></pre><h1 id="定义块为属性"><a href="#定义块为属性" class="headerlink" title="定义块为属性"></a>定义块为属性</h1><pre><code>@interface XYZObject : NSObject
+@property (copy) void (^blockProperty)(void);  //通常使用copy,why?
+@end
+
+
+self.blockProperty = ^{
+    ...
+};
+self.blockProperty();
+
+
+使用块属性声明的类型定义
+
+typedef void (^XYZSimpleBlock)(void);
+
+@interface XYZObject : NSObject
+@property (copy) XYZSimpleBlock blockProperty;
+@end
+</code></pre><h1 id="Avoid-Strong-Reference-Cycles-when-Capturing-self"><a href="#Avoid-Strong-Reference-Cycles-when-Capturing-self" class="headerlink" title="Avoid Strong Reference Cycles when Capturing self"></a>Avoid Strong Reference Cycles when Capturing self</h1><p>Blocks maintain strong references to any captured objects, including self, which means that it’s easy to end up with a strong reference cycle。 block对任何捕获的对象是强引用。</p>
+<pre><code>@interface XYZBlockKeeper : NSObject
+@property (copy) void (^block)(void);
+@end
+
+@implementation XYZBlockKeeper
+- (void)configureBlock {
+self.block = ^{
+    [self doSomething];    // capturing a strong reference to self
+                           // creates a strong reference cycle
+};
+}
+...
+@end
+</code></pre><p>正确做法如下</p>
+<pre><code>- (void)configureBlock {
+XYZBlockKeeper * __weak weakSelf = self;
+self.block = ^{
+    [weakSelf doSomething];   // capture the weak reference
+                              // to avoid the reference cycle
+}
+}
+</code></pre><p>By capturing the weak pointer to self, the block won’t maintain a strong relationship back to the XYZBlockKeeper object. If that object is deallocated before the block is called, the weakSelf pointer will simply be set to nil.</p>
+<h1 id="块可以简化枚举-待阅"><a href="#块可以简化枚举-待阅" class="headerlink" title="块可以简化枚举 (待阅)"></a>块可以简化枚举 (待阅)</h1><h1 id="使用块操作与运行队列-待阅"><a href="#使用块操作与运行队列-待阅" class="headerlink" title="使用块操作与运行队列 (待阅)"></a>使用块操作与运行队列 (待阅)</h1><h1 id="用GCD技术在调度队列调度块-待阅"><a href="#用GCD技术在调度队列调度块-待阅" class="headerlink" title="用GCD技术在调度队列调度块 (待阅)"></a>用GCD技术在调度队列调度块 (待阅)</h1>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/objective-C/" rel="tag">#objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/AFNetworking简介/" rel="next" title="AFNetworking简介">
+                <i class="fa fa-chevron-left"></i> AFNetworking简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是block"><span class="nav-number">1.</span> <span class="nav-text">什么是block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#没有参数和返回值的块"><span class="nav-number">2.</span> <span class="nav-text">没有参数和返回值的块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#有参数和返回值的块"><span class="nav-number">3.</span> <span class="nav-text">有参数和返回值的块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#块的值域"><span class="nav-number">4.</span> <span class="nav-text">块的值域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#block变量（块变量的改变）"><span class="nav-number">5.</span> <span class="nav-text">__block变量（块变量的改变）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#块作为方法或函数的参数"><span class="nav-number">6.</span> <span class="nav-text">块作为方法或函数的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义块的数据类型"><span class="nav-number">7.</span> <span class="nav-text">定义块的数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义块为属性"><span class="nav-number">8.</span> <span class="nav-text">定义块为属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Avoid-Strong-Reference-Cycles-when-Capturing-self"><span class="nav-number">9.</span> <span class="nav-text">Avoid Strong Reference Cycles when Capturing self</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#块可以简化枚举-待阅"><span class="nav-number">10.</span> <span class="nav-text">块可以简化枚举 (待阅)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用块操作与运行队列-待阅"><span class="nav-number">11.</span> <span class="nav-text">使用块操作与运行队列 (待阅)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用GCD技术在调度队列调度块-待阅"><span class="nav-number">12.</span> <span class="nav-text">用GCD技术在调度队列调度块 (待阅)</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/08/02/Blocks/';
+      var disqus_title = 'Blocks';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/02/Blocks/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

@@ -238,6 +238,585 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/06/使用带粒子效果的CAEmitterLayer/" itemprop="url">
+                  使用带粒子效果的CAEmitterLayer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T16:34:55+10:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/06/使用带粒子效果的CAEmitterLayer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/06/使用带粒子效果的CAEmitterLayer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="用CAEmitterLayer产生粒子效果"><a href="#用CAEmitterLayer产生粒子效果" class="headerlink" title="用CAEmitterLayer产生粒子效果"></a>用CAEmitterLayer产生粒子效果</h1><ol>
+<li>CAEmitterLayer的用途</li>
+<li>CAEmitterLayer的一些重要参数</li>
+<li>为什么要使用CAEmitterLayer</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建出Layer
+CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
+// 显示边框
+emitterLayer.borderWidth = 1.f;
+
+// 给定尺寸
+emitterLayer.frame = CGRectMake(100, 100, 100, 100);
+
+// 发射点
+emitterLayer.emitterPosition = CGPointMake(0, 0);
+
+// 发射模式
+emitterLayer.emitterMode = kCAEmitterLayerSurface;
+
+// 发射形状
+emitterLayer.emitterShape = kCAEmitterLayerLine;
+
+// 添加layer
+[self.view.layer addSublayer:emitterLayer];
+
+// 创建粒子
+CAEmitterCell *cell = [CAEmitterCell emitterCell];
+
+// 粒子产生率
+cell.birthRate = 10.f;
+
+// 粒子生命周期
+cell.lifetime = 10.f;
+
+// 速度值
+cell.velocity = 10;
+
+// 速度值的微调值
+cell.velocityRange = 3.f;
+
+// y轴加速度
+cell.yAcceleration = 2.f;
+
+// 发射角度
+cell.emissionRange = 4.f * M_1_PI;
+
+// 设置粒子颜色
+cell.color = [UIColor blackColor].CGColor;
+
+// 设置图片
+cell.contents = (__bridge id)([UIImage imageNamed:@&quot;snow&quot;].CGImage);
+
+// 让CAEmitterCell与CAEmitterLayer产生关联
+emitterLayer.emitterCells = @[cell];
+}
+</code></pre><h1 id="封装CAEmitterLayer"><a href="#封装CAEmitterLayer" class="headerlink" title="封装CAEmitterLayer"></a>封装CAEmitterLayer</h1><ol>
+<li>替换CAEmitterLayer成UIView子类的backedLayer</li>
+<li>将CAEmitterLayer封装的类作为“抽象”父类</li>
+</ol>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;CAEmitterLayerView.h&quot;
+@interface ViewController ()
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+CAEmitterLayerView *layerView = [[CAEmitterLayerView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+NSLog(@&quot;%@&quot;, layerView.layer);
+}
+
+@end
+</code></pre><p>CAEmitterLayerView.m</p>
+<pre><code>#import &quot;CAEmitterLayerView.h&quot;
+
+@interface CAEmitterLayerView () {
+CAEmitterLayer  *_emitterLayer;
+}
+@end
+
+@implementation CAEmitterLayerView
+
++ (Class)layerClass {
+return [CAEmitterLayer class];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {    
+    _emitterLayer = (CAEmitterLayer *)self.layer;
+}
+return self;
+}
+
+- (void)show {
+}
+
+- (void)hide {
+}
+
+- (void)setEmitterLayer:(CAEmitterLayer *)layer {
+_emitterLayer = layer;
+}
+
+- (CAEmitterLayer *)emitterLayer {
+return _emitterLayer;
+}
+@end
+</code></pre><h1 id="封装下雪下雨的粒子效果控件"><a href="#封装下雪下雨的粒子效果控件" class="headerlink" title="封装下雪下雨的粒子效果控件"></a>封装下雪下雨的粒子效果控件</h1><ol>
+<li>从封装CAEmitterLayer的“抽象”父类继承的原因</li>
+<li>下雪、下雨效果参数的设置</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/mite4jgig19v95e/iOS_CAEmitterLayer.png?dl=1" alt=""></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><p>viewController.m</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+UIImageView *alphaView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+alphaView1.image        = [UIImage imageNamed:@&quot;alpha&quot;];
+
+// 添加下雪效果
+CAEmitterLayerView *snowView = [[SnowView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+snowView.maskView            = alphaView1;
+[self.view addSubview:snowView];
+[snowView show];
+
+}
+</code></pre><p>SnowView.m (继承CAEmitterLayerView，见上)</p>
+<pre><code>#import &quot;SnowView.h&quot;
+
+@implementation SnowView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+    // 初始化设置
+    [self setup];
+}
+return self;
+}
+
+- (void)setup {
+self.emitterLayer.masksToBounds   = YES;
+self.emitterLayer.emitterShape    = kCAEmitterLayerLine;
+self.emitterLayer.emitterMode     = kCAEmitterLayerSurface;
+self.emitterLayer.emitterSize     = self.frame.size;
+self.emitterLayer.emitterPosition = CGPointMake(self.bounds.size.width / 2.f, - 20);
+}
+
+- (void)show {
+// 配置
+CAEmitterCell *snowflake  = [CAEmitterCell emitterCell];
+snowflake.birthRate       = 1.f;
+snowflake.speed           = 10.f;
+snowflake.velocity        = 2.f;
+snowflake.velocityRange   = 10.f;
+snowflake.yAcceleration   = 10.f;
+snowflake.emissionRange   = 0.5 * M_PI;
+snowflake.spinRange       = 0.25 * M_PI;
+snowflake.contents        = (__bridge id)([UIImage imageNamed:@&quot;snow&quot;].CGImage);
+snowflake.color           = [UIColor redColor].CGColor;
+snowflake.lifetime        = 60.f;
+snowflake.scale           = 0.5;
+snowflake.scaleRange      = 0.3;
+
+// 添加动画
+self.emitterLayer.emitterCells = @[snowflake];
+}
+
+@end
+</code></pre><h1 id="指定UIView的layer-class"><a href="#指定UIView的layer-class" class="headerlink" title="指定UIView的layer class"></a>指定UIView的layer class</h1><pre><code>+ (Class)layerClass {
+return [CAEmitterLayer class];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/05/缓动函数与关键帧动画/" itemprop="url">
+                  缓动函数与关键帧动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-05T21:08:35+10:00" content="2016-05-05">
+              2016-05-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/05/缓动函数与关键帧动画/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/05/缓动函数与关键帧动画/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="缓动函数简介"><a href="#缓动函数简介" class="headerlink" title="缓动函数简介"></a>缓动函数简介</h1><ol>
+<li>缓动函数的动画效果是建立在CALayer层级的关键帧动画基础之上</li>
+<li>缓动函数是一系列模拟物理效果（如抛物线）方程式的统称，用以计算给定两点之间的插值</li>
+<li>两点之间插的值越多，效果越好，但是会耗费更多的性能</li>
+<li>只有理解了缓动函数的原理才有可能写出自己想要的效果</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/2weqj3n0ctq5otw/%E7%BC%93%E5%8A%A8%E5%87%BD%E6%95%B0.png?dl=1" alt=""></p>
+<h1 id="缓动函数与关键帧动画的联系"><a href="#缓动函数与关键帧动画的联系" class="headerlink" title="缓动函数与关键帧动画的联系"></a>缓动函数与关键帧动画的联系</h1><ol>
+<li>关键帧动画需要提供很多的帧来完善动画效果</li>
+<li>关键帧动画的帧可以通过一定的数学计算来提供需要的帧数</li>
+<li>关键帧动画只需要提供起始点，结束点，就可以通过缓动函数来计算中间“缺失”的帧</li>
+<li>缓动函数可以指定计算出多少帧</li>
+<li>帧数越多，动画越流畅，但同时耗费更多的GPU性能。<strong>1秒钟60帧最多了，写得再大也是浪费GPU</strong></li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 添加显示用的view
+UIView *showView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+showView.layer.cornerRadius  = 50;
+showView.layer.masksToBounds = YES;
+showView.backgroundColor     = [UIColor redColor];
+[self.view addSubview:showView];
+
+//    // 基本动画类型
+//    CABasicAnimation *basicAnimation = [CABasicAnimation animation];
+//    basicAnimation.keyPath           = @&quot;position&quot;;
+//    basicAnimation.duration          = 4.f;
+//
+//    // fromValue = A | toValue = B
+//    basicAnimation.fromValue = [NSValue valueWithCGPoint:showView.center];
+//    basicAnimation.toValue   = [NSValue valueWithCGPoint:CGPointMake(200, 200)];
+//
+//    showView.center = CGPointMake(200, 200);
+//    [showView.layer addAnimation:basicAnimation forKey:nil];
+
+// 关键帧动画类型
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&quot;position&quot;;
+keyFrameAnimation.duration             = 4.f;
+keyFrameAnimation.values = [YXEasing calculateFrameFromPoint:showView.center
+                                                     toPoint:CGPointMake(200, 200)
+                                                        func:BounceEaseInOut
+                                                  frameCount:30 * 4];
+showView.center = CGPointMake(200, 200);
+[showView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+</code></pre><h1 id="用缓动函数模拟弹簧效果"><a href="#用缓动函数模拟弹簧效果" class="headerlink" title="用缓动函数模拟弹簧效果"></a>用缓动函数模拟弹簧效果</h1><ol>
+<li>使用easeOutElastic函数来创建弹簧效果</li>
+<li>将easeOutElastic创建出来的帧数组添加到关键帧动画中</li>
+<li>弹簧效果用途</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/jvva7m0kl11mm8l/iOS_spring.png?dl=1" alt=""></p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>#import &quot;ViewController.h&quot;
+#import &quot;YXEasing.h&quot;
+@interface ViewController ()
+@property (nonatomic, strong) CALayer *secLayer; // 秒针layer
+@property (nonatomic, strong) NSTimer *timer;    // 定时器
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 创建一个表盘
+UIView *showView            = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+showView.center             = self.view.center;
+showView.layer.borderWidth  = 1.f;
+showView.layer.cornerRadius = 150;
+showView.layer.borderColor  = [UIColor redColor].CGColor;
+[self.view addSubview:showView];
+
+// 创建出秒针layer
+self.secLayer                 = [CALayer layer];
+self.secLayer.anchorPoint     = CGPointMake(0, 0);
+self.secLayer.frame           = CGRectMake(150, 150, 1, 150);
+self.secLayer.backgroundColor = [UIColor blackColor].CGColor;
+[showView.layer addSublayer:self.secLayer];
+
+// 创建定时器
+self.timer = [NSTimer scheduledTimerWithTimeInterval:1.f
+                                              target:self
+                                            selector:@selector(timerEvent)
+                                            userInfo:nil
+                                             repeats:YES];
+}
+
+- (void)timerEvent {
+
+static int i = 1;
+
+CGFloat oldValue = DEGREES_TO_RADIANS((360 / 60.f) * i++);
+CGFloat newValue = DEGREES_TO_RADIANS((360 / 60.f) * i);
+
+// 创建关键帧动画
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&quot;transform.rotation.z&quot;;
+keyFrameAnimation.duration             = 0.5;
+keyFrameAnimation.values               = [YXEasing calculateFrameFromValue:oldValue
+                                                                   toValue:newValue
+                                                                      func:ElasticEaseOut
+                                                                frameCount:0.5 * 30];
+
+self.secLayer.transform = CATransform3DMakeRotation(newValue, 0, 0, 1);
+[self.secLayer addAnimation:keyFrameAnimation forKey:nil];
+}
+</code></pre><h1 id="用缓动函数模拟碰撞效果"><a href="#用缓动函数模拟碰撞效果" class="headerlink" title="用缓动函数模拟碰撞效果"></a>用缓动函数模拟碰撞效果</h1><ol>
+<li>使用easeOutBounce函数来创建弹簧效果</li>
+<li>将easeOutBounce创建出来的帧数组添加到关键帧动画中</li>
+<li>碰撞效果用途</li>
+</ol>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 创建图片view
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+imageView.image        = [UIImage imageNamed:@&quot;pic&quot;];
+imageView.contentMode  = UIViewContentModeScaleAspectFill;
+[self.view addSubview:imageView];
+
+// 创建关键帧动画(移动距离的动画)
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&quot;position&quot;;
+keyFrameAnimation.duration             = 2.f;
+keyFrameAnimation.values               = \
+[YXEasing calculateFrameFromPoint:imageView.center
+                          toPoint:CGPointMake(320 / 2.f, 320 / 2.f + 240)
+                             func:BounceEaseOut
+                       frameCount:2 * 30];
+
+// 添加动画
+imageView.center = CGPointMake(320 / 2.f, 320 / 2.f + 240);
+[imageView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+</code></pre><h1 id="用缓动函数模拟衰减效果"><a href="#用缓动函数模拟衰减效果" class="headerlink" title="用缓动函数模拟衰减效果"></a>用缓动函数模拟衰减效果</h1><ol>
+<li>使用easeOutCubic函数来创建弹簧效果</li>
+<li>将easeOutCubic创建出来的帧数组添加到关键帧动画中</li>
+<li>衰减效果用途</li>
+</ol>
+<h1 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h1><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+// 背景变暗的view
+UIView *backView         = [[UIView alloc] initWithFrame:self.view.bounds];
+backView.backgroundColor = [UIColor blackColor];
+backView.alpha           = 0;
+[UIView animateWithDuration:1.f animations:^{
+    backView.alpha       = 0.3;
+}];
+[self.view addSubview:backView];
+
+// 创建模拟的菜单
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(320, 0, 320, 568)];
+imageView.image        = [UIImage imageNamed:@&quot;pic&quot;];
+[self.view addSubview:imageView];
+
+// 创建关键帧动画
+CAKeyframeAnimation *keyFrameAnimation = [CAKeyframeAnimation animation];
+keyFrameAnimation.keyPath              = @&quot;position&quot;;
+keyFrameAnimation.duration             = 1.f;
+keyFrameAnimation.values               = \
+[YXEasing calculateFrameFromPoint:imageView.center
+                          toPoint:CGPointMake(self.view.center.x + 100, self.view.center.y)
+                             func:CubicEaseOut
+                       frameCount:1 * 30];
+
+// 加载关键帧动画
+imageView.center = CGPointMake(self.view.center.x + 100, self.view.center.y);
+[imageView.layer addAnimation:keyFrameAnimation forKey:nil];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/05/Facebook开源动画库POP实现真实衰减与弹簧动画/" itemprop="url">
                   Facebook开源动画库POP实现真实衰减与弹簧动画
                 </a>
@@ -982,488 +1561,12 @@ blurDownloadView.contentMode = UIViewContentModeScaleAspectFit;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/30/iOS项目9-三级视图控制器/" itemprop="url">
-                  iOS项目9.三级视图控制器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T22:14:13+10:00" content="2016-04-30">
-              2016-04-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/30/iOS项目9-三级视图控制器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/iOS项目9-三级视图控制器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/03u0mbqwegnei1n/iOSproj00901.png?dl=1" alt=""></p>
-<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="https://www.dropbox.com/s/e6p049an8brtl5y/iOSproj00902.png?dl=1" alt=""></p>
-<h1 id="三级视图控制器"><a href="#三级视图控制器" class="headerlink" title="三级视图控制器"></a>三级视图控制器</h1><ol>
-<li>标签控制器 -&gt; 导航控制器 -&gt; 视图控制器，这就叫三级视图控制器</li>
-<li>一个导航控制器对应于一个视图控制器，</li>
-<li>标签控制器是管理固定的几个视图控制器，子控制器是并列的。</li>
-<li>UITabBarController用数组管理视图控制器，而导航控制器所管理的视图控制器之间的关系是上下级关系</li>
-</ol>
-<h1 id="设置window"><a href="#设置window" class="headerlink" title="设置window"></a>设置window</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-self.window.backgroundColor = [UIColor whiteColor];
-[self.window makeKeyAndVisible];
-RootViewController *rootVC = [[RootViewController alloc] init];
-//权限最高的给根视图控制器
-self.window.rootViewController = rootVC; 
-// Override point for customization after application launch.
-return YES;
-}
-</code></pre><h1 id="数组赋值示例"><a href="#数组赋值示例" class="headerlink" title="数组赋值示例"></a>数组赋值示例</h1><pre><code>NSArray *vcArray = @[profielVC,messageVC,colaVC,userVC,moreVC];
-NSMutableArray *tabArray = [NSMutableArray arrayWithCapacity:vcArray.count];
-</code></pre><h1 id="背景颜色赋值为图片"><a href="#背景颜色赋值为图片" class="headerlink" title="背景颜色赋值为图片"></a>背景颜色赋值为图片</h1><pre><code>_tabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@&quot;mask_navbar&quot;]];
-</code></pre><h1 id="UIButton设tag值"><a href="#UIButton设tag值" class="headerlink" title="UIButton设tag值"></a>UIButton设tag值</h1><pre><code> //区分是点击了哪个button
-//iOS中100以前的tag值有特殊用法，所以最好在100以后
-btn.tag = 100 + i; 
-</code></pre><h1 id="UITabBarController的属性"><a href="#UITabBarController的属性" class="headerlink" title="UITabBarController的属性"></a>UITabBarController的属性</h1><pre><code>//选择的是哪个tab
-self.selectedIndex = button.tag - 100;
-
-//隐藏系统默认的样式
-self.tabBar.hidden = YES;
-
-//用数组管理视图控制器
-self.viewControllers = tabArray;
-</code></pre><h1 id="Tab子视图调用根视图方法-UITabBarController"><a href="#Tab子视图调用根视图方法-UITabBarController" class="headerlink" title="Tab子视图调用根视图方法(UITabBarController)"></a>Tab子视图调用根视图方法(UITabBarController)</h1><pre><code>RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-</code></pre><h1 id="动画效果在于CGPoint-or-frame的改变"><a href="#动画效果在于CGPoint-or-frame的改变" class="headerlink" title="动画效果在于CGPoint or frame的改变"></a>动画效果在于CGPoint or frame的改变</h1><pre><code>[UIView animateWithDuration:0.2 animations:^{
-    _selectView.center = button.center;
-} completion:nil];
-
-
-//重新赋值frame,让tabBar消失
-[UIView animateWithDuration:0.2 animations:^{
-    self.tabBarView.frame = frame;
-} completion:nil];
-</code></pre><h1 id="UIButton的设置"><a href="#UIButton的设置" class="headerlink" title="UIButton的设置"></a>UIButton的设置</h1><pre><code>//需要custom类型才能设置图片
-UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-
-//[pushButton setImage:(UIImage *) forState:(UIControlState)]
-//标题和图片不能同时设置
-[pushButton setTitle:@&quot;Push&quot; forState:UIControlStateNormal];
-</code></pre><h1 id="视图顶部导航栏左右按钮"><a href="#视图顶部导航栏左右按钮" class="headerlink" title="视图顶部导航栏左右按钮"></a>视图顶部导航栏左右按钮</h1><pre><code>//自定义导航栏按钮
-- (void)initNavButton{
-
-UIButton *writeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//导航按钮的xy值没有用
-writeBtn.frame = CGRectMake(0, 0, writeButtonWidth, writeButtonHeight);
-[writeBtn setBackgroundImage:[UIImage imageNamed:@&quot;write&quot;] forState:UIControlStateNormal];
-[writeBtn addTarget:self action:@selector(presentAction) forControlEvents:UIControlEventTouchUpInside];
-//添加自定义按钮
-UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:writeBtn];
-self.navigationItem.rightBarButtonItem = item;
-}
-</code></pre><h1 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h1><h2 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h2><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
-</code></pre><h2 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h2><pre><code>- (void)dismissAction{
-[self dismissViewControllerAnimated:YES completion:nil];
-}
-</code></pre><h1 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h1><h2 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h2><pre><code>- (void)pushAction{
-PushViewController *pushVC = [[PushViewController alloc] init];
-[self.navigationController pushViewController:pushVC animated:YES];
-//[self.navigationController showViewController:pushVC sender:nil];
-RootViewController *rootVC = (RootViewController *)self.tabBarController;
-[rootVC showTabBar:NO];
-}    
-</code></pre><h2 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h2><pre><code>- (void)popAction{
-
-    // 回到上级视图
-    [self.navigationController popViewControllerAnimated:YES];
-
-    // 跳转到某视图
-    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
-
-    // 跳转到根视图
-    //[self.navigationController popToRootViewControllerAnimated:YES];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/30/设计复杂的iOS动画效果/" itemprop="url">
-                  设计复杂的iOS动画效果
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T18:56:02+10:00" content="2016-04-30">
-              2016-04-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/30/设计复杂的iOS动画效果/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/设计复杂的iOS动画效果/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="动画效果的UIView-Object"><a href="#动画效果的UIView-Object" class="headerlink" title="动画效果的UIView Object"></a>动画效果的UIView Object</h1><p><img src="https://www.dropbox.com/s/hivb6ciky4ikfab/iOS_animate_001.png?dl=1" alt=""></p>
-<pre><code>// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
-
-// 创建view
-- (void)buildView;
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent;
-</code></pre><h1 id="制定统一的动画接口"><a href="#制定统一的动画接口" class="headerlink" title="制定统一的动画接口"></a>制定统一的动画接口</h1><p>即：相关有动画效果的类，有同一的动画方法命名</p>
-<ol>
-<li>为了实现后续复杂的动画组合</li>
-<li>后续的代码维护极为方便</li>
-<li>优先考虑里氏代换原则</li>
-</ol>
-<h1 id="动画中的高内聚低耦合原理"><a href="#动画中的高内聚低耦合原理" class="headerlink" title="动画中的高内聚低耦合原理"></a>动画中的高内聚低耦合原理</h1><ol>
-<li>高内聚：有动画效果的类，自身具有动画方法</li>
-<li>不要把实现动画的细节暴露在外</li>
-<li>设计动画类尽量要符合单一职能原则，以便后续方便组合成复杂的动画效果</li>
-</ol>
-<h1 id="设计动画函数的注意事项"><a href="#设计动画函数的注意事项" class="headerlink" title="设计动画函数的注意事项"></a>设计动画函数的注意事项</h1><ol>
-<li>动画方法的命名统一</li>
-<li>预留非动画情形的设计（tableView等reuse情况）</li>
-<li>用百分比来表示动画的执行程度</li>
-<li>懒加载的使用</li>
-</ol>
-<h1 id="动画效果就是frame值的重新设定"><a href="#动画效果就是frame值的重新设定" class="headerlink" title="动画效果就是frame值的重新设定"></a>动画效果就是frame值的重新设定</h1><pre><code>[UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-</code></pre><h1 id="一个具有动画效果的类"><a href="#一个具有动画效果的类" class="headerlink" title="一个具有动画效果的类"></a>一个具有动画效果的类</h1><pre><code>#import &quot;LineView.h&quot;
-
-@interface LineView ()
-@property (nonatomic) CGRect startRect;
-@property (nonatomic) CGRect midRect;
-@property (nonatomic) CGRect endRect;
-@end
-
-@implementation LineView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.alpha = 0.f;
-}
-return self;
-}
-
-// 创建view
-- (void)buildView {
-// todo
-self.startRect = self.frame;
-self.midRect   = CGRectMake(self.startRect.origin.x + self.offsetX,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-self.endRect   = CGRectMake(self.startRect.origin.x + self.offsetX * 2,
-                            self.startRect.origin.y,
-                            self.startRect.size.width,
-                            self.startRect.size.height);
-                        }
-
-
-// 显示动画
-- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.midRect;
-        self.alpha = 1.f;
-    }];
-} else {
-    self.frame = self.midRect;
-    self.alpha = 1.f;
-}
-}
-
-// 隐藏动画
-- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated {
-if (animated == YES) {
-    [UIView animateWithDuration:duration animations:^{
-        self.frame = self.endRect;
-        self.alpha = 0.f;
-    } completion:^(BOOL finished) {
-        self.frame = self.startRect;
-    }];
-} else {
-    self.frame = self.startRect;
-    self.alpha = 0.f;
-}
-}
-
-
-
-// 动画百分比（手动设置动画的程度）
-- (void)percent:(CGFloat)percent {
-CGFloat tmpOffsetX = 0;
-
-if (percent &lt;= 0) {
-    tmpOffsetX = 0;
-} else if (percent &gt;= 1) {
-    tmpOffsetX = self.offsetX;
-} else {
-    tmpOffsetX = percent * self.offsetX;
-}
-
-self.frame = CGRectMake(self.startRect.origin.x + tmpOffsetX,
-                        self.startRect.origin.y,
-                        self.startRect.size.width,
-                        self.startRect.size.height);
-}
-</code></pre><h1 id="里氏代换原则处理动画类的继承问题"><a href="#里氏代换原则处理动画类的继承问题" class="headerlink" title="里氏代换原则处理动画类的继承问题"></a>里氏代换原则处理动画类的继承问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SourceView *tmpView = [[ChildTwoView alloc] init];</span><br><span class="line">[tmpView show];</span><br></pre></td></tr></table></figure>
-<ol>
-<li>里氏代换原则的基本原理 (多态)</li>
-<li>设计中要确保父类可以直接调用子类的方法</li>
-<li>将父类设计成虚类</li>
-</ol>
-<h1 id="动画中的模块化设计"><a href="#动画中的模块化设计" class="headerlink" title="动画中的模块化设计"></a>动画中的模块化设计</h1><ol>
-<li>动画效果实现难度的判断</li>
-<li>将看到的动画效果拆分成小模块</li>
-<li>将写好的小模块组合成你所需要的动画效果</li>
-</ol>
-<p>ViewController.m</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 复杂的动画被写进了BaseAnimationView当中，没有暴露不必要的细节
-BaseAnimationView *baseView = [[BaseAnimationView alloc] initWithFrame:CGRectZero];
-[self.view addSubview:baseView];
-[baseView show];
-}
-</code></pre><p>BaseAnimation.m</p>
-<pre><code>- (void)show {
-[self.circleView show];
-[self.lineView show];
-}
-
-- (void)hide {
-[self.circleView hide];
-[self.lineView hide];
-}
-
-- (void)buildView {
-self.circleView = [[CircleView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.circleView];
-
-self.lineView = [[RectView alloc] initWithFrame:CGRectZero];
-[self addSubview:self.lineView];
-}
-</code></pre><p>circleView.m / lineView.m</p>
-<pre><code>- (void)show {}
-- (void)hide {}
-- (void)buildView {}
-</code></pre><h1 id="延时执行某方法"><a href="#延时执行某方法" class="headerlink" title="延时执行某方法"></a>延时执行某方法</h1><pre><code>[self performSelector:@selector(excuteAfterDelay) withObject:nil afterDelay:6];
-</code></pre><h1 id="初始化UIView"><a href="#初始化UIView" class="headerlink" title="初始化UIView"></a>初始化UIView</h1><pre><code>- (instancetype)initWithFrame:(CGRect)frame {
-self = [super initWithFrame:frame];
-if (self) {
-    self.rect = frame;
-}
-return self;
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1504,7 +1607,7 @@ return self;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">87</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1521,7 +1624,7 @@ return self;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

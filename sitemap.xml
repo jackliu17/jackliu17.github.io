@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/08/02/Blocks/</loc>
+    
+    <lastmod>2016-08-02T07:31:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/08/01/AFNetworking%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2016-08-02T00:18:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/04/30/%E8%AE%BE%E8%AE%A1%E5%A4%8D%E6%9D%82%E7%9A%84iOS%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/</loc>
     
     <lastmod>2016-07-31T13:30:01.000Z</lastmod>
@@ -44,6 +58,27 @@
   </url>
   
   <url>
+    <loc>http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
+    
+    <lastmod>2016-07-31T13:09:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/03/13/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89/</loc>
+    
+    <lastmod>2016-07-31T13:09:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/</loc>
+    
+    <lastmod>2016-07-31T13:08:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/03/10/Swift%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2016-07-31T13:08:25.000Z</lastmod>
@@ -54,6 +89,13 @@
     <loc>http://jackliu17.github.io/2016/03/15/Swift%E4%B8%AD%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E4%B8%8E%E6%9E%90%E6%9E%84/</loc>
     
     <lastmod>2016-07-31T13:07:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/03/11/Swift%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85/</loc>
+    
+    <lastmod>2016-07-31T13:02:24.000Z</lastmod>
     
   </url>
   
@@ -96,6 +138,13 @@
     <loc>http://jackliu17.github.io/2016/05/14/iOS%E9%A1%B9%E7%9B%AE014-%E4%B9%9D%E5%AE%AB%E6%A0%BC%E6%89%8B%E5%8A%BF%E8%A7%A3%E9%94%81/</loc>
     
     <lastmod>2016-07-31T11:00:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/05/13/iOS%E9%A1%B9%E7%9B%AE13-%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/</loc>
+    
+    <lastmod>2016-07-31T10:57:45.000Z</lastmod>
     
   </url>
   
@@ -373,6 +422,13 @@
   </url>
   
   <url>
+    <loc>http://jackliu17.github.io/2016/05/21/iOS-HTTP%E9%80%9A%E4%BF%A1/</loc>
+    
+    <lastmod>2016-07-31T04:18:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/03/09/Git%E6%9C%AC%E5%9C%B0%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2016-07-31T04:18:39.000Z</lastmod>
@@ -471,13 +527,6 @@
   </url>
   
   <url>
-    <loc>http://jackliu17.github.io/2016/05/21/iOS-HTTP%E9%80%9A%E4%BF%A1/</loc>
-    
-    <lastmod>2016-05-21T03:14:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jackliu17.github.io/2016/05/20/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8-%E6%B2%99%E7%9B%92%E6%95%B0%E6%8D%AE/</loc>
     
     <lastmod>2016-05-20T07:04:58.000Z</lastmod>
@@ -506,13 +555,6 @@
   </url>
   
   <url>
-    <loc>http://jackliu17.github.io/2016/05/13/iOS%E9%A1%B9%E7%9B%AE13-%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/</loc>
-    
-    <lastmod>2016-05-13T02:10:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jackliu17.github.io/2016/05/12/iOS%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/</loc>
     
     <lastmod>2016-05-12T01:54:02.000Z</lastmod>
@@ -527,27 +569,6 @@
   </url>
   
   <url>
-    <loc>http://jackliu17.github.io/2016/03/13/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89/</loc>
-    
-    <lastmod>2016-04-17T04:43:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/12/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
-    
-    <lastmod>2016-04-17T03:23:56.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/11/Swift%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80(%E4%B8%8A)/</loc>
-    
-    <lastmod>2016-04-15T11:11:08.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://jackliu17.github.io/2016/03/14/Swift%E4%B8%AD%E7%9A%84%E6%89%A9%E5%B1%95%E5%92%8C%E5%8D%8F%E8%AE%AE/</loc>
     
     <lastmod>2016-04-15T07:27:24.000Z</lastmod>
@@ -558,13 +579,6 @@
     <loc>http://jackliu17.github.io/2016/03/13/Swift%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/</loc>
     
     <lastmod>2016-04-15T05:44:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/03/11/Swift%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E5%92%8C%E9%97%AD%E5%8C%85/</loc>
-    
-    <lastmod>2016-04-14T11:28:59.000Z</lastmod>
     
   </url>
   

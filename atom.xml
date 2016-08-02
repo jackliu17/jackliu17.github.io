@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-07-29T09:12:16.000Z</updated>
+  <updated>2016-08-02T07:31:03.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,337 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Blocks</title>
+    <link href="http://jackliu17.github.io/2016/08/02/Blocks/"/>
+    <id>http://jackliu17.github.io/2016/08/02/Blocks/</id>
+    <published>2016-08-02T05:19:02.000Z</published>
+    <updated>2016-08-02T07:31:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;原文链接:&lt;a href=&quot;http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;working with block&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;什么是block&quot;&gt;&lt;a href=&quot;#什么是block&quot; class=&quot;headerlink&quot; title=&quot;什么是block&quot;&gt;&lt;/a&gt;什么是block&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。&lt;/li&gt;
+&lt;li&gt;块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;没有参数和返回值的块&quot;&gt;&lt;a href=&quot;#没有参数和返回值的块&quot; class=&quot;headerlink&quot; title=&quot;没有参数和返回值的块&quot;&gt;&lt;/a&gt;没有参数和返回值的块&lt;/h1&gt;&lt;p&gt;定义一个块&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;^{
+     NSLog(@&amp;quot;This is a block&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;声明块变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void (^simpleBlock)(void);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块变量赋值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void (^simpleBlock)(void) = ^{
+    NSLog(@&amp;quot;This is a block&amp;quot;);
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块变量赋值的简约形式   &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleBlock = ^{
+    NSLog(@&amp;quot;This is a block&amp;quot;);
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;调用块命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;simpleBlock();
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;有参数和返回值的块&quot;&gt;&lt;a href=&quot;#有参数和返回值的块&quot; class=&quot;headerlink&quot; title=&quot;有参数和返回值的块&quot;&gt;&lt;/a&gt;有参数和返回值的块&lt;/h1&gt;&lt;p&gt;定义一个块&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//1.
+
+^ (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+
+//2.
+^ double (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;声明块变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;double (^multiplyTwoValues)(double, double);    
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;调用块命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;double (^multiplyTwoValues)(double, double) =
+                          ^(double firstValue, double secondValue) {
+                              return firstValue * secondValue;
+                          };
+
+double result = multiplyTwoValues(2,4);
+
+NSLog(@&amp;quot;The result is %f&amp;quot;, result);
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;块的值域&quot;&gt;&lt;a href=&quot;#块的值域&quot; class=&quot;headerlink&quot; title=&quot;块的值域&quot;&gt;&lt;/a&gt;块的值域&lt;/h1&gt;&lt;p&gt;如果你在一个方法中声明了块，他可以捕捉到任何在方法域中可以访问到的值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)testMethod {
+int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
+};
+
+testBlock();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一旦捕获后，即使在捕获后和调用期间改变值，不受影响.块不能够改变初始变量的值，或者是被捕获的值  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
+};
+
+anInteger = 84;
+
+testBlock();  
+
+//Integer is: 42 
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;block变量（块变量的改变）&quot;&gt;&lt;a href=&quot;#block变量（块变量的改变）&quot; class=&quot;headerlink&quot; title=&quot;__block变量（块变量的改变）&quot;&gt;&lt;/a&gt;__block变量（块变量的改变）&lt;/h1&gt;&lt;p&gt;变量和块共享存储空间。变量改变，块内的也改变&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
+};
+
+anInteger = 84;
+testBlock(); 
+
+//Integer is：84
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;变量可以在块内被改变&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
+    anInteger = 100;
+};
+
+testBlock();
+NSLog(@&amp;quot;Value of original variable is now: %i&amp;quot;, anInteger); 
+
+//Integer is: 42
+//Value of original variable is now: 100  
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;块作为方法或函数的参数&quot;&gt;&lt;a href=&quot;#块作为方法或函数的参数&quot; class=&quot;headerlink&quot; title=&quot;块作为方法或函数的参数&quot;&gt;&lt;/a&gt;块作为方法或函数的参数&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
+
+
+- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {
+...
+callbackBlock();
+}
+
+- (void)doSomethingWithBlock:(void (^)(double, double))block {
+...
+block(21.0, 2.0);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块应该总是一个方法的最后一个参数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//声明
+- (void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
+
+//调用
+[self beginTaskWithName:@&amp;quot;MyTask&amp;quot; completion:^{
+    NSLog(@&amp;quot;The task is complete&amp;quot;);
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块也用于回调 — 定义了当一个任务结束时将被执行的代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (IBAction)fetchRemoteInformation:(id)sender {
+[self showProgressIndicator];
+
+XYZWebTask *task = ...
+
+[task beginTaskWithCallbackBlock:^{
+    [self hideProgressIndicator];
+}];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定义块的数据类型&quot;&gt;&lt;a href=&quot;#定义块的数据类型&quot; class=&quot;headerlink&quot; title=&quot;定义块的数据类型&quot;&gt;&lt;/a&gt;定义块的数据类型&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;typedef void (^XYZSimpleBlock)(void);
+
+
+XYZSimpleBlock anotherBlock = ^{
+    ...
+};
+
+
+- (void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {
+
+...
+callbackBlock();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该 complexBlock 变量是指一个块需要另一块作为一个参数（ABLOCK）并返回另一个块&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
+...
+return ^{
+    ...
+};
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重写代码使用类型定义使其可读性更高，将块定义成数据类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {
+...
+return ^{
+    ...
+};
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定义块为属性&quot;&gt;&lt;a href=&quot;#定义块为属性&quot; class=&quot;headerlink&quot; title=&quot;定义块为属性&quot;&gt;&lt;/a&gt;定义块为属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@interface XYZObject : NSObject
+@property (copy) void (^blockProperty)(void);  //通常使用copy,why?
+@end
+
+
+self.blockProperty = ^{
+    ...
+};
+self.blockProperty();
+
+
+使用块属性声明的类型定义
+
+typedef void (^XYZSimpleBlock)(void);
+
+@interface XYZObject : NSObject
+@property (copy) XYZSimpleBlock blockProperty;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Avoid-Strong-Reference-Cycles-when-Capturing-self&quot;&gt;&lt;a href=&quot;#Avoid-Strong-Reference-Cycles-when-Capturing-self&quot; class=&quot;headerlink&quot; title=&quot;Avoid Strong Reference Cycles when Capturing self&quot;&gt;&lt;/a&gt;Avoid Strong Reference Cycles when Capturing self&lt;/h1&gt;&lt;p&gt;Blocks maintain strong references to any captured objects, including self, which means that it’s easy to end up with a strong reference cycle。 block对任何捕获的对象是强引用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface XYZBlockKeeper : NSObject
+@property (copy) void (^block)(void);
+@end
+
+@implementation XYZBlockKeeper
+- (void)configureBlock {
+self.block = ^{
+    [self doSomething];    // capturing a strong reference to self
+                           // creates a strong reference cycle
+};
+}
+...
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;正确做法如下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)configureBlock {
+XYZBlockKeeper * __weak weakSelf = self;
+self.block = ^{
+    [weakSelf doSomething];   // capture the weak reference
+                              // to avoid the reference cycle
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By capturing the weak pointer to self, the block won’t maintain a strong relationship back to the XYZBlockKeeper object. If that object is deallocated before the block is called, the weakSelf pointer will simply be set to nil.&lt;/p&gt;
+&lt;h1 id=&quot;块可以简化枚举-待阅&quot;&gt;&lt;a href=&quot;#块可以简化枚举-待阅&quot; class=&quot;headerlink&quot; title=&quot;块可以简化枚举 (待阅)&quot;&gt;&lt;/a&gt;块可以简化枚举 (待阅)&lt;/h1&gt;&lt;h1 id=&quot;使用块操作与运行队列-待阅&quot;&gt;&lt;a href=&quot;#使用块操作与运行队列-待阅&quot; class=&quot;headerlink&quot; title=&quot;使用块操作与运行队列 (待阅)&quot;&gt;&lt;/a&gt;使用块操作与运行队列 (待阅)&lt;/h1&gt;&lt;h1 id=&quot;用GCD技术在调度队列调度块-待阅&quot;&gt;&lt;a href=&quot;#用GCD技术在调度队列调度块-待阅&quot; class=&quot;headerlink&quot; title=&quot;用GCD技术在调度队列调度块 (待阅)&quot;&gt;&lt;/a&gt;用GCD技术在调度队列调度块 (待阅)&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文链接:&lt;a href=&quot;http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;w
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AFNetworking简介</title>
+    <link href="http://jackliu17.github.io/2016/08/01/AFNetworking%E7%AE%80%E4%BB%8B/"/>
+    <id>http://jackliu17.github.io/2016/08/01/AFNetworking简介/</id>
+    <published>2016-08-01T07:25:21.000Z</published>
+    <updated>2016-08-02T00:18:29.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;HTTP请求&quot;&gt;&lt;a href=&quot;#HTTP请求&quot; class=&quot;headerlink&quot; title=&quot;HTTP请求&quot;&gt;&lt;/a&gt;HTTP请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&amp;quot;;
+
+AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
+
+// 设置回复内容信息
+manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
+                                                     setByAddingObject:@&amp;quot;text/html&amp;quot;];
+
+[manager GET:urlStr
+  parameters:nil
+
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+         //请求正文数据
+         //NSLog(@&amp;quot;%@&amp;quot;,responseObject);
+
+         //请求头部信息(我们执行网络请求的时候给服务器发送的信息)
+         //NSLog(@&amp;quot;%@&amp;quot;,operation.request.allHTTPHeaderFields);
+
+         //服务器返回的包的头部信息
+         NSLog(@&amp;quot;%@&amp;quot;,operation.response);
+     }
+     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+         NSLog(@&amp;quot;%@&amp;quot;,error);
+
+     }];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求方法&quot;&gt;&lt;a href=&quot;#请求方法&quot; class=&quot;headerlink&quot; title=&quot;请求方法&quot;&gt;&lt;/a&gt;请求方法&lt;/h2&gt;&lt;p&gt;(GET、POST等)  &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hypertext Transfer Protocol&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 执行POST请求，需要将参数写在parameter处，而不能如同get方法一样直接写在地址栏
+
+[manager POST:@&amp;quot;http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx/getMobileCodeInfo&amp;quot;
+   parameters:@{@&amp;quot;mobileCode&amp;quot; : @&amp;quot;15910514636&amp;quot;,
+                @&amp;quot;userID&amp;quot;     : @&amp;quot;&amp;quot;}
+      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          NSLog(@&amp;quot;%@&amp;quot;, responseObject);
+
+      }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          NSLog(@&amp;quot;%@&amp;quot;, error);
+      }];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求头&quot;&gt;&lt;a href=&quot;#请求头&quot; class=&quot;headerlink&quot; title=&quot;请求头&quot;&gt;&lt;/a&gt;请求头&lt;/h2&gt;&lt;p&gt;(HttpHeaderFields) &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_HTTP_header_fields&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;List of HTTP header fields&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//请求头部信息(我们执行网络请求的时候给服务器发送的信息)
+NSLog(@&amp;quot;%@&amp;quot;,operation.request.allHTTPHeaderFields);
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求正文-数据&quot;&gt;&lt;a href=&quot;#请求正文-数据&quot; class=&quot;headerlink&quot; title=&quot;请求正文 (数据)&quot;&gt;&lt;/a&gt;请求正文 (数据)&lt;/h2&gt;&lt;p&gt;问号后的字符串，使用get方法是可以在地址栏中看见的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&amp;quot;;            
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;序列化&quot;&gt;&lt;a href=&quot;#序列化&quot; class=&quot;headerlink&quot; title=&quot;序列化&quot;&gt;&lt;/a&gt;序列化&lt;/h2&gt;&lt;p&gt;采用不同的序列化格式，得到不同的response结果&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
+
+// 请求的序列化
+manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+
+// 回复序列化
+
+//responseObject就变成二进制文件
+manager.responseSerializer[AFHTTPResponseSerializer serializer];
+
+//responseObject就变成JSON格式
+manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+//responseObject成为xml格式
+manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;上传文件&quot;&gt;&lt;a href=&quot;#上传文件&quot; class=&quot;headerlink&quot; title=&quot;上传文件&quot;&gt;&lt;/a&gt;上传文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;// 获取数据
+UIImage *image  = [UIImage imageNamed:@&amp;quot;demo&amp;quot;];
+NSData *dataObj = UIImageJPEGRepresentation(image, 1.0);
+
+// 参数
+NSDictionary *paras = @{@&amp;quot;ContactName&amp;quot;        : @&amp;quot;Lilis&amp;quot;,
+                        @&amp;quot;ContactPhoneNumber&amp;quot; : @&amp;quot;15910514635&amp;quot;,
+                        @&amp;quot;LoseDetail&amp;quot;         : @&amp;quot;...&amp;quot;,
+                        @&amp;quot;address&amp;quot;            : @&amp;quot;&amp;quot;,
+                        @&amp;quot;gender&amp;quot;             : @&amp;quot;2&amp;quot;,
+                        @&amp;quot;verify&amp;quot;             : @&amp;quot;012460&amp;quot;};
+
+
+[Networking UploadDataWithUrlString:BASE_URL // 请更换网址
+                         parameters:paras
+                    timeoutInterval:nil
+                        requestType:HTTPRequestType
+                       responseType:JSONResponseType
+          constructingBodyWithBlock:^(id&amp;lt;AFMultipartFormData&amp;gt; formData) {
+              // 构造数据的地方
+              [formData appendPartWithFileData:dataObj name:@&amp;quot;upload&amp;quot; fileName:@&amp;quot;image1.jpg&amp;quot; mimeType:@&amp;quot;&amp;quot;];
+              [formData appendPartWithFileData:dataObj name:@&amp;quot;upload&amp;quot; fileName:@&amp;quot;image2.jpg&amp;quot; mimeType:@&amp;quot;&amp;quot;];
+          }
+                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+                                // 请求头
+                                NSLog(@&amp;quot;%@&amp;quot;, operation.request.allHTTPHeaderFields);
+
+                                // 服务器回复的头
+                                NSLog(@&amp;quot;%@&amp;quot;, operation.response);
+
+                                NSLog(@&amp;quot;%@&amp;quot;, responseObject);
+                            }
+                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+
+                            }];
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;HTTP请求&quot;&gt;&lt;a href=&quot;#HTTP请求&quot; class=&quot;headerlink&quot; title=&quot;HTTP请求&quot;&gt;&lt;/a&gt;HTTP请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweath
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS_networking" scheme="http://jackliu17.github.io/tags/iOS-networking/"/>
+    
+  </entry>
   
   <entry>
     <title>手机屏幕图像尺寸说明</title>
@@ -4013,282 +4344,6 @@ return [[StoreValue sharedInstance] valueWithKey:key];
 &lt;li&gt;共享信息，管理中心&lt;/li&gt;
 &lt;li&gt;单例类基本是用来管理某种资源的，而这种资源是可以全局共享的&lt;/li&gt;
 &lt;l
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-代理</title>
-    <link href="http://jackliu17.github.io/2016/05/30/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86/"/>
-    <id>http://jackliu17.github.io/2016/05/30/iOS设计模式-代理/</id>
-    <published>2016-05-30T05:12:37.000Z</published>
-    <updated>2016-07-31T04:57:15.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/voou7iy91ipezcd/iOS_designPattern_Delegate01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Customer-amp-使用代理的注意事项&quot;&gt;&lt;a href=&quot;#Customer-amp-使用代理的注意事项&quot; class=&quot;headerlink&quot; title=&quot;Customer  &amp;amp; 使用代理的注意事项&quot;&gt;&lt;/a&gt;Customer  &amp;amp; 使用代理的注意事项&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;@class, 提示协议方法有该类的引用&lt;/li&gt;
-&lt;li&gt;weak 防止循环引用&lt;/li&gt;
-&lt;li&gt;@required or @Optional 要写清楚&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Customer&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@class Customer;
-
-@protocol CustomerDelegate &amp;lt;NSObject&amp;gt;
-
-@required
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
-@end
-
-@interface Customer : NSObject
-
-// 经销商
-@property (nonatomic, weak) id &amp;lt;CustomerDelegate&amp;gt; delegate;
-
-// 顾客买卖行为
-- (void)buyItemCount:(NSInteger)count;
-@end
-
-- (void)buyItemCount:(NSInteger)count {
-    if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-        [self.delegate custmer:self buyItemCount:count];
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;ViewController&quot;&gt;&lt;a href=&quot;#ViewController&quot; class=&quot;headerlink&quot; title=&quot;ViewController&quot;&gt;&lt;/a&gt;ViewController&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-#import &amp;quot;Customer.h&amp;quot;
-
-// 经销商
-@interface ViewController ()&amp;lt;CustomerDelegate&amp;gt;
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-Customer *customer  = [[Customer alloc] init];
-customer.delegate   = self;  
-[customer buyItemCount:5];
-}
-
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
-NSLog(@&amp;quot;%ld&amp;quot;, (long)count);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;使用场景：用于类与类之间的值传递&quot;&gt;&lt;a href=&quot;#使用场景：用于类与类之间的值传递&quot; class=&quot;headerlink&quot; title=&quot;使用场景：用于类与类之间的值传递&quot;&gt;&lt;/a&gt;使用场景：用于类与类之间的值传递&lt;/h2&gt;&lt;p&gt;Customer设定消息接受方的遵循条件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@required
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
-@end
-
-@interface Customer : NSObject
-
-// 经销商
-@property (nonatomic, weak) id &amp;lt;CustomerDelegate&amp;gt; delegate;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Customer发送消息&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)buyItemCount:(NSInteger)count {
-
-    //代理存在，并且代理能响应这个方法
-
-    if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-        [self.delegate custmer:self buyItemCount:count];
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController准备接收&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()&amp;lt;CustomerDelegate&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController获得所传递的消息&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Customer *customer  = [[Customer alloc] init];
-customer.delegate   = self;  
-[customer buyItemCount:5];
-}
-
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
-NSLog(@&amp;quot;%ld&amp;quot;, (long)count);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;代理使用验证&quot;&gt;&lt;a href=&quot;#代理使用验证&quot; class=&quot;headerlink&quot; title=&quot;代理使用验证&quot;&gt;&lt;/a&gt;代理使用验证&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//代理存在，并且代理能响应这个方法
-
-if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-    [self.delegate custmer:self buyItemCount:count];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;协议使用场景&quot;&gt;&lt;a href=&quot;#协议使用场景&quot; class=&quot;headerlink&quot; title=&quot;协议使用场景&quot;&gt;&lt;/a&gt;协议使用场景&lt;/h1&gt;&lt;p&gt;约束对象，筛选对象。比如传递的对象，必须实现某种方法&lt;/p&gt;
-&lt;h2 id=&quot;协议&quot;&gt;&lt;a href=&quot;#协议&quot; class=&quot;headerlink&quot; title=&quot;协议&quot;&gt;&lt;/a&gt;协议&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@protocol TCPProtocol &amp;lt;NSObject&amp;gt;
-@required
-// 获取源端口号
-- (NSInteger)sourcePort;
-// 获取目的地端口号
-- (NSInteger)destinationPort;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;遵循协议的类&quot;&gt;&lt;a href=&quot;#遵循协议的类&quot; class=&quot;headerlink&quot; title=&quot;遵循协议的类&quot;&gt;&lt;/a&gt;遵循协议的类&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface Model : NSObject &amp;lt;TCPProtocol&amp;gt;
-// 获取源端口号
-- (NSInteger)sourcePort {
-return 10;
-}
-
-// 获取目的地端口号
-- (NSInteger)destinationPort {
-return 20;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;传递遵循协议的对象&quot;&gt;&lt;a href=&quot;#传递遵循协议的对象&quot; class=&quot;headerlink&quot; title=&quot;传递遵循协议的对象&quot;&gt;&lt;/a&gt;传递遵循协议的对象&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)accessTCPData:(id &amp;lt;TCPProtocol&amp;gt;)data { 
-self.sourcePort      = [data sourcePort];
-self.destinationPort = [data destinationPort];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;代理模式的原理&quot;&gt;&lt;a href=&quot;#代理模式的原理&quot; class=&quot;headerlink&quot; title=&quot;代理模式的原理&quot;&gt;&lt;/a&gt;代理模式的原理&lt;/h1&gt;&lt;p&gt;一个对象和另一个对象耦合，代理模式是为了降低耦合度&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https:/
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-桥接</title>
-    <link href="http://jackliu17.github.io/2016/05/29/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5/"/>
-    <id>http://jackliu17.github.io/2016/05/29/iOS设计模式-桥接/</id>
-    <published>2016-05-29T09:20:04.000Z</published>
-    <updated>2016-07-31T05:37:42.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
-&lt;li&gt;通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;桥接模式&quot;&gt;&lt;a href=&quot;#桥接模式&quot; class=&quot;headerlink&quot; title=&quot;桥接模式&quot;&gt;&lt;/a&gt;桥接模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;把抽象层次结构从具体的实现中分离出来，使其能够独立变更。&lt;/li&gt;
-&lt;li&gt;抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。&lt;/li&gt;
-&lt;li&gt;实现类的引用被封装到抽象层的实例中，桥接就形成了。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/h3a3xi0l1giqmz0/iOS_designPatternBridge01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vgzti8blkicn769/iOS_designPatternBridge02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5ulsrw1lym0zwhi/iOS_designPatternBridge03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;抽象类&quot;&gt;&lt;a href=&quot;#抽象类&quot; class=&quot;headerlink&quot; title=&quot;抽象类&quot;&gt;&lt;/a&gt;抽象类&lt;/h1&gt;&lt;p&gt;AbstractSystem&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//拥有执行者的引用，让执行者去执行
-
-@property (nonatomic, strong) AbstractImplementor  *implementor;
-
-- (void)command_up {
-[self.implementor loadCommand:kUp];
-}
-
-- (void)command_down {
-[self.implementor loadCommand:kDown];
-}
-
-- (void)loadSystem {    
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractImplementor&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//执行类要包含所有情形，例如KO, KX只是某个子类才有的特性，但也要包含在这里
-
-typedef enum : NSUInteger {
-
-kUp,
-kDown,
-kLeft,
-kRight,
-kA,
-kB,
-
-KO,
-KX,
-
-} EcommandType;
-
-- (void)loadCommand:(EcommandType)command {
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现层1&quot;&gt;&lt;a href=&quot;#实现层1&quot; class=&quot;headerlink&quot; title=&quot;实现层1&quot;&gt;&lt;/a&gt;实现层1&lt;/h1&gt;&lt;p&gt;GBASystem &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface GBASystem : AbstractSystem
-
-- (void)loadSystem {   
-NSLog(@&amp;quot;GBASystem&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GBAImplementor&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface GBAImplementor : AbstractImplementor
-
-- (void)loadCommand:(EcommandType)command {
-
-switch (command) {
-
-    case kUp:
-
-        NSLog(@&amp;quot;GBA up&amp;quot;);
-        break;
-
-    case kDown:
-
-        NSLog(@&amp;quot;GBA down&amp;quot;);
-        break;
-
-        ......
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现层2&quot;&gt;&lt;a href=&quot;#实现层2&quot; class=&quot;headerlink&quot; title=&quot;实现层2&quot;&gt;&lt;/a&gt;实现层2&lt;/h1&gt;&lt;p&gt;PSPSystem&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface PSPSystem : AbstractSystem
-
-- (void)loadSystem {   
-NSLog(@&amp;quot;PSPSystem&amp;quot;);
-}
-
-- (void)command_X {
-[self.implementor loadCommand:KX];
-}
-
-- (void)command_O {
-[self.implementor loadCommand:KO];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;PSPImplementor&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface PSPImplementor : AbstractImplementor
-
-- (void)loadCommand:(EcommandType)command {
-
-switch (command) {
-  ....
-      case KO:
-
-        NSLog(@&amp;quot;PSP O&amp;quot;);
-        break;
-
-    case KX:
-
-        NSLog(@&amp;quot;PSP X&amp;quot;);
-        break;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// GBA系统 + GBA执行器
-AbstractSystem *gbaSystem = [[GBASystem alloc] init];
-gbaSystem.implementor     = [[GBAImplementor alloc] init];
-
-[gbaSystem loadSystem];
-[gbaSystem command_up];
-
-// PSP系统 + PSP执行器
-PSPSystem *pspSystem  = [[PSPSystem alloc] init];
-pspSystem.implementor = [[PSPImplementor alloc] init];
-
-[pspSystem loadSystem];
-[pspSystem command_X];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;遥控器和电视机&quot;&gt;&lt;a href=&quot;#遥控器和电视机&quot; class=&quot;headerlink&quot; title=&quot;遥控器和电视机&quot;&gt;&lt;/a&gt;遥控器和电视机&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类&lt;/li&gt;
-&lt;li&gt;通用的功能抽
     
     </summary>
     
