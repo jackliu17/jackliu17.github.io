@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_CALayer,codeExample," />
+  <meta name="keywords" content="iOS_GCD," />
 
 
 
@@ -61,33 +61,55 @@
 
 
 
-<meta name="description" content="Set UIImageView CALayer- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
+<meta name="description" content="串行队列串行队列一次只执行一个线程，按照添加到队列的顺序依次执行
+- (void)viewDidLoad {
+[self serailQueue];
+}
+
+
+//串行队列
+- (void)serailQueue {
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initSerial];
+
+//执行队列中的线程
+[queue execute:^{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目015.CALayer简介">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/17/iOS项目015-CALayer简介/index.html">
+<meta property="og:title" content="GCD编程">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/02/GCD编程/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Set UIImageView CALayer- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
-<meta property="og:image" content="https://www.dropbox.com/s/blkqcdzel6akxnv/iOS_proj015sShadow.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/ewoyexjucvlugyg/iOS_proj015Round.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/v9py9xne59z8p7m/iOS_proj015Frame.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/35shlx8etb1doxi/iOS_proj015Rotate.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/syzyvl2ve4amv9e/iOS_proj015Scale.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/6it09fw80jzsp9x/iOS_proj015CALayerInView.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/q5y7ysln6zwwedo/iOS_proj015Anchor1.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/x4n41x95acvuxq8/iOS_proj015Anchor2.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/c8773tam4p5b1pw/iOS_proj015Anchor3.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/axercy778m88r4r/iOS_proj015CALayerCustomized.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T11:05:15.000Z">
+<meta property="og:description" content="串行队列串行队列一次只执行一个线程，按照添加到队列的顺序依次执行
+- (void)viewDidLoad {
+[self serailQueue];
+}
+
+
+//串行队列
+- (void)serailQueue {
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initSerial];
+
+//执行队列中的线程
+[queue execute:^{">
+<meta property="og:updated_time" content="2016-08-03T04:49:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目015.CALayer简介">
-<meta name="twitter:description" content="Set UIImageView CALayer- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&amp;quot;1.jpg&amp;quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
-<meta name="twitter:image" content="https://www.dropbox.com/s/blkqcdzel6akxnv/iOS_proj015sShadow.png?dl=1">
+<meta name="twitter:title" content="GCD编程">
+<meta name="twitter:description" content="串行队列串行队列一次只执行一个线程，按照添加到队列的顺序依次执行
+- (void)viewDidLoad {
+[self serailQueue];
+}
+
+
+//串行队列
+- (void)serailQueue {
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initSerial];
+
+//执行队列中的线程
+[queue execute:^{">
 
 
 
@@ -105,7 +127,7 @@ imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
   };
 </script>
 
-  <title> iOS项目015.CALayer简介 | Cowboy Tech </title>
+  <title> GCD编程 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -247,7 +269,7 @@ imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
             
             
               
-                iOS项目015.CALayer简介
+                GCD编程
               
             
           </h1>
@@ -259,8 +281,8 @@ imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-17T10:35:01+10:00" content="2016-05-17">
-              2016-05-17
+            <time itemprop="dateCreated" datetime="2016-08-02T21:01:19+10:00" content="2016-08-02">
+              2016-08-02
             </time>
           </span>
 
@@ -289,8 +311,8 @@ imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/17/iOS项目015-CALayer简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目015-CALayer简介/" itemprop="commentsCount"></span>
+                <a href="/2016/08/02/GCD编程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/GCD编程/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,99 +334,339 @@ imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScr">
       
 
       
-        <h1 id="Set-UIImageView-CALayer"><a href="#Set-UIImageView-CALayer" class="headerlink" title="Set UIImageView CALayer"></a>Set UIImageView CALayer</h1><pre><code>- (void)initImgView{
-UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;1.jpg&quot;]];
-imgView.frame = CGRectMake((kScreenWidth - 200)/2, (kScreenHeight - 200)/2, 200, 200);
-[self.view addSubview:imgView];
-.............
+        <h1 id="串行队列"><a href="#串行队列" class="headerlink" title="串行队列"></a>串行队列</h1><p>串行队列一次只执行一个线程，按照添加到队列的顺序依次执行</p>
+<pre><code>- (void)viewDidLoad {
+[self serailQueue];
 }
-</code></pre><h2 id="图像的CALayer层-阴影"><a href="#图像的CALayer层-阴影" class="headerlink" title="图像的CALayer层 - 阴影"></a>图像的CALayer层 - 阴影</h2><p><img src="https://www.dropbox.com/s/blkqcdzel6akxnv/iOS_proj015sShadow.png?dl=1" alt=""></p>
-<pre><code>//1.设置阴影
-imgView.layer.shadowColor = [UIColor yellowColor].CGColor;
-//2.阴影的偏移大小
-imgView.layer.shadowOffset = CGSizeMake(10, 10);
-//3.阴影的不透明度
-imgView.layer.shadowOpacity = 0.5;
-</code></pre><h2 id="图像的CALayer层-圆角"><a href="#图像的CALayer层-圆角" class="headerlink" title="图像的CALayer层 - 圆角"></a>图像的CALayer层 - 圆角</h2><p><img src="https://www.dropbox.com/s/ewoyexjucvlugyg/iOS_proj015Round.png?dl=1" alt=""></p>
-<pre><code>//4.设置圆角大小
-imgView.layer.cornerRadius = 10;//设置圆角半径为10
-imgView.layer.masksToBounds = YES;//强制内部的所有子层支持圆角效果，少了这个设置，UIImageView是不会有圆角效果的。设置之后，没有阴影效果
-</code></pre><h2 id="图像的CALayer层-边框"><a href="#图像的CALayer层-边框" class="headerlink" title="图像的CALayer层 - 边框"></a>图像的CALayer层 - 边框</h2><p><img src="https://www.dropbox.com/s/v9py9xne59z8p7m/iOS_proj015Frame.png?dl=1" alt=""></p>
-<pre><code>//5.设置边框
-imgView.layer.borderWidth = 5;
-imgView.layer.borderColor = [UIColor grayColor].CGColor;
-</code></pre><h2 id="图像的CALayer层-3D旋转"><a href="#图像的CALayer层-3D旋转" class="headerlink" title="图像的CALayer层 - 3D旋转"></a>图像的CALayer层 - 3D旋转</h2><p><img src="https://www.dropbox.com/s/35shlx8etb1doxi/iOS_proj015Rotate.png?dl=1" alt=""></p>
-<pre><code>//6.设置旋转 :利用transform属性可以设置旋转
-//imgView.layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);//顺时针旋转45°,在x，y轴
-</code></pre><h2 id="图像的CALayer层-缩放"><a href="#图像的CALayer层-缩放" class="headerlink" title="图像的CALayer层 - 缩放"></a>图像的CALayer层 - 缩放</h2><p><img src="https://www.dropbox.com/s/syzyvl2ve4amv9e/iOS_proj015Scale.png?dl=1" alt=""></p>
-<pre><code>6.设置旋转 :利用transform属性可以设置缩放
-imgView.layer.transform = CATransform3DMakeScale(0.5, 1, 0);//缩小0.5倍
-</code></pre><h1 id="Add-CALayer-in-View"><a href="#Add-CALayer-in-View" class="headerlink" title="Add CALayer in View"></a>Add CALayer in View</h1><p><img src="https://www.dropbox.com/s/6it09fw80jzsp9x/iOS_proj015CALayerInView.png?dl=1" alt=""></p>
-<p>UIView里有CALayer这个图层</p>
-<pre><code>- (void)imageLayer{
-CALayer *layer = [CALayer layer];
-layer.backgroundColor = [UIColor grayColor].CGColor;
-layer.bounds = CGRectMake(0, 0, 100, 100);
-layer.position = CGPointMake(200, 200);
-layer.anchorPoint = CGPointMake(0, 1);
-layer.cornerRadius = 10;
-layer.masksToBounds = YES;
-layer.contents = (id)[UIImage imageNamed:@&quot;1.jpg&quot;].CGImage;
-layer.transform = CATransform3DMakeRotation(M_PI_4, 1, 1, 0);
-[self.view.layer addSublayer:layer];
+
+
+//串行队列
+- (void)serailQueue {
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initSerial];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;1&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;2&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;3&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;4&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;5&quot;);
+}];
 }
-</code></pre><h2 id="QuartzCore-for-CALayer"><a href="#QuartzCore-for-CALayer" class="headerlink" title="QuartzCore for CALayer"></a>QuartzCore for CALayer</h2><pre><code>//导入框架 
-#import &lt;QuartzCore/QuartzCore.h&gt;
+</code></pre><h1 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h1><p>并发队列一次可以执行多个线程，线程的执行没有先后顺序</p>
+<pre><code>- (void)viewDidLoad {
+[self serailQueue];
+}
 
-CALayer *layer = [CALayer layer];
-</code></pre><h2 id="Position-vs-anchorPoint"><a href="#Position-vs-anchorPoint" class="headerlink" title="Position vs anchorPoint"></a>Position vs anchorPoint</h2><ol>
-<li>position 设置CALayer在父图层中的位置，以父层的左上角为原点（0，0）</li>
-<li>anchorPoint锚点(定位点)决定CALayer的哪个点在position属性所指的位置,以自己的左上角为原点（0，0），默认值（0.5，0.5），x~y取值是0~1，右下角（1，1）</li>
-<li>即：哪个anchor点在position的位置</li>
-</ol>
-<h3 id="anchor-point-0-0"><a href="#anchor-point-0-0" class="headerlink" title="anchor point (0,0)"></a>anchor point (0,0)</h3><p><img src="https://www.dropbox.com/s/q5y7ysln6zwwedo/iOS_proj015Anchor1.png?dl=1" alt=""></p>
-<h3 id="anchor-point-1-1"><a href="#anchor-point-1-1" class="headerlink" title="anchor point (1,1)"></a>anchor point (1,1)</h3><p><img src="https://www.dropbox.com/s/x4n41x95acvuxq8/iOS_proj015Anchor2.png?dl=1" alt=""></p>
-<h3 id="anchor-point-0-1"><a href="#anchor-point-0-1" class="headerlink" title="anchor point (0,1)"></a>anchor point (0,1)</h3><p><img src="https://www.dropbox.com/s/c8773tam4p5b1pw/iOS_proj015Anchor3.png?dl=1" alt=""></p>
-<h1 id="Customized-CALayer"><a href="#Customized-CALayer" class="headerlink" title="Customized CALayer"></a>Customized CALayer</h1><p><img src="https://www.dropbox.com/s/axercy778m88r4r/iOS_proj015CALayerCustomized.png?dl=1" alt=""></p>
-<h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1."></a>Method 1.</h2><p><strong>子类继承于CALayer，实现 drawInContext</strong></p>
-<p>JKLayer</p>
-<pre><code>#import &quot;JKLayer.h&quot;
+//并发队列,5个线程同时执行
+- (void)initConcurrent{
 
-@implementation JKLayer
--(void)drawInContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;1&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;2&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;3&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;4&quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&quot;5&quot;);
+}];
+
+}
+</code></pre><h1 id="UI界面所在的线程队列是串行队列"><a href="#UI界面所在的线程队列是串行队列" class="headerlink" title="UI界面所在的线程队列是串行队列"></a>UI界面所在的线程队列是串行队列</h1><p>在子线程中处理业务逻辑，在主线程中更新UI</p>
+<pre><code>- (void)viewDidLoad {
+
+self.imageView        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+self.imageView.center = self.view.center;
+[self.view addSubview:self.imageView];
+
+[GCDQueue executeInGlobalQueue:^{
+
+    //处理业务逻辑,下载操作
+
+    NSString *netUrlString = @&quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&quot;;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:netUrlString]];
+    NSData *picData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
+
+
+    [GCDQueue executeInMainQueue:^{
+
+        //更新UI
+        self.imageView.image = [[UIImage alloc] initWithData:picData];
+
+    }];
+
+}];
+
+}
+</code></pre><h1 id="延时操作"><a href="#延时操作" class="headerlink" title="延时操作"></a>延时操作</h1><h2 id="NSThread方式"><a href="#NSThread方式" class="headerlink" title="NSThread方式"></a>NSThread方式</h2><p>优点:时间比较精确，而且可以用方法取消。缺点:比较繁琐</p>
+<pre><code>- (void)viewDidLoad {
+
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+NSLog(@&quot;启动&quot;);
+
+//NSThread方式的延时执行操作
+[self performSelector:@selector(threadEvent:)
+           withObject:self
+           afterDelay:2.f];
+
+//取消延时执行操作
+[NSObject cancelPreviousPerformRequestsWithTarget:self];
+
+}
+
+- (void)threadEvent:(id)sender{
+NSLog(@&quot;线程事件&quot;);
+}
+</code></pre><h2 id="GCD方式"><a href="#GCD方式" class="headerlink" title="GCD方式"></a>GCD方式</h2><p>优点:简单快捷。缺点:时间不够精确，不能取消。</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+NSLog(@&quot;启动&quot;);
+//GCD方式的延时执行操作
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&quot;GCD线程事件&quot;);
+} afterDelaySecs:2.f];
+
+}
+</code></pre><h1 id="GCD线程组-管理线程"><a href="#GCD线程组-管理线程" class="headerlink" title="GCD线程组(管理线程)"></a>GCD线程组(管理线程)</h1><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+//初始化线程组合
+GCDGroup *group = [[GCDGroup alloc]init];
+
+//创建一个线程队列
+GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
+
+//让线程在group中执行线程1
+[queue execute:^{
+    sleep(1);
+    NSLog(@&quot;线程1执行完毕&quot;);
+} inGroup:group];
+
+//让线程在group中执行线程2
+[queue execute:^{
+     sleep(3);
+    NSLog(@&quot;线程2执行完毕&quot;);
+} inGroup:group];
+
+//监听线程组是否执行结束，然后执行线程3
+[queue notify:^{
+    NSLog(@&quot;线程3执行完毕&quot;);
+} inGroup:group];
+}
+</code></pre><h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><h2 id="GCD定时器"><a href="#GCD定时器" class="headerlink" title="GCD定时器"></a>GCD定时器</h2><pre><code>@interface ViewController ()
+@property (nonatomic, strong) GCDTimer *timer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.timer = [[GCDTimer alloc] initInQueue:[GCDQueue mainQueue]];
+[self.timer event:^{
+    NSLog(@&quot;GCD定时器&quot;);
+} timeInterval:NSEC_PER_SEC];
+
+[self.timer start];
+}
+
+@end
+</code></pre><h2 id="NSTimer定时器"><a href="#NSTimer定时器" class="headerlink" title="NSTimer定时器"></a>NSTimer定时器</h2><p>仅运行在当前runloop? 不能用于tableView?</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic,strong)NSTimer *normalTimer;
+@end
+
+- (void)viewDidLoad {
+[super viewDidLoad];   
+ self.normalTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                    target:self
+                                                  selector:@selector(timerEvent)
+                                                  userInfo:nil
+                                                   repeats:YES];
+}
+
+- (void)timerEvent{
+NSLog(@&quot;NSTimer定时器&quot;);
+}    
+</code></pre><h1 id="GCD信号量-异步线程转换为同步线程"><a href="#GCD信号量-异步线程转换为同步线程" class="headerlink" title="GCD信号量- 异步线程转换为同步线程"></a>GCD信号量- 异步线程转换为同步线程</h1><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+//必须线程1先执行完，然后再执行完线程2
+
+//创建信号量, 可以将异步线程转化为同步线程
+GCDSemaphore * semaphore = [[GCDSemaphore alloc]init];
+
+
+//线程1 - 异步
+[GCDQueue executeInGlobalQueue:^{
+    NSLog(@&quot;线程1&quot;);
+
+    //发送信号
+    [semaphore signal];
+
+}];
+
+//线程2 - 异步
+[GCDQueue executeInGlobalQueue:^{
+
+    //等待信号，这时会堵塞住，不会往下执行，直到接收到信号
+    [semaphore wait];
+
+    NSLog(@&quot;线程2&quot;);
+}];
+
+}
+</code></pre><h1 id="综合使用-采用GCD逐一下载图片"><a href="#综合使用-采用GCD逐一下载图片" class="headerlink" title="综合使用:采用GCD逐一下载图片"></a>综合使用:采用GCD逐一下载图片</h1><pre><code>#import &quot;ViewController.h&quot;
+#import &quot;GCD.h&quot;
+
+@interface ViewController ()
+
+@property(nonatomic, strong) UIImageView *view1;
+@property(nonatomic, strong) UIImageView *view2;
+@property(nonatomic, strong) UIImageView *view3;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.view1 = [self createImageViewWithFrame:CGRectMake(0, 0, 100, 100)];
+self.view2 = [self createImageViewWithFrame:CGRectMake(100, 0, 100, 100)];
+self.view3 = [self createImageViewWithFrame:CGRectMake(200, 0, 100, 100)];
+
+NSString *net1 = @&quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&quot;;
+NSString *net2 = @&quot;http://pic.cnitblog.com/avatar/708810/20141230105233.png&quot;;
+NSString *net3 = @&quot;http://pic.cnitblog.com/avatar/704178/20141216150843.png&quot;;
+
+//初始化信号量
+GCDSemaphore *semaphore = [[GCDSemaphore alloc]init];
+
+
+//图片1
+[GCDQueue executeInGlobalQueue:^{
+    UIImage *image1 = [self accessDataByNetString:net1];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view1.image = image1;
+            self.view1.alpha = 1.f;
+        } completion:^(BOOL finished) {
+
+            //发送信号
+            [semaphore signal];
+        }];
+    }];
+}];
+
+//图片2
+[GCDQueue executeInGlobalQueue:^{
+
+    UIImage *image2 = [self accessDataByNetString:net2];
+
+    [semaphore wait];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view2.image = image2;
+            self.view2.alpha = 1.f;
+        } completion:^(BOOL finished) {
+
+            //发送信号
+            [semaphore signal];
+
+        }];
+    }];
+}];
+
+//图片3
+[GCDQueue executeInGlobalQueue:^{
+
+    UIImage *image3 = [self accessDataByNetString:net3];
+
+    [semaphore wait];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view3.image = image3;
+            self.view3.alpha = 1.f;
+        } completion:^(BOOL finished) {
+            //发送信号
+            [semaphore signal];            }];
+    }];
+}];
+}
+
+//创建view
+- (UIImageView *)createImageViewWithFrame:(CGRect)frame {
+
+UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];
+imageView.alpha = 0.f;
+[self.view addSubview:imageView];
+
+return imageView;
+}
+
+//获取网络图片
+- (UIImage *)accessDataByNetString:(NSString *)string{
+
+NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:string]];
+
+NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                 returningResponse:nil
+                                             error:nil];
+
+return [UIImage imageWithData:data];
 }
 @end
-</code></pre><p>ViewController</p>
-<pre><code>- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-}
-</code></pre><h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2."></a>Method 2.</h2><p><strong>在控制器中设置代理，实现代理方法来画图层</strong></p>
-<p>ViewController</p>
-<pre><code>- (void)initLayer{
-
-JKLayer *layer = [JKLayer layer];
-layer.bounds = CGRectMake(0, 0, 300, 300);
-layer.anchorPoint = CGPointMake(0,0);
-layer.delegate = self;//不用协议，任何对象可以作为代理
-[layer setNeedsDisplay];//必须调用这个方法，layer才会显示
-[self.view.layer addSublayer:layer];
-
-}
-
-#pragma mark 代理方法
--(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{
-CGContextSetRGBFillColor(ctx, 0, 0, 1, 1);
-CGContextAddEllipseInRect(ctx, CGRectMake(10,10, 100, 100));
-CGContextFillPath(ctx);
-}
 </code></pre>
       
     </div>
@@ -419,11 +681,7 @@ CGContextFillPath(ctx);
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/iOS-CALayer/" rel="tag">#iOS_CALayer</a>
-          
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-GCD/" rel="tag">#iOS_GCD</a>
           
         </div>
       
@@ -432,17 +690,13 @@ CGContextFillPath(ctx);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/" rel="next" title="iOS项目011-012.绘制图形及小黄人">
-                <i class="fa fa-chevron-left"></i> iOS项目011-012.绘制图形及小黄人
+              <a href="/2016/08/02/Blocks/" rel="next" title="Blocks">
+                <i class="fa fa-chevron-left"></i> Blocks
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/17/iOS项目018-CAAnimation简介/" rel="prev" title="iOS项目018.CAAnimation简介">
-                iOS项目018.CAAnimation简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +828,7 @@ CGContextFillPath(ctx);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Set-UIImageView-CALayer"><span class="nav-number">1.</span> <span class="nav-text">Set UIImageView CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的CALayer层-阴影"><span class="nav-number">1.1.</span> <span class="nav-text">图像的CALayer层 - 阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的CALayer层-圆角"><span class="nav-number">1.2.</span> <span class="nav-text">图像的CALayer层 - 圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的CALayer层-边框"><span class="nav-number">1.3.</span> <span class="nav-text">图像的CALayer层 - 边框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的CALayer层-3D旋转"><span class="nav-number">1.4.</span> <span class="nav-text">图像的CALayer层 - 3D旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的CALayer层-缩放"><span class="nav-number">1.5.</span> <span class="nav-text">图像的CALayer层 - 缩放</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Add-CALayer-in-View"><span class="nav-number">2.</span> <span class="nav-text">Add CALayer in View</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#QuartzCore-for-CALayer"><span class="nav-number">2.1.</span> <span class="nav-text">QuartzCore for CALayer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Position-vs-anchorPoint"><span class="nav-number">2.2.</span> <span class="nav-text">Position vs anchorPoint</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#anchor-point-0-0"><span class="nav-number">2.2.1.</span> <span class="nav-text">anchor point (0,0)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anchor-point-1-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">anchor point (1,1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#anchor-point-0-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">anchor point (0,1)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Customized-CALayer"><span class="nav-number">3.</span> <span class="nav-text">Customized CALayer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method-1"><span class="nav-number">3.1.</span> <span class="nav-text">Method 1.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method-2"><span class="nav-number">3.2.</span> <span class="nav-text">Method 2.</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#串行队列"><span class="nav-number">1.</span> <span class="nav-text">串行队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发队列"><span class="nav-number">2.</span> <span class="nav-text">并发队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI界面所在的线程队列是串行队列"><span class="nav-number">3.</span> <span class="nav-text">UI界面所在的线程队列是串行队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延时操作"><span class="nav-number">4.</span> <span class="nav-text">延时操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSThread方式"><span class="nav-number">4.1.</span> <span class="nav-text">NSThread方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD方式"><span class="nav-number">4.2.</span> <span class="nav-text">GCD方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD线程组-管理线程"><span class="nav-number">5.</span> <span class="nav-text">GCD线程组(管理线程)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器"><span class="nav-number">6.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD定时器"><span class="nav-number">6.1.</span> <span class="nav-text">GCD定时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSTimer定时器"><span class="nav-number">6.2.</span> <span class="nav-text">NSTimer定时器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD信号量-异步线程转换为同步线程"><span class="nav-number">7.</span> <span class="nav-text">GCD信号量- 异步线程转换为同步线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#综合使用-采用GCD逐一下载图片"><span class="nav-number">8.</span> <span class="nav-text">综合使用:采用GCD逐一下载图片</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -832,9 +1086,9 @@ CGContextFillPath(ctx);
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/17/iOS项目015-CALayer简介/';
-      var disqus_title = 'iOS项目015.CALayer简介';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/17/iOS项目015-CALayer简介/';
+      var disqus_identifier = '2016/08/02/GCD编程/';
+      var disqus_title = 'GCD编程';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/02/GCD编程/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

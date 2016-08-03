@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-02T07:31:03.000Z</updated>
+  <updated>2016-08-03T04:49:06.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,362 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GCD编程</title>
+    <link href="http://jackliu17.github.io/2016/08/02/GCD%E7%BC%96%E7%A8%8B/"/>
+    <id>http://jackliu17.github.io/2016/08/02/GCD编程/</id>
+    <published>2016-08-02T11:01:19.000Z</published>
+    <updated>2016-08-03T04:49:06.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;串行队列&quot;&gt;&lt;a href=&quot;#串行队列&quot; class=&quot;headerlink&quot; title=&quot;串行队列&quot;&gt;&lt;/a&gt;串行队列&lt;/h1&gt;&lt;p&gt;串行队列一次只执行一个线程，按照添加到队列的顺序依次执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[self serailQueue];
+}
+
+
+//串行队列
+- (void)serailQueue {
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initSerial];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;1&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;2&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;3&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;4&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;5&amp;quot;);
+}];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;并发队列&quot;&gt;&lt;a href=&quot;#并发队列&quot; class=&quot;headerlink&quot; title=&quot;并发队列&quot;&gt;&lt;/a&gt;并发队列&lt;/h1&gt;&lt;p&gt;并发队列一次可以执行多个线程，线程的执行没有先后顺序&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[self serailQueue];
+}
+
+//并发队列,5个线程同时执行
+- (void)initConcurrent{
+
+//创建出了队列
+GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;1&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;2&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;3&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;4&amp;quot;);
+}];
+
+//执行队列中的线程
+[queue execute:^{
+    NSLog(@&amp;quot;5&amp;quot;);
+}];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UI界面所在的线程队列是串行队列&quot;&gt;&lt;a href=&quot;#UI界面所在的线程队列是串行队列&quot; class=&quot;headerlink&quot; title=&quot;UI界面所在的线程队列是串行队列&quot;&gt;&lt;/a&gt;UI界面所在的线程队列是串行队列&lt;/h1&gt;&lt;p&gt;在子线程中处理业务逻辑，在主线程中更新UI&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+
+self.imageView        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+self.imageView.center = self.view.center;
+[self.view addSubview:self.imageView];
+
+[GCDQueue executeInGlobalQueue:^{
+
+    //处理业务逻辑,下载操作
+
+    NSString *netUrlString = @&amp;quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&amp;quot;;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:netUrlString]];
+    NSData *picData = [NSURLConnection sendSynchronousRequest:request
+                                            returningResponse:nil
+                                                        error:nil];
+
+
+    [GCDQueue executeInMainQueue:^{
+
+        //更新UI
+        self.imageView.image = [[UIImage alloc] initWithData:picData];
+
+    }];
+
+}];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;延时操作&quot;&gt;&lt;a href=&quot;#延时操作&quot; class=&quot;headerlink&quot; title=&quot;延时操作&quot;&gt;&lt;/a&gt;延时操作&lt;/h1&gt;&lt;h2 id=&quot;NSThread方式&quot;&gt;&lt;a href=&quot;#NSThread方式&quot; class=&quot;headerlink&quot; title=&quot;NSThread方式&quot;&gt;&lt;/a&gt;NSThread方式&lt;/h2&gt;&lt;p&gt;优点:时间比较精确，而且可以用方法取消。缺点:比较繁琐&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+NSLog(@&amp;quot;启动&amp;quot;);
+
+//NSThread方式的延时执行操作
+[self performSelector:@selector(threadEvent:)
+           withObject:self
+           afterDelay:2.f];
+
+//取消延时执行操作
+[NSObject cancelPreviousPerformRequestsWithTarget:self];
+
+}
+
+- (void)threadEvent:(id)sender{
+NSLog(@&amp;quot;线程事件&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;GCD方式&quot;&gt;&lt;a href=&quot;#GCD方式&quot; class=&quot;headerlink&quot; title=&quot;GCD方式&quot;&gt;&lt;/a&gt;GCD方式&lt;/h2&gt;&lt;p&gt;优点:简单快捷。缺点:时间不够精确，不能取消。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+NSLog(@&amp;quot;启动&amp;quot;);
+//GCD方式的延时执行操作
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&amp;quot;GCD线程事件&amp;quot;);
+} afterDelaySecs:2.f];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD线程组-管理线程&quot;&gt;&lt;a href=&quot;#GCD线程组-管理线程&quot; class=&quot;headerlink&quot; title=&quot;GCD线程组(管理线程)&quot;&gt;&lt;/a&gt;GCD线程组(管理线程)&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+//初始化线程组合
+GCDGroup *group = [[GCDGroup alloc]init];
+
+//创建一个线程队列
+GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
+
+//让线程在group中执行线程1
+[queue execute:^{
+    sleep(1);
+    NSLog(@&amp;quot;线程1执行完毕&amp;quot;);
+} inGroup:group];
+
+//让线程在group中执行线程2
+[queue execute:^{
+     sleep(3);
+    NSLog(@&amp;quot;线程2执行完毕&amp;quot;);
+} inGroup:group];
+
+//监听线程组是否执行结束，然后执行线程3
+[queue notify:^{
+    NSLog(@&amp;quot;线程3执行完毕&amp;quot;);
+} inGroup:group];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定时器&quot;&gt;&lt;a href=&quot;#定时器&quot; class=&quot;headerlink&quot; title=&quot;定时器&quot;&gt;&lt;/a&gt;定时器&lt;/h1&gt;&lt;h2 id=&quot;GCD定时器&quot;&gt;&lt;a href=&quot;#GCD定时器&quot; class=&quot;headerlink&quot; title=&quot;GCD定时器&quot;&gt;&lt;/a&gt;GCD定时器&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic, strong) GCDTimer *timer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.timer = [[GCDTimer alloc] initInQueue:[GCDQueue mainQueue]];
+[self.timer event:^{
+    NSLog(@&amp;quot;GCD定时器&amp;quot;);
+} timeInterval:NSEC_PER_SEC];
+
+[self.timer start];
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;NSTimer定时器&quot;&gt;&lt;a href=&quot;#NSTimer定时器&quot; class=&quot;headerlink&quot; title=&quot;NSTimer定时器&quot;&gt;&lt;/a&gt;NSTimer定时器&lt;/h2&gt;&lt;p&gt;仅运行在当前runloop? 不能用于tableView?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface ViewController ()
+@property (nonatomic,strong)NSTimer *normalTimer;
+@end
+
+- (void)viewDidLoad {
+[super viewDidLoad];   
+ self.normalTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                    target:self
+                                                  selector:@selector(timerEvent)
+                                                  userInfo:nil
+                                                   repeats:YES];
+}
+
+- (void)timerEvent{
+NSLog(@&amp;quot;NSTimer定时器&amp;quot;);
+}    
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD信号量-异步线程转换为同步线程&quot;&gt;&lt;a href=&quot;#GCD信号量-异步线程转换为同步线程&quot; class=&quot;headerlink&quot; title=&quot;GCD信号量- 异步线程转换为同步线程&quot;&gt;&lt;/a&gt;GCD信号量- 异步线程转换为同步线程&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+//必须线程1先执行完，然后再执行完线程2
+
+//创建信号量, 可以将异步线程转化为同步线程
+GCDSemaphore * semaphore = [[GCDSemaphore alloc]init];
+
+
+//线程1 - 异步
+[GCDQueue executeInGlobalQueue:^{
+    NSLog(@&amp;quot;线程1&amp;quot;);
+
+    //发送信号
+    [semaphore signal];
+
+}];
+
+//线程2 - 异步
+[GCDQueue executeInGlobalQueue:^{
+
+    //等待信号，这时会堵塞住，不会往下执行，直到接收到信号
+    [semaphore wait];
+
+    NSLog(@&amp;quot;线程2&amp;quot;);
+}];
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;综合使用-采用GCD逐一下载图片&quot;&gt;&lt;a href=&quot;#综合使用-采用GCD逐一下载图片&quot; class=&quot;headerlink&quot; title=&quot;综合使用:采用GCD逐一下载图片&quot;&gt;&lt;/a&gt;综合使用:采用GCD逐一下载图片&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;GCD.h&amp;quot;
+
+@interface ViewController ()
+
+@property(nonatomic, strong) UIImageView *view1;
+@property(nonatomic, strong) UIImageView *view2;
+@property(nonatomic, strong) UIImageView *view3;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.view1 = [self createImageViewWithFrame:CGRectMake(0, 0, 100, 100)];
+self.view2 = [self createImageViewWithFrame:CGRectMake(100, 0, 100, 100)];
+self.view3 = [self createImageViewWithFrame:CGRectMake(200, 0, 100, 100)];
+
+NSString *net1 = @&amp;quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&amp;quot;;
+NSString *net2 = @&amp;quot;http://pic.cnitblog.com/avatar/708810/20141230105233.png&amp;quot;;
+NSString *net3 = @&amp;quot;http://pic.cnitblog.com/avatar/704178/20141216150843.png&amp;quot;;
+
+//初始化信号量
+GCDSemaphore *semaphore = [[GCDSemaphore alloc]init];
+
+
+//图片1
+[GCDQueue executeInGlobalQueue:^{
+    UIImage *image1 = [self accessDataByNetString:net1];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view1.image = image1;
+            self.view1.alpha = 1.f;
+        } completion:^(BOOL finished) {
+
+            //发送信号
+            [semaphore signal];
+        }];
+    }];
+}];
+
+//图片2
+[GCDQueue executeInGlobalQueue:^{
+
+    UIImage *image2 = [self accessDataByNetString:net2];
+
+    [semaphore wait];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view2.image = image2;
+            self.view2.alpha = 1.f;
+        } completion:^(BOOL finished) {
+
+            //发送信号
+            [semaphore signal];
+
+        }];
+    }];
+}];
+
+//图片3
+[GCDQueue executeInGlobalQueue:^{
+
+    UIImage *image3 = [self accessDataByNetString:net3];
+
+    [semaphore wait];
+
+    [GCDQueue executeInMainQueue:^{
+
+        [UIView animateWithDuration:2.f animations:^{
+            self.view3.image = image3;
+            self.view3.alpha = 1.f;
+        } completion:^(BOOL finished) {
+            //发送信号
+            [semaphore signal];            }];
+    }];
+}];
+}
+
+//创建view
+- (UIImageView *)createImageViewWithFrame:(CGRect)frame {
+
+UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];
+imageView.alpha = 0.f;
+[self.view addSubview:imageView];
+
+return imageView;
+}
+
+//获取网络图片
+- (UIImage *)accessDataByNetString:(NSString *)string{
+
+NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:string]];
+
+NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                 returningResponse:nil
+                                             error:nil];
+
+return [UIImage imageWithData:data];
+}
+@end
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;串行队列&quot;&gt;&lt;a href=&quot;#串行队列&quot; class=&quot;headerlink&quot; title=&quot;串行队列&quot;&gt;&lt;/a&gt;串行队列&lt;/h1&gt;&lt;p&gt;串行队列一次只执行一个线程，按照添加到队列的顺序依次执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)viewDidLoa
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS_GCD" scheme="http://jackliu17.github.io/tags/iOS-GCD/"/>
+    
+  </entry>
   
   <entry>
     <title>Blocks</title>
@@ -229,7 +585,7 @@ self.block = ^{
     <link href="http://jackliu17.github.io/2016/08/01/AFNetworking%E7%AE%80%E4%BB%8B/"/>
     <id>http://jackliu17.github.io/2016/08/01/AFNetworking简介/</id>
     <published>2016-08-01T07:25:21.000Z</published>
-    <updated>2016-08-02T00:18:29.000Z</updated>
+    <updated>2016-08-03T11:12:49.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;HTTP请求&quot;&gt;&lt;a href=&quot;#HTTP请求&quot; class=&quot;headerlink&quot; title=&quot;HTTP请求&quot;&gt;&lt;/a&gt;HTTP请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&amp;quot;;
 
@@ -331,6 +687,104 @@ NSDictionary *paras = @{@&amp;quot;ContactName&amp;quot;        : @&amp;quot;Lil
 
 
                             }];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;断点下载&quot;&gt;&lt;a href=&quot;#断点下载&quot; class=&quot;headerlink&quot; title=&quot;断点下载&quot;&gt;&lt;/a&gt;断点下载&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@&amp;quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&amp;quot;]];
+AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request
+                                                                             fileIdentifier:@&amp;quot;fuck.jpg&amp;quot;
+                                                                                 targetPath:[NSHomeDirectory() stringByAppendingPathComponent:@&amp;quot;/Library/Caches/fuck.jpg&amp;quot;]
+                                                                               shouldResume:YES];
+operation.shouldOverwrite = YES;
+
+
+// 开始下载
+[operation start];
+
+// 2s后暂停
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&amp;quot;暂停&amp;quot;);
+    [operation pause];
+} afterDelaySecs:2.f];
+
+// 4s后继续恢复
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&amp;quot;开始&amp;quot;);
+    [operation resume];
+} afterDelaySecs:4.f];
+
+// 查看下载进度
+[operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+
+    CGFloat percent = (float)totalBytesReadForFile / (float)totalBytesExpectedToReadForFile;
+    NSLog(@&amp;quot;百分比:%.3f%% %ld  %lld  %lld  %lld&amp;quot;, percent * 100, (long)bytesRead, totalBytesRead, totalBytesReadForFile, totalBytesExpectedToReadForFile);
+}];
+
+// 结束block
+[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+    NSLog(@&amp;quot;下载成功 %@&amp;quot;, responseObject);
+
+} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    NSLog(@&amp;quot;下载失败 %@&amp;quot;, error);
+
+}];
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;监听网络&quot;&gt;&lt;a href=&quot;#监听网络&quot; class=&quot;headerlink&quot; title=&quot;监听网络&quot;&gt;&lt;/a&gt;监听网络&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+// 开启网络指示器
+[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
+NSURL *url = [NSURL URLWithString:@&amp;quot;http://baidu.com&amp;quot;];
+
+AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+NSOperationQueue *operationQueue       = manager.operationQueue;
+
+[manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+
+    switch (status) {
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+
+            [operationQueue setSuspended:NO];
+
+            NSLog(@&amp;quot;有网络&amp;quot;);
+
+            break;
+
+        case AFNetworkReachabilityStatusNotReachable:
+        default:
+
+            [operationQueue setSuspended:YES];
+
+            NSLog(@&amp;quot;无网络&amp;quot;);
+
+            break;
+    }
+
+}];
+
+// 开始监听
+[manager.reachabilityManager startMonitoring];
+
+return YES;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;下载图片（Category）&quot;&gt;&lt;a href=&quot;#下载图片（Category）&quot; class=&quot;headerlink&quot; title=&quot;下载图片（Category）&quot;&gt;&lt;/a&gt;下载图片（Category）&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;AFNetworking.h&amp;quot;
+#import &amp;quot;UIKit+AFNetworking.h&amp;quot;
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+[self.view addSubview:imageView];
+
+// 加载图片
+[imageView setImageWithURL:[NSURL URLWithString:@&amp;quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&amp;quot;]
+          placeholderImage:nil];
+}
 &lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
@@ -4118,232 +4572,6 @@ NSLog(@&amp;quot;%@&amp;quot;, demoView);
 &lt;li&gt;先设计抽象接口，再去考虑实现细节&lt;/li&gt;
 &lt;/ol&gt;
 &lt;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-单例</title>
-    <link href="http://jackliu17.github.io/2016/05/30/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B/"/>
-    <id>http://jackliu17.github.io/2016/05/30/iOS设计模式-单例/</id>
-    <published>2016-05-30T09:09:56.000Z</published>
-    <updated>2016-07-31T05:01:00.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;共享信息，管理中心&lt;/li&gt;
-&lt;li&gt;单例类基本是用来管理某种资源的，而这种资源是可以全局共享的&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;只有一个实例&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/q9x8el6r2pu7ig6/iOS_designPatternSingleton01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Cocoa系统中的单例应用&quot;&gt;&lt;a href=&quot;#Cocoa系统中的单例应用&quot; class=&quot;headerlink&quot; title=&quot;Cocoa系统中的单例应用&quot;&gt;&lt;/a&gt;Cocoa系统中的单例应用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[[UIApplication sharedApplication]statusBarStyle];
-
-[[NSNotificationCenter defaultCenter]addObserver:&amp;lt;#(nonnull id)#&amp;gt;
-                                        selector:&amp;lt;#(nonnull SEL)#&amp;gt;
-                                            name:&amp;lt;#(nullable NSString *)#&amp;gt;
-                                          object:&amp;lt;#(nullable id)#&amp;gt;];
-
-
-[[NSUserDefaults standardUserDefaults]setObject:&amp;lt;#(nullable id)#&amp;gt;
-                                         forKey:&amp;lt;#(nonnull NSString *)#&amp;gt;];
-
-
-[NSFileManager defaultManager];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;单例创建的三种方法&quot;&gt;&lt;a href=&quot;#单例创建的三种方法&quot; class=&quot;headerlink&quot; title=&quot;单例创建的三种方法&quot;&gt;&lt;/a&gt;单例创建的三种方法&lt;/h1&gt;&lt;p&gt;UserInfoManagerCenter&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface UserInfoManagerCenter : NSObject
-
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *age;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方法1. 任何类调用其他方法前，先调用此方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (void)initialize {
-
-static UserInfoManagerCenter *center = nil;
-
-if (self == [UserInfoManagerCenter class]) {
-
-    center = [[UserInfoManagerCenter alloc] init];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方法2. 有弊端。如果AppDelegate里，也同时以此方法创建单例，程序就会奔溃&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (instancetype)managerCenter {
-
-static UserInfoManagerCenter *center = nil;
-
-if (center == nil) {
-
-    center = [[UserInfoManagerCenter alloc] init];
-}
-
-return center;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;方法3. 最佳&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (instancetype)managerCenter {
-
-static UserInfoManagerCenter *center = nil;
-
-static dispatch_once_t predicate;
-dispatch_once(&amp;amp;predicate, ^{
-
-    center = [[UserInfoManagerCenter alloc] init];
-});
-
-return center;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;单例数据共享&quot;&gt;&lt;a href=&quot;#单例数据共享&quot; class=&quot;headerlink&quot; title=&quot;单例数据共享&quot;&gt;&lt;/a&gt;单例数据共享&lt;/h1&gt;&lt;p&gt;AppDelegate: 在此创建单例并赋值&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-// Override point for customization after application launch.
-UserInfoManagerCenter *center = [UserInfoManagerCenter managerCenter];
-center.name = @&amp;quot;极客学院&amp;quot;;
-
-return YES;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController: 在此获取单例的数据&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;UserInfoManagerCenter *center = [UserInfoManagerCenter managerCenter];
-NSLog(@&amp;quot;%@&amp;quot;, center.name);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;编写严格的单例&quot;&gt;&lt;a href=&quot;#编写严格的单例&quot; class=&quot;headerlink&quot; title=&quot;编写严格的单例&quot;&gt;&lt;/a&gt;编写严格的单例&lt;/h1&gt;&lt;h2 id=&quot;防止子类继承&quot;&gt;&lt;a href=&quot;#防止子类继承&quot; class=&quot;headerlink&quot; title=&quot;防止子类继承&quot;&gt;&lt;/a&gt;防止子类继承&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@implementation UserInfoManagerCenter
-
-+ (instancetype)managerCenter {
-
-static dispatch_once_t predicate;
-dispatch_once(&amp;amp;predicate, ^{
-
-    center = [[UserInfoManagerCenter alloc] init];
-});
-
-// 防止子类使用
-NSString *classString = NSStringFromClass([self class]);
-if ([classString isEqualToString:@&amp;quot;UserInfoManagerCenter&amp;quot;] == NO) {
-
-    NSParameterAssert(nil);
-}
-
-return center;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;确保实例对象只有一个&quot;&gt;&lt;a href=&quot;#确保实例对象只有一个&quot; class=&quot;headerlink&quot; title=&quot;确保实例对象只有一个&quot;&gt;&lt;/a&gt;确保实例对象只有一个&lt;/h2&gt;&lt;p&gt;因为单例管理的是系统资源，一个对象非常耗资源，所以要避免不能用alloc init方法创建&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#import &amp;quot;UserInfoManagerCenter.h&amp;quot;
-static UserInfoManagerCenter *center = nil;
-@implementation UserInfoManagerCenter
-
-+ (instancetype)managerCenter {
-
-static dispatch_once_t predicate;
-dispatch_once(&amp;amp;predicate, ^{
-
-    center = (UserInfoManagerCenter *)@&amp;quot;UserInfoManagerCenter&amp;quot;;
-    center = [[UserInfoManagerCenter alloc] init];
-});
-
-// 防止子类使用
-NSString *classString = NSStringFromClass([self class]);
-if ([classString isEqualToString:@&amp;quot;UserInfoManagerCenter&amp;quot;] == NO) {
-
-    NSParameterAssert(nil);
-}
-
-return center;
-}
-
-- (instancetype)init {
-
-NSString *string = (NSString *)center;
-if ([string isKindOfClass:[NSString class]] == YES &amp;amp;&amp;amp; [string isEqualToString:@&amp;quot;UserInfoManagerCenter&amp;quot;]) {
-
-    self = [super init];
-    if (self) {
-
-        // 防止子类使用
-        NSString *classString = NSStringFromClass([self class]);
-        if ([classString isEqualToString:@&amp;quot;UserInfoManagerCenter&amp;quot;] == NO) {
-
-            NSParameterAssert(nil);
-        }
-    }
-
-    return self;
-
-} else {
-
-    return nil;
-}
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;防止调用alloc-init细节阐述&quot;&gt;&lt;a href=&quot;#防止调用alloc-init细节阐述&quot; class=&quot;headerlink&quot; title=&quot;防止调用alloc init细节阐述&quot;&gt;&lt;/a&gt;防止调用alloc init细节阐述&lt;/h2&gt;&lt;p&gt;首先center的实际值设为一个字符串&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;center = (UserInfoManagerCenter *)@&amp;quot;UserInfoManagerCenter&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后在随后调用的init里进行判断，只有经历过 + managerCenter方法的才能创建实例，如果直接调用allo init的，那返回是空值&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (instancetype)init {
-
-NSString *string = (NSString *)center;
-if ([string isKindOfClass:[NSString class]] == YES &amp;amp;&amp;amp; [string isEqualToString:@&amp;quot;UserInfoManagerCenter&amp;quot;]) {
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;单例模式优化本地存储&quot;&gt;&lt;a href=&quot;#单例模式优化本地存储&quot; class=&quot;headerlink&quot; title=&quot;单例模式优化本地存储&quot;&gt;&lt;/a&gt;单例模式优化本地存储&lt;/h1&gt;&lt;h2 id=&quot;第三方库-FastCoding&quot;&gt;&lt;a href=&quot;#第三方库-FastCoding&quot; class=&quot;headerlink&quot; title=&quot;第三方库:FastCoding&quot;&gt;&lt;/a&gt;第三方库:FastCoding&lt;/h2&gt;&lt;p&gt;替换NSCoding协议, plist, JSON等，直接将数据存为NSData类型&lt;/p&gt;
-&lt;p&gt;下载地址:&lt;a href=&quot;https://github.com/nicklockwood/FastCoding&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FastCoding&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;关闭ARC&quot;&gt;&lt;a href=&quot;#关闭ARC&quot; class=&quot;headerlink&quot; title=&quot;关闭ARC&quot;&gt;&lt;/a&gt;关闭ARC&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/21iehlpgzexkwqa/iOS_designPatternSingleton02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;用单例设计存储数据接口&quot;&gt;&lt;a href=&quot;#用单例设计存储数据接口&quot; class=&quot;headerlink&quot; title=&quot;用单例设计存储数据接口&quot;&gt;&lt;/a&gt;用单例设计存储数据接口&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)storeValue:(id)value withKey:(NSString *)key;
-- (id)valueWithKey:(NSString *)key;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;用单例接口隔离实现细节&quot;&gt;&lt;a href=&quot;#用单例接口隔离实现细节&quot; class=&quot;headerlink&quot; title=&quot;用单例接口隔离实现细节&quot;&gt;&lt;/a&gt;用单例接口隔离实现细节&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)storeValue:(id)value withKey:(NSString *)key {
-
-NSParameterAssert(value);
-NSParameterAssert(key);
-
-NSData *data = [FastCoder dataWithRootObject:value];
-if (data) {
-
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
-}
-}
-
-
-
-- (id)valueWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:key];
-
-return [FastCoder objectWithData:data];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;在单例提供接口的基础上进行上层封装&quot;&gt;&lt;a href=&quot;#在单例提供接口的基础上进行上层封装&quot; class=&quot;headerlink&quot; title=&quot;在单例提供接口的基础上进行上层封装&quot;&gt;&lt;/a&gt;在单例提供接口的基础上进行上层封装&lt;/h2&gt;&lt;h2 id=&quot;封装前&quot;&gt;&lt;a href=&quot;#封装前&quot; class=&quot;headerlink&quot; title=&quot;封装前&quot;&gt;&lt;/a&gt;封装前&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;StudentModel *student = [[StudentModel alloc] init];
-student.name          = @&amp;quot;A&amp;quot;;
-NSArray *array        = @[[InfoModel new], [InfoModel new], [InfoModel new]];
-student.datas         = array;
-
-//每次都要得到这个单例
-[[StoreValue sharedInstance] storeValue:student withKey:@&amp;quot;FastCoding&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;封装后&quot;&gt;&lt;a href=&quot;#封装后&quot; class=&quot;headerlink&quot; title=&quot;封装后&quot;&gt;&lt;/a&gt;封装后&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;StudentModel *student = [[StudentModel alloc] init];
-student.name          = @&amp;quot;A&amp;quot;;
-NSArray *array        = @[[InfoModel new], [InfoModel new], [InfoModel new]];
-student.datas         = array;
-[student storeValueWithKey:@&amp;quot;FastCoding&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;如何封装&quot;&gt;&lt;a href=&quot;#如何封装&quot; class=&quot;headerlink&quot; title=&quot;如何封装&quot;&gt;&lt;/a&gt;如何封装&lt;/h2&gt;&lt;p&gt;新建category: StoreValue&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@implementation NSObject (StoreValue)
-
-//这样student对象就可以直接调用该方法来存储
-
-- (void)storeValueWithKey:(NSString *)key {
-[[StoreValue sharedInstance] storeValue:self withKey:key];
-}
-
-//studentModel可以直接调用类方法来存储
-
-+ (id)valueByKey:(NSString *)key {
-return [[StoreValue sharedInstance] valueWithKey:key];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;单例模式&quot;&gt;&lt;a href=&quot;#单例模式&quot; class=&quot;headerlink&quot; title=&quot;单例模式&quot;&gt;&lt;/a&gt;单例模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;共享信息，管理中心&lt;/li&gt;
-&lt;li&gt;单例类基本是用来管理某种资源的，而这种资源是可以全局共享的&lt;/li&gt;
-&lt;l
     
     </summary>
     
