@@ -238,6 +238,307 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/03/使用maskView设计动画及遮盖/" itemprop="url">
+                  使用maskView设计动画及遮盖
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-03T21:47:38+10:00" content="2016-05-03">
+              2016-05-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/03/使用maskView设计动画及遮盖/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/03/使用maskView设计动画及遮盖/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="maskView（maskLayer）基本原理"><a href="#maskView（maskLayer）基本原理" class="headerlink" title="maskView（maskLayer）基本原理"></a>maskView（maskLayer）基本原理</h1><ol>
+<li>png图片透明像素的原理 （只有png才有透明度概念，jpg没有）</li>
+<li>maskView（maskLayer）可类比于多张png图片的叠加遮罩，原理类似</li>
+<li>maskView是iOS8以上才有的，如果要考虑兼容低版本，用maskLayer替换</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/cagbreykuoc716q/maskerView.png?dl=1" alt=""></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>// 使用maskView的情况
+
+UIImageView *mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+mask.image = [UIImage imageNamed:@&quot;mask&quot;];
+
+self.addImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20 + (width + 20) * 2, width, width)];
+self.addImageView.image = [UIImage imageNamed:@&quot;base&quot;];
+// maskView并不能用addSubview来添加遮罩,这点千万注意
+self.addImageView.maskView = mask;
+[self.view addSubview:self.addImageView];
+
+//赋值给上面的mask，在iOS8以下采用
+//self.addImageView.layer.mask
+//CALayer *layer,
+</code></pre><h1 id="maskView配合CAGradientLayer的使用"><a href="#maskView配合CAGradientLayer的使用" class="headerlink" title="maskView配合CAGradientLayer的使用"></a>maskView配合CAGradientLayer的使用</h1><ol>
+<li>用CAGradientLayer直接产生带透明像素通道的layer</li>
+<li>用maskView直接加载带CAGradientLayer的view</li>
+<li>可以通过对CAGradientLayer进行动画的操作实现动画效果</li>
+</ol>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 加载图片
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
+imageView.image        = [UIImage imageNamed:@&quot;base&quot;];
+[self.view addSubview:imageView];
+
+// 创建出CAGradientLayer
+CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+gradientLayer.frame            = imageView.bounds;
+gradientLayer.colors           = @[(__bridge id)[UIColor clearColor].CGColor,
+                                   (__bridge id)[UIColor blackColor].CGColor,
+                                   (__bridge id)[UIColor clearColor].CGColor];
+gradientLayer.locations        = @[@(0.25), @(0.5), @(0.75)];
+gradientLayer.startPoint       = CGPointMake(0, 0);
+gradientLayer.endPoint         = CGPointMake(1, 0);
+
+// 容器view --&gt; 用于加载创建出的CAGradientLayer
+UIView *containerView = [[UIView alloc] initWithFrame:imageView.bounds];
+[containerView.layer addSublayer:gradientLayer];
+
+// 设定maskView
+imageView.maskView  = containerView;
+
+CGRect frame        = containerView.frame;
+frame.origin.x     -= 200;
+
+// 重新赋值
+containerView.frame = frame;
+
+// 给maskView做动画效果
+[UIView animateWithDuration:3.f animations:^{
+    // 改变位移
+    CGRect frame        = containerView.frame;
+    frame.origin.x     += 400;
+
+    // 重新赋值
+    containerView.frame = frame;
+}];
+}
+</code></pre><h1 id="maskView配合带alpha通道图片的使用"><a href="#maskView配合带alpha通道图片的使用" class="headerlink" title="maskView配合带alpha通道图片的使用"></a>maskView配合带alpha通道图片的使用</h1><ol>
+<li>直接使用带alpha通道的png图片比用CAGradientLayer的方式更加高效</li>
+<li>可以使用技巧在maskView上添加多张图片</li>
+<li>在maskView中做简单的动画</li>
+</ol>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 前景图
+UIImageView *background = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+background.image        = [UIImage imageNamed:@&quot;base&quot;];
+background.center       = self.view.center;
+[self.view addSubview:background];
+
+
+// 背景图
+UIImageView *upGround = [[UIImageView alloc] initWithFrame:background.frame];
+upGround.image        = [UIImage imageNamed:@&quot;background&quot;];
+[self.view addSubview:upGround];
+
+
+// maskView
+UIView *mask      = [[UIView alloc] initWithFrame:upGround.bounds];
+upGround.maskView = mask;
+
+
+// 图片1
+UIImageView *picOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
+picOne.image        = [UIImage imageNamed:@&quot;1&quot;];
+[mask addSubview:picOne];
+
+
+// 图片2
+UIImageView *picTwo = [[UIImageView alloc] initWithFrame:CGRectMake(100, -200, 100, 400)];
+picTwo.image        = [UIImage imageNamed:@&quot;2&quot;];
+[mask addSubview:picTwo];
+
+
+// 动画
+[UIView animateWithDuration:4.f delay:5.f options:0 animations:^{
+    picOne.y -= 400;
+    picTwo.y += 400;
+} completion:^(BOOL finished) {
+
+}];
+}
+</code></pre><h1 id="设计文本横向渐变消失的控件"><a href="#设计文本横向渐变消失的控件" class="headerlink" title="设计文本横向渐变消失的控件"></a>设计文本横向渐变消失的控件</h1><ol>
+<li>接口的设计</li>
+<li>封装CAGradientLayer用以提供mask遮罩</li>
+<li>动画样式的分析与设计</li>
+</ol>
+<h2 id="设计动画函数的格式"><a href="#设计动画函数的格式" class="headerlink" title="设计动画函数的格式"></a>设计动画函数的格式</h2><pre><code>// - (void)fadeRight
+//将持续时间和是否执行动画设计进去
+- (void)fadeRightWithDuration:(NSTimeInterval)duration animated:(BOOL)animated;
+</code></pre><h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><pre><code>- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+
+    // 创建出label
+    [self createLabel:self.bounds];
+
+    // 创建出mask
+    [self createMask:self.bounds];
+
+}
+return self;
+}
+
+- (void)createLabel:(CGRect)frame {
+self.label               = [[UILabel alloc] initWithFrame:frame];
+self.label.font          = [UIFont systemFontOfSize:30.f];
+self.label.textAlignment = NSTextAlignmentCenter;
+self.label.textColor     = [UIColor redColor];
+
+[self addSubview:self.label];
+}
+
+- (void)createMask:(CGRect)frame {
+
+// 创建出渐变的layer
+CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+gradientLayer.frame            = frame;
+gradientLayer.colors           = @[(__bridge id)[UIColor clearColor].CGColor,
+                                   (__bridge id)[UIColor blackColor].CGColor,
+                                   (__bridge id)[UIColor blackColor].CGColor,
+                                   (__bridge id)[UIColor clearColor].CGColor];
+gradientLayer.locations        = @[@(0.01), @(0.1), @(0.9), @(0.99)];
+gradientLayer.startPoint       = CGPointMake(0, 0);
+gradientLayer.endPoint         = CGPointMake(1, 0);
+
+// 创建并接管mask
+self.mask     = [[UIView alloc] initWithFrame:frame];
+
+// mask获取渐变layer
+[self.mask.layer addSublayer:gradientLayer];
+
+self.maskView = self.mask;
+}
+
+- (void)fadeRight {
+
+[UIView animateWithDuration:3.f animations:^{
+    CGRect frame    = self.mask.frame;
+    frame.origin.x += frame.size.width;
+
+    self.mask.frame = frame;
+}];
+
+}
+
+//重写setter,getter方法
+
+@synthesize text = _text;
+- (void)setText:(NSString *)text {
+_text           = text;
+self.label.text = text;
+}
+- (NSString *)text {
+return _text;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/01/iOS模糊效果的使用/" itemprop="url">
                   iOS模糊效果的使用
                 </a>
@@ -1298,180 +1599,6 @@ self.window.rootViewController = navCtrl;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/28/iOS项目7-超级猜图/" itemprop="url">
-                  iOS项目7.超级猜图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-28T13:05:41+10:00" content="2016-04-28">
-              2016-04-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/28/iOS项目7-超级猜图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/28/iOS项目7-超级猜图/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/txargzo4ulfqxnd/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png?dl=1" alt=""></p>
-<h1 id="视图分析"><a href="#视图分析" class="headerlink" title="视图分析"></a>视图分析</h1><p><img src="https://www.dropbox.com/s/5xt86y2d3wpbrms/guessImage.png?dl=1" alt=""></p>
-<h1 id="加载plist数据"><a href="#加载plist数据" class="headerlink" title="加载plist数据"></a>加载plist数据</h1><p><strong>将数据的初始化放在了数据模型里</strong></p>
-<p>JKQuestionInfo</p>
-<pre><code>+ (NSArray *)questions{
-
-NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;questions&quot; ofType:@&quot;plist&quot;];
-
-NSArray *array = [NSArray arrayWithContentsOfFile:path];
-
-NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
-
-for (NSDictionary *dict in array) {
-
-    [arrayM addObject:[self questionWithDict:dict]];
-}
-return [arrayM copy];
-}
-</code></pre><p>ViewController</p>
-<pre><code>- (NSArray *)questions {
-if (nil == _questions) {
-    _questions = [JKQuestionInfo questions];
-}
-return _questions;
-}
-</code></pre><h1 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h1><h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>//需要计算的话，用宏,否则用const,如下
-
-//图片按钮的宽度
-#define imgW self.imgInsideBtn.bounds.size.width
-
-//答案按钮宽
-CGFloat const kBtnW = 35;
-</code></pre><h2 id="UIButton-配置"><a href="#UIButton-配置" class="headerlink" title="UIButton 配置"></a>UIButton 配置</h2><pre><code>//为按钮设置背景图片
-[self.imgInsideBtn setImage:question.image forState:UIControlStateNormal];
-
-//设定按钮高亮下的背景图片
-[btn setBackgroundImage:[UIImage imageNamed:@&quot;btn_answer_highlighted&quot;] forState:UIControlStateHighlighted];
-
-//设定按钮常规下的字体颜色
-[btn setTitleColor:kAnswerBtnTitleColor forState:UIControlStateNormal];
-
-//设定按钮的点击方法
-[btn addTarget:self action:@selector(answerBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-
-//设定按钮上的字符
-[answerBtn setTitle:nil forState:UIControlStateNormal];
-
-//alpha值切换按钮的不同状态
-self.cover.alpha = 0.0;
-</code></pre><h2 id="遍历移除所有子视图"><a href="#遍历移除所有子视图" class="headerlink" title="遍历移除所有子视图"></a>遍历移除所有子视图</h2><pre><code>for (UIButton *btn in self.answerView.subviews) {
-    [btn removeFromSuperview];
-}
-</code></pre><h2 id="UIView-配置"><a href="#UIView-配置" class="headerlink" title="UIView 配置"></a>UIView 配置</h2><pre><code>//该按钮不隐藏
-optionBtn.hidden = NO;
-
-//该view是否具有互动性
-self.optionsView.userInteractionEnabled = YES;
-
-//将中间图片按钮设置成是离屏幕最近一层,所有子视图的最上面
-[self.view bringSubviewToFront:self.imgInsideBtn];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1518,7 +1645,7 @@ self.optionsView.userInteractionEnabled = YES;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">88</span>
+              <span class="site-state-item-count">89</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1535,7 +1662,7 @@ self.optionsView.userInteractionEnabled = YES;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

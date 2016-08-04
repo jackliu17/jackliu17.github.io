@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,swift," />
+  <meta name="keywords" content="iOS_conf," />
 
 
 
@@ -61,40 +61,46 @@
 
 
 
-<meta name="description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
+<meta name="description" content="iOS库的介绍动态库和静态库
+动态库在运行时实时部署，静态库必须在编译时连接到代码
+动态库加载到内存后可以重复使用,静态库每次import都引入一次
+自定义的动态库只能部署在 iOS8 以上系统
+.a(静态库，只有代码，没有任何资源,图片xib文件等)
+.dylib (动态库，只有代码，没有任何资源)
+.framework 可以包含资源，分为两种：dynamic 和 static
+use_fram">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift面向对象基础（下）">
-<meta property="og:url" content="http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/index.html">
+<meta property="og:title" content="使用CocoaPods管理iOS库">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
-<meta property="og:updated_time" content="2016-07-31T13:09:07.000Z">
+<meta property="og:description" content="iOS库的介绍动态库和静态库
+动态库在运行时实时部署，静态库必须在编译时连接到代码
+动态库加载到内存后可以重复使用,静态库每次import都引入一次
+自定义的动态库只能部署在 iOS8 以上系统
+.a(静态库，只有代码，没有任何资源,图片xib文件等)
+.dylib (动态库，只有代码，没有任何资源)
+.framework 可以包含资源，分为两种：dynamic 和 static
+use_fram">
+<meta property="og:image" content="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1">
+<meta property="og:updated_time" content="2016-08-04T11:18:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift面向对象基础（下）">
-<meta name="twitter:description" content="可选链class Customer {
-var name = &amp;quot;&amp;quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &amp;quot;张三&amp;quot;, title: &amp;quo">
+<meta name="twitter:title" content="使用CocoaPods管理iOS库">
+<meta name="twitter:description" content="iOS库的介绍动态库和静态库
+动态库在运行时实时部署，静态库必须在编译时连接到代码
+动态库加载到内存后可以重复使用,静态库每次import都引入一次
+自定义的动态库只能部署在 iOS8 以上系统
+.a(静态库，只有代码，没有任何资源,图片xib文件等)
+.dylib (动态库，只有代码，没有任何资源)
+.framework 可以包含资源，分为两种：dynamic 和 static
+use_fram">
+<meta name="twitter:image" content="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1">
 
 
 
@@ -112,7 +118,7 @@ let employees = [
   };
 </script>
 
-  <title> Swift面向对象基础（下） | Cowboy Tech </title>
+  <title> 使用CocoaPods管理iOS库 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +260,7 @@ let employees = [
             
             
               
-                Swift面向对象基础（下）
+                使用CocoaPods管理iOS库
               
             
           </h1>
@@ -266,8 +272,8 @@ let employees = [
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-13T10:15:37+11:00" content="2016-03-13">
-              2016-03-13
+            <time itemprop="dateCreated" datetime="2016-08-04T14:17:13+10:00" content="2016-08-04">
+              2016-08-04
             </time>
           </span>
 
@@ -296,8 +302,8 @@ let employees = [
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/13/Swift面向对象基础（下）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/13/Swift面向对象基础（下）/" itemprop="commentsCount"></span>
+                <a href="/2016/08/04/使用CocoaPods管理iOS库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/04/使用CocoaPods管理iOS库/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -319,205 +325,108 @@ let employees = [
       
 
       
-        <h1 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h1><pre><code>class Customer {
-var name = &quot;&quot;
-var emp: Employee?
-init(name :String){
-self.name = name
-}
-//定义一个常量类型的employee数组，用于模拟系统中所有员工
-let employees = [
-    Employee(name: &quot;张三&quot;, title: &quot;销售客服&quot;),
-    Employee (name: &quot;小明&quot;, title: &quot;售后客服&quot;),
-    Employee (name: &quot;Han&quot;, title: &quot;普通客服&quot;),
-    Employee (name: &quot;Better&quot;, title: &quot;销售主管&quot;),
-]
-//定义一个方法，该方法可根据员工名返回对应的员工，返回值为可选类型
-func findEmp(empName:String) -&gt; Employee! {
-    for emp in employees {
-        if emp.name == empName {
-          return emp
-        }
-    }
-    return nil
-}
-}
-class Company {
-  var name = &quot;&quot;
-  var addr = &quot;&quot;
-  init (name:String, addr:String){
-  self.name = name
-  self.addr = addr
-  }
-}
-class Employee {
-var name = &quot;Lily&quot;
-var title = &quot;行政&quot;
-var company:Company!  
-init(name:String, title:String){
-    self.name = name
-    self.title = title
-}
-func info(){
-     print(&quot;本员工名为\(self.name),职位是\(self.title)&quot;)
-}
-}
-//第一种情况----------------------
-var c = Customer(name: &quot;Damon&quot;)
-var emp = Employee(name: &quot;Elena&quot;, title: &quot;Student&quot;)
-//设置Customer关联的Employee实例
-c.emp = emp
-//设置Employee关联的Company实例
-emp.company = Company(name: &quot;极客学院&quot;, addr: &quot;北京市&quot;)
-//print(&quot;为\(c.name)服务的公司是:\(c.emp!.company.name)&quot;)  //强制解析访问属性
-//print(&quot;为\(c.name)服务的公司是:\(c.emp?.company?.name)&quot;) //使用可选链访问属性
-//第二种情况, 如果不赋值的情况下强制解析，会有空值报错
-var c2 = Customer(name: &quot;Lucky&quot;)
-c2.emp = Employee(name: &quot;Snow&quot;, title: &quot;客服&quot;)
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp!.company.name)&quot;) //会报错，因为有空值，company没有赋值
-//print(&quot;为\(c2.name)服务的公司是:\(c2.emp?.company?.name)&quot;) //使用可选链访问属性，即使没有赋值也没有关系
-//第三种情况 ---------------
-var c3 = Customer(name: &quot;Paul&quot;)
-c3.findEmp(&quot;张三&quot;)?.info()
-c3.findEmp(&quot;小明&quot;)?.info() //如果传入的名字不存在，它就不会执行输出，但是也不会让程序崩溃
-//print(&quot;为\(c3.name)服务的公司是:\(c3.emp?.company?.name)&quot;)
-//第四种情况
-var dict = [Int: Customer]()
-dict[1] = Customer(name: &quot;Han&quot;)
-dict[2] = Customer(name: &quot;Angle&quot;)
-dict[1]?.findEmp(&quot;Better&quot;)?.info()
-dict[4]?.findEmp(&quot;Better&quot;)?.info() //dict[4]是没有值的，所以该条命令不会输出语句    
-</code></pre><ol>
-<li>可选链用于处理可选类型的属性，方法和下标</li>
-<li>使用可选链代替强制解析，访问方式：将强制解析的感叹号换成?，在隐式解析的后面也添加?后缀</li>
-<li>可选链会自动判断程序访问的关联实例是否为nil</li>
+        <h1 id="iOS库的介绍"><a href="#iOS库的介绍" class="headerlink" title="iOS库的介绍"></a>iOS库的介绍</h1><h2 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a>动态库和静态库</h2><ol>
+<li>动态库在运行时实时部署，静态库必须在编译时连接到代码</li>
+<li>动态库加载到内存后可以重复使用,静态库每次import都引入一次</li>
+<li>自定义的动态库只能部署在 iOS8 以上系统</li>
+<li>.a(静态库，只有代码，没有任何资源,图片xib文件等)</li>
+<li>.dylib (动态库，只有代码，没有任何资源)</li>
+<li>.framework 可以包含资源，分为两种：dynamic 和 static</li>
+<li>use_frameworks! 生成 dynamic framework</li>
 </ol>
-<h1 id="值类型的类型属性-枚举"><a href="#值类型的类型属性-枚举" class="headerlink" title="值类型的类型属性-枚举"></a>值类型的类型属性-枚举</h1><p>结构体可以包含实例计算属性，不能包含实例存储属性</p>
-<pre><code>enum Season {
-//为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为枚举定义类型存储属性，且声明为常量
-static let name = &quot;季节&quot;
-static var info:String{
+<p><img src="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1" alt=""></p>
+<h2 id="制作库"><a href="#制作库" class="headerlink" title="制作库"></a>制作库</h2><p>iOS 体系结构</p>
+<ol>
+<li>armv7： iPhone 4/4s</li>
+<li>armv7s：iPhone 5 和 iPhone 5C</li>
+<li>arm64：iPhone 5S+</li>
+<li>x86-64、i386：模拟器</li>
+<li>lipo –info – 查看库支持的体系结构</li>
+<li>lipo -create  -output  - 将模拟器和真机的库合成一个库</li>
+<li>Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包</li>
+</ol>
+<h3 id="设定系统为8-0以上才能部署自定义动态库"><a href="#设定系统为8-0以上才能部署自定义动态库" class="headerlink" title="设定系统为8.0以上才能部署自定义动态库"></a>设定系统为8.0以上才能部署自定义动态库</h3><p><img src="https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1" alt=""></p>
+<h3 id="创建一个库"><a href="#创建一个库" class="headerlink" title="创建一个库"></a>创建一个库</h3><p><img src="https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1" alt=""></p>
+<h3 id="MyFramework-swift"><a href="#MyFramework-swift" class="headerlink" title="MyFramework.swift"></a>MyFramework.swift</h3><pre><code>import UIKit
 
-    get{
+public class MyFramework: NSObject {
 
-    return&quot;代表季节的枚举，其desc为:\(desc)&quot;
+static let bundle = NSBundle(forClass: MyFramework.self)
 
+static let MyFrameworkStr = &quot;MyFramework&quot;
+
+public static func openVCFromStoryboard() {
+    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&quot;MyFrameworkViewController&quot;)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func openVCFromXib() {
+    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func loadImage() -&gt; UIImage{
+    let image = UIImage(named: MyFrameworkStr + &quot;.png&quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
+    return image!
+}
+
+
+}
+</code></pre><h3 id="分别在真机和模拟下运行，Product下生成，在show-in-finder中打开"><a href="#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开" class="headerlink" title="分别在真机和模拟下运行，Product下生成，在show in finder中打开"></a>分别在真机和模拟下运行，Product下生成，在show in finder中打开</h3><p><img src="https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1" alt=""></p>
+<h3 id="找到xxx-framework目录下的MyFramework文件，如图所示"><a href="#找到xxx-framework目录下的MyFramework文件，如图所示" class="headerlink" title="找到xxx.framework目录下的MyFramework文件，如图所示"></a>找到xxx.framework目录下的MyFramework文件，如图所示</h3><p><img src="https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1" alt=""></p>
+<h3 id="合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径"><a href="#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径" class="headerlink" title="合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)"></a>合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)</h3><p><img src="https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1" alt=""></p>
+<h3 id="合并库中的module也要模拟器module-真机module"><a href="#合并库中的module也要模拟器module-真机module" class="headerlink" title="合并库中的module也要模拟器module + 真机module"></a>合并库中的module也要模拟器module + 真机module</h3><p><img src="https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1" alt=""></p>
+<h2 id="使用库"><a href="#使用库" class="headerlink" title="使用库"></a>使用库</h2><ol>
+<li>手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries</li>
+<li>使用 pod：use_frameworks!</li>
+</ol>
+<h2 id="利用-dynamic-库实时部署"><a href="#利用-dynamic-库实时部署" class="headerlink" title="利用 dynamic 库实时部署"></a>利用 dynamic 库实时部署</h2><pre><code>let libPath = &quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&quot;
+if let bundle = NSBundle(path: libPath) {
+do {
+    try bundle.loadAndReturnError()
+    if let myFramework = NSClassFromString(&quot;MyFramework&quot;) as? MyFramework.Type{
+        myFramework.init().whereIsFrom()
     }
-
-    set{
-
-    print(&quot;程序尝试对info计算属性进行赋值:\(newValue)&quot;)
-
-    }
+} catch {
+    print(&quot;动态库加载失败&quot;)
 }
 }
-//对Season枚举的类型属性赋值
-Season.desc = &quot;季节类&quot;
-print(Season.name)
-Season.info = &quot;新的info&quot;
-print(Season.info)
-</code></pre><h1 id="值类型的类型属性-结构体"><a href="#值类型的类型属性-结构体" class="headerlink" title="值类型的类型属性-结构体"></a>值类型的类型属性-结构体</h1><p>用static 修饰的是类型属性，需要通过类来调用</p>
-<pre><code>struct FkRange {
-
-//为结构体定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-//为结构体定义类型存储属性，且声明为常量
-static let maxWidth = 10000
-static let maxHeight = 40000
-//定义类型计算属性，该属性只有get部分，是一个只读属性
-static var maxArea:Int{
-return maxWidth * maxHeight
-}
-}
-
-FkRange.desc = &quot;描述范围的结构体&quot;
-print(FkRange.desc)
-print(FkRange.maxWidth)
-print(FkRange.maxHeight)
-print(FkRange.maxArea)  
-</code></pre><h1 id="类的类型属性"><a href="#类的类型属性" class="headerlink" title="类的类型属性"></a>类的类型属性</h1><p>类中不可以定义类型存储属性，只能包含类型计算属性</p>
-<pre><code>class User {
-
-   //为类定义类型计算属性
-class var nameMaxLength:Int {
-    get {
-    return 24
-    }
-
-    set {
-    print(&quot;程序尝试对User类的nameMaxLength类型计算属性赋值:\(newValue)&quot;)
-    }
-}
-}
-print(User.nameMaxLength)
-User.nameMaxLength = 20
-</code></pre><h1 id="使用闭包或函数为属性设置初始值"><a href="#使用闭包或函数为属性设置初始值" class="headerlink" title="使用闭包或函数为属性设置初始值"></a>使用闭包或函数为属性设置初始值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">struct ClosureInit &#123;</span><br><span class="line">    // 使用闭包对test实例存储属性执行初始化</span><br><span class="line">    var test: Int = &#123;</span><br><span class="line">    var dt = NSDate()</span><br><span class="line">    var gregorian = NSCalendar.currentCalendar()</span><br><span class="line">    // 定义一个时间字段的旗标，指定将会获取指定月、日信息</span><br><span class="line">    var unitFlags = NSCalendarUnit.CalendarUnitMonth</span><br><span class="line">    | NSCalendarUnit.CalendarUnitDay  //这段代码有问题</span><br><span class="line">    var comp = gregorian.components(unitFlags</span><br><span class="line">    , fromDate:dt)</span><br><span class="line">    // 获取当前的月份</span><br><span class="line">    var month = Int(comp.month)</span><br><span class="line">    // 获取当前第几日</span><br><span class="line">    var day = Int(comp.day)</span><br><span class="line">    // 得到计算结果</span><br><span class="line">    return day - month</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line">var ci = ClosureInit()</span><br><span class="line">print(ci.test)</span><br></pre></td></tr></table></figure>
-<h1 id="值类型的类型方法"><a href="#值类型的类型方法" class="headerlink" title="值类型的类型方法"></a>值类型的类型方法</h1><pre><code>enum Season2{
-
- //为枚举定义类型存储属性，使用可选类型，系统将其初始化为nil
-static var desc:String?
-
-//为枚举定义类型存储属性，且声明为常量
-static let name = &quot;季节&quot;
-
-//定义无参数的类型方法
-static func info(){
-
-print(&quot;季节类的info方法，该类的name存储属性为:\(name)&quot;)
-}
-
-//定义带一个参数的类型方法
-static func setDesc(desc:String){
-
-self.desc = desc
-}
-}
-
-Season2.info()
-Season2.setDesc(&quot;描述季节变化的枚举&quot;)
-print(Season2.desc)
-</code></pre><h1 id="类的类型方法"><a href="#类的类型方法" class="headerlink" title="类的类型方法"></a>类的类型方法</h1><pre><code>class Math {
-
-   //类不允许定义类型存储属性，使用类型计算属性代替
-class var pi:Double {
-    return 3.1415926535
-}
-
-class func abs(value:Double)-&gt;Double {
-    return value&lt;0 ? -value:value
-}
-
-//定义类型方法，取消第二个形参的外部形参名
-class func pow(base:Double,_ exponent:Int)-&gt;Double {
-    var result = 1.0
-    for idx in 1...exponent{
-    result *= base
-    }
-    return result
-}
-
-//定义类型方法，类型方法可直接访问类型属性
-class func radian2Degre(radian:Double)-&gt;Double {
-    return radian * 180/pi
-}
-
-//定义类型方法，类型方法可通过self引用类型属性
-class func degree2Radian(degree:Double)-&gt;Double {
-    return degree * self.pi/180
-}
-}
-
-print(Math.pi)
-print(Math.pow(2, 4))
-print(Math.radian2Degre(1.57))
-print(Math.degree2Radian(45))
-</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
-<li>通过可选链可以避免因为某个对象值的缺失，而引起程序崩溃。</li>
-<li>static 在枚举和结构体中使用，class在类中使用</li>
-<li>枚举和结构体中的属性基本都有static。</li>
-<li>class只能修饰计算属性</li>
+</code></pre><h1 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在Terminal输入以下安装命令</p>
+<pre><code>$ sudo gem install cocoapods
+</code></pre><p>出现以下报错</p>
+<pre><code>You don&apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
+</code></pre><p>再Terminal输入以下命令</p>
+<pre><code>$ sudo gem update
+</code></pre><p>还是出现以下报错</p>
+<pre><code>Operation not permitted - /usr/bin/xcodeproj
+</code></pre><p>参考官方文档<a href="https://github.com/CocoaPods/CocoaPods/issues/3692" target="_blank" rel="external">Operation not permitted</a>输入以下命令，成功</p>
+<pre><code>$ sudo gem install -n /usr/local/bin cocoapods
+</code></pre><h2 id="CocoaPods基础知识-—-使用步骤"><a href="#CocoaPods基础知识-—-使用步骤" class="headerlink" title="CocoaPods基础知识 — 使用步骤"></a>CocoaPods基础知识 — 使用步骤</h2><ol>
+<li>创建或打开 Xcode 项目</li>
+<li>命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)</li>
+<li>使用 pod init 创建 Podfile</li>
+<li>pod search Alamofire </li>
+<li>修改 Podfile</li>
+<li>pod install</li>
+<li>打开 pod 创建的 xcworkspace</li>
+</ol>
+<h2 id="CocoaPods基础知识-—-Podfile"><a href="#CocoaPods基础知识-—-Podfile" class="headerlink" title="CocoaPods基础知识 — Podfile"></a>CocoaPods基础知识 — Podfile</h2><pre><code>platform : ios &apos;9.0&apos;
+use_frameworks! (swift下必须使用)
+inhibit_all_warnings! (隐藏所有报错信息)
+target  &apos;PodTest&apos; do
+    pod &apos;AFNetworking&apos;,  &apos;~&gt; 3.0&apos;
+    pod &apos;FBSDKCoreKit&apos;, &apos;~&gt; 4.9&apos;
+end
+</code></pre><h2 id="Podfile-lock"><a href="#Podfile-lock" class="headerlink" title="Podfile.lock"></a>Podfile.lock</h2><ol>
+<li>第一次 pod install 时生成记录每个 Pod 版本</li>
+<li>Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本</li>
+<li>多人协作时防止第三方库升级时造成版本不一致</li>
+</ol>
+<h2 id="pod-install-和-pod-update"><a href="#pod-install-和-pod-update" class="headerlink" title="pod install 和 pod update"></a>pod install 和 pod update</h2><ol>
+<li>pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods</li>
+<li>pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本</li>
+<li>使用 pod update podName 来更新指定 pod 的版本</li>
 </ol>
 
       
@@ -533,9 +442,7 @@ print(Math.degree2Radian(45))
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/swift/" rel="tag">#swift</a>
+            <a href="/tags/iOS-conf/" rel="tag">#iOS_conf</a>
           
         </div>
       
@@ -544,17 +451,13 @@ print(Math.degree2Radian(45))
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/12/Swift面向对象基础（中）/" rel="next" title="Swift面向对象基础（中）">
-                <i class="fa fa-chevron-left"></i> Swift面向对象基础（中）
+              <a href="/2016/08/02/GCD编程/" rel="next" title="GCD编程">
+                <i class="fa fa-chevron-left"></i> GCD编程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/13/Swift中的继承和多态/" rel="prev" title="Swift中的继承和多态">
-                Swift中的继承和多态 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -686,7 +589,7 @@ print(Math.degree2Radian(45))
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#可选链"><span class="nav-number">1.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-枚举"><span class="nav-number">2.</span> <span class="nav-text">值类型的类型属性-枚举</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型属性-结构体"><span class="nav-number">3.</span> <span class="nav-text">值类型的类型属性-结构体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型属性"><span class="nav-number">4.</span> <span class="nav-text">类的类型属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用闭包或函数为属性设置初始值"><span class="nav-number">5.</span> <span class="nav-text">使用闭包或函数为属性设置初始值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型的类型方法"><span class="nav-number">6.</span> <span class="nav-text">值类型的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的类型方法"><span class="nav-number">7.</span> <span class="nav-text">类的类型方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS库的介绍"><span class="nav-number">1.</span> <span class="nav-text">iOS库的介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库和静态库"><span class="nav-number">1.1.</span> <span class="nav-text">动态库和静态库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制作库"><span class="nav-number">1.2.</span> <span class="nav-text">制作库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设定系统为8-0以上才能部署自定义动态库"><span class="nav-number">1.2.1.</span> <span class="nav-text">设定系统为8.0以上才能部署自定义动态库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个库"><span class="nav-number">1.2.2.</span> <span class="nav-text">创建一个库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyFramework-swift"><span class="nav-number">1.2.3.</span> <span class="nav-text">MyFramework.swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开"><span class="nav-number">1.2.4.</span> <span class="nav-text">分别在真机和模拟下运行，Product下生成，在show in finder中打开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找到xxx-framework目录下的MyFramework文件，如图所示"><span class="nav-number">1.2.5.</span> <span class="nav-text">找到xxx.framework目录下的MyFramework文件，如图所示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径"><span class="nav-number">1.2.6.</span> <span class="nav-text">合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并库中的module也要模拟器module-真机module"><span class="nav-number">1.2.7.</span> <span class="nav-text">合并库中的module也要模拟器module + 真机module</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用库"><span class="nav-number">1.3.</span> <span class="nav-text">使用库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-dynamic-库实时部署"><span class="nav-number">1.4.</span> <span class="nav-text">利用 dynamic 库实时部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cocoapods"><span class="nav-number">2.</span> <span class="nav-text">Cocoapods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CocoaPods基础知识-—-使用步骤"><span class="nav-number">2.2.</span> <span class="nav-text">CocoaPods基础知识 — 使用步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CocoaPods基础知识-—-Podfile"><span class="nav-number">2.3.</span> <span class="nav-text">CocoaPods基础知识 — Podfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Podfile-lock"><span class="nav-number">2.4.</span> <span class="nav-text">Podfile.lock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pod-install-和-pod-update"><span class="nav-number">2.5.</span> <span class="nav-text">pod install 和 pod update</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -944,9 +847,9 @@ print(Math.degree2Radian(45))
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/03/13/Swift面向对象基础（下）/';
-      var disqus_title = 'Swift面向对象基础（下）';
-      var disqus_url = 'http://jackliu17.github.io/2016/03/13/Swift面向对象基础（下）/';
+      var disqus_identifier = '2016/08/04/使用CocoaPods管理iOS库/';
+      var disqus_title = '使用CocoaPods管理iOS库';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

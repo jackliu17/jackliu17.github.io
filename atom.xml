@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-03T04:49:06.000Z</updated>
+  <updated>2016-08-04T11:18:29.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,131 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用CocoaPods管理iOS库</title>
+    <link href="http://jackliu17.github.io/2016/08/04/%E4%BD%BF%E7%94%A8CocoaPods%E7%AE%A1%E7%90%86iOS%E5%BA%93/"/>
+    <id>http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/</id>
+    <published>2016-08-04T04:17:13.000Z</published>
+    <updated>2016-08-04T11:18:29.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;iOS库的介绍&quot;&gt;&lt;a href=&quot;#iOS库的介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS库的介绍&quot;&gt;&lt;/a&gt;iOS库的介绍&lt;/h1&gt;&lt;h2 id=&quot;动态库和静态库&quot;&gt;&lt;a href=&quot;#动态库和静态库&quot; class=&quot;headerlink&quot; title=&quot;动态库和静态库&quot;&gt;&lt;/a&gt;动态库和静态库&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;动态库在运行时实时部署，静态库必须在编译时连接到代码&lt;/li&gt;
+&lt;li&gt;动态库加载到内存后可以重复使用,静态库每次import都引入一次&lt;/li&gt;
+&lt;li&gt;自定义的动态库只能部署在 iOS8 以上系统&lt;/li&gt;
+&lt;li&gt;.a(静态库，只有代码，没有任何资源,图片xib文件等)&lt;/li&gt;
+&lt;li&gt;.dylib (动态库，只有代码，没有任何资源)&lt;/li&gt;
+&lt;li&gt;.framework 可以包含资源，分为两种：dynamic 和 static&lt;/li&gt;
+&lt;li&gt;use_frameworks! 生成 dynamic framework&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;制作库&quot;&gt;&lt;a href=&quot;#制作库&quot; class=&quot;headerlink&quot; title=&quot;制作库&quot;&gt;&lt;/a&gt;制作库&lt;/h2&gt;&lt;p&gt;iOS 体系结构&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;armv7： iPhone 4/4s&lt;/li&gt;
+&lt;li&gt;armv7s：iPhone 5 和 iPhone 5C&lt;/li&gt;
+&lt;li&gt;arm64：iPhone 5S+&lt;/li&gt;
+&lt;li&gt;x86-64、i386：模拟器&lt;/li&gt;
+&lt;li&gt;lipo –info – 查看库支持的体系结构&lt;/li&gt;
+&lt;li&gt;lipo -create  -output  - 将模拟器和真机的库合成一个库&lt;/li&gt;
+&lt;li&gt;Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;设定系统为8-0以上才能部署自定义动态库&quot;&gt;&lt;a href=&quot;#设定系统为8-0以上才能部署自定义动态库&quot; class=&quot;headerlink&quot; title=&quot;设定系统为8.0以上才能部署自定义动态库&quot;&gt;&lt;/a&gt;设定系统为8.0以上才能部署自定义动态库&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;创建一个库&quot;&gt;&lt;a href=&quot;#创建一个库&quot; class=&quot;headerlink&quot; title=&quot;创建一个库&quot;&gt;&lt;/a&gt;创建一个库&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;MyFramework-swift&quot;&gt;&lt;a href=&quot;#MyFramework-swift&quot; class=&quot;headerlink&quot; title=&quot;MyFramework.swift&quot;&gt;&lt;/a&gt;MyFramework.swift&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;import UIKit
+
+public class MyFramework: NSObject {
+
+static let bundle = NSBundle(forClass: MyFramework.self)
+
+static let MyFrameworkStr = &amp;quot;MyFramework&amp;quot;
+
+public static func openVCFromStoryboard() {
+    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&amp;quot;MyFrameworkViewController&amp;quot;)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func openVCFromXib() {
+    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func loadImage() -&amp;gt; UIImage{
+    let image = UIImage(named: MyFrameworkStr + &amp;quot;.png&amp;quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
+    return image!
+}
+
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;分别在真机和模拟下运行，Product下生成，在show-in-finder中打开&quot;&gt;&lt;a href=&quot;#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开&quot; class=&quot;headerlink&quot; title=&quot;分别在真机和模拟下运行，Product下生成，在show in finder中打开&quot;&gt;&lt;/a&gt;分别在真机和模拟下运行，Product下生成，在show in finder中打开&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;找到xxx-framework目录下的MyFramework文件，如图所示&quot;&gt;&lt;a href=&quot;#找到xxx-framework目录下的MyFramework文件，如图所示&quot; class=&quot;headerlink&quot; title=&quot;找到xxx.framework目录下的MyFramework文件，如图所示&quot;&gt;&lt;/a&gt;找到xxx.framework目录下的MyFramework文件，如图所示&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径&quot;&gt;&lt;a href=&quot;#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径&quot; class=&quot;headerlink&quot; title=&quot;合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)&quot;&gt;&lt;/a&gt;合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;合并库中的module也要模拟器module-真机module&quot;&gt;&lt;a href=&quot;#合并库中的module也要模拟器module-真机module&quot; class=&quot;headerlink&quot; title=&quot;合并库中的module也要模拟器module + 真机module&quot;&gt;&lt;/a&gt;合并库中的module也要模拟器module + 真机module&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;使用库&quot;&gt;&lt;a href=&quot;#使用库&quot; class=&quot;headerlink&quot; title=&quot;使用库&quot;&gt;&lt;/a&gt;使用库&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries&lt;/li&gt;
+&lt;li&gt;使用 pod：use_frameworks!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;利用-dynamic-库实时部署&quot;&gt;&lt;a href=&quot;#利用-dynamic-库实时部署&quot; class=&quot;headerlink&quot; title=&quot;利用 dynamic 库实时部署&quot;&gt;&lt;/a&gt;利用 dynamic 库实时部署&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let libPath = &amp;quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&amp;quot;
+if let bundle = NSBundle(path: libPath) {
+do {
+    try bundle.loadAndReturnError()
+    if let myFramework = NSClassFromString(&amp;quot;MyFramework&amp;quot;) as? MyFramework.Type{
+        myFramework.init().whereIsFrom()
+    }
+} catch {
+    print(&amp;quot;动态库加载失败&amp;quot;)
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Cocoapods&quot;&gt;&lt;a href=&quot;#Cocoapods&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods&quot;&gt;&lt;/a&gt;Cocoapods&lt;/h1&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;在Terminal输入以下安装命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo gem install cocoapods
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;出现以下报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;You don&amp;apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再Terminal输入以下命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo gem update
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;还是出现以下报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Operation not permitted - /usr/bin/xcodeproj
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考官方文档&lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/issues/3692&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Operation not permitted&lt;/a&gt;输入以下命令，成功&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo gem install -n /usr/local/bin cocoapods
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CocoaPods基础知识-—-使用步骤&quot;&gt;&lt;a href=&quot;#CocoaPods基础知识-—-使用步骤&quot; class=&quot;headerlink&quot; title=&quot;CocoaPods基础知识 — 使用步骤&quot;&gt;&lt;/a&gt;CocoaPods基础知识 — 使用步骤&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;创建或打开 Xcode 项目&lt;/li&gt;
+&lt;li&gt;命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)&lt;/li&gt;
+&lt;li&gt;使用 pod init 创建 Podfile&lt;/li&gt;
+&lt;li&gt;pod search Alamofire &lt;/li&gt;
+&lt;li&gt;修改 Podfile&lt;/li&gt;
+&lt;li&gt;pod install&lt;/li&gt;
+&lt;li&gt;打开 pod 创建的 xcworkspace&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;CocoaPods基础知识-—-Podfile&quot;&gt;&lt;a href=&quot;#CocoaPods基础知识-—-Podfile&quot; class=&quot;headerlink&quot; title=&quot;CocoaPods基础知识 — Podfile&quot;&gt;&lt;/a&gt;CocoaPods基础知识 — Podfile&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;platform : ios &amp;apos;9.0&amp;apos;
+use_frameworks! (swift下必须使用)
+inhibit_all_warnings! (隐藏所有报错信息)
+target  &amp;apos;PodTest&amp;apos; do
+    pod &amp;apos;AFNetworking&amp;apos;,  &amp;apos;~&amp;gt; 3.0&amp;apos;
+    pod &amp;apos;FBSDKCoreKit&amp;apos;, &amp;apos;~&amp;gt; 4.9&amp;apos;
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Podfile-lock&quot;&gt;&lt;a href=&quot;#Podfile-lock&quot; class=&quot;headerlink&quot; title=&quot;Podfile.lock&quot;&gt;&lt;/a&gt;Podfile.lock&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;第一次 pod install 时生成记录每个 Pod 版本&lt;/li&gt;
+&lt;li&gt;Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本&lt;/li&gt;
+&lt;li&gt;多人协作时防止第三方库升级时造成版本不一致&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;pod-install-和-pod-update&quot;&gt;&lt;a href=&quot;#pod-install-和-pod-update&quot; class=&quot;headerlink&quot; title=&quot;pod install 和 pod update&quot;&gt;&lt;/a&gt;pod install 和 pod update&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods&lt;/li&gt;
+&lt;li&gt;pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本&lt;/li&gt;
+&lt;li&gt;使用 pod update podName 来更新指定 pod 的版本&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;iOS库的介绍&quot;&gt;&lt;a href=&quot;#iOS库的介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS库的介绍&quot;&gt;&lt;/a&gt;iOS库的介绍&lt;/h1&gt;&lt;h2 id=&quot;动态库和静态库&quot;&gt;&lt;a href=&quot;#动态库和静态库&quot; class=&quot;headerlink
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS_conf" scheme="http://jackliu17.github.io/tags/iOS-conf/"/>
+    
+  </entry>
   
   <entry>
     <title>GCD编程</title>
@@ -4373,205 +4498,6 @@ NSLog(@&amp;quot;%@&amp;quot;, self.builder.productsInfo);
       &lt;h1 id=&quot;生成器与建造房子&quot;&gt;&lt;a href=&quot;#生成器与建造房子&quot; class=&quot;headerlink&quot; title=&quot;生成器与建造房子&quot;&gt;&lt;/a&gt;生成器与建造房子&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类&lt;/li&gt;
 &lt;l
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-备忘录</title>
-    <link href="http://jackliu17.github.io/2016/06/01/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95/"/>
-    <id>http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/</id>
-    <published>2016-06-01T01:01:54.000Z</published>
-    <updated>2016-07-31T05:04:58.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;备忘录模式&quot;&gt;&lt;a href=&quot;#备忘录模式&quot; class=&quot;headerlink&quot; title=&quot;备忘录模式&quot;&gt;&lt;/a&gt;备忘录模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;备忘录模式，什么都可以存！&lt;/li&gt;
-&lt;li&gt;先设计抽象接口，再去考虑实现细节&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5y7k7pluooabrsw/iOS_designPatternmMemo02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/250rfz3yg28erir/iOS_designPatternmMemo03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设计存储中心&quot;&gt;&lt;a href=&quot;#设计存储中心&quot; class=&quot;headerlink&quot; title=&quot;设计存储中心&quot;&gt;&lt;/a&gt;设计存储中心&lt;/h2&gt;&lt;p&gt;MementoCenter&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;指定存储接口-编码-amp-解码&quot;&gt;&lt;a href=&quot;#指定存储接口-编码-amp-解码&quot; class=&quot;headerlink&quot; title=&quot;指定存储接口(编码&amp;amp;解码)&quot;&gt;&lt;/a&gt;指定存储接口(编码&amp;amp;解码)&lt;/h2&gt;&lt;p&gt;MementoCenterProtocol&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@protocol MementoCenterProtocol &amp;lt;NSObject&amp;gt;
-
-@required
-
-//编码
-- (id)currentState;
-
-//解码
-- (void)recoverFromState:(id)state;
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot; class=&quot;headerlink&quot; title=&quot;数据类型&quot;&gt;&lt;/a&gt;数据类型&lt;/h2&gt;&lt;p&gt;Apple&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Apple : NSObject &amp;lt;MementoCenterProtocol&amp;gt;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *age;
-@end
-@implementation Apple
-
-//编码
-- (id)currentState {
-return @{@&amp;quot;name&amp;quot;: self.name,
-         @&amp;quot;age&amp;quot; : self.age};
-     }
-
-
-//解码
-- (void)recoverFromState:(id)state {
-
-NSDictionary *data = state;
-self.name = data[@&amp;quot;name&amp;quot;];
-self.age  = data[@&amp;quot;age&amp;quot;];
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;实现存储机制&quot;&gt;&lt;a href=&quot;#实现存储机制&quot; class=&quot;headerlink&quot; title=&quot;实现存储机制&quot;&gt;&lt;/a&gt;实现存储机制&lt;/h2&gt;&lt;p&gt;MementoCenter&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key {
-
-NSParameterAssert(object);
-NSParameterAssert(key);
-
-// 获取data
-id      data    = [object currentState];
-NSData *tmpData = [FastCoder dataWithRootObject:data];
-
-// 进行存储
-if (tmpData) {
-
-    [[NSUserDefaults standardUserDefaults] setObject:tmpData
-                                              forKey:key];
-}
-}
-
-
-+ (id)mementoObjectWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id      data    = nil;
-NSData *tmpData = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-
-if (tmpData) {
-
-    data = [FastCoder objectWithData:tmpData];
-}
-
-return data;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;存储与获取&quot;&gt;&lt;a href=&quot;#存储与获取&quot; class=&quot;headerlink&quot; title=&quot;存储与获取&quot;&gt;&lt;/a&gt;存储与获取&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-
-Apple *apple = [[Apple alloc] init];
-apple.name = @&amp;quot;JiKeXueYuan&amp;quot;;
-apple.age  = @(30);
-
-// save state
-[MementoCenter saveMementoObject:apple withKey:@&amp;quot;Apple&amp;quot;];
-
-// get state
-[apple recoverFromState:[MementoCenter mementoObjectWithKey:@&amp;quot;Apple&amp;quot;]];
-
-NSLog(@&amp;quot;name:%@ age:%@&amp;quot;, apple.name, apple.age);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;通过category优化&quot;&gt;&lt;a href=&quot;#通过category优化&quot; class=&quot;headerlink&quot; title=&quot;通过category优化&quot;&gt;&lt;/a&gt;通过category优化&lt;/h2&gt;&lt;p&gt;NSObject + MementoCenter&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@implementation NSObject (MementoCenter)
-
-- (void)saveStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id &amp;lt;MementoCenterProtocol&amp;gt; obj = (id &amp;lt;MementoCenterProtocol&amp;gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-
-    [MementoCenter saveMementoObject:obj withKey:key];
-}
-}
-
-
-- (void)recoverFromStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id                         state = [MementoCenter mementoObjectWithKey:key];
-
-id &amp;lt;MementoCenterProtocol&amp;gt; obj   = (id &amp;lt;MementoCenterProtocol&amp;gt;)self;
-
-if ([obj respondsToSelector:@selector(recoverFromStateWithKey:)]) {
-
-    [obj recoverFromState:state];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;传递协议对象所必须的判断&quot;&gt;&lt;a href=&quot;#传递协议对象所必须的判断&quot; class=&quot;headerlink&quot; title=&quot;传递协议对象所必须的判断&quot;&gt;&lt;/a&gt;传递协议对象所必须的判断&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;id &amp;lt;MementoCenterProtocol&amp;gt; obj = (id &amp;lt;MementoCenterProtocol&amp;gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-[MementoCenter saveMementoObject:obj withKey:key];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;优化后的存储与获取&quot;&gt;&lt;a href=&quot;#优化后的存储与获取&quot; class=&quot;headerlink&quot; title=&quot;优化后的存储与获取&quot;&gt;&lt;/a&gt;优化后的存储与获取&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-
-Apple *apple = [[Apple alloc] init];
-apple.name = @&amp;quot;JiKeXueYuan&amp;quot;;
-apple.age  = @(30);
-
-[apple saveStateWithKey:@&amp;quot;Ben&amp;quot;];
-[apple recoverFromStateWithKey:@&amp;quot;Ben&amp;quot;];
-
-NSLog(@&amp;quot;name:%@ age:%@&amp;quot;, apple.name, apple.age);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;备忘录模式恢复UIView状态&quot;&gt;&lt;a href=&quot;#备忘录模式恢复UIView状态&quot; class=&quot;headerlink&quot; title=&quot;备忘录模式恢复UIView状态&quot;&gt;&lt;/a&gt;备忘录模式恢复UIView状态&lt;/h1&gt;&lt;p&gt;使用场景:UIView有NSCoding协议，意味着可以本地存储，但没有NSCopying，意味着如果要将一个view完整的复制过来，那是一个棘手的问题。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;一个对象状态的存储并不是要整个对象，也有可能是其部分的属性,由需求来定&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;DemoView&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface DemoView : UIView &amp;lt;MementoCenterProtocol&amp;gt;
-
-@end
-
-@implementation DemoView
-
-- (id)currentState {
-return @{@&amp;quot;frame&amp;quot; : NSStringFromCGRect(self.frame)};
-}
-
-- (void)recoverFromState:(id)state {
-NSDictionary *data = state;
-self.frame         = CGRectFromString(data[@&amp;quot;frame&amp;quot;]);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-
-[super viewDidLoad];
-
-DemoView *demoView = [[DemoView alloc] init];
-demoView.frame     = CGRectMake(100, 100, 100, 100);
-[demoView saveStateWithKey:@&amp;quot;A&amp;quot;];
-
-[demoView recoverFromStateWithKey:@&amp;quot;A&amp;quot;];
-NSLog(@&amp;quot;%@&amp;quot;, demoView);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;备忘录模式&quot;&gt;&lt;a href=&quot;#备忘录模式&quot; class=&quot;headerlink&quot; title=&quot;备忘录模式&quot;&gt;&lt;/a&gt;备忘录模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;备忘录模式，什么都可以存！&lt;/li&gt;
-&lt;li&gt;先设计抽象接口，再去考虑实现细节&lt;/li&gt;
-&lt;/ol&gt;
-&lt;
     
     </summary>
     
