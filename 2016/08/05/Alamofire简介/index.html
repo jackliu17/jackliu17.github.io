@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_designPattern," />
+  <meta name="keywords" content="iOS_networking," />
 
 
 
@@ -61,54 +61,34 @@
 
 
 
-<meta name="description" content="线性表
-定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的
-种类:链表，栈，队列
+<meta name="description" content="iOS中的网络连接方案
+NSURLConnection：用法简单，最古老最经典最直接的一种方案
+NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大
+AFNetworking：简单易用，提供了基本够用的常用功能
+Alamofire：纯Swift网络请求库
 
-
-
-单链表Node
-@interface Node : NSObject
-//指向下一个节点
-@property (nonatomic, strong) Node  *nextNode;
-//节点挂载的对象
-@property (nonatomic, st">
+Alamofire响应处理Alamofire.request(.GET, &amp;quot;https">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-迭代器">
-<meta property="og:url" content="http://jackliu17.github.io/2016/06/05/iOS设计模式-迭代器/index.html">
+<meta property="og:title" content="Alamofire简介">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/05/Alamofire简介/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="线性表
-定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的
-种类:链表，栈，队列
+<meta property="og:description" content="iOS中的网络连接方案
+NSURLConnection：用法简单，最古老最经典最直接的一种方案
+NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大
+AFNetworking：简单易用，提供了基本够用的常用功能
+Alamofire：纯Swift网络请求库
 
-
-
-单链表Node
-@interface Node : NSObject
-//指向下一个节点
-@property (nonatomic, strong) Node  *nextNode;
-//节点挂载的对象
-@property (nonatomic, st">
-<meta property="og:image" content="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T05:52:11.000Z">
+Alamofire响应处理Alamofire.request(.GET, &amp;quot;https">
+<meta property="og:updated_time" content="2016-08-05T10:57:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-迭代器">
-<meta name="twitter:description" content="线性表
-定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的
-种类:链表，栈，队列
+<meta name="twitter:title" content="Alamofire简介">
+<meta name="twitter:description" content="iOS中的网络连接方案
+NSURLConnection：用法简单，最古老最经典最直接的一种方案
+NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大
+AFNetworking：简单易用，提供了基本够用的常用功能
+Alamofire：纯Swift网络请求库
 
-
-
-单链表Node
-@interface Node : NSObject
-//指向下一个节点
-@property (nonatomic, strong) Node  *nextNode;
-//节点挂载的对象
-@property (nonatomic, st">
-<meta name="twitter:image" content="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1">
+Alamofire响应处理Alamofire.request(.GET, &amp;quot;https">
 
 
 
@@ -126,7 +106,7 @@
   };
 </script>
 
-  <title> iOS设计模式-迭代器 | Cowboy Tech </title>
+  <title> Alamofire简介 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +248,7 @@
             
             
               
-                iOS设计模式-迭代器
+                Alamofire简介
               
             
           </h1>
@@ -280,8 +260,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-05T11:10:44+10:00" content="2016-06-05">
-              2016-06-05
+            <time itemprop="dateCreated" datetime="2016-08-05T11:43:01+10:00" content="2016-08-05">
+              2016-08-05
             </time>
           </span>
 
@@ -310,8 +290,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/05/iOS设计模式-迭代器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-迭代器/" itemprop="commentsCount"></span>
+                <a href="/2016/08/05/Alamofire简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/05/Alamofire简介/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -333,346 +313,54 @@
       
 
       
-        <h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><ol>
-<li>定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的</li>
-<li>种类:链表，栈，队列</li>
+        <h1 id="iOS中的网络连接方案"><a href="#iOS中的网络连接方案" class="headerlink" title="iOS中的网络连接方案"></a>iOS中的网络连接方案</h1><ol>
+<li>NSURLConnection：用法简单，最古老最经典最直接的一种方案</li>
+<li>NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大</li>
+<li>AFNetworking：简单易用，提供了基本够用的常用功能</li>
+<li>Alamofire：纯Swift网络请求库</li>
 </ol>
-<p><img src="https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1" alt=""></p>
-<h1 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h1><p>Node</p>
-<pre><code>@interface Node : NSObject
-//指向下一个节点
-@property (nonatomic, strong) Node  *nextNode;
-//节点挂载的对象
-@property (nonatomic, strong) id     item;
-//便利构造器
-+ (instancetype)nodeWithItem:(id)item;
-@end
----------------------------------------------------
-@implementation Node
-
-+ (instancetype)nodeWithItem:(id)item {
-
-Node *node = [[[self class] alloc] init];
-node.item  = item;
-
-return node;
-}
-
-@end
-</code></pre><p>LinkedList</p>
-<pre><code>@interface LinkedList : NSObject
-
-//头节点
-@property (nonatomic, strong, readonly) Node *headNode;
-
-//有几个节点
-
-@property (nonatomic, readonly) NSInteger  numberOfNodes;
-
-//节点挂载的对象
-- (void)addItem:(id)item;
-
-@end
-----------------------------------------------------------
-
-@interface LinkedList ()
-
-@property (nonatomic, strong) Node       *headNode;
-@property (nonatomic)         NSInteger   numberOfNodes;
-
-@end
-
-@implementation LinkedList
-
-- (void)addItem:(id)item {
-
-if (self.headNode == nil) {
-
-    // 创建头结点
-    self.headNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:self.headNode];
-}
-
-self.numberOfNodes++;
-}
-
-#pragma mark - 私有方法
-- (void)addItem:(id)item node:(Node *)node {
-
-if (node.nextNode == nil) {
-
-    node.nextNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:node.nextNode];
-}
-}
-
-@end
-</code></pre><h1 id="系统迭代器-NSEnumerator"><a href="#系统迭代器-NSEnumerator" class="headerlink" title="系统迭代器: NSEnumerator"></a>系统迭代器: NSEnumerator</h1><p>迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。</p>
-<p><img src="https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1" alt=""></p>
-<pre><code>// 创建集合对象, 可以是数组，字典，集合等..
-NSArray *datas = @[@&quot;A&quot;, @&quot;B&quot;, @&quot;C&quot;, @&quot;D&quot;];
-
-// 从集合对象创建迭代器
-NSEnumerator *iterator = [datas objectEnumerator];
-
-// 从集合对象中访问元素, 头元素已经实现了空实现
-id arrayObj = nil;
-while (arrayObj = [iterator nextObject]) {
-    NSLog(@&quot;%@&quot;, arrayObj);
-}
-</code></pre><h1 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h1><p><img src="https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1" alt=""></p>
-<p>LinkedList:头元素必须已经实现了空实现</p>
-<pre><code>- (instancetype)init{
-
-self = [super init];
-if (self) {
-
-    self.headNode = [Node new];
-}
-
-return self;
-}
-</code></pre><p>IteratorProtocol</p>
-<pre><code>@protocol IteratorProtocol &lt;NSObject&gt;
-
-@required
-//下一个对象
-- (id)nextObject;
-@end
-</code></pre><p>LinkedListIterator</p>
-<pre><code>@interface LinkedListIterator : NSObject &lt;IteratorProtocol&gt;
-+ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList;
-
-@end
-
-@interface LinkedListIterator ()
-
-@property (nonatomic, strong) LinkedList *linkedList;
-@property (nonatomic, strong) Node       *currentNode;
-
-@end
-
-@implementation LinkedListIterator
-
-+ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList {
-
-LinkedListIterator *linkedListIterator = [LinkedListIterator new];
-linkedListIterator.linkedList  = linkedList;
-linkedListIterator.currentNode = linkedList.headNode;    
-return linkedListIterator;
-}
-
-- (id)nextObject {
-self.currentNode = self.currentNode.nextNode;
-return self.currentNode;
-}
-
-@end
-</code></pre><p>ViewController</p>
-<pre><code>@interface ViewController ()
-@property (nonatomic, strong) LinkedList *list;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 创建集合对象
-self.list = [[LinkedList alloc] init];
-[self.list addItem:@&quot;A&quot;];
-[self.list addItem:@&quot;B&quot;];
-[self.list addItem:@&quot;C&quot;];
-[self.list addItem:@&quot;D&quot;];
-
-// 从集合对象创建迭代器
-LinkedListIterator *linkedIterator = [LinkedListIterator linkedListIteratorWithLinkedList:self.list];
-
-// 从集合对象中访问元素
-Node *node = nil;
-while (node = [linkedIterator nextObject]) {    
-    NSLog(@&quot;%@&quot;, node.item);
-}
-
-}
-@end
-</code></pre><h1 id="实现组合对象的迭代器"><a href="#实现组合对象的迭代器" class="headerlink" title="实现组合对象的迭代器"></a>实现组合对象的迭代器</h1><p>Node</p>
-<pre><code>@interface Node : NSObject
-@property (nonatomic, strong) Node  *nextNode;
-
-//节点挂载的对象, 注意这里是weak，因为customView已经持有那些对象了
-@property (nonatomic, weak)   id     item;
-
-+ (instancetype)nodeWithItem:(id)item;
-@end
-
---------------------------------------------
-
-@implementation Node
-
-+ (instancetype)nodeWithItem:(id)item {
-
-    Node *node = [[[self class] alloc] init];
-    node.item  = item;
-
-    return node;
-}
-
-@end
-</code></pre><p>LinkedList    </p>
-<pre><code>@interface LinkedList : NSObject
-@property (nonatomic, strong, readonly) Node *headNode;
-@property (nonatomic, readonly) NSInteger  numberOfNodes;
-- (void)addItem:(id)item;
-@end
-
-@interface LinkedList ()
-@property (nonatomic, strong) Node       *headNode;
-@property (nonatomic)         NSInteger   numberOfNodes;
-@end
-
-@implementation LinkedList
-
-- (instancetype)init{
-
-self = [super init];
-if (self) {
-
-    self.headNode = [Node new];
-}
-
-return self;
-}
-
-- (void)addItem:(id)item {
-
-if (self.headNode == nil) {
-
-    // 创建头结点
-    self.headNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:self.headNode];
-}
-
-self.numberOfNodes++;
-}
-
-#pragma mark - 私有方法
-- (void)addItem:(id)item node:(Node *)node {
-
-if (node.nextNode == nil) {
-
-    node.nextNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:node.nextNode];
-}
-}
-
-@end
-</code></pre><p>IteratorProtocol</p>
-<pre><code>@protocol IteratorProtocol &lt;NSObject&gt;
-
-- (id)nextObject;
-- (void)resetIterator;
-@end
-</code></pre><p>CustomView</p>
-<pre><code>@interface CustomView : UIView &lt;IteratorProtocol&gt;
-
-@end
-
-@interface CustomView ()
-@property (nonatomic, strong) UIButton    *button;
-@property (nonatomic, strong) UILabel     *label;
-@property (nonatomic, strong) UITextField *field;
-@property (nonatomic, strong) LinkedList  *list;
-@property (nonatomic, strong) Node        *currentNode;
-
-@end
-
-@implementation CustomView
-
-- (instancetype)initWithFrame:(CGRect)frame{
-
-    self = [super initWithFrame:frame];
-    if (self) {
-
-        self.button = [[UIButton alloc] initWithFrame:self.bounds];
-        self.label  = [[UILabel alloc] initWithFrame:self.bounds];
-        self.field  = [[UITextField alloc] initWithFrame:self.bounds];
-
-        [self addSubview:self.button];
-        [self addSubview:self.label];
-        [self addSubview:self.field];
-
-        self.list = [[LinkedList alloc] init];
-        [self.list addItem:self.button];
-        [self.list addItem:self.label];
-        [self.list addItem:self.field];
-
-        self.currentNode = self.list.headNode;
-    }
-
-    return self;
-}
-
-- (id)nextObject {
-
-    self.currentNode = self.currentNode.nextNode;
-    return self.currentNode;
-}
-
-- (void)resetIterator {
-
-    self.currentNode = self.list.headNode;
-}
-
-@end
-</code></pre><p>ViewController    </p>
-<pre><code>@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-CustomView *customView = [[CustomView alloc] initWithFrame:self.view.bounds];
-
-Node *node = nil;
-
-[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&quot;%@&quot;, node.item);
-}
-
-[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&quot;%@&quot;, node.item);
-}
-
-}
-@end
-</code></pre><h1 id="最小知识原则"><a href="#最小知识原则" class="headerlink" title="最小知识原则"></a>最小知识原则</h1><p>让使用者不用了解过多的细节，暴露在.h的文件越少越好，如果可以写在.m里最好</p>
-<h1 id="迭代器筛选"><a href="#迭代器筛选" class="headerlink" title="迭代器筛选"></a>迭代器筛选</h1><pre><code>[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&quot;%@&quot;, node.item);
-
-    if ([node.item isKindOfClass:[UIButton class]]){
-
+<h1 id="Alamofire响应处理"><a href="#Alamofire响应处理" class="headerlink" title="Alamofire响应处理"></a>Alamofire响应处理</h1><pre><code>Alamofire.request(.GET, &quot;https://httpbin.org/get&quot;, parameters: [&quot;foo&quot;: &quot;bar&quot;])
+.responseJSON { response in
+    print(response.request)  // 初始URL请求
+    print(response.response) // URL响应
+    print(response.data)     // 服务器数据
+    print(response.result)   // 响应序列化的结果
+
+    if let JSON = response.result.value {
+        print(&quot;JSON: \(JSON)&quot;)
     }
 }
-</code></pre>
+</code></pre><h1 id="Alamofire-HTTP-Headers"><a href="#Alamofire-HTTP-Headers" class="headerlink" title="Alamofire - HTTP Headers"></a>Alamofire - HTTP Headers</h1><pre><code>let headers = [
+&quot;Authorization&quot;: &quot;Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&quot;,
+&quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;
+]
+
+Alamofire.request(.GET, &quot;https://httpbin.org/get&quot;, headers: headers)
+.responseJSON { response in
+    debugPrint(response)
+}
+</code></pre><h1 id="Alamofire-使用默认的Download-Destination"><a href="#Alamofire-使用默认的Download-Destination" class="headerlink" title="Alamofire 使用默认的Download Destination"></a>Alamofire 使用默认的Download Destination</h1><pre><code>let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
+Alamofire.download(.GET, &quot;https://httpbin.org/stream/100&quot;, destination: destination)
+</code></pre><h1 id="Alamofire-下载失败访问恢复文件"><a href="#Alamofire-下载失败访问恢复文件" class="headerlink" title="Alamofire 下载失败访问恢复文件"></a>Alamofire 下载失败访问恢复文件</h1><pre><code>Alamofire.download(.GET, &quot;https://httpbin.org/stream/100&quot;, destination: destination).response { _, _, data, _ in
+    if let data = data, resumeDataString = NSString(data: data, encoding: NSUTF8StringEncoding) {
+        print(&quot;Resume Data: \(resumeDataString)&quot;)
+    } else {
+        print(&quot;Resume Data was empty&quot;)
+    }
+}
+</code></pre><h1 id="Alamofire-URLStringConvertible"><a href="#Alamofire-URLStringConvertible" class="headerlink" title="Alamofire - URLStringConvertible"></a>Alamofire - URLStringConvertible</h1><pre><code>let string = NSString(string: &quot;https://httpbin.org/post&quot;)
+Alamofire.request(.POST, string)
+
+let URL = NSURL(string: string)!
+Alamofire.request(.POST, URL)
+
+let URLRequest = NSURLRequest(URL: URL)
+Alamofire.request(.POST, URLRequest) // overrides `HTTPMethod` of `URLRequest`
+
+let URLComponents = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true)
+Alamofire.request(.POST, URLComponents)
+</code></pre><h1 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h1><p>Xcode的bug: 从cocoapods导入时，识别不了Alamofire。只要先Run一次，再import Alamofire就可以了</p>
+
       
     </div>
 
@@ -686,9 +374,7 @@ while (node = [customView nextObject]) {
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+            <a href="/tags/iOS-networking/" rel="tag">#iOS_networking</a>
           
         </div>
       
@@ -697,17 +383,13 @@ while (node = [customView nextObject]) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/04/iOS设计模式-组合/" rel="next" title="iOS设计模式-组合">
-                <i class="fa fa-chevron-left"></i> iOS设计模式-组合
+              <a href="/2016/08/04/使用CocoaPods管理iOS库/" rel="next" title="使用CocoaPods管理iOS库">
+                <i class="fa fa-chevron-left"></i> 使用CocoaPods管理iOS库
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/05/iOS设计模式-享元/" rel="prev" title="iOS设计模式-享元">
-                iOS设计模式-享元 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -839,7 +521,7 @@ while (node = [customView nextObject]) {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性表"><span class="nav-number">1.</span> <span class="nav-text">线性表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单链表"><span class="nav-number">2.</span> <span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统迭代器-NSEnumerator"><span class="nav-number">3.</span> <span class="nav-text">系统迭代器: NSEnumerator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迭代器模式"><span class="nav-number">4.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现组合对象的迭代器"><span class="nav-number">5.</span> <span class="nav-text">实现组合对象的迭代器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最小知识原则"><span class="nav-number">6.</span> <span class="nav-text">最小知识原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迭代器筛选"><span class="nav-number">7.</span> <span class="nav-text">迭代器筛选</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS中的网络连接方案"><span class="nav-number">1.</span> <span class="nav-text">iOS中的网络连接方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alamofire响应处理"><span class="nav-number">2.</span> <span class="nav-text">Alamofire响应处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alamofire-HTTP-Headers"><span class="nav-number">3.</span> <span class="nav-text">Alamofire - HTTP Headers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alamofire-使用默认的Download-Destination"><span class="nav-number">4.</span> <span class="nav-text">Alamofire 使用默认的Download Destination</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alamofire-下载失败访问恢复文件"><span class="nav-number">5.</span> <span class="nav-text">Alamofire 下载失败访问恢复文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alamofire-URLStringConvertible"><span class="nav-number">6.</span> <span class="nav-text">Alamofire - URLStringConvertible</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bug"><span class="nav-number">7.</span> <span class="nav-text">Bug</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -1097,9 +779,9 @@ while (node = [customView nextObject]) {
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/06/05/iOS设计模式-迭代器/';
-      var disqus_title = 'iOS设计模式-迭代器';
-      var disqus_url = 'http://jackliu17.github.io/2016/06/05/iOS设计模式-迭代器/';
+      var disqus_identifier = '2016/08/05/Alamofire简介/';
+      var disqus_title = 'Alamofire简介';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/05/Alamofire简介/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
