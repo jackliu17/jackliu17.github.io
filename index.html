@@ -479,11 +479,12 @@
 <p><img src="https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1" alt=""></p>
 <h1 id="设置适配不同设备的图片"><a href="#设置适配不同设备的图片" class="headerlink" title="设置适配不同设备的图片"></a>设置适配不同设备的图片</h1><p>点击图片组，分别选择右侧的 iPhone , iPad。拖入图片，将针对不同设备采用不同的图片</p>
 <p><img src="https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1" alt=""></p>
-<h1 id="表格单元格的自我调整"><a href="#表格单元格的自我调整" class="headerlink" title="表格单元格的自我调整"></a>表格单元格的自我调整</h1><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/3oeercgj23sylge/20160807_adaptive52.png?dl=1" alt=""></p>
+<h1 id="表格单元格的自我调整（代码略）"><a href="#表格单元格的自我调整（代码略）" class="headerlink" title="表格单元格的自我调整（代码略）"></a>表格单元格的自我调整（代码略）</h1><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/3oeercgj23sylge/20160807_adaptive52.png?dl=1" alt=""></p>
 <h2 id="单元格的设定"><a href="#单元格的设定" class="headerlink" title="单元格的设定"></a>单元格的设定</h2><p>style为custom,selection为none </p>
 <p><img src="https://www.dropbox.com/s/u41c4qfpofo9e5y/20160807_adaptive43.png?dl=1" alt=""></p>
 <h2 id="imageView约束设定-铺满整个cell"><a href="#imageView约束设定-铺满整个cell" class="headerlink" title="imageView约束设定(铺满整个cell)"></a>imageView约束设定(铺满整个cell)</h2><p><img src="https://www.dropbox.com/s/b6m5iq0uu17k7g0/20160807_adaptive44.png?dl=1" alt=""></p>
-<h2 id="Label约束设定"><a href="#Label约束设定" class="headerlink" title="Label约束设定"></a>Label约束设定</h2><p><img src="https://www.dropbox.com/s/oa17kouurjo6ymi/20160807_adaptive45.png?dl=1" alt=""></p>
+<h2 id="Label约束设定"><a href="#Label约束设定" class="headerlink" title="Label约束设定"></a>Label约束设定</h2><p>Press ctrl to drag to contentView and press shift to select all</p>
+<p><img src="https://www.dropbox.com/s/oa17kouurjo6ymi/20160807_adaptive45.png?dl=1" alt=""></p>
 <p><img src="https://www.dropbox.com/s/3sqz1wu3zbfwzf7/20160807_adaptive49.png?dl=1" alt=""></p>
 <p>场景布局与实际布局不符合，就会出现橘红色的标注</p>
 <p><img src="https://www.dropbox.com/s/ipd4pfvj76i94gj/20160807_adaptive48.png?dl=1" alt=""></p>
@@ -504,6 +505,27 @@
 <li>Autolayout必须约束高度，并且不能有冲突。比如该例子中的label。需要手动调整高度</li>
 <li>两行代码</li>
 </ol>
+<h1 id="安装集合视图（代码略）"><a href="#安装集合视图（代码略）" class="headerlink" title="安装集合视图（代码略）"></a>安装集合视图（代码略）</h1><h2 id="效果图-1"><a href="#效果图-1" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/bo371qdejtb4x9w/20160807_adaptive62.png?dl=1" alt=""></p>
+<h2 id="安装ContainerView并添加约束"><a href="#安装ContainerView并添加约束" class="headerlink" title="安装ContainerView并添加约束"></a>安装ContainerView并添加约束</h2><p><img src="https://www.dropbox.com/s/t9y6oxw2614n8mf/20160807_adaptive59.png?dl=1" alt=""></p>
+<h2 id="ContainerView会自动创建ViewController"><a href="#ContainerView会自动创建ViewController" class="headerlink" title="ContainerView会自动创建ViewController"></a>ContainerView会自动创建ViewController</h2><p>本案例不需要，可以删除</p>
+<p><img src="https://www.dropbox.com/s/4pi06h57oynyxsh/20160807_adaptive53.png?dl=1" alt=""></p>
+<h2 id="Container内嵌集合视图-代码略"><a href="#Container内嵌集合视图-代码略" class="headerlink" title="Container内嵌集合视图 (代码略)"></a>Container内嵌集合视图 (代码略)</h2><p>Press ctrl to drag to collectionView ,选择 Embed</p>
+<p><img src="https://www.dropbox.com/s/2wmy6xolald7x2w/20160807_adaptive54.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/w45ig9dn298sq64/20160807_adaptive55.png?dl=1" alt=""></p>
+<h2 id="重新设定Label约束"><a href="#重新设定Label约束" class="headerlink" title="重新设定Label约束"></a>重新设定Label约束</h2><h3 id="删除顶部约束"><a href="#删除顶部约束" class="headerlink" title="删除顶部约束"></a>删除顶部约束</h3><p><img src="https://www.dropbox.com/s/iynvi7o4ahb5idw/20160807_adaptive56.png?dl=1" alt=""></p>
+<h3 id="与Container的顶部垂直距离为0"><a href="#与Container的顶部垂直距离为0" class="headerlink" title="与Container的顶部垂直距离为0"></a>与Container的顶部垂直距离为0</h3><p><img src="https://www.dropbox.com/s/l7ptx3cy8l9uyt0/20160807_adaptive60.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/x4tclqlyrule5r1/20160807_adaptive61.png?dl=1" alt=""></p>
+<h1 id="在iPhone横屏中去除集合视图"><a href="#在iPhone横屏中去除集合视图" class="headerlink" title="在iPhone横屏中去除集合视图"></a>在iPhone横屏中去除集合视图</h1><h2 id="效果图-2"><a href="#效果图-2" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/6y3wvxbxdjrfsi4/20160807_adaptive70.png?dl=1" alt=""></p>
+<h2 id="设定iPhone横屏size-class"><a href="#设定iPhone横屏size-class" class="headerlink" title="设定iPhone横屏size class"></a>设定iPhone横屏size class</h2><p><img src="https://www.dropbox.com/s/ne3xclzasd478pn/20160807_adaptive63.png?dl=1" alt=""></p>
+<h2 id="在该size-class中卸载container"><a href="#在该size-class中卸载container" class="headerlink" title="在该size class中卸载container"></a>在该size class中卸载container</h2><p>cmd + Delete = 卸载</p>
+<p><img src="https://www.dropbox.com/s/xidc81x6efg170g/20160807_adaptive64.png?dl=1" alt=""></p>
+<h2 id="卸载container-view的约束-右侧删除"><a href="#卸载container-view的约束-右侧删除" class="headerlink" title="卸载container view的约束(右侧删除)"></a>卸载container view的约束(右侧删除)</h2><p><img src="https://www.dropbox.com/s/t66clmb7wps0is2/20160807_adaptive65.png?dl=1" alt=""></p>
+<h2 id="重设label约束"><a href="#重设label约束" class="headerlink" title="重设label约束"></a>重设label约束</h2><h3 id="显示Label所有约束-含卸载"><a href="#显示Label所有约束-含卸载" class="headerlink" title="显示Label所有约束(含卸载)"></a>显示Label所有约束(含卸载)</h3><p>点击All</p>
+<p><img src="https://www.dropbox.com/s/ndu6u825kaucjco/20160807_adaptive66.png?dl=1" alt=""></p>
+<h3 id="重设当前sizeClass约束"><a href="#重设当前sizeClass约束" class="headerlink" title="重设当前sizeClass约束"></a>重设当前sizeClass约束</h3><p>点击 + 号，选择size class ,然后install</p>
+<p><img src="https://www.dropbox.com/s/kxz5ictnoofm02c/20160807_adaptive67.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/d8052c6i2p3qweo/20160807_adaptive68.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/leefz9n24lncaec/20160807_adaptive69.png?dl=1" alt=""></p>
 
           
         
