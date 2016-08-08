@@ -46,7 +46,7 @@
     <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
     <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
     <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-08T05:24:14.000Z</updated>
+    <updated>2016-08-08T07:16:48.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -96,8 +96,35 @@
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;设置字体能自动缩小50&quot;&gt;&lt;a href=&quot;#设置字体能自动缩小50&quot; class=&quot;headerlink&quot; title=&quot;设置字体能自动缩小50%&quot;&gt;&lt;/a&gt;设置字体能自动缩小50%&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置label与父视图的约束&quot;&gt;&lt;a href=&quot;#设置label与父视图的约束&quot; class=&quot;headerlink&quot; title=&quot;设置label与父视图的约束&quot;&gt;&lt;/a&gt;设置label与父视图的约束&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;设置适配不同设备的图片&quot;&gt;&lt;a href=&quot;#设置适配不同设备的图片&quot; class=&quot;headerlink&quot; title=&quot;设置适配不同设备的图片&quot;&gt;&lt;/a&gt;设置适配不同设备的图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置label与父视图的约束&quot;&gt;&lt;a href=&quot;#设置label与父视图的约束&quot; class=&quot;headerlink&quot; title=&quot;设置label与父视图的约束&quot;&gt;&lt;/a&gt;设置label与父视图的约束&lt;/h2&gt;&lt;p&gt;避免标签的尺寸超出父视图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;设置适配不同设备的图片&quot;&gt;&lt;a href=&quot;#设置适配不同设备的图片&quot; class=&quot;headerlink&quot; title=&quot;设置适配不同设备的图片&quot;&gt;&lt;/a&gt;设置适配不同设备的图片&lt;/h1&gt;&lt;p&gt;点击图片组，分别选择右侧的 iPhone , iPad。拖入图片，将针对不同设备采用不同的图片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;表格单元格的自我调整&quot;&gt;&lt;a href=&quot;#表格单元格的自我调整&quot; class=&quot;headerlink&quot; title=&quot;表格单元格的自我调整&quot;&gt;&lt;/a&gt;表格单元格的自我调整&lt;/h1&gt;&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3oeercgj23sylge/20160807_adaptive52.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;单元格的设定&quot;&gt;&lt;a href=&quot;#单元格的设定&quot; class=&quot;headerlink&quot; title=&quot;单元格的设定&quot;&gt;&lt;/a&gt;单元格的设定&lt;/h2&gt;&lt;p&gt;style为custom,selection为none &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u41c4qfpofo9e5y/20160807_adaptive43.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;imageView约束设定-铺满整个cell&quot;&gt;&lt;a href=&quot;#imageView约束设定-铺满整个cell&quot; class=&quot;headerlink&quot; title=&quot;imageView约束设定(铺满整个cell)&quot;&gt;&lt;/a&gt;imageView约束设定(铺满整个cell)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/b6m5iq0uu17k7g0/20160807_adaptive44.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Label约束设定&quot;&gt;&lt;a href=&quot;#Label约束设定&quot; class=&quot;headerlink&quot; title=&quot;Label约束设定&quot;&gt;&lt;/a&gt;Label约束设定&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/oa17kouurjo6ymi/20160807_adaptive45.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3sqz1wu3zbfwzf7/20160807_adaptive49.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;场景布局与实际布局不符合，就会出现橘红色的标注&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ipd4pfvj76i94gj/20160807_adaptive48.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Label字体-背景色-透明度设定&quot;&gt;&lt;a href=&quot;#Label字体-背景色-透明度设定&quot; class=&quot;headerlink&quot; title=&quot;Label字体/背景色/透明度设定&quot;&gt;&lt;/a&gt;Label字体/背景色/透明度设定&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/qqk6shnj0vqet6z/20160807_adaptive50.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置单元格高度解决冲突&quot;&gt;&lt;a href=&quot;#设置单元格高度解决冲突&quot; class=&quot;headerlink&quot; title=&quot;设置单元格高度解决冲突&quot;&gt;&lt;/a&gt;设置单元格高度解决冲突&lt;/h2&gt;&lt;p&gt;点击单元格，将高度拖至120&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/juqfxh9wrp3olnu/20160807_adaptive46.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;更新frame&quot;&gt;&lt;a href=&quot;#更新frame&quot; class=&quot;headerlink&quot; title=&quot;更新frame&quot;&gt;&lt;/a&gt;更新frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/rgslw0en2jnsxa1/20160807_adaptive47.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置table-cell之间的分割符&quot;&gt;&lt;a href=&quot;#设置table-cell之间的分割符&quot; class=&quot;headerlink&quot; title=&quot;设置table cell之间的分割符&quot;&gt;&lt;/a&gt;设置table cell之间的分割符&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/eq7nntoh41ec8kc/20160807_adaptive51.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;在Controller中必须添加的两行代码&quot;&gt;&lt;a href=&quot;#在Controller中必须添加的两行代码&quot; class=&quot;headerlink&quot; title=&quot;在Controller中必须添加的两行代码&quot;&gt;&lt;/a&gt;在Controller中必须添加的两行代码&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;override func viewDidLoad() {
+  super.viewDidLoad()
+
+  tableView.rowHeight = UITableViewAutomaticDimension
+  tableView.estimatedRowHeight = 100
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;必须要由tableView来决定表格的宽度&lt;/li&gt;
+&lt;li&gt;Autolayout必须约束高度，并且不能有冲突。比如该例子中的label。需要手动调整高度&lt;/li&gt;
+&lt;li&gt;两行代码&lt;/li&gt;
+&lt;/ol&gt;
 </content>
     
     <summary type="html">
