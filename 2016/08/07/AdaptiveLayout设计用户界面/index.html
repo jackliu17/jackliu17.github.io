@@ -61,18 +61,76 @@
 
 
 
-<meta name="description" content="为 Image View 和 View 添加约束通过 Image Set 为项目添加相关图片利用预览功能查看不同设备屏幕所呈现的界面效果在故事板中设置自适应字体和字号设置与设备相关的图片Universal storyboard（通用故事板）">
+<meta name="description" content="使用Adaptive LayoutDevice里选择Universal
+AutoLayout基本布局和SizeClasses的个别调整
+为ImageView设置约束约束1：水平居中
+约束2：顶部置顶(含电池边距)
+约束3：与下方view的垂直高度按住imageview + ctrl 拖向下方的view，选择vertical spacing
+
+点击image view，在右侧可以看见已经设定的约束,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AdaptiveLayout设计用户界面">
 <meta property="og:url" content="http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="为 Image View 和 View 添加约束通过 Image Set 为项目添加相关图片利用预览功能查看不同设备屏幕所呈现的界面效果在故事板中设置自适应字体和字号设置与设备相关的图片Universal storyboard（通用故事板）">
+<meta property="og:description" content="使用Adaptive LayoutDevice里选择Universal
+AutoLayout基本布局和SizeClasses的个别调整
+为ImageView设置约束约束1：水平居中
+约束2：顶部置顶(含电池边距)
+约束3：与下方view的垂直高度按住imageview + ctrl 拖向下方的view，选择vertical spacing
+
+点击image view，在右侧可以看见已经设定的约束,">
+<meta property="og:image" content="https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/fcv3tds5qp51qo9/20160807_adaptive3.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/is0gh2p27vr6dhs/20160807_adaptive4.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/276deqb1udpey1i/20160807_adaptive5.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/fuazugw3fjk3xjw/20160807_adaptive20.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/m7ef3ambbfckb0q/20160807_adaptive13.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ysfu2ds12yi4upl/20160807_adaptive14.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/op5hztvdwsyy4tf/20160807_adaptive6.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zqks25yybeid6us/20160807_adaptive8.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/rhgz1ine9uhtykg/20160807_adaptive9.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zgrlxmwrngcq21h/20160807_adaptive10.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ojpckspdj8bo45g/20160807_adaptive11.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/quy3ojxr8jlpzw1/20160807_adaptive12.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/u8sluq2j9wyhmnj/20160807_adaptive15.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/3wxg7vm8gf7avwb/20160807_adaptive16.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/a5orqx2vb626l1i/20160807_adaptive17.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/89ypns9m1muwtag/20160807_adaptive18.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/er9295gpjdftvo5/20160807_adaptive19.png?dl=1">
 <meta property="og:image" content="https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1">
-<meta property="og:updated_time" content="2016-08-07T05:08:46.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/lp1del2ve1g92r7/20160807_adaptive21.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/1mb2xqh4xsit8w6/20160807_adaptive22.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/j8diywf0anrlric/20160807_adaptive23.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/gsm084vyj5aw8uc/20160807_adaptive24.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zskuue3ap4eri39/20160807_adaptive25.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/698wfvuerw06ue3/20160807_adaptive26.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/e9md11gwb2e1z7b/20160807_adaptive27.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/at6xdz1d14j04kh/20160807_adaptive28.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/7fm6lqc1kvhqtu9/20160807_adaptive29.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/nbrng2hh4j6hmm6/20160807_adaptive30.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/7xxgxvse0a9jhdp/20160807_adaptive31.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/c5ef55gf4riqlir/20160807_adaptive32.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/4c9wlje6hqr8a39/20160807_adaptive33.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/of9a0fnkofgvw24/20160807_adaptive34.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ou0qkqjww0zxpyf/20160807_adaptive35.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/i5nn0nh63yfzkda/20160807_adaptive36.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1">
+<meta property="og:updated_time" content="2016-08-08T05:16:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AdaptiveLayout设计用户界面">
-<meta name="twitter:description" content="为 Image View 和 View 添加约束通过 Image Set 为项目添加相关图片利用预览功能查看不同设备屏幕所呈现的界面效果在故事板中设置自适应字体和字号设置与设备相关的图片Universal storyboard（通用故事板）">
-<meta name="twitter:image" content="https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1">
+<meta name="twitter:description" content="使用Adaptive LayoutDevice里选择Universal
+AutoLayout基本布局和SizeClasses的个别调整
+为ImageView设置约束约束1：水平居中
+约束2：顶部置顶(含电池边距)
+约束3：与下方view的垂直高度按住imageview + ctrl 拖向下方的view，选择vertical spacing
+
+点击image view，在右侧可以看见已经设定的约束,">
+<meta name="twitter:image" content="https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1">
 
 
 
@@ -297,8 +355,55 @@
       
 
       
-        <p>为 Image View 和 View 添加约束<br>通过 Image Set 为项目添加相关图片<br>利用预览功能查看不同设备屏幕所呈现的界面效果<br>在故事板中设置自适应字体和字号<br>设置与设备相关的图片<br>Universal storyboard（通用故事板）</p>
-<p><img src="https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1" alt=""></p>
+        <h1 id="使用Adaptive-Layout"><a href="#使用Adaptive-Layout" class="headerlink" title="使用Adaptive Layout"></a>使用Adaptive Layout</h1><h2 id="Device里选择Universal"><a href="#Device里选择Universal" class="headerlink" title="Device里选择Universal"></a>Device里选择Universal</h2><p><img src="https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1" alt=""></p>
+<h2 id="AutoLayout基本布局和SizeClasses的个别调整"><a href="#AutoLayout基本布局和SizeClasses的个别调整" class="headerlink" title="AutoLayout基本布局和SizeClasses的个别调整"></a>AutoLayout基本布局和SizeClasses的个别调整</h2><p><img src="https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1" alt=""></p>
+<h1 id="为ImageView设置约束"><a href="#为ImageView设置约束" class="headerlink" title="为ImageView设置约束"></a>为ImageView设置约束</h1><h2 id="约束1：水平居中"><a href="#约束1：水平居中" class="headerlink" title="约束1：水平居中"></a>约束1：水平居中</h2><p><img src="https://www.dropbox.com/s/fcv3tds5qp51qo9/20160807_adaptive3.png?dl=1" alt=""></p>
+<h2 id="约束2：顶部置顶-含电池边距"><a href="#约束2：顶部置顶-含电池边距" class="headerlink" title="约束2：顶部置顶(含电池边距)"></a>约束2：顶部置顶(含电池边距)</h2><p><img src="https://www.dropbox.com/s/is0gh2p27vr6dhs/20160807_adaptive4.png?dl=1" alt=""></p>
+<h2 id="约束3：与下方view的垂直高度"><a href="#约束3：与下方view的垂直高度" class="headerlink" title="约束3：与下方view的垂直高度"></a>约束3：与下方view的垂直高度</h2><p>按住imageview + ctrl 拖向下方的view，选择vertical spacing</p>
+<p><img src="https://www.dropbox.com/s/276deqb1udpey1i/20160807_adaptive5.png?dl=1" alt=""></p>
+<p>点击image view，在右侧可以看见已经设定的约束,Edit vertical spacing to 20</p>
+<p><img src="https://www.dropbox.com/s/fuazugw3fjk3xjw/20160807_adaptive20.png?dl=1" alt=""></p>
+<h2 id="约束4：与父视图的关系-高度40"><a href="#约束4：与父视图的关系-高度40" class="headerlink" title="约束4：与父视图的关系-高度40%"></a>约束4：与父视图的关系-高度40%</h2><p>ctrl + 按住image view 拖向view,设定其与父视图的关系</p>
+<p><img src="https://www.dropbox.com/s/m7ef3ambbfckb0q/20160807_adaptive13.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/ysfu2ds12yi4upl/20160807_adaptive14.png?dl=1" alt=""></p>
+<h1 id="为view设置约束"><a href="#为view设置约束" class="headerlink" title="为view设置约束"></a>为view设置约束</h1><h2 id="左-中-下"><a href="#左-中-下" class="headerlink" title="左 + 中 + 下"></a>左 + 中 + 下</h2><p><img src="https://www.dropbox.com/s/op5hztvdwsyy4tf/20160807_adaptive6.png?dl=1" alt=""></p>
+<h1 id="ImageSet为项目添加相关图片"><a href="#ImageSet为项目添加相关图片" class="headerlink" title="ImageSet为项目添加相关图片"></a>ImageSet为项目添加相关图片</h1><p><img src="https://www.dropbox.com/s/zqks25yybeid6us/20160807_adaptive8.png?dl=1" alt=""></p>
+<p>双击后为图片组更名</p>
+<p><img src="https://www.dropbox.com/s/rhgz1ine9uhtykg/20160807_adaptive9.png?dl=1" alt=""></p>
+<h1 id="更新frame让约束生效"><a href="#更新frame让约束生效" class="headerlink" title="更新frame让约束生效"></a>更新frame让约束生效</h1><h3 id="橘红色的是可以调整的，红色的是有问题的"><a href="#橘红色的是可以调整的，红色的是有问题的" class="headerlink" title="橘红色的是可以调整的，红色的是有问题的"></a>橘红色的是可以调整的，红色的是有问题的</h3><p><img src="https://www.dropbox.com/s/zgrlxmwrngcq21h/20160807_adaptive10.png?dl=1" alt=""></p>
+<h1 id="预览功能查看不同设备屏幕"><a href="#预览功能查看不同设备屏幕" class="headerlink" title="预览功能查看不同设备屏幕"></a>预览功能查看不同设备屏幕</h1><p><img src="https://www.dropbox.com/s/ojpckspdj8bo45g/20160807_adaptive11.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/quy3ojxr8jlpzw1/20160807_adaptive12.png?dl=1" alt=""></p>
+<h1 id="为label1设定约束"><a href="#为label1设定约束" class="headerlink" title="为label1设定约束"></a>为label1设定约束</h1><h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><p><img src="https://www.dropbox.com/s/u8sluq2j9wyhmnj/20160807_adaptive15.png?dl=1" alt=""></p>
+<h2 id="顶部置顶"><a href="#顶部置顶" class="headerlink" title="顶部置顶"></a>顶部置顶</h2><p><img src="https://www.dropbox.com/s/3wxg7vm8gf7avwb/20160807_adaptive16.png?dl=1" alt=""></p>
+<h1 id="为label2设定约束"><a href="#为label2设定约束" class="headerlink" title="为label2设定约束"></a>为label2设定约束</h1><h2 id="水平居中-1"><a href="#水平居中-1" class="headerlink" title="水平居中"></a>水平居中</h2><p><img src="https://www.dropbox.com/s/a5orqx2vb626l1i/20160807_adaptive17.png?dl=1" alt=""></p>
+<h2 id="下部间隔"><a href="#下部间隔" class="headerlink" title="下部间隔"></a>下部间隔</h2><p><img src="https://www.dropbox.com/s/89ypns9m1muwtag/20160807_adaptive18.png?dl=1" alt=""></p>
+<h1 id="更新frame让约束生效-1"><a href="#更新frame让约束生效-1" class="headerlink" title="更新frame让约束生效"></a>更新frame让约束生效</h1><p><img src="https://www.dropbox.com/s/er9295gpjdftvo5/20160807_adaptive19.png?dl=1" alt=""></p>
+<h1 id="Size-Classes的使用"><a href="#Size-Classes的使用" class="headerlink" title="Size Classes的使用"></a>Size Classes的使用</h1><h2 id="两种尺寸组合表达所有设备-Regular-and-Compact"><a href="#两种尺寸组合表达所有设备-Regular-and-Compact" class="headerlink" title="两种尺寸组合表达所有设备: Regular and Compact"></a>两种尺寸组合表达所有设备: Regular and Compact</h2><p><img src="https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1" alt=""></p>
+<h2 id="构建iPhone-landscape-size-Class"><a href="#构建iPhone-landscape-size-Class" class="headerlink" title="构建iPhone landscape size Class"></a>构建iPhone landscape size Class</h2><p>点击下方的”W any H any”</p>
+<p><img src="https://www.dropbox.com/s/lp1del2ve1g92r7/20160807_adaptive21.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/1mb2xqh4xsit8w6/20160807_adaptive22.png?dl=1" alt=""></p>
+<h2 id="重设image-view约束-仅在该sizeClass"><a href="#重设image-view约束-仅在该sizeClass" class="headerlink" title="重设image view约束(仅在该sizeClass)"></a>重设image view约束(仅在该sizeClass)</h2><h3 id="卸载所有约束"><a href="#卸载所有约束" class="headerlink" title="卸载所有约束"></a>卸载所有约束</h3><p>点击image view，在右侧删除所有约束 - （只是在这个size class里uninstalling ）<br><img src="https://www.dropbox.com/s/j8diywf0anrlric/20160807_adaptive23.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/gsm084vyj5aw8uc/20160807_adaptive24.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/zskuue3ap4eri39/20160807_adaptive25.png?dl=1" alt=""></p>
+<p>将所有约束删除</p>
+<p><img src="https://www.dropbox.com/s/698wfvuerw06ue3/20160807_adaptive26.png?dl=1" alt=""></p>
+<h3 id="新约束1-垂直居中"><a href="#新约束1-垂直居中" class="headerlink" title="新约束1:垂直居中"></a>新约束1:垂直居中</h3><p><img src="https://www.dropbox.com/s/e9md11gwb2e1z7b/20160807_adaptive27.png?dl=1" alt=""></p>
+<h3 id="新约束2-左间隔10"><a href="#新约束2-左间隔10" class="headerlink" title="新约束2:左间隔10"></a>新约束2:左间隔10</h3><p><img src="https://www.dropbox.com/s/at6xdz1d14j04kh/20160807_adaptive28.png?dl=1" alt=""></p>
+<h3 id="新约束3-与父视图的宽度比例为40"><a href="#新约束3-与父视图的宽度比例为40" class="headerlink" title="新约束3:与父视图的宽度比例为40%"></a>新约束3:与父视图的宽度比例为40%</h3><p>ctrl拖动到父视图view，设置宽度比例</p>
+<p><img src="https://www.dropbox.com/s/7fm6lqc1kvhqtu9/20160807_adaptive29.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/nbrng2hh4j6hmm6/20160807_adaptive30.png?dl=1" alt=""></p>
+<h2 id="重设TextContainer约束-仅在该sizeClass"><a href="#重设TextContainer约束-仅在该sizeClass" class="headerlink" title="重设TextContainer约束(仅在该sizeClass)"></a>重设TextContainer约束(仅在该sizeClass)</h2><h3 id="卸载约束"><a href="#卸载约束" class="headerlink" title="卸载约束"></a>卸载约束</h3><p><img src="https://www.dropbox.com/s/7xxgxvse0a9jhdp/20160807_adaptive31.png?dl=1" alt=""></p>
+<h3 id="设定与父视图的顶部间距和宽度比例"><a href="#设定与父视图的顶部间距和宽度比例" class="headerlink" title="设定与父视图的顶部间距和宽度比例"></a>设定与父视图的顶部间距和宽度比例</h3><p><img src="https://www.dropbox.com/s/c5ef55gf4riqlir/20160807_adaptive32.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/4c9wlje6hqr8a39/20160807_adaptive33.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/of9a0fnkofgvw24/20160807_adaptive34.png?dl=1" alt=""></p>
+<h2 id="更新Frame"><a href="#更新Frame" class="headerlink" title="更新Frame"></a>更新Frame</h2><p><img src="https://www.dropbox.com/s/ou0qkqjww0zxpyf/20160807_adaptive35.png?dl=1" alt=""></p>
+<h1 id="在故事板中设置自适应字体"><a href="#在故事板中设置自适应字体" class="headerlink" title="在故事板中设置自适应字体"></a>在故事板中设置自适应字体</h1><h2 id="回到Any界面-w-h"><a href="#回到Any界面-w-h" class="headerlink" title="回到Any界面(w+h)"></a>回到Any界面(w+h)</h2><p><img src="https://www.dropbox.com/s/i5nn0nh63yfzkda/20160807_adaptive36.png?dl=1" alt=""></p>
+<h2 id="设置某个size-class类别下的字体"><a href="#设置某个size-class类别下的字体" class="headerlink" title="设置某个size class类别下的字体"></a>设置某个size class类别下的字体</h2><p>点击字体旁的 + 按钮</p>
+<p><img src="https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1" alt=""></p>
+<h2 id="设置字体能自动缩小50"><a href="#设置字体能自动缩小50" class="headerlink" title="设置字体能自动缩小50%"></a>设置字体能自动缩小50%</h2><p><img src="https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1" alt=""></p>
+<h2 id="设置label与父视图的约束"><a href="#设置label与父视图的约束" class="headerlink" title="设置label与父视图的约束"></a>设置label与父视图的约束</h2><p><img src="https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1" alt=""></p>
+<h1 id="设置适配不同设备的图片"><a href="#设置适配不同设备的图片" class="headerlink" title="设置适配不同设备的图片"></a>设置适配不同设备的图片</h1><p><img src="https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1" alt=""></p>
 
       
     </div>
@@ -466,7 +571,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Adaptive-Layout"><span class="nav-number">1.</span> <span class="nav-text">使用Adaptive Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Device里选择Universal"><span class="nav-number">1.1.</span> <span class="nav-text">Device里选择Universal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoLayout基本布局和SizeClasses的个别调整"><span class="nav-number">1.2.</span> <span class="nav-text">AutoLayout基本布局和SizeClasses的个别调整</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为ImageView设置约束"><span class="nav-number">2.</span> <span class="nav-text">为ImageView设置约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#约束1：水平居中"><span class="nav-number">2.1.</span> <span class="nav-text">约束1：水平居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约束2：顶部置顶-含电池边距"><span class="nav-number">2.2.</span> <span class="nav-text">约束2：顶部置顶(含电池边距)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约束3：与下方view的垂直高度"><span class="nav-number">2.3.</span> <span class="nav-text">约束3：与下方view的垂直高度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#约束4：与父视图的关系-高度40"><span class="nav-number">2.4.</span> <span class="nav-text">约束4：与父视图的关系-高度40%</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为view设置约束"><span class="nav-number">3.</span> <span class="nav-text">为view设置约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#左-中-下"><span class="nav-number">3.1.</span> <span class="nav-text">左 + 中 + 下</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ImageSet为项目添加相关图片"><span class="nav-number">4.</span> <span class="nav-text">ImageSet为项目添加相关图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新frame让约束生效"><span class="nav-number">5.</span> <span class="nav-text">更新frame让约束生效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#橘红色的是可以调整的，红色的是有问题的"><span class="nav-number">5.0.1.</span> <span class="nav-text">橘红色的是可以调整的，红色的是有问题的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预览功能查看不同设备屏幕"><span class="nav-number">6.</span> <span class="nav-text">预览功能查看不同设备屏幕</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为label1设定约束"><span class="nav-number">7.</span> <span class="nav-text">为label1设定约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平居中"><span class="nav-number">7.1.</span> <span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顶部置顶"><span class="nav-number">7.2.</span> <span class="nav-text">顶部置顶</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为label2设定约束"><span class="nav-number">8.</span> <span class="nav-text">为label2设定约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平居中-1"><span class="nav-number">8.1.</span> <span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下部间隔"><span class="nav-number">8.2.</span> <span class="nav-text">下部间隔</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更新frame让约束生效-1"><span class="nav-number">9.</span> <span class="nav-text">更新frame让约束生效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Size-Classes的使用"><span class="nav-number">10.</span> <span class="nav-text">Size Classes的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种尺寸组合表达所有设备-Regular-and-Compact"><span class="nav-number">10.1.</span> <span class="nav-text">两种尺寸组合表达所有设备: Regular and Compact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建iPhone-landscape-size-Class"><span class="nav-number">10.2.</span> <span class="nav-text">构建iPhone landscape size Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重设image-view约束-仅在该sizeClass"><span class="nav-number">10.3.</span> <span class="nav-text">重设image view约束(仅在该sizeClass)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载所有约束"><span class="nav-number">10.3.1.</span> <span class="nav-text">卸载所有约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束1-垂直居中"><span class="nav-number">10.3.2.</span> <span class="nav-text">新约束1:垂直居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束2-左间隔10"><span class="nav-number">10.3.3.</span> <span class="nav-text">新约束2:左间隔10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束3-与父视图的宽度比例为40"><span class="nav-number">10.3.4.</span> <span class="nav-text">新约束3:与父视图的宽度比例为40%</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重设TextContainer约束-仅在该sizeClass"><span class="nav-number">10.4.</span> <span class="nav-text">重设TextContainer约束(仅在该sizeClass)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载约束"><span class="nav-number">10.4.1.</span> <span class="nav-text">卸载约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设定与父视图的顶部间距和宽度比例"><span class="nav-number">10.4.2.</span> <span class="nav-text">设定与父视图的顶部间距和宽度比例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Frame"><span class="nav-number">10.5.</span> <span class="nav-text">更新Frame</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在故事板中设置自适应字体"><span class="nav-number">11.</span> <span class="nav-text">在故事板中设置自适应字体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回到Any界面-w-h"><span class="nav-number">11.1.</span> <span class="nav-text">回到Any界面(w+h)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置某个size-class类别下的字体"><span class="nav-number">11.2.</span> <span class="nav-text">设置某个size class类别下的字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置字体能自动缩小50"><span class="nav-number">11.3.</span> <span class="nav-text">设置字体能自动缩小50%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置label与父视图的约束"><span class="nav-number">11.4.</span> <span class="nav-text">设置label与父视图的约束</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置适配不同设备的图片"><span class="nav-number">12.</span> <span class="nav-text">设置适配不同设备的图片</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

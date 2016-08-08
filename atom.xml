@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-07T10:53:20.000Z</updated>
+  <updated>2016-08-07T11:00:37.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,12 +20,12 @@
     <link href="http://jackliu17.github.io/2016/08/07/2016%E5%B9%B48%E6%9C%887%E6%97%A5/"/>
     <id>http://jackliu17.github.io/2016/08/07/2016年8月7日/</id>
     <published>2016-08-07T10:38:31.000Z</published>
-    <updated>2016-08-07T10:53:20.000Z</updated>
+    <updated>2016-08-07T11:00:37.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;学习&quot;&gt;&lt;a href=&quot;#学习&quot; class=&quot;headerlink&quot; title=&quot;学习&quot;&gt;&lt;/a&gt;学习&lt;/h1&gt;&lt;h2 id=&quot;罗辑思维：黄执中-你如何听懂我说的话&quot;&gt;&lt;a href=&quot;#罗辑思维：黄执中-你如何听懂我说的话&quot; class=&quot;headerlink&quot; title=&quot;罗辑思维：黄执中 - 你如何听懂我说的话&quot;&gt;&lt;/a&gt;罗辑思维：黄执中 - 你如何听懂我说的话&lt;/h2&gt;&lt;p&gt;黄执中是辩论界的大神，听他的课还是有些收获的。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。&lt;/li&gt;
-&lt;li&gt;意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。&lt;/li&gt;
+&lt;li&gt;意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)&lt;/li&gt;
 &lt;li&gt;具体。具体的细节能让人产生深刻的印象。例如法庭上的两种证词: 妈妈很爱她，每晚陪她用小猫牙刷刷牙 / 每晚陪她刷牙。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
@@ -46,15 +46,62 @@
     <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
     <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
     <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-07T05:08:46.000Z</updated>
+    <updated>2016-08-08T05:16:16.000Z</updated>
     
-    <content type="html">&lt;p&gt;为 Image View 和 View 添加约束&lt;br&gt;通过 Image Set 为项目添加相关图片&lt;br&gt;利用预览功能查看不同设备屏幕所呈现的界面效果&lt;br&gt;在故事板中设置自适应字体和字号&lt;br&gt;设置与设备相关的图片&lt;br&gt;Universal storyboard（通用故事板）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为ImageView设置约束&quot;&gt;&lt;a href=&quot;#为ImageView设置约束&quot; class=&quot;headerlink&quot; title=&quot;为ImageView设置约束&quot;&gt;&lt;/a&gt;为ImageView设置约束&lt;/h1&gt;&lt;h2 id=&quot;约束1：水平居中&quot;&gt;&lt;a href=&quot;#约束1：水平居中&quot; class=&quot;headerlink&quot; title=&quot;约束1：水平居中&quot;&gt;&lt;/a&gt;约束1：水平居中&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fcv3tds5qp51qo9/20160807_adaptive3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;约束2：顶部置顶-含电池边距&quot;&gt;&lt;a href=&quot;#约束2：顶部置顶-含电池边距&quot; class=&quot;headerlink&quot; title=&quot;约束2：顶部置顶(含电池边距)&quot;&gt;&lt;/a&gt;约束2：顶部置顶(含电池边距)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/is0gh2p27vr6dhs/20160807_adaptive4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;约束3：与下方view的垂直高度&quot;&gt;&lt;a href=&quot;#约束3：与下方view的垂直高度&quot; class=&quot;headerlink&quot; title=&quot;约束3：与下方view的垂直高度&quot;&gt;&lt;/a&gt;约束3：与下方view的垂直高度&lt;/h2&gt;&lt;p&gt;按住imageview + ctrl 拖向下方的view，选择vertical spacing&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/276deqb1udpey1i/20160807_adaptive5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击image view，在右侧可以看见已经设定的约束,Edit vertical spacing to 20&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fuazugw3fjk3xjw/20160807_adaptive20.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;约束4：与父视图的关系-高度40&quot;&gt;&lt;a href=&quot;#约束4：与父视图的关系-高度40&quot; class=&quot;headerlink&quot; title=&quot;约束4：与父视图的关系-高度40%&quot;&gt;&lt;/a&gt;约束4：与父视图的关系-高度40%&lt;/h2&gt;&lt;p&gt;ctrl + 按住image view 拖向view,设定其与父视图的关系&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/m7ef3ambbfckb0q/20160807_adaptive13.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ysfu2ds12yi4upl/20160807_adaptive14.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为view设置约束&quot;&gt;&lt;a href=&quot;#为view设置约束&quot; class=&quot;headerlink&quot; title=&quot;为view设置约束&quot;&gt;&lt;/a&gt;为view设置约束&lt;/h1&gt;&lt;h2 id=&quot;左-中-下&quot;&gt;&lt;a href=&quot;#左-中-下&quot; class=&quot;headerlink&quot; title=&quot;左 + 中 + 下&quot;&gt;&lt;/a&gt;左 + 中 + 下&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/op5hztvdwsyy4tf/20160807_adaptive6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ImageSet为项目添加相关图片&quot;&gt;&lt;a href=&quot;#ImageSet为项目添加相关图片&quot; class=&quot;headerlink&quot; title=&quot;ImageSet为项目添加相关图片&quot;&gt;&lt;/a&gt;ImageSet为项目添加相关图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zqks25yybeid6us/20160807_adaptive8.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;双击后为图片组更名&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/rhgz1ine9uhtykg/20160807_adaptive9.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;更新frame让约束生效&quot;&gt;&lt;a href=&quot;#更新frame让约束生效&quot; class=&quot;headerlink&quot; title=&quot;更新frame让约束生效&quot;&gt;&lt;/a&gt;更新frame让约束生效&lt;/h1&gt;&lt;h3 id=&quot;橘红色的是可以调整的，红色的是有问题的&quot;&gt;&lt;a href=&quot;#橘红色的是可以调整的，红色的是有问题的&quot; class=&quot;headerlink&quot; title=&quot;橘红色的是可以调整的，红色的是有问题的&quot;&gt;&lt;/a&gt;橘红色的是可以调整的，红色的是有问题的&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zgrlxmwrngcq21h/20160807_adaptive10.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;预览功能查看不同设备屏幕&quot;&gt;&lt;a href=&quot;#预览功能查看不同设备屏幕&quot; class=&quot;headerlink&quot; title=&quot;预览功能查看不同设备屏幕&quot;&gt;&lt;/a&gt;预览功能查看不同设备屏幕&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ojpckspdj8bo45g/20160807_adaptive11.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/quy3ojxr8jlpzw1/20160807_adaptive12.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为label1设定约束&quot;&gt;&lt;a href=&quot;#为label1设定约束&quot; class=&quot;headerlink&quot; title=&quot;为label1设定约束&quot;&gt;&lt;/a&gt;为label1设定约束&lt;/h1&gt;&lt;h2 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u8sluq2j9wyhmnj/20160807_adaptive15.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;顶部置顶&quot;&gt;&lt;a href=&quot;#顶部置顶&quot; class=&quot;headerlink&quot; title=&quot;顶部置顶&quot;&gt;&lt;/a&gt;顶部置顶&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3wxg7vm8gf7avwb/20160807_adaptive16.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为label2设定约束&quot;&gt;&lt;a href=&quot;#为label2设定约束&quot; class=&quot;headerlink&quot; title=&quot;为label2设定约束&quot;&gt;&lt;/a&gt;为label2设定约束&lt;/h1&gt;&lt;h2 id=&quot;水平居中-1&quot;&gt;&lt;a href=&quot;#水平居中-1&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a5orqx2vb626l1i/20160807_adaptive17.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;下部间隔&quot;&gt;&lt;a href=&quot;#下部间隔&quot; class=&quot;headerlink&quot; title=&quot;下部间隔&quot;&gt;&lt;/a&gt;下部间隔&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/89ypns9m1muwtag/20160807_adaptive18.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;更新frame让约束生效-1&quot;&gt;&lt;a href=&quot;#更新frame让约束生效-1&quot; class=&quot;headerlink&quot; title=&quot;更新frame让约束生效&quot;&gt;&lt;/a&gt;更新frame让约束生效&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/er9295gpjdftvo5/20160807_adaptive19.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Size-Classes的使用&quot;&gt;&lt;a href=&quot;#Size-Classes的使用&quot; class=&quot;headerlink&quot; title=&quot;Size Classes的使用&quot;&gt;&lt;/a&gt;Size Classes的使用&lt;/h1&gt;&lt;h2 id=&quot;两种尺寸组合表达所有设备-Regular-and-Compact&quot;&gt;&lt;a href=&quot;#两种尺寸组合表达所有设备-Regular-and-Compact&quot; class=&quot;headerlink&quot; title=&quot;两种尺寸组合表达所有设备: Regular and Compact&quot;&gt;&lt;/a&gt;两种尺寸组合表达所有设备: Regular and Compact&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;构建iPhone-landscape-size-Class&quot;&gt;&lt;a href=&quot;#构建iPhone-landscape-size-Class&quot; class=&quot;headerlink&quot; title=&quot;构建iPhone landscape size Class&quot;&gt;&lt;/a&gt;构建iPhone landscape size Class&lt;/h2&gt;&lt;p&gt;点击下方的”W any H any”&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lp1del2ve1g92r7/20160807_adaptive21.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1mb2xqh4xsit8w6/20160807_adaptive22.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;重设image-view约束-仅在该sizeClass&quot;&gt;&lt;a href=&quot;#重设image-view约束-仅在该sizeClass&quot; class=&quot;headerlink&quot; title=&quot;重设image view约束(仅在该sizeClass)&quot;&gt;&lt;/a&gt;重设image view约束(仅在该sizeClass)&lt;/h2&gt;&lt;h3 id=&quot;卸载所有约束&quot;&gt;&lt;a href=&quot;#卸载所有约束&quot; class=&quot;headerlink&quot; title=&quot;卸载所有约束&quot;&gt;&lt;/a&gt;卸载所有约束&lt;/h3&gt;&lt;p&gt;点击image view，在右侧删除所有约束 - （只是在这个size class里uninstalling ）&lt;br&gt;&lt;img src=&quot;https://www.dropbox.com/s/j8diywf0anrlric/20160807_adaptive23.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gsm084vyj5aw8uc/20160807_adaptive24.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zskuue3ap4eri39/20160807_adaptive25.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;将所有约束删除&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/698wfvuerw06ue3/20160807_adaptive26.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;新约束1-垂直居中&quot;&gt;&lt;a href=&quot;#新约束1-垂直居中&quot; class=&quot;headerlink&quot; title=&quot;新约束1:垂直居中&quot;&gt;&lt;/a&gt;新约束1:垂直居中&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/e9md11gwb2e1z7b/20160807_adaptive27.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;新约束2-左间隔10&quot;&gt;&lt;a href=&quot;#新约束2-左间隔10&quot; class=&quot;headerlink&quot; title=&quot;新约束2:左间隔10&quot;&gt;&lt;/a&gt;新约束2:左间隔10&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/at6xdz1d14j04kh/20160807_adaptive28.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;新约束3-与父视图的宽度比例为40&quot;&gt;&lt;a href=&quot;#新约束3-与父视图的宽度比例为40&quot; class=&quot;headerlink&quot; title=&quot;新约束3:与父视图的宽度比例为40%&quot;&gt;&lt;/a&gt;新约束3:与父视图的宽度比例为40%&lt;/h3&gt;&lt;p&gt;ctrl拖动到父视图view，设置宽度比例&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7fm6lqc1kvhqtu9/20160807_adaptive29.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nbrng2hh4j6hmm6/20160807_adaptive30.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;重设TextContainer约束-仅在该sizeClass&quot;&gt;&lt;a href=&quot;#重设TextContainer约束-仅在该sizeClass&quot; class=&quot;headerlink&quot; title=&quot;重设TextContainer约束(仅在该sizeClass)&quot;&gt;&lt;/a&gt;重设TextContainer约束(仅在该sizeClass)&lt;/h2&gt;&lt;h3 id=&quot;卸载约束&quot;&gt;&lt;a href=&quot;#卸载约束&quot; class=&quot;headerlink&quot; title=&quot;卸载约束&quot;&gt;&lt;/a&gt;卸载约束&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7xxgxvse0a9jhdp/20160807_adaptive31.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;设定与父视图的顶部间距和宽度比例&quot;&gt;&lt;a href=&quot;#设定与父视图的顶部间距和宽度比例&quot; class=&quot;headerlink&quot; title=&quot;设定与父视图的顶部间距和宽度比例&quot;&gt;&lt;/a&gt;设定与父视图的顶部间距和宽度比例&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/c5ef55gf4riqlir/20160807_adaptive32.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4c9wlje6hqr8a39/20160807_adaptive33.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/of9a0fnkofgvw24/20160807_adaptive34.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;更新Frame&quot;&gt;&lt;a href=&quot;#更新Frame&quot; class=&quot;headerlink&quot; title=&quot;更新Frame&quot;&gt;&lt;/a&gt;更新Frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ou0qkqjww0zxpyf/20160807_adaptive35.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;在故事板中设置自适应字体&quot;&gt;&lt;a href=&quot;#在故事板中设置自适应字体&quot; class=&quot;headerlink&quot; title=&quot;在故事板中设置自适应字体&quot;&gt;&lt;/a&gt;在故事板中设置自适应字体&lt;/h1&gt;&lt;h2 id=&quot;回到Any界面-w-h&quot;&gt;&lt;a href=&quot;#回到Any界面-w-h&quot; class=&quot;headerlink&quot; title=&quot;回到Any界面(w+h)&quot;&gt;&lt;/a&gt;回到Any界面(w+h)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/i5nn0nh63yfzkda/20160807_adaptive36.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置某个size-class类别下的字体&quot;&gt;&lt;a href=&quot;#设置某个size-class类别下的字体&quot; class=&quot;headerlink&quot; title=&quot;设置某个size class类别下的字体&quot;&gt;&lt;/a&gt;设置某个size class类别下的字体&lt;/h2&gt;&lt;p&gt;点击字体旁的 + 按钮&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置字体能自动缩小50&quot;&gt;&lt;a href=&quot;#设置字体能自动缩小50&quot; class=&quot;headerlink&quot; title=&quot;设置字体能自动缩小50%&quot;&gt;&lt;/a&gt;设置字体能自动缩小50%&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置label与父视图的约束&quot;&gt;&lt;a href=&quot;#设置label与父视图的约束&quot; class=&quot;headerlink&quot; title=&quot;设置label与父视图的约束&quot;&gt;&lt;/a&gt;设置label与父视图的约束&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;设置适配不同设备的图片&quot;&gt;&lt;a href=&quot;#设置适配不同设备的图片&quot; class=&quot;headerlink&quot; title=&quot;设置适配不同设备的图片&quot;&gt;&lt;/a&gt;设置适配不同设备的图片&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;为 Image View 和 View 添加约束&lt;br&gt;通过 Image Set 为项目添加相关图片&lt;br&gt;利用预览功能查看不同设备屏幕所呈现的界面效果&lt;br&gt;在故事板中设置自适应字体和字号&lt;br&gt;设置与设备相关的图片&lt;br&gt;Universal storyboard（通用故
+      &lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Devic
     
     </summary>
     
