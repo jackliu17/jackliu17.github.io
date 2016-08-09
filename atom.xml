@@ -46,7 +46,7 @@
     <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
     <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
     <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-08T11:03:47.000Z</updated>
+    <updated>2016-08-09T01:42:45.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -147,7 +147,70 @@
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kxz5ictnoofm02c/20160807_adaptive67.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/d8052c6i2p3qweo/20160807_adaptive68.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/leefz9n24lncaec/20160807_adaptive69.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
+&lt;h1 id=&quot;iPhone竖屏上去除集合视图&quot;&gt;&lt;a href=&quot;#iPhone竖屏上去除集合视图&quot; class=&quot;headerlink&quot; title=&quot;iPhone竖屏上去除集合视图&quot;&gt;&lt;/a&gt;iPhone竖屏上去除集合视图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;DetailViewController&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
+    self.configureView()
+    provideDataToChildViewControllers()
+
+    navigationItem.leftItemsSupplementBackButton = true
+    navigationItem.hidesBackButton = false
+
+    configureTraitOverrideForSize(view.bounds.size)
+}
+
+override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    configureTraitOverrideForSize(size)
+}
+
+private func configureTraitOverrideForSize(size:CGSize) {
+    var traitOverride: UITraitCollection?
+
+    if size.height &amp;lt; 1000 {
+        traitOverride = UITraitCollection(verticalSizeClass: .Compact)
+    }
+
+    for vc in childViewControllers {
+        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;为SizeClass配置相关图片&quot;&gt;&lt;a href=&quot;#为SizeClass配置相关图片&quot; class=&quot;headerlink&quot; title=&quot;为SizeClass配置相关图片&quot;&gt;&lt;/a&gt;为SizeClass配置相关图片&lt;/h1&gt;&lt;h2 id=&quot;效果图-3&quot;&gt;&lt;a href=&quot;#效果图-3&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;如图，集合视图和顶部所使用的图片不一样&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/maja4iharq45ruh/20160807_adaptive71.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;在ImageAsset中构建size-class&quot;&gt;&lt;a href=&quot;#在ImageAsset中构建size-class&quot; class=&quot;headerlink&quot; title=&quot;在ImageAsset中构建size class&quot;&gt;&lt;/a&gt;在ImageAsset中构建size class&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;选择右侧width – Any&amp;amp;Compact&lt;/li&gt;
+&lt;li&gt;Universal打勾，对应拖入图片。 * 代表 any, - 代表compact , + 代表regular&lt;/li&gt;
+&lt;li&gt;右侧取消iPhone,iPad&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/9yinto1b1fghzac/20160807_adaptive77.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view.
+    configureView()
+
+    let traitOverride = UITraitCollection(horizontalSizeClass: .Compact)
+
+    for vc in childViewControllers {
+        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;隐藏导航栏&quot;&gt;&lt;a href=&quot;#隐藏导航栏&quot; class=&quot;headerlink&quot; title=&quot;隐藏导航栏&quot;&gt;&lt;/a&gt;隐藏导航栏&lt;/h1&gt;&lt;h2 id=&quot;效果图-4&quot;&gt;&lt;a href=&quot;#效果图-4&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;如图，点击屏幕将导航栏隐藏&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2u7qh3xm9o3uvwe/20160807_adaptive74.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;UIStoryboard中设置NavigationBar&quot;&gt;&lt;a href=&quot;#UIStoryboard中设置NavigationBar&quot; class=&quot;headerlink&quot; title=&quot;UIStoryboard中设置NavigationBar&quot;&gt;&lt;/a&gt;UIStoryboard中设置NavigationBar&lt;/h2&gt;&lt;p&gt;选中NavigationController,在右侧hide bar打勾:“on tap” + “when vertically compact”&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fdb56pi2p8awn5k/20160807_adaptive73.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;定制横竖屏的文字&quot;&gt;&lt;a href=&quot;#定制横竖屏的文字&quot; class=&quot;headerlink&quot; title=&quot;定制横竖屏的文字&quot;&gt;&lt;/a&gt;定制横竖屏的文字&lt;/h1&gt;&lt;h2 id=&quot;效果图-5&quot;&gt;&lt;a href=&quot;#效果图-5&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;横屏文字较小，竖屏文字较大&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;相关代码-1&quot;&gt;&lt;a href=&quot;#相关代码-1&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;private func prepareNavigationBarAppearance() {
+    let font = UIFont(name: &amp;quot;HelveticaNeue-Light&amp;quot;, size: 30)!
+    let regularVertical = UITraitCollection(verticalSizeClass: .Regular)
+    UINavigationBar.appearanceForTraitCollection(regularVertical).titleTextAttributes = [NSFontAttributeName: font]
+    let compactVertical = UITraitCollection(verticalSizeClass: .Compact)
+    UINavigationBar.appearanceForTraitCollection(compactVertical).titleTextAttributes = [NSFontAttributeName: font.fontWithSize(20)]
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
     
