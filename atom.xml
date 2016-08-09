@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-07T11:00:37.000Z</updated>
+  <updated>2016-08-09T06:56:10.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS界面动画教程之Layer动画基础</title>
+    <link href="http://jackliu17.github.io/2016/08/09/iOS%E7%95%8C%E9%9D%A2%E5%8A%A8%E7%94%BB%E6%95%99%E7%A8%8B%E4%B9%8BLayer%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80/"/>
+    <id>http://jackliu17.github.io/2016/08/09/iOS界面动画教程之Layer动画基础/</id>
+    <published>2016-08-09T06:50:00.000Z</published>
+    <updated>2016-08-09T06:56:10.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS界面动画教程之自动布局</title>
+    <link href="http://jackliu17.github.io/2016/08/09/iOS%E7%95%8C%E9%9D%A2%E5%8A%A8%E7%94%BB%E6%95%99%E7%A8%8B%E4%B9%8B%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80/"/>
+    <id>http://jackliu17.github.io/2016/08/09/iOS界面动画教程之自动布局/</id>
+    <published>2016-08-09T02:23:30.000Z</published>
+    <updated>2016-08-09T07:12:37.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/n1xwivjmrxpo7cj/20160809_autoLayout18.png?dl=1&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;h1 id=&quot;为view设置约束&quot;&gt;&lt;a href=&quot;#为view设置约束&quot; class=&quot;headerlink&quot; title=&quot;为view设置约束&quot;&gt;&lt;/a&gt;为view设置约束&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ca23zlj8lh2agvk/20160809_autoLayout1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0qk6ha5s8r9x5tn/20160809_autoLayout2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为标签设置约束-相对父视图&quot;&gt;&lt;a href=&quot;#为标签设置约束-相对父视图&quot; class=&quot;headerlink&quot; title=&quot;为标签设置约束(相对父视图)&quot;&gt;&lt;/a&gt;为标签设置约束(相对父视图)&lt;/h1&gt;&lt;h2 id=&quot;水平居中-垂直居中&quot;&gt;&lt;a href=&quot;#水平居中-垂直居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中+垂直居中&quot;&gt;&lt;/a&gt;水平居中+垂直居中&lt;/h2&gt;&lt;p&gt;press it with drag to view&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/10i3o2mha5xocyp/20160809_autoLayout3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;橘黄线条意味着与实际显示有差异&quot;&gt;&lt;a href=&quot;#橘黄线条意味着与实际显示有差异&quot; class=&quot;headerlink&quot; title=&quot;橘黄线条意味着与实际显示有差异&quot;&gt;&lt;/a&gt;橘黄线条意味着与实际显示有差异&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;橘黄实线。当前位置&lt;/li&gt;
+&lt;li&gt;橘黄虚线。应该所在的位置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/jltvu1edtfhz5s6/20160809_autoLayout4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;标签下移5pt&quot;&gt;&lt;a href=&quot;#标签下移5pt&quot; class=&quot;headerlink&quot; title=&quot;标签下移5pt&quot;&gt;&lt;/a&gt;标签下移5pt&lt;/h2&gt;&lt;p&gt;在约束里的constant里修改&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/y72cps6ccje1325/20160809_autoLayout5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为菜单按钮设置约束&quot;&gt;&lt;a href=&quot;#为菜单按钮设置约束&quot; class=&quot;headerlink&quot; title=&quot;为菜单按钮设置约束&quot;&gt;&lt;/a&gt;为菜单按钮设置约束&lt;/h1&gt;&lt;h2 id=&quot;相对父视图的右侧间隔&quot;&gt;&lt;a href=&quot;#相对父视图的右侧间隔&quot; class=&quot;headerlink&quot; title=&quot;相对父视图的右侧间隔&quot;&gt;&lt;/a&gt;相对父视图的右侧间隔&lt;/h2&gt;&lt;p&gt;press it with drag to view&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1ylpl0li28jx67l/20160809_autoLayout6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;与标签水平对齐&quot;&gt;&lt;a href=&quot;#与标签水平对齐&quot; class=&quot;headerlink&quot; title=&quot;与标签水平对齐&quot;&gt;&lt;/a&gt;与标签水平对齐&lt;/h2&gt;&lt;p&gt;press it with drag to label&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lavmxyhn4semuej/20160809_autoLayout7.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;更新frame&quot;&gt;&lt;a href=&quot;#更新frame&quot; class=&quot;headerlink&quot; title=&quot;更新frame&quot;&gt;&lt;/a&gt;更新frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a6lgyr1mb8keawr/20160809_autoLayout8.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为tableView设置约束&quot;&gt;&lt;a href=&quot;#为tableView设置约束&quot; class=&quot;headerlink&quot; title=&quot;为tableView设置约束&quot;&gt;&lt;/a&gt;为tableView设置约束&lt;/h1&gt;&lt;h2 id=&quot;四周边界&quot;&gt;&lt;a href=&quot;#四周边界&quot; class=&quot;headerlink&quot; title=&quot;四周边界&quot;&gt;&lt;/a&gt;四周边界&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5uongq74a0uifgv/20160809_autoLayout9.png?dl=1&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;h2 id=&quot;更新frame-1&quot;&gt;&lt;a href=&quot;#更新frame-1&quot; class=&quot;headerlink&quot; title=&quot;更新frame&quot;&gt;&lt;/a&gt;更新frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/eotshq0z0nwgfkt/20160809_autoLayout10.png?dl=1&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;h1 id=&quot;拖入tableViewCell并设置id&quot;&gt;&lt;a href=&quot;#拖入tableViewCell并设置id&quot; class=&quot;headerlink&quot; title=&quot;拖入tableViewCell并设置id&quot;&gt;&lt;/a&gt;拖入tableViewCell并设置id&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/j078za7g3o05mg5/20160809_autoLayout11.png?dl=1&quot; alt=&quot;&quot;&gt; &lt;/p&gt;
+&lt;h1 id=&quot;IB约束与代码中的关联&quot;&gt;&lt;a href=&quot;#IB约束与代码中的关联&quot; class=&quot;headerlink&quot; title=&quot;IB约束与代码中的关联&quot;&gt;&lt;/a&gt;IB约束与代码中的关联&lt;/h1&gt;&lt;h2 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@IBOutlet var menuHeightConstraint:NSLayoutConstraint!
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title=&quot;步骤&quot;&gt;&lt;/a&gt;步骤&lt;/h2&gt;&lt;p&gt;点击菜单view –&amp;gt;选择右侧的高度约束 –&amp;gt;选择其connect属性 –&amp;gt;drag new reference outlet to ViewController&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/jcz8x68k8sh7liz/20160809_autoLayout13.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/tx17tkjf0rcjq59/20160809_autoLayout14.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;打印所有约束&quot;&gt;&lt;a href=&quot;#打印所有约束&quot; class=&quot;headerlink&quot; title=&quot;打印所有约束&quot;&gt;&lt;/a&gt;打印所有约束&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@IBAction func actionToggleMenu(sender: AnyObject) {
+
+    //打印所有约束
+    for con in titleLabel.superview!.constraints {
+        print(&amp;quot; -&amp;gt; \(con.description) &amp;quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vejtc2uuktrc84v/20160809_autoLayout15.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;为IB中的约束设置Id&quot;&gt;&lt;a href=&quot;#为IB中的约束设置Id&quot; class=&quot;headerlink&quot; title=&quot;为IB中的约束设置Id&quot;&gt;&lt;/a&gt;为IB中的约束设置Id&lt;/h1&gt;&lt;p&gt;选择对应的约束 –&amp;gt; 在Identifier里设置&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kemvryq6cwvn6nv/20160809_autoLayout16.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/iot5t0r1u1wlkod/20160809_autoLayout17.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Pin设置约束：使用pin设置的约束是。Spacing to nearest neighbor。与最近的UI元素间隔&lt;/li&gt;
+&lt;li&gt;使用auto layout，不能在代码里设置bounds,frame等属性&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/n1xwivjmrxpo7cj/20160809_autoL
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
+    
+      <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
+    
+  </entry>
   
   <entry>
     <title>2016年8月7日</title>
@@ -46,7 +129,7 @@
     <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
     <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
     <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-09T01:42:45.000Z</updated>
+    <updated>2016-08-09T01:46:22.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -2931,547 +3014,6 @@ NSLog(@&amp;quot;play football game.&amp;quot;);
     
       &lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-享元</title>
-    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83/"/>
-    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/</id>
-    <published>2016-06-05T05:43:19.000Z</published>
-    <updated>2016-07-31T04:56:21.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h1&gt;&lt;p&gt;交叉的圆环，提取出公共部分进行复用。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。&lt;/li&gt;
-&lt;li&gt;步骤: 共享物件的提取 —&amp;gt; 管理共享对象 —&amp;gt; 获取共享对象&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-
-@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.flyweightFactory = [NSMutableDictionary dictionary];
-
-[self.flyweightFactory setObject:[Model new] forKey:@&amp;quot;A&amp;quot;];
-
-//方式一: 直接提取
-//    NSLog(@&amp;quot;%@&amp;quot;,self.flyweightFactory[@&amp;quot;A&amp;quot;]);
-//    NSLog(@&amp;quot;%@&amp;quot;,self.flyweightFactory[@&amp;quot;A&amp;quot;]);
-
-
-//方式二: 享元模式(有,则返回，无则创建返回)
-NSLog(@&amp;quot;%@&amp;quot;,[self ModelWithName:@&amp;quot;A&amp;quot;]);
-NSLog(@&amp;quot;%@&amp;quot;,[self ModelWithName:@&amp;quot;A&amp;quot;]);
-}
-
-- (id)ModelWithName:(NSString *)name {
-
-if (self.flyweightFactory[name]==nil) {
-
-    self.flyweightFactory[name] = [Model new];
-
-    return self.flyweightFactory[name];
-
-}else{
-
-    return self.flyweightFactory[name];
-
-}       
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;咖啡厅案例&quot;&gt;&lt;a href=&quot;#咖啡厅案例&quot; class=&quot;headerlink&quot; title=&quot;咖啡厅案例&quot;&gt;&lt;/a&gt;咖啡厅案例&lt;/h1&gt;&lt;p&gt;分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面&lt;/p&gt;
-&lt;p&gt;共享同种类的对象,三种对象:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;咖啡店&lt;/li&gt;
-&lt;li&gt;咖啡table&lt;/li&gt;
-&lt;li&gt;咖啡清单&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;CoffeeFlavor&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CoffeeFlavor : NSObject
-@property (nonatomic, strong) NSString *flavor;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Menu (相当于一个池子，将所有的享元咖啡存储在里面)&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Menu : NSObject
-
-//获取指定味道的咖啡（如果没有则创建）
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
-@end
-
-@interface Menu ()
-@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSString *, CoffeeFlavor *&amp;gt;  *flavors;
-@end
-
-@implementation Menu
-
-- (instancetype)init {   
-    self = [super init];  
-    if (self) {  
-        self.flavors = [NSMutableDictionary dictionary];
-    }   
-    return self;
-}
-
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
-    NSParameterAssert(flavor);
-    if ([self.flavors objectForKey:flavor] == nil) {       
-        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
-        coffeeFlavor.flavor        = flavor;     
-        self.flavors[flavor] = coffeeFlavor;
-    }  
-    return [self.flavors objectForKey:flavor];
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CoffeeShop&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CoffeeShop : NSObject
-- (void)takeOrder:(NSString *)flavor table:(int)table;
-- (void)serve;
-@end
-
-@interface CoffeeShop ()
-
-@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSNumber *, CoffeeFlavor *&amp;gt;  *orders;
-@property (nonatomic, strong) Menu *menu;
-
-@end
-
-@implementation CoffeeShop
-
-- (instancetype)init {  
-    self = [super init];
-    if (self) { 
-        self.orders = [NSMutableDictionary dictionary];
-        self.menu   = [[Menu alloc] init];
-    }
-    return self;
-}
-
-- (void)takeOrder:(NSString *)flavor table:(int)table {
-    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
-                    forKey:@(table)];
-}
-
-- (void)serve {
-    NSArray *allKeys = self.orders.allKeys;
-    for (id key in allKeys) {  
-        NSLog(@&amp;quot;[%@] Serving %@ to table %@&amp;quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
-    }
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-@property (nonatomic, strong) CoffeeShop *coffeeShop;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // 创建咖啡厅
-    self.coffeeShop = [[CoffeeShop alloc] init];
-    // 相同类型的数据公用
-    [self.coffeeShop takeOrder:@&amp;quot;Cappuccino&amp;quot; table:1];
-    [self.coffeeShop takeOrder:@&amp;quot;Frappe&amp;quot;     table:10];
-    [self.coffeeShop takeOrder:@&amp;quot;Cappuccino&amp;quot; table:6];
-    [self.coffeeShop takeOrder:@&amp;quot;Espresso&amp;quot;   table:9];
-    [self.coffeeShop takeOrder:@&amp;quot;Frappe&amp;quot;     table:8];
-
-    // 开始服务
-    [self.coffeeShop serve];
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;字典属性&quot;&gt;&lt;a href=&quot;#字典属性&quot; class=&quot;headerlink&quot; title=&quot;字典属性&quot;&gt;&lt;/a&gt;字典属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@property (nonatomic, strong) NSMutableDictionary &amp;lt;NSString *, CoffeeFlavor *&amp;gt;  *flavors;
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h1&gt;&lt;p&gt;交叉的圆环，提取出公共部分进行复用。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;定义:享元模式（英语：Flyweight Pattern）是
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-迭代器</title>
-    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
-    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-迭代器/</id>
-    <published>2016-06-05T01:10:44.000Z</published>
-    <updated>2016-07-31T05:52:11.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;线性表&quot;&gt;&lt;a href=&quot;#线性表&quot; class=&quot;headerlink&quot; title=&quot;线性表&quot;&gt;&lt;/a&gt;线性表&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的&lt;/li&gt;
-&lt;li&gt;种类:链表，栈，队列&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/8a58guj1f376nf5/iOS_designPatternIterator02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dbw7pnnr9kt0cc0/iOS_designPatternIterator03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;单链表&quot;&gt;&lt;a href=&quot;#单链表&quot; class=&quot;headerlink&quot; title=&quot;单链表&quot;&gt;&lt;/a&gt;单链表&lt;/h1&gt;&lt;p&gt;Node&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Node : NSObject
-//指向下一个节点
-@property (nonatomic, strong) Node  *nextNode;
-//节点挂载的对象
-@property (nonatomic, strong) id     item;
-//便利构造器
-+ (instancetype)nodeWithItem:(id)item;
-@end
----------------------------------------------------
-@implementation Node
-
-+ (instancetype)nodeWithItem:(id)item {
-
-Node *node = [[[self class] alloc] init];
-node.item  = item;
-
-return node;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedList&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface LinkedList : NSObject
-
-//头节点
-@property (nonatomic, strong, readonly) Node *headNode;
-
-//有几个节点
-
-@property (nonatomic, readonly) NSInteger  numberOfNodes;
-
-//节点挂载的对象
-- (void)addItem:(id)item;
-
-@end
-----------------------------------------------------------
-
-@interface LinkedList ()
-
-@property (nonatomic, strong) Node       *headNode;
-@property (nonatomic)         NSInteger   numberOfNodes;
-
-@end
-
-@implementation LinkedList
-
-- (void)addItem:(id)item {
-
-if (self.headNode == nil) {
-
-    // 创建头结点
-    self.headNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:self.headNode];
-}
-
-self.numberOfNodes++;
-}
-
-#pragma mark - 私有方法
-- (void)addItem:(id)item node:(Node *)node {
-
-if (node.nextNode == nil) {
-
-    node.nextNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:node.nextNode];
-}
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;系统迭代器-NSEnumerator&quot;&gt;&lt;a href=&quot;#系统迭代器-NSEnumerator&quot; class=&quot;headerlink&quot; title=&quot;系统迭代器: NSEnumerator&quot;&gt;&lt;/a&gt;系统迭代器: NSEnumerator&lt;/h1&gt;&lt;p&gt;迭代器模式（Iterator），提供一种方法顺序访问一个聚合对象中的各种元素，而又不暴露该对象的内部表示。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/c2bf7wm7n1j5k7h/iOS_designPatternIter04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 创建集合对象, 可以是数组，字典，集合等..
-NSArray *datas = @[@&amp;quot;A&amp;quot;, @&amp;quot;B&amp;quot;, @&amp;quot;C&amp;quot;, @&amp;quot;D&amp;quot;];
-
-// 从集合对象创建迭代器
-NSEnumerator *iterator = [datas objectEnumerator];
-
-// 从集合对象中访问元素, 头元素已经实现了空实现
-id arrayObj = nil;
-while (arrayObj = [iterator nextObject]) {
-    NSLog(@&amp;quot;%@&amp;quot;, arrayObj);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;迭代器模式&quot;&gt;&lt;a href=&quot;#迭代器模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器模式&quot;&gt;&lt;/a&gt;迭代器模式&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wg0s4xvwerhr4yv/iOS_designPatternIterator01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;LinkedList:头元素必须已经实现了空实现&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (instancetype)init{
-
-self = [super init];
-if (self) {
-
-    self.headNode = [Node new];
-}
-
-return self;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;IteratorProtocol&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@protocol IteratorProtocol &amp;lt;NSObject&amp;gt;
-
-@required
-//下一个对象
-- (id)nextObject;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedListIterator&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface LinkedListIterator : NSObject &amp;lt;IteratorProtocol&amp;gt;
-+ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList;
-
-@end
-
-@interface LinkedListIterator ()
-
-@property (nonatomic, strong) LinkedList *linkedList;
-@property (nonatomic, strong) Node       *currentNode;
-
-@end
-
-@implementation LinkedListIterator
-
-+ (instancetype)linkedListIteratorWithLinkedList:(LinkedList *)linkedList {
-
-LinkedListIterator *linkedListIterator = [LinkedListIterator new];
-linkedListIterator.linkedList  = linkedList;
-linkedListIterator.currentNode = linkedList.headNode;    
-return linkedListIterator;
-}
-
-- (id)nextObject {
-self.currentNode = self.currentNode.nextNode;
-return self.currentNode;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-@property (nonatomic, strong) LinkedList *list;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 创建集合对象
-self.list = [[LinkedList alloc] init];
-[self.list addItem:@&amp;quot;A&amp;quot;];
-[self.list addItem:@&amp;quot;B&amp;quot;];
-[self.list addItem:@&amp;quot;C&amp;quot;];
-[self.list addItem:@&amp;quot;D&amp;quot;];
-
-// 从集合对象创建迭代器
-LinkedListIterator *linkedIterator = [LinkedListIterator linkedListIteratorWithLinkedList:self.list];
-
-// 从集合对象中访问元素
-Node *node = nil;
-while (node = [linkedIterator nextObject]) {    
-    NSLog(@&amp;quot;%@&amp;quot;, node.item);
-}
-
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;实现组合对象的迭代器&quot;&gt;&lt;a href=&quot;#实现组合对象的迭代器&quot; class=&quot;headerlink&quot; title=&quot;实现组合对象的迭代器&quot;&gt;&lt;/a&gt;实现组合对象的迭代器&lt;/h1&gt;&lt;p&gt;Node&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Node : NSObject
-@property (nonatomic, strong) Node  *nextNode;
-
-//节点挂载的对象, 注意这里是weak，因为customView已经持有那些对象了
-@property (nonatomic, weak)   id     item;
-
-+ (instancetype)nodeWithItem:(id)item;
-@end
-
---------------------------------------------
-
-@implementation Node
-
-+ (instancetype)nodeWithItem:(id)item {
-
-    Node *node = [[[self class] alloc] init];
-    node.item  = item;
-
-    return node;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;LinkedList    &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface LinkedList : NSObject
-@property (nonatomic, strong, readonly) Node *headNode;
-@property (nonatomic, readonly) NSInteger  numberOfNodes;
-- (void)addItem:(id)item;
-@end
-
-@interface LinkedList ()
-@property (nonatomic, strong) Node       *headNode;
-@property (nonatomic)         NSInteger   numberOfNodes;
-@end
-
-@implementation LinkedList
-
-- (instancetype)init{
-
-self = [super init];
-if (self) {
-
-    self.headNode = [Node new];
-}
-
-return self;
-}
-
-- (void)addItem:(id)item {
-
-if (self.headNode == nil) {
-
-    // 创建头结点
-    self.headNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:self.headNode];
-}
-
-self.numberOfNodes++;
-}
-
-#pragma mark - 私有方法
-- (void)addItem:(id)item node:(Node *)node {
-
-if (node.nextNode == nil) {
-
-    node.nextNode = [Node nodeWithItem:item];
-
-} else {
-
-    [self addItem:item node:node.nextNode];
-}
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;IteratorProtocol&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@protocol IteratorProtocol &amp;lt;NSObject&amp;gt;
-
-- (id)nextObject;
-- (void)resetIterator;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CustomView&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomView : UIView &amp;lt;IteratorProtocol&amp;gt;
-
-@end
-
-@interface CustomView ()
-@property (nonatomic, strong) UIButton    *button;
-@property (nonatomic, strong) UILabel     *label;
-@property (nonatomic, strong) UITextField *field;
-@property (nonatomic, strong) LinkedList  *list;
-@property (nonatomic, strong) Node        *currentNode;
-
-@end
-
-@implementation CustomView
-
-- (instancetype)initWithFrame:(CGRect)frame{
-
-    self = [super initWithFrame:frame];
-    if (self) {
-
-        self.button = [[UIButton alloc] initWithFrame:self.bounds];
-        self.label  = [[UILabel alloc] initWithFrame:self.bounds];
-        self.field  = [[UITextField alloc] initWithFrame:self.bounds];
-
-        [self addSubview:self.button];
-        [self addSubview:self.label];
-        [self addSubview:self.field];
-
-        self.list = [[LinkedList alloc] init];
-        [self.list addItem:self.button];
-        [self.list addItem:self.label];
-        [self.list addItem:self.field];
-
-        self.currentNode = self.list.headNode;
-    }
-
-    return self;
-}
-
-- (id)nextObject {
-
-    self.currentNode = self.currentNode.nextNode;
-    return self.currentNode;
-}
-
-- (void)resetIterator {
-
-    self.currentNode = self.list.headNode;
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController    &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-CustomView *customView = [[CustomView alloc] initWithFrame:self.view.bounds];
-
-Node *node = nil;
-
-[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&amp;quot;%@&amp;quot;, node.item);
-}
-
-[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&amp;quot;%@&amp;quot;, node.item);
-}
-
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;最小知识原则&quot;&gt;&lt;a href=&quot;#最小知识原则&quot; class=&quot;headerlink&quot; title=&quot;最小知识原则&quot;&gt;&lt;/a&gt;最小知识原则&lt;/h1&gt;&lt;p&gt;让使用者不用了解过多的细节，暴露在.h的文件越少越好，如果可以写在.m里最好&lt;/p&gt;
-&lt;h1 id=&quot;迭代器筛选&quot;&gt;&lt;a href=&quot;#迭代器筛选&quot; class=&quot;headerlink&quot; title=&quot;迭代器筛选&quot;&gt;&lt;/a&gt;迭代器筛选&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;[customView resetIterator];
-while (node = [customView nextObject]) {
-
-    NSLog(@&amp;quot;%@&amp;quot;, node.item);
-
-    if ([node.item isKindOfClass:[UIButton class]]){
-
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;线性表&quot;&gt;&lt;a href=&quot;#线性表&quot; class=&quot;headerlink&quot; title=&quot;线性表&quot;&gt;&lt;/a&gt;线性表&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;定义:线性表中数据元素之间的关系是一对一的关系，即除了第一个和最后一个数据元素之外，其它数据元素都是首尾相接的&lt;/li&gt;
     
     </summary>
     

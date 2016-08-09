@@ -238,6 +238,256 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/18/iOS数据存储-plist文件/" itemprop="url">
+                  iOS数据存储-plist文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T12:39:46+10:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/iOS数据存储-plist文件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/18/iOS数据存储-plist文件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="读取数组"><a href="#读取数组" class="headerlink" title="读取数组"></a>读取数组</h1><pre><code>let arr = NSArray(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&quot;arr&quot;, ofType: &quot;plist&quot;)!))
+print(arr)
+</code></pre><h1 id="读取字典"><a href="#读取字典" class="headerlink" title="读取字典"></a>读取字典</h1><pre><code>let dict = NSDictionary(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(&quot;data&quot;, ofType: &quot;plist&quot;)!))
+print(dict)
+
+let name:String = dict![&quot;name&quot;] as! String
+print(&quot;name : \(name)&quot;)
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/17/iOS项目017-转盘抽奖/" itemprop="url">
+                  iOS项目017.转盘抽奖
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-17T16:18:42+10:00" content="2016-05-17">
+              2016-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/17/iOS项目017-转盘抽奖/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/17/iOS项目017-转盘抽奖/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/ly41lm9deaj4nz0/iOS_proj01701.png?dl=1" alt=""></p>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><h1 id="匿名类目-vs-IBOutlet"><a href="#匿名类目-vs-IBOutlet" class="headerlink" title="匿名类目 vs IBOutlet"></a>匿名类目 vs IBOutlet</h1><p>只有在.m文件中建立了匿名类目，才能连接storyBoard中的IBOutlet</p>
+<p>view.m</p>
+<pre><code>@interface WheelView ()
+@property (weak, nonatomic) IBOutlet UIImageView *centerView;
+@end
+</code></pre><h1 id="加载xib文件"><a href="#加载xib文件" class="headerlink" title="加载xib文件"></a>加载xib文件</h1><pre><code>+ (instancetype)wheelView{
+return [[[NSBundle mainBundle] loadNibNamed:@&quot;WheelView&quot; owner:nil options:nil] lastObject];
+}
+</code></pre><h1 id="裁剪图片"><a href="#裁剪图片" class="headerlink" title="裁剪图片"></a>裁剪图片</h1><pre><code>UIImage *img = [UIImage imageNamed:@&quot;LuckyAstrology&quot;];
+CGFloat smallW = img.size.width / 12 * [UIScreen mainScreen].scale;
+CGFloat smallH = img.size.height * [UIScreen mainScreen].scale; 
+CGRect smallRect = CGRectMake(index * smallW, 0, smallW, smallH);
+CGImageRef smallImage = CGImageCreateWithImageInRect(img.CGImage, smallRect);
+[btn setImage:[UIImage imageWithCGImage:smallImage] forState:UIControlStateNormal];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/17/iOS项目018-CAAnimation简介/" itemprop="url">
                   iOS项目018.CAAnimation简介
                 </a>
@@ -906,402 +1156,6 @@ CGContextStrokePath(context);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/14/iOS项目014-九宫格手势解锁/" itemprop="url">
-                  iOS项目014.九宫格手势解锁
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-14T13:02:55+10:00" content="2016-05-14">
-              2016-05-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/14/iOS项目014-九宫格手势解锁/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/14/iOS项目014-九宫格手势解锁/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/or1qww9lfmq74iz/iOS_proj01401.png?dl=1" alt=""></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/3r2hzq3977kdh9q/iOS_proj014Structure.png?dl=1" alt=""></p>
-<h1 id="常量的定义"><a href="#常量的定义" class="headerlink" title="常量的定义"></a>常量的定义</h1><pre><code>//const 定义 只读的变量名，在其他的类中不能声明同样的变量名
-CGFloat const btnCount = 9;
-
-// define只是字符的转换
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-</code></pre><h1 id="UIView的两种init方法"><a href="#UIView的两种init方法" class="headerlink" title="UIView的两种init方法"></a>UIView的两种init方法</h1><pre><code>//通过代码创建会调用这个方法
-- (instancetype)initWithFrame:(CGRect)frame{
-if (self = [super initWithFrame:frame]) {
-    [self AddButton];
-}
-return self;
-}
-
-//通过storyboard 或者 xib 文件创建的时候会调用
--(id)initWithCoder:(NSCoder *)aDecoder{
-if (self = [super initWithCoder:aDecoder]) {
-    [self AddButton];
-}
-return self;
-}
-</code></pre><h1 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h1><p>在github上查找，然后下载，完成之后运行</p>
-<pre><code>KSImageNamed
-VVDocumenter-Xcode
-ColorSense-for-Xcode-master
-</code></pre><h1 id="触摸方法"><a href="#触摸方法" class="headerlink" title="触摸方法"></a>触摸方法</h1><pre><code>-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-[self touchesEnded:touches withEvent:event];
-}
-</code></pre><h1 id="触摸点的坐标"><a href="#触摸点的坐标" class="headerlink" title="触摸点的坐标"></a>触摸点的坐标</h1><pre><code>UITouch *touch = [touches anyObject];
-CGPoint point = [touch locationInView:self];
-</code></pre><h1 id="触摸的按钮"><a href="#触摸的按钮" class="headerlink" title="触摸的按钮"></a>触摸的按钮</h1><pre><code>- (UIButton *)buttonWithPoint:(CGPoint)point{
-for (UIButton *btn in self.subviews) {
-    if (CGRectContainsPoint(btn.frame, point)) {
-        return btn;
-    }
-}
-return nil;
-}
-</code></pre><h1 id="点是否在指定CGRect内"><a href="#点是否在指定CGRect内" class="headerlink" title="点是否在指定CGRect内"></a>点是否在指定CGRect内</h1><pre><code>bool CGRectContainsPoint (
-    CGRect rect,
-    CGPoint point
-);
-</code></pre><h1 id="m-里声明私有属性"><a href="#m-里声明私有属性" class="headerlink" title=".m 里声明私有属性"></a>.m 里声明私有属性</h1><pre><code>//匿名扩展（类目的特例） ：可以声明属性,私有的
-@interface JKLockView ()
-@property (nonatomic, strong) NSMutableArray *selectedBtns;
-@property (nonatomic, assign) CGPoint currentPoint;
-@end
-</code></pre><h1 id="数组或字典添加对象需要先判断"><a href="#数组或字典添加对象需要先判断" class="headerlink" title="数组或字典添加对象需要先判断"></a>数组或字典添加对象需要先判断</h1><pre><code>if (btn) {
-[self.selectedBtns addObject:btn];
-}
-</code></pre><h1 id="开始绘图"><a href="#开始绘图" class="headerlink" title="开始绘图"></a>开始绘图</h1><pre><code>[self setNeedsDisplay];
-</code></pre><h1 id="绘制贝塞尔曲线"><a href="#绘制贝塞尔曲线" class="headerlink" title="绘制贝塞尔曲线"></a>绘制贝塞尔曲线</h1><pre><code>UIBezierPath *path = [UIBezierPath bezierPath];
-path.lineWidth = 8;
-path.lineJoinStyle = kCGLineJoinRound;
-[[UIColor colorWithRed:32/255.0 green:210/255.0 blue:254/255.0 alpha:0.5] set];
-
-//遍历按钮
-for (int i = 0; i &lt; self.selectedBtns.count; i++) {
-    UIButton *button = self.selectedBtns[i];
-    if (i == 0) {
-
-        //设置起点
-        [path moveToPoint:button.center];
-
-    }else{//连线
-
-        [path addLineToPoint:button.center];
-    }
-}
-
-[path addLineToPoint:self.currentPoint];
-[path stroke];
-</code></pre><h1 id="数组中每个对象执行某方法"><a href="#数组中每个对象执行某方法" class="headerlink" title="数组中每个对象执行某方法"></a>数组中每个对象执行某方法</h1><pre><code>//makeObjectsPerformSelector  
-//每个按钮设为没有选中状态
-//向数组中的每一个对象发送方法 setSelected:，方法参数为 NO
-[self.selectedBtns makeObjectsPerformSelector:@selector(setSelected:) withObject:NO];
-</code></pre><h1 id="IBOutlet-和-delegate连接"><a href="#IBOutlet-和-delegate连接" class="headerlink" title="IBOutlet 和 delegate连接"></a>IBOutlet 和 delegate连接</h1><pre><code>@property (nonatomic, assign) IBOutlet id&lt;JKLockViewDelegate&gt; delegate;
-</code></pre><h1 id="UIAlertController"><a href="#UIAlertController" class="headerlink" title="UIAlertController"></a>UIAlertController</h1><pre><code>UIAlertController *alert = [UIAlertController alertControllerWithTitle:@&quot;密码正确&quot; message:nil preferredStyle:UIAlertControllerStyleAlert];
-[alert addAction:[UIAlertAction actionWithTitle:@&quot;确定&quot; style:UIAlertActionStyleDestructive handler:nil]];
-[alert addAction:[UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:nil]];
-[self presentViewController:alert animated:YES completion:nil];
-</code></pre><h1 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h1><pre><code>[path appendFormat:@&quot;%ld&quot;,(long)btn.tag];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/iOS项目13-手势识别/" itemprop="url">
-                  iOS项目13-手势识别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:07:26+10:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/iOS项目13-手势识别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/13/iOS项目13-手势识别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="手势的种类"><a href="#手势的种类" class="headerlink" title="手势的种类"></a>手势的种类</h1><ol>
-<li>UITapGestureRecognizer   </li>
-<li>UIPinGestureRecognizer   Pinch 捏合</li>
-<li>UIRotationGestureRecognizer  Rotation 旋转</li>
-<li>UISwipeGestureRecognizer Swipe 轻扫，快速移动，是用于监测滑动的方向</li>
-<li>UIPanGestureRecognizer   Pan 拖移，慢速移动，是用于监测偏移量</li>
-<li>UILongPressGestureRecognizer LongPress 长按</li>
-</ol>
-<h1 id="Tap点击"><a href="#Tap点击" class="headerlink" title="Tap点击"></a>Tap点击</h1><pre><code>/*  一个手指单击*/
-UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SignleTap:)];
-tap.numberOfTapsRequired = 1;
-tap.numberOfTouchesRequired = 1;
-[self.view addGestureRecognizer:tap];
-
-/*一个手指双击*/
-UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(DoubleTap:)];
-tap2.numberOfTapsRequired = 2;
-[self.view addGestureRecognizer:tap2];
-
-//当tap 和 tap2同时出现在视图上，取消tap
-[tap requireGestureRecognizerToFail:tap2];
-
-/* 两个手指单击*/
-UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SigleTwoFingerTap:)];
-tap3.numberOfTouchesRequired = 2;
-[self.view addGestureRecognizer:tap3];
-//当tap2 和 tap3同时出现在视图上，取消tap2
-[tap2 requireGestureRecognizerToFail:tap3];
-</code></pre><h2 id="Tap互斥"><a href="#Tap互斥" class="headerlink" title="Tap互斥"></a>Tap互斥</h2><pre><code>/*
-[A requireGestureRecognizerToFail:B]
-当A手势发生时，即便A已经满足条件，但要等到B手势失败后才触发
-*/
-</code></pre><h1 id="Swipe轻扫手势"><a href="#Swipe轻扫手势" class="headerlink" title="Swipe轻扫手势"></a>Swipe轻扫手势</h1><pre><code>UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(SwipeAction:)];
-swipe.direction = UISwipeGestureRecognizerDirectionLeft;
-[self.view addGestureRecognizer:swipe];
-</code></pre><h1 id="Pinch捏合手势"><a href="#Pinch捏合手势" class="headerlink" title="Pinch捏合手势"></a>Pinch捏合手势</h1><pre><code>- (void)PinchGesture{
-UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(PinchAction:)];
-[self.view addGestureRecognizer:pinch];
-}
-
-//pin的缩放
-- (void)PinchAction:(UIPinchGestureRecognizer *)pinch{
-float scale = pinch.scale;
-pinch.view.transform = CGAffineTransformScale(pinch.view.transform, scale, scale);
-if (scale &gt; 1) {
-    _genstureLabel.text = @&quot;捏合放大&quot;;
-}else if (scale &lt; 1){
-    _genstureLabel.text = @&quot;捏合缩小&quot;;
-}
-}
-</code></pre><h1 id="Pan拖移手势"><a href="#Pan拖移手势" class="headerlink" title="Pan拖移手势"></a>Pan拖移手势</h1><pre><code>- (void)PanGesture{
-UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(PanAction:)];
-[_genstureLabel addGestureRecognizer:pan];
-}
-
-- (void)PanAction:(UIPanGestureRecognizer *)pan{
-//移动的坐标值
-CGPoint translation = [pan translationInView:self.view];
-//移动后的坐标
-pan.view.center = CGPointMake(pan.view.center.x + translation.x, pan.view.center.y + translation.y);
-//设置坐标和速度
-[pan setTranslation:CGPointZero inView:self.view];
-_genstureLabel.text = @&quot;把我放哪啊&quot;;
-}
-</code></pre><h1 id="Rotation旋转手势"><a href="#Rotation旋转手势" class="headerlink" title="Rotation旋转手势"></a>Rotation旋转手势</h1><pre><code>- (void)RotationGesture{
-UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(RotationAction:)];
-[_genstureLabel addGestureRecognizer:rotation];
-}
-
-- (void)RotationAction:(UIRotationGestureRecognizer *)rotationGes{  
-rotationGes.view.transform = CGAffineTransformRotate(rotationGes.view.transform, rotationGes.rotation);
-rotationGes.rotation = M_PI;
-_genstureLabel.text = @&quot;旋转&quot;;
-}
-</code></pre><h1 id="LongPress长按手势"><a href="#LongPress长按手势" class="headerlink" title="LongPress长按手势"></a>LongPress长按手势</h1><pre><code>- (void)LongPressGesture{
-UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressAction:)];
-longPress.minimumPressDuration = 2;
-[self.view addGestureRecognizer:longPress];  
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1348,7 +1202,7 @@ longPress.minimumPressDuration = 2;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">92</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
