@@ -238,6 +238,223 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/04/使用CocoaPods管理iOS库/" itemprop="url">
+                  使用CocoaPods管理iOS库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T14:17:13+10:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/使用CocoaPods管理iOS库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/04/使用CocoaPods管理iOS库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="iOS库的介绍"><a href="#iOS库的介绍" class="headerlink" title="iOS库的介绍"></a>iOS库的介绍</h1><h2 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a>动态库和静态库</h2><ol>
+<li>动态库在运行时实时部署，静态库必须在编译时连接到代码</li>
+<li>动态库加载到内存后可以重复使用,静态库每次import都引入一次</li>
+<li>自定义的动态库只能部署在 iOS8 以上系统</li>
+<li>.a(静态库，只有代码，没有任何资源,图片xib文件等)</li>
+<li>.dylib (动态库，只有代码，没有任何资源)</li>
+<li>.framework 可以包含资源，分为两种：dynamic 和 static</li>
+<li>use_frameworks! 生成 dynamic framework</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1" alt=""></p>
+<h2 id="制作库"><a href="#制作库" class="headerlink" title="制作库"></a>制作库</h2><p>iOS 体系结构</p>
+<ol>
+<li>armv7： iPhone 4/4s</li>
+<li>armv7s：iPhone 5 和 iPhone 5C</li>
+<li>arm64：iPhone 5S+</li>
+<li>x86-64、i386：模拟器</li>
+<li>lipo –info – 查看库支持的体系结构</li>
+<li>lipo -create  -output  - 将模拟器和真机的库合成一个库</li>
+<li>Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包</li>
+</ol>
+<h3 id="设定系统为8-0以上才能部署自定义动态库"><a href="#设定系统为8-0以上才能部署自定义动态库" class="headerlink" title="设定系统为8.0以上才能部署自定义动态库"></a>设定系统为8.0以上才能部署自定义动态库</h3><p><img src="https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1" alt=""></p>
+<h3 id="创建一个库"><a href="#创建一个库" class="headerlink" title="创建一个库"></a>创建一个库</h3><p><img src="https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1" alt=""></p>
+<h3 id="MyFramework-swift"><a href="#MyFramework-swift" class="headerlink" title="MyFramework.swift"></a>MyFramework.swift</h3><pre><code>import UIKit
+
+public class MyFramework: NSObject {
+
+static let bundle = NSBundle(forClass: MyFramework.self)
+
+static let MyFrameworkStr = &quot;MyFramework&quot;
+
+public static func openVCFromStoryboard() {
+    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&quot;MyFrameworkViewController&quot;)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func openVCFromXib() {
+    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func loadImage() -&gt; UIImage{
+    let image = UIImage(named: MyFrameworkStr + &quot;.png&quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
+    return image!
+}
+
+
+}
+</code></pre><h3 id="分别在真机和模拟下运行，Product下生成，在show-in-finder中打开"><a href="#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开" class="headerlink" title="分别在真机和模拟下运行，Product下生成，在show in finder中打开"></a>分别在真机和模拟下运行，Product下生成，在show in finder中打开</h3><p><img src="https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1" alt=""></p>
+<h3 id="找到xxx-framework目录下的MyFramework文件，如图所示"><a href="#找到xxx-framework目录下的MyFramework文件，如图所示" class="headerlink" title="找到xxx.framework目录下的MyFramework文件，如图所示"></a>找到xxx.framework目录下的MyFramework文件，如图所示</h3><p><img src="https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1" alt=""></p>
+<h3 id="合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径"><a href="#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径" class="headerlink" title="合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)"></a>合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)</h3><p><img src="https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1" alt=""></p>
+<h3 id="合并库中的module也要模拟器module-真机module"><a href="#合并库中的module也要模拟器module-真机module" class="headerlink" title="合并库中的module也要模拟器module + 真机module"></a>合并库中的module也要模拟器module + 真机module</h3><p><img src="https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1" alt=""></p>
+<h2 id="使用库"><a href="#使用库" class="headerlink" title="使用库"></a>使用库</h2><ol>
+<li>手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries</li>
+<li>使用 pod：use_frameworks!</li>
+</ol>
+<h2 id="利用-dynamic-库实时部署"><a href="#利用-dynamic-库实时部署" class="headerlink" title="利用 dynamic 库实时部署"></a>利用 dynamic 库实时部署</h2><pre><code>let libPath = &quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&quot;
+if let bundle = NSBundle(path: libPath) {
+do {
+    try bundle.loadAndReturnError()
+    if let myFramework = NSClassFromString(&quot;MyFramework&quot;) as? MyFramework.Type{
+        myFramework.init().whereIsFrom()
+    }
+} catch {
+    print(&quot;动态库加载失败&quot;)
+}
+}
+</code></pre><h1 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在Terminal输入以下安装命令</p>
+<pre><code>$ sudo gem install cocoapods
+</code></pre><p>出现以下报错</p>
+<pre><code>You don&apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
+</code></pre><p>再Terminal输入以下命令</p>
+<pre><code>$ sudo gem update
+</code></pre><p>还是出现以下报错</p>
+<pre><code>Operation not permitted - /usr/bin/xcodeproj
+</code></pre><p>参考官方文档<a href="https://github.com/CocoaPods/CocoaPods/issues/3692" target="_blank" rel="external">Operation not permitted</a>输入以下命令，成功</p>
+<pre><code>$ sudo gem install -n /usr/local/bin cocoapods
+</code></pre><h2 id="CocoaPods基础知识-—-使用步骤"><a href="#CocoaPods基础知识-—-使用步骤" class="headerlink" title="CocoaPods基础知识 — 使用步骤"></a>CocoaPods基础知识 — 使用步骤</h2><ol>
+<li>创建或打开 Xcode 项目</li>
+<li>命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)</li>
+<li>使用 pod init 创建 Podfile</li>
+<li>pod search Alamofire </li>
+<li>修改 Podfile</li>
+<li>pod install</li>
+<li>打开 pod 创建的 xcworkspace</li>
+</ol>
+<h2 id="CocoaPods基础知识-—-Podfile"><a href="#CocoaPods基础知识-—-Podfile" class="headerlink" title="CocoaPods基础知识 — Podfile"></a>CocoaPods基础知识 — Podfile</h2><pre><code>platform : ios &apos;9.0&apos;
+use_frameworks! (swift下必须使用)
+inhibit_all_warnings! (隐藏所有报错信息)
+target  &apos;PodTest&apos; do
+    pod &apos;AFNetworking&apos;,  &apos;~&gt; 3.0&apos;
+    pod &apos;FBSDKCoreKit&apos;, &apos;~&gt; 4.9&apos;
+end
+</code></pre><h2 id="Podfile-lock"><a href="#Podfile-lock" class="headerlink" title="Podfile.lock"></a>Podfile.lock</h2><ol>
+<li>第一次 pod install 时生成记录每个 Pod 版本</li>
+<li>Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本</li>
+<li>多人协作时防止第三方库升级时造成版本不一致</li>
+</ol>
+<h2 id="pod-install-和-pod-update"><a href="#pod-install-和-pod-update" class="headerlink" title="pod install 和 pod update"></a>pod install 和 pod update</h2><ol>
+<li>pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods</li>
+<li>pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本</li>
+<li>使用 pod update podName 来更新指定 pod 的版本</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/02/GCD编程/" itemprop="url">
                   GCD编程
                 </a>
@@ -1418,186 +1635,6 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/24/美食台系列/" itemprop="url">
-                  美食台系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-24T21:01:05+10:00" content="2016-07-24">
-              2016-07-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/情感杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">情感杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/24/美食台系列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/美食台系列/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="五花肉"><a href="#五花肉" class="headerlink" title="五花肉"></a>五花肉</h1><h2 id="蒜泥白肉"><a href="#蒜泥白肉" class="headerlink" title="蒜泥白肉"></a>蒜泥白肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/8bIf4ESH1HU" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="回锅肉"><a href="#回锅肉" class="headerlink" title="回锅肉"></a>回锅肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/bn5oQLbVCkU" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="盐煎肉"><a href="#盐煎肉" class="headerlink" title="盐煎肉"></a>盐煎肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/bn5oQLbVCkU" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="滷肉飯"><a href="#滷肉飯" class="headerlink" title="滷肉飯"></a>滷肉飯</h2><div class="video-container"><iframe src="//www.youtube.com/embed/cVVY9vSWoTw" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="糖醋丸子"><a href="#糖醋丸子" class="headerlink" title="糖醋丸子"></a>糖醋丸子</h2><div class="video-container"><iframe src="//www.youtube.com/embed/o4guUX24gLY" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="脆漿魚露炒豬肉"><a href="#脆漿魚露炒豬肉" class="headerlink" title="脆漿魚露炒豬肉"></a>脆漿魚露炒豬肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/Cdr0n9LhW5Q" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="猪里脊肉"><a href="#猪里脊肉" class="headerlink" title="猪里脊肉"></a>猪里脊肉</h1><h2 id="京酱肉丝"><a href="#京酱肉丝" class="headerlink" title="京酱肉丝"></a>京酱肉丝</h2><div class="video-container"><iframe src="//www.youtube.com/embed/3LIRFpkMGss" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="自制肉松"><a href="#自制肉松" class="headerlink" title="自制肉松"></a>自制肉松</h2><div class="video-container"><iframe src="//www.youtube.com/embed/Ul8y6OI3qdQ" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="魚香肉絲"><a href="#魚香肉絲" class="headerlink" title="魚香肉絲"></a>魚香肉絲</h2><div class="video-container"><iframe src="//www.youtube.com/embed/R8GhfvkGSg4" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="排骨"><a href="#排骨" class="headerlink" title="排骨"></a>排骨</h1><h2 id="豆瓣排骨"><a href="#豆瓣排骨" class="headerlink" title="豆瓣排骨"></a>豆瓣排骨</h2><div class="video-container"><iframe src="//www.youtube.com/embed/pXPLgTFzdjc" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="茄汁排骨"><a href="#茄汁排骨" class="headerlink" title="茄汁排骨"></a>茄汁排骨</h2><div class="video-container"><iframe src="//www.youtube.com/embed/4mixwX4ZnQk" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="可乐猪手"><a href="#可乐猪手" class="headerlink" title="可乐猪手"></a>可乐猪手</h2><div class="video-container"><iframe src="//www.youtube.com/embed/6eDfWxjFstw" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="羊肉"><a href="#羊肉" class="headerlink" title="羊肉"></a>羊肉</h1><h2 id="羊肉抓飯"><a href="#羊肉抓飯" class="headerlink" title="羊肉抓飯"></a>羊肉抓飯</h2><div class="video-container"><iframe src="//www.youtube.com/embed/xy2wOHLlNw4" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="牛"><a href="#牛" class="headerlink" title="牛"></a>牛</h1><h2 id="夫妻肺片"><a href="#夫妻肺片" class="headerlink" title="夫妻肺片"></a>夫妻肺片</h2><div class="video-container"><iframe src="//www.youtube.com/embed/J3m10Rtr93E" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="干炒牛河"><a href="#干炒牛河" class="headerlink" title="干炒牛河"></a>干炒牛河</h2><div class="video-container"><iframe src="//www.youtube.com/embed/zmLqnJ7aCxc" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="果味醬牛肉"><a href="#果味醬牛肉" class="headerlink" title="果味醬牛肉"></a>果味醬牛肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/WUchAc1EMqM" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="牛肉醬"><a href="#牛肉醬" class="headerlink" title="牛肉醬"></a>牛肉醬</h2><div class="video-container"><iframe src="//www.youtube.com/embed/FjGooH5ujks" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="乾拌牛肉"><a href="#乾拌牛肉" class="headerlink" title="乾拌牛肉"></a>乾拌牛肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/PZYfOp20eqA" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="酸湯肥牛"><a href="#酸湯肥牛" class="headerlink" title="酸湯肥牛"></a>酸湯肥牛</h2><div class="video-container"><iframe src="//www.youtube.com/embed/8SlM9nacW0g" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="香辣牛肉"><a href="#香辣牛肉" class="headerlink" title="香辣牛肉"></a>香辣牛肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/9UAiNu7-FSs" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="紅燴牛肉"><a href="#紅燴牛肉" class="headerlink" title="紅燴牛肉"></a>紅燴牛肉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/ztLroK642yE" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="黑椒牛肉粒"><a href="#黑椒牛肉粒" class="headerlink" title="黑椒牛肉粒"></a>黑椒牛肉粒</h2><div class="video-container"><iframe src="//www.youtube.com/embed/IyRErvUbRD0" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="鸡"><a href="#鸡" class="headerlink" title="鸡"></a>鸡</h1><h2 id="泡椒鸡杂"><a href="#泡椒鸡杂" class="headerlink" title="泡椒鸡杂"></a>泡椒鸡杂</h2><div class="video-container"><iframe src="//www.youtube.com/embed/k-WVBevQ--0" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="越式手撕雞"><a href="#越式手撕雞" class="headerlink" title="越式手撕雞"></a>越式手撕雞</h2><div class="video-container"><iframe src="//www.youtube.com/embed/z2tRhtuZ35g" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="大盤雞"><a href="#大盤雞" class="headerlink" title="大盤雞"></a>大盤雞</h2><div class="video-container"><iframe src="//www.youtube.com/embed/xXRWhkPEInA" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="手撕椒麻雞"><a href="#手撕椒麻雞" class="headerlink" title="手撕椒麻雞"></a>手撕椒麻雞</h2><div class="video-container"><iframe src="//www.youtube.com/embed/JlZfDRQT7rU" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="宮保雞丁"><a href="#宮保雞丁" class="headerlink" title="宮保雞丁"></a>宮保雞丁</h2><div class="video-container"><iframe src="//www.youtube.com/embed/1dmVEzyM39Y" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="贵州辣子鸡"><a href="#贵州辣子鸡" class="headerlink" title="贵州辣子鸡"></a>贵州辣子鸡</h2><div class="video-container"><iframe src="//www.youtube.com/embed/dH5vRoXrcYA" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="胡椒豬肚雞"><a href="#胡椒豬肚雞" class="headerlink" title="胡椒豬肚雞"></a>胡椒豬肚雞</h2><div class="video-container"><iframe src="//www.youtube.com/embed/9dzS38rbW-U" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="鱼"><a href="#鱼" class="headerlink" title="鱼"></a>鱼</h1><h2 id="照烧三文鱼"><a href="#照烧三文鱼" class="headerlink" title="照烧三文鱼"></a>照烧三文鱼</h2><div class="video-container"><iframe src="//www.youtube.com/embed/aRusvwikzjI" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="糟溜鱼片"><a href="#糟溜鱼片" class="headerlink" title="糟溜鱼片"></a>糟溜鱼片</h2><div class="video-container"><iframe src="//www.youtube.com/embed/mFUx_lwX-Zg" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="和風秋刀魚"><a href="#和風秋刀魚" class="headerlink" title="和風秋刀魚"></a>和風秋刀魚</h2><div class="video-container"><iframe src="//www.youtube.com/embed/7ec-s_ZHWP0" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="豆醬燜魚"><a href="#豆醬燜魚" class="headerlink" title="豆醬燜魚"></a>豆醬燜魚</h2><div class="video-container"><iframe src="//www.youtube.com/embed/tGtGYw3quGc" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="豆瓣鯽魚"><a href="#豆瓣鯽魚" class="headerlink" title="豆瓣鯽魚"></a>豆瓣鯽魚</h2><div class="video-container"><iframe src="//www.youtube.com/embed/azlXWCGajr8" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="烤三文魚茶泡飯"><a href="#烤三文魚茶泡飯" class="headerlink" title="烤三文魚茶泡飯"></a>烤三文魚茶泡飯</h2><div class="video-container"><iframe src="//www.youtube.com/embed/ZPp0RO-LNo8" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="粵式蒸鱼"><a href="#粵式蒸鱼" class="headerlink" title="粵式蒸鱼"></a>粵式蒸鱼</h2><div class="video-container"><iframe src="//www.youtube.com/embed/vlI94p6_-GY" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="蛋"><a href="#蛋" class="headerlink" title="蛋"></a>蛋</h1><h2 id="银鱼跑蛋"><a href="#银鱼跑蛋" class="headerlink" title="银鱼跑蛋"></a>银鱼跑蛋</h2><div class="video-container"><iframe src="//www.youtube.com/embed/V2Sc9vIkXwg" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="兩種滑蛋"><a href="#兩種滑蛋" class="headerlink" title="兩種滑蛋"></a>兩種滑蛋</h2><div class="video-container"><iframe src="//www.youtube.com/embed/xgfxqK5Ndeg" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="海鲜"><a href="#海鲜" class="headerlink" title="海鲜"></a>海鲜</h1><h2 id="6種常見海鮮的處理方法"><a href="#6種常見海鮮的處理方法" class="headerlink" title="6種常見海鮮的處理方法"></a>6種常見海鮮的處理方法</h2><div class="video-container"><iframe src="//www.youtube.com/embed/P4z1lP55-E8" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="沙薑爆炒八爪魚"><a href="#沙薑爆炒八爪魚" class="headerlink" title="沙薑爆炒八爪魚"></a>沙薑爆炒八爪魚</h2><div class="video-container"><iframe src="//www.youtube.com/embed/qr9TsIjtRW8" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="白灼蝦"><a href="#白灼蝦" class="headerlink" title="白灼蝦"></a>白灼蝦</h2><div class="video-container"><iframe src="//www.youtube.com/embed/XwIvZp3loBs" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="檸檬葉香辣蝦"><a href="#檸檬葉香辣蝦" class="headerlink" title="檸檬葉香辣蝦"></a>檸檬葉香辣蝦</h2><div class="video-container"><iframe src="//www.youtube.com/embed/k3C6Kbpz5RQ" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="海鲜都好烧"><a href="#海鲜都好烧" class="headerlink" title="海鲜都好烧"></a>海鲜都好烧</h2><div class="video-container"><iframe src="//www.youtube.com/embed/b8ds0IaXPwQ" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="酒香蛤蜊"><a href="#酒香蛤蜊" class="headerlink" title="酒香蛤蜊"></a>酒香蛤蜊</h2><div class="video-container"><iframe src="//www.youtube.com/embed/Ox-oJhmzbe0" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="瓜"><a href="#瓜" class="headerlink" title="瓜"></a>瓜</h1><h2 id="苦瓜两吃"><a href="#苦瓜两吃" class="headerlink" title="苦瓜两吃"></a>苦瓜两吃</h2><div class="video-container"><iframe src="//www.youtube.com/embed/jn4tOFocYY8" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="豆及豆腐"><a href="#豆及豆腐" class="headerlink" title="豆及豆腐"></a>豆及豆腐</h1><h2 id="乾煸四季豆"><a href="#乾煸四季豆" class="headerlink" title="乾煸四季豆"></a>乾煸四季豆</h2><div class="video-container"><iframe src="//www.youtube.com/embed/0Mrnvcejhnc" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="鍋塌豆腐"><a href="#鍋塌豆腐" class="headerlink" title="鍋塌豆腐"></a>鍋塌豆腐</h2><div class="video-container"><iframe src="//www.youtube.com/embed/E8avdm5B4Wg" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="客家釀豆腐"><a href="#客家釀豆腐" class="headerlink" title="客家釀豆腐"></a>客家釀豆腐</h2><div class="video-container"><iframe src="//www.youtube.com/embed/uoRUZfEKpH4" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="面"><a href="#面" class="headerlink" title="面"></a>面</h1><h2 id="香辣涼麵"><a href="#香辣涼麵" class="headerlink" title="香辣涼麵"></a>香辣涼麵</h2><div class="video-container"><iframe src="//www.youtube.com/embed/BxyQBjxYa4U" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="西兰花明太子意面"><a href="#西兰花明太子意面" class="headerlink" title="西兰花明太子意面"></a>西兰花明太子意面</h2><div class="video-container"><iframe src="//www.youtube.com/embed/cLrIEpIqLMI" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="青红意面酱"><a href="#青红意面酱" class="headerlink" title="青红意面酱"></a>青红意面酱</h2><div class="video-container"><iframe src="//www.youtube.com/embed/u5jQal7e4Y0" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="黑白意面酱"><a href="#黑白意面酱" class="headerlink" title="黑白意面酱"></a>黑白意面酱</h2><div class="video-container"><iframe src="//www.youtube.com/embed/v75P5GHuUm0" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="熬葱油"><a href="#熬葱油" class="headerlink" title="熬葱油"></a>熬葱油</h2><div class="video-container"><iframe src="//www.youtube.com/embed/UGwgbCzZmg8" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="酸辣粉"><a href="#酸辣粉" class="headerlink" title="酸辣粉"></a>酸辣粉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/4SKF1to5upM" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="肉末粉絲煲"><a href="#肉末粉絲煲" class="headerlink" title="肉末粉絲煲"></a>肉末粉絲煲</h2><div class="video-container"><iframe src="//www.youtube.com/embed/RiSinaoi01c" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="色拉及其他素食"><a href="#色拉及其他素食" class="headerlink" title="色拉及其他素食"></a>色拉及其他素食</h1><h2 id="三款果蔬色拉"><a href="#三款果蔬色拉" class="headerlink" title="三款果蔬色拉"></a>三款果蔬色拉</h2><div class="video-container"><iframe src="//www.youtube.com/embed/XedAXkulCVs" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="四喜烤麩"><a href="#四喜烤麩" class="headerlink" title="四喜烤麩"></a>四喜烤麩</h2><div class="video-container"><iframe src="//www.youtube.com/embed/aWuAKJSivlk" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="燒椒茄子"><a href="#燒椒茄子" class="headerlink" title="燒椒茄子"></a>燒椒茄子</h2><div class="video-container"><iframe src="//www.youtube.com/embed/1ePZVtj1O3c" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="蔬菜的8種切法"><a href="#蔬菜的8種切法" class="headerlink" title="蔬菜的8種切法"></a>蔬菜的8種切法</h2><div class="video-container"><iframe src="//www.youtube.com/embed/LwJuEvg75pk" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="揚州炒飯"><a href="#揚州炒飯" class="headerlink" title="揚州炒飯"></a>揚州炒飯</h2><div class="video-container"><iframe src="//www.youtube.com/embed/jv72wu0yt_s" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="隔夜漬菜"><a href="#隔夜漬菜" class="headerlink" title="隔夜漬菜"></a>隔夜漬菜</h2><div class="video-container"><iframe src="//www.youtube.com/embed/nZl6jPx1LQE" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="牛油果三吃"><a href="#牛油果三吃" class="headerlink" title="牛油果三吃"></a>牛油果三吃</h2><div class="video-container"><iframe src="//www.youtube.com/embed/I9MCZRU_oSE" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="干锅花菜"><a href="#干锅花菜" class="headerlink" title="干锅花菜"></a>干锅花菜</h2><div class="video-container"><iframe src="//www.youtube.com/embed/2TURi0VZJj0" frameborder="0" allowfullscreen></iframe></div>
-<h2 id="手撕包菜"><a href="#手撕包菜" class="headerlink" title="手撕包菜"></a>手撕包菜</h2><div class="video-container"><iframe src="//www.youtube.com/embed/G25Iw5tGvK4" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="调味料"><a href="#调味料" class="headerlink" title="调味料"></a>调味料</h1><h2 id="自製三種調味醬油"><a href="#自製三種調味醬油" class="headerlink" title="自製三種調味醬油"></a>自製三種調味醬油</h2><div class="video-container"><iframe src="//www.youtube.com/embed/7-6xOFOBxSU" frameborder="0" allowfullscreen></iframe></div>
-<h1 id="高级菜品"><a href="#高级菜品" class="headerlink" title="高级菜品"></a>高级菜品</h1><h2 id="扬州狮子头"><a href="#扬州狮子头" class="headerlink" title="扬州狮子头"></a>扬州狮子头</h2><div class="video-container"><iframe src="//www.youtube.com/embed/EJGK8GXkjpI" frameborder="0" allowfullscreen></iframe></div>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1644,7 +1681,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">93</span>
+              <span class="site-state-item-count">94</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
