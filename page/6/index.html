@@ -238,6 +238,352 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/02/iOS设计模式-生成器/" itemprop="url">
+                  iOS设计模式-生成器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T10:58:50+10:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/iOS设计模式-生成器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/02/iOS设计模式-生成器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="生成器与建造房子"><a href="#生成器与建造房子" class="headerlink" title="生成器与建造房子"></a>生成器与建造房子</h1><ol>
+<li>起房子的步骤可以对应三个抽象类:打地基类 / 建造类 / 装修类</li>
+<li>建造过程的模块化处理,不同模块找不同的承包商</li>
+<li>生成器的优点:你不需要知道细节 / 模块化处理 / 很好的组合特性</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/7zijdxlvxzcdt1e/iOS_designPatternGenerator01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/tspvv6b2cp1mwll/iOS_designPatternGenerator02.png?dl=1" alt=""></p>
+<h1 id="生成器模式实例"><a href="#生成器模式实例" class="headerlink" title="生成器模式实例"></a>生成器模式实例</h1><p>需要注意的是，这里有两个协议需要具体承包商来遵循</p>
+<ol>
+<li>总协议.对所有模块承包商的要求 (BuilderProtocol)</li>
+<li>类别协议。分别对各自类别的承包商要求 (AbstractPartOne , AbstractPartTwo)</li>
+</ol>
+<p>AbstractPartOne</p>
+<pre><code>@protocol AbstractPartOne &lt;NSObject&gt;
+@required
+- (void)partOneBuilder;
+@end
+</code></pre><p>AbstractPartTwo</p>
+<pre><code>@protocol AbstractPartTwo &lt;NSObject&gt;
+@required
+- (void)buildTree;
+- (void)buildSoureWithNumber;
+@end
+</code></pre><p>BuilderProtocol</p>
+<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
+
+@required
+- (id)build;
+@end
+</code></pre><p>Builder</p>
+<pre><code>@interface Builder : NSObject
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartTwo&gt; partTwo;
+
+- (id)builderAll;
+
+@end
+
+@implementation Builder
+
+- (id)builderAll {
+
+Builder *builder = [[[self class] alloc] init];
+[builder.partOne build];
+[builder.partOne build];
+
+return builder;
+}
+
+@end
+</code></pre><h1 id="生成器与生产汽车"><a href="#生成器与生产汽车" class="headerlink" title="生成器与生产汽车"></a>生成器与生产汽车</h1><p><img src="https://www.dropbox.com/s/kmxignd37yw24yp/iOS_designPatternGenerator03.png?dl=1" alt=""></p>
+<h2 id="装配车间和组装产品-总指挥"><a href="#装配车间和组装产品-总指挥" class="headerlink" title="装配车间和组装产品(总指挥)"></a>装配车间和组装产品(总指挥)</h2><p>BuilderProtocol （这是对所有承包商的要求）</p>
+<pre><code>@protocol BuilderProtocol &lt;NSObject&gt;
+
+@required
+- (id)build;
+
+@end
+</code></pre><p>Builder</p>
+<pre><code>@interface Builder : NSObject
+
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractEngine&gt; engine;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractWheels&gt; wheels;
+@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractDoor&gt;   door;
+@property (nonatomic, strong) NSDictionary *productsInfo;
+
+- (void)buildAllParts;
+
+@end
+
+@implementation Builder
+
+- (void)buildAllParts {
+
+// 创建所有部件
+[self.engine build];
+[self.wheels build];
+[self.door build];
+
+NSMutableDictionary *dataDic = [NSMutableDictionary dictionary];
+
+// 组装产品
+dataDic[@&quot;engine&quot;] = [self.engine infomation];
+dataDic[@&quot;wheels&quot;] = [self.wheels infomation];
+dataDic[@&quot;door&quot;]   = [self.door infomation];
+
+self.productsInfo = dataDic;
+}
+
+@end
+</code></pre><h2 id="设计各个部件的生成器-模块承包"><a href="#设计各个部件的生成器-模块承包" class="headerlink" title="设计各个部件的生成器(模块承包)"></a>设计各个部件的生成器(模块承包)</h2><p>AbstractDoor （对门模块承包商的要求）</p>
+<pre><code>@protocol AbstractDoor &lt;NSObject&gt;
+@required
+- (void)doorColor:(UIColor *)color;
+- (NSString *)infomation;
+@end
+</code></pre><p>AbstractEngine （对引擎模块承包商的要求）</p>
+<pre><code>@protocol AbstractEngine &lt;NSObject&gt;
+
+@required
+- (void)engineScale:(CGFloat)scale;
+- (void)engineWeight:(CGFloat)kg;
+- (NSString *)infomation;
+
+@end
+</code></pre><p>AbstractWheels （对轮子模块承包商的要求）</p>
+<pre><code>@protocol AbstractWheels &lt;NSObject&gt;
+
+@required
+- (void)wheelsNumber:(NSNumber *)number;
+- (NSString *)infomation;
+
+@end
+</code></pre><h2 id="产品制造-具体施工队"><a href="#产品制造-具体施工队" class="headerlink" title="产品制造(具体施工队)"></a>产品制造(具体施工队)</h2><p>Door </p>
+<pre><code>@interface Door : NSObject &lt;AbstractDoor, BuilderProtocol&gt;
+
+@end
+
+- (void)doorColor:(UIColor *)color {
+// todo
+}
+
+- (NSString *)infomation {
+return @&quot;X1-door, color : red&quot;;
+}
+
+- (id)build {
+// todo
+return nil;
+}
+@end
+</code></pre><p>Engine</p>
+<pre><code>@interface Engine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
+
+@end
+
+@implementation Engine
+
+- (void)engineScale:(CGFloat)scale {
+// todo
+}
+
+- (void)engineWeight:(CGFloat)kg {
+// todo
+}
+
+- (NSString *)infomation {
+return @&quot;X1-Engine, scale : 10, weight : 100&quot;;
+}
+
+- (id)build {
+// todo   
+return nil;
+}
+@end
+</code></pre><p>Wheels</p>
+<pre><code>@interface Wheels : NSObject &lt;BuilderProtocol, AbstractWheels&gt;
+
+@end
+
+@implementation Wheels
+
+- (void)wheelsNumber:(NSNumber *)number {
+// todo
+}
+
+- (NSString *)infomation {
+return @&quot;X1-wheels, number : 4&quot;;
+}
+
+- (id)build {  
+// todo  
+return nil;
+}
+
+@end
+</code></pre><p>YEngine(替换Engine)</p>
+<pre><code>@interface YEngine : NSObject &lt;AbstractEngine, BuilderProtocol&gt;
+
+@end
+
+@implementation YEngine
+
+- (void)engineScale:(CGFloat)scale {    
+// todo
+}
+
+- (void)engineWeight:(CGFloat)kg {   
+// todo
+}
+
+- (NSString *)infomation {  
+return @&quot;Y-Engine, scale : 20, weight : 58&quot;;
+}
+
+- (id)build {   
+// todo   
+return nil;
+}
+
+@end
+</code></pre><h2 id="开始生产"><a href="#开始生产" class="headerlink" title="开始生产"></a>开始生产</h2><p>ViewController</p>
+<pre><code>@interface ViewController ()
+
+@property (nonatomic, strong) Builder *builder;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建组装者
+self.builder = [[Builder alloc] init];
+
+// 指定承包商
+self.builder.engine = [[YEngine alloc] init];
+self.builder.wheels = [[Wheels alloc] init];
+self.builder.door   = [[Door alloc] init];
+
+// 构建所有的部件
+[self.builder buildAllParts];
+
+// 获取产品
+NSLog(@&quot;%@&quot;, self.builder.productsInfo);
+}
+
+@end
+</code></pre><h1 id="什么时候用protocol"><a href="#什么时候用protocol" class="headerlink" title="什么时候用protocol"></a>什么时候用protocol</h1><p>1.对持有的属性有一定的要求，比如要求该属性必须实现某种方法。这时可以要求它遵循一个或多个协议，比如:</p>
+<pre><code>@property (nonatomic, strong) id &lt;BuilderProtocol, AbstractPartOne&gt; partOne;
+</code></pre><p>2.对传入的值对象有一定的要求，比如比如要求它必须实现某种方法或返回某种类型。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/01/iOS设计模式-备忘录/" itemprop="url">
                   iOS设计模式-备忘录
                 </a>
@@ -1268,356 +1614,6 @@ pspSystem.implementor = [[PSPImplementor alloc] init];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/29/iOS设计模式-工厂/" itemprop="url">
-                  iOS设计模式-工厂
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-29T15:20:41+10:00" content="2016-05-29">
-              2016-05-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/29/iOS设计模式-工厂/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/iOS设计模式-工厂/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="工厂"><a href="#工厂" class="headerlink" title="工厂"></a>工厂</h1><p>工厂</p>
-<ol>
-<li>制造产品</li>
-<li>将制造工艺进行了封装</li>
-</ol>
-<p>客户</p>
-<ol>
-<li>不参与手机制造流程</li>
-<li>客户需要使用固定的产品(客户提出需求)</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/dxf95fa27dhyi4h/iOS_designPatternFactory04.png?dl=1" alt=""></p>
-<h1 id="简单工厂使用场景"><a href="#简单工厂使用场景" class="headerlink" title="简单工厂使用场景"></a>简单工厂使用场景</h1><ol>
-<li>简化生产流程</li>
-<li>隔离生产产品的细节</li>
-<li>不同类型的产品之间有着一些共同的功能</li>
-<li>一个具体的工厂,工厂自身就是一个具体的对象，是实体类，不是抽象类,是个便利构造器</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/a8j8lvoeuj8fuby/iOS_designPatternFactory01.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/gl943pzs6rkek7r/iOS_designPatternFactory02.png?dl=1" alt=""></p>
-<h2 id="产品协议规范同一接口"><a href="#产品协议规范同一接口" class="headerlink" title="产品协议规范同一接口"></a>产品协议规范同一接口</h2><p>PhoneProtocol</p>
-<pre><code>@protocol PhoneProtocol &lt;NSObject&gt;
-
-- (void)phoneCall;
-
-- (void)sendMessage;
-</code></pre><h2 id="产品基类"><a href="#产品基类" class="headerlink" title="产品基类"></a>产品基类</h2><p>BaseDevie</p>
-<pre><code>@interface BaseDevie : NSObject &lt;PhoneProtocol&gt;
-
-- (void)phoneCall {
-}
-
-- (void)sendMessage {
-}
-</code></pre><h2 id="具体产品"><a href="#具体产品" class="headerlink" title="具体产品"></a>具体产品</h2><p>AndroidDevice</p>
-<pre><code>@interface AndroidDevice : BaseDevie
-
-- (void)phoneCall {
-NSLog(@&quot;Android phoneCall&quot;);
-}
-
-- (void)sendMessage {   
-NSLog(@&quot;Android sendMessage&quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)customTheme {
-NSLog(@&quot;Android customTheme&quot;);
-}
-</code></pre><p>iPhoneDevice</p>
-<pre><code>@interface iPhoneDevice : BaseDevie
-
-- (void)phoneCall {
-NSLog(@&quot;iPhone phoneCall&quot;);
-}
-
-- (void)sendMessage {   
-NSLog(@&quot;iPhone sendMessage&quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)fingerprintIndetification {
-NSLog(@&quot;iPhone fingerprintIndetification&quot;);
-}
-</code></pre><p>NokiaDevice</p>
-<pre><code>@interface NokiaDevice : BaseDevie
-
-- (void)phoneCall { 
-NSLog(@&quot;Nokia phoneCall&quot;);
-}
-
-- (void)sendMessage {
-NSLog(@&quot;Nokia sendMessage&quot;);
-}
-
-//特有功能，需要写在.h文件里
-- (void)knockWalnut {
-NSLog(@&quot;Nokia knockWalnut&quot;);
-}
-</code></pre><h2 id="工厂-1"><a href="#工厂-1" class="headerlink" title="工厂"></a>工厂</h2><p>DeviceFactory</p>
-<pre><code>typedef enum : NSUInteger {
-kiPhone   = 0x11,
-kAndroid,
-kNokia,
-
-} EDevieType;
-
-//根据用户提交的指令创建出具体的手机
-+ (BaseDevie &lt;PhoneProtocol&gt; *)deviceFactoryWithDevieType:(EDevieType)type {
-
-BaseDevie &lt;PhoneProtocol&gt; *device = nil;  
-
-if (type == kiPhone) { 
-
-    device = [[iPhoneDevice alloc] init];
-
-}  else if (type == kAndroid) {
-
-    device = [[AndroidDevice alloc] init];
-
-}  else if (type == kNokia) {
-
-    device = [[NokiaDevice alloc] init];
-
-}
-
-return device;
-}
-</code></pre><h2 id="工厂的使用"><a href="#工厂的使用" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 工厂中创建出具体产品，如果仅仅是使用通用的功能sendMsg,phoneCall，类型为BaseDevice也可以
-
-iPhoneDevice *iPhone = (iPhoneDevice *)[DeviceFactory deviceFactoryWithDevieType:kiPhone];
-
-// 使用产品的功能
-[iPhone fingerprintIndetification];
-}
-</code></pre><h1 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h1><ol>
-<li>工厂是抽象类，需要实例化子类</li>
-<li>抽象工厂使用比简单工厂更加灵活，因为可以动态的切换工厂</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/wbropkugqsucx15/iOS_designPatternFactory03.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/e2o92sf1ud0cvbp/iOS_designPatternFactory05.png?dl=1" alt=""></p>
-<h2 id="产品-Phone"><a href="#产品-Phone" class="headerlink" title="产品 Phone"></a>产品 Phone</h2><p>Phone基类</p>
-<pre><code>@interface BasePhone : NSObject
-
-@end
-</code></pre><p>Phone子类之Android</p>
-<pre><code>@interface Android : BasePhone
-
-@end
-</code></pre><p>Phone子类之iPhone</p>
-<pre><code>@interface iPhone : BasePhone
-
-@end
-</code></pre><h2 id="产品-Watch"><a href="#产品-Watch" class="headerlink" title="产品 Watch"></a>产品 Watch</h2><p>Whatch产品基类</p>
-<pre><code>@interface BaseWatch : NSObject
-
-@end
-</code></pre><p>Whatch产品子类之iWatch</p>
-<pre><code>@interface iWatch : BaseWatch
-
-@end
-</code></pre><p>Whatch产品子类之AndroidWatch</p>
-<pre><code>@interface AndroidWatch : BaseWatch
-
-@end
-</code></pre><h2 id="工厂-2"><a href="#工厂-2" class="headerlink" title="工厂"></a>工厂</h2><p>工厂基类</p>
-<pre><code>@implementation BaseFactory
-
-- (BasePhone *)createPhone {
-
-return nil;
-}
-
-- (BaseWatch *)createWatch {
-
-return nil;
-}
-</code></pre><p>工厂子类Apple</p>
-<pre><code>@interface AppleFactory : BaseFactory
-
-- (BasePhone *)createPhone {
-
-return [[iPhone alloc] init];
-}
-
-- (BaseWatch *)createWatch {
-
-return [[iWatch alloc] init];
-}
-</code></pre><p>工厂子类Google</p>
-<pre><code>@interface GoogleFactory : BaseFactory
-
-- (BasePhone *)createPhone {
-
-return [[Android alloc] init];
-}
-
-- (BaseWatch *)createWatch {
-
-return [[AndroidWatch alloc] init];
-}
-</code></pre><h2 id="创建具体工厂"><a href="#创建具体工厂" class="headerlink" title="创建具体工厂"></a>创建具体工厂</h2><p>FactoryManager</p>
-<pre><code>typedef enum : NSUInteger {
-
-kApple   = 0x11,
-kGoogle,
-
-} EFactoryType;
-
-@interface FactoryManager : NSObject
-
-+ (BaseFactory *)factoryWithBrand:(EFactoryType)factoryType {
-
-BaseFactory *factory = nil;
-
-if (factoryType == kApple) {
-
-    factory = [[AppleFactory alloc] init];
-
-} else if (factoryType == kGoogle) {
-
-    factory = [[GoogleFactory alloc] init];
-}
-
-return factory;
-}
-</code></pre><h2 id="工厂的使用-1"><a href="#工厂的使用-1" class="headerlink" title="工厂的使用"></a>工厂的使用</h2><pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 获取工厂
-BaseFactory *factory = [FactoryManager factoryWithBrand:kGoogle];
-
-// 创建商品
-BasePhone *phone = [factory createPhone];
-BaseWatch *watch = [factory createWatch];
-
-NSLog(@&quot;%@ %@&quot;, phone, watch);
-}
-</code></pre><h1 id="框架级别的工厂类-NSNumber"><a href="#框架级别的工厂类-NSNumber" class="headerlink" title="框架级别的工厂类:NSNumber"></a>框架级别的工厂类:NSNumber</h1><p>因为NSNumber是抽象类，所以以下代码结果为null，NSNumber是一个抽象类，其父类NSValue也是</p>
-<pre><code>NSLog(@&quot;%@&quot;, [[NSNumber alloc] init]);
-</code></pre><p>根据客户需求，制造出相关工厂</p>
-<pre><code>NSNumber *number     = [NSNumber numberWithInt:100];
-NSNumber *floatValue = [NSNumber numberWithFloat:100.f];
-</code></pre><p>以下结果都为d,产品可以互相转换，因为NSNumber只处理数值型的数据.这是和普通抽象工厂不同的地方</p>
-<pre><code>NSLog(@&quot;%c&quot;, [number charValue]);
-NSLog(@&quot;%c&quot;, [floatValue charValue]);
-</code></pre><h1 id="枚举类型的定义"><a href="#枚举类型的定义" class="headerlink" title="枚举类型的定义"></a>枚举类型的定义</h1><p>使用枚举定义手机的类型，注意起名字时，用大写的E+名字 = EDevieType</p>
-<pre><code>typedef enum : NSUInteger {
-kiPhone   = 0x11,
-kAndroid,
-kNokia,
-
-} EDevieType;    
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1664,7 +1660,7 @@ kNokia,
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-count">95</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-11T09:47:52.000Z</updated>
+  <updated>2016-08-12T06:16:30.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS项目22.瀑布流</title>
+    <link href="http://jackliu17.github.io/2016/08/12/iOS%E9%A1%B9%E7%9B%AE22-%E7%80%91%E5%B8%83%E6%B5%81/"/>
+    <id>http://jackliu17.github.io/2016/08/12/iOS项目22-瀑布流/</id>
+    <published>2016-08-12T06:13:38.000Z</published>
+    <updated>2016-08-12T06:16:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS项目21聚合数据_车辆违章查询</title>
@@ -2865,185 +2891,6 @@ NSLog(@&amp;quot;%@&amp;quot;, event.infomation);
       &lt;h1 id=&quot;快递分拣中心&quot;&gt;&lt;a href=&quot;#快递分拣中心&quot; class=&quot;headerlink&quot; title=&quot;快递分拣中心&quot;&gt;&lt;/a&gt;快递分拣中心&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;传送带 —&amp;gt; 线性表&lt;/li&gt;
 &lt;li&gt;包裹   —&amp;gt; 符合某种规范的物品&lt;/li&gt;
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-模板</title>
-    <link href="http://jackliu17.github.io/2016/06/05/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF/"/>
-    <id>http://jackliu17.github.io/2016/06/05/iOS设计模式-模板/</id>
-    <published>2016-06-05T06:12:40.000Z</published>
-    <updated>2016-07-31T05:39:19.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的用QQ，有的用手机        &lt;/li&gt;
-&lt;li&gt;联系朋友，预订酒店，点菜，虽然有差异，但本质上都是按照这三个流程进行，&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1mrxd33ritd8fb7/iOS_designPatternTemplate01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;模板模式特点&quot;&gt;&lt;a href=&quot;#模板模式特点&quot; class=&quot;headerlink&quot; title=&quot;模板模式特点&quot;&gt;&lt;/a&gt;模板模式特点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;过程殊途同归 &lt;/li&gt;
-&lt;li&gt;将共同行为/流程抽象成算法的骨架&lt;/li&gt;
-&lt;li&gt;利用OO的多态，让子类继承重写&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/qt3gp80jv1i85wo/iOS_designPatternTemplate02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Cocoa-框架中用到的模板模式-Override&quot;&gt;&lt;a href=&quot;#Cocoa-框架中用到的模板模式-Override&quot; class=&quot;headerlink&quot; title=&quot;Cocoa 框架中用到的模板模式(Override)&quot;&gt;&lt;/a&gt;Cocoa 框架中用到的模板模式(Override)&lt;/h1&gt;&lt;p&gt;CustomCell&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomCell : UITableViewCell
-
-- (void)setupCell;
-- (void)buildSubView;
-@end
-----------------------------------------
-@implementation CustomCell
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-
-if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-
-    [self setupCell];
-
-    [self buildSubView];
-}
-
-return self;
-}
-
-- (void)setupCell {
-
-}
-
-- (void)buildSubView {
-
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ModelCell&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ModelCell : CustomCell
-
-@end
-
-@implementation ModelCell
-
-- (void)setupCell {
-
-// setup cell.
-}
-
-- (void)buildSubView {
-
-// build subView.
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;游戏从开始到结束的各个阶段详解&quot;&gt;&lt;a href=&quot;#游戏从开始到结束的各个阶段详解&quot; class=&quot;headerlink&quot; title=&quot;游戏从开始到结束的各个阶段详解&quot;&gt;&lt;/a&gt;游戏从开始到结束的各个阶段详解&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;各个阶段的分解&lt;/li&gt;
-&lt;li&gt;将分解出来的阶段模板化    &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Game&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Game : NSObject
-- (void)initGame;
-- (void)pause;
-- (void)save;
-- (void)exitGame;
-- (void)startPlay;
-@end
-
-@implementation Game
-
-- (void)initGame {
-}
-
-- (void)pause {
-}
-
-- (void)save {
-}
-
-- (void)exitGame {
-}
-
-- (void)startPlay {
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Chess&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Chess : Game
-
-@end
-
-@implementation Chess
-
-- (void)initGame {
-
-NSLog(@&amp;quot;init chess game.&amp;quot;);
-}
-
-- (void)pause {
-
-NSLog(@&amp;quot;pasue chess game.&amp;quot;);
-}
-
-- (void)save {
-
-NSLog(@&amp;quot;save chess game.&amp;quot;);
-}
-
-- (void)exitGame {
-
-NSLog(@&amp;quot;exit chess game.&amp;quot;);
-}
-
-- (void)startPlay {
-
-NSLog(@&amp;quot;play chess game.&amp;quot;);
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Football&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Football : Game
-
-@end
-@implementation Football
-
-- (void)initGame {
-
-NSLog(@&amp;quot;init football game.&amp;quot;);
-}
-
-- (void)pause {
-
-NSLog(@&amp;quot;pasue football game.&amp;quot;);
-}
-
-- (void)save {
-
-NSLog(@&amp;quot;save football game.&amp;quot;);
-}
-
-- (void)exitGame {
-
-NSLog(@&amp;quot;exit football game.&amp;quot;);
-}
-
-- (void)startPlay {
-
-NSLog(@&amp;quot;play football game.&amp;quot;);
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;请客吃饭与模板模式&quot;&gt;&lt;a href=&quot;#请客吃饭与模板模式&quot; class=&quot;headerlink&quot; title=&quot;请客吃饭与模板模式&quot;&gt;&lt;/a&gt;请客吃饭与模板模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;张三李四王五，都实现了请客吃饭的流程，但具体实现是不一样的方法，比如有的
     
     </summary>
     

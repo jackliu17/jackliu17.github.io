@@ -238,6 +238,121 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/12/iOS项目22-瀑布流/" itemprop="url">
+                  iOS项目22.瀑布流
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T16:13:38+10:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/iOS项目22-瀑布流/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/12/iOS项目22-瀑布流/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/11/iOS项目21聚合数据-车辆违章查询/" itemprop="url">
                   iOS项目21聚合数据_车辆违章查询
                 </a>
@@ -892,167 +1007,6 @@ private func configureTraitOverrideForSize(size:CGSize) {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/05/Alamofire简介/" itemprop="url">
-                  Alamofire简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-05T11:43:01+10:00" content="2016-08-05">
-              2016-08-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/05/Alamofire简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/05/Alamofire简介/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="iOS中的网络连接方案"><a href="#iOS中的网络连接方案" class="headerlink" title="iOS中的网络连接方案"></a>iOS中的网络连接方案</h1><ol>
-<li>NSURLConnection：用法简单，最古老最经典最直接的一种方案</li>
-<li>NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大</li>
-<li>AFNetworking：简单易用，提供了基本够用的常用功能</li>
-<li>Alamofire：纯Swift网络请求库</li>
-</ol>
-<h1 id="Alamofire响应处理"><a href="#Alamofire响应处理" class="headerlink" title="Alamofire响应处理"></a>Alamofire响应处理</h1><pre><code>Alamofire.request(.GET, &quot;https://httpbin.org/get&quot;, parameters: [&quot;foo&quot;: &quot;bar&quot;])
-.responseJSON { response in
-    print(response.request)  // 初始URL请求
-    print(response.response) // URL响应
-    print(response.data)     // 服务器数据
-    print(response.result)   // 响应序列化的结果
-
-    if let JSON = response.result.value {
-        print(&quot;JSON: \(JSON)&quot;)
-    }
-}
-</code></pre><h1 id="Alamofire-HTTP-Headers"><a href="#Alamofire-HTTP-Headers" class="headerlink" title="Alamofire - HTTP Headers"></a>Alamofire - HTTP Headers</h1><pre><code>let headers = [
-&quot;Authorization&quot;: &quot;Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&quot;,
-&quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;
-]
-
-Alamofire.request(.GET, &quot;https://httpbin.org/get&quot;, headers: headers)
-.responseJSON { response in
-    debugPrint(response)
-}
-</code></pre><h1 id="Alamofire-使用默认的Download-Destination"><a href="#Alamofire-使用默认的Download-Destination" class="headerlink" title="Alamofire 使用默认的Download Destination"></a>Alamofire 使用默认的Download Destination</h1><pre><code>let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
-Alamofire.download(.GET, &quot;https://httpbin.org/stream/100&quot;, destination: destination)
-</code></pre><h1 id="Alamofire-下载失败访问恢复文件"><a href="#Alamofire-下载失败访问恢复文件" class="headerlink" title="Alamofire 下载失败访问恢复文件"></a>Alamofire 下载失败访问恢复文件</h1><pre><code>Alamofire.download(.GET, &quot;https://httpbin.org/stream/100&quot;, destination: destination).response { _, _, data, _ in
-    if let data = data, resumeDataString = NSString(data: data, encoding: NSUTF8StringEncoding) {
-        print(&quot;Resume Data: \(resumeDataString)&quot;)
-    } else {
-        print(&quot;Resume Data was empty&quot;)
-    }
-}
-</code></pre><h1 id="Alamofire-URLStringConvertible"><a href="#Alamofire-URLStringConvertible" class="headerlink" title="Alamofire - URLStringConvertible"></a>Alamofire - URLStringConvertible</h1><pre><code>let string = NSString(string: &quot;https://httpbin.org/post&quot;)
-Alamofire.request(.POST, string)
-
-let URL = NSURL(string: string)!
-Alamofire.request(.POST, URL)
-
-let URLRequest = NSURLRequest(URL: URL)
-Alamofire.request(.POST, URLRequest) // overrides `HTTPMethod` of `URLRequest`
-
-let URLComponents = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true)
-Alamofire.request(.POST, URLComponents)
-</code></pre><h1 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h1><p>Xcode的bug: 从cocoapods导入时，识别不了Alamofire。只要先Run一次，再import Alamofire就可以了</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1099,7 +1053,7 @@ Alamofire.request(.POST, URLComponents)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-count">95</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
