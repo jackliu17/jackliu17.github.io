@@ -238,6 +238,552 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/06/iOS设计模式-责任链/" itemprop="url">
+                  iOS设计模式-责任链
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-06T13:33:31+10:00" content="2016-06-06">
+              2016-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/06/iOS设计模式-责任链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/iOS设计模式-责任链/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="快递分拣中心"><a href="#快递分拣中心" class="headerlink" title="快递分拣中心"></a>快递分拣中心</h1><ol>
+<li>传送带 —&gt; 线性表</li>
+<li>包裹   —&gt; 符合某种规范的物品</li>
+<li>货物种类 —&gt; 特定种类的货物</li>
+</ol>
+<p>特点:提升效率</p>
+<p><img src="https://www.dropbox.com/s/ifhh4d0f2oxy9zh/iOS_designPatternChains01.png?dl=1" alt=""></p>
+<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><p>定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。</p>
+<p>步骤:</p>
+<ol>
+<li>将责任抽象成对象</li>
+<li>将责任对象链接起来</li>
+<li>处理输入的事件</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/usl9cvfj7aaly1m/iOS_designPatternChains02.png?dl=1" alt=""></p>
+<p>ChainProtocol</p>
+<pre><code>protocol ChainProtocol &lt;NSObject&gt;
+
+//设置继任者
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+
+//获取继任者
+- (id &lt;ChainProtocol&gt;)successor;
+
+//处理请求
+- (void)handleRequest:(id)request;
+
+@end
+</code></pre><h1 id="对输入文本进行类别检测"><a href="#对输入文本进行类别检测" class="headerlink" title="对输入文本进行类别检测"></a>对输入文本进行类别检测</h1><ol>
+<li>职能分解,有电话号码检测，邮箱检测，用户名检测。类似不同种类的包裹</li>
+<li>设定共有的接口。比如不同种类的产品都能装入一个纸箱</li>
+<li>严格说来还要设定一个尾节点，处理什么都不是的情况</li>
+<li>如果用if else的话，就不能进行拆解</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/s3c2zqcwuitmeug/iOS_designPatternChains03.png?dl=1" alt=""></p>
+<p>ChainProtocol</p>
+<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+- (id &lt;ChainProtocol&gt;)successor;
+- (void)handleRequest:(id)request;
+@end
+</code></pre><p>EmailChain</p>
+<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是邮箱&quot;, string);
+}
+}
+
+@end
+</code></pre><p>PhoneNumChain</p>
+<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是电话号码&quot;, string);
+}
+}
+
+@end
+</code></pre><p>UserNameChain</p>
+<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+NSString *string = request;
+
+BOOL isMatch = [string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
+if (isMatch == NO) {
+
+    [self.nextSuccessor handleRequest:string];
+
+} else {
+
+    NSLog(@&quot;%@ 是用户名&quot;, string);
+}
+}
+
+@end
+</code></pre><p>HeadChain</p>
+<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+    self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+    return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+    [self.nextSuccessor handleRequest:request];
+}
+
+
+@end
+</code></pre><p>ViewController    </p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    // 创建责任对象
+    self.head     = [HeadChain new];
+    self.phoneNum = [PhoneNumChain new];
+    self.email    = [EmailChain new];
+    self.userName = [UserNameChain new];
+
+    // 链接责任链对象
+    self.head.successor     = self.phoneNum;
+    self.phoneNum.successor = self.email;
+    self.email.successor    = self.userName;
+
+    // 处理请求
+    [self.head handleRequest:@&quot;349323YX&quot;];
+}
+@end
+</code></pre><h1 id="对输入文本进行”全类别”检测"><a href="#对输入文本进行”全类别”检测" class="headerlink" title="对输入文本进行”全类别”检测"></a>对输入文本进行”全类别”检测</h1><p>ChainProtocol</p>
+<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
+- (id &lt;ChainProtocol&gt;)successor;
+- (void)handleRequest:(id)request;
+
+@end
+</code></pre><p>HeadChain </p>
+<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface HeadChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation HeadChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+[self.nextSuccessor handleRequest:request];
+}
+@end
+</code></pre><p>RequestEvent</p>
+<pre><code>@interface RequestEvent : NSObject
+
+@property (nonatomic, strong) NSString            *string;
+@property (nonatomic, strong) NSMutableDictionary *infomation;
+
+@end
+
+@implementation RequestEvent
+
+- (instancetype)init {
+
+    self = [super init];
+
+    if (self) {
+
+        self.infomation = [NSMutableDictionary dictionary];
+    }
+
+    return self;
+}
+
+@end
+</code></pre><p>EmailChain    </p>
+<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface EmailChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation EmailChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;Email&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;Email&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>PhoneNumChain</p>
+<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface PhoneNumChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation PhoneNumChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;PhoneNumber&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;PhoneNumber&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>UserNameChain</p>
+<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
+
+@end
+
+@interface UserNameChain ()
+
+@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
+
+@end
+
+@implementation UserNameChain
+
+- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
+
+self.nextSuccessor = successor;
+}
+
+- (id &lt;ChainProtocol&gt;)successor {
+
+return self.nextSuccessor;
+}
+
+- (void)handleRequest:(id)request {
+
+RequestEvent *event = request;
+
+BOOL isMatch = [event.string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
+if (isMatch == NO) {
+
+    event.infomation[@&quot;UserName&quot;] = @(NO);
+
+} else {
+
+    event.infomation[@&quot;UserName&quot;] = @(YES);
+}
+
+[self.nextSuccessor handleRequest:request];
+}
+
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) HeadChain      *head;
+@property (nonatomic, strong) PhoneNumChain  *phoneNum;
+@property (nonatomic, strong) EmailChain     *email;
+@property (nonatomic, strong) UserNameChain  *userName;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建责任对象
+self.head     = [HeadChain new];
+self.phoneNum = [PhoneNumChain new];
+self.email    = [EmailChain new];
+self.userName = [UserNameChain new];
+
+// 链接责任链对象
+self.head.successor     = self.phoneNum;
+self.phoneNum.successor = self.email;
+self.email.successor    = self.userName;
+
+RequestEvent *event = [RequestEvent new];
+event.string        = @&quot;349323YX@qq.com&quot;;
+
+// 处理请求
+[self.head handleRequest:event];
+
+NSLog(@&quot;%@&quot;, event.infomation);
+
+}
+@end
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/05/iOS设计模式-模板/" itemprop="url">
                   iOS设计模式-模板
                 </a>
@@ -1888,551 +2434,12 @@ return cell;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/03/iOS设计模式-命令/" itemprop="url">
-                  iOS设计模式-命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-03T10:14:07+10:00" content="2016-06-03">
-              2016-06-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/03/iOS设计模式-命令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/03/iOS设计模式-命令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="电视机、遥控器与接收器之间的关系"><a href="#电视机、遥控器与接收器之间的关系" class="headerlink" title="电视机、遥控器与接收器之间的关系"></a>电视机、遥控器与接收器之间的关系</h1><ol>
-<li>遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以</li>
-<li>接收器转换遥控器的信号</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1" alt=""></p>
-<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途</p>
-<ol>
-<li>Client:可以有多个实体，client即使没有receiver，自身也能操作。</li>
-<li>Receiver: 持有了client的引用,将遥控器的指令翻译成电视机能接收的,它的方法就是针对client的操作。</li>
-<li>CommandProtocol:所有对象必须遵循的规范。</li>
-<li>Command: 每个命令抽象成一个对象，且必须遵循命令协议。好比遥控器上的每个按钮。</li>
-<li>Invoker:单例，存储命令的地方。好比一个含有很多按钮的遥控器。</li>
-</ol>
-<p>CommandProtocol</p>
-<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
-
-@required
-
-//命令的执行
-- (void)excute;
-
-//与接收器绑定并设置参数
-- (void)initWithReceiver:(Receiver *)receiver paramter:(id)paramter;
-</code></pre><p>Invoker ： </p>
-<pre><code>@interface Invoker : NSObject
-
-//回退操作
-- (void)rollBack;
-
-//添加指令操作
-- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
-@end
-
-@interface Invoker ()
-
-@property (nonatomic, strong) NSMutableArray  *queue;
-@end
-
-@implementation Invoker
-
-+ (instancetype)shareInstance {
-
-static Invoker *shareInstanceValue = nil;
-static dispatch_once_t oncePredicate;
-
-dispatch_once(&amp;oncePredicate, ^{
-
-    shareInstanceValue       = [[Invoker alloc] init];
-    shareInstanceValue.queue = [NSMutableArray array];
-});
-
-return shareInstanceValue;
-}
-
-- (void)rollBack {
-
-// todo
-}
-
-- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
-
-NSParameterAssert(command);
-
-[self.queue addObject:command];
-[command excute];
-}
-</code></pre><p>Receiver </p>
-<pre><code>@interface Receiver : NSObject
-//被服务对象
-@property (nonatomic, strong) id client;
-//增加频道
-- (void)addNum:(NSNumber *)num;
-//减少频道
-- (void)delNum:(NSNumber *)num;
-
-@end
-
-@implementation Receiver
-
-- (void)addNum:(NSNumber *)num {
-
-// todo
-}
-
-- (void)delNum:(NSNumber *)num {
-
-// todo
-}
-@end
-</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1" alt=""></p>
-<p>ViewController</p>
-<pre><code>typedef enum : NSUInteger {
-
-kAddButtonTag = 10, // 增加按钮枚举值
-kDelButtonTag,      // 减少按钮枚举值
-kRolButtonTag,      // 回退按钮枚举值
-
-} ViewControllerEnumValue;
-
-@interface ViewController ()
-
-@property (nonatomic, strong) UIButton *addButton;
-@property (nonatomic, strong) UIButton *delButton;
-@property (nonatomic, strong) UIButton *rolButton;
-@property (nonatomic, strong) Receiver *receiver;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-// 接收器
-self.receiver            = [[Receiver alloc] init];
-self.receiver.clientView = self.view;
-
-// 初始化按钮
-[self initButtons];
-}
-
-- (void)buttonsEvent:(UIButton *)button {
-
-if (button.tag == kAddButtonTag) {
-
-    NSLog(@&quot;增加操作&quot;);
-    LighterCommond *commond = [[LighterCommond alloc] initWithReceiver:self.receiver paramter:0.1];
-    [[Invoker shareInstance] addAndExcute:commond];
-
-} else if (button.tag == kDelButtonTag) {
-
-    NSLog(@&quot;减少操作&quot;);
-    DarkerCommand *commond = [[DarkerCommand alloc] initWithReceiver:self.receiver paramter:0.1];
-    [[Invoker shareInstance] addAndExcute:commond];
-
-} else if (button.tag == kRolButtonTag) {
-
-    NSLog(@&quot;回退操作&quot;);
-    [[Invoker shareInstance] rollBack];
-}
-}
-
-#pragma mark - 无关初始化
-- (void)initButtons {
-
-// delButton
-self.delButton     = [[UIButton alloc] initWithFrame:CGRectMake(10, 25, 30, 30)];
-
-self.delButton.tag               = kDelButtonTag;
-self.delButton.layer.borderWidth = 1.f;
-
-[self.delButton setTitle:@&quot;-&quot;
-                forState:UIControlStateNormal];
-
-[self.delButton setTitleColor:[UIColor redColor]
-                     forState:UIControlStateNormal];
-
-[self.delButton addTarget:self
-                   action:@selector(buttonsEvent:)
-         forControlEvents:UIControlEventTouchUpInside];
-
-[self.view addSubview:self.delButton];
-
-// addButton
-self.addButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 40, 25, 30, 30)];
-
-self.addButton.tag               = kAddButtonTag;
-self.addButton.layer.borderWidth = 1.f;
-
-[self.addButton setTitle:@&quot;+&quot;
-                forState:UIControlStateNormal];
-
-[self.addButton setTitleColor:[UIColor redColor]
-                     forState:UIControlStateNormal];
-
-[self.addButton addTarget:self
-                   action:@selector(buttonsEvent:)
-         forControlEvents:UIControlEventTouchUpInside];
-
-[self.view addSubview:self.addButton];
-
-// rolButton
-self.rolButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 80, 25, 90, 30)];
-
-self.rolButton.tag               = kRolButtonTag;
-self.rolButton.layer.borderWidth = 1.f;
-
-[self.rolButton setTitle:@&quot;rollBack&quot;
-                forState:UIControlStateNormal];
-
-[self.rolButton setTitleColor:[UIColor redColor]
-                     forState:UIControlStateNormal];
-
-[self.rolButton addTarget:self
-                   action:@selector(buttonsEvent:)
-         forControlEvents:UIControlEventTouchUpInside];
-
-[self.view addSubview:self.rolButton];
-}
-</code></pre><p>CommandProtocol</p>
-<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
-
-@required
-
-//执行命令
-- (void)excute;
-//撤销命令
-- (void)rollBackExcute;
-
-@end
-</code></pre><p>DarkerCommand</p>
-<pre><code>@interface DarkerCommand : NSObject &lt;CommandProtocol&gt;
-//与接收器绑定并设置参数
-- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
-
-@end
-
-@interface DarkerCommand ()
-
-@property (nonatomic, weak) Receiver *receiver;
-@property (nonatomic)       CGFloat   paramter;
-
-@end
-
-@implementation DarkerCommand
-
-- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
-
-self = [super init];
-if (self) {
-
-    self.receiver = receiver;
-    self.paramter = paramter;
-}
-
-return self;
-}
-
-- (void)excute {
-
-[self.receiver makeDarker:self.paramter];
-}
-
-- (void)rollBackExcute {
-
-[self.receiver makeLighter:self.paramter];
-}
-
-@end
-</code></pre><p>LighterCommond </p>
-<pre><code>@interface LighterCommond : NSObject &lt;CommandProtocol&gt;
-
-//与接收器绑定并设置参数
-- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
-@end
-
-
-@interface LighterCommond ()
-
-@property (nonatomic, weak) Receiver *receiver;
-@property (nonatomic)       CGFloat   paramter;
-
-@end
-
-@implementation LighterCommond
-
-- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
-
-    self = [super init];
-    if (self) {
-
-        self.receiver = receiver;
-        self.paramter = paramter;
-    }
-
-    return self;
-}
-
-- (void)excute {
-
-    [self.receiver makeLighter:self.paramter];
-}
-
-- (void)rollBackExcute {
-
-    [self.receiver makeDarker:self.paramter];
-}
-@end
-</code></pre><p>Invoker </p>
-<pre><code>@interface Invoker : NSObject
-
-+ (instancetype)shareInstance;
-//回退操作
-- (void)rollBack;
-
-//添加指令操作
-- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
-
-@end
-
-@interface Invoker ()
-
-@property (nonatomic, strong) NSMutableArray  *queue;
-
-@end
-
-@implementation Invoker
-
-+ (instancetype)shareInstance {
-
-static Invoker *shareInstanceValue = nil;
-static dispatch_once_t oncePredicate;
-
-dispatch_once(&amp;oncePredicate, ^{
-
-    shareInstanceValue       = [[Invoker alloc] init];
-    shareInstanceValue.queue = [NSMutableArray array];
-});
-
-return shareInstanceValue;
-}
-
-- (void)rollBack {
-
-id &lt;CommandProtocol&gt; command = self.queue.lastObject;
-[command rollBackExcute];
-
-[self.queue removeLastObject];
-}
-
-- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
-
-NSParameterAssert(command);
-
-[self.queue addObject:command];
-[command excute];
-}
-
-@end
-</code></pre><p>Receiver</p>
-<pre><code>@interface Receiver : NSObject {
-
-CGFloat _hud;
-CGFloat _saturation;
-CGFloat _brightness;
-CGFloat _alpha;
-}
-
-//被服务对象
-@property (nonatomic, weak) UIView  *clientView;
-//变暗
-- (void)makeDarker:(CGFloat)pamameter;
-//变亮
-- (void)makeLighter:(CGFloat)pamameter;
-@end
-
-@implementation Receiver
-
-//根据传入的UIView，获取各个维度的值
-
-- (void)setClientView:(UIView *)clientView {
-
-_clientView    = clientView;
-UIColor *color = _clientView.backgroundColor;
-
-//获取背景色各个维度的值
-[color getHue:&amp;_hud
-   saturation:&amp;_saturation
-   brightness:&amp;_brightness
-        alpha:&amp;_alpha];
-    }
-
-    - (void)makeDarker:(CGFloat)pamameter {
-
-_brightness -= pamameter;
-_brightness  = MAX(0, _brightness);
-
-_clientView.backgroundColor = [UIColor colorWithHue:_hud
-                                         saturation:_saturation
-                                         brightness:_brightness
-                                              alpha:_alpha];
-                                          }
-
-- (void)makeLighter:(CGFloat)pamameter {
-
-_brightness += pamameter;
-_brightness  = MIN(1, _brightness);
-
-_clientView.backgroundColor = [UIColor colorWithHue:_hud
-                                         saturation:_saturation
-                                         brightness:_brightness
-                                              alpha:_alpha];
-                                          }
-
-@end
-</code></pre><h1 id="Tag-for-Button"><a href="#Tag-for-Button" class="headerlink" title="Tag for Button"></a>Tag for Button</h1><p>通过设定tag值，来调用相对应的button</p>
-<pre><code>typedef enum : NSUInteger {
-
-kAddButtonTag = 10, // 增加按钮枚举值
-kDelButtonTag,      // 减少按钮枚举值
-kRolButtonTag,      // 回退按钮枚举值
-
-} ViewControllerEnumValue;
-
-..........
-
-self.delButton.tag = kDelButtonTag;
-self.addButton.tag = kAddButtonTag;
-self.rolButton.tag = kRolButtonTag;
-
-..........
-
-if (button.tag == kAddButtonTag) {
-
-
-} else if (button.tag == kDelButtonTag) {
-
-
-} else if (button.tag == kRolButtonTag) {
-
-
-}
-</code></pre><h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议就是抽象归纳出某一类对象共同拥有的特性</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2473,7 +2480,7 @@ if (button.tag == kAddButtonTag) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">96</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

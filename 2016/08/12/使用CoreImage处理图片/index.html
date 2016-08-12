@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_designPattern," />
+  <meta name="keywords" content="iOS,iOS_image," />
 
 
 
@@ -61,53 +61,46 @@
 
 
 
-<meta name="description" content="备忘录模式
-备忘录模式，什么都可以存！
-先设计抽象接口，再去考虑实现细节
+<meta name="description" content="CoreImage滤镜的使用
+CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。
+随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。大部分的滤镜都很容易使用。
 
 
+- (void)viewDidLoad {
+[super viewDidLoad];
 
-
-设计存储中心MementoCenter
-+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-指定">
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage al">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-备忘录">
-<meta property="og:url" content="http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/index.html">
+<meta property="og:title" content="使用CoreImage处理图片">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/12/使用CoreImage处理图片/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="备忘录模式
-备忘录模式，什么都可以存！
-先设计抽象接口，再去考虑实现细节
+<meta property="og:description" content="CoreImage滤镜的使用
+CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。
+随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。大部分的滤镜都很容易使用。
 
 
+- (void)viewDidLoad {
+[super viewDidLoad];
 
-
-设计存储中心MementoCenter
-+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-指定">
-<meta property="og:image" content="https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/5y7k7pluooabrsw/iOS_designPatternmMemo02.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/250rfz3yg28erir/iOS_designPatternmMemo03.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T05:04:58.000Z">
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage al">
+<meta property="og:image" content="https://www.dropbox.com/s/hg32v15woj86uai/20160812_coreImage1.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/8gffrjzwk4ddb4r/20160812_coreImage2.png?dl=1">
+<meta property="og:updated_time" content="2016-08-12T11:11:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-备忘录">
-<meta name="twitter:description" content="备忘录模式
-备忘录模式，什么都可以存！
-先设计抽象接口，再去考虑实现细节
+<meta name="twitter:title" content="使用CoreImage处理图片">
+<meta name="twitter:description" content="CoreImage滤镜的使用
+CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。
+随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。大部分的滤镜都很容易使用。
 
 
+- (void)viewDidLoad {
+[super viewDidLoad];
 
-
-设计存储中心MementoCenter
-+ (void)saveMementoObject:(id &amp;lt;MementoCenterProtocol&amp;gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-指定">
-<meta name="twitter:image" content="https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1">
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage al">
+<meta name="twitter:image" content="https://www.dropbox.com/s/hg32v15woj86uai/20160812_coreImage1.png?dl=1">
 
 
 
@@ -125,7 +118,7 @@
   };
 </script>
 
-  <title> iOS设计模式-备忘录 | Cowboy Tech </title>
+  <title> 使用CoreImage处理图片 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +260,7 @@
             
             
               
-                iOS设计模式-备忘录
+                使用CoreImage处理图片
               
             
           </h1>
@@ -279,8 +272,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-01T11:01:54+10:00" content="2016-06-01">
-              2016-06-01
+            <time itemprop="dateCreated" datetime="2016-08-12T20:49:06+10:00" content="2016-08-12">
+              2016-08-12
             </time>
           </span>
 
@@ -309,8 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/01/iOS设计模式-备忘录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/01/iOS设计模式-备忘录/" itemprop="commentsCount"></span>
+                <a href="/2016/08/12/使用CoreImage处理图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/12/使用CoreImage处理图片/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -332,176 +325,162 @@
       
 
       
-        <h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><ol>
-<li>备忘录模式，什么都可以存！</li>
-<li>先设计抽象接口，再去考虑实现细节</li>
+        <h1 id="CoreImage滤镜的使用"><a href="#CoreImage滤镜的使用" class="headerlink" title="CoreImage滤镜的使用"></a>CoreImage滤镜的使用</h1><ol>
+<li>CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。</li>
+<li>随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。<br>大部分的滤镜都很容易使用。</li>
 </ol>
-<p><img src="https://www.dropbox.com/s/fvjbhdbbb2qr0p9/iOS_designPatternMemo01.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/5y7k7pluooabrsw/iOS_designPatternmMemo02.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/250rfz3yg28erir/iOS_designPatternmMemo03.png?dl=1" alt=""></p>
-<h2 id="设计存储中心"><a href="#设计存储中心" class="headerlink" title="设计存储中心"></a>设计存储中心</h2><p>MementoCenter</p>
-<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key;
-
-+ (id)mementoObjectWithKey:(NSString *)key;
-</code></pre><h2 id="指定存储接口-编码-amp-解码"><a href="#指定存储接口-编码-amp-解码" class="headerlink" title="指定存储接口(编码&amp;解码)"></a>指定存储接口(编码&amp;解码)</h2><p>MementoCenterProtocol</p>
-<pre><code>@protocol MementoCenterProtocol &lt;NSObject&gt;
-
-@required
-
-//编码
-- (id)currentState;
-
-//解码
-- (void)recoverFromState:(id)state;
-
-@end
-</code></pre><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Apple</p>
-<pre><code>@interface Apple : NSObject &lt;MementoCenterProtocol&gt;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSNumber *age;
-@end
-@implementation Apple
-
-//编码
-- (id)currentState {
-return @{@&quot;name&quot;: self.name,
-         @&quot;age&quot; : self.age};
-     }
-
-
-//解码
-- (void)recoverFromState:(id)state {
-
-NSDictionary *data = state;
-self.name = data[@&quot;name&quot;];
-self.age  = data[@&quot;age&quot;];
-}
-
-@end
-</code></pre><h2 id="实现存储机制"><a href="#实现存储机制" class="headerlink" title="实现存储机制"></a>实现存储机制</h2><p>MementoCenter</p>
-<pre><code>+ (void)saveMementoObject:(id &lt;MementoCenterProtocol&gt;)object withKey:(NSString *)key {
-
-NSParameterAssert(object);
-NSParameterAssert(key);
-
-// 获取data
-id      data    = [object currentState];
-NSData *tmpData = [FastCoder dataWithRootObject:data];
-
-// 进行存储
-if (tmpData) {
-
-    [[NSUserDefaults standardUserDefaults] setObject:tmpData
-                                              forKey:key];
-}
-}
-
-
-+ (id)mementoObjectWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id      data    = nil;
-NSData *tmpData = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-
-if (tmpData) {
-
-    data = [FastCoder objectWithData:tmpData];
-}
-
-return data;
-}
-</code></pre><h2 id="存储与获取"><a href="#存储与获取" class="headerlink" title="存储与获取"></a>存储与获取</h2><p>ViewController</p>
+<p><img src="https://www.dropbox.com/s/hg32v15woj86uai/20160812_coreImage1.png?dl=1" alt=""></p>
 <pre><code>- (void)viewDidLoad {
 [super viewDidLoad];
 
-Apple *apple = [[Apple alloc] init];
-apple.name = @&quot;JiKeXueYuan&quot;;
-apple.age  = @(30);
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@&quot;demo&quot;]];
 
-// save state
-[MementoCenter saveMementoObject:apple withKey:@&quot;Apple&quot;];
+// 1. 创建出Filter滤镜.使用另一款滤镜，换个名字即可
+CIFilter *filter = [CIFilter filterWithName:@&quot;CIPixellate&quot;];
 
-// get state
-[apple recoverFromState:[MementoCenter mementoObjectWithKey:@&quot;Apple&quot;]];
+[filter setValue:ciImage
+          forKey:kCIInputImageKey];
 
-NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
+NSLog(@&quot;%@&quot;, filter.attributes);
+
+[filter setDefaults];
+
+CIImage *outImage = [filter valueForKey:kCIOutputImageKey];
+
+// 2. 用CIContext将滤镜中的图片渲染出来
+CIContext *context = [CIContext contextWithOptions:nil];
+
+CGImageRef cgImage = [context createCGImage:outImage
+                                   fromRect:[outImage extent]];
+
+// 3. 导出图片
+UIImage *showImage = [UIImage imageWithCGImage:cgImage];
+
+//需要手动释放
+CGImageRelease(cgImage);
+
+// 4. 加载出来
+UIImageView *imageView = [[UIImageView alloc] initWithImage:showImage];
+imageView.center       = self.view.center;
+[self.view addSubview:imageView];
 }
-</code></pre><h2 id="通过category优化"><a href="#通过category优化" class="headerlink" title="通过category优化"></a>通过category优化</h2><p>NSObject + MementoCenter</p>
-<pre><code>@implementation NSObject (MementoCenter)
-
-- (void)saveStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-
-    [MementoCenter saveMementoObject:obj withKey:key];
-}
-}
-
-
-- (void)recoverFromStateWithKey:(NSString *)key {
-
-NSParameterAssert(key);
-
-id                         state = [MementoCenter mementoObjectWithKey:key];
-
-id &lt;MementoCenterProtocol&gt; obj   = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(recoverFromStateWithKey:)]) {
-
-    [obj recoverFromState:state];
-}
-}
-</code></pre><h2 id="传递协议对象所必须的判断"><a href="#传递协议对象所必须的判断" class="headerlink" title="传递协议对象所必须的判断"></a>传递协议对象所必须的判断</h2><pre><code>id &lt;MementoCenterProtocol&gt; obj = (id &lt;MementoCenterProtocol&gt;)self;
-
-if ([obj respondsToSelector:@selector(currentState)]) {
-[MementoCenter saveMementoObject:obj withKey:key];
-}
-</code></pre><h2 id="优化后的存储与获取"><a href="#优化后的存储与获取" class="headerlink" title="优化后的存储与获取"></a>优化后的存储与获取</h2><p>ViewController</p>
+</code></pre><h1 id="CoreImage滤镜的组合"><a href="#CoreImage滤镜的组合" class="headerlink" title="CoreImage滤镜的组合"></a>CoreImage滤镜的组合</h1><ol>
+<li>不同的滤镜可以组合在一起使用。</li>
+<li>可以动态的修改滤镜组合中单个滤镜的参数来实现一种动态调整的效果。</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/8gffrjzwk4ddb4r/20160812_coreImage2.png?dl=1" alt=""></p>
 <pre><code>- (void)viewDidLoad {
 [super viewDidLoad];
 
-Apple *apple = [[Apple alloc] init];
-apple.name = @&quot;JiKeXueYuan&quot;;
-apple.age  = @(30);
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@&quot;demo&quot;]];
 
-[apple saveStateWithKey:@&quot;Ben&quot;];
-[apple recoverFromStateWithKey:@&quot;Ben&quot;];
+// 1. 创建出Filter滤镜
+CIFilter *filterOne = [CIFilter filterWithName:@&quot;CIPixellate&quot;];
 
-NSLog(@&quot;name:%@ age:%@&quot;, apple.name, apple.age);
+[filterOne setValue:ciImage
+             forKey:kCIInputImageKey];
+
+[filterOne setDefaults];
+
+CIImage *outImage = [filterOne valueForKey:kCIOutputImageKey];
+
+CIFilter *filterTwo = [CIFilter filterWithName:@&quot;CIHueAdjust&quot;];
+[filterTwo setValue:outImage
+             forKey:kCIInputImageKey];
+
+[filterTwo setDefaults];
+
+[filterTwo setValue:@(3.14)
+             forKey:kCIInputAngleKey];
+
+CIImage *outputImage = [filterTwo valueForKey:kCIOutputImageKey];
+
+// 2. 用CIContext将滤镜中的图片渲染出来
+CIContext *context = [CIContext contextWithOptions:nil];
+
+CGImageRef cgImage = [context createCGImage:outputImage
+                                   fromRect:[outImage extent]];
+
+// 3. 导出图片
+UIImage *showImage = [UIImage imageWithCGImage:cgImage];
+
+CGImageRelease(cgImage);
+
+// 4. 加载出来
+UIImageView *imageView = [[UIImageView alloc] initWithImage:showImage];
+imageView.center       = self.view.center;
+[self.view addSubview:imageView];
 }
-</code></pre><h1 id="备忘录模式恢复UIView状态"><a href="#备忘录模式恢复UIView状态" class="headerlink" title="备忘录模式恢复UIView状态"></a>备忘录模式恢复UIView状态</h1><p>使用场景:UIView有NSCoding协议，意味着可以本地存储，但没有NSCopying，意味着如果要将一个view完整的复制过来，那是一个棘手的问题。</p>
-<p><strong>一个对象状态的存储并不是要整个对象，也有可能是其部分的属性,由需求来定</strong></p>
-<p>DemoView</p>
-<pre><code>@interface DemoView : UIView &lt;MementoCenterProtocol&gt;
+</code></pre><h1 id="在OpenGLES下进行渲染"><a href="#在OpenGLES下进行渲染" class="headerlink" title="在OpenGLES下进行渲染"></a>在OpenGLES下进行渲染</h1><p>在OpenGLES下进行滤镜的渲染可以提高效率。如果需要实时查看多个滤镜动态渲染的效果，使用OpenGLES是一个好的选择。</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &lt;GLKit/GLKit.h&gt;
+
+@interface ViewController ()
+@property (nonatomic, strong) GLKView   *glkView; // 渲染用的buffer视图
+
+@property (nonatomic, strong) CIFilter  *filter;
+@property (nonatomic, strong) CIImage   *ciImage;
+@property (nonatomic, strong) CIContext *ciContext;
 
 @end
 
-@implementation DemoView
+@implementation ViewController
 
-- (id)currentState {
-return @{@&quot;frame&quot; : NSStringFromCGRect(self.frame)};
-}
-
-- (void)recoverFromState:(id)state {
-NSDictionary *data = state;
-self.frame         = CGRectFromString(data[@&quot;frame&quot;]);
-}
-</code></pre><p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-
+- (void)viewDidLoad {
 [super viewDidLoad];
 
-DemoView *demoView = [[DemoView alloc] init];
-demoView.frame     = CGRectMake(100, 100, 100, 100);
-[demoView saveStateWithKey:@&quot;A&quot;];
+UIImage *showImage = [UIImage imageNamed:@&quot;demo&quot;];
+CGRect  rect       = CGRectMake(0, 0, showImage.size.width, showImage.size.height);
 
-[demoView recoverFromStateWithKey:@&quot;A&quot;];
-NSLog(@&quot;%@&quot;, demoView);
+// 获取OpenGLES渲染的上下文
+EAGLContext *eagContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+
+// 创建出渲染的buffer
+_glkView = [[GLKView alloc] initWithFrame:rect
+                                  context:eagContext];
+[_glkView bindDrawable];
+[self.view addSubview:_glkView];
+
+// 创建出CoreImage用的上下文
+_ciContext = [CIContext contextWithEAGLContext:eagContext
+                                       options:@{kCIContextWorkingColorSpace : [NSNull null]}];
+
+// CoreImage相关设置
+_ciImage = [[CIImage alloc] initWithImage:showImage];
+
+_filter = [CIFilter filterWithName:@&quot;CISepiaTone&quot;];
+
+[_filter setValue:_ciImage forKey:kCIInputImageKey];
+[_filter setValue:@(0) forKey:kCIInputIntensityKey];
+
+// 开始渲染
+[_ciContext drawImage:[_filter outputImage]
+               inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight)
+             fromRect:[_ciImage extent]];
+[_glkView display];
+
+// 动态渲染
+UISlider *slider    = [[UISlider alloc] initWithFrame:CGRectMake(0, 400, 320, 20)];
+slider.minimumValue = 0.f;
+slider.maximumValue = 1.f;
+[slider addTarget:self action:@selector(sliderEvent:) forControlEvents:UIControlEventValueChanged];
+[self.view addSubview:slider];
+}
+
+- (void)sliderEvent:(UISlider *)slider {
+
+
+[_filter setValue:_ciImage forKey:kCIInputImageKey];
+[_filter setValue:@(slider.value)
+           forKey:kCIInputIntensityKey];
+
+// 开始渲染
+[_ciContext drawImage:[_filter outputImage]
+               inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight)
+             fromRect:[_ciImage extent]];
+[_glkView display];
 }
 </code></pre>
       
@@ -519,7 +498,7 @@ NSLog(@&quot;%@&quot;, demoView);
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
           
         </div>
       
@@ -528,17 +507,13 @@ NSLog(@&quot;%@&quot;, demoView);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/30/iOS设计模式-单例/" rel="next" title="iOS设计模式-单例">
-                <i class="fa fa-chevron-left"></i> iOS设计模式-单例
+              <a href="/2016/08/12/iOS项目22-瀑布流/" rel="next" title="iOS项目22.瀑布流">
+                <i class="fa fa-chevron-left"></i> iOS项目22.瀑布流
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/02/iOS设计模式-生成器/" rel="prev" title="iOS设计模式-生成器">
-                iOS设计模式-生成器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +645,7 @@ NSLog(@&quot;%@&quot;, demoView);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#备忘录模式"><span class="nav-number">1.</span> <span class="nav-text">备忘录模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计存储中心"><span class="nav-number">1.1.</span> <span class="nav-text">设计存储中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定存储接口-编码-amp-解码"><span class="nav-number">1.2.</span> <span class="nav-text">指定存储接口(编码&解码)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.3.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现存储机制"><span class="nav-number">1.4.</span> <span class="nav-text">实现存储机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储与获取"><span class="nav-number">1.5.</span> <span class="nav-text">存储与获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过category优化"><span class="nav-number">1.6.</span> <span class="nav-text">通过category优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传递协议对象所必须的判断"><span class="nav-number">1.7.</span> <span class="nav-text">传递协议对象所必须的判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化后的存储与获取"><span class="nav-number">1.8.</span> <span class="nav-text">优化后的存储与获取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备忘录模式恢复UIView状态"><span class="nav-number">2.</span> <span class="nav-text">备忘录模式恢复UIView状态</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreImage滤镜的使用"><span class="nav-number">1.</span> <span class="nav-text">CoreImage滤镜的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoreImage滤镜的组合"><span class="nav-number">2.</span> <span class="nav-text">CoreImage滤镜的组合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在OpenGLES下进行渲染"><span class="nav-number">3.</span> <span class="nav-text">在OpenGLES下进行渲染</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -928,9 +903,9 @@ NSLog(@&quot;%@&quot;, demoView);
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/06/01/iOS设计模式-备忘录/';
-      var disqus_title = 'iOS设计模式-备忘录';
-      var disqus_url = 'http://jackliu17.github.io/2016/06/01/iOS设计模式-备忘录/';
+      var disqus_identifier = '2016/08/12/使用CoreImage处理图片/';
+      var disqus_title = '使用CoreImage处理图片';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/12/使用CoreImage处理图片/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
