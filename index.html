@@ -238,6 +238,328 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/14/NSAttributedString使用详解/" itemprop="url">
+                  NSAttributedString使用详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T20:23:13+10:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/14/NSAttributedString使用详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/14/NSAttributedString使用详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NSAttributedString-的基本使用"><a href="#NSAttributedString-的基本使用" class="headerlink" title="NSAttributedString 的基本使用"></a>NSAttributedString 的基本使用</h1><h2 id="处理简单的字符串"><a href="#处理简单的字符串" class="headerlink" title="处理简单的字符串"></a>处理简单的字符串</h2><pre><code>NSString *string = @&quot;天道酬勤&quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本样式
+[attributedString addAttribute:NSForegroundColorAttributeName
+                         value:[UIColor redColor]
+                         range:NSMakeRange(0, 1)];
+
+[attributedString addAttribute:NSFontAttributeName
+                         value:[UIFont systemFontOfSize:24.f]
+                         range:NSMakeRange(0, 2)];
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = attributedString;
+[self.view addSubview:label];
+</code></pre><h2 id="处理段落样式"><a href="#处理段落样式" class="headerlink" title="处理段落样式"></a>处理段落样式</h2><pre><code>NSString *string = @&quot;天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤\n天道酬勤真不错！&quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本 - 段落样式
+NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+style.lineSpacing              = 10.f;
+style.paragraphSpacing         = 20.f;
+
+[attributedString addAttribute:NSParagraphStyleAttributeName
+                         value:style
+                         range:NSMakeRange(0, string.length)];
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
+
+//设置段落样式的时候，numberOfLines必须为0
+label.numberOfLines  = 0;
+label.attributedText = attributedString;
+[self.view addSubview:label];
+</code></pre><h2 id="NSAttributedString设置的作用域"><a href="#NSAttributedString设置的作用域" class="headerlink" title="NSAttributedString设置的作用域"></a>NSAttributedString设置的作用域</h2><p>设置富文本的时候，先设置的先显示，后设置的，如果与先设置的样式不一致，是不会覆盖的，富文本设置的效果具有先后顺序</p>
+<h1 id="NSAtrributedString的简易封装"><a href="#NSAtrributedString的简易封装" class="headerlink" title="NSAtrributedString的简易封装"></a>NSAtrributedString的简易封装</h1><p>ViewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;NSString+AttributeStyle.h&quot;
+#import &quot;ForeGroundColorStyle.h&quot;
+#import &quot;FontStyle.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+NSString *string = @&quot;极客学院&quot;;
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = \
+    [string createAttributedStringWithStyles:\
+       @[colorStyle([UIColor redColor],             NSMakeRange(0, 2)),
+         fontStyle ([UIFont systemFontOfSize:20.f], NSMakeRange(1, 2))]];
+
+[self.view addSubview:label];
+}
+</code></pre><p>AttributedStyle.h</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;UIKit/UIKit.h&gt;
+
+@interface AttributedStyle : NSObject
+
+@property (nonatomic, strong) NSString  *attributeName;
+@property (nonatomic, strong) id         value;
+@property (nonatomic)         NSRange    range;
+
+/**
+ *  便利构造器
+ *
+ *  @param attributeName 属性名字
+ *  @param value         设置的值
+ *  @param range         取值范围
+ *
+ *  @return 实例对象
+ */
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range;
+@end
+</code></pre><p>AttributedStyle.m</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@implementation AttributedStyle
+
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range {
+
+AttributedStyle *style = [[self class] new];
+
+style.attributeName = attributeName;
+style.value         = value;
+style.range         = range;
+
+return style;
+}
+
+@end
+</code></pre><p>NSString + AttributeStyle.h</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+#import &quot;AttributedStyle.h&quot;
+
+@interface NSString (AttributeStyle)
+
+/**
+ *  根据styles数组创建出富文本
+ *
+ *  @param styles AttributedStyle对象构成的数组
+ *
+ *  @return 富文本
+ */
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles;
+
+@end
+</code></pre><p>NSString + AttributeStyle.m</p>
+<pre><code>#import &quot;NSString+AttributeStyle.h&quot;
+
+@implementation NSString (AttributeStyle)
+
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles {
+if (self.length &lt;= 0) {
+    return nil;
+}
+
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
+
+for (int count = 0; count &lt; styles.count; count++) {
+    AttributedStyle *style = styles[count];
+
+    [attributedString addAttribute:style.attributeName
+                             value:style.value
+                             range:style.range];
+}
+
+
+return attributedString;
+}
+
+@end
+</code></pre><p>ForeGroundColorStyle.h</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@interface ForeGroundColorStyle : AttributedStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param color 颜色
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* colorStyle(UIColor *color, NSRange range) {
+return [ForeGroundColorStyle withColor:color range:range];
+}
+</code></pre><p>ForeGroundColorStyle.m</p>
+<pre><code>#import &quot;ForeGroundColorStyle.h&quot;
+
+@implementation ForeGroundColorStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range {
+
+id style = [super attributeName:NSForegroundColorAttributeName
+                          value:color
+                          range:range];
+
+return style;
+}
+
+@end
+</code></pre><p>FontStyle.h</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@interface FontStyle : AttributedStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param font  字体
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* fontStyle(UIFont *font, NSRange range) {
+return [FontStyle withFont:font range:range];
+}
+</code></pre><p>FontStyle.m</p>
+<pre><code>#import &quot;FontStyle.h&quot;
+
+@implementation FontStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range {
+
+id fontStyle = [super attributeName:NSFontAttributeName
+                              value:font
+                              range:range];
+
+return fontStyle;
+}
+
+@end
+</code></pre><h1 id="使用开源代码GONMarkupPaser处理富文本-略"><a href="#使用开源代码GONMarkupPaser处理富文本-略" class="headerlink" title="使用开源代码GONMarkupPaser处理富文本 (略)"></a>使用开源代码GONMarkupPaser处理富文本 (略)</h1><h1 id="UITextKit简介-略"><a href="#UITextKit简介-略" class="headerlink" title="UITextKit简介(略)"></a>UITextKit简介(略)</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/12/使用CoreImage处理图片/" itemprop="url">
                   使用CoreImage处理图片
                 </a>
@@ -882,126 +1204,6 @@ slider.maximumValue = 1.f;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/07/2016年8月7日/" itemprop="url">
-                  2016年8月7日
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-07T20:38:31+10:00" content="2016-08-07">
-              2016-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/情感杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">情感杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/07/2016年8月7日/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/2016年8月7日/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h1><h2 id="罗辑思维：黄执中-你如何听懂我说的话"><a href="#罗辑思维：黄执中-你如何听懂我说的话" class="headerlink" title="罗辑思维：黄执中 - 你如何听懂我说的话"></a>罗辑思维：黄执中 - 你如何听懂我说的话</h2><p>黄执中是辩论界的大神，听他的课还是有些收获的。</p>
-<ol>
-<li>简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。</li>
-<li>意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)</li>
-<li>具体。具体的细节能让人产生深刻的印象。例如法庭上的两种证词: 妈妈很爱她，每晚陪她用小猫牙刷刷牙 / 每晚陪她刷牙。</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1048,7 +1250,7 @@ slider.maximumValue = 1.f;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">96</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1065,7 +1267,7 @@ slider.maximumValue = 1.f;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

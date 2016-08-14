@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-12T11:11:58.000Z</updated>
+  <updated>2016-08-14T10:43:17.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,238 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NSAttributedString使用详解</title>
+    <link href="http://jackliu17.github.io/2016/08/14/NSAttributedString%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://jackliu17.github.io/2016/08/14/NSAttributedString使用详解/</id>
+    <published>2016-08-14T10:23:13.000Z</published>
+    <updated>2016-08-14T10:43:17.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;NSAttributedString-的基本使用&quot;&gt;&lt;a href=&quot;#NSAttributedString-的基本使用&quot; class=&quot;headerlink&quot; title=&quot;NSAttributedString 的基本使用&quot;&gt;&lt;/a&gt;NSAttributedString 的基本使用&lt;/h1&gt;&lt;h2 id=&quot;处理简单的字符串&quot;&gt;&lt;a href=&quot;#处理简单的字符串&quot; class=&quot;headerlink&quot; title=&quot;处理简单的字符串&quot;&gt;&lt;/a&gt;处理简单的字符串&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSString *string = @&amp;quot;天道酬勤&amp;quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本样式
+[attributedString addAttribute:NSForegroundColorAttributeName
+                         value:[UIColor redColor]
+                         range:NSMakeRange(0, 1)];
+
+[attributedString addAttribute:NSFontAttributeName
+                         value:[UIFont systemFontOfSize:24.f]
+                         range:NSMakeRange(0, 2)];
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = attributedString;
+[self.view addSubview:label];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;处理段落样式&quot;&gt;&lt;a href=&quot;#处理段落样式&quot; class=&quot;headerlink&quot; title=&quot;处理段落样式&quot;&gt;&lt;/a&gt;处理段落样式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSString *string = @&amp;quot;天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤\n天道酬勤真不错！&amp;quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本 - 段落样式
+NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+style.lineSpacing              = 10.f;
+style.paragraphSpacing         = 20.f;
+
+[attributedString addAttribute:NSParagraphStyleAttributeName
+                         value:style
+                         range:NSMakeRange(0, string.length)];
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
+
+//设置段落样式的时候，numberOfLines必须为0
+label.numberOfLines  = 0;
+label.attributedText = attributedString;
+[self.view addSubview:label];
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;NSAttributedString设置的作用域&quot;&gt;&lt;a href=&quot;#NSAttributedString设置的作用域&quot; class=&quot;headerlink&quot; title=&quot;NSAttributedString设置的作用域&quot;&gt;&lt;/a&gt;NSAttributedString设置的作用域&lt;/h2&gt;&lt;p&gt;设置富文本的时候，先设置的先显示，后设置的，如果与先设置的样式不一致，是不会覆盖的，富文本设置的效果具有先后顺序&lt;/p&gt;
+&lt;h1 id=&quot;NSAtrributedString的简易封装&quot;&gt;&lt;a href=&quot;#NSAtrributedString的简易封装&quot; class=&quot;headerlink&quot; title=&quot;NSAtrributedString的简易封装&quot;&gt;&lt;/a&gt;NSAtrributedString的简易封装&lt;/h1&gt;&lt;p&gt;ViewController.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
+#import &amp;quot;NSString+AttributeStyle.h&amp;quot;
+#import &amp;quot;ForeGroundColorStyle.h&amp;quot;
+#import &amp;quot;FontStyle.h&amp;quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+NSString *string = @&amp;quot;极客学院&amp;quot;;
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = \
+    [string createAttributedStringWithStyles:\
+       @[colorStyle([UIColor redColor],             NSMakeRange(0, 2)),
+         fontStyle ([UIFont systemFontOfSize:20.f], NSMakeRange(1, 2))]];
+
+[self.view addSubview:label];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AttributedStyle.h&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+#import &amp;lt;UIKit/UIKit.h&amp;gt;
+
+@interface AttributedStyle : NSObject
+
+@property (nonatomic, strong) NSString  *attributeName;
+@property (nonatomic, strong) id         value;
+@property (nonatomic)         NSRange    range;
+
+/**
+ *  便利构造器
+ *
+ *  @param attributeName 属性名字
+ *  @param value         设置的值
+ *  @param range         取值范围
+ *
+ *  @return 实例对象
+ */
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range;
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AttributedStyle.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;AttributedStyle.h&amp;quot;
+
+@implementation AttributedStyle
+
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range {
+
+AttributedStyle *style = [[self class] new];
+
+style.attributeName = attributeName;
+style.value         = value;
+style.range         = range;
+
+return style;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NSString + AttributeStyle.h&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;
+#import &amp;quot;AttributedStyle.h&amp;quot;
+
+@interface NSString (AttributeStyle)
+
+/**
+ *  根据styles数组创建出富文本
+ *
+ *  @param styles AttributedStyle对象构成的数组
+ *
+ *  @return 富文本
+ */
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles;
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;NSString + AttributeStyle.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;NSString+AttributeStyle.h&amp;quot;
+
+@implementation NSString (AttributeStyle)
+
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles {
+if (self.length &amp;lt;= 0) {
+    return nil;
+}
+
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
+
+for (int count = 0; count &amp;lt; styles.count; count++) {
+    AttributedStyle *style = styles[count];
+
+    [attributedString addAttribute:style.attributeName
+                             value:style.value
+                             range:style.range];
+}
+
+
+return attributedString;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ForeGroundColorStyle.h&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;AttributedStyle.h&amp;quot;
+
+@interface ForeGroundColorStyle : AttributedStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param color 颜色
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* colorStyle(UIColor *color, NSRange range) {
+return [ForeGroundColorStyle withColor:color range:range];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ForeGroundColorStyle.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;ForeGroundColorStyle.h&amp;quot;
+
+@implementation ForeGroundColorStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range {
+
+id style = [super attributeName:NSForegroundColorAttributeName
+                          value:color
+                          range:range];
+
+return style;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;FontStyle.h&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;AttributedStyle.h&amp;quot;
+
+@interface FontStyle : AttributedStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param font  字体
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* fontStyle(UIFont *font, NSRange range) {
+return [FontStyle withFont:font range:range];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;FontStyle.m&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#import &amp;quot;FontStyle.h&amp;quot;
+
+@implementation FontStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range {
+
+id fontStyle = [super attributeName:NSFontAttributeName
+                              value:font
+                              range:range];
+
+return fontStyle;
+}
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用开源代码GONMarkupPaser处理富文本-略&quot;&gt;&lt;a href=&quot;#使用开源代码GONMarkupPaser处理富文本-略&quot; class=&quot;headerlink&quot; title=&quot;使用开源代码GONMarkupPaser处理富文本 (略)&quot;&gt;&lt;/a&gt;使用开源代码GONMarkupPaser处理富文本 (略)&lt;/h1&gt;&lt;h1 id=&quot;UITextKit简介-略&quot;&gt;&lt;a href=&quot;#UITextKit简介-略&quot; class=&quot;headerlink&quot; title=&quot;UITextKit简介(略)&quot;&gt;&lt;/a&gt;UITextKit简介(略)&lt;/h1&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;NSAttributedString-的基本使用&quot;&gt;&lt;a href=&quot;#NSAttributedString-的基本使用&quot; class=&quot;headerlink&quot; title=&quot;NSAttributedString 的基本使用&quot;&gt;&lt;/a&gt;NSAttributedSt
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="iOS_String" scheme="http://jackliu17.github.io/tags/iOS-String/"/>
+    
+  </entry>
   
   <entry>
     <title>使用CoreImage处理图片</title>
@@ -2438,192 +2670,6 @@ class ViewController: UIViewController {
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
       <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS设计模式-中介者</title>
-    <link href="http://jackliu17.github.io/2016/06/06/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85/"/>
-    <id>http://jackliu17.github.io/2016/06/06/iOS设计模式-中介者/</id>
-    <published>2016-06-06T06:54:09.000Z</published>
-    <updated>2016-07-31T04:54:50.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;中介模式&quot;&gt;&lt;a href=&quot;#中介模式&quot; class=&quot;headerlink&quot; title=&quot;中介模式&quot;&gt;&lt;/a&gt;中介模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。&lt;/li&gt;
-&lt;li&gt;中介者模式解决的问题:解耦 / 降低复杂度，从混乱的网状结构变成线状 / 增加程序可维护性&lt;/li&gt;
-&lt;/ol&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;情形1:&lt;/th&gt;
-&lt;th&gt;情形2:&lt;/th&gt;
-&lt;th&gt;情形3:&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;B:9500&lt;/td&gt;
-&lt;td&gt;B:8000&lt;/td&gt;
-&lt;td&gt;B:11000&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;D:9000&lt;/td&gt;
-&lt;td&gt;D:8000&lt;/td&gt;
-&lt;td&gt;D:11000 &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/y5dx2bzuvl3ruzg/iOS_designPatternMediator02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/hiwds9gy7syplxs/iOS_designPatternMediator03.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/8sqw87ls7sdyzh9/iOS_designPatternMediator01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;AbstractMediator&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface AbstractMediator : NSObject &amp;lt;ColleagueDelegate&amp;gt;
-
-@end
-
-@implementation AbstractMediator
-
-- (void)colleagueEvent:(AbstractColleague *)event {
-
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;AbstractColleague&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@class AbstractColleague;
-
-@protocol ColleagueDelegate &amp;lt;NSObject&amp;gt;
-
-@optional
-
-//colleague对象的交互
-- (void)colleagueEvent:(AbstractColleague *)event;
-
-@end
-
-@interface AbstractColleague : NSObject
-
-@property (nonatomic, weak) id &amp;lt;ColleagueDelegate&amp;gt; delegate;
-
-@end
-@implementation AbstractColleague
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;MVC与中介者&quot;&gt;&lt;a href=&quot;#MVC与中介者&quot; class=&quot;headerlink&quot; title=&quot;MVC与中介者&quot;&gt;&lt;/a&gt;MVC与中介者&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;MVC中的控制器viewController就相当于中介&lt;/li&gt;
-&lt;li&gt;为何要使用中介者：解决复杂的交互问题，对象之间有大量的交互逻辑，彼此互相关联&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5sh3jplqfnhlxr0/iOS_designPatternMediator04.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mlfyqqf2l50irlj/iOS_designpatternMediator05.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Colleague&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface Colleague : AbstractColleague
-
-@property (nonatomic) CGFloat value;
-
-- (void)changeValue:(CGFloat)value;
-
-@end
-
-@implementation Colleague
-
-- (void)changeValue:(CGFloat)value {
-
-self.value = value;
-
-if (self.delegate &amp;amp;&amp;amp; [self.delegate respondsToSelector:@selector(colleagueEvent:)]) {
-
-    [self.delegate colleagueEvent:self];
-}
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;TypeOneMediator&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface TypeOneMediator : AbstractMediator
-
-@property (nonatomic, strong) Colleague  *colleagueA;
-@property (nonatomic, strong) Colleague  *colleagueB;
-@property (nonatomic, strong) Colleague  *colleagueC;
-
-- (NSDictionary *)values;
-
-@end
-
-@implementation TypeOneMediator
-
-- (void)colleagueEvent:(AbstractColleague *)event {
-
-if ([event isEqual:self.colleagueA]) {
-
-    self.colleagueB.value = self.colleagueA.value * 2;
-    self.colleagueC.value = self.colleagueA.value * 4;
-
-} else if ([event isEqual:self.colleagueB]) {
-
-    self.colleagueA.value = self.colleagueB.value / 2.f;
-    self.colleagueC.value = self.colleagueB.value * 2.f;
-
-} else {
-
-    self.colleagueA.value = self.colleagueC.value / 4.f;
-    self.colleagueB.value = self.colleagueC.value / 2.f;
-}
-}
-
-- (NSDictionary *)values {
-
-return @{@&amp;quot;A&amp;quot; : @(self.colleagueA.value),
-         @&amp;quot;B&amp;quot; : @(self.colleagueB.value),
-         @&amp;quot;C&amp;quot; : @(self.colleagueC.value)};
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-@property (nonatomic, strong) TypeTwoMediator  *mediator;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.mediator = [TypeTwoMediator new];
-
-Colleague *colleagueA = [Colleague new];
-Colleague *colleagueB = [Colleague new];
-Colleague *colleagueC = [Colleague new];
-
-self.mediator.colleagueA = colleagueA;
-self.mediator.colleagueB = colleagueB;
-self.mediator.colleagueC = colleagueC;
-
-colleagueA.delegate = self.mediator;
-colleagueB.delegate = self.mediator;
-colleagueC.delegate = self.mediator;
-
-[colleagueA changeValue:2.f];
-NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
-
-[colleagueA changeValue:1.f];
-NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
-
-[colleagueA changeValue:3.f];
-NSLog(@&amp;quot;%@&amp;quot;, [self.mediator values]);
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;中介模式&quot;&gt;&lt;a href=&quot;#中介模式&quot; class=&quot;headerlink&quot; title=&quot;中介模式&quot;&gt;&lt;/a&gt;中介模式&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;中介者模式：用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_designPattern" scheme="http://jackliu17.github.io/tags/iOS-designPattern/"/>
     
   </entry>
   

@@ -238,6 +238,238 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/27/iOS设计模式-原型/" itemprop="url">
+                  iOS设计模式-原型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-27T12:34:13+10:00" content="2016-05-27">
+              2016-05-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/27/iOS设计模式-原型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/27/iOS设计模式-原型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="原型模式解决的问题"><a href="#原型模式解决的问题" class="headerlink" title="原型模式解决的问题"></a>原型模式解决的问题</h1><p>每个对象需要重新创建</p>
+<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
+stu1.name          = @&quot;小王&quot;;
+stu1.age           = @(19);
+stu1.address       = @&quot;中关村&quot;;
+stu1.totalScore    = @(100);
+
+
+StudentModel *stu2 = [[StudentModel alloc] init];
+stu1.name          = @&quot;小刘&quot;;
+stu1.age           = @(19);
+stu1.address       = @&quot;中关村&quot;;
+stu1.totalScore    = @(100);
+</code></pre><h1 id="原型设计-自我拷贝"><a href="#原型设计-自我拷贝" class="headerlink" title="原型设计:自我拷贝"></a>原型设计:自我拷贝</h1><p><img src="https://www.dropbox.com/s/vrmdd3wift6uxn7/iOS_designPattern0501.png?dl=1" alt=""></p>
+<p>使用场景：对象创建特别复杂，两个对象在抽象逻辑完全一致，只是在实例化的细节略有差异，如果要重新创建一个对象，不如拷贝自己再去修改</p>
+<p>ProtoypeCopyProtocol    </p>
+<pre><code>@protocol ProtoypeCopyProtocol &lt;NSObject&gt;
+@required
+- (id)clone;
+@end
+</code></pre><p>StudentModel</p>
+<pre><code>@interface StudentModel : NSObject &lt;ProtoypeCopyProtocol&gt;
+
+@property (nonatomic, strong) NSString  *name;
+@property (nonatomic, strong) NSNumber  *age;
+@property (nonatomic, strong) NSString  *address;
+@property (nonatomic, strong) NSNumber  *totalScore;
+
+- (id)clone;
+@end
+
+@implementation StudentModel
+
+- (id)clone {
+
+    StudentModel *student = [[[self class] alloc] init];
+
+    // 完成复杂操作的所有作业
+    student.name       = self.name;
+    student.age        = self.age;
+    student.address    = self.address;
+    student.totalScore = self.totalScore;
+    return student;
+}
+@end
+</code></pre><p>viewController</p>
+<pre><code>- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    // 学生1
+    StudentModel *stu1 = [[StudentModel alloc] init];
+    stu1.name          = @&quot;小王&quot;;
+    stu1.age           = @(19);
+    stu1.address       = @&quot;中关村&quot;;
+    stu1.totalScore    = @(100);
+
+    // 学生2
+    StudentModel *stu2 = [stu1 clone];
+    stu2.name          = @&quot;小红&quot;;
+}
+</code></pre><h1 id="框架级别的原型模式-NSCopying"><a href="#框架级别的原型模式-NSCopying" class="headerlink" title="框架级别的原型模式:NSCopying"></a>框架级别的原型模式:NSCopying</h1><p>BasCopyObject</p>
+<pre><code>//遵循NSCopying协议
+@interface BasCopyObject : NSObject &lt;NSCopying&gt;
+
+
+//子类不要重载这个方法
+- (id)copyWithZone:(NSZone *)zone {
+    .........
+BasCopyObject *copyObject = [[self class] allocWithZone:zone];
+
+// 赋值操作作业，//由子类重载实现
+[self copyOperationWithObject:copyObject];
+return copyObject;
+}
+
+- (void)copyOperationWithObject:(id)object {
+
+}
+</code></pre><p>StudentModel</p>
+<pre><code>//继承基类
+@interface StudentModel : BasCopyObject
+
+- (void)copyOperationWithObject:(StudentModel *)object {  
+object.name = self.name;
+object.age  = self.age;
+}
+</code></pre><p>ViewController</p>
+<pre><code>StudentModel *stu1 = [[StudentModel alloc] init];
+StudentModel *stu2 = stu1.copy;
+</code></pre><h1 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h1><h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>ClassModel</p>
+<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
+object.className = self.className;
+object.students = self.students;
+}
+</code></pre><p>ViewController</p>
+<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
+class1.className   = @&quot;班级1&quot;;
+class1.students    = @[stu1, stu2];
+
+ClassModel *class2 = class1.copy;
+</code></pre><p>这样拷贝出来的数组students内存地址一样。说明数组拷贝没有成功。就好像student既属于A班，又属于B班</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>同时要求数组里的每个对象也要实现NSCopying协议</p>
+<p>ClassModel</p>
+<pre><code>- (void)copyOperationWithObject:(ClassModel *)object {
+
+    object.className = self.className;
+    // 完成了深拷贝(完整的复制了集合里面的对象)
+    object.students  = [[NSArray alloc] initWithArray:self.students copyItems:YES];
+}
+</code></pre><p>ViewController</p>
+<pre><code>ClassModel *class1 = [[ClassModel alloc] init];
+class1.className   = @&quot;班级1&quot;;
+class1.students    = @[stu1, stu2];
+
+ClassModel *class2 = class1.copy;    
+</code></pre><p>这样拷贝出来的class2中的数组对象students才能与class1中的数组对象students有不同的内存地址</p>
+<h1 id="self-class"><a href="#self-class" class="headerlink" title="[self class]"></a>[self class]</h1><p>这里使用self，是因为StudentModel可能会被子类继承</p>
+<pre><code>StudentModel *student = [[[self class] alloc] init];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/26/iOS设计模式-观察者/" itemprop="url">
                   iOS设计模式-观察者
                 </a>
@@ -1269,161 +1501,6 @@ override func viewDidLoad() {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/21/iOS设计模式简介/" itemprop="url">
-                  iOS设计模式简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T18:23:12+10:00" content="2016-05-21">
-              2016-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS设计模式简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS设计模式简介/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="设计模式的基本原则"><a href="#设计模式的基本原则" class="headerlink" title="设计模式的基本原则"></a>设计模式的基本原则</h1><h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p>扩展开放，修改关闭, 比如继承base类</p>
-<pre><code>#import &quot;BaseAnimationView.h&quot;
-@interface FadeAnimationView : BaseAnimationView
-@end
-</code></pre><h2 id="里氏代换原则"><a href="#里氏代换原则" class="headerlink" title="里氏代换原则"></a>里氏代换原则</h2><p>子类父类相互替换，使用相互的方法</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-
-BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
-[animationView changeToDisableStateAnimated:YES duration:0.5f];
-}
-</code></pre><p>空实现：建立一个类，并不是直接使用，而是把他当做抽象的父类来使用,在.m中进行空实现</p>
-<pre><code>- (void)changeToDisableStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration {
-
-}
-</code></pre><h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><p>抽象的方法可以暴露在.h文件，但具体的实现，即私有方法，不应该暴露</p>
-<pre><code>- (void)fadeAnimated:(BOOL)animated {
-
-// todo
-}
-
-- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration {
-
-[self fadeAnimated:animated];
-}
-</code></pre><h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>接口只做必要的事情，比如</p>
-<pre><code>- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration;
-</code></pre><p>如果是这样，添加了frame值，就没必要。frame值完全没必要暴露出来</p>
-<pre><code>- (void)changeToNormalStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration frame:(CGRect)frame;
-</code></pre><h2 id="合成-聚合复用"><a href="#合成-聚合复用" class="headerlink" title="合成/聚合复用"></a>合成/聚合复用</h2><p>如果BaseAnimation中的方法满足不了需求了，不需要继承它创建新类,而是用一个类作为容器将其聚合</p>
-<pre><code>@interface AnimationView : UIView
-
-@property (nonatomic, strong) FadeAnimationView *fadeAnimationView;
-
-- (void)changeToErrorStateAnimated:(BOOL)animated duration:(NSTimeInterval)duration;
-</code></pre><h1 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h1><p><img src="https://www.dropbox.com/s/8kgygcd374w8m36/iOS_designPattern0101.png?dl=1" alt=""></p>
-<p>两本书推荐阅读</p>
-<ol>
-<li>Pro Design Patterns in Swift  (By Adam Freeman)</li>
-<li>Pro Objective-C Design Patterns for iOS (By Carlo Chung)</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1470,7 +1547,7 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">96</span>
+              <span class="site-state-item-count">97</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1487,7 +1564,7 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

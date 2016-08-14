@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,codeExample," />
+  <meta name="keywords" content="iOS,iOS_String," />
 
 
 
@@ -61,46 +61,28 @@
 
 
 
-<meta name="description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
+<meta name="description" content="NSAttributedString 的基本使用处理简单的字符串NSString *string = @&amp;quot;天道酬勤&amp;quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本样式
+[attributedSt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta property="og:url" content="http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/index.html">
+<meta property="og:title" content="NSAttributedString使用详解">
+<meta property="og:url" content="http://jackliu17.github.io/2016/08/14/NSAttributedString使用详解/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta property="og:image" content="https://www.dropbox.com/s/g0ayo6wgvglckix/uiscrollViewPlay.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/flznuxuzo806l1m/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T10:45:53.000Z">
+<meta property="og:description" content="NSAttributedString 的基本使用处理简单的字符串NSString *string = @&amp;quot;天道酬勤&amp;quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本样式
+[attributedSt">
+<meta property="og:updated_time" content="2016-08-14T10:43:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS项目6.UIScrollView图片自动滚动">
-<meta name="twitter:description" content="效果图
-功能分析
-定义常量的两种方式//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloa">
-<meta name="twitter:image" content="https://www.dropbox.com/s/g0ayo6wgvglckix/uiscrollViewPlay.png?dl=1">
+<meta name="twitter:title" content="NSAttributedString使用详解">
+<meta name="twitter:description" content="NSAttributedString 的基本使用处理简单的字符串NSString *string = @&amp;quot;天道酬勤&amp;quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+
+// 设置富文本样式
+[attributedSt">
 
 
 
@@ -118,7 +100,7 @@ CGFloa">
   };
 </script>
 
-  <title> iOS项目6.UIScrollView图片自动滚动 | Cowboy Tech </title>
+  <title> NSAttributedString使用详解 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +242,7 @@ CGFloa">
             
             
               
-                iOS项目6.UIScrollView图片自动滚动
+                NSAttributedString使用详解
               
             
           </h1>
@@ -272,8 +254,8 @@ CGFloa">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2016-08-14T20:23:13+10:00" content="2016-08-14">
+              2016-08-14
             </time>
           </span>
 
@@ -302,8 +284,8 @@ CGFloa">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
+                <a href="/2016/08/14/NSAttributedString使用详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/14/NSAttributedString使用详解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -325,55 +307,215 @@ CGFloa">
       
 
       
-        <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/g0ayo6wgvglckix/uiscrollViewPlay.png?dl=1" alt="效果图"></p>
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="https://www.dropbox.com/s/flznuxuzo806l1m/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png?dl=1" alt="功能分析"></p>
-<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
+        <h1 id="NSAttributedString-的基本使用"><a href="#NSAttributedString-的基本使用" class="headerlink" title="NSAttributedString 的基本使用"></a>NSAttributedString 的基本使用</h1><h2 id="处理简单的字符串"><a href="#处理简单的字符串" class="headerlink" title="处理简单的字符串"></a>处理简单的字符串</h2><pre><code>NSString *string = @&quot;天道酬勤&quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
 
+// 设置富文本样式
+[attributedString addAttribute:NSForegroundColorAttributeName
+                         value:[UIColor redColor]
+                         range:NSMakeRange(0, 1)];
 
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
+[attributedString addAttribute:NSFontAttributeName
+                         value:[UIFont systemFontOfSize:24.f]
+                         range:NSMakeRange(0, 2)];
 
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = attributedString;
+[self.view addSubview:label];
+</code></pre><h2 id="处理段落样式"><a href="#处理段落样式" class="headerlink" title="处理段落样式"></a>处理段落样式</h2><pre><code>NSString *string = @&quot;天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤\n天道酬勤真不错！&quot;;
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
 
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
+// 设置富文本 - 段落样式
+NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+style.lineSpacing              = 10.f;
+style.paragraphSpacing         = 20.f;
 
+[attributedString addAttribute:NSParagraphStyleAttributeName
+                         value:style
+                         range:NSMakeRange(0, string.length)];
 
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
 
+//设置段落样式的时候，numberOfLines必须为0
+label.numberOfLines  = 0;
+label.attributedText = attributedString;
+[self.view addSubview:label];
+</code></pre><h2 id="NSAttributedString设置的作用域"><a href="#NSAttributedString设置的作用域" class="headerlink" title="NSAttributedString设置的作用域"></a>NSAttributedString设置的作用域</h2><p>设置富文本的时候，先设置的先显示，后设置的，如果与先设置的样式不一致，是不会覆盖的，富文本设置的效果具有先后顺序</p>
+<h1 id="NSAtrributedString的简易封装"><a href="#NSAtrributedString的简易封装" class="headerlink" title="NSAtrributedString的简易封装"></a>NSAtrributedString的简易封装</h1><p>ViewController.m</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &quot;NSString+AttributeStyle.h&quot;
+#import &quot;ForeGroundColorStyle.h&quot;
+#import &quot;FontStyle.h&quot;
+
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+NSString *string = @&quot;极客学院&quot;;
+
+UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
+label.attributedText = \
+    [string createAttributedStringWithStyles:\
+       @[colorStyle([UIColor redColor],             NSMakeRange(0, 2)),
+         fontStyle ([UIFont systemFontOfSize:20.f], NSMakeRange(1, 2))]];
+
+[self.view addSubview:label];
+}
+</code></pre><p>AttributedStyle.h</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+#import &lt;UIKit/UIKit.h&gt;
+
+@interface AttributedStyle : NSObject
+
+@property (nonatomic, strong) NSString  *attributeName;
+@property (nonatomic, strong) id         value;
+@property (nonatomic)         NSRange    range;
+
+/**
+ *  便利构造器
+ *
+ *  @param attributeName 属性名字
+ *  @param value         设置的值
+ *  @param range         取值范围
+ *
+ *  @return 实例对象
+ */
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range;
+@end
+</code></pre><p>AttributedStyle.m</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@implementation AttributedStyle
+
++ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range {
+
+AttributedStyle *style = [[self class] new];
+
+style.attributeName = attributeName;
+style.value         = value;
+style.range         = range;
+
+return style;
 }
 
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+@end
+</code></pre><p>NSString + AttributeStyle.h</p>
+<pre><code>#import &lt;Foundation/Foundation.h&gt;
+#import &quot;AttributedStyle.h&quot;
 
+@interface NSString (AttributeStyle)
+
+/**
+ *  根据styles数组创建出富文本
+ *
+ *  @param styles AttributedStyle对象构成的数组
+ *
+ *  @return 富文本
+ */
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles;
+
+@end
+</code></pre><p>NSString + AttributeStyle.m</p>
+<pre><code>#import &quot;NSString+AttributeStyle.h&quot;
+
+@implementation NSString (AttributeStyle)
+
+- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles {
+if (self.length &lt;= 0) {
+    return nil;
 }
 
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
+NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
 
-//停止定时器
-[self.timer invalidate];
-</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
-</code></pre>
+for (int count = 0; count &lt; styles.count; count++) {
+    AttributedStyle *style = styles[count];
+
+    [attributedString addAttribute:style.attributeName
+                             value:style.value
+                             range:style.range];
+}
+
+
+return attributedString;
+}
+
+@end
+</code></pre><p>ForeGroundColorStyle.h</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@interface ForeGroundColorStyle : AttributedStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param color 颜色
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* colorStyle(UIColor *color, NSRange range) {
+return [ForeGroundColorStyle withColor:color range:range];
+}
+</code></pre><p>ForeGroundColorStyle.m</p>
+<pre><code>#import &quot;ForeGroundColorStyle.h&quot;
+
+@implementation ForeGroundColorStyle
+
++ (id)withColor:(UIColor *)color range:(NSRange)range {
+
+id style = [super attributeName:NSForegroundColorAttributeName
+                          value:color
+                          range:range];
+
+return style;
+}
+
+@end
+</code></pre><p>FontStyle.h</p>
+<pre><code>#import &quot;AttributedStyle.h&quot;
+
+@interface FontStyle : AttributedStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range;
+
+@end
+
+/**
+ *  内联函数
+ *
+ *  @param font  字体
+ *  @param range 范围
+ *
+ *  @return 实例对象
+ */
+static inline AttributedStyle* fontStyle(UIFont *font, NSRange range) {
+return [FontStyle withFont:font range:range];
+}
+</code></pre><p>FontStyle.m</p>
+<pre><code>#import &quot;FontStyle.h&quot;
+
+@implementation FontStyle
+
++ (id)withFont:(UIFont *)font range:(NSRange)range {
+
+id fontStyle = [super attributeName:NSFontAttributeName
+                              value:font
+                              range:range];
+
+return fontStyle;
+}
+
+@end
+</code></pre><h1 id="使用开源代码GONMarkupPaser处理富文本-略"><a href="#使用开源代码GONMarkupPaser处理富文本-略" class="headerlink" title="使用开源代码GONMarkupPaser处理富文本 (略)"></a>使用开源代码GONMarkupPaser处理富文本 (略)</h1><h1 id="UITextKit简介-略"><a href="#UITextKit简介-略" class="headerlink" title="UITextKit简介(略)"></a>UITextKit简介(略)</h1>
       
     </div>
 
@@ -389,7 +531,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/iOS-String/" rel="tag">#iOS_String</a>
           
         </div>
       
@@ -398,17 +540,13 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/iOS项目5-UIPickerView国家选择/" rel="next" title="iOS项目5.UIPickerView国家选择">
-                <i class="fa fa-chevron-left"></i> iOS项目5.UIPickerView国家选择
+              <a href="/2016/08/12/使用CoreImage处理图片/" rel="next" title="使用CoreImage处理图片">
+                <i class="fa fa-chevron-left"></i> 使用CoreImage处理图片
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/24/OpenGL-ES/" rel="prev" title="OpenGL_ES">
-                OpenGL_ES <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +678,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能分析"><span class="nav-number">2.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义常量的两种方式"><span class="nav-number">3.</span> <span class="nav-text">定义常量的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIScrollView的配置"><span class="nav-number">4.</span> <span class="nav-text">UIScrollView的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加视图-插入"><span class="nav-number">5.</span> <span class="nav-text">添加视图 - 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器添加和停止"><span class="nav-number">6.</span> <span class="nav-text">定时器添加和停止</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环调用"><span class="nav-number">7.</span> <span class="nav-text">循环调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NSAttributedString-的基本使用"><span class="nav-number">1.</span> <span class="nav-text">NSAttributedString 的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理简单的字符串"><span class="nav-number">1.1.</span> <span class="nav-text">处理简单的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理段落样式"><span class="nav-number">1.2.</span> <span class="nav-text">处理段落样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSAttributedString设置的作用域"><span class="nav-number">1.3.</span> <span class="nav-text">NSAttributedString设置的作用域</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSAtrributedString的简易封装"><span class="nav-number">2.</span> <span class="nav-text">NSAtrributedString的简易封装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用开源代码GONMarkupPaser处理富文本-略"><span class="nav-number">3.</span> <span class="nav-text">使用开源代码GONMarkupPaser处理富文本 (略)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITextKit简介-略"><span class="nav-number">4.</span> <span class="nav-text">UITextKit简介(略)</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -798,9 +936,9 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
-      var disqus_title = 'iOS项目6.UIScrollView图片自动滚动';
-      var disqus_url = 'http://jackliu17.github.io/2016/04/22/iOS项目6-UIScrollView图片自动滚动/';
+      var disqus_identifier = '2016/08/14/NSAttributedString使用详解/';
+      var disqus_title = 'NSAttributedString使用详解';
+      var disqus_url = 'http://jackliu17.github.io/2016/08/14/NSAttributedString使用详解/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
