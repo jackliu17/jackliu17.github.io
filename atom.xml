@@ -252,11 +252,12 @@ return fontStyle;
     <link href="http://jackliu17.github.io/2016/08/12/%E4%BD%BF%E7%94%A8CoreImage%E5%A4%84%E7%90%86%E5%9B%BE%E7%89%87/"/>
     <id>http://jackliu17.github.io/2016/08/12/使用CoreImage处理图片/</id>
     <published>2016-08-12T10:49:06.000Z</published>
-    <updated>2016-08-12T11:11:58.000Z</updated>
+    <updated>2016-08-15T06:24:06.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;CoreImage滤镜的使用&quot;&gt;&lt;a href=&quot;#CoreImage滤镜的使用&quot; class=&quot;headerlink&quot; title=&quot;CoreImage滤镜的使用&quot;&gt;&lt;/a&gt;CoreImage滤镜的使用&lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。&lt;/li&gt;
 &lt;li&gt;随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。&lt;br&gt;大部分的滤镜都很容易使用。&lt;/li&gt;
+&lt;li&gt;core image也可以支持视频&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/hg32v15woj86uai/20160812_coreImage1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
@@ -434,15 +435,27 @@ slider.maximumValue = 1.f;
     <link href="http://jackliu17.github.io/2016/08/12/iOS%E9%A1%B9%E7%9B%AE22-%E7%80%91%E5%B8%83%E6%B5%81/"/>
     <id>http://jackliu17.github.io/2016/08/12/iOS项目22-瀑布流/</id>
     <published>2016-08-12T06:13:38.000Z</published>
-    <updated>2016-08-12T06:16:30.000Z</updated>
+    <updated>2016-08-15T06:25:50.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;实现瀑布流有三种方式&quot;&gt;&lt;a href=&quot;#实现瀑布流有三种方式&quot; class=&quot;headerlink&quot; title=&quot;实现瀑布流有三种方式:&quot;&gt;&lt;/a&gt;实现瀑布流有三种方式:&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;scrollView视图重用&lt;/li&gt;
+&lt;li&gt;tableView滑动同步&lt;/li&gt;
+&lt;li&gt;collectionView布局&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;collectionView的使用&quot;&gt;&lt;a href=&quot;#collectionView的使用&quot; class=&quot;headerlink&quot; title=&quot;collectionView的使用&quot;&gt;&lt;/a&gt;collectionView的使用&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;自定义布局类&lt;/li&gt;
+&lt;li&gt;自定义视图&lt;/li&gt;
+&lt;li&gt;完善功能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Note:记住返回类型，系统就会调用出相关的方法&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
+      &lt;h1 id=&quot;实现瀑布流有三种方式&quot;&gt;&lt;a href=&quot;#实现瀑布流有三种方式&quot; class=&quot;headerlink&quot; title=&quot;实现瀑布流有三种方式:&quot;&gt;&lt;/a&gt;实现瀑布流有三种方式:&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;scrollView视图重用&lt;/li&gt;
+&lt;li&gt;tableV
     
     </summary>
     
@@ -587,7 +600,7 @@ slider.maximumValue = 1.f;
     <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
     <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
     <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-09T01:46:22.000Z</updated>
+    <updated>2016-08-18T23:30:58.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -751,7 +764,9 @@ private func configureTraitOverrideForSize(size:CGSize) {
     let compactVertical = UITraitCollection(verticalSizeClass: .Compact)
     UINavigationBar.appearanceForTraitCollection(compactVertical).titleTextAttributes = [NSFontAttributeName: font.fontWithSize(20)]
 }
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;设定某UI元素height或width的约束&quot;&gt;&lt;a href=&quot;#设定某UI元素height或width的约束&quot; class=&quot;headerlink&quot; title=&quot;设定某UI元素height或width的约束&quot;&gt;&lt;/a&gt;设定某UI元素height或width的约束&lt;/h1&gt;&lt;p&gt;ctrl + drag 在该元素内部拖动&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xigfhpio2unf7le/20160819_autoLayout.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
     
     <summary type="html">
     
@@ -1765,9 +1780,10 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     <link href="http://jackliu17.github.io/2016/07/29/%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%9B%BE%E5%83%8F%E5%B0%BA%E5%AF%B8%E8%AF%B4%E6%98%8E/"/>
     <id>http://jackliu17.github.io/2016/07/29/手机屏幕图像尺寸说明/</id>
     <published>2016-07-29T06:41:29.000Z</published>
-    <updated>2016-07-29T09:12:16.000Z</updated>
+    <updated>2016-08-15T06:23:18.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSize1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;其他都当放屁，只要记住一点，iphone设计稿以640&lt;em&gt;1136像素做（我一般使用750&lt;/em&gt;1334），android设计稿以1080&lt;em&gt;1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元素，如图标，线条，色块，全部用矢量图形的做，不要用像素位图，以免&lt;/em&gt;2后模糊。&lt;/p&gt;
+&lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSize1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;屏幕尺寸&quot;&gt;&lt;a href=&quot;#屏幕尺寸&quot; class=&quot;headerlink&quot; title=&quot;屏幕尺寸&quot;&gt;&lt;/a&gt;屏幕尺寸&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/prqfsl2tl84m01l/MobileImageSize2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;像素密度&quot;&gt;&lt;a href=&quot;#像素密度&quot; class=&quot;headerlink&quot; title=&quot;像素密度&quot;&gt;&lt;/a&gt;像素密度&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ybjgllir4rb1xie/MobileImageSize3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/x7jmtbnkqptdxhl/MobileImageSize4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -1786,7 +1802,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     
     <summary type="html">
     
-      &lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSiz
+      &lt;p&gt;其他都当放屁，只要记住一点，iphone设计稿以640&lt;em&gt;1136像素做（我一般使用750&lt;/em&gt;1334），android设计稿以1080&lt;em&gt;1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元
     
     </summary>
     
