@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-14T10:43:17.000Z</updated>
+  <updated>2016-08-19T01:20:14.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,97 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swift进阶</title>
+    <link href="http://jackliu17.github.io/2016/08/19/Swift%E8%BF%9B%E9%98%B6/"/>
+    <id>http://jackliu17.github.io/2016/08/19/Swift进阶/</id>
+    <published>2016-08-19T00:06:55.000Z</published>
+    <updated>2016-08-19T01:20:14.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Swift与Foundation&quot;&gt;&lt;a href=&quot;#Swift与Foundation&quot; class=&quot;headerlink&quot; title=&quot;Swift与Foundation&quot;&gt;&lt;/a&gt;Swift与Foundation&lt;/h1&gt;&lt;p&gt;Swift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var str:NSString = &amp;quot;Hello, playground&amp;quot;
+str.substringWithRange(NSRange(location: 0,length: 5))
+
+var array:NSArray = [1,2,3,4]
+array.componentsJoinedByString(&amp;quot;,&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;String - NSString&lt;/li&gt;
+&lt;li&gt;Int, Float, Double, Bool 以及其他与数字有关的类型 - NSNumber&lt;/li&gt;
+&lt;li&gt;Array - NSArray&lt;/li&gt;
+&lt;li&gt;Dictionary - NSDictionary&lt;/li&gt;
+&lt;li&gt;Set – NSSet&lt;/li&gt;
+&lt;li&gt;AnyObject – NSObject&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;值类型和引用类型&quot;&gt;&lt;a href=&quot;#值类型和引用类型&quot; class=&quot;headerlink&quot; title=&quot;值类型和引用类型&quot;&gt;&lt;/a&gt;值类型和引用类型&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;struct 和 enum 定义的类型是值类型，使用 class 定义的为引用类型。&lt;/li&gt;
+&lt;li&gt;基本数据类型全是struct&lt;/li&gt;
+&lt;li&gt;处理大量数据并且频繁增减元素时, NSMutableArray、NSMutableDictionary和NSMutableSet,其他情况 Array 、Dictionary和Set好一点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;命名空间&quot;&gt;&lt;a href=&quot;#命名空间&quot; class=&quot;headerlink&quot; title=&quot;命名空间&quot;&gt;&lt;/a&gt;命名空间&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;一个module 代表一个命名空间&lt;/li&gt;
+&lt;li&gt;主target就是一个module,创建framework和target就是新的module&lt;/li&gt;
+&lt;li&gt;不同module中就算类名相同,也可以通过module名进行区分, 不再需要给类名加上各种奇怪的前缀了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;OC与Swift互相调用&quot;&gt;&lt;a href=&quot;#OC与Swift互相调用&quot; class=&quot;headerlink&quot; title=&quot;OC与Swift互相调用&quot;&gt;&lt;/a&gt;OC与Swift互相调用&lt;/h1&gt;&lt;p&gt;OC调用Swift&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# import &amp;quot;(moduleName)-Swift.h&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Swift调用OC:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//动态库:
+ import moduleName
+
+//静态库:
+ moduleName-Bridging-Header.h  中引入OC头文件
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;使用C指针&quot;&gt;&lt;a href=&quot;#使用C指针&quot; class=&quot;headerlink&quot; title=&quot;使用C指针&quot;&gt;&lt;/a&gt;使用C指针&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;const Type *        UnsafePointer&amp;lt;Type&amp;gt; 
+Type *               UnsafeMutablePointer&amp;lt;Type&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;int，bool 和 char 的对应 类型分别是 CInt，CBool 和 CChar.内存需要自己管理&lt;/p&gt;
+&lt;h1 id=&quot;泛型&quot;&gt;&lt;a href=&quot;#泛型&quot; class=&quot;headerlink&quot; title=&quot;泛型&quot;&gt;&lt;/a&gt;泛型&lt;/h1&gt;&lt;p&gt;泛型代码可以让你写出根据自我需求定义、适用于任何类型的，灵活且可重用的函数和类型。它可以让你避免重复的代码，用一种清晰和抽象的方式来表达代码的意图。&lt;br&gt;Swift 的数组和字典类型都是泛型集。 &lt;/p&gt;
+&lt;h1 id=&quot;异常处理&quot;&gt;&lt;a href=&quot;#异常处理&quot; class=&quot;headerlink&quot; title=&quot;异常处理&quot;&gt;&lt;/a&gt;异常处理&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;enum Result&amp;lt;T&amp;gt; {
+    case Success(T)
+    case Failure(NSError)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;ErrorType&lt;/li&gt;
+&lt;li&gt;同步 API 使用异常机制: do try catch throw throws&lt;/li&gt;
+&lt;li&gt;异步 API 使用泛型枚举&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;guard&quot;&gt;&lt;a href=&quot;#guard&quot; class=&quot;headerlink&quot; title=&quot;guard&quot;&gt;&lt;/a&gt;guard&lt;/h1&gt;&lt;p&gt;可以把guard近似的看做是Assert，但是你可以优雅的退出而非崩溃.guard中解包得得到值可以用于后面的代码&lt;/p&gt;
+&lt;h1 id=&quot;属性观察&quot;&gt;&lt;a href=&quot;#属性观察&quot; class=&quot;headerlink&quot; title=&quot;属性观察&quot;&gt;&lt;/a&gt;属性观察&lt;/h1&gt;&lt;p&gt;willSet didSet&lt;br&gt;初始化对象并不会触发&lt;br&gt;同样可以设置 NSLayoutConstraint的constant&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@IBOutlet weak var myLabel: UILabel! {
+    didSet {
+        myLabel.textColor = UIColor.purpleColor()
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Extensions&quot;&gt;&lt;a href=&quot;#Extensions&quot; class=&quot;headerlink&quot; title=&quot;Extensions&quot;&gt;&lt;/a&gt;Extensions&lt;/h1&gt;&lt;p&gt;扩展：就是向一个已有的类、结构体、枚举类型或者协议类型添加新功能。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）&lt;/p&gt;
+&lt;h1 id=&quot;协议扩展&quot;&gt;&lt;a href=&quot;#协议扩展&quot; class=&quot;headerlink&quot; title=&quot;协议扩展&quot;&gt;&lt;/a&gt;协议扩展&lt;/h1&gt;&lt;p&gt;在Swift2.0中，可以对协议进行属性或者方法的扩展，和扩展类与结构体类似。这让我们开启了面向协议编程的篇章。&lt;/p&gt;
+&lt;h1 id=&quot;map-flatMap-filter&quot;&gt;&lt;a href=&quot;#map-flatMap-filter&quot; class=&quot;headerlink&quot; title=&quot;map flatMap filter&quot;&gt;&lt;/a&gt;map flatMap filter&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;map：得到一个由闭包里面的返回值组成的新序列&lt;/li&gt;
+&lt;li&gt;flatMap：与map类似的功能,但是会过滤掉返回值里面的nil值&lt;/li&gt;
+&lt;li&gt;Filter：得到一个由闭包返回值为true的值组成的新序列&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;单例&quot;&gt;&lt;a href=&quot;#单例&quot; class=&quot;headerlink&quot; title=&quot;单例&quot;&gt;&lt;/a&gt;单例&lt;/h1&gt;&lt;p&gt;单例：表示一个类在系统中只有一个实例对象。通过全局的一个入口点对这个实例对象进行访问。&lt;/p&gt;
+&lt;h1 id=&quot;framework介绍&quot;&gt;&lt;a href=&quot;#framework介绍&quot; class=&quot;headerlink&quot; title=&quot;framework介绍&quot;&gt;&lt;/a&gt;framework介绍&lt;/h1&gt;&lt;p&gt;iOS 8后苹果开放了framework,也就是动态库的功能.和静态库在编译时和app代码链接并打进同一个二进制包中不同，动态库可以在运行时手动加载，这样就可以做很多事情&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;应用插件化&lt;/li&gt;
+&lt;li&gt;软件版本实时模块升级&lt;/li&gt;
+&lt;li&gt;共享可执行文件(仅可用于App Extension)&lt;/li&gt;
+&lt;li&gt;use_frameworks! CocoaPods生成一个动态框架，其中包含了所有pods而非一个静态库 import moduleName&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Swift与Foundation&quot;&gt;&lt;a href=&quot;#Swift与Foundation&quot; class=&quot;headerlink&quot; title=&quot;Swift与Foundation&quot;&gt;&lt;/a&gt;Swift与Foundation&lt;/h1&gt;&lt;p&gt;Swift原生类型是对Fou
+    
+    </summary>
+    
+      <category term="it's" scheme="http://jackliu17.github.io/categories/it-s/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+  </entry>
   
   <entry>
     <title>NSAttributedString使用详解</title>
@@ -2604,77 +2695,6 @@ msgLabel.text = &amp;quot;Loding...&amp;quot;
 msgLabel.text = &amp;quot;Loding...&amp;quot;
 
     NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目19-Swift实现天气预报</title>
-    <link href="http://jackliu17.github.io/2016/06/07/iOS%E9%A1%B9%E7%9B%AE19-Swift%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/"/>
-    <id>http://jackliu17.github.io/2016/06/07/iOS项目19-Swift实现天气预报/</id>
-    <published>2016-06-07T08:11:07.000Z</published>
-    <updated>2016-06-07T08:13:02.000Z</updated>
-    
-    <content type="html">&lt;pre&gt;&lt;code&gt;import UIKit
-
-class ViewController: UIViewController {
-
-@IBOutlet var tv:UITextView?
-
-@IBAction func btnPressed(sender:AnyObject){
-
-    loadWeather()
-}
-
-override func viewDidLoad() {
-    super.viewDidLoad()
-
-     loadWeather()
-}
-
-
-func loadWeather(){
-
-    let url = NSURL(string: &amp;quot;http://www.weather.com.cn/data/sk/101010100.html&amp;quot;)
-
-    let weatherData = NSData(contentsOfURL: url!)
-
-    do {
-
-let json =  try NSJSONSerialization.JSONObjectWithData(weatherData!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-
-        let weatherInfo = json.objectForKey(&amp;quot;weatherinfo&amp;quot;)
-        let city = weatherInfo!.objectForKey(&amp;quot;city&amp;quot;)
-        let temp = weatherInfo!.objectForKey(&amp;quot;temp&amp;quot;)
-        let wind = weatherInfo!.objectForKey(&amp;quot;WD&amp;quot;)
-        let ws : AnyObject! = weatherInfo!.objectForKey(&amp;quot;WS&amp;quot;)
-        tv!.text = &amp;quot;城市：\(city)\n温度：\(temp)\n风：\(wind)\n风级：\(ws)&amp;quot;
-    } catch {
-        print(&amp;quot;Hello&amp;quot;)
-    }
-}
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code&gt;import UIKit
-
-class ViewController: UIViewController {
-
-@IBOutlet var tv:UITextView?
-
-@IBAction func btnPressed(sender:AnyObject)
     
     </summary>
     
