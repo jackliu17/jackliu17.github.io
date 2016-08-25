@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-19T01:20:14.000Z</updated>
+  <updated>2016-08-25T11:06:07.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,11 +16,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Asset目录下的XML文件慎用字符！</title>
+    <link href="http://jackliu17.github.io/2016/08/25/asset%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84XML%E6%96%87%E4%BB%B6%E6%85%8E%E7%94%A8%E5%AD%97%E7%AC%A6%EF%BC%81/"/>
+    <id>http://jackliu17.github.io/2016/08/25/asset目录下的XML文件慎用字符！/</id>
+    <published>2016-08-25T11:01:14.000Z</published>
+    <updated>2016-08-25T11:06:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;写安卓的代码真心不爽啊! Android Studio的用户体验真心不如Xcode.现在实在忍不住要吐槽一下。今天debug了一个晚上，xml的解析始终报错，网上搜索解决方案许久许久，才发现原来是xml文件中多了个 “&amp;amp;” 字符而已！你不说清楚，我咋知道咧！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;写安卓的代码真心不爽啊! Android Studio的用户体验真心不如Xcode.现在实在忍不住要吐槽一下。今天debug了一个晚上，xml的解析始终报错，网上搜索解决方案许久许久，才发现原来是xml文件中多了个 “&amp;amp;” 字符而已！你不说清楚，我咋知道咧！&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Android" scheme="http://jackliu17.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Swift进阶</title>
     <link href="http://jackliu17.github.io/2016/08/19/Swift%E8%BF%9B%E9%98%B6/"/>
     <id>http://jackliu17.github.io/2016/08/19/Swift进阶/</id>
     <published>2016-08-19T00:06:55.000Z</published>
-    <updated>2016-08-19T01:20:14.000Z</updated>
+    <updated>2016-08-19T01:22:05.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Swift与Foundation&quot;&gt;&lt;a href=&quot;#Swift与Foundation&quot; class=&quot;headerlink&quot; title=&quot;Swift与Foundation&quot;&gt;&lt;/a&gt;Swift与Foundation&lt;/h1&gt;&lt;p&gt;Swift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var str:NSString = &amp;quot;Hello, playground&amp;quot;
@@ -97,7 +120,7 @@ Type *               UnsafeMutablePointer&amp;lt;Type&amp;gt;
     
     </summary>
     
-      <category term="it's" scheme="http://jackliu17.github.io/categories/it-s/"/>
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
@@ -2655,57 +2678,6 @@ if(selected){
     
     
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS项目20-Swift实现PM2.5显示</title>
-    <link href="http://jackliu17.github.io/2016/06/07/iOS%E9%A1%B9%E7%9B%AE20-Swift%E5%AE%9E%E7%8E%B0PM2-5%E6%98%BE%E7%A4%BA/"/>
-    <id>http://jackliu17.github.io/2016/06/07/iOS项目20-Swift实现PM2-5显示/</id>
-    <published>2016-06-07T08:34:45.000Z</published>
-    <updated>2016-06-07T09:13:32.000Z</updated>
-    
-    <content type="html">&lt;pre&gt;&lt;code&gt;func loadPM25Data(){
-
-msgLabel.text = &amp;quot;Loding...&amp;quot;
-
-    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(string:&amp;quot;http://aqicn.org/publishingdata/json&amp;quot;)!), queue: NSOperationQueue.mainQueue()) { (resp:NSURLResponse?, data:NSData?, error:NSError?) in
-
-        do {let jsonArr = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-        let firstData = (jsonArr as! NSArray).objectAtIndex(0)
-        let pollutants = firstData.valueForKey(&amp;quot;pollutants&amp;quot;)
-            let pm2_5 = (pollutants as! NSArray).objectAtIndex(0)
-            let theValue = pm2_5.valueForKey(&amp;quot;value&amp;quot;)
-
-            self.msgLabel.text = &amp;quot;PM2.5:\(theValue!)&amp;quot;
-
-
-        }catch{
-
-        print(&amp;quot;Hello&amp;quot;)
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;pre&gt;&lt;code&gt;func loadPM25Data(){
-
-msgLabel.text = &amp;quot;Loding...&amp;quot;
-
-    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
-      <category term="codeExample" scheme="http://jackliu17.github.io/tags/codeExample/"/>
     
   </entry>
   

@@ -238,6 +238,180 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/28/iOS项目7-超级猜图/" itemprop="url">
+                  iOS项目7.超级猜图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-28T13:05:41+10:00" content="2016-04-28">
+              2016-04-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/28/iOS项目7-超级猜图/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/28/iOS项目7-超级猜图/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/txargzo4ulfqxnd/%E8%B6%85%E7%BA%A7%E7%8C%9C%E5%9B%BE.png?dl=1" alt=""></p>
+<h1 id="视图分析"><a href="#视图分析" class="headerlink" title="视图分析"></a>视图分析</h1><p><img src="https://www.dropbox.com/s/5xt86y2d3wpbrms/guessImage.png?dl=1" alt=""></p>
+<h1 id="加载plist数据"><a href="#加载plist数据" class="headerlink" title="加载plist数据"></a>加载plist数据</h1><p><strong>将数据的初始化放在了数据模型里</strong></p>
+<p>JKQuestionInfo</p>
+<pre><code>+ (NSArray *)questions{
+
+NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;questions&quot; ofType:@&quot;plist&quot;];
+
+NSArray *array = [NSArray arrayWithContentsOfFile:path];
+
+NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+for (NSDictionary *dict in array) {
+
+    [arrayM addObject:[self questionWithDict:dict]];
+}
+return [arrayM copy];
+}
+</code></pre><p>ViewController</p>
+<pre><code>- (NSArray *)questions {
+if (nil == _questions) {
+    _questions = [JKQuestionInfo questions];
+}
+return _questions;
+}
+</code></pre><h1 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h1><h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>//需要计算的话，用宏,否则用const,如下
+
+//图片按钮的宽度
+#define imgW self.imgInsideBtn.bounds.size.width
+
+//答案按钮宽
+CGFloat const kBtnW = 35;
+</code></pre><h2 id="UIButton-配置"><a href="#UIButton-配置" class="headerlink" title="UIButton 配置"></a>UIButton 配置</h2><pre><code>//为按钮设置背景图片
+[self.imgInsideBtn setImage:question.image forState:UIControlStateNormal];
+
+//设定按钮高亮下的背景图片
+[btn setBackgroundImage:[UIImage imageNamed:@&quot;btn_answer_highlighted&quot;] forState:UIControlStateHighlighted];
+
+//设定按钮常规下的字体颜色
+[btn setTitleColor:kAnswerBtnTitleColor forState:UIControlStateNormal];
+
+//设定按钮的点击方法
+[btn addTarget:self action:@selector(answerBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+
+//设定按钮上的字符
+[answerBtn setTitle:nil forState:UIControlStateNormal];
+
+//alpha值切换按钮的不同状态
+self.cover.alpha = 0.0;
+</code></pre><h2 id="遍历移除所有子视图"><a href="#遍历移除所有子视图" class="headerlink" title="遍历移除所有子视图"></a>遍历移除所有子视图</h2><pre><code>for (UIButton *btn in self.answerView.subviews) {
+    [btn removeFromSuperview];
+}
+</code></pre><h2 id="UIView-配置"><a href="#UIView-配置" class="headerlink" title="UIView 配置"></a>UIView 配置</h2><pre><code>//该按钮不隐藏
+optionBtn.hidden = NO;
+
+//该view是否具有互动性
+self.optionsView.userInteractionEnabled = YES;
+
+//将中间图片按钮设置成是离屏幕最近一层,所有子视图的最上面
+[self.view bringSubviewToFront:self.imgInsideBtn];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/26/Android-Studio相关操作/" itemprop="url">
                   Android_Studio相关操作
                 </a>
@@ -1244,137 +1418,6 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/20/iOS项目5-UIPickerView国家选择/" itemprop="url">
-                  iOS项目5.UIPickerView国家选择
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-20T17:14:27+10:00" content="2016-04-20">
-              2016-04-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/20/iOS项目5-UIPickerView国家选择/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/20/iOS项目5-UIPickerView国家选择/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/koi1mg2vh73x5ii/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A9.png?dl=1" alt="效果图"></p>
-<h1 id="项目架构"><a href="#项目架构" class="headerlink" title="项目架构"></a>项目架构</h1><p><img src="https://www.dropbox.com/s/6laqq01qlsvrcku/%E5%9B%BD%E5%AE%B6%E9%80%89%E6%8B%A92.png?dl=1" alt="项目架构"></p>
-<h1 id="设置xib"><a href="#设置xib" class="headerlink" title="设置xib"></a>设置xib</h1><p><img src="https://www.dropbox.com/s/84ardz73ol1muz2/UIPickerViewDataSource.png?dl=1" alt="设置xib"></p>
-<h1 id="数据模型创建"><a href="#数据模型创建" class="headerlink" title="数据模型创建"></a>数据模型创建</h1><p>自定义国家子视图和数据模型的创建如前例</p>
-<h1 id="滚轮中的每一行的视图设定"><a href="#滚轮中的每一行的视图设定" class="headerlink" title="滚轮中的每一行的视图设定"></a>滚轮中的每一行的视图设定</h1><p>因为是reuse的，所以不用像前例一样懒加载视图，只需要加载数据</p>
-<pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-
-JKCountryFlagView *countryView = (JKCountryFlagView *)view;
-
-if (!countryView) {
-    countryView = [JKCountryFlagView countryView];
-}
-
-countryView.countryModel = self.dataArray[row];
-
-return countryView;
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1421,7 +1464,7 @@ return countryView;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">99</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1429,7 +1472,7 @@ return countryView;
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
