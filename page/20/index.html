@@ -607,8 +607,7 @@ print(valuesArr)
       
         
           
-            <p><img src="https://www.dropbox.com/s/cin38by7ar94flj/swift%20basic.png?dl=1" alt="swift basic"></p>
-<h1 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h1><p>let设定常量</p>
+            <h1 id="常量和变量"><a href="#常量和变量" class="headerlink" title="常量和变量"></a>常量和变量</h1><p>let设定常量</p>
 <pre><code>let encouragement = &quot;You can do it!&quot;
 </code></pre><p>即使两个常量相同，也不能互相赋值</p>
 <pre><code>//: ### Two ways of being immutable - #1 Assignment
@@ -661,9 +660,13 @@ print(&quot;score3 中数学的成绩是: \(score3.math)&quot;)
 </code></pre><h3 id="元组中的嵌套"><a href="#元组中的嵌套" class="headerlink" title="元组中的嵌套"></a>元组中的嵌套</h3><pre><code>var test:(Int,(Int,String))
 test = (10,(100,&quot;Swift&quot;))
 print(&quot;test元组中第二个元素的第一个元素为：\(test.1.0)&quot;)
-</code></pre><h2 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h2><p>在swift中不能赋值nil给变量</p>
+</code></pre><h2 id="可选类型"><a href="#可选类型" class="headerlink" title="可选类型"></a>可选类型</h2><p>在swift中不能赋值nil给变量或者对象</p>
 <pre><code>var x: Int
 x = nil //这样赋值必报错
+
+var c: AnyObject
+c = UIColor.redColor()
+c = nil //这样赋值必报错
 </code></pre><p>如果遇到可能会出现nil的情况，就使用可选类型，在变量后添加?</p>
 <p>情况1. 可能返回值为nil </p>
 <pre><code>var y: Int?
@@ -679,9 +682,35 @@ y = Int(s2)
 <pre><code>class ViewController: UIViewController {
 var button: UIButton!
 } 
-</code></pre><p>在swift里，nil是个值，表示值缺失，但在OC里，nil是个空指针</p>
-<h2 id="使用if-let强制解析"><a href="#使用if-let强制解析" class="headerlink" title="使用if let强制解析"></a>使用if let强制解析</h2><p>可选类型的变量就像一个盒子，里面不知道是否装着礼物。如果我们要打开它确定是否有无，就是强制解析.</p>
-<p><img src="" alt=""></p>
+</code></pre><p>情况3. 函数传值为nil. (在swift里，nil是个值，表示值缺失，但在OC里，nil是个空指针)</p>
+<p>Example: Picking up groceries in an optional car</p>
+<pre><code>func pickUpGroceries(car:Car?) {
+if let car = car {
+    print(&quot;We&apos;ll pick up the groceries in the \(car.make)&quot;)
+} else {
+    print(&quot;Let&apos;s walk to the store&quot;)
+}
+}
+
+var someCar = Car(make: &quot;Toyota&quot;, model: &quot;Corolla&quot;)
+
+pickUpGroceries(someCar)
+
+pickUpGroceries(nil)
+</code></pre><p>Example: Hosting a guest in an optional extra room</p>
+<pre><code>func host(guest: String, extraRoom: Room?) {
+if let extraRoom = extraRoom {
+    print(&quot;Come stay with us, \(guest), you can sleep in the \(extraRoom.name).&quot;)
+} else {
+    print(&quot;Come stay with us, \(guest), you can sleep on the couch.&quot;)
+}
+}
+
+var someRoom = Room(name: &quot;guest room&quot;, occupied: false)
+host(&quot;Grandma&quot;, extraRoom: someRoom)
+host(&quot;Ryan&quot;, extraRoom: nil)
+</code></pre><h2 id="使用if-let强制解析-安全"><a href="#使用if-let强制解析-安全" class="headerlink" title="使用if let强制解析(安全)"></a>使用if let强制解析(安全)</h2><p>可选类型的变量就像一个盒子，里面不知道是否装着礼物。使用前必须要打开它确定是否有无，就是强制解析.</p>
+<p><img src="https://www.dropbox.com/s/eh720d91kx9195q/20160831_swift1.png?dl=1" alt="1"></p>
 <pre><code>var zee: Int?
 
 let strings = [&quot;ABC&quot;,&quot;123&quot;]
@@ -695,30 +724,102 @@ intValue * 2
 } else {
 &quot;No value&quot;
 }
-</code></pre><h2 id="使用-强制解析"><a href="#使用-强制解析" class="headerlink" title="使用!强制解析"></a>使用!强制解析</h2><p>Example 1</p>
+</code></pre><p>更为便捷的命名方式,不用再重新命名</p>
+<pre><code>var zee: Int?
+
+let strings = [&quot;ABC&quot;,&quot;123&quot;]
+let randomIndex = Int(arc4random() % 2)
+let anotherString = strings[randomIndex]
+
+zee = Int(anotherString)
+
+if let zee = zee {
+zee * 2
+} else {
+&quot;No value&quot;
+}
+</code></pre><h2 id="使用-强制解析"><a href="#使用-强制解析" class="headerlink" title="使用!强制解析"></a>使用!强制解析</h2><p><img src="https://www.dropbox.com/s/db06ebiosnfiqqp/20160831_swift2.png?dl=1" alt="2"></p>
+<p>Example 1 - unwrap optional</p>
+<p>使用!时，意味着你确定值是不为nil的，否则就会系统出错。要谨慎使用</p>
 <pre><code>let w =  Int(&quot;123&quot;)!
 w * 2
-</code></pre><p>Example 2</p>
+</code></pre><p>Example 2 - implicitly unwrap optionl</p>
+<p>一开始就声明它是个需要强制解析的optionl类型，意味着使用时，它会自动unwrap</p>
 <pre><code>class BetterViewController: UIViewController {
 var myButton: UIButton!
+
+override func viewDidLoad(){
+
+super.viewDidLoad
+
+//如果没有这行，就会报错，因为没有初始化，UIButton就是nil
+button = UIButton()
+
+var title = button.titleForState(UIControlState.Normal)
+
 }
-</code></pre><h2 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h2><h2 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h2><pre><code>var anotherImageView = UIImageView()
-anotherImageView.image = UIImage(named:&quot;puppy_in_box&quot;)
 
-var size = anotherImageView.image?.size
-size.dynamicType
+}
+</code></pre><h2 id="可选链"><a href="#可选链" class="headerlink" title="可选链"></a>可选链</h2><p>强制解析image,获取其size属性</p>
+<pre><code>var imageView = UIImageView()
+imageView.image = UIImage(named:&quot;puppy_in_box&quot;)
 
-if let imageSize = anotherImageView.image?.size {
-print(&quot;Here&apos;s the image size: \(imageSize)&quot;)
+if let image =  imageView.image {
+let size = image.size
 } else {
 print(&quot;This image hasn&apos;t been set.&quot;)
 }
-</code></pre><h2 id="隐式解析可选类型"><a href="#隐式解析可选类型" class="headerlink" title="隐式解析可选类型"></a>隐式解析可选类型</h2><p>在已有类型后面添加！如Int!适用于被赋值后不会重新变为nil的变量</p>
-<pre><code>var possibleStr: String! = &quot;jikexueyuan&quot;
-</code></pre><h2 id="值类型示例"><a href="#值类型示例" class="headerlink" title="值类型示例"></a>值类型示例</h2><p><img src="https://www.dropbox.com/s/dr7dibyqccry1b0/20160819_swift1.png?dl=1" alt=""></p>
-<h2 id="引用类型示例"><a href="#引用类型示例" class="headerlink" title="引用类型示例"></a>引用类型示例</h2><p><img src="https://www.dropbox.com/s/b5dq8zbmt40nby1/20160819_swift2.png?dl=1" alt=""></p>
-<h2 id="范型"><a href="#范型" class="headerlink" title="范型"></a>范型</h2><p><img src="https://www.dropbox.com/s/4ejv6ipwm8y51mt/20160819_swift3.png?dl=1" alt=""></p>
-<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="swift赋值"><a href="#swift赋值" class="headerlink" title="swift赋值"></a>swift赋值</h2><pre><code>var a: Int  //该表达式没有值
+</code></pre><p>使用可选链直接访问size属性</p>
+<pre><code>var size = anotherImageView.image?.size
+</code></pre><p>可选链unwrap image, if let unwrap size, 这样更安全</p>
+<pre><code>var anotherImageView = UIImageView()
+anotherImageView.image = UIImage(named:&quot;puppy_in_box&quot;)
+
+var size = anotherImageView.image?.size
+
+if let imageSize = anotherImageView.image?.size {
+
+print(&quot;Here&apos;s the image size: \(imageSize)&quot;)
+
+} else {
+
+print(&quot;This image hasn&apos;t been set.&quot;)
+}
+</code></pre><p>Example 2 (传值为nil)</p>
+<pre><code>var animal = Animal(name: &quot;Lenny&quot;, species: &quot;lemur&quot;, tailLength: 12)
+
+animal = Animal(name: &quot;Gilbert&quot;, species: &quot;Gorilla&quot;, tailLength: nil )
+
+if let tailLength = animal.tail?.length {
+print(&quot;\(animal.name)&apos;s tail is \(tailLength) long&quot;)
+} else {
+print(&quot;\(animal.name) doesn&apos;t have a tail.&quot;)
+}
+</code></pre><h2 id="as-or-as-转换为子类"><a href="#as-or-as-转换为子类" class="headerlink" title="as? or as! 转换为子类"></a>as? or as! 转换为子类</h2><p>ColdDrink, HotDrink是 beverage的子类， drinkChoices是他们的集合</p>
+<pre><code>for beverage in drinkChoices{
+
+//强制解析为subclass
+if let coldDrink = beverage as? ColdDrink {
+
+    print(.....)
+
+}else if let hotDrink = beverage as? HotDrink {
+
+    print(.....)
+}
+
+}
+</code></pre><p>如果确定的话，使用as!,就不必使用if let了</p>
+<pre><code>for beverage in drinkChoices{
+
+//强制解析为subclass
+let coldDrink = beverage as！ColdDrink {
+
+    print(.....)
+
+}
+}
+</code></pre><h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="swift赋值"><a href="#swift赋值" class="headerlink" title="swift赋值"></a>swift赋值</h2><pre><code>var a: Int  //该表达式没有值
 var b = a = 20  //不支持连续赋值
 </code></pre><h2 id="求余运算"><a href="#求余运算" class="headerlink" title="求余运算"></a>求余运算</h2><pre><code>var g = 5.2 (结果正负取决于被除数的正负)
 var h = 3.1
