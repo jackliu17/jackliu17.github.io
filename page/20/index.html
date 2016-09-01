@@ -404,15 +404,91 @@ let myInt: Int? = myString.toInt()
 let myInt: Int? = Int(myString)
 </code></pre><h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><pre><code>let didYouKnowString = &quot;Did you know that the Swift String class comes with lots of useful methods?&quot;
 let whisperString = &quot;psst&quot; + &quot;, &quot; + didYouKnowString.lowercaseString
-</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h2><h3 id="方式1"><a href="#方式1" class="headerlink" title="方式1."></a>方式1.</h3><pre><code>var myArr = Array&lt;String&gt;()  
-var num = Array&lt;Int&gt;(count:3,repeatedValue:1)
-</code></pre><h3 id="方式2"><a href="#方式2" class="headerlink" title="方式2."></a>方式2.</h3><pre><code>var someInts = [Int]()
-var arr:[Int]=[1,2,3]
-var threeDoubles = [Double](count:3, repeatedValue:0.0)
-var food = [&quot;apple&quot;,&quot;orange&quot;,&quot;banana&quot;]
-print(food[3])
-print(food.count)
-</code></pre><h3 id="AnyObject-and-Any"><a href="#AnyObject-and-Any" class="headerlink" title="AnyObject and Any"></a>AnyObject and Any</h3><p>Swift中有两种特殊的object:  </p>
+</code></pre><h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p><img src="https://www.dropbox.com/s/elzir5c7scwx4hb/20160901_Collection.png?dl=1" alt="1"></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h3><p>方式1</p>
+<pre><code>var numbers = Array&lt;Double&gt;() //Array&lt;Double&gt;.init 后面省略了init方法
+</code></pre><p>方式2</p>
+<pre><code>var moreNumbers = [Double]()
+moreNumbers = [85.0, 90.0, 95.0]
+</code></pre><p>方式3</p>
+<pre><code>let differentNumbers = [97.5, 98.5, 99.0]
+</code></pre><h3 id="数组合并"><a href="#数组合并" class="headerlink" title="数组合并"></a>数组合并</h3><pre><code>moreNumbers = moreNumbers + differentNumbers
+</code></pre><h3 id="数组可持有任何类型对象"><a href="#数组可持有任何类型对象" class="headerlink" title="数组可持有任何类型对象"></a>数组可持有任何类型对象</h3><pre><code>var circuit = [livingRoomSwitch, kitchenSwitch, bathroomSwitch]
+</code></pre><h3 id="数组尾部添加"><a href="#数组尾部添加" class="headerlink" title="数组尾部添加"></a>数组尾部添加</h3><pre><code>var roadTripMusic = [&quot;Neil Young&quot;,&quot;Kendrick Lamar&quot;,&quot;Flo Rida&quot;, &quot;Nirvana&quot;]
+roadTripMusic.append(&quot;Rae Sremmurd&quot;)
+</code></pre><h3 id="数组插入"><a href="#数组插入" class="headerlink" title="数组插入"></a>数组插入</h3><pre><code>roadTripMusic.insert(&quot;Dej Loaf&quot;, atIndex: 2)
+</code></pre><h3 id="数组删除"><a href="#数组删除" class="headerlink" title="数组删除"></a>数组删除</h3><pre><code>roadTripMusic.removeAtIndex(3)
+</code></pre><h3 id="数组计数"><a href="#数组计数" class="headerlink" title="数组计数"></a>数组计数</h3><pre><code>roadTripMusic.count
+</code></pre><h3 id="数组取值"><a href="#数组取值" class="headerlink" title="数组取值"></a>数组取值</h3><pre><code>let musician = roadTripMusic[2]
+</code></pre><h3 id="数组替换"><a href="#数组替换" class="headerlink" title="数组替换"></a>数组替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
+//从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
+</code></pre><h3 id="数组删除最后一项"><a href="#数组删除最后一项" class="headerlink" title="数组删除最后一项"></a>数组删除最后一项</h3><pre><code>food.removeLast()
+</code></pre><h3 id="数组删除所有"><a href="#数组删除所有" class="headerlink" title="数组删除所有"></a>数组删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
+</code></pre><h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h3 id="字典创建"><a href="#字典创建" class="headerlink" title="字典创建"></a>字典创建</h3><p>方式1</p>
+<pre><code>var groupsDict = [String:String]()
+</code></pre><p>方式2</p>
+<pre><code>var animalGroupsDict = [&quot;whales&quot;:&quot;pod&quot;, &quot;geese&quot;:&quot;flock&quot;, &quot;lions&quot;: &quot;pride&quot;]
+
+var averageLifeSpanDict = [String:Range&lt;Int&gt;]()
+var lifeSpanDict = [&quot;African Grey Parrot&quot;: 50...70, &quot;Tiger Salamander&quot;: 12...15, &quot;Bottlenose Dolphin&quot;: 20...30]
+</code></pre><h3 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h3><pre><code>var emptyDic:[String:Double] = [:] 
+print(emptyDic.isEmpty)
+</code></pre><h3 id="字典添加"><a href="#字典添加" class="headerlink" title="字典添加"></a>字典添加</h3><pre><code>animalGroupsDict[&quot;crows&quot;] = &quot;murder&quot;
+animalGroupsDict[&quot;monkeys&quot;] = &quot;troop&quot;
+</code></pre><h3 id="字典计数"><a href="#字典计数" class="headerlink" title="字典计数"></a>字典计数</h3><pre><code>animalGroupsDict.count
+</code></pre><h3 id="字典删除"><a href="#字典删除" class="headerlink" title="字典删除"></a>字典删除</h3><pre><code>animalGroupsDict[&quot;crows&quot;] = nil
+</code></pre><p>移除单个值</p>
+<pre><code>person.removeValueForKey(&quot;name&quot;)
+</code></pre><p>移除所有值</p>
+<pre><code>person.removeAll(keepCapacity:false)
+</code></pre><h3 id="字典更新"><a href="#字典更新" class="headerlink" title="字典更新"></a>字典更新</h3><p>方式1</p>
+<pre><code>animalGroupsDict[&quot;monkeys&quot;] = &quot;barrel&quot;
+</code></pre><p>方式2:返回值为optional类型，如果该key存在，则赋新值，返回old value,如果key不存在，则赋值，同时返回nil</p>
+<pre><code>var group = animalGroupsDict.updateValue(&quot;gaggle&quot;, forKey: &quot;geese&quot;)
+</code></pre><h3 id="字典取值"><a href="#字典取值" class="headerlink" title="字典取值"></a>字典取值</h3><p>字典取值所返回的是optional，因为很可能没有该key，所以使用前需要用if let unwrap</p>
+<pre><code>let groupOfWhales = animalGroupsDict[&quot;whales&quot;]
+
+if let groupOfWhales = animalGroupsDict[&quot;whales&quot;] {
+print(&quot;We saw a \(groupOfWhales) of whales from the boat.&quot;)
+} else {
+print(&quot;No value found for that key.&quot;)
+}
+</code></pre><h3 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h3><pre><code>let keysArr = [String](person.keys)
+let valueArr = [String](person.values)
+print(valuesArr)
+</code></pre><h3 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h3><p>字典的遍历后，返回时元组类型</p>
+<pre><code>for (key,value) in person{
+ print(&quot;\(key):\(value)&quot;)
+} 
+</code></pre><h3 id="字典的使用"><a href="#字典的使用" class="headerlink" title="字典的使用"></a>字典的使用</h3><p>这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型</p>
+<p>字典的key or value 通常最好是同一类型，否则强制解析时会出错</p>
+<pre><code>var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:178]
+</code></pre><p>这样会报错，因为是将NSObject转为int</p>
+<pre><code>var height:Int? = person[&quot;身高&quot;]  
+if height != nil {
+   print(height!)
+}
+</code></pre><p>以下才正确</p>
+<pre><code>var person = [&quot;age&quot;:&quot;18&quot;,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
+
+var height:String? = person[&quot;身高&quot;]  
+if height != nil {
+   print(height!)
+}
+
+print(person[&quot;age&quot;])
+</code></pre><h2 id="Set-无序且不能有相同的元素"><a href="#Set-无序且不能有相同的元素" class="headerlink" title="Set - 无序且不能有相同的元素"></a>Set - 无序且不能有相同的元素</h2><h3 id="集合创建"><a href="#集合创建" class="headerlink" title="集合创建"></a>集合创建</h3><p>方式1</p>
+<pre><code>var utensils = Set&lt;String&gt;()
+var trees = Set&lt;Character&gt;()
+var flowers:Set&lt;Character&gt; = [&quot;🌷&quot;,&quot;🌹&quot;,&quot;🌸&quot;]
+</code></pre><p>方式2</p>
+<pre><code>var cutlery: Set = [&quot;fork&quot;, &quot;knife&quot;, &quot;spoon&quot;]
+</code></pre><h3 id="集合的操作"><a href="#集合的操作" class="headerlink" title="集合的操作"></a>集合的操作</h3><pre><code>trees.insert(&quot;🌲&quot;)
+trees.insert(&quot;🌳&quot;)
+trees.insert(&quot;🌵&quot;)
+trees.remove(&quot;🌵&quot;)
+trees.count
+</code></pre><h2 id="AnyObject-and-Any"><a href="#AnyObject-and-Any" class="headerlink" title="AnyObject and Any"></a>AnyObject and Any</h2><p>Swift中有两种特殊的object:  </p>
 <ol>
 <li>Any:表示任何数据类型</li>
 <li>AnyObject:表示任何对象</li>
@@ -421,78 +497,6 @@ print(food.count)
 <pre><code>for fruit in food{
 fruit = &quot;good&quot; //error, fruit默认是let类型
 }
-</code></pre><h2 id="数组的可变性"><a href="#数组的可变性" class="headerlink" title="数组的可变性"></a>数组的可变性</h2><h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><h4 id="1-用append-在数组尾部添加"><a href="#1-用append-在数组尾部添加" class="headerlink" title="1. 用append()在数组尾部添加"></a>1. 用append()在数组尾部添加</h4><pre><code>food.append(&quot;Vegetables:mushroom&quot;)
-</code></pre><h4 id="2-通过加法添加数组元素"><a href="#2-通过加法添加数组元素" class="headerlink" title="2. 通过加法添加数组元素"></a>2. 通过加法添加数组元素</h4><pre><code>food += [&quot;pineapple&quot;,&quot;pity&quot;]
-</code></pre><h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
-//从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
-</code></pre><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><pre><code>food.insert(&quot;Meat&quot;,atIndex:0)
-</code></pre><h3 id="删除某一项"><a href="#删除某一项" class="headerlink" title="删除某一项"></a>删除某一项</h3><pre><code>food.removeAtIndex(0)
-</code></pre><h3 id="删除最后一项"><a href="#删除最后一项" class="headerlink" title="删除最后一项"></a>删除最后一项</h3><pre><code>food.removeLast()
-</code></pre><h3 id="删除所有"><a href="#删除所有" class="headerlink" title="删除所有"></a>删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="声明和创建"><a href="#声明和创建" class="headerlink" title="声明和创建"></a>声明和创建</h2><p>字典的key or value 通常最好是同一类型，否则强制解析时会出错<br>字典的遍历后，返回时元组类型</p>
-<pre><code>//Dictionary&lt;KeyType,valueType&gt;
-var dic1: Dictionary&lt;String,String&gt;
-
-//[KeyType:valueType]
-var scores:[String:Int]
-
-dic1 = Dictionary&lt;String,String&gt;()
-scores = Dictionary&lt;String,Int&gt;(minimumCapacity:5)
-</code></pre><h2 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h2><pre><code>var emptyDic:[String:Double] = [:] 
-print(emptyDic.isEmpty)
-</code></pre><h2 id="字典的使用"><a href="#字典的使用" class="headerlink" title="字典的使用"></a>字典的使用</h2><pre><code>//这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型
-var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:178]
-
-//这样会报错，因为是将NSObject转为int
-var height:Int? = person[&quot;身高&quot;]  
-if height != nil {
-   print(height!)
-}
-
-//以下才正确
-var person = [&quot;age&quot;:&quot;18&quot;,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
-
-var height:String? = person[&quot;身高&quot;]  
-if height != nil {
-   print(height!)
-}
-
-print(person[&quot;age&quot;])
-
-//不存才的key，返回为nil
-print(person[&quot;weight&quot;])
-
-//对该值重新赋值
-person[&quot;name&quot;] = &quot;Jack&quot;
-
-//对不存在的key设置value,字典将会添加k-v对
-person[&quot;weight&quot;] = 90
-</code></pre><ol>
-<li>数组是有序的，字典是无序的</li>
-<li>通过常量或者变量决定字典是否可变</li>
-<li>如果没有显示数据类型声明，字典就会根据值进行推断</li>
-</ol>
-<h2 id="字典的替换"><a href="#字典的替换" class="headerlink" title="字典的替换"></a>字典的替换</h2><ol>
-<li>该方法返回更新值之前的原值</li>
-<li>键不存在对应值的时候设置值</li>
-<li>键存在时更新已存在的值</li>
-<li>键不存在时，不发生替换，不返回任何东西</li>
-</ol>
-<pre><code>if let oldName = person.updateValue(&quot;Lucky&quot;,forKey:&quot;name&quot;){
-   print(&quot;原来的值是:\(oldName)&quot;)
-}
-</code></pre><h2 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h2><pre><code>//使用元组
-for (key,value) in person{
- print(&quot;\(key):\(value)&quot;)
-} 
-</code></pre><h2 id="字典的删除"><a href="#字典的删除" class="headerlink" title="字典的删除"></a>字典的删除</h2><pre><code>//移除单个值
-person.removeValueForKey(&quot;name&quot;)
-
-//移除所有值
-person.removeAll(keepCapacity:false)
-</code></pre><h2 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h2><pre><code>let keysArr = [String](person.keys)
-let valueArr = [String](person.values)
-print(valuesArr)
 </code></pre>
           
         
