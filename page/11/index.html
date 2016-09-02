@@ -238,6 +238,276 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/19/iOS数据存储-CoreData/" itemprop="url">
+                  iOS数据存储-CoreData
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-19T12:51:09+10:00" content="2016-05-19">
+              2016-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/19/iOS数据存储-CoreData/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/iOS数据存储-CoreData/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="保存数据"><a href="#保存数据" class="headerlink" title="保存数据"></a>保存数据</h1><h2 id="新建Entity"><a href="#新建Entity" class="headerlink" title="新建Entity"></a>新建Entity</h2><p><img src="https://www.dropbox.com/s/05d85ofpzdgqha6/iOS_dataStorageCoreData1.png?dl=1" alt=""></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre><code>import UIKit
+import CoreData
+
+class ViewController: UIViewController {
+
+override func viewDidLoad(){
+    super.viewDidLoad()
+
+    let context = (UIApplication.sharedApplication()
+        .delegate as! AppDelegate)
+        .managedObjectContext
+
+
+    let row:AnyObject = NSEntityDescription.insertNewObjectForEntityForName(&quot;Users&quot;, inManagedObjectContext: context)
+
+    row.setValue(&quot;jikexueyuan&quot;, forKey: &quot;name&quot;)
+    row.setValue(1, forKey: &quot;age&quot;)
+
+    do{
+     try context.save()
+    }catch{
+    print(error)
+    }
+
+}
+}
+</code></pre><ol>
+<li>注意要导入CoreData</li>
+<li>这样赋值只能是单个数据，如果要添加多条数据，需要循环</li>
+</ol>
+<h2 id="打印数据文件路径"><a href="#打印数据文件路径" class="headerlink" title="打印数据文件路径"></a>打印数据文件路径</h2><p>AppDelegate</p>
+<pre><code>lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+
+    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(&quot;SingleViewCoreData.sqlite&quot;)
+    print(url)
+    ......
+
+//Result
+file:///Users/jackliu/Library/Developer/CoreSimulator/Devices/A2C2C116-004D-4A10-95F0-654B4D89D1EB/data/Containers
+/Data/Application/F3D3A90B-A29D-42C9-A699-3FC44EF0D2CA/Documents/
+</code></pre><h2 id="Application-Sqlitebrowser"><a href="#Application-Sqlitebrowser" class="headerlink" title="Application Sqlitebrowser"></a>Application Sqlitebrowser</h2><p><img src="https://www.dropbox.com/s/501ru8r6uf18q4r/iOS_dataStorageCoreData2.png?dl=1" alt=""></p>
+<h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><pre><code>import UIKit
+import CoreData
+
+class UsersTableViewController: UITableViewController {
+
+    var dataArr:Array&lt;AnyObject&gt; = []
+    var context:NSManagedObjectContext!
+
+override func viewDidLoad() {
+        super.viewDidLoad()
+
+    context = (UIApplication.sharedApplication()
+                .delegate as! AppDelegate)
+                .managedObjectContext
+
+            refreshData()
+    }
+</code></pre><h2 id="从sqlite数据库中读取"><a href="#从sqlite数据库中读取" class="headerlink" title="从sqlite数据库中读取"></a>从sqlite数据库中读取</h2><pre><code>func refreshData(){ 
+
+let f = NSFetchRequest(entityName: &quot;Users&quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
+}
+tableView.reloadData()
+}
+</code></pre><h2 id="KV取值配置Cell"><a href="#KV取值配置Cell" class="headerlink" title="KV取值配置Cell"></a>KV取值配置Cell</h2><pre><code>override func tableView(tableView: UITableView,cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
+
+    let cell = tableView.dequeueReusableCellWithIdentifier(&quot;cell&quot;, forIndexPath: indexPath)as UITableViewCell
+
+    let label = cell.viewWithTag(2) as! UILabel
+
+    let name: AnyObject! = dataArr[indexPath.row].valueForKey(&quot;name&quot;)
+    let age: AnyObject! = dataArr[indexPath.row].valueForKey(&quot;age&quot;)
+
+    label.text =  &quot;name:\(name),age:\(age)&quot;
+    return cell
+}
+</code></pre><h2 id="viewWithTag"><a href="#viewWithTag" class="headerlink" title="viewWithTag( )"></a>viewWithTag( )</h2><p>通过标签找到子视图</p>
+<pre><code>let label = cell.viewWithTag(2) as! UILabel
+</code></pre><h1 id="点击Cell跳转视图"><a href="#点击Cell跳转视图" class="headerlink" title="点击Cell跳转视图"></a>点击Cell跳转视图</h1><pre><code>override func tableView(tableView: UITableView,didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    let data = dataArr[indexPath.row] as! NSManagedObject
+
+    let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController
+
+    vc.data = data
+
+    presentViewController(vc, animated: true, completion: nil)
+
+}
+</code></pre><h2 id="视图跳转-StoryboardId"><a href="#视图跳转-StoryboardId" class="headerlink" title="视图跳转 - StoryboardId"></a>视图跳转 - StoryboardId</h2><pre><code>let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController
+
+vc.data = data
+
+presentViewController(vc, animated: true, completion: nil)
+</code></pre><p><img src="https://www.dropbox.com/s/25z7bqqu1mh3yge/iOS_dataStorageCoredata03.png?dl=1" alt=""></p>
+<h1 id="返回到tableView视图时"><a href="#返回到tableView视图时" class="headerlink" title="返回到tableView视图时"></a>返回到tableView视图时</h1><pre><code>override func viewWillAppear(animated: Bool) {
+    refreshData()
+}
+
+func refreshData(){ 
+
+let f = NSFetchRequest(entityName: &quot;Users&quot;)
+
+do{
+try dataArr = context.executeFetchRequest(f)
+}catch{
+print(error)
+}
+tableView.reloadData()
+}
+</code></pre><h1 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h1><pre><code>override func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -&gt; Bool {
+
+    return true
+}
+
+
+override func tableView(tableView: UITableView,commitEditingStyle editingStyle: UITableViewCellEditingStyle,forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+
+        //从数据库删除
+        context.deleteObject(dataArr[indexPath.row] as! NSManagedObject)
+
+        //存档
+        do {
+          try context.save()
+        } catch _ {
+        }
+
+        //刷新
+        refreshData()
+
+    } else if editingStyle == .Insert {
+
+    }    
+}
+</code></pre><h1 id="接收到传递过来的CoreData数据"><a href="#接收到传递过来的CoreData数据" class="headerlink" title="接收到传递过来的CoreData数据"></a>接收到传递过来的CoreData数据</h1><p>UserContentViewController</p>
+<h2 id="取值"><a href="#取值" class="headerlink" title="取值"></a>取值</h2><pre><code>var data:NSManagedObject!
+
+tfName.text = data.valueForKey(&quot;name&quot;) as? String        
+let age: AnyObject! = data.valueForKey(&quot;age&quot;)
+tfAge.text = &quot;\(age)&quot;
+</code></pre><h2 id="赋值存档"><a href="#赋值存档" class="headerlink" title="赋值存档"></a>赋值存档</h2><pre><code>data.setValue(tfName.text, forKey: &quot;name&quot;)
+data.setValue(Int(tfAge.text!), forKey: &quot;age&quot;)
+
+do{
+    try data.managedObjectContext!.save()
+}catch{
+    print(error)
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/18/iOS数据存储-plist文件/" itemprop="url">
                   iOS数据存储-plist文件
                 </a>
@@ -899,263 +1169,6 @@ CGContextFillPath(ctx);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="url">
-                  iOS项目011-012.绘制图形及小黄人
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-16T16:18:56+10:00" content="2016-05-16">
-              2016-05-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/16/iOS项目011-012-绘制图形及小黄人/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/16/iOS项目011-012-绘制图形及小黄人/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Quartz-2D"><a href="#Quartz-2D" class="headerlink" title="Quartz 2D"></a>Quartz 2D</h1><h2 id="什么是Quartz-2D"><a href="#什么是Quartz-2D" class="headerlink" title="什么是Quartz 2D"></a>什么是Quartz 2D</h2><p>Quartz 2D是一个二维绘图引擎，Quartz 2D的API是C语言，来自于CoreGraphics框架，没有面向对象的思想</p>
-<h2 id="Quartz-2D作用"><a href="#Quartz-2D作用" class="headerlink" title="Quartz 2D作用"></a>Quartz 2D作用</h2><ol>
-<li>作用，绘制图形：线条，三角形，矩形，圆形，弧形</li>
-<li>绘制文字</li>
-<li>绘制生成图像</li>
-<li>读取生成PDF</li>
-<li>截图裁剪图片</li>
-<li>自定义UI控件</li>
-</ol>
-<h1 id="图形上下文-Graphics-Context"><a href="#图形上下文-Graphics-Context" class="headerlink" title="图形上下文(Graphics Context)"></a>图形上下文(Graphics Context)</h1><p>是一个CGContextRef类型的数据.作用:</p>
-<ol>
-<li>保存绘图信息，绘图状态</li>
-<li>决定绘制的输出目标，绘制到什么地方去，输出目标可以是PDF文件，Bitmap或者显示器的窗口上</li>
-</ol>
-<h1 id="什么时候自动调用drawRect"><a href="#什么时候自动调用drawRect" class="headerlink" title="什么时候自动调用drawRect"></a>什么时候自动调用drawRect</h1><ol>
-<li>系统自动调用，视图显示在屏幕上的时候调用且调用一次</li>
-<li>需要更新的时候也会被调用，这时需要使seetNeedsDisplay</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)drawRect:(CGRect)rect &#123;</span><br><span class="line">// Drawing code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="直线绘制"><a href="#直线绘制" class="headerlink" title="直线绘制"></a>直线绘制</h1><p><img src="https://www.dropbox.com/s/2iux2yu9xo7edwu/iOS_drawLine.png?dl=1" alt=""></p>
-<pre><code>void drwaline(){
-
-CGContextRef context = UIGraphicsGetCurrentContext();
-
-CGContextSaveGState(context);
-
-//第1条线-----------------------------------------
-
-CGContextSetLineWidth(context, 20);
-CGContextSetLineCap(context, kCGLineCapRound);
-CGContextSetRGBStrokeColor(context, 1, 0, 0, 1);
-CGContextMoveToPoint(context, 10, 10);
-CGContextAddLineToPoint(context, 100, 100);
-CGContextStrokePath(context);
-
-CGContextRestoreGState(context);
-
-//2条线-------------------------------------------
-
-[[UIColor blueColor] set];
-CGContextSetLineJoin(context, kCGLineJoinRound);
-CGContextMoveToPoint(context, 100, 120);
-CGContextAddLineToPoint(context, 150, 120);
-CGContextAddLineToPoint(context, 150, 180);
-CGContextStrokePath(context);
-
-}
-</code></pre><h2 id="图像保留栈"><a href="#图像保留栈" class="headerlink" title="图像保留栈"></a>图像保留栈</h2><pre><code>//将上下文复制一份放到栈中,防止两个图形互相影响
-CGContextSaveGState(context);
-
-....................
-
-//将图形上下文出栈，替换当前的上下文，这样所设置的线条头尾部样式就不会影响到线条2
-CGContextRestoreGState(context);
-</code></pre><h1 id="矩形绘制"><a href="#矩形绘制" class="headerlink" title="矩形绘制"></a>矩形绘制</h1><p><img src="https://www.dropbox.com/s/d4iqf1wo15ca3ss/iOS_drawRect2.png?dl=1" alt=""></p>
-<pre><code>void drawR(){
-
-CGContextRef context = UIGraphicsGetCurrentContext();
-CGContextAddRect(context, CGRectMake(10, 10, 120, 180));
-[[UIColor purpleColor] setFill];
-CGContextFillPath(context);
-}
-</code></pre><h1 id="三角形绘制"><a href="#三角形绘制" class="headerlink" title="三角形绘制"></a>三角形绘制</h1><p><img src="https://www.dropbox.com/s/yhh7qdjwobfvys8/iOS_drawTriangle.png?dl=1" alt=""></p>
-<pre><code>void drawTriangle(){
-
-CGContextRef context = UIGraphicsGetCurrentContext();
-CGContextMoveToPoint(context, 0, 0);
-CGContextAddLineToPoint(context, 100, 100);
-CGContextAddLineToPoint(context, 150, 100);
-CGContextClosePath(context);
-[[UIColor redColor] set];
-CGContextStrokePath(context);
-}
-</code></pre><h1 id="圆形-椭圆形绘制"><a href="#圆形-椭圆形绘制" class="headerlink" title="圆形/椭圆形绘制"></a>圆形/椭圆形绘制</h1><p><img src="https://www.dropbox.com/s/l4o28syvd2e4shf/iOS_drawCircle2.png?dl=1" alt=""></p>
-<pre><code>void drawCircle(){
-CGContextRef context = UIGraphicsGetCurrentContext();
-
-//绘制图形,宽度高度一样就是圆形，不一样就是椭圆
-CGContextAddEllipseInRect(context, CGRectMake(50, 50, 130, 100));
-CGContextSetLineWidth(context, 10);
-
-CGContextStrokePath(context);
-}
-</code></pre><h1 id="弧形绘制"><a href="#弧形绘制" class="headerlink" title="弧形绘制"></a>弧形绘制</h1><p><img src="https://www.dropbox.com/s/6r1lsl0d9t84qrt/iOS_drawArc.png?dl=1" alt=""></p>
-<pre><code>CGFloat arc(CGFloat angle){
-return angle * (M_PI / 180);
-}
-
-void drawArc(){
-
-CGContextRef context = UIGraphicsGetCurrentContext();
-
-//CGContextAddArc 内各个参数的定义
-// x\y : 圆心
-// radius : 半径
-// startAngle : 开始角度
-// endAngle : 结束角度
-// clockwise : 圆弧的伸展方向(0:顺时针, 1:逆时针)
-
-CGContextAddArc(context, 100, 100, 50, arc(90), arc(200), 1);
-
-//CGContextFillPath(context); 如果采用这个方法就是填充弧形
- CGContextStrokePath(context);
-}
-</code></pre><h1 id="文字绘制"><a href="#文字绘制" class="headerlink" title="文字绘制"></a>文字绘制</h1><p><img src="https://www.dropbox.com/s/4pbigeiubwao2ba/iOS_drawString.png?dl=1" alt=""></p>
-<pre><code>void drawText(){
-NSString *str = @&quot;天道酬勤&quot;;
-NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-attributes[NSFontAttributeName] = [UIFont systemFontOfSize:20];
-attributes[NSForegroundColorAttributeName] = [UIColor purpleColor];
-[str drawInRect:CGRectMake(100, 100, 100, 30) withAttributes:attributes];
-}
-</code></pre><h1 id="图像绘制-设置水印"><a href="#图像绘制-设置水印" class="headerlink" title="图像绘制(设置水印)"></a>图像绘制(设置水印)</h1><p><img src="https://www.dropbox.com/s/t1prpri5g8bb9wl/iOS_drawImage2.png?dl=1" alt=""></p>
-<pre><code>void drawImg(){
-
-UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
-
-//[img drawAtPoint:CGPointMake(50, 50)]; 这个方法是在某个点开始绘制
-//[img drawInRect:CGRectMake(50, 50, 500, 500)]; 在某个矩形框内绘制
-
-//以下方法规定了图片的宽高，以他来进行填充,可以画出格子图案
-[img drawAsPatternInRect:CGRectMake(0, 0, 300, 300)];
-
-NSString *str = @&quot;刘米米爱兔宝宝&quot;;
-[str drawInRect:CGRectMake(0, 0, 100, 30) withAttributes:nil];
-}
-</code></pre><h2 id="JPG-vs-PNG"><a href="#JPG-vs-PNG" class="headerlink" title="JPG vs PNG"></a>JPG vs PNG</h2><pre><code>//取得图片,jpg要后缀名，png不用
-UIImage *img = [UIImage imageNamed:@&quot;1.jpg&quot;];
-</code></pre><h1 id="贝塞尔曲线绘制"><a href="#贝塞尔曲线绘制" class="headerlink" title="贝塞尔曲线绘制"></a>贝塞尔曲线绘制</h1><p><img src="https://www.dropbox.com/s/nzwvtjwqmhn5egi/iOS_drawBezier.png?dl=1" alt=""></p>
-<pre><code>void drawBezier(){
-
-CGContextRef context = UIGraphicsGetCurrentContext();
-//起点
-CGContextMoveToPoint(context, 10, 10);
-//2个控制点 和终点
-CGContextAddCurveToPoint(context, 120, 100, 180, 50, 190, 190);
-//1个控制点
-//CGContextAddQuadCurveToPoint(context, 150, 200, 200, 100);
-CGContextStrokePath(context);
-}
-</code></pre><h1 id="小黄人绘制"><a href="#小黄人绘制" class="headerlink" title="小黄人绘制"></a>小黄人绘制</h1><p><img src="https://www.dropbox.com/s/npcekg242pwf6a0/iOS_drawHuman.png?dl=1" alt=""></p>
-<h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>#define JKColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
-</code></pre><h2 id="中心的的x坐标"><a href="#中心的的x坐标" class="headerlink" title="中心的的x坐标"></a>中心的的x坐标</h2><pre><code>CGFloat topX = rect.size.width * 0.5;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1202,7 +1215,7 @@ CGContextStrokePath(context);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

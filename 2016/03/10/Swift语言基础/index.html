@@ -79,7 +79,7 @@ var goat = UIImage(named:&amp;quot;Chinese-New-Year-3.jpg&amp;quot;)!
 let years">
 <meta property="og:image" content="https://www.dropbox.com/s/eh720d91kx9195q/20160831_swift1.png?dl=1">
 <meta property="og:image" content="https://www.dropbox.com/s/db06ebiosnfiqqp/20160831_swift2.png?dl=1">
-<meta property="og:updated_time" content="2016-08-31T05:43:47.000Z">
+<meta property="og:updated_time" content="2016-09-02T01:19:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift语言基础">
 <meta name="twitter:description" content="常量和变量let设定常量
@@ -579,9 +579,8 @@ print(&quot;Let&apos;s watch a movie at home and eat ice cream&quot;)
 <li>默认值b的类型必须要和a存储值的类型保持一致  </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let words = &quot;hello&quot;</span><br><span class="line">var say: String? </span><br><span class="line">var content = say ?? words</span><br><span class="line">print(content)</span><br></pre></td></tr></table></figure>
-<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><h3 id="if…else…"><a href="#if…else…" class="headerlink" title="if…else…"></a>if…else…</h3><pre><code>//语句的条件执行体必须放在花括号中
-
-var hungry = true
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><h3 id="if…else…"><a href="#if…else…" class="headerlink" title="if…else…"></a>if…else…</h3><p>语句的条件执行体必须放在花括号中,条件语句不用括号</p>
+<pre><code>var hungry = true
 var vegetarian = false
 
 if hungry {
@@ -599,15 +598,6 @@ print(&quot;How about pumpkin curry?&quot;)
 } else {
 print(&quot;nevermind&quot;)
 }
-
-var thereIsPie = true
-
-if hungry || thereIsPie {
-
-print(&quot;Let&apos;s eat!&quot;)
-} else {
-print(&quot;Let&apos;s wait.&quot;)
-}
 </code></pre><h3 id="三目运算符-Ternary-conditional"><a href="#三目运算符-Ternary-conditional" class="headerlink" title="三目运算符 - Ternary conditional"></a>三目运算符 - Ternary conditional</h3><p>以下两种写法相等</p>
 <pre><code>if question { answer1 } else { answer2 }
 
@@ -621,21 +611,109 @@ question ? answer1 : answer2
 let sandwichPrice = 5.0
 var tax = true
 var lunchPrice = sandwichPrice + (tax ? 0.50 : 0)
-</code></pre><h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><ol>
-<li>任意一个case不需要break,执行完一条会自动退出  </li>
-<li>每一个case块至少包含一条执行语句语句</li>
-<li>case标签后可以有多个值，用逗号隔开</li>
-<li>case块后的条件还可以是一个范围或者元组，支持值绑定</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let score = &quot;B&quot;</span><br><span class="line">switch score &#123;</span><br><span class="line">case &quot;A&quot;,&quot;a&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">case &quot;B&quot;:</span><br><span class="line">    print(&quot;LG&quot;)</span><br><span class="line">case &quot;C&quot;:</span><br><span class="line">    print(&quot;TW4&quot;)</span><br><span class="line">case &quot;D&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">case &quot;E&quot;:</span><br><span class="line">    print(&quot;Good&quot;)</span><br><span class="line">default:</span><br><span class="line">    print(&quot;error&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Switch使用fallthrough语句贯穿"><a href="#Switch使用fallthrough语句贯穿" class="headerlink" title="Switch使用fallthrough语句贯穿"></a>Switch使用fallthrough语句贯穿</h3><p>执行完一条语句后，不要退出，再继续执行下一条</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var num = 5</span><br><span class="line">var desc = &quot;\(num)是&quot;</span><br><span class="line">switch num &#123;</span><br><span class="line">case 2, 3, 5, 7 :</span><br><span class="line">     desc += &quot;质数，而且还是&quot;</span><br><span class="line">	 fallthrough</span><br><span class="line">default:</span><br><span class="line">     desc += &quot;整数&quot;</span><br><span class="line">&#125;</span><br><span class="line">print(desc) //结果是“5是质数，而且还是整数”</span><br></pre></td></tr></table></figure>
-<h3 id="Switch的case后的条件为元组"><a href="#Switch的case后的条件为元组" class="headerlink" title="Switch的case后的条件为元组"></a>Switch的case后的条件为元组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:5 , y:2)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">    print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (_,0):   //用 &quot;_&quot; 表示可以忽略这个数据</span><br><span class="line">    print(&quot;(\(point.0),0)位于x轴上&quot;)</span><br><span class="line">case (0...Int.max as ClosedInterval, 0...Int.max as ClosedInterval):</span><br><span class="line">    print(&quot;(\(point.0),\(point.1))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">    break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Switch值绑定"><a href="#Switch值绑定" class="headerlink" title="Switch值绑定"></a>Switch值绑定</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var point = (x:1 , y:1)</span><br><span class="line">switch point &#123;</span><br><span class="line">case (0,0):</span><br><span class="line">   print(&quot;(0,0)位于原点&quot;)</span><br><span class="line">case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a</span><br><span class="line">   print(&quot;该点位于x轴上，x值为:\(a)&quot;)</span><br><span class="line">case var (x,y) where x&gt;0 &amp;&amp; y&gt;0:  //条件值绑定</span><br><span class="line">   print(&quot;(\(x),\(y))位于第一象限&quot;)</span><br><span class="line">default:</span><br><span class="line">   break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><h3 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for index in 1...5 &#123;</span><br><span class="line">    print(&quot;\(index) times 5 is \(index * 5)&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let base = 3</span><br><span class="line">let power = 10</span><br><span class="line">var answer = 1</span><br><span class="line">for _ in 1...power &#123; //下划线符号_替代循环中的变量，能够忽略具体的值，并且不提供循环遍历时对值的访问</span><br><span class="line">  answer *= base</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>遍历数组value值替换key值</p>
-<pre><code>let dictionary = [&quot;monkey&quot;: &quot;🐒&quot;, &quot;iPhone&quot;:&quot;📱&quot;]
+</code></pre><h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch -"></a>Switch -</h3><p>格式：case后可以有多个值，每条语句执行完后自动退出</p>
+<pre><code>switch variable {
+case firstValue:
+statement
+case secondValue:
+statement
+case thirdValue, fourthValue:
+statement
+default:
+statement 
+}
+</code></pre><p>case后可以是个范围</p>
+<pre><code>var color = &quot;&quot;
+var wavelength = 568
+
+switch wavelength {
+case 380...450:
+color = &quot;violet&quot;
+case 451...495:
+color = &quot;blue&quot;
+case 496...570:
+color = &quot;green&quot;
+case 571...590:
+color = &quot;yellow&quot;
+case 591...620:
+color = &quot;orange&quot;
+case 621...750:
+color = &quot;red&quot;
+default:
+color = &quot;not visible&quot;
+}
+</code></pre><p>case后的条件为元组</p>
+<pre><code>var point = (x:5 , y:2)
+
+switch point {
+case (0,0):
+    print(&quot;(0,0)位于原点&quot;)
+case (_,0):   //用 &quot;_&quot; 表示可以忽略这个数据
+    print(&quot;(\(point.0),0)位于x轴上&quot;)
+case (0...Int.max as ClosedInterval, 0...Int.max as ClosedInterval):
+    print(&quot;(\(point.0),\(point.1))位于第一象限&quot;)
+default:
+    break
+}
+</code></pre><p>使用fallthrough语句才能贯穿，否则不再继续执行下一条</p>
+<pre><code>    var num = 5
+    var desc = &quot;\(num)是&quot;
+    switch num {
+    case 2, 3, 5, 7 :
+     desc += &quot;质数，而且还是&quot;
+     fallthrough
+default:
+     desc += &quot;整数&quot;
+}
+print(desc) //结果是“5是质数，而且还是整数”
+</code></pre><p>支持值绑定</p>
+<pre><code>var point = (x:1 , y:1)
+switch point {
+case (0,0):
+   print(&quot;(0,0)位于原点&quot;)
+case (var a, 0)://y坐标为0，进入该case块，并将元组的x成员绑定到临时变量a
+   print(&quot;该点位于x轴上，x值为:\(a)&quot;)
+case var (x,y) where x&gt;0 &amp;&amp; y&gt;0:  //条件值绑定
+   print(&quot;(\(x),\(y))位于第一象限&quot;)
+default:
+   break
+}
+</code></pre><h2 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h2><h3 id="for-loop"><a href="#for-loop" class="headerlink" title="for loop"></a>for loop</h3><p>传统的C - style for loop （swift也支持）</p>
+<pre><code>for var index = 99; index &gt;0; --index {
+
+print (&quot;Hello&quot;) 
+
+}
+</code></pre><p>更为简洁的形式 </p>
+<pre><code>for item in Collection {
+statements to execute on each item
+}
+</code></pre><p>例子1 </p>
+<pre><code>for index in 1...5 {
+print(&quot;\(index) times 5 is \(index * 5)&quot;)
+}
+</code></pre><p>例子2 不访问index的值</p>
+<pre><code>let base = 3
+let power = 10
+var answer = 1
+for _ in 1...power { //下划线符号_替代循环中的变量，能够忽略具体的值，并且不提供循环遍历时对值的访问
+  answer *= base
+}
+</code></pre><p>例子3 遍历数组累加</p>
+<pre><code>let intArray = [7, 21, 25, 13, 1]
+var sum = 0
+for value in intArray {
+sum += value
+}
+</code></pre><p>例子4 遍历字典value值替换key值</p>
+<pre><code> for (key, value) in Dictionary {
+
+ statement to execute on each key or value
+
+ }    
+
+
+let dictionary = [&quot;monkey&quot;: &quot;🐒&quot;, &quot;iPhone&quot;:&quot;📱&quot;]
 var newestString = sillyMonkeyString
 
 for (key, value) in dictionary {
@@ -649,7 +727,25 @@ print(newestString)
 <li>continue 忽略本次循环的剩下语句，执行下一次循环，但不终止循环</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">outer: for i in 0...5 &#123;</span><br><span class="line">    //内层循环</span><br><span class="line">    for j in 0...3&#123;</span><br><span class="line">    print(&quot;i的值为:\(i),j的值为\(j)&quot;)</span><br><span class="line">    if j==1 &#123;</span><br><span class="line">    break outer</span><br><span class="line">    &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="while-…-loop"><a href="#while-…-loop" class="headerlink" title="while … loop"></a>while … loop</h3><pre><code>while condition {
+statement
+}
 
+
+var timer = 10
+
+while timer &gt; 0 {
+timer -= 1
+}
+</code></pre><h3 id="repeat-…-loop"><a href="#repeat-…-loop" class="headerlink" title="repeat … loop"></a>repeat … loop</h3><pre><code>repeat {
+statement
+} while condition
+
+
+repeat {
+ --timer
+} while timer &gt; 0
+</code></pre>
       
     </div>
 
@@ -759,7 +855,7 @@ print(newestString)
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -816,7 +912,7 @@ print(newestString)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常量和变量"><span class="nav-number">1.</span> <span class="nav-text">常量和变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整型"><span class="nav-number">2.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型之间转换必须是显式转换"><span class="nav-number">2.2.</span> <span class="nav-text">整型之间转换必须是显式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正无穷-负无穷-非数"><span class="nav-number">2.3.</span> <span class="nav-text">正无穷,负无穷,非数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点运算"><span class="nav-number">2.4.</span> <span class="nav-text">浮点运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型别名"><span class="nav-number">2.5.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-number">2.6.</span> <span class="nav-text">元组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式1-直接赋值"><span class="nav-number">2.6.1.</span> <span class="nav-text">赋值方式1.直接赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式2-先申明类型"><span class="nav-number">2.6.2.</span> <span class="nav-text">赋值方式2.先申明类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式3-key-value赋值"><span class="nav-number">2.6.3.</span> <span class="nav-text">赋值方式3.key-value赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组中的嵌套"><span class="nav-number">2.6.4.</span> <span class="nav-text">元组中的嵌套</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型"><span class="nav-number">2.7.</span> <span class="nav-text">可选类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用if-let强制解析-安全"><span class="nav-number">2.8.</span> <span class="nav-text">使用if let强制解析(安全)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-强制解析"><span class="nav-number">2.9.</span> <span class="nav-text">使用!强制解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选链"><span class="nav-number">2.10.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#as-or-as-转换为子类"><span class="nav-number">2.11.</span> <span class="nav-text">as? or as! 转换为子类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符"><span class="nav-number">3.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#swift赋值"><span class="nav-number">3.1.</span> <span class="nav-text">swift赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求余运算"><span class="nav-number">3.2.</span> <span class="nav-text">求余运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增自减"><span class="nav-number">3.3.</span> <span class="nav-text">自增自减</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift1-x"><span class="nav-number">3.3.1.</span> <span class="nav-text">Swift1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift2-x"><span class="nav-number">3.3.2.</span> <span class="nav-text">Swift2.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift3-x将取消-运算符"><span class="nav-number">3.3.3.</span> <span class="nav-text">Swift3.x将取消 ++ 运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#溢出运算符"><span class="nav-number">3.4.</span> <span class="nav-text">溢出运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算符"><span class="nav-number">3.5.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展后的赋值运算符"><span class="nav-number">3.6.</span> <span class="nav-text">扩展后的赋值运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间运算符"><span class="nav-number">3.7.</span> <span class="nav-text">区间运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较运算符，结果为BOOL值"><span class="nav-number">3.8.</span> <span class="nav-text">比较运算符，结果为BOOL值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.9.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空合并运算符-a-b"><span class="nav-number">3.10.</span> <span class="nav-text">空合并运算符 a??b</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程控制"><span class="nav-number">4.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支结构"><span class="nav-number">4.1.</span> <span class="nav-text">分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if…else…"><span class="nav-number">4.1.1.</span> <span class="nav-text">if…else…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三目运算符-Ternary-conditional"><span class="nav-number">4.1.2.</span> <span class="nav-text">三目运算符 - Ternary conditional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">4.1.3.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch使用fallthrough语句贯穿"><span class="nav-number">4.1.4.</span> <span class="nav-text">Switch使用fallthrough语句贯穿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch的case后的条件为元组"><span class="nav-number">4.1.5.</span> <span class="nav-text">Switch的case后的条件为元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch值绑定"><span class="nav-number">4.1.6.</span> <span class="nav-text">Switch值绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环结构"><span class="nav-number">4.2.</span> <span class="nav-text">循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-loop"><span class="nav-number">4.2.1.</span> <span class="nav-text">for loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套循环遍历时使用的标签"><span class="nav-number">4.2.2.</span> <span class="nav-text">嵌套循环遍历时使用的标签</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常量和变量"><span class="nav-number">1.</span> <span class="nav-text">常量和变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#整型"><span class="nav-number">2.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型之间转换必须是显式转换"><span class="nav-number">2.2.</span> <span class="nav-text">整型之间转换必须是显式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正无穷-负无穷-非数"><span class="nav-number">2.3.</span> <span class="nav-text">正无穷,负无穷,非数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点运算"><span class="nav-number">2.4.</span> <span class="nav-text">浮点运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型别名"><span class="nav-number">2.5.</span> <span class="nav-text">类型别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元组"><span class="nav-number">2.6.</span> <span class="nav-text">元组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式1-直接赋值"><span class="nav-number">2.6.1.</span> <span class="nav-text">赋值方式1.直接赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式2-先申明类型"><span class="nav-number">2.6.2.</span> <span class="nav-text">赋值方式2.先申明类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值方式3-key-value赋值"><span class="nav-number">2.6.3.</span> <span class="nav-text">赋值方式3.key-value赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组中的嵌套"><span class="nav-number">2.6.4.</span> <span class="nav-text">元组中的嵌套</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型"><span class="nav-number">2.7.</span> <span class="nav-text">可选类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用if-let强制解析-安全"><span class="nav-number">2.8.</span> <span class="nav-text">使用if let强制解析(安全)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-强制解析"><span class="nav-number">2.9.</span> <span class="nav-text">使用!强制解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选链"><span class="nav-number">2.10.</span> <span class="nav-text">可选链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#as-or-as-转换为子类"><span class="nav-number">2.11.</span> <span class="nav-text">as? or as! 转换为子类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符"><span class="nav-number">3.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#swift赋值"><span class="nav-number">3.1.</span> <span class="nav-text">swift赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求余运算"><span class="nav-number">3.2.</span> <span class="nav-text">求余运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自增自减"><span class="nav-number">3.3.</span> <span class="nav-text">自增自减</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift1-x"><span class="nav-number">3.3.1.</span> <span class="nav-text">Swift1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift2-x"><span class="nav-number">3.3.2.</span> <span class="nav-text">Swift2.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift3-x将取消-运算符"><span class="nav-number">3.3.3.</span> <span class="nav-text">Swift3.x将取消 ++ 运算符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#溢出运算符"><span class="nav-number">3.4.</span> <span class="nav-text">溢出运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算符"><span class="nav-number">3.5.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展后的赋值运算符"><span class="nav-number">3.6.</span> <span class="nav-text">扩展后的赋值运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区间运算符"><span class="nav-number">3.7.</span> <span class="nav-text">区间运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较运算符，结果为BOOL值"><span class="nav-number">3.8.</span> <span class="nav-text">比较运算符，结果为BOOL值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.9.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空合并运算符-a-b"><span class="nav-number">3.10.</span> <span class="nav-text">空合并运算符 a??b</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程控制"><span class="nav-number">4.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支结构"><span class="nav-number">4.1.</span> <span class="nav-text">分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if…else…"><span class="nav-number">4.1.1.</span> <span class="nav-text">if…else…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三目运算符-Ternary-conditional"><span class="nav-number">4.1.2.</span> <span class="nav-text">三目运算符 - Ternary conditional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">4.1.3.</span> <span class="nav-text">Switch -</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环结构"><span class="nav-number">4.2.</span> <span class="nav-text">循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-loop"><span class="nav-number">4.2.1.</span> <span class="nav-text">for loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套循环遍历时使用的标签"><span class="nav-number">4.2.2.</span> <span class="nav-text">嵌套循环遍历时使用的标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-…-loop"><span class="nav-number">4.2.3.</span> <span class="nav-text">while … loop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repeat-…-loop"><span class="nav-number">4.2.4.</span> <span class="nav-text">repeat … loop</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

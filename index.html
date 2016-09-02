@@ -238,6 +238,183 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/02/CodePractice/" itemprop="url">
+                  CodePractice
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-02T13:00:36+10:00" content="2016-09-02">
+              2016-09-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/02/CodePractice/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/02/CodePractice/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="将数组中的最后一个字符合并"><a href="#将数组中的最后一个字符合并" class="headerlink" title="将数组中的最后一个字符合并"></a>将数组中的最后一个字符合并</h2><pre><code>var nonsenseArray = [&quot;bungalow&quot;, &quot;buffalo&quot;, &quot;indigo&quot;, &quot;although&quot;, &quot;Ontario&quot;, &quot;albino&quot;, &quot;%$&amp;#!&quot;]
+
+func combineLastCharacters(wordArray:[String]) -&gt; String {
+
+    var newWord = &quot;&quot;
+    for var word in wordArray {
+        let lastCharacter = word.removeAtIndex(word.endIndex.predecessor())
+        newWord.append(lastCharacter)
+    }
+    return newWord
+}
+
+combineLastCharacters(nonsenseArray)
+
+//output :&quot;woohoo!&quot;
+</code></pre><h2 id="字符串中有数字则返回true-字符则false"><a href="#字符串中有数字则返回true-字符则false" class="headerlink" title="字符串中有数字则返回true,字符则false"></a>字符串中有数字则返回true,字符则false</h2><pre><code>//创建只有数字的set
+let digits = NSCharacterSet.decimalDigitCharacterSet()
+
+func digitsOnly(word: String) -&gt; Bool {
+
+    for character in word.unicodeScalars {
+
+        if !digits.longCharacterIsMember(character.value) {
+            return false
+        }
+    }
+    return true
+}
+
+digitsOnly(&quot;123&quot;)  //output : true
+
+digitsOnly(&quot;12a&quot;)  //output : false
+</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="去除掉数组中四个字母的字符串"><a href="#去除掉数组中四个字母的字符串" class="headerlink" title="去除掉数组中四个字母的字符串"></a>去除掉数组中四个字母的字符串</h2><pre><code>let dirtyWordsArray = [&quot;phooey&quot;, &quot;darn&quot;, &quot;drat&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;argh&quot;, &quot;fudge&quot;]
+
+func cleanUp(dirtyArray: [String]) -&gt; [String] {
+    var cleanArray = [String]()
+    for word in dirtyArray {
+        if word.characters.count == 4 {
+        } else {
+            cleanArray.append(word)
+        }
+    }
+    return cleanArray
+}
+
+cleanUp(dirtyWordsArray) //output : [&quot;phooey&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;fudge&quot;]
+</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="筛选出字典中指定value的key值数组"><a href="#筛选出字典中指定value的key值数组" class="headerlink" title="筛选出字典中指定value的key值数组"></a>筛选出字典中指定value的key值数组</h2><pre><code>var movies:Dictionary&lt;String,String&gt; = [ &quot;Boyhood&quot;:&quot;Richard Linklater&quot;,&quot;Inception&quot;:&quot;Christopher Nolan&quot;, &quot;The Hurt Locker&quot;:&quot;Kathryn Bigelow&quot;, &quot;Selma&quot;:&quot;Ava Du Vernay&quot;, &quot;Interstellar&quot;:&quot;Christopher Nolan&quot;]
+
+class MovieArchive {
+    func filterByDirector(currentDirector:String, movies: Dictionary&lt;String, String&gt;) -&gt; [String] {
+        var filteredArray = [String]()
+        for (movie, director) in movies {
+            if director == currentDirector {
+                filteredArray.append(movie)
+            }
+        }
+        return filteredArray
+    }
+}
+
+// Solution
+var myArchive = MovieArchive()
+myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //output : [&quot;Boyhood&quot;]
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/25/asset目录下的XML文件慎用字符！/" itemprop="url">
                   Asset目录下的XML文件慎用字符！
                 </a>
@@ -1107,132 +1284,6 @@ slider.maximumValue = 1.f;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/12/iOS项目22-瀑布流/" itemprop="url">
-                  iOS项目22.瀑布流
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-12T16:13:38+10:00" content="2016-08-12">
-              2016-08-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/12/iOS项目22-瀑布流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/12/iOS项目22-瀑布流/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="实现瀑布流有三种方式"><a href="#实现瀑布流有三种方式" class="headerlink" title="实现瀑布流有三种方式:"></a>实现瀑布流有三种方式:</h1><ol>
-<li>scrollView视图重用</li>
-<li>tableView滑动同步</li>
-<li>collectionView布局</li>
-</ol>
-<h1 id="collectionView的使用"><a href="#collectionView的使用" class="headerlink" title="collectionView的使用"></a>collectionView的使用</h1><ol>
-<li>自定义布局类</li>
-<li>自定义视图</li>
-<li>完善功能</li>
-</ol>
-<p>Note:记住返回类型，系统就会调用出相关的方法</p>
-<p><img src="https://www.dropbox.com/s/w48cvdqi5drgm3q/20160812_WaterFall.png?dl=1" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1279,7 +1330,7 @@ slider.maximumValue = 1.f;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

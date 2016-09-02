@@ -65,21 +65,11 @@
 面向对象编程的三大特征：封装，继承，和多态
 Swift可以定义枚举，结构体，和类三种面向对象的类型
 
-枚举枚举定义
-用于管理一组有限的值的集合
-支持计算属性
-支持实例方法和类方法
-支持定义构造器来完成初始化
-支持扩展和协议
-
-枚举语法enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case">
+Class - 继承/引用类型
+内存里的对象可以有多个引用，即多个引用变量指向同一个对象
+如果一个引用更改了，那对象里的值也会更改。
+“===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
+“==” or “!=” ,这两个也可以用于比较引用类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift面向对象基础(上)">
 <meta property="og:url" content="http://jackliu17.github.io/2016/03/11/Swift面向对象基础(上)/index.html">
@@ -88,43 +78,25 @@ enum Season {
 面向对象编程的三大特征：封装，继承，和多态
 Swift可以定义枚举，结构体，和类三种面向对象的类型
 
-枚举枚举定义
-用于管理一组有限的值的集合
-支持计算属性
-支持实例方法和类方法
-支持定义构造器来完成初始化
-支持扩展和协议
-
-枚举语法enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case">
-<meta property="og:updated_time" content="2016-07-31T13:08:42.000Z">
+Class - 继承/引用类型
+内存里的对象可以有多个引用，即多个引用变量指向同一个对象
+如果一个引用更改了，那对象里的值也会更改。
+“===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
+“==” or “!=” ,这两个也可以用于比较引用类">
+<meta property="og:image" content="https://www.dropbox.com/s/5rjjtamvk1890kv/20160902_property.png?dl=1">
+<meta property="og:updated_time" content="2016-09-02T10:36:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础(上)">
 <meta name="twitter:description" content="面向对象的特点
 面向对象编程的三大特征：封装，继承，和多态
 Swift可以定义枚举，结构体，和类三种面向对象的类型
 
-枚举枚举定义
-用于管理一组有限的值的集合
-支持计算属性
-支持实例方法和类方法
-支持定义构造器来完成初始化
-支持扩展和协议
-
-枚举语法enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
-}
-
-//方法1
-enum Season {
-   case">
+Class - 继承/引用类型
+内存里的对象可以有多个引用，即多个引用变量指向同一个对象
+如果一个引用更改了，那对象里的值也会更改。
+“===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
+“==” or “!=” ,这两个也可以用于比较引用类">
+<meta name="twitter:image" content="https://www.dropbox.com/s/5rjjtamvk1890kv/20160902_property.png?dl=1">
 
 
 
@@ -353,61 +325,129 @@ enum Season {
 <li>面向对象编程的三大特征：封装，继承，和多态</li>
 <li>Swift可以定义枚举，结构体，和类三种面向对象的类型</li>
 </ol>
-<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h2 id="枚举定义"><a href="#枚举定义" class="headerlink" title="枚举定义"></a>枚举定义</h2><ol>
-<li>用于管理一组有限的值的集合</li>
-<li>支持计算属性</li>
-<li>支持实例方法和类方法</li>
-<li>支持定义构造器来完成初始化</li>
-<li>支持扩展和协议</li>
+<h1 id="Class-继承-引用类型"><a href="#Class-继承-引用类型" class="headerlink" title="Class - 继承/引用类型"></a>Class - 继承/引用类型</h1><ol>
+<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
+<li>如果一个引用更改了，那对象里的值也会更改。</li>
+<li>“===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体</li>
+<li>“==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程</li>
 </ol>
-<h2 id="枚举语法"><a href="#枚举语法" class="headerlink" title="枚举语法"></a>枚举语法</h2><pre><code>enum 枚举名 {
-  //使用case关键字列出所有枚举值
-  //枚举的其他成员
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>必须有init method</p>
+<pre><code>class Movie {
+
+    let title: String
+    let director: String
+    let releaseYear: Int
+
+    init(title: String, director: String, releaseYear: Int) {
+        self.title = title
+        self.director = director
+        self.releaseYear = releaseYear
+    }
+}
+</code></pre><h2 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h2><p>三类property: Stored property, Type properties, Computed property</p>
+<p>默认是internal，就是可以app内访问</p>
+<p><img src="https://www.dropbox.com/s/5rjjtamvk1890kv/20160902_property.png?dl=1" alt="1"></p>
+<h3 id="Stored-property"><a href="#Stored-property" class="headerlink" title="Stored property"></a>Stored property</h3><p>大多数的stored property 是定义为常量，必须在init的时候被设定,external name 在init method中是必须的</p>
+<pre><code>var thursdayNightMovie = Movie(title:&quot;Point Break&quot;, director:&quot;Kathryn Bigelow&quot;, releaseYear: 1991)
+</code></pre><h3 id="Type-properties-amp-Computed-Properties"><a href="#Type-properties-amp-Computed-Properties" class="headerlink" title="Type properties &amp; Computed Properties"></a>Type properties &amp; Computed Properties</h3><pre><code>class KidsMovie {
+    let title: String
+    let director: String
+    let releaseYear: Int
+    var mpaaRating: String
+
+    //Type property
+    static let permittedRatings = [&quot;G&quot;, &quot;PG&quot;]
+
+    let reviewScores:[Double]
+
+    var metaScore: Double {
+        get {
+            let value = reviewScores.reduce(0) { $0 + $1 } / Double(reviewScores.count)
+            return value
+        }
+    }
+
+    init(title: String, director: String, releaseYear: Int, mpaaRating:String, reviewScores: [Double]) {
+        self.mpaaRating = mpaaRating
+        self.title = title
+        self.director = director
+        self.releaseYear = releaseYear
+        self.reviewScores = reviewScores
+    }
+}
+</code></pre><h2 id="Calling-Type-methods"><a href="#Calling-Type-methods" class="headerlink" title="Calling Type methods"></a>Calling Type methods</h2><pre><code>UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+</code></pre><p>使用class func ，子类可以重载，使用static则不会</p>
+<pre><code>class Hello {
+
+let pipi:String
+
+init (hello:String){
+    self.pipi = hello
 }
 
-//方法1
-enum Season {
-   case Spring
-   case Summer
-   case Fall
-   case Winter
+//or class func .....
+static func diao (hello:String){
+print(&quot;why&quot;)
+}
+}
+</code></pre><h1 id="Enumeration-不能继承-值类型"><a href="#Enumeration-不能继承-值类型" class="headerlink" title="Enumeration - 不能继承/值类型"></a>Enumeration - 不能继承/值类型</h1><ol>
+<li>值对象是要复制的</li>
+<li>每个值对象的更改，不会影响其他对象的更改</li>
+<li>因此枚举和结构体是没有继承的  </li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Enum可以看做是一组有限的“抽象概念”的集合 (数组需要指定具体的数值类型)</p>
+<pre><code>enum PrimaryColor {
+    case Red
+    case Blue
+    case Yellow
+}
+</code></pre><p>可以用一个case,然后其他用逗号隔开</p>
+<pre><code>enum Aunties {
+    case Aime, Billie, Diane, Gail, Janie, Pam
+}
+</code></pre><p>enum中的元素可以设定任何类型原始值,如string,int</p>
+<pre><code>enum AmericanLeagueWest: String {
+    case As = &quot;Oakland&quot;
+    case Astros = &quot;Houston&quot;
+    case Angels = &quot;Los Angeles&quot;
+    case Mariners = &quot;Seattle&quot;
+    case Rangers = &quot;Arlington&quot;    
 }
 
-//方法2
-enum Season2 {
-   case Spring, Summer, Fall, Winter
+var weather: AmericanLeagueWest
+weather = AmericanLeagueWest.As
+weather = .As //也可以这样写
+</code></pre><p>使用rawValue提取成员的原始值</p>
+<pre><code>var message = &quot;I hope the A&apos;s stay in \(AmericanLeagueWest.As.rawValue)&quot;
+</code></pre><h2 id="Enums-and-switch"><a href="#Enums-and-switch" class="headerlink" title="Enums and switch"></a>Enums and switch</h2><pre><code>enum CaliforniaPark {
+    case Yosemite, DeathValley, Lasson, Sequoia
 }
-</code></pre><h2 id="使用枚举声明变量"><a href="#使用枚举声明变量" class="headerlink" title="使用枚举声明变量"></a>使用枚举声明变量</h2><pre><code>var weather: Season
-weather = Season.Fall
-weather = .Fall //也可以这样写
-print(weather)
-</code></pre><h2 id="枚举值和switch语句"><a href="#枚举值和switch语句" class="headerlink" title="枚举值和switch语句"></a>枚举值和switch语句</h2><p>switch中的case没有覆盖枚举的所有值，必须添加default语句</p>
-<pre><code>var chooseDay = Season.Fall
 
-switch(chooseDay){
-case .Spring:
-  print(&quot;This is spring&quot;)
-case .Summer:
-  print(&quot;This is summer&quot;)
-default:
-  print(&quot;At home&quot;)
+var warning = &quot;&quot;
+var destination = CaliforniaPark.Yosemite
+</code></pre><p>switch中的case如果没有覆盖枚举的所有值，必须添加default语句</p>
+<pre><code>switch destination {
+    case .Yosemite:
+        warning = &quot;Beware of aggressive bears!&quot;
+    case .DeathValley:
+        warning = &quot;Beware of dehydration!&quot;
+    case .Lasson:
+        warning = &quot;Watch out for boiling pools!&quot;
+    case .Sequoia:
+        warning = &quot;Watch out for falling trees!&quot;
 }
-</code></pre><h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><pre><code>enum 枚举名：原始值类型{
-   case 枚举值 = 原始值
-}
-</code></pre><h3 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h3><pre><code>//可以自动推断，不用每个都赋予原始值
+</code></pre><h2 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h2><pre><code>//可以自动推断，不用每个都赋予原始值
 enum Weekday: Int{
   case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
 }
-</code></pre><h3 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h3><pre><code>//必须每个都赋予原始值，因为不能自动推断
+</code></pre><h2 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h2><pre><code>//必须每个都赋予原始值，因为不能自动推断
 enum Season3: Character{
   case Spring = &quot;春&quot;
   case Summer = &quot;夏&quot;
   case Fall = &quot;秋&quot;
   case Winter = &quot;冬&quot;
 }
-</code></pre><h3 id="获取原始值"><a href="#获取原始值" class="headerlink" title="获取原始值"></a>获取原始值</h3><pre><code>print(Weekday.Fri.rawValue)
-</code></pre><h3 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h3><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
+</code></pre><h2 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h2><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
 if mySeason != nil {
   switch(mySeason!){ //不为空才能进行强制解析
   case .Spring:
@@ -421,7 +461,7 @@ if mySeason != nil {
 
   }
 }
-</code></pre><h3 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h3><pre><code>enum Planet {
+</code></pre><h2 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h2><pre><code>enum Planet {
 case Earth(weight: Double , name:String)
 case Mars (density: Double, name: String, weight:Double)
 case Venus(Double, String)
@@ -444,132 +484,56 @@ case let Planet.Mars(density:d, name:n, weight:w):
 default:
    break
 }
-</code></pre><h1 id="类和结构体"><a href="#类和结构体" class="headerlink" title="类和结构体"></a>类和结构体</h1><ol>
-<li>这两个非常相似</li>
-<li>主要区别在于结构体和枚举不支持继承，只有类才有继承</li>
-<li>结构体和枚举是值类型</li>
-<li>类是引用类型</li>
-<li>只有类的实例可以称为对象</li>
-</ol>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><pre><code>[修饰符]class类名 {
-零到多个构造器
-零到多个属性
-零到多个方法
-零到多个下标
-}
-修饰符可以是private ,public, internal,final
+</code></pre><h1 id="Struct-不能继承-值类型"><a href="#Struct-不能继承-值类型" class="headerlink" title="Struct - 不能继承/值类型"></a>Struct - 不能继承/值类型</h1><pre><code>struct PictureFrame {
+    var width = 5
+    var height = 7
+    var thickness: Double = 1.5
 
-class Person {
-var name: String = &quot;Jack&quot;
-var age: Int = 0
-func say(content: String)
-{
-   print(content)
-}
-}
-</code></pre><h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><pre><code>[修饰符]struct 结构体名 {
-
-}
-修饰符可以是private , public, internal
-
-struct Dog{
-
-var name: String
-var age: Int
-func run(){
-
-print(&quot;\(name)在奔跑&quot;)
-}
-}
-</code></pre><h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><pre><code>[修饰符]var或者let 存储属性:类型名字 = 初始值
-</code></pre><h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><pre><code>[修饰符]init(形参列表){
-//零到多条可执行语句组成的构造器执行体
-}
-</code></pre><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><pre><code>[修饰符]func 方法名(形参列表) -&gt;返回值类型 {
-//零到多条可执行语句
-}
-</code></pre><h2 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h2><h3 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h3><pre><code>var p: Person
-p = Person() //等价于 var p = Person()
-print(p.name)
-p.say(&quot;Hello world&quot;)
-</code></pre><h3 id="结构体-1"><a href="#结构体-1" class="headerlink" title="结构体"></a>结构体</h3><pre><code>var dog = Dog(name:&quot;Wangcai&quot;, age:2)
-print(dog.name)
-dog.run()
-</code></pre><h2 id="值类型与引用类型"><a href="#值类型与引用类型" class="headerlink" title="值类型与引用类型"></a>值类型与引用类型</h2><h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>var p2 =p
-p2.name = &quot;Rose&quot;
-print(p.name)
-</code></pre><ol>
-<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
-<li>如果一个引用更改了，那对象里的值也会更改。</li>
-</ol>
-<h3 id="值类型"><a href="#值类型" class="headerlink" title="值类型"></a>值类型</h3><pre><code>var dog2 = dog
-dog2.name = &quot;snoopy&quot;
-print(dog2.name)
-print(dog.name)
-</code></pre><ol>
-<li>值对象是要复制的</li>
-<li>每个值对象的更改，不会影响其他对象的更改</li>
-<li>因此枚举和结构体是没有继承的  </li>
-</ol>
-<h3 id="引用类型的比较"><a href="#引用类型的比较" class="headerlink" title="引用类型的比较"></a>引用类型的比较</h3><pre><code>class User {
-var name: String
-var age: Int
-init(name: String, age: Int){
-    self.name = name
-    self.age = age
-}
-}
-
-var u1 = User(name:&quot;Han&quot;,age:32)
-var u2 = User(name:&quot;Han&quot;,age:32)
-//虽然传递的值是一样，但是是创建了两个对象
-
-print(u1 === u2) //u1与u2引用的不是同一对象,结果是false
-print(u1 !== u2) //结果是true
-
-var u3 = u1
-print(u3 === u1) //结果是true
-
-// &quot;===&quot; 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
-// “==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程
-</code></pre><h2 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h2><h3 id="方法中的self代表该方法的调用者"><a href="#方法中的self代表该方法的调用者" class="headerlink" title="方法中的self代表该方法的调用者"></a>方法中的self代表该方法的调用者</h3><pre><code>class Dog {  
-  func jump(){
-    print(&quot;正在执行jump方法&quot;)
-  }
-  func run(){
-  self.jump()  //这里的self代表该方法的调用者，这里也可以去掉
-     print(&quot;正在执行run方法&quot;)
-  }
-}
-</code></pre><h3 id="构造器中的self代表该构造器正在初始化的实例"><a href="#构造器中的self代表该构造器正在初始化的实例" class="headerlink" title="构造器中的self代表该构造器正在初始化的实例"></a>构造器中的self代表该构造器正在初始化的实例</h3><pre><code>class Person {
-    var name: String = &quot;&quot;
-    var age: Int = 2
-
-    init(name:String, age:Int){
-    self.name = name
-    self.age = age
-    }
-
-    func info(){
-    print(&quot;我的名字是:\(name)年龄是:\(age)&quot;)
+    var area: Int {
+        get {
+            return (width * height)/2
+        }
     }
 }
+</code></pre><p>Struct自动生成init method </p>
+<pre><code>var familyReunionFrame = PictureFrame(width: 10, height: 8, thickness: 1.5)
+familyReunionFrame.area
+</code></pre><h1 id="enum-class-or-struct"><a href="#enum-class-or-struct" class="headerlink" title="enum, class, or struct?"></a>enum, class, or struct?</h1><p> 只是单纯的存储数据，不需要继承</p>
+<pre><code> Struct Triangle {
+    let angles = [30, 60, 90]
+    let sides = [3,4,5]
+}
+</code></pre><p> 存储“有限“的“成员”，不必考虑什么类型的数值</p>
+<pre><code>enum UIImagePickerControllerSourceType : Int {    
+    case PhotoLibrary
+    case Camera
+    case SavedPhotosAlbum
+}
+</code></pre><p>只是单纯的存储数据，不需要继承</p>
+<pre><code>Struct Name {
+    var firstName: String
+    var lastName: String
+}
+</code></pre><p> 存储“有限“的“成员”，不必考虑什么类型的数值</p>
+<pre><code>enum Subject {
+    case Math
+    case English
+    case Spanish
+    case Science
+}
+</code></pre><p> 有各种类型的学生，大学，中学，意味着需要继承</p>
+<pre><code>class Student {
+    var grades = [97.0, 99.0, 98.0]
+    let name = Name(firstName:&quot;Grace&quot;, lastName:&quot;Hopper&quot;)
+    var favoriteSubject = Subject.Science
 
-var person = Person(name:&quot;Lily&quot;,age:10)
-person.info()
-</code></pre><h2 id="类和结构体的选择"><a href="#类和结构体的选择" class="headerlink" title="类和结构体的选择"></a>类和结构体的选择</h2><ol>
-<li>结构体的主要目的是用于封装少量相关的简单数据</li>
-<li>如果需要在传递参数或者赋值时自动复制副本，使用结构体</li>
-<li>明确该类型无须继承另一个已有的类或被其他类继承</li>
-<li>注意，大部分时候，程序应该自定义类而不是自定义结构体。</li>
-</ol>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><ol>
-<li>Swift中的三种面向对象类型:枚举，结构体，类</li>
-<li>枚举,一组有限的值的集合.要区分枚举值，关联值，原始值</li>
-<li>类和结构体很相似。类是引用类型，支持继承;结构体和枚举是值类型，不支持继承</li>
-<li>值类型和引用类型的区别。</li>
-</ol>
-
+    var gradePointAverage: Double {
+        get {
+            return (grades.reduce(0){$0 + $1})/Double (grades.count)
+        }
+    }
+}
+</code></pre>
       
     </div>
 
@@ -679,7 +643,7 @@ person.info()
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -736,7 +700,7 @@ person.info()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#枚举"><span class="nav-number">2.</span> <span class="nav-text">枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举定义"><span class="nav-number">2.1.</span> <span class="nav-text">枚举定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举语法"><span class="nav-number">2.2.</span> <span class="nav-text">枚举语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用枚举声明变量"><span class="nav-number">2.3.</span> <span class="nav-text">使用枚举声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举值和switch语句"><span class="nav-number">2.4.</span> <span class="nav-text">枚举值和switch语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始值"><span class="nav-number">2.5.</span> <span class="nav-text">原始值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型的枚举"><span class="nav-number">2.5.1.</span> <span class="nav-text">整型的枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串枚举"><span class="nav-number">2.5.2.</span> <span class="nav-text">字符串枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取原始值"><span class="nav-number">2.5.3.</span> <span class="nav-text">获取原始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取枚举值"><span class="nav-number">2.5.4.</span> <span class="nav-text">获取枚举值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联值"><span class="nav-number">2.5.5.</span> <span class="nav-text">关联值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构体"><span class="nav-number">3.</span> <span class="nav-text">类和结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">3.1.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体"><span class="nav-number">3.1.2.</span> <span class="nav-text">结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">3.1.3.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器"><span class="nav-number">3.1.4.</span> <span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.1.5.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建实例"><span class="nav-number">3.2.</span> <span class="nav-text">创建实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">结构体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值类型与引用类型"><span class="nav-number">3.3.</span> <span class="nav-text">值类型与引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型"><span class="nav-number">3.3.1.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值类型"><span class="nav-number">3.3.2.</span> <span class="nav-text">值类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型的比较"><span class="nav-number">3.3.3.</span> <span class="nav-text">引用类型的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#self关键字"><span class="nav-number">3.4.</span> <span class="nav-text">self关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法中的self代表该方法的调用者"><span class="nav-number">3.4.1.</span> <span class="nav-text">方法中的self代表该方法的调用者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器中的self代表该构造器正在初始化的实例"><span class="nav-number">3.4.2.</span> <span class="nav-text">构造器中的self代表该构造器正在初始化的实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和结构体的选择"><span class="nav-number">3.5.</span> <span class="nav-text">类和结构体的选择</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象的特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-继承-引用类型"><span class="nav-number">2.</span> <span class="nav-text">Class - 继承/引用类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式"><span class="nav-number">2.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property"><span class="nav-number">2.2.</span> <span class="nav-text">Property</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stored-property"><span class="nav-number">2.2.1.</span> <span class="nav-text">Stored property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Type-properties-amp-Computed-Properties"><span class="nav-number">2.2.2.</span> <span class="nav-text">Type properties & Computed Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Calling-Type-methods"><span class="nav-number">2.3.</span> <span class="nav-text">Calling Type methods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumeration-不能继承-值类型"><span class="nav-number">3.</span> <span class="nav-text">Enumeration - 不能继承/值类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enums-and-switch"><span class="nav-number">3.2.</span> <span class="nav-text">Enums and switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整型的枚举"><span class="nav-number">3.3.</span> <span class="nav-text">整型的枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串枚举"><span class="nav-number">3.4.</span> <span class="nav-text">字符串枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取枚举值"><span class="nav-number">3.5.</span> <span class="nav-text">获取枚举值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联值"><span class="nav-number">3.6.</span> <span class="nav-text">关联值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struct-不能继承-值类型"><span class="nav-number">4.</span> <span class="nav-text">Struct - 不能继承/值类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#enum-class-or-struct"><span class="nav-number">5.</span> <span class="nav-text">enum, class, or struct?</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

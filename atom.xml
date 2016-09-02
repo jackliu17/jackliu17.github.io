@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-08-25T11:06:07.000Z</updated>
+  <updated>2016-09-02T03:21:36.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,93 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CodePractice</title>
+    <link href="http://jackliu17.github.io/2016/09/02/CodePractice/"/>
+    <id>http://jackliu17.github.io/2016/09/02/CodePractice/</id>
+    <published>2016-09-02T03:00:36.000Z</published>
+    <updated>2016-09-02T03:21:36.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;h2 id=&quot;将数组中的最后一个字符合并&quot;&gt;&lt;a href=&quot;#将数组中的最后一个字符合并&quot; class=&quot;headerlink&quot; title=&quot;将数组中的最后一个字符合并&quot;&gt;&lt;/a&gt;将数组中的最后一个字符合并&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var nonsenseArray = [&amp;quot;bungalow&amp;quot;, &amp;quot;buffalo&amp;quot;, &amp;quot;indigo&amp;quot;, &amp;quot;although&amp;quot;, &amp;quot;Ontario&amp;quot;, &amp;quot;albino&amp;quot;, &amp;quot;%$&amp;amp;#!&amp;quot;]
+
+func combineLastCharacters(wordArray:[String]) -&amp;gt; String {
+
+    var newWord = &amp;quot;&amp;quot;
+    for var word in wordArray {
+        let lastCharacter = word.removeAtIndex(word.endIndex.predecessor())
+        newWord.append(lastCharacter)
+    }
+    return newWord
+}
+
+combineLastCharacters(nonsenseArray)
+
+//output :&amp;quot;woohoo!&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;字符串中有数字则返回true-字符则false&quot;&gt;&lt;a href=&quot;#字符串中有数字则返回true-字符则false&quot; class=&quot;headerlink&quot; title=&quot;字符串中有数字则返回true,字符则false&quot;&gt;&lt;/a&gt;字符串中有数字则返回true,字符则false&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//创建只有数字的set
+let digits = NSCharacterSet.decimalDigitCharacterSet()
+
+func digitsOnly(word: String) -&amp;gt; Bool {
+
+    for character in word.unicodeScalars {
+
+        if !digits.longCharacterIsMember(character.value) {
+            return false
+        }
+    }
+    return true
+}
+
+digitsOnly(&amp;quot;123&amp;quot;)  //output : true
+
+digitsOnly(&amp;quot;12a&amp;quot;)  //output : false
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;数组&quot;&gt;&lt;a href=&quot;#数组&quot; class=&quot;headerlink&quot; title=&quot;数组&quot;&gt;&lt;/a&gt;数组&lt;/h1&gt;&lt;h2 id=&quot;去除掉数组中四个字母的字符串&quot;&gt;&lt;a href=&quot;#去除掉数组中四个字母的字符串&quot; class=&quot;headerlink&quot; title=&quot;去除掉数组中四个字母的字符串&quot;&gt;&lt;/a&gt;去除掉数组中四个字母的字符串&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let dirtyWordsArray = [&amp;quot;phooey&amp;quot;, &amp;quot;darn&amp;quot;, &amp;quot;drat&amp;quot;, &amp;quot;blurgh&amp;quot;, &amp;quot;jupiters&amp;quot;, &amp;quot;argh&amp;quot;, &amp;quot;fudge&amp;quot;]
+
+func cleanUp(dirtyArray: [String]) -&amp;gt; [String] {
+    var cleanArray = [String]()
+    for word in dirtyArray {
+        if word.characters.count == 4 {
+        } else {
+            cleanArray.append(word)
+        }
+    }
+    return cleanArray
+}
+
+cleanUp(dirtyWordsArray) //output : [&amp;quot;phooey&amp;quot;, &amp;quot;blurgh&amp;quot;, &amp;quot;jupiters&amp;quot;, &amp;quot;fudge&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;字典&quot;&gt;&lt;a href=&quot;#字典&quot; class=&quot;headerlink&quot; title=&quot;字典&quot;&gt;&lt;/a&gt;字典&lt;/h1&gt;&lt;h2 id=&quot;筛选出字典中指定value的key值数组&quot;&gt;&lt;a href=&quot;#筛选出字典中指定value的key值数组&quot; class=&quot;headerlink&quot; title=&quot;筛选出字典中指定value的key值数组&quot;&gt;&lt;/a&gt;筛选出字典中指定value的key值数组&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;var movies:Dictionary&amp;lt;String,String&amp;gt; = [ &amp;quot;Boyhood&amp;quot;:&amp;quot;Richard Linklater&amp;quot;,&amp;quot;Inception&amp;quot;:&amp;quot;Christopher Nolan&amp;quot;, &amp;quot;The Hurt Locker&amp;quot;:&amp;quot;Kathryn Bigelow&amp;quot;, &amp;quot;Selma&amp;quot;:&amp;quot;Ava Du Vernay&amp;quot;, &amp;quot;Interstellar&amp;quot;:&amp;quot;Christopher Nolan&amp;quot;]
+
+class MovieArchive {
+    func filterByDirector(currentDirector:String, movies: Dictionary&amp;lt;String, String&amp;gt;) -&amp;gt; [String] {
+        var filteredArray = [String]()
+        for (movie, director) in movies {
+            if director == currentDirector {
+                filteredArray.append(movie)
+            }
+        }
+        return filteredArray
+    }
+}
+
+// Solution
+var myArchive = MovieArchive()
+myArchive.filterByDirector(&amp;quot;Richard Linklater&amp;quot;, movies: movies)    //output : [&amp;quot;Boyhood&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h1&gt;&lt;h2 id=&quot;将数组中的最后一个字符合并&quot;&gt;&lt;a href=&quot;#将数组中的最后一个字符合并&quot; class=&quot;headerlink&quot; ti
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+  </entry>
   
   <entry>
     <title>Asset目录下的XML文件慎用字符！</title>
@@ -2654,30 +2741,6 @@ if(selected){
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_MapKit" scheme="http://jackliu17.github.io/tags/iOS-MapKit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS推送通知流程</title>
-    <link href="http://jackliu17.github.io/2016/06/07/iOS%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5%E6%B5%81%E7%A8%8B/"/>
-    <id>http://jackliu17.github.io/2016/06/07/iOS推送通知流程/</id>
-    <published>2016-06-07T08:46:28.000Z</published>
-    <updated>2016-07-31T04:41:52.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
   </entry>
   

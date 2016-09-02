@@ -238,6 +238,168 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="url">
+                  iOS项目6.UIScrollView图片自动滚动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
+              2016-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/g0ayo6wgvglckix/uiscrollViewPlay.png?dl=1" alt="效果图"></p>
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="https://www.dropbox.com/s/flznuxuzo806l1m/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png?dl=1" alt="功能分析"></p>
+<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+//屏幕宽度
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+//图像数量
+CGFloat kImgCount = 10;
+//Y轴坐标
+CGFloat scrollY = 20;
+//页面控制器宽度
+CGFloat pageCtrlWidth = 200;
+</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
+self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
+
+
+//配置滚动视图可以页面显示
+self.scrollView.pagingEnabled = YES;
+
+
+//在滚动视图中实现图像偏移
+[self.scrollView setContentOffset:point animated:YES];
+
+
+//滚动视图滚动之后
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+}
+
+//当视图将要拖动的时候
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+
+}
+
+//当视图停止拖拽的时候
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+}
+</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
+</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
+self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
+                                              target:self
+                                            selector:@selector(nextPage)
+                                            userInfo:nil
+                                             repeats:YES];
+
+//停止定时器
+[self.timer invalidate];
+</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/20/iOS项目5-UIPickerView国家选择/" itemprop="url">
                   iOS项目5.UIPickerView国家选择
                 </a>
@@ -870,131 +1032,6 @@ return _imageDicts;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/18/iOS项目1-加法计算器/" itemprop="url">
-                  iOS项目1.加法计算器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T11:31:59+10:00" content="2016-04-18">
-              2016-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/18/iOS项目1-加法计算器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目1-加法计算器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/qyat6okm4qlul1t/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A8.png?dl=1" alt="加法计算器1"></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/tkzzanwy6fx4ssh/%E5%8A%A0%E6%B3%95%E8%AE%A1%E7%AE%97%E5%99%A82.png?dl=1" alt="加法计算器2"></p>
-<h1 id="字符串型和整型互转"><a href="#字符串型和整型互转" class="headerlink" title="字符串型和整型互转"></a>字符串型和整型互转</h1><pre><code>//字符串转整型
-var num1 = Int(self.textOne.text!)
-
-//整型转为字符串
-let resultStr = &quot;\(resultNum)&quot;
-</code></pre><h1 id="判断文本框是否为空"><a href="#判断文本框是否为空" class="headerlink" title="判断文本框是否为空"></a>判断文本框是否为空</h1><pre><code>if(self.textOne.text!.isEmpty){...}
-
-if(!self.textTwo.hasText()){...}
-</code></pre><h1 id="编辑结束时移除光标"><a href="#编辑结束时移除光标" class="headerlink" title="编辑结束时移除光标"></a>编辑结束时移除光标</h1><pre><code>self.textOne.endEditing(true)
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1041,7 +1078,7 @@ if(!self.textTwo.hasText()){...}
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">99</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
