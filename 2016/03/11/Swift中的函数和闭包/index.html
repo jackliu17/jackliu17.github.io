@@ -73,7 +73,7 @@ let array = [&amp;quot;A&amp;quot;, &amp;quot;13&amp;quot;, &amp;quot;B&amp;quot
 print(&amp;quot;I&amp;apos;m a global function!&amp;quot;)
 Method在某个class里声明，需要用对象来调用，比如
 let array = [&amp;quot;A&amp;quot;, &amp;quot;13&amp;quot;, &amp;quot;B&amp;quot;,&amp;quot;5&amp;quot;,&amp;quot;">
-<meta property="og:updated_time" content="2016-09-02T03:25:19.000Z">
+<meta property="og:updated_time" content="2016-09-03T07:32:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的函数和闭包">
 <meta name="twitter:description" content="函数函数的种类和声明Global Functions在文件中的任何地方都可以调用，比如:
@@ -499,10 +499,30 @@ print(mathFunc(4)) //outcome is 16
 
 mathFunc = getMathFunc (&quot;other&quot;)
 print(mathFunc(4)) //outcome is 64
-</code></pre><h1 id="闭包表达式"><a href="#闭包表达式" class="headerlink" title="闭包表达式"></a>闭包表达式</h1><h2 id="闭包的写法"><a href="#闭包的写法" class="headerlink" title="闭包的写法"></a>闭包的写法</h2><p>将嵌套函数改写，去掉函数名。因为嵌套函数的函数名已经可以省略了。类似于OC的block</p>
-<pre><code>{ （形参列表）-&gt; 返回值类型 in
-   可执行表达式
+</code></pre><h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><p>一段可以作为参数传递给函数的代码</p>
+<pre><code>{ (parameters) -&gt; return type in
+
+ statements to execute
+
 }
+</code></pre><p> 例子</p>
+<pre><code>var bids = [48.1, 75.4, 63.7, 52.4, 68.2]
+var orderedBids = bids.sort( {(bid1: Double, bid2:Double) -&gt; Bool in
+    return  bid2 &gt; bid1
+})
+print(orderedBids)
+</code></pre><h2 id="Closure的简写形式"><a href="#Closure的简写形式" class="headerlink" title="Closure的简写形式"></a>Closure的简写形式</h2><p>Example -  原有形式</p>
+<pre><code>var soups = [&quot;tomato&quot;, &quot;hot and sour&quot;, &quot;french onion&quot;, &quot;vegetable&quot;]
+var alphabeticalSoups = soups.sort({(soup1: String, soup2: String) -&gt; Bool in
+    return soup2 &gt; soup1
+})
+</code></pre><p>Example - 简写 ($0,$1,$2….分别代表第几个参数)</p>
+<pre><code>var soups = [&quot;tomato&quot;, &quot;hot and sour&quot;, &quot;french onion&quot;, &quot;vegetable&quot;]
+var hello = soups.sort({
+
+    $1 &gt; $0
+
+})   
 </code></pre><h2 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h2><pre><code>func getMathFunc(jackliu: String) -&gt; (Int) -&gt;Int{
 
 switch(jackliu){
@@ -541,14 +561,6 @@ for i in 1...$1{
 return result
 }(4,3)
 print(result) //outcome is 64
-</code></pre><h2 id="尾随闭包"><a href="#尾随闭包" class="headerlink" title="尾随闭包"></a>尾随闭包</h2><pre><code>func someFunction(num:Int, fn:(Int) -&gt;()){
-
-}
-</code></pre><p>本来应该是这样 </p>
-<pre><code>someFunctioin (20,{}) //only in Swift 1.0
-</code></pre><p>可以将小括号提前提高可读性，这就是尾随闭包</p>
-<pre><code>someFunction(20){}  //only in Swift 1.0
-someFunction(20){_ in } //Swift 2.2
 </code></pre><h2 id="捕获上下文中的变量或者常量"><a href="#捕获上下文中的变量或者常量" class="headerlink" title="捕获上下文中的变量或者常量"></a>捕获上下文中的变量或者常量</h2><p>闭包（嵌套函数）可以访问或者修改其所在上下文中的变量或常量</p>
 <pre><code>func makeArr(ele:String) -&gt; () -&gt; [String]{
 
@@ -563,26 +575,7 @@ return arr
 }
 return addElement
 }
-</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><h2 id="函数的参数-1"><a href="#函数的参数-1" class="headerlink" title="函数的参数"></a>函数的参数</h2><ol>
-<li>函数的形参是标识，实参是传入的值</li>
-<li>数组参数，参数可以接受多个参数值，位于列表最后，传入一个数组</li>
-<li>默认参数，在函数的形参列表里都设定好了一个默认值</li>
-<li>变量形参，详见后文</li>
-<li>In-out形参，详见后文</li>
-</ol>
-<h2 id="函数的使用"><a href="#函数的使用" class="headerlink" title="函数的使用"></a>函数的使用</h2><ol>
-<li>作为变量,在定义变量的类型时，列出所需函数的形参和返回值即可。注意右侧的函数不带括号，否则就是执行函数了</li>
-<li>作为函数参数,在定义形参的类型时，列出所需函数的形参和返回值即可。</li>
-<li>作为函数返回值类型, 注意有两个箭头。如果将具有函数返回值的函数设为变量，因为可以根据右侧推断，左侧的变量可以不用写变量类型了。</li>
-<li>函数重载，形参和返回值不一样的同名函数.仅有形参名一样是不行的</li>
-</ol>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包{ }"></a>闭包{ }</h2><ol>
-<li>函数和闭包是统一的，函数和闭包都是引用类型，当赋值给变量时，不会复制，而是指向同一个闭包 </li>
-<li>将闭包设为变量就相当于将函数设为变量，如果左侧写明了变量类型，那系统会自动推断右侧的闭包形参和返回值类型。</li>
-<li>尾随闭包，也就是将闭包当做形参传入</li>
-<li>闭包或者嵌套函数，可以访问上下文中的变量或者常量</li>
-</ol>
-
+</code></pre>
       
     </div>
 
@@ -749,7 +742,7 @@ return addElement
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的种类和声明"><span class="nav-number">1.1.</span> <span class="nav-text">函数的种类和声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-Functions"><span class="nav-number">1.1.1.</span> <span class="nav-text">Global Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method"><span class="nav-number">1.1.2.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的声明"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部参数名"><span class="nav-number">1.1.4.</span> <span class="nav-text">外部参数名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的参数"><span class="nav-number">1.2.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">数组参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">1.2.2.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略形参名，添加下划线"><span class="nav-number">1.2.3.</span> <span class="nav-text">忽略形参名，添加下划线 _</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量形参"><span class="nav-number">1.2.4.</span> <span class="nav-text">变量形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-out形参"><span class="nav-number">1.2.5.</span> <span class="nav-text">In-out形参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数返回值"><span class="nav-number">1.3.</span> <span class="nav-text">函数返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#void"><span class="nav-number">1.3.1.</span> <span class="nav-text">void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个返回值"><span class="nav-number">1.3.2.</span> <span class="nav-text">多个返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数使用"><span class="nav-number">1.4.</span> <span class="nav-text">函数使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为变量"><span class="nav-number">1.4.1.</span> <span class="nav-text">函数作为变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为参数"><span class="nav-number">1.4.2.</span> <span class="nav-text">函数作为参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型作为返回值类型"><span class="nav-number">1.4.3.</span> <span class="nav-text">函数类型作为返回值类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数重载"><span class="nav-number">1.5.</span> <span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套函数"><span class="nav-number">1.6.</span> <span class="nav-text">嵌套函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包表达式"><span class="nav-number">2.</span> <span class="nav-text">闭包表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的写法"><span class="nav-number">2.1.</span> <span class="nav-text">闭包的写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的应用"><span class="nav-number">2.2.</span> <span class="nav-text">闭包的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用上下文推断类型"><span class="nav-number">2.3.</span> <span class="nav-text">利用上下文推断类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尾随闭包"><span class="nav-number">2.4.</span> <span class="nav-text">尾随闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获上下文中的变量或者常量"><span class="nav-number">2.5.</span> <span class="nav-text">捕获上下文中的变量或者常量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的参数-1"><span class="nav-number">3.1.</span> <span class="nav-text">函数的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的使用"><span class="nav-number">3.2.</span> <span class="nav-text">函数的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">3.3.</span> <span class="nav-text">闭包{ }</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的种类和声明"><span class="nav-number">1.1.</span> <span class="nav-text">函数的种类和声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-Functions"><span class="nav-number">1.1.1.</span> <span class="nav-text">Global Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method"><span class="nav-number">1.1.2.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的声明"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数的声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部参数名"><span class="nav-number">1.1.4.</span> <span class="nav-text">外部参数名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的参数"><span class="nav-number">1.2.</span> <span class="nav-text">函数的参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">数组参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认参数"><span class="nav-number">1.2.2.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略形参名，添加下划线"><span class="nav-number">1.2.3.</span> <span class="nav-text">忽略形参名，添加下划线 _</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量形参"><span class="nav-number">1.2.4.</span> <span class="nav-text">变量形参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#In-out形参"><span class="nav-number">1.2.5.</span> <span class="nav-text">In-out形参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数返回值"><span class="nav-number">1.3.</span> <span class="nav-text">函数返回值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#void"><span class="nav-number">1.3.1.</span> <span class="nav-text">void</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多个返回值"><span class="nav-number">1.3.2.</span> <span class="nav-text">多个返回值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数使用"><span class="nav-number">1.4.</span> <span class="nav-text">函数使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为变量"><span class="nav-number">1.4.1.</span> <span class="nav-text">函数作为变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为参数"><span class="nav-number">1.4.2.</span> <span class="nav-text">函数作为参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型作为返回值类型"><span class="nav-number">1.4.3.</span> <span class="nav-text">函数类型作为返回值类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数重载"><span class="nav-number">1.5.</span> <span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套函数"><span class="nav-number">1.6.</span> <span class="nav-text">嵌套函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Closure"><span class="nav-number">2.</span> <span class="nav-text">Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure的简写形式"><span class="nav-number">2.1.</span> <span class="nav-text">Closure的简写形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的应用"><span class="nav-number">2.2.</span> <span class="nav-text">闭包的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用上下文推断类型"><span class="nav-number">2.3.</span> <span class="nav-text">利用上下文推断类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获上下文中的变量或者常量"><span class="nav-number">2.4.</span> <span class="nav-text">捕获上下文中的变量或者常量</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

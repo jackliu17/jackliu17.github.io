@@ -370,6 +370,29 @@ class MovieArchive {
 // Solution
 var myArchive = MovieArchive()
 myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //output : [&quot;Boyhood&quot;]
+</code></pre><h1 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h1><h2 id="Fade-Out-and-Fade-in"><a href="#Fade-Out-and-Fade-in" class="headerlink" title="Fade Out and Fade in"></a>Fade Out and Fade in</h2><pre><code>@IBAction func sunRiseAndSet(sender: AnyObject) {
+       // Fade out
+
+       UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+
+           self.imageView.alpha = 0.0
+
+           }, completion: {
+               (finished: Bool) -&gt; Void in
+
+               //Once the label is completely invisible, set the text and fade it back in
+               if (self.imageView.image == UIImage(named: &quot;sunrise&quot;)) {
+                   self.imageView.image = UIImage(named:&quot;sunset&quot;)!
+               } else {
+                   self.imageView.image = UIImage(named:&quot;sunrise&quot;)!
+               }
+
+               // Fade in
+               UIView.animateWithDuration(1.0, delay:0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
+                   self.imageView.alpha = 1.0
+                   }, completion: nil)
+       })
+   }
 </code></pre>
           
         

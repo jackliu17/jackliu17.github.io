@@ -71,7 +71,7 @@ func combineL">
 <meta property="og:description" content="字符串将数组中的最后一个字符合并var nonsenseArray = [&amp;quot;bungalow&amp;quot;, &amp;quot;buffalo&amp;quot;, &amp;quot;indigo&amp;quot;, &amp;quot;although&amp;quot;, &amp;quot;Ontario&amp;quot;, &amp;quot;albino&amp;quot;, &amp;quot;%$&amp;amp;#!&amp;quot;]
 
 func combineL">
-<meta property="og:updated_time" content="2016-09-02T03:21:36.000Z">
+<meta property="og:updated_time" content="2016-09-03T02:35:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CodePractice">
 <meta name="twitter:description" content="字符串将数组中的最后一个字符合并var nonsenseArray = [&amp;quot;bungalow&amp;quot;, &amp;quot;buffalo&amp;quot;, &amp;quot;indigo&amp;quot;, &amp;quot;although&amp;quot;, &amp;quot;Ontario&amp;quot;, &amp;quot;albino&amp;quot;, &amp;quot;%$&amp;amp;#!&amp;quot;]
@@ -364,6 +364,29 @@ class MovieArchive {
 // Solution
 var myArchive = MovieArchive()
 myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //output : [&quot;Boyhood&quot;]
+</code></pre><h1 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h1><h2 id="Fade-Out-and-Fade-in"><a href="#Fade-Out-and-Fade-in" class="headerlink" title="Fade Out and Fade in"></a>Fade Out and Fade in</h2><pre><code>@IBAction func sunRiseAndSet(sender: AnyObject) {
+       // Fade out
+
+       UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+
+           self.imageView.alpha = 0.0
+
+           }, completion: {
+               (finished: Bool) -&gt; Void in
+
+               //Once the label is completely invisible, set the text and fade it back in
+               if (self.imageView.image == UIImage(named: &quot;sunrise&quot;)) {
+                   self.imageView.image = UIImage(named:&quot;sunset&quot;)!
+               } else {
+                   self.imageView.image = UIImage(named:&quot;sunrise&quot;)!
+               }
+
+               // Fade in
+               UIView.animateWithDuration(1.0, delay:0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
+                   self.imageView.alpha = 1.0
+                   }, completion: nil)
+       })
+   }
 </code></pre>
       
     </div>
@@ -527,7 +550,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将数组中的最后一个字符合并"><span class="nav-number">1.1.</span> <span class="nav-text">将数组中的最后一个字符合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串中有数字则返回true-字符则false"><span class="nav-number">1.2.</span> <span class="nav-text">字符串中有数字则返回true,字符则false</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#去除掉数组中四个字母的字符串"><span class="nav-number">2.1.</span> <span class="nav-text">去除掉数组中四个字母的字符串</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典"><span class="nav-number">3.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#筛选出字典中指定value的key值数组"><span class="nav-number">3.1.</span> <span class="nav-text">筛选出字典中指定value的key值数组</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将数组中的最后一个字符合并"><span class="nav-number">1.1.</span> <span class="nav-text">将数组中的最后一个字符合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串中有数字则返回true-字符则false"><span class="nav-number">1.2.</span> <span class="nav-text">字符串中有数字则返回true,字符则false</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#去除掉数组中四个字母的字符串"><span class="nav-number">2.1.</span> <span class="nav-text">去除掉数组中四个字母的字符串</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典"><span class="nav-number">3.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#筛选出字典中指定value的key值数组"><span class="nav-number">3.1.</span> <span class="nav-text">筛选出字典中指定value的key值数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIView"><span class="nav-number">4.</span> <span class="nav-text">UIView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fade-Out-and-Fade-in"><span class="nav-number">4.1.</span> <span class="nav-text">Fade Out and Fade in</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
