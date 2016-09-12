@@ -84,7 +84,7 @@ Class - 继承/引用类型
 “===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体
 “==” or “!=” ,这两个也可以用于比较引用类">
 <meta property="og:image" content="https://www.dropbox.com/s/5rjjtamvk1890kv/20160902_property.png?dl=1">
-<meta property="og:updated_time" content="2016-09-02T10:36:33.000Z">
+<meta property="og:updated_time" content="2016-09-06T07:47:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift面向对象基础(上)">
 <meta name="twitter:description" content="面向对象的特点
@@ -425,7 +425,7 @@ weather = .As //也可以这样写
 
 var warning = &quot;&quot;
 var destination = CaliforniaPark.Yosemite
-</code></pre><p>switch中的case如果没有覆盖枚举的所有值，必须添加default语句</p>
+</code></pre><p>例子 1：switch中的case如果没有覆盖枚举的所有值，必须添加default语句</p>
 <pre><code>switch destination {
     case .Yosemite:
         warning = &quot;Beware of aggressive bears!&quot;
@@ -435,6 +435,69 @@ var destination = CaliforniaPark.Yosemite
         warning = &quot;Watch out for boiling pools!&quot;
     case .Sequoia:
         warning = &quot;Watch out for falling trees!&quot;
+}
+</code></pre><p>例子 2：</p>
+<pre><code>// Below is an enum and an if-else statement for implementing the game Rock-Paper-Scissors.
+enum roshamboMove {
+    case Rock, Paper, Scissors
+}
+
+var myMove = roshamboMove.Scissors
+var yourMove = roshamboMove.Scissors
+
+var resultsMessage = &quot;&quot;
+
+if myMove == .Rock &amp;&amp; yourMove == .Paper || myMove == .Paper &amp;&amp; yourMove == .Rock {
+    resultsMessage = &quot;Paper covers Rock.&quot;
+} else if myMove == yourMove {
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+} else if myMove == .Rock &amp;&amp; yourMove == .Scissors || myMove == .Scissors &amp;&amp; yourMove == .Rock {
+    resultsMessage = &quot;Rock crushes Scissors. &quot;
+} else if myMove == .Paper &amp;&amp; yourMove == .Scissors || myMove == .Scissors &amp;&amp; yourMove == .Paper {
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+} 
+
+// Solution
+switch (myMove, yourMove) {
+case (.Rock, .Paper), (.Paper, .Rock):
+    resultsMessage = &quot;Paper covers Rock.&quot;
+case (.Rock, .Rock), (.Paper, .Paper), (.Scissors, .Scissors):
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+case (.Rock, .Scissors), (.Scissors, .Rock):
+    resultsMessage = &quot;Rock crushes Scissors.&quot;
+case (.Paper, .Scissors), (.Scissors, .Paper):
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+}
+
+// Alternate solution
+switch (myMove, yourMove) {
+case (.Rock, .Paper), (.Paper, .Rock):
+    resultsMessage = &quot;Paper covers Rock.&quot;
+case let (a, b) where a==b :
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+case (.Rock, .Scissors), (.Scissors, .Rock):
+    resultsMessage = &quot;Rock crushes Scissors.&quot;
+case (.Paper, .Scissors), (.Scissors, .Paper):
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+default:
+    resultsMessage = &quot;Paper covers Rock.&quot;
+}
+</code></pre><p>例子3</p>
+<pre><code>var score = 97
+var letterGrade = &quot;&quot;
+
+// Solution
+switch score {
+case 90...100:
+    letterGrade = &quot;A&quot;
+case 80...89:
+    letterGrade = &quot;B&quot;
+case 70...79:
+    letterGrade = &quot;C&quot;
+case 60...69:
+    letterGrade = &quot;D&quot;
+default:
+    letterGrade = &quot;Incomplete&quot;
 }
 </code></pre><h2 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h2><pre><code>//可以自动推断，不用每个都赋予原始值
 enum Weekday: Int{
@@ -643,7 +706,7 @@ familyReunionFrame.area
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">100</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -660,7 +723,7 @@ familyReunionFrame.area
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

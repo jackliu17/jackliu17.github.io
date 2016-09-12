@@ -238,6 +238,278 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/12/使用CoreImage处理图片/" itemprop="url">
+                  使用CoreImage处理图片
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-12T20:49:06+10:00" content="2016-08-12">
+              2016-08-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/12/使用CoreImage处理图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/12/使用CoreImage处理图片/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CoreImage滤镜的使用"><a href="#CoreImage滤镜的使用" class="headerlink" title="CoreImage滤镜的使用"></a>CoreImage滤镜的使用</h1><ol>
+<li>CoreImage是苹果公司为了简化图片处理的难度而开发出来的类库。</li>
+<li>随着iOS版本升级以及硬件性能的不断提升，CoreImage将支持越来越多的滤镜。<br>大部分的滤镜都很容易使用。</li>
+<li>core image也可以支持视频</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/hg32v15woj86uai/20160812_coreImage1.png?dl=1" alt=""></p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@&quot;demo&quot;]];
+
+// 1. 创建出Filter滤镜.使用另一款滤镜，换个名字即可
+CIFilter *filter = [CIFilter filterWithName:@&quot;CIPixellate&quot;];
+
+[filter setValue:ciImage
+          forKey:kCIInputImageKey];
+
+NSLog(@&quot;%@&quot;, filter.attributes);
+
+[filter setDefaults];
+
+CIImage *outImage = [filter valueForKey:kCIOutputImageKey];
+
+// 2. 用CIContext将滤镜中的图片渲染出来
+CIContext *context = [CIContext contextWithOptions:nil];
+
+CGImageRef cgImage = [context createCGImage:outImage
+                                   fromRect:[outImage extent]];
+
+// 3. 导出图片
+UIImage *showImage = [UIImage imageWithCGImage:cgImage];
+
+//需要手动释放
+CGImageRelease(cgImage);
+
+// 4. 加载出来
+UIImageView *imageView = [[UIImageView alloc] initWithImage:showImage];
+imageView.center       = self.view.center;
+[self.view addSubview:imageView];
+}
+</code></pre><h1 id="CoreImage滤镜的组合"><a href="#CoreImage滤镜的组合" class="headerlink" title="CoreImage滤镜的组合"></a>CoreImage滤镜的组合</h1><ol>
+<li>不同的滤镜可以组合在一起使用。</li>
+<li>可以动态的修改滤镜组合中单个滤镜的参数来实现一种动态调整的效果。</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/8gffrjzwk4ddb4r/20160812_coreImage2.png?dl=1" alt=""></p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 0. 导入CIImage图片
+CIImage *ciImage = [[CIImage alloc] initWithImage:[UIImage imageNamed:@&quot;demo&quot;]];
+
+// 1. 创建出Filter滤镜
+CIFilter *filterOne = [CIFilter filterWithName:@&quot;CIPixellate&quot;];
+
+[filterOne setValue:ciImage
+             forKey:kCIInputImageKey];
+
+[filterOne setDefaults];
+
+CIImage *outImage = [filterOne valueForKey:kCIOutputImageKey];
+
+CIFilter *filterTwo = [CIFilter filterWithName:@&quot;CIHueAdjust&quot;];
+[filterTwo setValue:outImage
+             forKey:kCIInputImageKey];
+
+[filterTwo setDefaults];
+
+[filterTwo setValue:@(3.14)
+             forKey:kCIInputAngleKey];
+
+CIImage *outputImage = [filterTwo valueForKey:kCIOutputImageKey];
+
+// 2. 用CIContext将滤镜中的图片渲染出来
+CIContext *context = [CIContext contextWithOptions:nil];
+
+CGImageRef cgImage = [context createCGImage:outputImage
+                                   fromRect:[outImage extent]];
+
+// 3. 导出图片
+UIImage *showImage = [UIImage imageWithCGImage:cgImage];
+
+CGImageRelease(cgImage);
+
+// 4. 加载出来
+UIImageView *imageView = [[UIImageView alloc] initWithImage:showImage];
+imageView.center       = self.view.center;
+[self.view addSubview:imageView];
+}
+</code></pre><h1 id="在OpenGLES下进行渲染"><a href="#在OpenGLES下进行渲染" class="headerlink" title="在OpenGLES下进行渲染"></a>在OpenGLES下进行渲染</h1><p>在OpenGLES下进行滤镜的渲染可以提高效率。如果需要实时查看多个滤镜动态渲染的效果，使用OpenGLES是一个好的选择。</p>
+<pre><code>#import &quot;ViewController.h&quot;
+#import &lt;GLKit/GLKit.h&gt;
+
+@interface ViewController ()
+@property (nonatomic, strong) GLKView   *glkView; // 渲染用的buffer视图
+
+@property (nonatomic, strong) CIFilter  *filter;
+@property (nonatomic, strong) CIImage   *ciImage;
+@property (nonatomic, strong) CIContext *ciContext;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+UIImage *showImage = [UIImage imageNamed:@&quot;demo&quot;];
+CGRect  rect       = CGRectMake(0, 0, showImage.size.width, showImage.size.height);
+
+// 获取OpenGLES渲染的上下文
+EAGLContext *eagContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+
+// 创建出渲染的buffer
+_glkView = [[GLKView alloc] initWithFrame:rect
+                                  context:eagContext];
+[_glkView bindDrawable];
+[self.view addSubview:_glkView];
+
+// 创建出CoreImage用的上下文
+_ciContext = [CIContext contextWithEAGLContext:eagContext
+                                       options:@{kCIContextWorkingColorSpace : [NSNull null]}];
+
+// CoreImage相关设置
+_ciImage = [[CIImage alloc] initWithImage:showImage];
+
+_filter = [CIFilter filterWithName:@&quot;CISepiaTone&quot;];
+
+[_filter setValue:_ciImage forKey:kCIInputImageKey];
+[_filter setValue:@(0) forKey:kCIInputIntensityKey];
+
+// 开始渲染
+[_ciContext drawImage:[_filter outputImage]
+               inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight)
+             fromRect:[_ciImage extent]];
+[_glkView display];
+
+// 动态渲染
+UISlider *slider    = [[UISlider alloc] initWithFrame:CGRectMake(0, 400, 320, 20)];
+slider.minimumValue = 0.f;
+slider.maximumValue = 1.f;
+[slider addTarget:self action:@selector(sliderEvent:) forControlEvents:UIControlEventValueChanged];
+[self.view addSubview:slider];
+}
+
+- (void)sliderEvent:(UISlider *)slider {
+
+
+[_filter setValue:_ciImage forKey:kCIInputImageKey];
+[_filter setValue:@(slider.value)
+           forKey:kCIInputIntensityKey];
+
+// 开始渲染
+[_ciContext drawImage:[_filter outputImage]
+               inRect:CGRectMake(0, 0, _glkView.drawableWidth, _glkView.drawableHeight)
+             fromRect:[_ciImage extent]];
+[_glkView display];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/12/iOS项目22-瀑布流/" itemprop="url">
                   iOS项目22.瀑布流
                 </a>
@@ -643,8 +915,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/07/2016年8月7日/" itemprop="url">
-                  2016年8月7日
+                <a class="post-title-link" href="/2016/08/07/罗辑思维听后感/" itemprop="url">
+                  罗辑思维听后感
                 </a>
               
             
@@ -687,8 +959,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/07/2016年8月7日/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/2016年8月7日/" itemprop="commentsCount"></span>
+                <a href="/2016/08/07/罗辑思维听后感/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/罗辑思维听后感/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -712,7 +984,9 @@
       
         
           
-            <h1 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h1><h2 id="罗辑思维：黄执中-你如何听懂我说的话"><a href="#罗辑思维：黄执中-你如何听懂我说的话" class="headerlink" title="罗辑思维：黄执中 - 你如何听懂我说的话"></a>罗辑思维：黄执中 - 你如何听懂我说的话</h2><p>黄执中是辩论界的大神，听他的课还是有些收获的。</p>
+            <h1 id="什么是战略"><a href="#什么是战略" class="headerlink" title="什么是战略"></a>什么是战略</h1><p>战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么</p>
+<p>战术是你死我活的决斗，其状态必然不稳定。</p>
+<h1 id="黄执中-你如何听懂我说的话"><a href="#黄执中-你如何听懂我说的话" class="headerlink" title="黄执中:你如何听懂我说的话"></a>黄执中:你如何听懂我说的话</h1><p>黄执中是辩论界的大神，听他的课还是有些收获的。</p>
 <ol>
 <li>简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。</li>
 <li>意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)</li>
@@ -742,290 +1016,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/07/AdaptiveLayout设计用户界面/" itemprop="url">
-                  AdaptiveLayout设计用户界面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-07T15:02:22+10:00" content="2016-08-07">
-              2016-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/07/AdaptiveLayout设计用户界面/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/AdaptiveLayout设计用户界面/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="使用Adaptive-Layout"><a href="#使用Adaptive-Layout" class="headerlink" title="使用Adaptive Layout"></a>使用Adaptive Layout</h1><h2 id="Device里选择Universal"><a href="#Device里选择Universal" class="headerlink" title="Device里选择Universal"></a>Device里选择Universal</h2><p><img src="https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1" alt=""></p>
-<h2 id="AutoLayout基本布局和SizeClasses的个别调整"><a href="#AutoLayout基本布局和SizeClasses的个别调整" class="headerlink" title="AutoLayout基本布局和SizeClasses的个别调整"></a>AutoLayout基本布局和SizeClasses的个别调整</h2><p><img src="https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1" alt=""></p>
-<h1 id="设置初始约束"><a href="#设置初始约束" class="headerlink" title="设置初始约束"></a>设置初始约束</h1><h2 id="为ImageView设置约束"><a href="#为ImageView设置约束" class="headerlink" title="为ImageView设置约束"></a>为ImageView设置约束</h2><h3 id="约束1：水平居中"><a href="#约束1：水平居中" class="headerlink" title="约束1：水平居中"></a>约束1：水平居中</h3><p><img src="https://www.dropbox.com/s/fcv3tds5qp51qo9/20160807_adaptive3.png?dl=1" alt=""></p>
-<h3 id="约束2：顶部置顶-含电池边距"><a href="#约束2：顶部置顶-含电池边距" class="headerlink" title="约束2：顶部置顶(含电池边距)"></a>约束2：顶部置顶(含电池边距)</h3><p><img src="https://www.dropbox.com/s/is0gh2p27vr6dhs/20160807_adaptive4.png?dl=1" alt=""></p>
-<h3 id="约束3：与下方view的垂直高度"><a href="#约束3：与下方view的垂直高度" class="headerlink" title="约束3：与下方view的垂直高度"></a>约束3：与下方view的垂直高度</h3><p>按住imageview + ctrl 拖向下方的view，选择vertical spacing</p>
-<p><img src="https://www.dropbox.com/s/276deqb1udpey1i/20160807_adaptive5.png?dl=1" alt=""></p>
-<p>点击image view，在右侧可以看见已经设定的约束,Edit vertical spacing to 20</p>
-<p><img src="https://www.dropbox.com/s/fuazugw3fjk3xjw/20160807_adaptive20.png?dl=1" alt=""></p>
-<h3 id="约束4：与父视图的关系-高度40"><a href="#约束4：与父视图的关系-高度40" class="headerlink" title="约束4：与父视图的关系-高度40%"></a>约束4：与父视图的关系-高度40%</h3><p>ctrl + 按住image view 拖向view,设定其与父视图的关系</p>
-<p><img src="https://www.dropbox.com/s/m7ef3ambbfckb0q/20160807_adaptive13.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/ysfu2ds12yi4upl/20160807_adaptive14.png?dl=1" alt=""></p>
-<h2 id="为view设置约束"><a href="#为view设置约束" class="headerlink" title="为view设置约束"></a>为view设置约束</h2><h3 id="左-中-下"><a href="#左-中-下" class="headerlink" title="左 + 中 + 下"></a>左 + 中 + 下</h3><p><img src="https://www.dropbox.com/s/op5hztvdwsyy4tf/20160807_adaptive6.png?dl=1" alt=""></p>
-<h2 id="ImageSet为项目添加相关图片"><a href="#ImageSet为项目添加相关图片" class="headerlink" title="ImageSet为项目添加相关图片"></a>ImageSet为项目添加相关图片</h2><p><img src="https://www.dropbox.com/s/zqks25yybeid6us/20160807_adaptive8.png?dl=1" alt=""></p>
-<p>双击后为图片组更名</p>
-<p><img src="https://www.dropbox.com/s/rhgz1ine9uhtykg/20160807_adaptive9.png?dl=1" alt=""></p>
-<h2 id="更新frame让约束生效"><a href="#更新frame让约束生效" class="headerlink" title="更新frame让约束生效"></a>更新frame让约束生效</h2><p>橘红色的是可以调整的，红色的是有问题的</p>
-<p><img src="https://www.dropbox.com/s/zgrlxmwrngcq21h/20160807_adaptive10.png?dl=1" alt=""></p>
-<h2 id="预览功能查看不同设备屏幕"><a href="#预览功能查看不同设备屏幕" class="headerlink" title="预览功能查看不同设备屏幕"></a>预览功能查看不同设备屏幕</h2><p><img src="https://www.dropbox.com/s/ojpckspdj8bo45g/20160807_adaptive11.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/quy3ojxr8jlpzw1/20160807_adaptive12.png?dl=1" alt=""></p>
-<h2 id="为label1设定约束"><a href="#为label1设定约束" class="headerlink" title="为label1设定约束"></a>为label1设定约束</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><p><img src="https://www.dropbox.com/s/u8sluq2j9wyhmnj/20160807_adaptive15.png?dl=1" alt=""></p>
-<h3 id="顶部置顶"><a href="#顶部置顶" class="headerlink" title="顶部置顶"></a>顶部置顶</h3><p><img src="https://www.dropbox.com/s/3wxg7vm8gf7avwb/20160807_adaptive16.png?dl=1" alt=""></p>
-<h2 id="为label2设定约束"><a href="#为label2设定约束" class="headerlink" title="为label2设定约束"></a>为label2设定约束</h2><h3 id="水平居中-1"><a href="#水平居中-1" class="headerlink" title="水平居中"></a>水平居中</h3><p><img src="https://www.dropbox.com/s/a5orqx2vb626l1i/20160807_adaptive17.png?dl=1" alt=""></p>
-<h3 id="下部间隔"><a href="#下部间隔" class="headerlink" title="下部间隔"></a>下部间隔</h3><p><img src="https://www.dropbox.com/s/89ypns9m1muwtag/20160807_adaptive18.png?dl=1" alt=""></p>
-<h2 id="更新frame让约束生效-1"><a href="#更新frame让约束生效-1" class="headerlink" title="更新frame让约束生效"></a>更新frame让约束生效</h2><p><img src="https://www.dropbox.com/s/er9295gpjdftvo5/20160807_adaptive19.png?dl=1" alt=""></p>
-<h1 id="Size-Classes的使用"><a href="#Size-Classes的使用" class="headerlink" title="Size Classes的使用"></a>Size Classes的使用</h1><h2 id="两种尺寸组合表达所有设备-Regular-and-Compact"><a href="#两种尺寸组合表达所有设备-Regular-and-Compact" class="headerlink" title="两种尺寸组合表达所有设备: Regular and Compact"></a>两种尺寸组合表达所有设备: Regular and Compact</h2><p><img src="https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1" alt=""></p>
-<h2 id="构建iPhone-landscape-size-Class"><a href="#构建iPhone-landscape-size-Class" class="headerlink" title="构建iPhone landscape size Class"></a>构建iPhone landscape size Class</h2><p>点击下方的”W any H any”</p>
-<p><img src="https://www.dropbox.com/s/lp1del2ve1g92r7/20160807_adaptive21.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/1mb2xqh4xsit8w6/20160807_adaptive22.png?dl=1" alt=""></p>
-<h2 id="重设image-view约束-仅在该sizeClass"><a href="#重设image-view约束-仅在该sizeClass" class="headerlink" title="重设image view约束(仅在该sizeClass)"></a>重设image view约束(仅在该sizeClass)</h2><h3 id="卸载所有约束"><a href="#卸载所有约束" class="headerlink" title="卸载所有约束"></a>卸载所有约束</h3><p>点击image view，在右侧删除所有约束 - （只是在这个size class里uninstalling ）<br><img src="https://www.dropbox.com/s/j8diywf0anrlric/20160807_adaptive23.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/gsm084vyj5aw8uc/20160807_adaptive24.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/zskuue3ap4eri39/20160807_adaptive25.png?dl=1" alt=""></p>
-<p>将所有约束删除</p>
-<p><img src="https://www.dropbox.com/s/698wfvuerw06ue3/20160807_adaptive26.png?dl=1" alt=""></p>
-<h3 id="新约束1-垂直居中"><a href="#新约束1-垂直居中" class="headerlink" title="新约束1:垂直居中"></a>新约束1:垂直居中</h3><p><img src="https://www.dropbox.com/s/e9md11gwb2e1z7b/20160807_adaptive27.png?dl=1" alt=""></p>
-<h3 id="新约束2-左间隔10"><a href="#新约束2-左间隔10" class="headerlink" title="新约束2:左间隔10"></a>新约束2:左间隔10</h3><p><img src="https://www.dropbox.com/s/at6xdz1d14j04kh/20160807_adaptive28.png?dl=1" alt=""></p>
-<h3 id="新约束3-与父视图的宽度比例为40"><a href="#新约束3-与父视图的宽度比例为40" class="headerlink" title="新约束3:与父视图的宽度比例为40%"></a>新约束3:与父视图的宽度比例为40%</h3><p>ctrl拖动到父视图view，设置宽度比例</p>
-<p><img src="https://www.dropbox.com/s/7fm6lqc1kvhqtu9/20160807_adaptive29.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/nbrng2hh4j6hmm6/20160807_adaptive30.png?dl=1" alt=""></p>
-<h2 id="重设TextContainer约束-仅在该sizeClass"><a href="#重设TextContainer约束-仅在该sizeClass" class="headerlink" title="重设TextContainer约束(仅在该sizeClass)"></a>重设TextContainer约束(仅在该sizeClass)</h2><h3 id="卸载约束"><a href="#卸载约束" class="headerlink" title="卸载约束"></a>卸载约束</h3><p><img src="https://www.dropbox.com/s/7xxgxvse0a9jhdp/20160807_adaptive31.png?dl=1" alt=""></p>
-<h3 id="设定与父视图的顶部间距和宽度比例"><a href="#设定与父视图的顶部间距和宽度比例" class="headerlink" title="设定与父视图的顶部间距和宽度比例"></a>设定与父视图的顶部间距和宽度比例</h3><p><img src="https://www.dropbox.com/s/c5ef55gf4riqlir/20160807_adaptive32.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/4c9wlje6hqr8a39/20160807_adaptive33.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/of9a0fnkofgvw24/20160807_adaptive34.png?dl=1" alt=""></p>
-<h2 id="更新Frame"><a href="#更新Frame" class="headerlink" title="更新Frame"></a>更新Frame</h2><p><img src="https://www.dropbox.com/s/ou0qkqjww0zxpyf/20160807_adaptive35.png?dl=1" alt=""></p>
-<h1 id="在故事板中设置自适应字体"><a href="#在故事板中设置自适应字体" class="headerlink" title="在故事板中设置自适应字体"></a>在故事板中设置自适应字体</h1><h2 id="回到Any界面-w-h"><a href="#回到Any界面-w-h" class="headerlink" title="回到Any界面(w+h)"></a>回到Any界面(w+h)</h2><p><img src="https://www.dropbox.com/s/i5nn0nh63yfzkda/20160807_adaptive36.png?dl=1" alt=""></p>
-<h2 id="设置某个size-class类别下的字体"><a href="#设置某个size-class类别下的字体" class="headerlink" title="设置某个size class类别下的字体"></a>设置某个size class类别下的字体</h2><p>点击字体旁的 + 按钮</p>
-<p><img src="https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1" alt=""></p>
-<h2 id="设置字体能自动缩小50"><a href="#设置字体能自动缩小50" class="headerlink" title="设置字体能自动缩小50%"></a>设置字体能自动缩小50%</h2><p><img src="https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1" alt=""></p>
-<h2 id="设置label与父视图的约束"><a href="#设置label与父视图的约束" class="headerlink" title="设置label与父视图的约束"></a>设置label与父视图的约束</h2><p>避免标签的尺寸超出父视图</p>
-<p><img src="https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1" alt=""></p>
-<h1 id="设置适配不同设备的图片"><a href="#设置适配不同设备的图片" class="headerlink" title="设置适配不同设备的图片"></a>设置适配不同设备的图片</h1><p>点击图片组，分别选择右侧的 iPhone , iPad。拖入图片，将针对不同设备采用不同的图片</p>
-<p><img src="https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1" alt=""></p>
-<h1 id="表格单元格的自我调整（代码略）"><a href="#表格单元格的自我调整（代码略）" class="headerlink" title="表格单元格的自我调整（代码略）"></a>表格单元格的自我调整（代码略）</h1><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/3oeercgj23sylge/20160807_adaptive52.png?dl=1" alt=""></p>
-<h2 id="单元格的设定"><a href="#单元格的设定" class="headerlink" title="单元格的设定"></a>单元格的设定</h2><p>style为custom,selection为none </p>
-<p><img src="https://www.dropbox.com/s/u41c4qfpofo9e5y/20160807_adaptive43.png?dl=1" alt=""></p>
-<h2 id="imageView约束设定-铺满整个cell"><a href="#imageView约束设定-铺满整个cell" class="headerlink" title="imageView约束设定(铺满整个cell)"></a>imageView约束设定(铺满整个cell)</h2><p><img src="https://www.dropbox.com/s/b6m5iq0uu17k7g0/20160807_adaptive44.png?dl=1" alt=""></p>
-<h2 id="Label约束设定"><a href="#Label约束设定" class="headerlink" title="Label约束设定"></a>Label约束设定</h2><p>Press ctrl to drag to contentView and press shift to select all</p>
-<p><img src="https://www.dropbox.com/s/oa17kouurjo6ymi/20160807_adaptive45.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/3sqz1wu3zbfwzf7/20160807_adaptive49.png?dl=1" alt=""></p>
-<p>场景布局与实际布局不符合，就会出现橘红色的标注</p>
-<p><img src="https://www.dropbox.com/s/ipd4pfvj76i94gj/20160807_adaptive48.png?dl=1" alt=""></p>
-<h2 id="Label字体-背景色-透明度设定"><a href="#Label字体-背景色-透明度设定" class="headerlink" title="Label字体/背景色/透明度设定"></a>Label字体/背景色/透明度设定</h2><p><img src="https://www.dropbox.com/s/qqk6shnj0vqet6z/20160807_adaptive50.png?dl=1" alt=""></p>
-<h2 id="设置单元格高度解决冲突"><a href="#设置单元格高度解决冲突" class="headerlink" title="设置单元格高度解决冲突"></a>设置单元格高度解决冲突</h2><p>点击单元格，将高度拖至120</p>
-<p><img src="https://www.dropbox.com/s/juqfxh9wrp3olnu/20160807_adaptive46.png?dl=1" alt=""></p>
-<h2 id="更新frame"><a href="#更新frame" class="headerlink" title="更新frame"></a>更新frame</h2><p><img src="https://www.dropbox.com/s/rgslw0en2jnsxa1/20160807_adaptive47.png?dl=1" alt=""></p>
-<h2 id="设置table-cell之间的分割符"><a href="#设置table-cell之间的分割符" class="headerlink" title="设置table cell之间的分割符"></a>设置table cell之间的分割符</h2><p><img src="https://www.dropbox.com/s/eq7nntoh41ec8kc/20160807_adaptive51.png?dl=1" alt=""></p>
-<h2 id="在Controller中必须添加的两行代码"><a href="#在Controller中必须添加的两行代码" class="headerlink" title="在Controller中必须添加的两行代码"></a>在Controller中必须添加的两行代码</h2><p>ViewController</p>
-<pre><code>override func viewDidLoad() {
-  super.viewDidLoad()
-
-  tableView.rowHeight = UITableViewAutomaticDimension
-  tableView.estimatedRowHeight = 100
-  }
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>必须要由tableView来决定表格的宽度</li>
-<li>Autolayout必须约束高度，并且不能有冲突。比如该例子中的label。需要手动调整高度</li>
-<li>两行代码</li>
-</ol>
-<h1 id="安装集合视图（代码略）"><a href="#安装集合视图（代码略）" class="headerlink" title="安装集合视图（代码略）"></a>安装集合视图（代码略）</h1><h2 id="效果图-1"><a href="#效果图-1" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/bo371qdejtb4x9w/20160807_adaptive62.png?dl=1" alt=""></p>
-<h2 id="安装ContainerView并添加约束"><a href="#安装ContainerView并添加约束" class="headerlink" title="安装ContainerView并添加约束"></a>安装ContainerView并添加约束</h2><p><img src="https://www.dropbox.com/s/t9y6oxw2614n8mf/20160807_adaptive59.png?dl=1" alt=""></p>
-<h2 id="ContainerView会自动创建ViewController"><a href="#ContainerView会自动创建ViewController" class="headerlink" title="ContainerView会自动创建ViewController"></a>ContainerView会自动创建ViewController</h2><p>本案例不需要，可以删除</p>
-<p><img src="https://www.dropbox.com/s/4pi06h57oynyxsh/20160807_adaptive53.png?dl=1" alt=""></p>
-<h2 id="Container内嵌集合视图-代码略"><a href="#Container内嵌集合视图-代码略" class="headerlink" title="Container内嵌集合视图 (代码略)"></a>Container内嵌集合视图 (代码略)</h2><p>Press ctrl to drag to collectionView ,选择 Embed</p>
-<p><img src="https://www.dropbox.com/s/2wmy6xolald7x2w/20160807_adaptive54.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/w45ig9dn298sq64/20160807_adaptive55.png?dl=1" alt=""></p>
-<h2 id="重新设定Label约束"><a href="#重新设定Label约束" class="headerlink" title="重新设定Label约束"></a>重新设定Label约束</h2><h3 id="删除顶部约束"><a href="#删除顶部约束" class="headerlink" title="删除顶部约束"></a>删除顶部约束</h3><p><img src="https://www.dropbox.com/s/iynvi7o4ahb5idw/20160807_adaptive56.png?dl=1" alt=""></p>
-<h3 id="与Container的顶部垂直距离为0"><a href="#与Container的顶部垂直距离为0" class="headerlink" title="与Container的顶部垂直距离为0"></a>与Container的顶部垂直距离为0</h3><p><img src="https://www.dropbox.com/s/l7ptx3cy8l9uyt0/20160807_adaptive60.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/x4tclqlyrule5r1/20160807_adaptive61.png?dl=1" alt=""></p>
-<h1 id="在iPhone横屏中去除集合视图"><a href="#在iPhone横屏中去除集合视图" class="headerlink" title="在iPhone横屏中去除集合视图"></a>在iPhone横屏中去除集合视图</h1><h2 id="效果图-2"><a href="#效果图-2" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://www.dropbox.com/s/6y3wvxbxdjrfsi4/20160807_adaptive70.png?dl=1" alt=""></p>
-<h2 id="设定iPhone横屏size-class"><a href="#设定iPhone横屏size-class" class="headerlink" title="设定iPhone横屏size class"></a>设定iPhone横屏size class</h2><p><img src="https://www.dropbox.com/s/ne3xclzasd478pn/20160807_adaptive63.png?dl=1" alt=""></p>
-<h2 id="在该size-class中卸载container"><a href="#在该size-class中卸载container" class="headerlink" title="在该size class中卸载container"></a>在该size class中卸载container</h2><p>cmd + Delete = 卸载</p>
-<p><img src="https://www.dropbox.com/s/xidc81x6efg170g/20160807_adaptive64.png?dl=1" alt=""></p>
-<h2 id="卸载container-view的约束-右侧删除"><a href="#卸载container-view的约束-右侧删除" class="headerlink" title="卸载container view的约束(右侧删除)"></a>卸载container view的约束(右侧删除)</h2><p><img src="https://www.dropbox.com/s/t66clmb7wps0is2/20160807_adaptive65.png?dl=1" alt=""></p>
-<h2 id="重设label约束"><a href="#重设label约束" class="headerlink" title="重设label约束"></a>重设label约束</h2><h3 id="显示Label所有约束-含卸载"><a href="#显示Label所有约束-含卸载" class="headerlink" title="显示Label所有约束(含卸载)"></a>显示Label所有约束(含卸载)</h3><p>点击All</p>
-<p><img src="https://www.dropbox.com/s/ndu6u825kaucjco/20160807_adaptive66.png?dl=1" alt=""></p>
-<h3 id="重设当前sizeClass约束"><a href="#重设当前sizeClass约束" class="headerlink" title="重设当前sizeClass约束"></a>重设当前sizeClass约束</h3><p>点击 + 号，选择size class ,然后install</p>
-<p><img src="https://www.dropbox.com/s/kxz5ictnoofm02c/20160807_adaptive67.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/d8052c6i2p3qweo/20160807_adaptive68.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/leefz9n24lncaec/20160807_adaptive69.png?dl=1" alt=""></p>
-<h1 id="iPhone竖屏上去除集合视图"><a href="#iPhone竖屏上去除集合视图" class="headerlink" title="iPhone竖屏上去除集合视图"></a>iPhone竖屏上去除集合视图</h1><p><img src="https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1" alt=""></p>
-<p>DetailViewController</p>
-<pre><code> override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    self.configureView()
-    provideDataToChildViewControllers()
-
-    navigationItem.leftItemsSupplementBackButton = true
-    navigationItem.hidesBackButton = false
-
-    configureTraitOverrideForSize(view.bounds.size)
-}
-
-override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    configureTraitOverrideForSize(size)
-}
-
-private func configureTraitOverrideForSize(size:CGSize) {
-    var traitOverride: UITraitCollection?
-
-    if size.height &lt; 1000 {
-        traitOverride = UITraitCollection(verticalSizeClass: .Compact)
-    }
-
-    for vc in childViewControllers {
-        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
-    }
-}
-</code></pre><h1 id="为SizeClass配置相关图片"><a href="#为SizeClass配置相关图片" class="headerlink" title="为SizeClass配置相关图片"></a>为SizeClass配置相关图片</h1><h2 id="效果图-3"><a href="#效果图-3" class="headerlink" title="效果图"></a>效果图</h2><p>如图，集合视图和顶部所使用的图片不一样</p>
-<p><img src="https://www.dropbox.com/s/maja4iharq45ruh/20160807_adaptive71.png?dl=1" alt=""></p>
-<h2 id="在ImageAsset中构建size-class"><a href="#在ImageAsset中构建size-class" class="headerlink" title="在ImageAsset中构建size class"></a>在ImageAsset中构建size class</h2><ol>
-<li>选择右侧width – Any&amp;Compact</li>
-<li>Universal打勾，对应拖入图片。 * 代表 any, - 代表compact , + 代表regular</li>
-<li>右侧取消iPhone,iPad</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/9yinto1b1fghzac/20160807_adaptive77.png?dl=1" alt=""></p>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><pre><code>override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    configureView()
-
-    let traitOverride = UITraitCollection(horizontalSizeClass: .Compact)
-
-    for vc in childViewControllers {
-        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
-    }
-}
-</code></pre><h1 id="隐藏导航栏"><a href="#隐藏导航栏" class="headerlink" title="隐藏导航栏"></a>隐藏导航栏</h1><h2 id="效果图-4"><a href="#效果图-4" class="headerlink" title="效果图"></a>效果图</h2><p>如图，点击屏幕将导航栏隐藏</p>
-<p><img src="https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/2u7qh3xm9o3uvwe/20160807_adaptive74.png?dl=1" alt=""></p>
-<h2 id="UIStoryboard中设置NavigationBar"><a href="#UIStoryboard中设置NavigationBar" class="headerlink" title="UIStoryboard中设置NavigationBar"></a>UIStoryboard中设置NavigationBar</h2><p>选中NavigationController,在右侧hide bar打勾:“on tap” + “when vertically compact”</p>
-<p><img src="https://www.dropbox.com/s/fdb56pi2p8awn5k/20160807_adaptive73.png?dl=1" alt=""></p>
-<h1 id="定制横竖屏的文字"><a href="#定制横竖屏的文字" class="headerlink" title="定制横竖屏的文字"></a>定制横竖屏的文字</h1><h2 id="效果图-5"><a href="#效果图-5" class="headerlink" title="效果图"></a>效果图</h2><p>横屏文字较小，竖屏文字较大</p>
-<p><img src="https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1" alt=""></p>
-<h2 id="相关代码-1"><a href="#相关代码-1" class="headerlink" title="相关代码"></a>相关代码</h2><pre><code>private func prepareNavigationBarAppearance() {
-    let font = UIFont(name: &quot;HelveticaNeue-Light&quot;, size: 30)!
-    let regularVertical = UITraitCollection(verticalSizeClass: .Regular)
-    UINavigationBar.appearanceForTraitCollection(regularVertical).titleTextAttributes = [NSFontAttributeName: font]
-    let compactVertical = UITraitCollection(verticalSizeClass: .Compact)
-    UINavigationBar.appearanceForTraitCollection(compactVertical).titleTextAttributes = [NSFontAttributeName: font.fontWithSize(20)]
-}
-</code></pre><h1 id="设定某UI元素height或width的约束"><a href="#设定某UI元素height或width的约束" class="headerlink" title="设定某UI元素height或width的约束"></a>设定某UI元素height或width的约束</h1><p>ctrl + drag 在该元素内部拖动</p>
-<p><img src="https://www.dropbox.com/s/xigfhpio2unf7le/20160819_autoLayout.png?dl=1" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1066,7 +1062,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">100</span>
+              <span class="site-state-item-count">101</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1083,7 +1079,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-03T02:35:42.000Z</updated>
+  <updated>2016-09-12T05:54:19.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TableView视图的构建</title>
+    <link href="http://jackliu17.github.io/2016/09/07/TableView%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/"/>
+    <id>http://jackliu17.github.io/2016/09/07/TableView视图的构建/</id>
+    <published>2016-09-07T01:21:42.000Z</published>
+    <updated>2016-09-12T05:54:19.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;TableView设置&quot;&gt;&lt;a href=&quot;#TableView设置&quot; class=&quot;headerlink&quot; title=&quot;TableView设置&quot;&gt;&lt;/a&gt;TableView设置&lt;/h1&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/816psmm80wngd9o/2016091201.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableView中设置cell&quot;&gt;&lt;a href=&quot;#TableView中设置cell&quot; class=&quot;headerlink&quot; title=&quot;TableView中设置cell&quot;&gt;&lt;/a&gt;TableView中设置cell&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2mhplzoreycp3hn/2016091202.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableView的行高&quot;&gt;&lt;a href=&quot;#TableView的行高&quot; class=&quot;headerlink&quot; title=&quot;TableView的行高&quot;&gt;&lt;/a&gt;TableView的行高&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableView的代理&quot;&gt;&lt;a href=&quot;#TableView的代理&quot; class=&quot;headerlink&quot; title=&quot;TableView的代理&quot;&gt;&lt;/a&gt;TableView的代理&lt;/h1&gt;&lt;p&gt;ctrl drag tableView to the controller&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ayu3maiwfsghw87/2016091204.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableView-IBOutlet-in-controller&quot;&gt;&lt;a href=&quot;#TableView-IBOutlet-in-controller&quot; class=&quot;headerlink&quot; title=&quot;TableView IBOutlet in controller&quot;&gt;&lt;/a&gt;TableView IBOutlet in controller&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/co4pzk3rpvkw894/2016091210.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableViewCell-ID&quot;&gt;&lt;a href=&quot;#TableViewCell-ID&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell ID&quot;&gt;&lt;/a&gt;TableViewCell ID&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/9zhlhcqifo64m0y/2016091205.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Constraints&quot;&gt;&lt;a href=&quot;#Constraints&quot; class=&quot;headerlink&quot; title=&quot;Constraints&quot;&gt;&lt;/a&gt;Constraints&lt;/h1&gt;&lt;p&gt;两者顶部对齐&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/o3yxuzsv4t40sly/2016091206.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;p&gt;两者底部对齐&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nl3h820ypcielce/2016091207.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;p&gt;两者中线对齐&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1ocfn5c0u4l9m8y/2016091208.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableViewCell-custom-class&quot;&gt;&lt;a href=&quot;#TableViewCell-custom-class&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell custom class&quot;&gt;&lt;/a&gt;TableViewCell custom class&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sn53qqj3j38diib/2016091209.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ViewController-conforms-to-protocol&quot;&gt;&lt;a href=&quot;#ViewController-conforms-to-protocol&quot; class=&quot;headerlink&quot; title=&quot;ViewController conforms to protocol&quot;&gt;&lt;/a&gt;ViewController conforms to protocol&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w5qzdx3ul0l7p9e/2016091211.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;TableViewCell取消分割线&quot;&gt;&lt;a href=&quot;#TableViewCell取消分割线&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell取消分割线&quot;&gt;&lt;/a&gt;TableViewCell取消分割线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7tdn4oxn6jptqeg/2016091212.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;采用UIView作为分割线&quot;&gt;&lt;a href=&quot;#采用UIView作为分割线&quot; class=&quot;headerlink&quot; title=&quot;采用UIView作为分割线&quot;&gt;&lt;/a&gt;采用UIView作为分割线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/33hjj0qf66a1csq/2016091213.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
+&lt;p&gt;黑色，透明度2%&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gdvn98bqwqb2w2g/2016091214.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Lable内文字可以自动换行&quot;&gt;&lt;a href=&quot;#Lable内文字可以自动换行&quot; class=&quot;headerlink&quot; title=&quot;Lable内文字可以自动换行&quot;&gt;&lt;/a&gt;Lable内文字可以自动换行&lt;/h1&gt;&lt;p&gt;设为0&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7l8215vih3w5zw6/2016091215.png?dl=1&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ImageView设为AspectFit&quot;&gt;&lt;a href=&quot;#ImageView设为AspectFit&quot; class=&quot;headerlink&quot; title=&quot;ImageView设为AspectFit&quot;&gt;&lt;/a&gt;ImageView设为AspectFit&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/m9tgd7woh0qbdsf/2016091216.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;p&gt;#在swift项目中创建OC文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3umlezrz3fa3pak/2016091217.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3c38sgyho5e1bi7/2016091218.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;TableView设置&quot;&gt;&lt;a href=&quot;#TableView设置&quot; class=&quot;headerlink&quot; title=&quot;TableView设置&quot;&gt;&lt;/a&gt;TableView设置&lt;/h1&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
+&lt;p&gt;&lt;im
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>CodePractice</title>
@@ -794,13 +846,15 @@ slider.maximumValue = 1.f;
   </entry>
   
   <entry>
-    <title>2016年8月7日</title>
-    <link href="http://jackliu17.github.io/2016/08/07/2016%E5%B9%B48%E6%9C%887%E6%97%A5/"/>
-    <id>http://jackliu17.github.io/2016/08/07/2016年8月7日/</id>
+    <title>罗辑思维听后感</title>
+    <link href="http://jackliu17.github.io/2016/08/07/%E7%BD%97%E8%BE%91%E6%80%9D%E7%BB%B4%E5%90%AC%E5%90%8E%E6%84%9F/"/>
+    <id>http://jackliu17.github.io/2016/08/07/罗辑思维听后感/</id>
     <published>2016-08-07T10:38:31.000Z</published>
-    <updated>2016-08-07T11:00:37.000Z</updated>
+    <updated>2016-09-12T10:33:56.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;学习&quot;&gt;&lt;a href=&quot;#学习&quot; class=&quot;headerlink&quot; title=&quot;学习&quot;&gt;&lt;/a&gt;学习&lt;/h1&gt;&lt;h2 id=&quot;罗辑思维：黄执中-你如何听懂我说的话&quot;&gt;&lt;a href=&quot;#罗辑思维：黄执中-你如何听懂我说的话&quot; class=&quot;headerlink&quot; title=&quot;罗辑思维：黄执中 - 你如何听懂我说的话&quot;&gt;&lt;/a&gt;罗辑思维：黄执中 - 你如何听懂我说的话&lt;/h2&gt;&lt;p&gt;黄执中是辩论界的大神，听他的课还是有些收获的。&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;什么是战略&quot;&gt;&lt;a href=&quot;#什么是战略&quot; class=&quot;headerlink&quot; title=&quot;什么是战略&quot;&gt;&lt;/a&gt;什么是战略&lt;/h1&gt;&lt;p&gt;战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么&lt;/p&gt;
+&lt;p&gt;战术是你死我活的决斗，其状态必然不稳定。&lt;/p&gt;
+&lt;h1 id=&quot;黄执中-你如何听懂我说的话&quot;&gt;&lt;a href=&quot;#黄执中-你如何听懂我说的话&quot; class=&quot;headerlink&quot; title=&quot;黄执中:你如何听懂我说的话&quot;&gt;&lt;/a&gt;黄执中:你如何听懂我说的话&lt;/h1&gt;&lt;p&gt;黄执中是辩论界的大神，听他的课还是有些收获的。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。&lt;/li&gt;
 &lt;li&gt;意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)&lt;/li&gt;
@@ -810,12 +864,15 @@ slider.maximumValue = 1.f;
     
     <summary type="html">
     
-      &lt;h1 id=&quot;学习&quot;&gt;&lt;a href=&quot;#学习&quot; class=&quot;headerlink&quot; title=&quot;学习&quot;&gt;&lt;/a&gt;学习&lt;/h1&gt;&lt;h2 id=&quot;罗辑思维：黄执中-你如何听懂我说的话&quot;&gt;&lt;a href=&quot;#罗辑思维：黄执中-你如何听懂我说的话&quot; class=&quot;headerli
+      &lt;h1 id=&quot;什么是战略&quot;&gt;&lt;a href=&quot;#什么是战略&quot; class=&quot;headerlink&quot; title=&quot;什么是战略&quot;&gt;&lt;/a&gt;什么是战略&lt;/h1&gt;&lt;p&gt;战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么&lt;/p&gt;
+&lt;p&gt;战术是你死我活的决斗，
     
     </summary>
     
       <category term="情感杂谈" scheme="http://jackliu17.github.io/categories/%E6%83%85%E6%84%9F%E6%9D%82%E8%B0%88/"/>
     
+    
+      <category term="Thoughts" scheme="http://jackliu17.github.io/tags/Thoughts/"/>
     
   </entry>
   
@@ -2495,275 +2552,6 @@ return pinAnnotationView;
       <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
     
       <category term="iOS_CoreLocation" scheme="http://jackliu17.github.io/tags/iOS-CoreLocation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MapKit地图应用基础</title>
-    <link href="http://jackliu17.github.io/2016/06/08/MapKit%E5%9C%B0%E5%9B%BE%E5%BA%94%E7%94%A8%E5%9F%BA%E7%A1%80/"/>
-    <id>http://jackliu17.github.io/2016/06/08/MapKit地图应用基础/</id>
-    <published>2016-06-08T05:38:00.000Z</published>
-    <updated>2016-07-31T13:00:11.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;MapKit基础讲解&quot;&gt;&lt;a href=&quot;#MapKit基础讲解&quot; class=&quot;headerlink&quot; title=&quot;MapKit基础讲解&quot;&gt;&lt;/a&gt;MapKit基础讲解&lt;/h1&gt;&lt;p&gt;Map Kit（地图套件）提供了一个接口，可以将地图直接嵌入到自己的视图中。通过Map Kit框架，可以在iOS应用程序中显示地图以及当前位置。通过属性的设定，可以轻松实现位置显示、添加地图注释，通过给定信息查找确定地标信息等相关功能。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;MKMapView：提供了一个可嵌入应用的地图界面。&lt;/li&gt;
-&lt;li&gt;MKCoordinateRegin：设置地图显示区域。&lt;/li&gt;
-&lt;li&gt;MKPointAnnotation：提供了在指定点添加注释的功能，不能自定义该类。&lt;/li&gt;
-&lt;li&gt;MKPinAnnotation：通过此类可以对地图标注进行配置。&lt;/li&gt;
-&lt;li&gt;MKAnnotationView：通过此类实现自定义地图标注功能。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/895ubxdvyo136lh/iOS_MapKitBasic02.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;创建地图应用&quot;&gt;&lt;a href=&quot;#创建地图应用&quot; class=&quot;headerlink&quot; title=&quot;创建地图应用&quot;&gt;&lt;/a&gt;创建地图应用&lt;/h1&gt;&lt;h2 id=&quot;添加MKMapView到视图&quot;&gt;&lt;a href=&quot;#添加MKMapView到视图&quot; class=&quot;headerlink&quot; title=&quot;添加MKMapView到视图&quot;&gt;&lt;/a&gt;添加MKMapView到视图&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;MKMapView * mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-[self.view addSubview:mapView];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;MKMapView相关属性&quot;&gt;&lt;a href=&quot;#MKMapView相关属性&quot; class=&quot;headerlink&quot; title=&quot;MKMapView相关属性&quot;&gt;&lt;/a&gt;MKMapView相关属性&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[mapView setDelegate:self];
-[mapView setMapType:MKMapTypeStandard]; //有卫星，标准地图等
-[mapView setZoomEnabled:YES];  //设置地图缩放
-[mapView setScrollEnabled:YES]; //设置地图移动
-[mapView setRotateEnabled:YES]; //设置地图旋转
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;地图的显示区域&quot;&gt;&lt;a href=&quot;#地图的显示区域&quot; class=&quot;headerlink&quot; title=&quot;地图的显示区域&quot;&gt;&lt;/a&gt;地图的显示区域&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//Method.1 -- 通过跨度来设置地图的显示区域
-//MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(-37.855339, 145.153377), MKCoordinateSpanMake(0.1, 0.1));
-
-//Method.2 -- 通过距离来设置地图显示区域
-MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-37.855339, 145.153377),100 ,100);
-
-[mapView setRegion:[mapView regionThatFits:region]];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;添加地图标注&quot;&gt;&lt;a href=&quot;#添加地图标注&quot; class=&quot;headerlink&quot; title=&quot;添加地图标注&quot;&gt;&lt;/a&gt;添加地图标注&lt;/h1&gt;&lt;h2 id=&quot;设置地点坐标&quot;&gt;&lt;a href=&quot;#设置地点坐标&quot; class=&quot;headerlink&quot; title=&quot;设置地点坐标&quot;&gt;&lt;/a&gt;设置地点坐标&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//Method.1
-CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846 , 116.503729);
-
-//Method.2
-CLLocationCoordinate2D coordinate2D;
-coordinate2D.latitude = 39.936846;
-coordinate2D.longitude = 116.503729;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;指定坐标点添加标注&quot;&gt;&lt;a href=&quot;#指定坐标点添加标注&quot; class=&quot;headerlink&quot; title=&quot;指定坐标点添加标注&quot;&gt;&lt;/a&gt;指定坐标点添加标注&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
-[pointAnntation1 setTitle:@&amp;quot;当前位置&amp;quot;];
-[pointAnntation1 setSubtitle:@&amp;quot;位置说明&amp;quot;];
-[pointAnntation1 setCoordinate:coordinate2D];
-[mapView addAnnotation:pointAnntation1];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;添加多个标注&quot;&gt;&lt;a href=&quot;#添加多个标注&quot; class=&quot;headerlink&quot; title=&quot;添加多个标注&quot;&gt;&lt;/a&gt;添加多个标注&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//标注一
-MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
-[pointAnntation1 setTitle:@&amp;quot;当前位置&amp;quot;];
-[pointAnntation1 setSubtitle:@&amp;quot;位置说明&amp;quot;];
-[pointAnntation1 setCoordinate:coordinate2D];
-
-//标注二
-MKPointAnnotation * pointAnntation2 = [[MKPointAnnotation alloc] init];
-[pointAnntation2 setTitle:@&amp;quot;当前位置&amp;quot;];
-[pointAnntation2 setSubtitle:@&amp;quot;位置说明&amp;quot;];
-[pointAnntation2 setCoordinate:coordinate2d];
-
-NSArray * arrAnnitations = @[pointAnntation1,pointAnntation2];
-[mapView addAnnotations:arrAnnitations];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;地图启动时显示标注气泡&quot;&gt;&lt;a href=&quot;#地图启动时显示标注气泡&quot; class=&quot;headerlink&quot; title=&quot;地图启动时显示标注气泡&quot;&gt;&lt;/a&gt;地图启动时显示标注气泡&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[mapView selectAnnotation:pointAnntation1 animated:YES];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;设置标注样式&quot;&gt;&lt;a href=&quot;#设置标注样式&quot; class=&quot;headerlink&quot; title=&quot;设置标注样式&quot;&gt;&lt;/a&gt;设置标注样式&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&amp;lt;MKAnnotation&amp;gt;)annotation{
-
-static NSString * pinIdentifier = @&amp;quot;pin&amp;quot;;
-
-MKPinAnnotationView * pintAnntation = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
-
-if(!pintAnntation){
-
-        pintAnntation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
-        [pintAnntation setPinColor:MKPinAnnotationColorPurple];
-        [pintAnntation setAnimatesDrop:YES];
-        [pintAnntation setCanShowCallout:YES];
-}
-
-return pintAnntation;
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;自定义标注视图&quot;&gt;&lt;a href=&quot;#自定义标注视图&quot; class=&quot;headerlink&quot; title=&quot;自定义标注视图&quot;&gt;&lt;/a&gt;自定义标注视图&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;创建annotation object,并实现MKAnnotation协议&lt;/li&gt;
-&lt;li&gt;创建自定义标注视图，继承自MKAnnotationView&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-...............
-CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846, 116.503729);
-CustomAnnotation * customAnnotation = [[CustomAnnotation alloc] initWithCoordinate2D:coordinate2D];
-[customAnnotation setTitle:@&amp;quot;我的位置&amp;quot;];
-[customAnnotation setSubTitle:@&amp;quot;具体说明&amp;quot;];
-[mapView addAnnotation:customAnnotation];    
-}
-
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&amp;lt;MKAnnotation&amp;gt;)annotation{
-static NSString * customIdentifier = @&amp;quot;customView&amp;quot;;
-
-CustomAnnotationView * customAnnotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:customIdentifier];
-if(!customAnnotationView){
-    customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customIdentifier];
-    [customAnnotationView setImage:[UIImage imageNamed:@&amp;quot;an&amp;quot;]];
-    }
-    return customAnnotationView;    
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CustomAnnotation&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomAnnotation : NSObject&amp;lt;MKAnnotation&amp;gt;{
-CLLocationCoordinate2D coord;
-}
-
-@property (nonatomic, readonly) CLLocationCoordinate2D coord;
-
-@property (nonatomic, copy) NSString * title;
-@property (nonatomic, copy) NSString * subTitle;
-
-- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D;
-
-@end
-
-@implementation CustomAnnotation
-@synthesize coord;
-@synthesize title,subTitle;
-
-- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D{
-self = [super init];
-if(self){
-    coord = coordinate2D;
-}
-
-return self;
-}
-
-- (CLLocationCoordinate2D)coordinate{
-return coord;
-}
-
-- (NSString *)title{
-return title;
-}
-
-- (NSString *)subtitle{
-return subTitle;
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;CustomAnnotationView&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface CustomAnnotationView : MKAnnotationView
-
-@end
-
-@interface CustomAnnotationView()
-
-@property (nonatomic, strong) CustomAnnotation * customAnnotation;
-@property (nonatomic, strong) UIView *infoView;
-
-@end
-
-@implementation CustomAnnotationView
-
-- (instancetype)initWithAnnotation:(id&amp;lt;MKAnnotation&amp;gt;)annotation reuseIdentifier:(NSString *)reuseIdentifier{
-self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
-if(self){
-    self.customAnnotation = annotation;
-}
-
-return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-[super setSelected:selected animated:animated];
-if(selected){
-    self.infoView = [[UIView alloc] initWithFrame:CGRectMake(-(150-50)/2, -30, 150, 30)];
-    [_infoView.layer setBorderColor:[UIColor blackColor].CGColor];
-    [_infoView.layer setBorderWidth:1.f];
-    [_infoView.layer setCornerRadius:5.f];
-    [self.infoView setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:self.infoView];
-
-    UILabel * label = [[UILabel alloc] initWithFrame:_infoView.bounds];
-    [label setFont:[UIFont systemFontOfSize:12]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setText:[NSString stringWithFormat:@&amp;quot;%f %f&amp;quot;,_customAnnotation.coordinate.latitude,_customAnnotation.coordinate.longitude]];
-    [_infoView addSubview:label];
-
-    CGFloat scale = 0.001f;
-
-    [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
-    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        CGFloat scale = 1.1f;
-        [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 2)];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGFloat scale = 0.9;
-            [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, -2)];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                CGFloat scale = 1.0f;
-                [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
-            } completion:^(BOOL finished) {}];
-        }];
-    }];
-
-
-}else{
-    [UIView animateWithDuration:0.2 animations:^{
-        [_infoView setAlpha:0.1];
-    } completion:^(BOOL finished) {
-        [_infoView removeFromSuperview];
-    }];
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;选中标注时执行&quot;&gt;&lt;a href=&quot;#选中标注时执行&quot; class=&quot;headerlink&quot; title=&quot;选中标注时执行&quot;&gt;&lt;/a&gt;选中标注时执行&lt;/h2&gt;&lt;p&gt;MKAnnotationView &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;MKMapView代理方法讲解&quot;&gt;&lt;a href=&quot;#MKMapView代理方法讲解&quot; class=&quot;headerlink&quot; title=&quot;MKMapView代理方法讲解&quot;&gt;&lt;/a&gt;MKMapView代理方法讲解&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
-    //地图将要载入执行
-}
-
-- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView{
-    //地图载入完成以后执行
-}
-
-- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error{
-    //地图载入失败执行
-    NSLog(@&amp;quot;error:%@&amp;quot;,[error description]);
-}
-
-- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
-    //地图显示区域将要发生改变时执行
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&amp;quot;提示&amp;quot; message:@&amp;quot;地图位置将要改变&amp;quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&amp;quot;确定&amp;quot;, nil];
-        [alertView show];
-}
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-    //地图显示区域改变以后执行
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&amp;quot;提示&amp;quot; message:@&amp;quot;地图位置已经改变&amp;quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&amp;quot;确定&amp;quot;, nil];
-            [alertView show];
-
-}
-
-//添加标注时调用
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views{
-
-}
-
-//标注被选中时执行此方法
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-
-}
-
-//标注失去焦点时执行
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
-
-}
-
-//添加左右配件控件时才会调用
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;MapKit基础讲解&quot;&gt;&lt;a href=&quot;#MapKit基础讲解&quot; class=&quot;headerlink&quot; title=&quot;MapKit基础讲解&quot;&gt;&lt;/a&gt;MapKit基础讲解&lt;/h1&gt;&lt;p&gt;Map Kit（地图套件）提供了一个接口，可以将地图直接嵌入到自己的视图中。
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_MapKit" scheme="http://jackliu17.github.io/tags/iOS-MapKit/"/>
     
   </entry>
   
