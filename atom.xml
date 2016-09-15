@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-12T05:54:19.000Z</updated>
+  <updated>2016-09-15T00:49:38.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,41 +20,50 @@
     <link href="http://jackliu17.github.io/2016/09/07/TableView%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/"/>
     <id>http://jackliu17.github.io/2016/09/07/TableView视图的构建/</id>
     <published>2016-09-07T01:21:42.000Z</published>
-    <updated>2016-09-12T05:54:19.000Z</updated>
+    <updated>2016-09-15T00:49:38.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;TableView设置&quot;&gt;&lt;a href=&quot;#TableView设置&quot; class=&quot;headerlink&quot; title=&quot;TableView设置&quot;&gt;&lt;/a&gt;TableView设置&lt;/h1&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; class=&quot;headerlink&quot; title=&quot;Table View&quot;&gt;&lt;/a&gt;Table View&lt;/h1&gt;&lt;h2 id=&quot;TableView-创建&quot;&gt;&lt;a href=&quot;#TableView-创建&quot; class=&quot;headerlink&quot; title=&quot;TableView 创建&quot;&gt;&lt;/a&gt;TableView 创建&lt;/h2&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/816psmm80wngd9o/2016091201.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableView中设置cell&quot;&gt;&lt;a href=&quot;#TableView中设置cell&quot; class=&quot;headerlink&quot; title=&quot;TableView中设置cell&quot;&gt;&lt;/a&gt;TableView中设置cell&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2mhplzoreycp3hn/2016091202.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableView的行高&quot;&gt;&lt;a href=&quot;#TableView的行高&quot; class=&quot;headerlink&quot; title=&quot;TableView的行高&quot;&gt;&lt;/a&gt;TableView的行高&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableView的代理&quot;&gt;&lt;a href=&quot;#TableView的代理&quot; class=&quot;headerlink&quot; title=&quot;TableView的代理&quot;&gt;&lt;/a&gt;TableView的代理&lt;/h1&gt;&lt;p&gt;ctrl drag tableView to the controller&lt;/p&gt;
+&lt;h2 id=&quot;TableView的行高&quot;&gt;&lt;a href=&quot;#TableView的行高&quot; class=&quot;headerlink&quot; title=&quot;TableView的行高&quot;&gt;&lt;/a&gt;TableView的行高&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;TableView的代理&quot;&gt;&lt;a href=&quot;#TableView的代理&quot; class=&quot;headerlink&quot; title=&quot;TableView的代理&quot;&gt;&lt;/a&gt;TableView的代理&lt;/h2&gt;&lt;p&gt;ctrl drag tableView to the controller&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ayu3maiwfsghw87/2016091204.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableView-IBOutlet-in-controller&quot;&gt;&lt;a href=&quot;#TableView-IBOutlet-in-controller&quot; class=&quot;headerlink&quot; title=&quot;TableView IBOutlet in controller&quot;&gt;&lt;/a&gt;TableView IBOutlet in controller&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/co4pzk3rpvkw894/2016091210.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableViewCell-ID&quot;&gt;&lt;a href=&quot;#TableViewCell-ID&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell ID&quot;&gt;&lt;/a&gt;TableViewCell ID&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/9zhlhcqifo64m0y/2016091205.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Constraints&quot;&gt;&lt;a href=&quot;#Constraints&quot; class=&quot;headerlink&quot; title=&quot;Constraints&quot;&gt;&lt;/a&gt;Constraints&lt;/h1&gt;&lt;p&gt;两者顶部对齐&lt;/p&gt;
+&lt;h2 id=&quot;TableView-IBOutlet-in-controller&quot;&gt;&lt;a href=&quot;#TableView-IBOutlet-in-controller&quot; class=&quot;headerlink&quot; title=&quot;TableView IBOutlet in controller&quot;&gt;&lt;/a&gt;TableView IBOutlet in controller&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/co4pzk3rpvkw894/2016091210.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;ViewController-conforms-to-protocol&quot;&gt;&lt;a href=&quot;#ViewController-conforms-to-protocol&quot; class=&quot;headerlink&quot; title=&quot;ViewController conforms to protocol&quot;&gt;&lt;/a&gt;ViewController conforms to protocol&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w5qzdx3ul0l7p9e/2016091211.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Table-view-cell&quot;&gt;&lt;a href=&quot;#Table-view-cell&quot; class=&quot;headerlink&quot; title=&quot;Table view cell&quot;&gt;&lt;/a&gt;Table view cell&lt;/h1&gt;&lt;h2 id=&quot;TableView中设置cell&quot;&gt;&lt;a href=&quot;#TableView中设置cell&quot; class=&quot;headerlink&quot; title=&quot;TableView中设置cell&quot;&gt;&lt;/a&gt;TableView中设置cell&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2mhplzoreycp3hn/2016091202.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;TableViewCell-ID&quot;&gt;&lt;a href=&quot;#TableViewCell-ID&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell ID&quot;&gt;&lt;/a&gt;TableViewCell ID&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/9zhlhcqifo64m0y/2016091205.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;TableViewCell-custom-class&quot;&gt;&lt;a href=&quot;#TableViewCell-custom-class&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell custom class&quot;&gt;&lt;/a&gt;TableViewCell custom class&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sn53qqj3j38diib/2016091209.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;TableViewCell取消分割线&quot;&gt;&lt;a href=&quot;#TableViewCell取消分割线&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell取消分割线&quot;&gt;&lt;/a&gt;TableViewCell取消分割线&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7tdn4oxn6jptqeg/2016091212.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;采用UIView作为分割线&quot;&gt;&lt;a href=&quot;#采用UIView作为分割线&quot; class=&quot;headerlink&quot; title=&quot;采用UIView作为分割线&quot;&gt;&lt;/a&gt;采用UIView作为分割线&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/33hjj0qf66a1csq/2016091213.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
+&lt;p&gt;黑色，透明度2%&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gdvn98bqwqb2w2g/2016091214.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;UIStoryBoard中的Constraints&quot;&gt;&lt;a href=&quot;#UIStoryBoard中的Constraints&quot; class=&quot;headerlink&quot; title=&quot;UIStoryBoard中的Constraints&quot;&gt;&lt;/a&gt;UIStoryBoard中的Constraints&lt;/h1&gt;&lt;p&gt;两者顶部对齐&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/o3yxuzsv4t40sly/2016091206.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
 &lt;p&gt;两者底部对齐&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nl3h820ypcielce/2016091207.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
 &lt;p&gt;两者中线对齐&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1ocfn5c0u4l9m8y/2016091208.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableViewCell-custom-class&quot;&gt;&lt;a href=&quot;#TableViewCell-custom-class&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell custom class&quot;&gt;&lt;/a&gt;TableViewCell custom class&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sn53qqj3j38diib/2016091209.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;ViewController-conforms-to-protocol&quot;&gt;&lt;a href=&quot;#ViewController-conforms-to-protocol&quot; class=&quot;headerlink&quot; title=&quot;ViewController conforms to protocol&quot;&gt;&lt;/a&gt;ViewController conforms to protocol&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w5qzdx3ul0l7p9e/2016091211.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;TableViewCell取消分割线&quot;&gt;&lt;a href=&quot;#TableViewCell取消分割线&quot; class=&quot;headerlink&quot; title=&quot;TableViewCell取消分割线&quot;&gt;&lt;/a&gt;TableViewCell取消分割线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7tdn4oxn6jptqeg/2016091212.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;采用UIView作为分割线&quot;&gt;&lt;a href=&quot;#采用UIView作为分割线&quot; class=&quot;headerlink&quot; title=&quot;采用UIView作为分割线&quot;&gt;&lt;/a&gt;采用UIView作为分割线&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/33hjj0qf66a1csq/2016091213.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
-&lt;p&gt;黑色，透明度2%&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gdvn98bqwqb2w2g/2016091214.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Lable内文字可以自动换行&quot;&gt;&lt;a href=&quot;#Lable内文字可以自动换行&quot; class=&quot;headerlink&quot; title=&quot;Lable内文字可以自动换行&quot;&gt;&lt;/a&gt;Lable内文字可以自动换行&lt;/h1&gt;&lt;p&gt;设为0&lt;/p&gt;
+&lt;h1 id=&quot;View中的元素&quot;&gt;&lt;a href=&quot;#View中的元素&quot; class=&quot;headerlink&quot; title=&quot;View中的元素&quot;&gt;&lt;/a&gt;View中的元素&lt;/h1&gt;&lt;h2 id=&quot;Lable内文字可以自动换行&quot;&gt;&lt;a href=&quot;#Lable内文字可以自动换行&quot; class=&quot;headerlink&quot; title=&quot;Lable内文字可以自动换行&quot;&gt;&lt;/a&gt;Lable内文字可以自动换行&lt;/h2&gt;&lt;p&gt;设为0&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7l8215vih3w5zw6/2016091215.png?dl=1&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;ImageView设为AspectFit&quot;&gt;&lt;a href=&quot;#ImageView设为AspectFit&quot; class=&quot;headerlink&quot; title=&quot;ImageView设为AspectFit&quot;&gt;&lt;/a&gt;ImageView设为AspectFit&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/m9tgd7woh0qbdsf/2016091216.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
-&lt;p&gt;#在swift项目中创建OC文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3umlezrz3fa3pak/2016091217.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3c38sgyho5e1bi7/2016091218.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;ImageView设为AspectFit&quot;&gt;&lt;a href=&quot;#ImageView设为AspectFit&quot; class=&quot;headerlink&quot; title=&quot;ImageView设为AspectFit&quot;&gt;&lt;/a&gt;ImageView设为AspectFit&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/m9tgd7woh0qbdsf/2016091216.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Search-View&quot;&gt;&lt;a href=&quot;#Search-View&quot; class=&quot;headerlink&quot; title=&quot;Search View&quot;&gt;&lt;/a&gt;Search View&lt;/h1&gt;&lt;h2 id=&quot;主视图中添加导航栏视图&quot;&gt;&lt;a href=&quot;#主视图中添加导航栏视图&quot; class=&quot;headerlink&quot; title=&quot;主视图中添加导航栏视图&quot;&gt;&lt;/a&gt;主视图中添加导航栏视图&lt;/h2&gt;&lt;p&gt;创建一个高度为64的导航栏视图，并将其底部与table view顶部相连接&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5pxhv35sqp1i979/2016091402.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7vpj5w66dpc464a/2016091403.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/79zvuo5j4oixf0z/2016091406.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;导航栏内嵌UIView-for-searchBar&quot;&gt;&lt;a href=&quot;#导航栏内嵌UIView-for-searchBar&quot; class=&quot;headerlink&quot; title=&quot;导航栏内嵌UIView for searchBar&quot;&gt;&lt;/a&gt;导航栏内嵌UIView for searchBar&lt;/h2&gt;&lt;p&gt;在导航栏中内嵌一个UIView 高度为44，透明&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5cjfu4g007l72hq/2016091407.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nfsf4tfive1u0e6/2016091408.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/tog01z4o4zr458c/2016091409.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;搜索结果界面创建&quot;&gt;&lt;a href=&quot;#搜索结果界面创建&quot; class=&quot;headerlink&quot; title=&quot;搜索结果界面创建&quot;&gt;&lt;/a&gt;搜索结果界面创建&lt;/h2&gt;&lt;p&gt;在storyboard中复制一个view controller scene 为search controller scene&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/eg23hrkhohgqv7k/2016091401.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;搜索结果界面的导航栏和主视图的一致，内嵌view for searchbar, 不需要cell&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/p2gr5uw6mrlrrxr/2016091410.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4ub3sd8064j57tz/2016091412.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;custom-class-和-storyboard-ID&quot;&gt;&lt;a href=&quot;#custom-class-和-storyboard-ID&quot; class=&quot;headerlink&quot; title=&quot;custom class 和 storyboard ID&quot;&gt;&lt;/a&gt;custom class 和 storyboard ID&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/hl4qxhc0tsyp8sb/2016091413.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;TableView设置&quot;&gt;&lt;a href=&quot;#TableView设置&quot; class=&quot;headerlink&quot; title=&quot;TableView设置&quot;&gt;&lt;/a&gt;TableView设置&lt;/h1&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
-&lt;p&gt;&lt;im
+      &lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; class=&quot;headerlink&quot; title=&quot;Table View&quot;&gt;&lt;/a&gt;Table View&lt;/h1&gt;&lt;h2 id=&quot;TableView-创建&quot;&gt;&lt;a href=&quot;#TableView
     
     </summary>
     
