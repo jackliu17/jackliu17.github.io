@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-15T00:49:38.000Z</updated>
+  <updated>2016-09-19T08:12:35.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,13 +16,108 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>TableView视图的构建</title>
-    <link href="http://jackliu17.github.io/2016/09/07/TableView%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/"/>
-    <id>http://jackliu17.github.io/2016/09/07/TableView视图的构建/</id>
-    <published>2016-09-07T01:21:42.000Z</published>
-    <updated>2016-09-15T00:49:38.000Z</updated>
+    <title>WWDC2016学习笔记-Introduction_to_Xcode</title>
+    <link href="http://jackliu17.github.io/2016/09/19/WWDC2016%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction-to-Xcode/"/>
+    <id>http://jackliu17.github.io/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/</id>
+    <published>2016-09-19T06:12:14.000Z</published>
+    <updated>2016-09-19T08:12:35.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; class=&quot;headerlink&quot; title=&quot;Table View&quot;&gt;&lt;/a&gt;Table View&lt;/h1&gt;&lt;h2 id=&quot;TableView-创建&quot;&gt;&lt;a href=&quot;#TableView-创建&quot; class=&quot;headerlink&quot; title=&quot;TableView 创建&quot;&gt;&lt;/a&gt;TableView 创建&lt;/h2&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Four-scheme-actions&quot;&gt;&lt;a href=&quot;#Four-scheme-actions&quot; class=&quot;headerlink&quot; title=&quot;Four scheme actions&quot;&gt;&lt;/a&gt;Four scheme actions&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run will run my app in the debugger.&lt;/li&gt;
+&lt;li&gt;Test will run my tests.&lt;/li&gt;
+&lt;li&gt;Profile will run my app in instruments so I can measure its performance.&lt;/li&gt;
+&lt;li&gt;Analyze will run Xcode’s static analyzer and help catch problems I might otherwise have missed&lt;/li&gt;
+&lt;li&gt;Archive action will build my app for release.This command will become enabled in this menu once I select a device as my run destination.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;查看不同设备屏幕的Storyboard-scene&quot;&gt;&lt;a href=&quot;#查看不同设备屏幕的Storyboard-scene&quot; class=&quot;headerlink&quot; title=&quot;查看不同设备屏幕的Storyboard scene&quot;&gt;&lt;/a&gt;查看不同设备屏幕的Storyboard scene&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;3&quot;&gt; &lt;/p&gt;
+&lt;h1 id=&quot;Method-classify&quot;&gt;&lt;a href=&quot;#Method-classify&quot; class=&quot;headerlink&quot; title=&quot;Method classify&quot;&gt;&lt;/a&gt;Method classify&lt;/h1&gt;&lt;p&gt;使用TODO or MARK 使方法归类。直接输入可自动弹出搜索框&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import Foundation
+
+// TODO: Call Hero
+
+let myHero = &amp;quot;Mother&amp;quot;
+
+func callHero(){
+
+    print (myHero)
+
+}
+
+
+// MARK: Call Father
+
+func callMather(){
+
+    print (myHero)
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;PO-Command-in-console&quot;&gt;&lt;a href=&quot;#PO-Command-in-console&quot; class=&quot;headerlink&quot; title=&quot;PO Command in console&quot;&gt;&lt;/a&gt;PO Command in console&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Search-shortcut-key&quot;&gt;&lt;a href=&quot;#Search-shortcut-key&quot; class=&quot;headerlink&quot; title=&quot;Search shortcut key&quot;&gt;&lt;/a&gt;Search shortcut key&lt;/h1&gt;&lt;p&gt;shift + command + O&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Option-or-Command-click&quot;&gt;&lt;a href=&quot;#Option-or-Command-click&quot; class=&quot;headerlink&quot; title=&quot;Option or Command + click&quot;&gt;&lt;/a&gt;Option or Command + click&lt;/h1&gt;&lt;p&gt;查看某方法或对象的详情&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Project-amp-Target&quot;&gt;&lt;a href=&quot;#Project-amp-Target&quot; class=&quot;headerlink&quot; title=&quot;Project &amp;amp; Target&quot;&gt;&lt;/a&gt;Project &amp;amp; Target&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Project&quot;&gt;&lt;a href=&quot;#Project&quot; class=&quot;headerlink&quot; title=&quot;Project&quot;&gt;&lt;/a&gt;Project&lt;/h2&gt;&lt;p&gt;A project is a document that you use to organize your code an resources in Xcode. &lt;/p&gt;
+&lt;h2 id=&quot;project-settings&quot;&gt;&lt;a href=&quot;#project-settings&quot; class=&quot;headerlink&quot; title=&quot;project settings&quot;&gt;&lt;/a&gt;project settings&lt;/h2&gt;&lt;p&gt;deployment target is the minimum OS version that your app can run on and support. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Target&quot;&gt;&lt;a href=&quot;#Target&quot; class=&quot;headerlink&quot; title=&quot;Target&quot;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;targets which actually build those files into products like your app&lt;/p&gt;
+&lt;p&gt;A target contains the instructions to build one thing like an app or a framework.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Build-phases&quot;&gt;&lt;a href=&quot;#Build-phases&quot; class=&quot;headerlink&quot; title=&quot;Build phases&quot;&gt;&lt;/a&gt;Build phases&lt;/h2&gt;&lt;p&gt;The thing that your target produces is called its product. The set of steps that your target takes to build its product are called build phases.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Build-Setting-for-project-amp-target&quot;&gt;&lt;a href=&quot;#Build-Setting-for-project-amp-target&quot; class=&quot;headerlink&quot; title=&quot;Build Setting for project &amp;amp; target&quot;&gt;&lt;/a&gt;Build Setting for project &amp;amp; target&lt;/h2&gt;&lt;p&gt;Build settings which configure how your targets build their products, schemes which configure how you perform actions, such as Run, with your targets. &lt;/p&gt;
+&lt;p&gt;Both projects and targets have Build settings, and targets inherit the value set at the project level but can override them with a target-specific value.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
+&lt;p&gt;A Build setting contains a name and a value of some aspect that controls some aspect of the build process. &lt;/p&gt;
+&lt;p&gt;For example, there are Build settings for specifying which architectures you want to build, whether your code is optimized, what your product is named, and even how you deal with warnings. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Now, Build settings can also vary by what’s called a build configuration, and by default, a project has a debug and a release configuration. For example, when you’re building for debug, you probably don’t want your code to be optimized, but when you’re building for release, you do want your code to be optimized.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Target’s-build-phases&quot;&gt;&lt;a href=&quot;#Target’s-build-phases&quot; class=&quot;headerlink&quot; title=&quot;Target’s build phases&quot;&gt;&lt;/a&gt;Target’s build phases&lt;/h2&gt;&lt;p&gt;A target’s build phases do things like cause dependencies to build first, compile the source files in that target, and link the target against libraries and frameworks.&lt;/p&gt;
+&lt;p&gt;You can also add what’s called a run script build phase to configure other aspects of the build that you’d like. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Capabilities&quot;&gt;&lt;a href=&quot;#Capabilities&quot; class=&quot;headerlink&quot; title=&quot;Capabilities&quot;&gt;&lt;/a&gt;Capabilities&lt;/h2&gt;&lt;p&gt;Capabilities, which allows you to easily turn on specific features.&lt;/p&gt;
+&lt;p&gt;For example, for iOS, there are capabilities for enabling in-app purchases and Apple Maps integration&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Workspaces&quot;&gt;&lt;a href=&quot;#Workspaces&quot; class=&quot;headerlink&quot; title=&quot;Workspaces&quot;&gt;&lt;/a&gt;Workspaces&lt;/h1&gt;&lt;p&gt;Two projects that share the same framework and you like to work on them together.&lt;/p&gt;
+&lt;p&gt;In this situation, you can create an Xcode workspace that references your projects. So when you open your workspace in Xcode, &lt;/p&gt;
+&lt;p&gt;it’ll contain all of the contents of the projects that you’ve referenced, which makes it easy to edit and navigate across them &lt;/p&gt;
+&lt;p&gt;as related code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;19&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;有待进一步学习的地方&quot;&gt;&lt;a href=&quot;#有待进一步学习的地方&quot; class=&quot;headerlink&quot; title=&quot;有待进一步学习的地方&quot;&gt;&lt;/a&gt;有待进一步学习的地方&lt;/h1&gt;&lt;p&gt;Review &amp;amp; Commit&lt;/p&gt;
+&lt;p&gt;Edit Scheme&lt;/p&gt;
+&lt;p&gt;Test&lt;/p&gt;
+&lt;p&gt;Debug&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Four-scheme-actions&quot;&gt;&lt;a href=&quot;#Four-scheme-actions&quot; class=&quot;headerlink&quot; title=&quot;Four scheme actions&quot;&gt;&lt;/a&gt;Four scheme actions&lt;/h1&gt;&lt;p&gt;&lt;i
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
+    
+      <category term="WWDC" scheme="http://jackliu17.github.io/tags/WWDC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TableView with searchBr视图的构建</title>
+    <link href="http://jackliu17.github.io/2016/09/07/TableView%20with%20searchBr%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/"/>
+    <id>http://jackliu17.github.io/2016/09/07/TableView with searchBr视图的构建/</id>
+    <published>2016-09-07T01:21:42.000Z</published>
+    <updated>2016-09-15T00:55:09.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; class=&quot;headerlink&quot; title=&quot;Table View&quot;&gt;&lt;/a&gt;Table View&lt;/h1&gt;&lt;h2 id=&quot;TableView-创建&quot;&gt;&lt;a href=&quot;#TableView-创建&quot; class=&quot;headerlink&quot; title=&quot;TableView 创建&quot;&gt;&lt;/a&gt;TableView 创建&lt;/h2&gt;&lt;p&gt;在视图中拖入一个tableView,并设置约束&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/816psmm80wngd9o/2016091201.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;TableView的行高&quot;&gt;&lt;a href=&quot;#TableView的行高&quot; class=&quot;headerlink&quot; title=&quot;TableView的行高&quot;&gt;&lt;/a&gt;TableView的行高&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;TableView的代理&quot;&gt;&lt;a href=&quot;#TableView的代理&quot; class=&quot;headerlink&quot; title=&quot;TableView的代理&quot;&gt;&lt;/a&gt;TableView的代理&lt;/h2&gt;&lt;p&gt;ctrl drag tableView to the controller&lt;/p&gt;
@@ -63,7 +158,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; class=&quot;headerlink&quot; title=&quot;Table View&quot;&gt;&lt;/a&gt;Table View&lt;/h1&gt;&lt;h2 id=&quot;TableView-创建&quot;&gt;&lt;a href=&quot;#TableView
+      &lt;h1 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Table-View&quot;&gt;&lt;a href=&quot;#Table-View&quot; 
     
     </summary>
     
@@ -2336,231 +2432,6 @@ _localSearch = [[MKLocalSearch alloc] initWithRequest:searchRequest];
       <category term="iOS_CoreLocation" scheme="http://jackliu17.github.io/tags/iOS-CoreLocation/"/>
     
       <category term="iOS_MapKit" scheme="http://jackliu17.github.io/tags/iOS-MapKit/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CoreLocation框架详解</title>
-    <link href="http://jackliu17.github.io/2016/06/10/CoreLocation%E6%A1%86%E6%9E%B6%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://jackliu17.github.io/2016/06/10/CoreLocation框架详解/</id>
-    <published>2016-06-10T03:22:28.000Z</published>
-    <updated>2016-07-31T04:12:37.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;定位基础及权限详解&quot;&gt;&lt;a href=&quot;#定位基础及权限详解&quot; class=&quot;headerlink&quot; title=&quot;定位基础及权限详解&quot;&gt;&lt;/a&gt;定位基础及权限详解&lt;/h1&gt;&lt;p&gt;Core Location框架为定位用户当前位置和方向（Heading）提供支持。负责从设备硬件收集信息并以异步方式报告给应用程序。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;定位方式:Wifi、蜂窝式移动电话基站、GPS卫星&lt;/li&gt;
-&lt;li&gt;定位优先级:GPS、Wifi、蜂窝式移动电话基站&lt;/li&gt;
-&lt;li&gt;定位准确性:GPS卫星（准确性高，但局限性大，比较耗费设备电量）、Wifi及蜂窝式移动电话基站（Wifi依赖网络，蜂窝取决于基站密度，耗费流量）&lt;/li&gt;
-&lt;li&gt;iOS开发中，不能指定使用哪种方式进行定位，iOS系统会根据设备情况和周围环境，采用一套最佳的定位解决方案。&lt;/li&gt;
-&lt;li&gt;iOS设备通过定位来确定用户位置信息，因为涉及用户隐私问题，所以在用户使用地图定位功能之前会与用户之间有交互行为。&lt;/li&gt;
-&lt;li&gt;服务过程：用户进行定位授权，同意则进行定位操作，反之提示用户无授权无法进行定位操作。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;通过CoreLocation实现定位功能&quot;&gt;&lt;a href=&quot;#通过CoreLocation实现定位功能&quot; class=&quot;headerlink&quot; title=&quot;通过CoreLocation实现定位功能&quot;&gt;&lt;/a&gt;通过CoreLocation实现定位功能&lt;/h1&gt;&lt;h2 id=&quot;定位权限申请&quot;&gt;&lt;a href=&quot;#定位权限申请&quot; class=&quot;headerlink&quot; title=&quot;定位权限申请&quot;&gt;&lt;/a&gt;定位权限申请&lt;/h2&gt;&lt;p&gt;在info.plist文件里设置以下属性，对应的string值将会显示在弹出的对话框&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSLocationAlwaysUsageDescription
-NSLocationWhenInUseUsageDescription
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;定位权限&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-    [_locationManager requestWhenInUseAuthorization];
-    [_locationManager requestAlwaysAuthorization];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0yao5q9riovmvu4/iOS_CLLocation01.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;位置管理器CLLocationManager&quot;&gt;&lt;a href=&quot;#位置管理器CLLocationManager&quot; class=&quot;headerlink&quot; title=&quot;位置管理器CLLocationManager&quot;&gt;&lt;/a&gt;位置管理器CLLocationManager&lt;/h2&gt;&lt;p&gt;ViewController &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController () &amp;lt;CLLocationManagerDelegate,MKMapViewDelegate&amp;gt;
-
-@property (nonatomic, strong) MKMapView * mapView;
-@property (nonatomic, strong) CLLocationManager * locationManager;
-
-@end
-
-@implementation ViewController
-- (void)viewDidLoad {
-[super viewDidLoad];
-_mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-[_mapView setDelegate:self];
-
-//允许显示用户位置
-[_mapView setShowsUserLocation:YES];
-[_mapView setMapType:MKMapTypeStandard];
-[self.view addSubview:_mapView];
-
-//检测定位功能是否开启
-if([CLLocationManager locationServicesEnabled]){        
-    if(!_locationManager){       
-        _locationManager = [[CLLocationManager alloc] init];
-
-        //定位权限
-        if([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-            [_locationManager requestWhenInUseAuthorization];
-            [_locationManager requestAlwaysAuthorization];
-        }
-
-        //设置代理
-        [_locationManager setDelegate:self];
-        //设置定位精度
-        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-        //设置距离筛选
-        [_locationManager setDistanceFilter:100];
-        //开始定位
-        [_locationManager startUpdatingLocation];
-        //设置开始识别方向
-        //[_locationManager startUpdatingHeading];
-    }       
-}else{
-
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                         message:@&amp;quot;您没有开启定位功能&amp;quot;
-                                                        delegate:nil
-                                               cancelButtonTitle:@&amp;quot;确定&amp;quot;
-                                               otherButtonTitles:nil, nil];
-    [alertView show];
-}
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CLLocationManagerDelegate&quot;&gt;&lt;a href=&quot;#CLLocationManagerDelegate&quot; class=&quot;headerlink&quot; title=&quot;CLLocationManagerDelegate&quot;&gt;&lt;/a&gt;CLLocationManagerDelegate&lt;/h2&gt;&lt;h3 id=&quot;授权状态发生改变的时候执行&quot;&gt;&lt;a href=&quot;#授权状态发生改变的时候执行&quot; class=&quot;headerlink&quot; title=&quot;授权状态发生改变的时候执行&quot;&gt;&lt;/a&gt;授权状态发生改变的时候执行&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-
-switch(status){
-
-    case kCLAuthorizationStatusDenied:
-    {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                             message:@&amp;quot;定位功能没有开启&amp;quot; delegate:nil
-                                                   cancelButtonTitle:@&amp;quot;确定&amp;quot; otherButtonTitles:nil,nil];
-        [alertView show];
-    }
-        break;
-    default:
-        break;
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定位成功以后调用&quot;&gt;&lt;a href=&quot;#定位成功以后调用&quot; class=&quot;headerlink&quot; title=&quot;定位成功以后调用&quot;&gt;&lt;/a&gt;定位成功以后调用&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-
-//[_locationManager stopUpdatingLocation];
-CLLocation * location = locations.lastObject;
-
-MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
-
-[_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-//[self reverseGeocoder:location];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;定位失败&quot;&gt;&lt;a href=&quot;#定位失败&quot; class=&quot;headerlink&quot; title=&quot;定位失败&quot;&gt;&lt;/a&gt;定位失败&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-NSLog(@&amp;quot;error:%@&amp;quot;,error);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;CLGeocoder&quot;&gt;&lt;a href=&quot;#CLGeocoder&quot; class=&quot;headerlink&quot; title=&quot;CLGeocoder&quot;&gt;&lt;/a&gt;CLGeocoder&lt;/h1&gt;&lt;h2 id=&quot;地理编码-地址转经纬度&quot;&gt;&lt;a href=&quot;#地理编码-地址转经纬度&quot; class=&quot;headerlink&quot; title=&quot;地理编码 - 地址转经纬度&quot;&gt;&lt;/a&gt;地理编码 - 地址转经纬度&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-[geocoder geocodeAddressString:str completionHandler:^(NSArray *placemarks, NSError *error) {
-
-    if(error || placemarks.count == 0){
-        NSLog(@&amp;quot;error&amp;quot;);
-    }else{
-
-        CLPlacemark * placemark = placemarks.firstObject;
-
-        //设置显示区域
-        MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
-        [_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-        //设置标注
-        MKPointAnnotation * pointAnnotation = [[MKPointAnnotation alloc] init];
-        [pointAnnotation setTitle:placemark.name];
-        [pointAnnotation setCoordinate:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude)];
-        [_mapView addAnnotation:pointAnnotation];
-    }  
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;反地理编码-经纬度转地址&quot;&gt;&lt;a href=&quot;#反地理编码-经纬度转地址&quot; class=&quot;headerlink&quot; title=&quot;反地理编码 - 经纬度转地址&quot;&gt;&lt;/a&gt;反地理编码 - 经纬度转地址&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-[geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-
-    if(error || placemarks.count == 0){
-        NSLog(@&amp;quot;error&amp;quot;);
-    }else{
-
-        CLPlacemark * placemark = placemarks.firstObject;
-
-         //设置标注
-        MKPointAnnotation * pointAnnotation = [[MKPointAnnotation alloc] init];
-        [pointAnnotation setTitle:placemark.name];
-        [pointAnnotation setCoordinate:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude)];
-        [_mapView addAnnotation:pointAnnotation];
-
-        //设置显示区域
-        MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));   
-        [_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-        NSLog(@&amp;quot;placemark:%@&amp;quot;,[[placemark addressDictionary] objectForKey:@&amp;quot;City&amp;quot;]);
-    }
-
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CLPlacemark存储地址信息&quot;&gt;&lt;a href=&quot;#CLPlacemark存储地址信息&quot; class=&quot;headerlink&quot; title=&quot;CLPlacemark存储地址信息&quot;&gt;&lt;/a&gt;CLPlacemark存储地址信息&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;NSLog(@&amp;quot;placemark:%@&amp;quot;,[[placemark addressDictionary] objectForKey:@&amp;quot;City&amp;quot;]);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;屏幕触摸实现地理位置选择&quot;&gt;&lt;a href=&quot;#屏幕触摸实现地理位置选择&quot; class=&quot;headerlink&quot; title=&quot;屏幕触摸实现地理位置选择&quot;&gt;&lt;/a&gt;屏幕触摸实现地理位置选择&lt;/h1&gt;&lt;h2 id=&quot;长按设置坐标点&quot;&gt;&lt;a href=&quot;#长按设置坐标点&quot; class=&quot;headerlink&quot; title=&quot;长按设置坐标点&quot;&gt;&lt;/a&gt;长按设置坐标点&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;UILongPressGestureRecognizer * longpressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-[_mapView addGestureRecognizer:longpressGestureRecognizer];
-
-
-- (void)longPressed:(UILongPressGestureRecognizer *)recognizer {
-
-if(recognizer.state == UIGestureRecognizerStateBegan){
-
-
-    CGPoint point = [recognizer locationInView:_mapView];
-    CLLocationCoordinate2D coordinate2D = [_mapView convertPoint:point toCoordinateFromView:_mapView];
-
-    [_mapView removeAnnotations:_mapView.annotations];
-
-    CLLocation * location = [[CLLocation alloc] initWithLatitude:coordinate2D.latitude longitude:coordinate2D.longitude];
-
-    [self reverseGeocoder:location];
-
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;获取地图界面点&quot;&gt;&lt;a href=&quot;#获取地图界面点&quot; class=&quot;headerlink&quot; title=&quot;获取地图界面点&quot;&gt;&lt;/a&gt;获取地图界面点&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;CGPoint point = [recognizer locationInView:_mapView];
-CLLocationCoordinate2D coordinate2D = [_mapView convertPoint:point toCoordinateFromView:_mapView];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;移除原有的标注&quot;&gt;&lt;a href=&quot;#移除原有的标注&quot; class=&quot;headerlink&quot; title=&quot;移除原有的标注&quot;&gt;&lt;/a&gt;移除原有的标注&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[_mapView removeAnnotations:_mapView.annotations];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;自定义标注&quot;&gt;&lt;a href=&quot;#自定义标注&quot; class=&quot;headerlink&quot; title=&quot;自定义标注&quot;&gt;&lt;/a&gt;自定义标注&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&amp;lt;MKAnnotation&amp;gt;)annotation{
-static NSString * key = @&amp;quot;key&amp;quot;;
-MKPinAnnotationView * pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:key];
-
-if(pinAnnotationView == nil){
-    pinAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:key];
-    [pinAnnotationView setCanShowCallout:YES];
-}
-
-if([annotation isKindOfClass:[MKUserLocation class]]){
-    [pinAnnotationView setPinColor:MKPinAnnotationColorRed];
-    [((MKUserLocation *)annotation) setTitle:_titleString];
-}else{
-    [pinAnnotationView setPinColor:MKPinAnnotationColorPurple];
-}
-return pinAnnotationView;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;默认的是个蓝色闪烁点，如果自定义的话，就是插个大头针&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[_mapView setShowsUserLocation:YES];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;CoreLocation相关功能补充&quot;&gt;&lt;a href=&quot;#CoreLocation相关功能补充&quot; class=&quot;headerlink&quot; title=&quot;CoreLocation相关功能补充&quot;&gt;&lt;/a&gt;CoreLocation相关功能补充&lt;/h1&gt;&lt;p&gt;CLHeading介绍&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//设置开始识别方向
-[_locationManager startUpdatingHeading];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;位置更新&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//定位成功以后就停止位置更新
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-......
-[_locationManager stopUpdatingLocation];
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h1&gt;&lt;h2 id=&quot;文本框键盘退出&quot;&gt;&lt;a href=&quot;#文本框键盘退出&quot; class=&quot;headerlink&quot; title=&quot;文本框键盘退出&quot;&gt;&lt;/a&gt;文本框键盘退出&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;[_textField resignFirstResponder];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;文本框输入的判断&quot;&gt;&lt;a href=&quot;#文本框输入的判断&quot; class=&quot;headerlink&quot; title=&quot;文本框输入的判断&quot;&gt;&lt;/a&gt;文本框输入的判断&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;if([_textField.text length] == 0){
-
-    return;
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;定位基础及权限详解&quot;&gt;&lt;a href=&quot;#定位基础及权限详解&quot; class=&quot;headerlink&quot; title=&quot;定位基础及权限详解&quot;&gt;&lt;/a&gt;定位基础及权限详解&lt;/h1&gt;&lt;p&gt;Core Location框架为定位用户当前位置和方向（Heading）提供支持。负
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS" scheme="http://jackliu17.github.io/tags/iOS/"/>
-    
-      <category term="iOS_CoreLocation" scheme="http://jackliu17.github.io/tags/iOS-CoreLocation/"/>
     
   </entry>
   

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jackliu17.github.io/2016/09/07/TableView%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</loc>
+    <loc>http://jackliu17.github.io/2016/09/19/WWDC2016%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction-to-Xcode/</loc>
     
-    <lastmod>2016-09-15T00:49:38.000Z</lastmod>
+    <lastmod>2016-09-19T08:12:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/09/07/TableView%20with%20searchBr%E8%A7%86%E5%9B%BE%E7%9A%84%E6%9E%84%E5%BB%BA/</loc>
+    
+    <lastmod>2016-09-15T00:55:09.000Z</lastmod>
     
   </url>
   
