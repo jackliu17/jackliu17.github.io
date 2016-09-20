@@ -1,0 +1,1194 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift,WWDC," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Constants常量为let,变量为var
+let language: String = &amp;quot;Swift&amp;quot;
+let introduced: Int = 2014
+let isAwesome: Bool = true
+Type Inference
+let language = &amp;quot;Swift&amp;quot;    // Inferred as String
+let intro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWWDC2016学习笔记Getting_started_with_swift">
+<meta property="og:url" content="http://jackliu17.github.io/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Constants常量为let,变量为var
+let language: String = &amp;quot;Swift&amp;quot;
+let introduced: Int = 2014
+let isAwesome: Bool = true
+Type Inference
+let language = &amp;quot;Swift&amp;quot;    // Inferred as String
+let intro">
+<meta property="og:updated_time" content="2016-09-20T07:44:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WWWDC2016学习笔记Getting_started_with_swift">
+<meta name="twitter:description" content="Constants常量为let,变量为var
+let language: String = &amp;quot;Swift&amp;quot;
+let introduced: Int = 2014
+let isAwesome: Bool = true
+Type Inference
+let language = &amp;quot;Swift&amp;quot;    // Inferred as String
+let intro">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> WWWDC2016学习笔记Getting_started_with_swift | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                WWWDC2016学习笔记Getting_started_with_swift
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T19:08:43+10:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h1><p>常量为let,变量为var</p>
+<pre><code>let language: String = &quot;Swift&quot;
+let introduced: Int = 2014
+let isAwesome: Bool = true
+</code></pre><p>Type Inference</p>
+<pre><code>let language = &quot;Swift&quot;    // Inferred as String
+let introduced = 2014     // Inferred as Int
+let isAwesome = true     // Inferred as Bool
+</code></pre><h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>Building Strings</p>
+<pre><code>let conference = &quot;WWDC&quot;
+let message = &quot;Hello, &quot; + conference + &quot;!&quot;
+
+// &quot;Hello, WWDC!&quot;
+</code></pre><p>String Interpolation</p>
+<pre><code>let conference = &quot;WWDC&quot;
+let year = 2016
+let message = &quot;Hello, \(conference) \(year + 1)!&quot;
+
+// &quot;Hello, WWDC 2017!&quot;
+</code></pre><p>Characters</p>
+<pre><code>let dogString = &quot;Dog⁈🐶&quot;
+print(&quot;\(dogString) is \(dogString.characters.count) characters long&quot;)
+
+//Dog⁈🐶 is 5 characters long.
+</code></pre><h1 id="Array-and-Dictionary"><a href="#Array-and-Dictionary" class="headerlink" title="Array and Dictionary"></a>Array and Dictionary</h1><pre><code>let names: [String] = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;]    
+
+let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] // Type Inference
+
+let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+</code></pre><h2 id="Modifying-an-Array"><a href="#Modifying-an-Array" class="headerlink" title="Modifying an Array"></a>Modifying an Array</h2><pre><code>var packingList = [&quot;Socks&quot;, &quot;Shoes&quot;]    
+//[&quot;Socks&quot;, &quot;Shoes&quot;]
+
+print(packingList[0])    
+//&quot;Socks&quot;
+
+packingList.append(&quot;Trousers&quot;)    
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Trousers&quot;]
+
+packingList[2] = &quot;Jeans&quot;    
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;]
+
+packingList.append(contentsOf: [&quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;])
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;]
+
+packingList[3...5] = [&quot;Hoodie&quot;, &quot;Scarf&quot;]
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Hoodie&quot;, &quot;Scarf&quot;]
+</code></pre><h2 id="Modifying-a-Dictionary"><a href="#Modifying-a-Dictionary" class="headerlink" title="Modifying a Dictionary"></a>Modifying a Dictionary</h2><pre><code>var ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+ages[&quot;Justyn&quot;] = 67 // Adds a new value for &quot;Justyn&quot;
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 67]
+
+ages[&quot;Justyn&quot;] = 68 // Changes the value for &quot;Justyn&quot;
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 68]
+</code></pre><h2 id="Retrieving-a-Value-from-a-Dictionary"><a href="#Retrieving-a-Value-from-a-Dictionary" class="headerlink" title="Retrieving a Value from a Dictionary"></a>Retrieving a Value from a Dictionary</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+let possibleAge = ages[&quot;Amy&quot;]    
+</code></pre><h1 id="While-amp-For-In-Loop"><a href="#While-amp-For-In-Loop" class="headerlink" title="While &amp; For-In Loop"></a>While &amp; For-In Loop</h1><h2 id="While-and-Repeat-While"><a href="#While-and-Repeat-While" class="headerlink" title="While and Repeat-While"></a>While and Repeat-While</h2><pre><code>while !endOfFile {
+readLine()
+}
+
+
+repeat {
+performTask()
+} while tasksRemaining &gt; 0
+</code></pre><h2 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h2><pre><code>let dogString = &quot;Dog⁈🐶&quot;
+for character in dogString.characters {
+print(character)
+}
+</code></pre><h2 id="Closed-Ranges"><a href="#Closed-Ranges" class="headerlink" title="Closed Ranges"></a>Closed Ranges</h2><pre><code>for number in 1...5 {
+print(&quot;\(number) times 4 is \(number * 4)&quot;)
+}
+</code></pre><h2 id="Half-Closed-Ranges"><a href="#Half-Closed-Ranges" class="headerlink" title="Half-Closed Ranges"></a>Half-Closed Ranges</h2><pre><code>let results = [7, 52, 9, 33, 6, 12, 86, 4, 22, 18, 3]
+let maxResultCount = 5
+for index in 0..&lt;maxResultCount {
+print(&quot;Result \(index) is \(results[index])&quot;)
+}
+</code></pre><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><pre><code>for name in [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] {
+print(&quot;Hello, \(name)!&quot;)
+}   
+</code></pre><h2 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+for (name, age) in ages {
+print(&quot;\(name) is \(age) years old&quot;)
+}
+</code></pre><h1 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h1><h2 id="If-Statement"><a href="#If-Statement" class="headerlink" title="If Statement"></a>If Statement</h2><pre><code>let age = 32
+if age == 1 {
+print(&quot;Happy first birthday!&quot;)
+} else if age == 40 {
+print(&quot;Happy 40th birthday!&quot;)
+} else {
+print(&quot;Happy plain old boring birthday.&quot;)
+} 
+</code></pre><h2 id="Switch-Statement（需要将所有情况都考虑到）"><a href="#Switch-Statement（需要将所有情况都考虑到）" class="headerlink" title="Switch Statement（需要将所有情况都考虑到）"></a>Switch Statement（需要将所有情况都考虑到）</h2><p>例子1</p>
+<pre><code>let age = 32
+switch age {
+case 1:
+    print(&quot;Happy first birthday!&quot;)
+case 13...19:
+    print(&quot;Happy birthday, teenager!&quot;)
+case let decade where decade % 10 == 0:
+    print(&quot;Happy significant \(decade)th birthday!&quot;)
+default:
+    print(&quot;Happy plain old boring birthday.&quot;)
+}
+</code></pre><p>例子2</p>
+<pre><code>let userName = &quot;bob&quot;
+let passwordIsValid = false
+switch (userName, passwordIsValid) {
+    case (&quot;admin&quot;, true):
+print(&quot;Welcome back, administrator!&quot;)
+    case (&quot;guest&quot;, _):
+print(&quot;Guests are not allowed in this restricted area.&quot;)
+    case (_, let isValid):
+print(isValid ? &quot;Welcome to the restricted area!&quot; : &quot;ACCESS DENIED.&quot;)
+}
+</code></pre><h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><h2 id="Checking-for-an-Optional-Value"><a href="#Checking-for-an-Optional-Value" class="headerlink" title="Checking for an Optional Value"></a>Checking for an Optional Value</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+let possibleAge: Int? = ages[&quot;Daryl&quot;]
+
+if possibleAge == nil {
+print(&quot;Age not found.&quot;)
+}
+</code></pre><h2 id="If-Let-Statement-when-use-optional"><a href="#If-Let-Statement-when-use-optional" class="headerlink" title="If-Let Statement(when use optional)"></a>If-Let Statement(when use optional)</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+if let age = ages[&quot;Amy&quot;] {
+print(&quot;An age of \(age) was found.&quot;)
+}  
+
+//An age of 40 was found.
+</code></pre><h1 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h1><h2 id="Multiple-Parameters"><a href="#Multiple-Parameters" class="headerlink" title="Multiple Parameters"></a>Multiple Parameters</h2><pre><code>func sendMessage(recipient: String, shouting: Bool) {
+var message = &quot;Hey there, \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(recipient: &quot;Morgan&quot;, shouting: false) 
+</code></pre><h2 id="Explicit-Argument-Labels"><a href="#Explicit-Argument-Labels" class="headerlink" title="Explicit Argument Labels"></a>Explicit Argument Labels</h2><pre><code>func sendMessage(to recipient: String, shouting: Bool) {
+var message = &quot;Hey there, \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(to: &quot;Morgan&quot;, shouting: false)
+</code></pre><h2 id="Omitting-Argument-Labels"><a href="#Omitting-Argument-Labels" class="headerlink" title="Omitting Argument Labels"></a>Omitting Argument Labels</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool) {
+var message = &quot;\(message), \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;, shouting: false)
+</code></pre><h2 id="Parameters-with-Default-Values"><a href="#Parameters-with-Default-Values" class="headerlink" title="Parameters with Default Values"></a>Parameters with Default Values</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool = false) {
+var message = &quot;\(message), \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;)
+</code></pre><h2 id="Returning-Optional-Values"><a href="#Returning-Optional-Values" class="headerlink" title="Returning Optional Values"></a>Returning Optional Values</h2><pre><code>func firstString(havingPrefix prefix: String, in strings: [String]) -&gt; String? {
+for string in strings {
+if string.hasPrefix(prefix) {
+return string
+}
+}
+return nil
+}
+</code></pre><p>使用if-let，当使用optional value时</p>
+<pre><code>var guests = [&quot;Jack&quot;, &quot;Kumar&quot;, &quot;Anita&quot;, &quot;Anna&quot;]
+if let guest = firstString(havingPrefix: &quot;A&quot;, in: guests) {
+print(&quot;See you at the party, \(guest)!&quot;)
+} else {
+print(&quot;Invite must be in the mail.&quot;)
+}
+
+//See you at the party, Anita!
+</code></pre><h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><h2 id="Functions-as-Parameters"><a href="#Functions-as-Parameters" class="headerlink" title="Functions as Parameters"></a>Functions as Parameters</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {
+var result: [Int] = []
+for number in numbers {
+if includeNumber(number) {
+    result.append(number)
+}
+}
+    return result
+}
+
+let numbers = [4, 17, 34, 41, 82]
+
+func divisibleByTwo(_ number: Int) -&gt; Bool {
+    return number % 2 == 0
+}
+let evenNumbers = filterInts(numbers, divisibleByTwo)
+
+//let evenNumbers = filterInts([4, 17, 34, 41, 82], divisibleByTwo)
+
+
+print(evenNumbers)
+</code></pre><h2 id="Implicit-Arguments-in-Closures"><a href="#Implicit-Arguments-in-Closures" class="headerlink" title="Implicit Arguments in Closures"></a>Implicit Arguments in Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
+let evenNumbers = filterInts(numbers, { $0 % 2 == 0 })
+print(evenNumbers)
+</code></pre><h2 id="Trailing-Closures"><a href="#Trailing-Closures" class="headerlink" title="Trailing Closures"></a>Trailing Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
+</code></pre><p>方式1.如果传递的闭包是最后一个参数，可以将其大括号移除到小括号后面方便阅读. $0代表第一个参数</p>
+<pre><code>let evenNumbers = filterInts(numbers) { $0 % 2 == 0 }
+print(evenNumbers)
+</code></pre><p>方式2.</p>
+<pre><code>let evenNumbers = filterInts(numbers) { (firstItem) -&gt; Bool in
+    return firstItem % 2==0
+}
+print(evenNumbers)
+</code></pre><p>如果闭包是唯一参数，可以将前面的小括号移除</p>
+<pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+let shortNames = names.filter { name in name.characters.count &lt; 5 }
+</code></pre><h2 id="Filter-and-Map-Methods"><a href="#Filter-and-Map-Methods" class="headerlink" title="Filter and Map Methods"></a>Filter and Map Methods</h2><pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+
+let capitalizedShortNames = names.filter { name in name.characters.count &lt; 5 }
+    .map { name in name.uppercased() }
+
+print(capitalizedShortNames)
+</code></pre><h1 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h1><h2 id="Calling-Generic-Functions"><a href="#Calling-Generic-Functions" class="headerlink" title="Calling Generic Functions"></a>Calling Generic Functions</h2><pre><code>let numbers = [24,45,65,76,84,200,4]
+let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+
+func filter&lt;Element&gt;(_ source: [Element], _ includeElement: (Element) -&gt; Bool) -&gt; [Element] {
+    var result: [Element] = []
+    for element in source {
+        if includeElement(element) {
+            result.append(element)
+        }
+    }
+    return result
+}
+
+let evenNumbers = filter(numbers) { $0 % 2 == 0 }
+let shortNames = filter(names) { name in name.characters.count &lt; 5 }
+
+print(evenNumbers)
+print(shortNames)
+</code></pre><h2 id="Generic-Types"><a href="#Generic-Types" class="headerlink" title="Generic Types"></a>Generic Types</h2><pre><code>struct NamedArray&lt;Element&gt; {
+    var name: String
+    var items: [Element]
+}
+
+let boardGames: NamedArray&lt;String&gt; = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
+let primes: NamedArray&lt;Int&gt; = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
+
+//Infer types
+//let boardGames: NamedArray = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
+//let primes: NamedArray = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
+
+print(boardGames)
+print(primes)
+</code></pre><h1 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h1><pre><code>struct Rectangle {
+    var width = 12
+    var height = 10
+}
+
+var rectangle = Rectangle()
+rectangle.height = 4
+
+
+struct Rectangle {
+var width: Int
+var height: Int
+}
+var rectangle = Rectangle(width: 4, height: 5)
+</code></pre><h2 id="Computed-Properties"><a href="#Computed-Properties" class="headerlink" title="Computed Properties"></a>Computed Properties</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+    var area: Int {
+        return width * height
+    }
+}
+let rectangle = Rectangle(width: 4, height: 5)
+print(&quot;Width is \(rectangle.width) and area is \(rectangle.area).&quot;)
+</code></pre><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+    func fitsInside(_ other: Rectangle) -&gt; Bool {
+        return (width &lt; other.width) &amp;&amp; (height &lt; other.height)
+    }
+}
+let small = Rectangle(width: 1, height: 2)
+let large = Rectangle(width: 5, height: 5)
+
+print(small.fitsInside(large)) // Returns true
+</code></pre><h2 id="Initializers"><a href="#Initializers" class="headerlink" title="Initializers"></a>Initializers</h2><p>自动生成init method</p>
+<pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+}
+
+var rectangl = Rectangle(width: 4, height: 5)
+</code></pre><p>也可以自己明确的写一个init method</p>
+<pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+
+    init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+}
+var rectangle = Rectangle(width: 4, height: 5)
+</code></pre><h1 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h1><pre><code>class ScoreLogFile {
+    var highScores: [Score]
+    func record(score: Score, for player: Player) -&gt; Void {…}
+}
+</code></pre><h2 id="Subclasses-Can-Add-Functionality"><a href="#Subclasses-Can-Add-Functionality" class="headerlink" title="Subclasses Can Add Functionality"></a>Subclasses Can Add Functionality</h2><pre><code>class Fish {
+    func swim() {
+        print(&quot;I&apos;m swimming.&quot;)
+    }
+}
+
+class FlyingFish: Fish {
+    func fly() {
+        print(&quot;Flying throught the air!&quot;)
+    }
+    // Inherits swim() with no changes.
+}
+</code></pre><h2 id="Subclasses-Can-Override-Functionality"><a href="#Subclasses-Can-Override-Functionality" class="headerlink" title="Subclasses Can Override Functionality"></a>Subclasses Can Override Functionality</h2><p>需要加上override字符，否则会报错</p>
+<pre><code>class Fish {
+    func swim() {
+        print(&quot;I&apos;m swimming.&quot;)
+    }
+}
+
+class ComplainingFish: Fish {
+   override func swim() {
+        print(&quot;Grumble grumble grumble...&quot;)
+        //super.swim()
+    }
+}
+</code></pre><h2 id="Subclass-Initializers"><a href="#Subclass-Initializers" class="headerlink" title="Subclass Initializers"></a>Subclass Initializers</h2><pre><code>class Fish {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class ComplainingFish: Fish {
+    var complaint: String
+    init(name: String, complaint: String) {
+        self.complaint = complaint
+        super.init(name: name)
+    }
+}
+</code></pre><h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><pre><code>enum Alignment {
+    case left, right, center
+}
+
+let textAlignment = Alignment.left
+switch textAlignment {
+case .left:
+    print(&quot;Lean to the left&quot;)
+case .right:
+    print(&quot;Lean to the right&quot;)
+case .center:
+    print(&quot;Stand up straight&quot;)
+}
+</code></pre><h2 id="Enumerations-with-Associated-Values"><a href="#Enumerations-with-Associated-Values" class="headerlink" title="Enumerations with Associated Values"></a>Enumerations with Associated Values</h2><pre><code>enum Alignment {
+
+    case left(padding: Double), right(padding: Double), center
+}
+
+let textAlignment = Alignment.left(padding: 42.7)
+
+switch textAlignment {
+
+case .left(let padding):
+    print(&quot;Left with \(padding) pixels of padding&quot;)
+
+default:
+    print(&quot;this is default&quot;)
+}
+</code></pre><h2 id="Enumerations-with-Raw-Values"><a href="#Enumerations-with-Raw-Values" class="headerlink" title="Enumerations with Raw Values"></a>Enumerations with Raw Values</h2><pre><code>enum ServerAddress: String {
+    case staging = &quot;https://staging.example.com&quot;
+    case production = &quot;https://example.com&quot;
+}
+
+func findPhotos(matchingQuery query: String, from server: ServerAddress) {
+    let serverAddress = server.rawValue
+    …
+}
+
+findPhotos(matchingQuery: &quot;strawberry&quot;, from: .staging)
+</code></pre><h1 id="Protocols-amp-Extension"><a href="#Protocols-amp-Extension" class="headerlink" title="Protocols &amp; Extension"></a>Protocols &amp; Extension</h1><h2 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h2><p>protocol is like blueprint ,like interface or abstract classes</p>
+<pre><code>protocol Player {
+    func takeTurn(on board: Board)
+}
+struct HumanPlayer: Player {
+    func takeTurn(on board: Board) { /* Show move UI and wait */ }
+}
+struct ComputerPlayer: Player {
+    func takeTurn(on board: Board) { /* Pick the best legal move using AI */ }
+}
+</code></pre><h2 id="Extensions-for-additional-functionality"><a href="#Extensions-for-additional-functionality" class="headerlink" title="Extensions for additional functionality"></a>Extensions for additional functionality</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+}
+
+extension Rectangle {
+    func fitsInside(_ other: Rectangle) -&gt; Bool {…}
+    var area {…}
+}
+</code></pre><h2 id="Protocols-Extensions"><a href="#Protocols-Extensions" class="headerlink" title="Protocols + Extensions"></a>Protocols + Extensions</h2><pre><code>struct HumanPlayer: Player {…}
+extension HumanPlayer: CustomStringConvertible {
+    var description: String {
+        return &quot;Human player \(name) has a score of \(score)&quot;
+    }
+}
+let player = HumanPlayer(name: &quot;Lynn&quot;, score: 0)
+print(player)
+</code></pre><h1 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h1><pre><code>enum SomeError: ErrorProtocol {
+    case somethingWentWrong, somethingFailed
+}
+func doSomething() throws -&gt; Data {
+    progressBar.visible = true
+    defer { progressBar.visible = false }
+    let data: Data?
+    do {
+        data = try somethingThatMightFail()
+    } catch SomeError.somethingWentWrong {
+        data = nil
+    }
+    guard let result = summarize(data) else { throw SomeError.somethingFailed }
+    return result
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag">#swift</a>
+          
+            <a href="/tags/WWDC/" rel="tag">#WWDC</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" rel="next" title="WWDC2016学习笔记-Introduction_to_Xcode">
+                <i class="fa fa-chevron-left"></i> WWDC2016学习笔记-Introduction_to_Xcode
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">103</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Constants"><span class="nav-number">1.</span> <span class="nav-text">Constants</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-and-Dictionary"><span class="nav-number">3.</span> <span class="nav-text">Array and Dictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying-an-Array"><span class="nav-number">3.1.</span> <span class="nav-text">Modifying an Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying-a-Dictionary"><span class="nav-number">3.2.</span> <span class="nav-text">Modifying a Dictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieving-a-Value-from-a-Dictionary"><span class="nav-number">3.3.</span> <span class="nav-text">Retrieving a Value from a Dictionary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#While-amp-For-In-Loop"><span class="nav-number">4.</span> <span class="nav-text">While & For-In Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#While-and-Repeat-While"><span class="nav-number">4.1.</span> <span class="nav-text">While and Repeat-While</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Characters"><span class="nav-number">4.2.</span> <span class="nav-text">Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-Ranges"><span class="nav-number">4.3.</span> <span class="nav-text">Closed Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Half-Closed-Ranges"><span class="nav-number">4.4.</span> <span class="nav-text">Half-Closed Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays"><span class="nav-number">4.5.</span> <span class="nav-text">Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dictionaries"><span class="nav-number">4.6.</span> <span class="nav-text">Dictionaries</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Condition"><span class="nav-number">5.</span> <span class="nav-text">Condition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#If-Statement"><span class="nav-number">5.1.</span> <span class="nav-text">If Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Statement（需要将所有情况都考虑到）"><span class="nav-number">5.2.</span> <span class="nav-text">Switch Statement（需要将所有情况都考虑到）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">6.</span> <span class="nav-text">Optional</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Checking-for-an-Optional-Value"><span class="nav-number">6.1.</span> <span class="nav-text">Checking for an Optional Value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#If-Let-Statement-when-use-optional"><span class="nav-number">6.2.</span> <span class="nav-text">If-Let Statement(when use optional)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Functions"><span class="nav-number">7.</span> <span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Parameters"><span class="nav-number">7.1.</span> <span class="nav-text">Multiple Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Explicit-Argument-Labels"><span class="nav-number">7.2.</span> <span class="nav-text">Explicit Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omitting-Argument-Labels"><span class="nav-number">7.3.</span> <span class="nav-text">Omitting Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameters-with-Default-Values"><span class="nav-number">7.4.</span> <span class="nav-text">Parameters with Default Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Returning-Optional-Values"><span class="nav-number">7.5.</span> <span class="nav-text">Returning Optional Values</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Closure"><span class="nav-number">8.</span> <span class="nav-text">Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-as-Parameters"><span class="nav-number">8.1.</span> <span class="nav-text">Functions as Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicit-Arguments-in-Closures"><span class="nav-number">8.2.</span> <span class="nav-text">Implicit Arguments in Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trailing-Closures"><span class="nav-number">8.3.</span> <span class="nav-text">Trailing Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter-and-Map-Methods"><span class="nav-number">8.4.</span> <span class="nav-text">Filter and Map Methods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generic"><span class="nav-number">9.</span> <span class="nav-text">Generic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Calling-Generic-Functions"><span class="nav-number">9.1.</span> <span class="nav-text">Calling Generic Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generic-Types"><span class="nav-number">9.2.</span> <span class="nav-text">Generic Types</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Structures"><span class="nav-number">10.</span> <span class="nav-text">Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed-Properties"><span class="nav-number">10.1.</span> <span class="nav-text">Computed Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">10.2.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializers"><span class="nav-number">10.3.</span> <span class="nav-text">Initializers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Classes"><span class="nav-number">11.</span> <span class="nav-text">Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclasses-Can-Add-Functionality"><span class="nav-number">11.1.</span> <span class="nav-text">Subclasses Can Add Functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclasses-Can-Override-Functionality"><span class="nav-number">11.2.</span> <span class="nav-text">Subclasses Can Override Functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclass-Initializers"><span class="nav-number">11.3.</span> <span class="nav-text">Subclass Initializers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumerations"><span class="nav-number">12.</span> <span class="nav-text">Enumerations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-with-Associated-Values"><span class="nav-number">12.1.</span> <span class="nav-text">Enumerations with Associated Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-with-Raw-Values"><span class="nav-number">12.2.</span> <span class="nav-text">Enumerations with Raw Values</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocols-amp-Extension"><span class="nav-number">13.</span> <span class="nav-text">Protocols & Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols"><span class="nav-number">13.1.</span> <span class="nav-text">Protocols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions-for-additional-functionality"><span class="nav-number">13.2.</span> <span class="nav-text">Extensions for additional functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-Extensions"><span class="nav-number">13.3.</span> <span class="nav-text">Protocols + Extensions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-Handling"><span class="nav-number">14.</span> <span class="nav-text">Error Handling</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/';
+      var disqus_title = 'WWWDC2016学习笔记Getting_started_with_swift';
+      var disqus_url = 'http://jackliu17.github.io/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

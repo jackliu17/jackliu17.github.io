@@ -238,6 +238,547 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="url">
+                  WWWDC2016学习笔记Getting_started_with_swift
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T19:08:43+10:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h1><p>常量为let,变量为var</p>
+<pre><code>let language: String = &quot;Swift&quot;
+let introduced: Int = 2014
+let isAwesome: Bool = true
+</code></pre><p>Type Inference</p>
+<pre><code>let language = &quot;Swift&quot;    // Inferred as String
+let introduced = 2014     // Inferred as Int
+let isAwesome = true     // Inferred as Bool
+</code></pre><h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>Building Strings</p>
+<pre><code>let conference = &quot;WWDC&quot;
+let message = &quot;Hello, &quot; + conference + &quot;!&quot;
+
+// &quot;Hello, WWDC!&quot;
+</code></pre><p>String Interpolation</p>
+<pre><code>let conference = &quot;WWDC&quot;
+let year = 2016
+let message = &quot;Hello, \(conference) \(year + 1)!&quot;
+
+// &quot;Hello, WWDC 2017!&quot;
+</code></pre><p>Characters</p>
+<pre><code>let dogString = &quot;Dog⁈🐶&quot;
+print(&quot;\(dogString) is \(dogString.characters.count) characters long&quot;)
+
+//Dog⁈🐶 is 5 characters long.
+</code></pre><h1 id="Array-and-Dictionary"><a href="#Array-and-Dictionary" class="headerlink" title="Array and Dictionary"></a>Array and Dictionary</h1><pre><code>let names: [String] = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;]    
+
+let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] // Type Inference
+
+let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+</code></pre><h2 id="Modifying-an-Array"><a href="#Modifying-an-Array" class="headerlink" title="Modifying an Array"></a>Modifying an Array</h2><pre><code>var packingList = [&quot;Socks&quot;, &quot;Shoes&quot;]    
+//[&quot;Socks&quot;, &quot;Shoes&quot;]
+
+print(packingList[0])    
+//&quot;Socks&quot;
+
+packingList.append(&quot;Trousers&quot;)    
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Trousers&quot;]
+
+packingList[2] = &quot;Jeans&quot;    
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;]
+
+packingList.append(contentsOf: [&quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;])
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;]
+
+packingList[3...5] = [&quot;Hoodie&quot;, &quot;Scarf&quot;]
+//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Hoodie&quot;, &quot;Scarf&quot;]
+</code></pre><h2 id="Modifying-a-Dictionary"><a href="#Modifying-a-Dictionary" class="headerlink" title="Modifying a Dictionary"></a>Modifying a Dictionary</h2><pre><code>var ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+ages[&quot;Justyn&quot;] = 67 // Adds a new value for &quot;Justyn&quot;
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 67]
+
+ages[&quot;Justyn&quot;] = 68 // Changes the value for &quot;Justyn&quot;
+//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 68]
+</code></pre><h2 id="Retrieving-a-Value-from-a-Dictionary"><a href="#Retrieving-a-Value-from-a-Dictionary" class="headerlink" title="Retrieving a Value from a Dictionary"></a>Retrieving a Value from a Dictionary</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+let possibleAge = ages[&quot;Amy&quot;]    
+</code></pre><h1 id="While-amp-For-In-Loop"><a href="#While-amp-For-In-Loop" class="headerlink" title="While &amp; For-In Loop"></a>While &amp; For-In Loop</h1><h2 id="While-and-Repeat-While"><a href="#While-and-Repeat-While" class="headerlink" title="While and Repeat-While"></a>While and Repeat-While</h2><pre><code>while !endOfFile {
+readLine()
+}
+
+
+repeat {
+performTask()
+} while tasksRemaining &gt; 0
+</code></pre><h2 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h2><pre><code>let dogString = &quot;Dog⁈🐶&quot;
+for character in dogString.characters {
+print(character)
+}
+</code></pre><h2 id="Closed-Ranges"><a href="#Closed-Ranges" class="headerlink" title="Closed Ranges"></a>Closed Ranges</h2><pre><code>for number in 1...5 {
+print(&quot;\(number) times 4 is \(number * 4)&quot;)
+}
+</code></pre><h2 id="Half-Closed-Ranges"><a href="#Half-Closed-Ranges" class="headerlink" title="Half-Closed Ranges"></a>Half-Closed Ranges</h2><pre><code>let results = [7, 52, 9, 33, 6, 12, 86, 4, 22, 18, 3]
+let maxResultCount = 5
+for index in 0..&lt;maxResultCount {
+print(&quot;Result \(index) is \(results[index])&quot;)
+}
+</code></pre><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><pre><code>for name in [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] {
+print(&quot;Hello, \(name)!&quot;)
+}   
+</code></pre><h2 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+for (name, age) in ages {
+print(&quot;\(name) is \(age) years old&quot;)
+}
+</code></pre><h1 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h1><h2 id="If-Statement"><a href="#If-Statement" class="headerlink" title="If Statement"></a>If Statement</h2><pre><code>let age = 32
+if age == 1 {
+print(&quot;Happy first birthday!&quot;)
+} else if age == 40 {
+print(&quot;Happy 40th birthday!&quot;)
+} else {
+print(&quot;Happy plain old boring birthday.&quot;)
+} 
+</code></pre><h2 id="Switch-Statement（需要将所有情况都考虑到）"><a href="#Switch-Statement（需要将所有情况都考虑到）" class="headerlink" title="Switch Statement（需要将所有情况都考虑到）"></a>Switch Statement（需要将所有情况都考虑到）</h2><p>例子1</p>
+<pre><code>let age = 32
+switch age {
+case 1:
+    print(&quot;Happy first birthday!&quot;)
+case 13...19:
+    print(&quot;Happy birthday, teenager!&quot;)
+case let decade where decade % 10 == 0:
+    print(&quot;Happy significant \(decade)th birthday!&quot;)
+default:
+    print(&quot;Happy plain old boring birthday.&quot;)
+}
+</code></pre><p>例子2</p>
+<pre><code>let userName = &quot;bob&quot;
+let passwordIsValid = false
+switch (userName, passwordIsValid) {
+    case (&quot;admin&quot;, true):
+print(&quot;Welcome back, administrator!&quot;)
+    case (&quot;guest&quot;, _):
+print(&quot;Guests are not allowed in this restricted area.&quot;)
+    case (_, let isValid):
+print(isValid ? &quot;Welcome to the restricted area!&quot; : &quot;ACCESS DENIED.&quot;)
+}
+</code></pre><h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><h2 id="Checking-for-an-Optional-Value"><a href="#Checking-for-an-Optional-Value" class="headerlink" title="Checking for an Optional Value"></a>Checking for an Optional Value</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+let possibleAge: Int? = ages[&quot;Daryl&quot;]
+
+if possibleAge == nil {
+print(&quot;Age not found.&quot;)
+}
+</code></pre><h2 id="If-Let-Statement-when-use-optional"><a href="#If-Let-Statement-when-use-optional" class="headerlink" title="If-Let Statement(when use optional)"></a>If-Let Statement(when use optional)</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
+
+if let age = ages[&quot;Amy&quot;] {
+print(&quot;An age of \(age) was found.&quot;)
+}  
+
+//An age of 40 was found.
+</code></pre><h1 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h1><h2 id="Multiple-Parameters"><a href="#Multiple-Parameters" class="headerlink" title="Multiple Parameters"></a>Multiple Parameters</h2><pre><code>func sendMessage(recipient: String, shouting: Bool) {
+var message = &quot;Hey there, \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(recipient: &quot;Morgan&quot;, shouting: false) 
+</code></pre><h2 id="Explicit-Argument-Labels"><a href="#Explicit-Argument-Labels" class="headerlink" title="Explicit Argument Labels"></a>Explicit Argument Labels</h2><pre><code>func sendMessage(to recipient: String, shouting: Bool) {
+var message = &quot;Hey there, \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(to: &quot;Morgan&quot;, shouting: false)
+</code></pre><h2 id="Omitting-Argument-Labels"><a href="#Omitting-Argument-Labels" class="headerlink" title="Omitting Argument Labels"></a>Omitting Argument Labels</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool) {
+var message = &quot;\(message), \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;, shouting: false)
+</code></pre><h2 id="Parameters-with-Default-Values"><a href="#Parameters-with-Default-Values" class="headerlink" title="Parameters with Default Values"></a>Parameters with Default Values</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool = false) {
+var message = &quot;\(message), \(recipient)!&quot;
+if shouting {
+    message = message.uppercased()
+}
+    print(message)
+}
+sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;)
+</code></pre><h2 id="Returning-Optional-Values"><a href="#Returning-Optional-Values" class="headerlink" title="Returning Optional Values"></a>Returning Optional Values</h2><pre><code>func firstString(havingPrefix prefix: String, in strings: [String]) -&gt; String? {
+for string in strings {
+if string.hasPrefix(prefix) {
+return string
+}
+}
+return nil
+}
+</code></pre><p>使用if-let，当使用optional value时</p>
+<pre><code>var guests = [&quot;Jack&quot;, &quot;Kumar&quot;, &quot;Anita&quot;, &quot;Anna&quot;]
+if let guest = firstString(havingPrefix: &quot;A&quot;, in: guests) {
+print(&quot;See you at the party, \(guest)!&quot;)
+} else {
+print(&quot;Invite must be in the mail.&quot;)
+}
+
+//See you at the party, Anita!
+</code></pre><h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><h2 id="Functions-as-Parameters"><a href="#Functions-as-Parameters" class="headerlink" title="Functions as Parameters"></a>Functions as Parameters</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {
+var result: [Int] = []
+for number in numbers {
+if includeNumber(number) {
+    result.append(number)
+}
+}
+    return result
+}
+
+let numbers = [4, 17, 34, 41, 82]
+
+func divisibleByTwo(_ number: Int) -&gt; Bool {
+    return number % 2 == 0
+}
+let evenNumbers = filterInts(numbers, divisibleByTwo)
+
+//let evenNumbers = filterInts([4, 17, 34, 41, 82], divisibleByTwo)
+
+
+print(evenNumbers)
+</code></pre><h2 id="Implicit-Arguments-in-Closures"><a href="#Implicit-Arguments-in-Closures" class="headerlink" title="Implicit Arguments in Closures"></a>Implicit Arguments in Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
+let evenNumbers = filterInts(numbers, { $0 % 2 == 0 })
+print(evenNumbers)
+</code></pre><h2 id="Trailing-Closures"><a href="#Trailing-Closures" class="headerlink" title="Trailing Closures"></a>Trailing Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
+</code></pre><p>方式1.如果传递的闭包是最后一个参数，可以将其大括号移除到小括号后面方便阅读. $0代表第一个参数</p>
+<pre><code>let evenNumbers = filterInts(numbers) { $0 % 2 == 0 }
+print(evenNumbers)
+</code></pre><p>方式2.</p>
+<pre><code>let evenNumbers = filterInts(numbers) { (firstItem) -&gt; Bool in
+    return firstItem % 2==0
+}
+print(evenNumbers)
+</code></pre><p>如果闭包是唯一参数，可以将前面的小括号移除</p>
+<pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+let shortNames = names.filter { name in name.characters.count &lt; 5 }
+</code></pre><h2 id="Filter-and-Map-Methods"><a href="#Filter-and-Map-Methods" class="headerlink" title="Filter and Map Methods"></a>Filter and Map Methods</h2><pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+
+let capitalizedShortNames = names.filter { name in name.characters.count &lt; 5 }
+    .map { name in name.uppercased() }
+
+print(capitalizedShortNames)
+</code></pre><h1 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h1><h2 id="Calling-Generic-Functions"><a href="#Calling-Generic-Functions" class="headerlink" title="Calling Generic Functions"></a>Calling Generic Functions</h2><pre><code>let numbers = [24,45,65,76,84,200,4]
+let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
+
+func filter&lt;Element&gt;(_ source: [Element], _ includeElement: (Element) -&gt; Bool) -&gt; [Element] {
+    var result: [Element] = []
+    for element in source {
+        if includeElement(element) {
+            result.append(element)
+        }
+    }
+    return result
+}
+
+let evenNumbers = filter(numbers) { $0 % 2 == 0 }
+let shortNames = filter(names) { name in name.characters.count &lt; 5 }
+
+print(evenNumbers)
+print(shortNames)
+</code></pre><h2 id="Generic-Types"><a href="#Generic-Types" class="headerlink" title="Generic Types"></a>Generic Types</h2><pre><code>struct NamedArray&lt;Element&gt; {
+    var name: String
+    var items: [Element]
+}
+
+let boardGames: NamedArray&lt;String&gt; = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
+let primes: NamedArray&lt;Int&gt; = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
+
+//Infer types
+//let boardGames: NamedArray = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
+//let primes: NamedArray = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
+
+print(boardGames)
+print(primes)
+</code></pre><h1 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h1><pre><code>struct Rectangle {
+    var width = 12
+    var height = 10
+}
+
+var rectangle = Rectangle()
+rectangle.height = 4
+
+
+struct Rectangle {
+var width: Int
+var height: Int
+}
+var rectangle = Rectangle(width: 4, height: 5)
+</code></pre><h2 id="Computed-Properties"><a href="#Computed-Properties" class="headerlink" title="Computed Properties"></a>Computed Properties</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+    var area: Int {
+        return width * height
+    }
+}
+let rectangle = Rectangle(width: 4, height: 5)
+print(&quot;Width is \(rectangle.width) and area is \(rectangle.area).&quot;)
+</code></pre><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+    func fitsInside(_ other: Rectangle) -&gt; Bool {
+        return (width &lt; other.width) &amp;&amp; (height &lt; other.height)
+    }
+}
+let small = Rectangle(width: 1, height: 2)
+let large = Rectangle(width: 5, height: 5)
+
+print(small.fitsInside(large)) // Returns true
+</code></pre><h2 id="Initializers"><a href="#Initializers" class="headerlink" title="Initializers"></a>Initializers</h2><p>自动生成init method</p>
+<pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+}
+
+var rectangl = Rectangle(width: 4, height: 5)
+</code></pre><p>也可以自己明确的写一个init method</p>
+<pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+
+    init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+}
+var rectangle = Rectangle(width: 4, height: 5)
+</code></pre><h1 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h1><pre><code>class ScoreLogFile {
+    var highScores: [Score]
+    func record(score: Score, for player: Player) -&gt; Void {…}
+}
+</code></pre><h2 id="Subclasses-Can-Add-Functionality"><a href="#Subclasses-Can-Add-Functionality" class="headerlink" title="Subclasses Can Add Functionality"></a>Subclasses Can Add Functionality</h2><pre><code>class Fish {
+    func swim() {
+        print(&quot;I&apos;m swimming.&quot;)
+    }
+}
+
+class FlyingFish: Fish {
+    func fly() {
+        print(&quot;Flying throught the air!&quot;)
+    }
+    // Inherits swim() with no changes.
+}
+</code></pre><h2 id="Subclasses-Can-Override-Functionality"><a href="#Subclasses-Can-Override-Functionality" class="headerlink" title="Subclasses Can Override Functionality"></a>Subclasses Can Override Functionality</h2><p>需要加上override字符，否则会报错</p>
+<pre><code>class Fish {
+    func swim() {
+        print(&quot;I&apos;m swimming.&quot;)
+    }
+}
+
+class ComplainingFish: Fish {
+   override func swim() {
+        print(&quot;Grumble grumble grumble...&quot;)
+        //super.swim()
+    }
+}
+</code></pre><h2 id="Subclass-Initializers"><a href="#Subclass-Initializers" class="headerlink" title="Subclass Initializers"></a>Subclass Initializers</h2><pre><code>class Fish {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class ComplainingFish: Fish {
+    var complaint: String
+    init(name: String, complaint: String) {
+        self.complaint = complaint
+        super.init(name: name)
+    }
+}
+</code></pre><h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><pre><code>enum Alignment {
+    case left, right, center
+}
+
+let textAlignment = Alignment.left
+switch textAlignment {
+case .left:
+    print(&quot;Lean to the left&quot;)
+case .right:
+    print(&quot;Lean to the right&quot;)
+case .center:
+    print(&quot;Stand up straight&quot;)
+}
+</code></pre><h2 id="Enumerations-with-Associated-Values"><a href="#Enumerations-with-Associated-Values" class="headerlink" title="Enumerations with Associated Values"></a>Enumerations with Associated Values</h2><pre><code>enum Alignment {
+
+    case left(padding: Double), right(padding: Double), center
+}
+
+let textAlignment = Alignment.left(padding: 42.7)
+
+switch textAlignment {
+
+case .left(let padding):
+    print(&quot;Left with \(padding) pixels of padding&quot;)
+
+default:
+    print(&quot;this is default&quot;)
+}
+</code></pre><h2 id="Enumerations-with-Raw-Values"><a href="#Enumerations-with-Raw-Values" class="headerlink" title="Enumerations with Raw Values"></a>Enumerations with Raw Values</h2><pre><code>enum ServerAddress: String {
+    case staging = &quot;https://staging.example.com&quot;
+    case production = &quot;https://example.com&quot;
+}
+
+func findPhotos(matchingQuery query: String, from server: ServerAddress) {
+    let serverAddress = server.rawValue
+    …
+}
+
+findPhotos(matchingQuery: &quot;strawberry&quot;, from: .staging)
+</code></pre><h1 id="Protocols-amp-Extension"><a href="#Protocols-amp-Extension" class="headerlink" title="Protocols &amp; Extension"></a>Protocols &amp; Extension</h1><h2 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h2><p>protocol is like blueprint ,like interface or abstract classes</p>
+<pre><code>protocol Player {
+    func takeTurn(on board: Board)
+}
+struct HumanPlayer: Player {
+    func takeTurn(on board: Board) { /* Show move UI and wait */ }
+}
+struct ComputerPlayer: Player {
+    func takeTurn(on board: Board) { /* Pick the best legal move using AI */ }
+}
+</code></pre><h2 id="Extensions-for-additional-functionality"><a href="#Extensions-for-additional-functionality" class="headerlink" title="Extensions for additional functionality"></a>Extensions for additional functionality</h2><pre><code>struct Rectangle {
+    var width: Int
+    var height: Int
+}
+
+extension Rectangle {
+    func fitsInside(_ other: Rectangle) -&gt; Bool {…}
+    var area {…}
+}
+</code></pre><h2 id="Protocols-Extensions"><a href="#Protocols-Extensions" class="headerlink" title="Protocols + Extensions"></a>Protocols + Extensions</h2><pre><code>struct HumanPlayer: Player {…}
+extension HumanPlayer: CustomStringConvertible {
+    var description: String {
+        return &quot;Human player \(name) has a score of \(score)&quot;
+    }
+}
+let player = HumanPlayer(name: &quot;Lynn&quot;, score: 0)
+print(player)
+</code></pre><h1 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h1><pre><code>enum SomeError: ErrorProtocol {
+    case somethingWentWrong, somethingFailed
+}
+func doSomething() throws -&gt; Data {
+    progressBar.visible = true
+    defer { progressBar.visible = false }
+    let data: Data?
+    do {
+        data = try somethingThatMightFail()
+    } catch SomeError.somethingWentWrong {
+        data = nil
+    }
+    guard let result = summarize(data) else { throw SomeError.somethingFailed }
+    return result
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" itemprop="url">
                   WWDC2016学习笔记-Introduction_to_Xcode
                 </a>
@@ -868,187 +1409,6 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/19/Swift进阶/" itemprop="url">
-                  Swift进阶
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T10:06:55+10:00" content="2016-08-19">
-              2016-08-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/19/Swift进阶/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/19/Swift进阶/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Swift与Foundation"><a href="#Swift与Foundation" class="headerlink" title="Swift与Foundation"></a>Swift与Foundation</h1><p>Swift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可</p>
-<pre><code>var str:NSString = &quot;Hello, playground&quot;
-str.substringWithRange(NSRange(location: 0,length: 5))
-
-var array:NSArray = [1,2,3,4]
-array.componentsJoinedByString(&quot;,&quot;)
-</code></pre><ol>
-<li>String - NSString</li>
-<li>Int, Float, Double, Bool 以及其他与数字有关的类型 - NSNumber</li>
-<li>Array - NSArray</li>
-<li>Dictionary - NSDictionary</li>
-<li>Set – NSSet</li>
-<li>AnyObject – NSObject</li>
-</ol>
-<h1 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h1><ol>
-<li>struct 和 enum 定义的类型是值类型，使用 class 定义的为引用类型。</li>
-<li>基本数据类型全是struct</li>
-<li>处理大量数据并且频繁增减元素时, NSMutableArray、NSMutableDictionary和NSMutableSet,其他情况 Array 、Dictionary和Set好一点</li>
-</ol>
-<h1 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h1><ol>
-<li>一个module 代表一个命名空间</li>
-<li>主target就是一个module,创建framework和target就是新的module</li>
-<li>不同module中就算类名相同,也可以通过module名进行区分, 不再需要给类名加上各种奇怪的前缀了</li>
-</ol>
-<h1 id="OC与Swift互相调用"><a href="#OC与Swift互相调用" class="headerlink" title="OC与Swift互相调用"></a>OC与Swift互相调用</h1><p>OC调用Swift</p>
-<pre><code># import &quot;(moduleName)-Swift.h&quot;
-</code></pre><p>Swift调用OC:</p>
-<pre><code>//动态库:
- import moduleName
-
-//静态库:
- moduleName-Bridging-Header.h  中引入OC头文件
-</code></pre><h1 id="使用C指针"><a href="#使用C指针" class="headerlink" title="使用C指针"></a>使用C指针</h1><pre><code>const Type *        UnsafePointer&lt;Type&gt; 
-Type *               UnsafeMutablePointer&lt;Type&gt;
-</code></pre><p>int，bool 和 char 的对应 类型分别是 CInt，CBool 和 CChar.内存需要自己管理</p>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型代码可以让你写出根据自我需求定义、适用于任何类型的，灵活且可重用的函数和类型。它可以让你避免重复的代码，用一种清晰和抽象的方式来表达代码的意图。<br>Swift 的数组和字典类型都是泛型集。 </p>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><pre><code>enum Result&lt;T&gt; {
-    case Success(T)
-    case Failure(NSError)
-}
-</code></pre><ol>
-<li>ErrorType</li>
-<li>同步 API 使用异常机制: do try catch throw throws</li>
-<li>异步 API 使用泛型枚举</li>
-</ol>
-<h1 id="guard"><a href="#guard" class="headerlink" title="guard"></a>guard</h1><p>可以把guard近似的看做是Assert，但是你可以优雅的退出而非崩溃.guard中解包得得到值可以用于后面的代码</p>
-<h1 id="属性观察"><a href="#属性观察" class="headerlink" title="属性观察"></a>属性观察</h1><p>willSet didSet<br>初始化对象并不会触发<br>同样可以设置 NSLayoutConstraint的constant</p>
-<pre><code>@IBOutlet weak var myLabel: UILabel! {
-    didSet {
-        myLabel.textColor = UIColor.purpleColor()
-    }
-}
-</code></pre><h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><p>扩展：就是向一个已有的类、结构体、枚举类型或者协议类型添加新功能。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）</p>
-<h1 id="协议扩展"><a href="#协议扩展" class="headerlink" title="协议扩展"></a>协议扩展</h1><p>在Swift2.0中，可以对协议进行属性或者方法的扩展，和扩展类与结构体类似。这让我们开启了面向协议编程的篇章。</p>
-<h1 id="map-flatMap-filter"><a href="#map-flatMap-filter" class="headerlink" title="map flatMap filter"></a>map flatMap filter</h1><ol>
-<li>map：得到一个由闭包里面的返回值组成的新序列</li>
-<li>flatMap：与map类似的功能,但是会过滤掉返回值里面的nil值</li>
-<li>Filter：得到一个由闭包返回值为true的值组成的新序列</li>
-</ol>
-<h1 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h1><p>单例：表示一个类在系统中只有一个实例对象。通过全局的一个入口点对这个实例对象进行访问。</p>
-<h1 id="framework介绍"><a href="#framework介绍" class="headerlink" title="framework介绍"></a>framework介绍</h1><p>iOS 8后苹果开放了framework,也就是动态库的功能.和静态库在编译时和app代码链接并打进同一个二进制包中不同，动态库可以在运行时手动加载，这样就可以做很多事情</p>
-<ol>
-<li>应用插件化</li>
-<li>软件版本实时模块升级</li>
-<li>共享可执行文件(仅可用于App Extension)</li>
-<li>use_frameworks! CocoaPods生成一个动态框架，其中包含了所有pods而非一个静态库 import moduleName</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1095,7 +1455,7 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">102</span>
+              <span class="site-state-item-count">103</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
