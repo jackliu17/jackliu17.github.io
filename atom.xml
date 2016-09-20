@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-20T07:44:51.000Z</updated>
+  <updated>2016-09-20T10:42:05.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/09/19/WWWDC2016%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0Getting-started-with-swift/"/>
     <id>http://jackliu17.github.io/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/</id>
     <published>2016-09-19T09:08:43.000Z</published>
-    <updated>2016-09-20T07:44:51.000Z</updated>
+    <updated>2016-09-20T10:42:05.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Constants&quot;&gt;&lt;a href=&quot;#Constants&quot; class=&quot;headerlink&quot; title=&quot;Constants&quot;&gt;&lt;/a&gt;Constants&lt;/h1&gt;&lt;p&gt;常量为let,变量为var&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;let language: String = &amp;quot;Swift&amp;quot;
@@ -368,7 +368,16 @@ class ComplainingFish: Fish {
         super.init(name: name)
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Enumerations&quot;&gt;&lt;a href=&quot;#Enumerations&quot; class=&quot;headerlink&quot; title=&quot;Enumerations&quot;&gt;&lt;/a&gt;Enumerations&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;enum Alignment {
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Class-vs-Structure&quot;&gt;&lt;a href=&quot;#Class-vs-Structure&quot; class=&quot;headerlink&quot; title=&quot;Class vs. Structure&quot;&gt;&lt;/a&gt;Class vs. Structure&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;可以复制，不相互影响的object，采用structure。例如两个球员，他们各自的比分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可以方便被多处访问的同一个object,采用class。例如比赛记分册，需要被多个球员同时访问。一旦更新，大家都能看见&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;需要被继承的，采用Class&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gmaj0jp2hge5547/2016092001.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;Enumerations&quot;&gt;&lt;a href=&quot;#Enumerations&quot; class=&quot;headerlink&quot; title=&quot;Enumerations&quot;&gt;&lt;/a&gt;Enumerations&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;enum Alignment {
     case left, right, center
 }
 

@@ -653,7 +653,16 @@ class ComplainingFish: Fish {
         super.init(name: name)
     }
 }
-</code></pre><h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><pre><code>enum Alignment {
+</code></pre><h1 id="Class-vs-Structure"><a href="#Class-vs-Structure" class="headerlink" title="Class vs. Structure"></a>Class vs. Structure</h1><ol>
+<li><p>可以复制，不相互影响的object，采用structure。例如两个球员，他们各自的比分</p>
+</li>
+<li><p>可以方便被多处访问的同一个object,采用class。例如比赛记分册，需要被多个球员同时访问。一旦更新，大家都能看见</p>
+</li>
+<li><p>需要被继承的，采用Class</p>
+<p><img src="https://www.dropbox.com/s/gmaj0jp2hge5547/2016092001.png?dl=1" alt=""></p>
+</li>
+</ol>
+<h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><pre><code>enum Alignment {
     case left, right, center
 }
 
