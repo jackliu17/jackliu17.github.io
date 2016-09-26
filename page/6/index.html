@@ -238,6 +238,141 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/07/iOS项目20-Swift实现PM2-5显示/" itemprop="url">
+                  iOS项目20-Swift实现PM2.5显示
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-07T18:34:45+10:00" content="2016-06-07">
+              2016-06-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/07/iOS项目20-Swift实现PM2-5显示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/07/iOS项目20-Swift实现PM2-5显示/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>func loadPM25Data(){
+
+msgLabel.text = &quot;Loding...&quot;
+
+    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(string:&quot;http://aqicn.org/publishingdata/json&quot;)!), queue: NSOperationQueue.mainQueue()) { (resp:NSURLResponse?, data:NSData?, error:NSError?) in
+
+        do {let jsonArr = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+        let firstData = (jsonArr as! NSArray).objectAtIndex(0)
+        let pollutants = firstData.valueForKey(&quot;pollutants&quot;)
+            let pm2_5 = (pollutants as! NSArray).objectAtIndex(0)
+            let theValue = pm2_5.valueForKey(&quot;value&quot;)
+
+            self.msgLabel.text = &quot;PM2.5:\(theValue!)&quot;
+
+
+        }catch{
+
+        print(&quot;Hello&quot;)
+        }
+    }
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/07/iOS项目19-Swift实现天气预报/" itemprop="url">
                   iOS项目19-Swift实现天气预报
                 </a>
@@ -1459,271 +1594,6 @@ NSLog(@&quot;play football game.&quot;);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/05/iOS设计模式-享元/" itemprop="url">
-                  iOS设计模式-享元
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-05T15:43:19+10:00" content="2016-06-05">
-              2016-06-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/05/iOS设计模式-享元/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-享元/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>交叉的圆环，提取出公共部分进行复用。</p>
-<ol>
-<li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
-<li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1" alt=""></p>
-<pre><code>@interface ViewController ()
-
-@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.flyweightFactory = [NSMutableDictionary dictionary];
-
-[self.flyweightFactory setObject:[Model new] forKey:@&quot;A&quot;];
-
-//方式一: 直接提取
-//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
-//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
-
-
-//方式二: 享元模式(有,则返回，无则创建返回)
-NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
-NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
-}
-
-- (id)ModelWithName:(NSString *)name {
-
-if (self.flyweightFactory[name]==nil) {
-
-    self.flyweightFactory[name] = [Model new];
-
-    return self.flyweightFactory[name];
-
-}else{
-
-    return self.flyweightFactory[name];
-
-}       
-}
-@end
-</code></pre><h1 id="咖啡厅案例"><a href="#咖啡厅案例" class="headerlink" title="咖啡厅案例"></a>咖啡厅案例</h1><p>分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面</p>
-<p>共享同种类的对象,三种对象:</p>
-<ol>
-<li>咖啡店</li>
-<li>咖啡table</li>
-<li>咖啡清单</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1" alt=""></p>
-<p>CoffeeFlavor</p>
-<pre><code>@interface CoffeeFlavor : NSObject
-@property (nonatomic, strong) NSString *flavor;
-@end
-</code></pre><p>Menu (相当于一个池子，将所有的享元咖啡存储在里面)</p>
-<pre><code>@interface Menu : NSObject
-
-//获取指定味道的咖啡（如果没有则创建）
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
-@end
-
-@interface Menu ()
-@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
-@end
-
-@implementation Menu
-
-- (instancetype)init {   
-    self = [super init];  
-    if (self) {  
-        self.flavors = [NSMutableDictionary dictionary];
-    }   
-    return self;
-}
-
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
-    NSParameterAssert(flavor);
-    if ([self.flavors objectForKey:flavor] == nil) {       
-        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
-        coffeeFlavor.flavor        = flavor;     
-        self.flavors[flavor] = coffeeFlavor;
-    }  
-    return [self.flavors objectForKey:flavor];
-}
-@end
-</code></pre><p>CoffeeShop</p>
-<pre><code>@interface CoffeeShop : NSObject
-- (void)takeOrder:(NSString *)flavor table:(int)table;
-- (void)serve;
-@end
-
-@interface CoffeeShop ()
-
-@property (nonatomic, strong) NSMutableDictionary &lt;NSNumber *, CoffeeFlavor *&gt;  *orders;
-@property (nonatomic, strong) Menu *menu;
-
-@end
-
-@implementation CoffeeShop
-
-- (instancetype)init {  
-    self = [super init];
-    if (self) { 
-        self.orders = [NSMutableDictionary dictionary];
-        self.menu   = [[Menu alloc] init];
-    }
-    return self;
-}
-
-- (void)takeOrder:(NSString *)flavor table:(int)table {
-    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
-                    forKey:@(table)];
-}
-
-- (void)serve {
-    NSArray *allKeys = self.orders.allKeys;
-    for (id key in allKeys) {  
-        NSLog(@&quot;[%@] Serving %@ to table %@&quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
-    }
-}
-@end
-</code></pre><p>ViewController</p>
-<pre><code>@interface ViewController ()
-@property (nonatomic, strong) CoffeeShop *coffeeShop;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // 创建咖啡厅
-    self.coffeeShop = [[CoffeeShop alloc] init];
-    // 相同类型的数据公用
-    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:1];
-    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:10];
-    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:6];
-    [self.coffeeShop takeOrder:@&quot;Espresso&quot;   table:9];
-    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:8];
-
-    // 开始服务
-    [self.coffeeShop serve];
-}
-@end
-</code></pre><h1 id="字典属性"><a href="#字典属性" class="headerlink" title="字典属性"></a>字典属性</h1><pre><code>@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1770,7 +1640,7 @@ if (self.flyweightFactory[name]==nil) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">103</span>
+              <span class="site-state-item-count">104</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

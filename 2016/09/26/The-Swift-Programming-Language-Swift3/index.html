@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,swift," />
+  <meta name="keywords" content="swift," />
 
 
 
@@ -61,28 +61,25 @@
 
 
 
-<meta name="description" content="Swift与FoundationSwift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可
-var str:NSString = &amp;quot;Hello, playground&amp;quot;
-str.substringWithRange(NSRange(location: 0,length: 5))
-
-var array:NSArray = [1">
+<meta name="description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+a != nil ? a! : b
+unwraps an optional a if it contains a value, or returns a default value b if a is nil.
+a is always of an optional t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift进阶">
-<meta property="og:url" content="http://jackliu17.github.io/2016/08/19/Swift进阶/index.html">
+<meta property="og:title" content="The-Swift-Programming-Language-Swift3">
+<meta property="og:url" content="http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="Swift与FoundationSwift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可
-var str:NSString = &amp;quot;Hello, playground&amp;quot;
-str.substringWithRange(NSRange(location: 0,length: 5))
-
-var array:NSArray = [1">
-<meta property="og:updated_time" content="2016-08-19T01:22:05.000Z">
+<meta property="og:description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+a != nil ? a! : b
+unwraps an optional a if it contains a value, or returns a default value b if a is nil.
+a is always of an optional t">
+<meta property="og:updated_time" content="2016-09-26T02:30:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift进阶">
-<meta name="twitter:description" content="Swift与FoundationSwift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可
-var str:NSString = &amp;quot;Hello, playground&amp;quot;
-str.substringWithRange(NSRange(location: 0,length: 5))
-
-var array:NSArray = [1">
+<meta name="twitter:title" content="The-Swift-Programming-Language-Swift3">
+<meta name="twitter:description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+a != nil ? a! : b
+unwraps an optional a if it contains a value, or returns a default value b if a is nil.
+a is always of an optional t">
 
 
 
@@ -100,7 +97,7 @@ var array:NSArray = [1">
   };
 </script>
 
-  <title> Swift进阶 | Cowboy Tech </title>
+  <title> The-Swift-Programming-Language-Swift3 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +239,7 @@ var array:NSArray = [1">
             
             
               
-                Swift进阶
+                The-Swift-Programming-Language-Swift3
               
             
           </h1>
@@ -254,8 +251,8 @@ var array:NSArray = [1">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-19T10:06:55+10:00" content="2016-08-19">
-              2016-08-19
+            <time itemprop="dateCreated" datetime="2016-09-26T11:56:08+10:00" content="2016-09-26">
+              2016-09-26
             </time>
           </span>
 
@@ -284,8 +281,8 @@ var array:NSArray = [1">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/19/Swift进阶/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/19/Swift进阶/" itemprop="commentsCount"></span>
+                <a href="/2016/09/26/The-Swift-Programming-Language-Swift3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/26/The-Swift-Programming-Language-Swift3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,74 +304,21 @@ var array:NSArray = [1">
       
 
       
-        <h1 id="Swift与Foundation"><a href="#Swift与Foundation" class="headerlink" title="Swift与Foundation"></a>Swift与Foundation</h1><p>Swift原生类型是对Foudation更好的补充。无缝兼容 Foundation:将变量类型声明为NSXX即可</p>
-<pre><code>var str:NSString = &quot;Hello, playground&quot;
-str.substringWithRange(NSRange(location: 0,length: 5))
+        <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><h2 id="Nil-Coalescing-Operator-a-b"><a href="#Nil-Coalescing-Operator-a-b" class="headerlink" title="Nil-Coalescing Operator (a ?? b)"></a>Nil-Coalescing Operator (a ?? b)</h2><p>shorthand for the code below</p>
+<pre><code>a != nil ? a! : b
+</code></pre><p>unwraps an optional a if it contains a value, or returns a default value b if a is nil.</p>
+<p>a is always of an optional type</p>
+<p>The expression b must match the type that is stored inside a.</p>
+<pre><code>let defaultColorName = &quot;red&quot;
+var userDefinedColorName: String?   // defaults to nil
 
-var array:NSArray = [1,2,3,4]
-array.componentsJoinedByString(&quot;,&quot;)
-</code></pre><ol>
-<li>String - NSString</li>
-<li>Int, Float, Double, Bool 以及其他与数字有关的类型 - NSNumber</li>
-<li>Array - NSArray</li>
-<li>Dictionary - NSDictionary</li>
-<li>Set – NSSet</li>
-<li>AnyObject – NSObject</li>
-</ol>
-<h1 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h1><ol>
-<li>struct 和 enum 定义的类型是值类型，使用 class 定义的为引用类型。</li>
-<li>基本数据类型全是struct</li>
-<li>处理大量数据并且频繁增减元素时, NSMutableArray、NSMutableDictionary和NSMutableSet,其他情况 Array 、Dictionary和Set好一点</li>
-</ol>
-<h1 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h1><ol>
-<li>一个module 代表一个命名空间</li>
-<li>主target就是一个module,创建framework和target就是新的module</li>
-<li>不同module中就算类名相同,也可以通过module名进行区分, 不再需要给类名加上各种奇怪的前缀了</li>
-</ol>
-<h1 id="OC与Swift互相调用"><a href="#OC与Swift互相调用" class="headerlink" title="OC与Swift互相调用"></a>OC与Swift互相调用</h1><p>OC调用Swift</p>
-<pre><code># import &quot;(moduleName)-Swift.h&quot;
-</code></pre><p>Swift调用OC:</p>
-<pre><code>//动态库:
- import moduleName
-
-//静态库:
- moduleName-Bridging-Header.h  中引入OC头文件
-</code></pre><h1 id="使用C指针"><a href="#使用C指针" class="headerlink" title="使用C指针"></a>使用C指针</h1><pre><code>const Type *        UnsafePointer&lt;Type&gt; 
-Type *               UnsafeMutablePointer&lt;Type&gt;
-</code></pre><p>int，bool 和 char 的对应 类型分别是 CInt，CBool 和 CChar.内存需要自己管理</p>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型代码可以让你写出根据自我需求定义、适用于任何类型的，灵活且可重用的函数和类型。它可以让你避免重复的代码，用一种清晰和抽象的方式来表达代码的意图。<br>Swift 的数组和字典类型都是泛型集。 </p>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><pre><code>enum Result&lt;T&gt; {
-    case Success(T)
-    case Failure(NSError)
-}
-</code></pre><ol>
-<li>ErrorType</li>
-<li>同步 API 使用异常机制: do try catch throw throws</li>
-<li>异步 API 使用泛型枚举</li>
-</ol>
-<h1 id="guard"><a href="#guard" class="headerlink" title="guard"></a>guard</h1><p>可以把guard近似的看做是Assert，但是你可以优雅的退出而非崩溃.guard中解包得得到值可以用于后面的代码</p>
-<h1 id="属性观察"><a href="#属性观察" class="headerlink" title="属性观察"></a>属性观察</h1><p>willSet didSet<br>初始化对象并不会触发<br>同样可以设置 NSLayoutConstraint的constant</p>
-<pre><code>@IBOutlet weak var myLabel: UILabel! {
-    didSet {
-        myLabel.textColor = UIColor.purpleColor()
-    }
-}
-</code></pre><h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><p>扩展：就是向一个已有的类、结构体、枚举类型或者协议类型添加新功能。这包括在没有权限获取原始源代码的情况下扩展类型的能力（即逆向建模）</p>
-<h1 id="协议扩展"><a href="#协议扩展" class="headerlink" title="协议扩展"></a>协议扩展</h1><p>在Swift2.0中，可以对协议进行属性或者方法的扩展，和扩展类与结构体类似。这让我们开启了面向协议编程的篇章。</p>
-<h1 id="map-flatMap-filter"><a href="#map-flatMap-filter" class="headerlink" title="map flatMap filter"></a>map flatMap filter</h1><ol>
-<li>map：得到一个由闭包里面的返回值组成的新序列</li>
-<li>flatMap：与map类似的功能,但是会过滤掉返回值里面的nil值</li>
-<li>Filter：得到一个由闭包返回值为true的值组成的新序列</li>
-</ol>
-<h1 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h1><p>单例：表示一个类在系统中只有一个实例对象。通过全局的一个入口点对这个实例对象进行访问。</p>
-<h1 id="framework介绍"><a href="#framework介绍" class="headerlink" title="framework介绍"></a>framework介绍</h1><p>iOS 8后苹果开放了framework,也就是动态库的功能.和静态库在编译时和app代码链接并打进同一个二进制包中不同，动态库可以在运行时手动加载，这样就可以做很多事情</p>
-<ol>
-<li>应用插件化</li>
-<li>软件版本实时模块升级</li>
-<li>共享可执行文件(仅可用于App Extension)</li>
-<li>use_frameworks! CocoaPods生成一个动态框架，其中包含了所有pods而非一个静态库 import moduleName</li>
-</ol>
-
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is nil, so colorNameToUse is set to the default of &quot;red&quot;
+</code></pre><p>When assign Optional type value , that means unwrap first</p>
+<pre><code>userDefinedColorName = &quot;green&quot;
+colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is not nil, so colorNameToUse is set to &quot;green&quot;
+</code></pre>
       
     </div>
 
@@ -388,8 +332,6 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
             <a href="/tags/swift/" rel="tag">#swift</a>
           
         </div>
@@ -399,17 +341,13 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/14/NSAttributedString使用详解/" rel="next" title="NSAttributedString使用详解">
-                <i class="fa fa-chevron-left"></i> NSAttributedString使用详解
+              <a href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" rel="next" title="WWWDC2016学习笔记Getting_started_with_swift">
+                <i class="fa fa-chevron-left"></i> WWWDC2016学习笔记Getting_started_with_swift
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/25/asset目录下的XML文件慎用字符！/" rel="prev" title="Asset目录下的XML文件慎用字符！">
-                Asset目录下的XML文件慎用字符！ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +479,7 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift与Foundation"><span class="nav-number">1.</span> <span class="nav-text">Swift与Foundation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#值类型和引用类型"><span class="nav-number">2.</span> <span class="nav-text">值类型和引用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命名空间"><span class="nav-number">3.</span> <span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OC与Swift互相调用"><span class="nav-number">4.</span> <span class="nav-text">OC与Swift互相调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用C指针"><span class="nav-number">5.</span> <span class="nav-text">使用C指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">6.</span> <span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理"><span class="nav-number">7.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#guard"><span class="nav-number">8.</span> <span class="nav-text">guard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性观察"><span class="nav-number">9.</span> <span class="nav-text">属性观察</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Extensions"><span class="nav-number">10.</span> <span class="nav-text">Extensions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协议扩展"><span class="nav-number">11.</span> <span class="nav-text">协议扩展</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map-flatMap-filter"><span class="nav-number">12.</span> <span class="nav-text">map flatMap filter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单例"><span class="nav-number">13.</span> <span class="nav-text">单例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#framework介绍"><span class="nav-number">14.</span> <span class="nav-text">framework介绍</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic"><span class="nav-number">1.</span> <span class="nav-text">Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nil-Coalescing-Operator-a-b"><span class="nav-number">1.1.</span> <span class="nav-text">Nil-Coalescing Operator (a ?? b)</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -799,9 +737,9 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/08/19/Swift进阶/';
-      var disqus_title = 'Swift进阶';
-      var disqus_url = 'http://jackliu17.github.io/2016/08/19/Swift进阶/';
+      var disqus_identifier = '2016/09/26/The-Swift-Programming-Language-Swift3/';
+      var disqus_title = 'The-Swift-Programming-Language-Swift3';
+      var disqus_url = 'http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

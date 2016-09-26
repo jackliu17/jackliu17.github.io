@@ -238,6 +238,134 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/26/The-Swift-Programming-Language-Swift3/" itemprop="url">
+                  The-Swift-Programming-Language-Swift3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-26T11:56:08+10:00" content="2016-09-26">
+              2016-09-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/26/The-Swift-Programming-Language-Swift3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/26/The-Swift-Programming-Language-Swift3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><h2 id="Nil-Coalescing-Operator-a-b"><a href="#Nil-Coalescing-Operator-a-b" class="headerlink" title="Nil-Coalescing Operator (a ?? b)"></a>Nil-Coalescing Operator (a ?? b)</h2><p>shorthand for the code below</p>
+<pre><code>a != nil ? a! : b
+</code></pre><p>unwraps an optional a if it contains a value, or returns a default value b if a is nil.</p>
+<p>a is always of an optional type</p>
+<p>The expression b must match the type that is stored inside a.</p>
+<pre><code>let defaultColorName = &quot;red&quot;
+var userDefinedColorName: String?   // defaults to nil
+
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is nil, so colorNameToUse is set to the default of &quot;red&quot;
+</code></pre><p>When assign Optional type value , that means unwrap first</p>
+<pre><code>userDefinedColorName = &quot;green&quot;
+colorNameToUse = userDefinedColorName ?? defaultColorName
+// userDefinedColorName is not nil, so colorNameToUse is set to &quot;green&quot;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="url">
                   WWWDC2016学习笔记Getting_started_with_swift
                 </a>
@@ -1303,121 +1431,6 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/25/asset目录下的XML文件慎用字符！/" itemprop="url">
-                  Asset目录下的XML文件慎用字符！
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-25T21:01:14+10:00" content="2016-08-25">
-              2016-08-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/25/asset目录下的XML文件慎用字符！/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/25/asset目录下的XML文件慎用字符！/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>写安卓的代码真心不爽啊! Android Studio的用户体验真心不如Xcode.现在实在忍不住要吐槽一下。今天debug了一个晚上，xml的解析始终报错，网上搜索解决方案许久许久，才发现原来是xml文件中多了个 “&amp;” 字符而已！你不说清楚，我咋知道咧！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1464,7 +1477,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">103</span>
+              <span class="site-state-item-count">104</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
