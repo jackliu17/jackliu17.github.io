@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-26T02:30:51.000Z</updated>
+  <updated>2016-09-26T13:01:17.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/"/>
     <id>http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/</id>
     <published>2016-09-26T01:56:08.000Z</published>
-    <updated>2016-09-26T02:30:51.000Z</updated>
+    <updated>2016-09-26T13:01:17.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h1&gt;&lt;h2 id=&quot;Nil-Coalescing-Operator-a-b&quot;&gt;&lt;a href=&quot;#Nil-Coalescing-Operator-a-b&quot; class=&quot;headerlink&quot; title=&quot;Nil-Coalescing Operator (a ?? b)&quot;&gt;&lt;/a&gt;Nil-Coalescing Operator (a ?? b)&lt;/h2&gt;&lt;p&gt;shorthand for the code below&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;Basic-Operators&quot;&gt;&lt;a href=&quot;#Basic-Operators&quot; class=&quot;headerlink&quot; title=&quot;Basic Operators&quot;&gt;&lt;/a&gt;Basic Operators&lt;/h1&gt;&lt;h2 id=&quot;Nil-Coalescing-Operator-a-b&quot;&gt;&lt;a href=&quot;#Nil-Coalescing-Operator-a-b&quot; class=&quot;headerlink&quot; title=&quot;Nil-Coalescing Operator (a ?? b)&quot;&gt;&lt;/a&gt;Nil-Coalescing Operator (a ?? b)&lt;/h2&gt;&lt;p&gt;shorthand for the code below&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;a != nil ? a! : b
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;unwraps an optional a if it contains a value, or returns a default value b if a is nil.&lt;/p&gt;
 &lt;p&gt;a is always of an optional type&lt;/p&gt;
@@ -36,11 +36,158 @@ var colorNameToUse = userDefinedColorName ?? defaultColorName
 &lt;pre&gt;&lt;code&gt;userDefinedColorName = &amp;quot;green&amp;quot;
 colorNameToUse = userDefinedColorName ?? defaultColorName
 // userDefinedColorName is not nil, so colorNameToUse is set to &amp;quot;green&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;</content>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Closures&quot;&gt;&lt;a href=&quot;#Closures&quot; class=&quot;headerlink&quot; title=&quot;Closures&quot;&gt;&lt;/a&gt;Closures&lt;/h1&gt;&lt;h2 id=&quot;Three-forms&quot;&gt;&lt;a href=&quot;#Three-forms&quot; class=&quot;headerlink&quot; title=&quot;Three forms&quot;&gt;&lt;/a&gt;Three forms&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Global functions are closures that have a name and do not capture any values.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Nested functions are closures that have a name and can capture values from their enclosing function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Closure expressions are unnamed closures written in a lightweight syntax that can capture values from their surrounding context.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Closure-expressions&quot;&gt;&lt;a href=&quot;#Closure-expressions&quot; class=&quot;headerlink&quot; title=&quot;Closure expressions&quot;&gt;&lt;/a&gt;Closure expressions&lt;/h2&gt;&lt;h3 id=&quot;Normal-Syntax-for-the-Sorted-Method&quot;&gt;&lt;a href=&quot;#Normal-Syntax-for-the-Sorted-Method&quot; class=&quot;headerlink&quot; title=&quot;Normal Syntax for the Sorted Method&quot;&gt;&lt;/a&gt;Normal Syntax for the Sorted Method&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;let names = [&amp;quot;Chris&amp;quot;, &amp;quot;Alex&amp;quot;, &amp;quot;Ewa&amp;quot;, &amp;quot;Barry&amp;quot;, &amp;quot;Daniella&amp;quot;]
+func backward(_ s1: String, _ s2: String) -&amp;gt; Bool {
+    return s1 &amp;gt; s2
+}
+var reversedNames = names.sorted(by: backward)
+// reversedNames is equal to [&amp;quot;Ewa&amp;quot;, &amp;quot;Daniella&amp;quot;, &amp;quot;Chris&amp;quot;, &amp;quot;Barry&amp;quot;, &amp;quot;Alex&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Closure-Expression-Syntax-inline&quot;&gt;&lt;a href=&quot;#Closure-Expression-Syntax-inline&quot; class=&quot;headerlink&quot; title=&quot;Closure Expression Syntax -inline&quot;&gt;&lt;/a&gt;Closure Expression Syntax -inline&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;{ (parameters) -&amp;gt; return type in
+    statements
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Can be in-out parameters / Variadic parameters / Tuples&lt;/p&gt;
+&lt;p&gt;Cannot have default values&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted(by: { (s1: String, s2: String) -&amp;gt; Bool in
+    return s1 &amp;gt; s2
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Inferring-Type-From-Context&quot;&gt;&lt;a href=&quot;#Inferring-Type-From-Context&quot; class=&quot;headerlink&quot; title=&quot;Inferring Type From Context&quot;&gt;&lt;/a&gt;Inferring Type From Context&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted(by: { s1, s2 in return s1 &amp;gt; s2 } )
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Implicit-Returns-from-Single-Expression-Closures&quot;&gt;&lt;a href=&quot;#Implicit-Returns-from-Single-Expression-Closures&quot; class=&quot;headerlink&quot; title=&quot;Implicit Returns from Single-Expression Closures&quot;&gt;&lt;/a&gt;Implicit Returns from Single-Expression Closures&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted(by: { s1, s2 in s1 &amp;gt; s2 } )
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Shorthand-Argument-Names&quot;&gt;&lt;a href=&quot;#Shorthand-Argument-Names&quot; class=&quot;headerlink&quot; title=&quot;Shorthand Argument Names&quot;&gt;&lt;/a&gt;Shorthand Argument Names&lt;/h2&gt;&lt;p&gt;Here, $0 and $1 refer to the closure’s first and second String arguments.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted(by: { $0 &amp;gt; $1 } )
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Operator-Methods&quot;&gt;&lt;a href=&quot;#Operator-Methods&quot; class=&quot;headerlink&quot; title=&quot;Operator Methods&quot;&gt;&lt;/a&gt;Operator Methods&lt;/h2&gt;&lt;p&gt;Swift’s String type defines its string-specific implementation of the greater-than operator (&amp;gt;) as a method that has two parameters of type String, and returns a value of type Bool.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted(by: &amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Trailing-Closures&quot;&gt;&lt;a href=&quot;#Trailing-Closures&quot; class=&quot;headerlink&quot; title=&quot;Trailing Closures&quot;&gt;&lt;/a&gt;Trailing Closures&lt;/h2&gt;&lt;p&gt;If you need to pass a closure expression to a function as the function’s final argument and the closure expression is long:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func someFunctionThatTakesAClosure(closure: () -&amp;gt; Void) {
+// function body goes here
+}
+
+// Here&amp;apos;s how you call this function without using a trailing closure:
+
+someFunctionThatTakesAClosure(closure: {
+// closure&amp;apos;s body goes here
+})
+
+// Here&amp;apos;s how you call this function with a trailing closure instead:
+
+someFunctionThatTakesAClosure() {
+// trailing closure&amp;apos;s body goes here
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example1:Sort method&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted() { $0 &amp;gt; $1 }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If a closure expression is provided as the function or method’s only argument, paranthesis can be drop altogether&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;reversedNames = names.sorted { $0 &amp;gt; $1 }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example2: Map method (need to study further)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let digitNames = [
+    0: &amp;quot;Zero&amp;quot;, 1: &amp;quot;One&amp;quot;, 2: &amp;quot;Two&amp;quot;,   3: &amp;quot;Three&amp;quot;, 4: &amp;quot;Four&amp;quot;,
+    5: &amp;quot;Five&amp;quot;, 6: &amp;quot;Six&amp;quot;, 7: &amp;quot;Seven&amp;quot;, 8: &amp;quot;Eight&amp;quot;, 9: &amp;quot;Nine&amp;quot;
+]
+let numbers = [16, 58, 510]
+
+let strings = numbers.map {
+(number) -&amp;gt; String in
+var number = number
+var output = &amp;quot;&amp;quot;
+repeat {
+    output = digitNames[number % 10]! + output
+    number /= 10
+} while number &amp;gt; 0
+return output
+}
+// strings is inferred to be of type [String]
+// its value is [&amp;quot;OneSix&amp;quot;, &amp;quot;FiveEight&amp;quot;, &amp;quot;FiveOneZero&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Capturing-Values&quot;&gt;&lt;a href=&quot;#Capturing-Values&quot; class=&quot;headerlink&quot; title=&quot;Capturing Values&quot;&gt;&lt;/a&gt;Capturing Values&lt;/h2&gt;&lt;p&gt;A closure can capture constants and variables from the surrounding context in which it is defined&lt;/p&gt;
+&lt;p&gt;capturing a reference to &lt;code&gt;runningTotal&lt;/code&gt; and &lt;code&gt;amount&lt;/code&gt; from the surrounding function and using them within its own function body.&lt;/p&gt;
+&lt;p&gt;Modify and stored them even surrounding context disapear&lt;/p&gt;
+&lt;h3 id=&quot;Weapen-generator&quot;&gt;&lt;a href=&quot;#Weapen-generator&quot; class=&quot;headerlink&quot; title=&quot;Weapen generator&quot;&gt;&lt;/a&gt;Weapen generator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;func makeIncrementer (forIncrement amount: Int) -&amp;gt; () -&amp;gt; Int {
+
+    var runningTotal = 0
+
+    func incrementer() -&amp;gt; Int {
+        runningTotal += amount
+        return runningTotal
+    }
+
+    return incrementer
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Generate-Weapen&quot;&gt;&lt;a href=&quot;#Generate-Weapen&quot; class=&quot;headerlink&quot; title=&quot;Generate Weapen&quot;&gt;&lt;/a&gt;Generate Weapen&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;//Store its reference
+let incrementByTen = makeIncrementer(forIncrement: 10)
+let incrementBySeven = makeIncrementer(forIncrement: 7)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Use-weapen&quot;&gt;&lt;a href=&quot;#Use-weapen&quot; class=&quot;headerlink&quot; title=&quot;Use weapen&quot;&gt;&lt;/a&gt;Use weapen&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;incrementByTen()
+// returns a value of 10
+
+incrementByTen()
+// returns a value of 20
+
+incrementByTen()
+// returns a value of 30
+
+incrementBySeven()
+// returns a value of 7
+
+incrementByTen()
+// returns a value of 40
+
+incrementBySeven()
+// returns a value of 14
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Closures-Are-Reference-Types&quot;&gt;&lt;a href=&quot;#Closures-Are-Reference-Types&quot; class=&quot;headerlink&quot; title=&quot;Closures Are Reference Types&quot;&gt;&lt;/a&gt;Closures Are Reference Types&lt;/h2&gt;&lt;p&gt;Whenever you assign a function or a closure to a constant or a variable, you are actually setting that constant or variable to be a reference to the function or closure.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let alsoIncrementByTen = incrementByTen
+alsoIncrementByTen()
+// returns a value of 50
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Escaping-Closures&quot;&gt;&lt;a href=&quot;#Escaping-Closures&quot; class=&quot;headerlink&quot; title=&quot;Escaping Closures&quot;&gt;&lt;/a&gt;Escaping Closures&lt;/h2&gt;&lt;p&gt;Escape:@escaping&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;when the closure is passed as an argument to the function, but is called after the function returns.&lt;/li&gt;
+&lt;li&gt;One way that a closure can escape is by being stored in a variable that is defined outside the function.&lt;/li&gt;
+&lt;li&gt;have to refer to self explicitly within the closure&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;NoEscape: default&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;refer to self implicitly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;var completionHandlers: [() -&amp;gt; Void] = []
+
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -&amp;gt; Void) {
+
+    completionHandlers.append(completionHandler)
+}
+
+func someFunctionWithNonescapingClosure(closure: () -&amp;gt; Void) {
+    closure()
+}
+
+class SomeClass {
+
+    var x = 10
+
+    func doSomething() {
+
+        someFunctionWithEscapingClosure { self.x = 100 }
+
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+
+let instance = SomeClass()
+
+instance.doSomething()
+print(instance.x)
+// Prints &amp;quot;200&amp;quot;
+
+completionHandlers.first?()
+print(instance.x)
+// Prints &amp;quot;100&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Autoclosures&quot;&gt;&lt;a href=&quot;#Autoclosures&quot; class=&quot;headerlink&quot; title=&quot;Autoclosures&quot;&gt;&lt;/a&gt;Autoclosures&lt;/h2&gt;</content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h1&gt;&lt;h2 id=&quot;Nil-Coalescing-Operator-a-b&quot;&gt;&lt;a href=&quot;#Nil-Coalescing
+      &lt;h1 id=&quot;Basic-Operators&quot;&gt;&lt;a href=&quot;#Basic-Operators&quot; class=&quot;headerlink&quot; title=&quot;Basic Operators&quot;&gt;&lt;/a&gt;Basic Operators&lt;/h1&gt;&lt;h2 id=&quot;Nil-Coalescin
     
     </summary>
     

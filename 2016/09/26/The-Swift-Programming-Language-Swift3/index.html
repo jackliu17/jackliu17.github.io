@@ -61,25 +61,25 @@
 
 
 
-<meta name="description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+<meta name="description" content="Basic OperatorsNil-Coalescing Operator (a ?? b)shorthand for the code below
 a != nil ? a! : b
 unwraps an optional a if it contains a value, or returns a default value b if a is nil.
-a is always of an optional t">
+a is always of an">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The-Swift-Programming-Language-Swift3">
 <meta property="og:url" content="http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+<meta property="og:description" content="Basic OperatorsNil-Coalescing Operator (a ?? b)shorthand for the code below
 a != nil ? a! : b
 unwraps an optional a if it contains a value, or returns a default value b if a is nil.
-a is always of an optional t">
-<meta property="og:updated_time" content="2016-09-26T02:30:51.000Z">
+a is always of an">
+<meta property="og:updated_time" content="2016-09-26T13:01:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The-Swift-Programming-Language-Swift3">
-<meta name="twitter:description" content="BasicNil-Coalescing Operator (a ?? b)shorthand for the code below
+<meta name="twitter:description" content="Basic OperatorsNil-Coalescing Operator (a ?? b)shorthand for the code below
 a != nil ? a! : b
 unwraps an optional a if it contains a value, or returns a default value b if a is nil.
-a is always of an optional t">
+a is always of an">
 
 
 
@@ -304,7 +304,7 @@ a is always of an optional t">
       
 
       
-        <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><h2 id="Nil-Coalescing-Operator-a-b"><a href="#Nil-Coalescing-Operator-a-b" class="headerlink" title="Nil-Coalescing Operator (a ?? b)"></a>Nil-Coalescing Operator (a ?? b)</h2><p>shorthand for the code below</p>
+        <h1 id="Basic-Operators"><a href="#Basic-Operators" class="headerlink" title="Basic Operators"></a>Basic Operators</h1><h2 id="Nil-Coalescing-Operator-a-b"><a href="#Nil-Coalescing-Operator-a-b" class="headerlink" title="Nil-Coalescing Operator (a ?? b)"></a>Nil-Coalescing Operator (a ?? b)</h2><p>shorthand for the code below</p>
 <pre><code>a != nil ? a! : b
 </code></pre><p>unwraps an optional a if it contains a value, or returns a default value b if a is nil.</p>
 <p>a is always of an optional type</p>
@@ -318,7 +318,154 @@ var colorNameToUse = userDefinedColorName ?? defaultColorName
 <pre><code>userDefinedColorName = &quot;green&quot;
 colorNameToUse = userDefinedColorName ?? defaultColorName
 // userDefinedColorName is not nil, so colorNameToUse is set to &quot;green&quot;
-</code></pre>
+</code></pre><h1 id="Closures"><a href="#Closures" class="headerlink" title="Closures"></a>Closures</h1><h2 id="Three-forms"><a href="#Three-forms" class="headerlink" title="Three forms"></a>Three forms</h2><ul>
+<li><p>Global functions are closures that have a name and do not capture any values.</p>
+</li>
+<li><p>Nested functions are closures that have a name and can capture values from their enclosing function.</p>
+</li>
+<li><p>Closure expressions are unnamed closures written in a lightweight syntax that can capture values from their surrounding context.</p>
+</li>
+</ul>
+<h2 id="Closure-expressions"><a href="#Closure-expressions" class="headerlink" title="Closure expressions"></a>Closure expressions</h2><h3 id="Normal-Syntax-for-the-Sorted-Method"><a href="#Normal-Syntax-for-the-Sorted-Method" class="headerlink" title="Normal Syntax for the Sorted Method"></a>Normal Syntax for the Sorted Method</h3><pre><code>let names = [&quot;Chris&quot;, &quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]
+func backward(_ s1: String, _ s2: String) -&gt; Bool {
+    return s1 &gt; s2
+}
+var reversedNames = names.sorted(by: backward)
+// reversedNames is equal to [&quot;Ewa&quot;, &quot;Daniella&quot;, &quot;Chris&quot;, &quot;Barry&quot;, &quot;Alex&quot;]
+</code></pre><h3 id="Closure-Expression-Syntax-inline"><a href="#Closure-Expression-Syntax-inline" class="headerlink" title="Closure Expression Syntax -inline"></a>Closure Expression Syntax -inline</h3><pre><code>{ (parameters) -&gt; return type in
+    statements
+}
+</code></pre><p>Can be in-out parameters / Variadic parameters / Tuples</p>
+<p>Cannot have default values</p>
+<pre><code>reversedNames = names.sorted(by: { (s1: String, s2: String) -&gt; Bool in
+    return s1 &gt; s2
+})
+</code></pre><h2 id="Inferring-Type-From-Context"><a href="#Inferring-Type-From-Context" class="headerlink" title="Inferring Type From Context"></a>Inferring Type From Context</h2><pre><code>reversedNames = names.sorted(by: { s1, s2 in return s1 &gt; s2 } )
+</code></pre><h2 id="Implicit-Returns-from-Single-Expression-Closures"><a href="#Implicit-Returns-from-Single-Expression-Closures" class="headerlink" title="Implicit Returns from Single-Expression Closures"></a>Implicit Returns from Single-Expression Closures</h2><pre><code>reversedNames = names.sorted(by: { s1, s2 in s1 &gt; s2 } )
+</code></pre><h2 id="Shorthand-Argument-Names"><a href="#Shorthand-Argument-Names" class="headerlink" title="Shorthand Argument Names"></a>Shorthand Argument Names</h2><p>Here, $0 and $1 refer to the closure’s first and second String arguments.</p>
+<pre><code>reversedNames = names.sorted(by: { $0 &gt; $1 } )
+</code></pre><h2 id="Operator-Methods"><a href="#Operator-Methods" class="headerlink" title="Operator Methods"></a>Operator Methods</h2><p>Swift’s String type defines its string-specific implementation of the greater-than operator (&gt;) as a method that has two parameters of type String, and returns a value of type Bool.</p>
+<pre><code>reversedNames = names.sorted(by: &gt;)
+</code></pre><h2 id="Trailing-Closures"><a href="#Trailing-Closures" class="headerlink" title="Trailing Closures"></a>Trailing Closures</h2><p>If you need to pass a closure expression to a function as the function’s final argument and the closure expression is long:</p>
+<pre><code>func someFunctionThatTakesAClosure(closure: () -&gt; Void) {
+// function body goes here
+}
+
+// Here&apos;s how you call this function without using a trailing closure:
+
+someFunctionThatTakesAClosure(closure: {
+// closure&apos;s body goes here
+})
+
+// Here&apos;s how you call this function with a trailing closure instead:
+
+someFunctionThatTakesAClosure() {
+// trailing closure&apos;s body goes here
+}
+</code></pre><p>Example1:Sort method</p>
+<pre><code>reversedNames = names.sorted() { $0 &gt; $1 }
+</code></pre><p>If a closure expression is provided as the function or method’s only argument, paranthesis can be drop altogether</p>
+<pre><code>reversedNames = names.sorted { $0 &gt; $1 }
+</code></pre><p>Example2: Map method (need to study further)</p>
+<pre><code>let digitNames = [
+    0: &quot;Zero&quot;, 1: &quot;One&quot;, 2: &quot;Two&quot;,   3: &quot;Three&quot;, 4: &quot;Four&quot;,
+    5: &quot;Five&quot;, 6: &quot;Six&quot;, 7: &quot;Seven&quot;, 8: &quot;Eight&quot;, 9: &quot;Nine&quot;
+]
+let numbers = [16, 58, 510]
+
+let strings = numbers.map {
+(number) -&gt; String in
+var number = number
+var output = &quot;&quot;
+repeat {
+    output = digitNames[number % 10]! + output
+    number /= 10
+} while number &gt; 0
+return output
+}
+// strings is inferred to be of type [String]
+// its value is [&quot;OneSix&quot;, &quot;FiveEight&quot;, &quot;FiveOneZero&quot;]
+</code></pre><h2 id="Capturing-Values"><a href="#Capturing-Values" class="headerlink" title="Capturing Values"></a>Capturing Values</h2><p>A closure can capture constants and variables from the surrounding context in which it is defined</p>
+<p>capturing a reference to <code>runningTotal</code> and <code>amount</code> from the surrounding function and using them within its own function body.</p>
+<p>Modify and stored them even surrounding context disapear</p>
+<h3 id="Weapen-generator"><a href="#Weapen-generator" class="headerlink" title="Weapen generator"></a>Weapen generator</h3><pre><code>func makeIncrementer (forIncrement amount: Int) -&gt; () -&gt; Int {
+
+    var runningTotal = 0
+
+    func incrementer() -&gt; Int {
+        runningTotal += amount
+        return runningTotal
+    }
+
+    return incrementer
+}
+</code></pre><h3 id="Generate-Weapen"><a href="#Generate-Weapen" class="headerlink" title="Generate Weapen"></a>Generate Weapen</h3><pre><code>//Store its reference
+let incrementByTen = makeIncrementer(forIncrement: 10)
+let incrementBySeven = makeIncrementer(forIncrement: 7)
+</code></pre><h3 id="Use-weapen"><a href="#Use-weapen" class="headerlink" title="Use weapen"></a>Use weapen</h3><pre><code>incrementByTen()
+// returns a value of 10
+
+incrementByTen()
+// returns a value of 20
+
+incrementByTen()
+// returns a value of 30
+
+incrementBySeven()
+// returns a value of 7
+
+incrementByTen()
+// returns a value of 40
+
+incrementBySeven()
+// returns a value of 14
+</code></pre><h2 id="Closures-Are-Reference-Types"><a href="#Closures-Are-Reference-Types" class="headerlink" title="Closures Are Reference Types"></a>Closures Are Reference Types</h2><p>Whenever you assign a function or a closure to a constant or a variable, you are actually setting that constant or variable to be a reference to the function or closure.</p>
+<pre><code>let alsoIncrementByTen = incrementByTen
+alsoIncrementByTen()
+// returns a value of 50
+</code></pre><h2 id="Escaping-Closures"><a href="#Escaping-Closures" class="headerlink" title="Escaping Closures"></a>Escaping Closures</h2><p>Escape:@escaping</p>
+<ol>
+<li>when the closure is passed as an argument to the function, but is called after the function returns.</li>
+<li>One way that a closure can escape is by being stored in a variable that is defined outside the function.</li>
+<li>have to refer to self explicitly within the closure</li>
+</ol>
+<p>NoEscape: default</p>
+<ul>
+<li>refer to self implicitly.</li>
+</ul>
+<pre><code>var completionHandlers: [() -&gt; Void] = []
+
+func someFunctionWithEscapingClosure(completionHandler: @escaping () -&gt; Void) {
+
+    completionHandlers.append(completionHandler)
+}
+
+func someFunctionWithNonescapingClosure(closure: () -&gt; Void) {
+    closure()
+}
+
+class SomeClass {
+
+    var x = 10
+
+    func doSomething() {
+
+        someFunctionWithEscapingClosure { self.x = 100 }
+
+        someFunctionWithNonescapingClosure { x = 200 }
+    }
+}
+
+let instance = SomeClass()
+
+instance.doSomething()
+print(instance.x)
+// Prints &quot;200&quot;
+
+completionHandlers.first?()
+print(instance.x)
+// Prints &quot;100&quot;
+</code></pre><h2 id="Autoclosures"><a href="#Autoclosures" class="headerlink" title="Autoclosures"></a>Autoclosures</h2>
       
     </div>
 
@@ -479,7 +626,7 @@ colorNameToUse = userDefinedColorName ?? defaultColorName
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic"><span class="nav-number">1.</span> <span class="nav-text">Basic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nil-Coalescing-Operator-a-b"><span class="nav-number">1.1.</span> <span class="nav-text">Nil-Coalescing Operator (a ?? b)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Operators"><span class="nav-number">1.</span> <span class="nav-text">Basic Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nil-Coalescing-Operator-a-b"><span class="nav-number">1.1.</span> <span class="nav-text">Nil-Coalescing Operator (a ?? b)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Closures"><span class="nav-number">2.</span> <span class="nav-text">Closures</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Three-forms"><span class="nav-number">2.1.</span> <span class="nav-text">Three forms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-expressions"><span class="nav-number">2.2.</span> <span class="nav-text">Closure expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normal-Syntax-for-the-Sorted-Method"><span class="nav-number">2.2.1.</span> <span class="nav-text">Normal Syntax for the Sorted Method</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure-Expression-Syntax-inline"><span class="nav-number">2.2.2.</span> <span class="nav-text">Closure Expression Syntax -inline</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inferring-Type-From-Context"><span class="nav-number">2.3.</span> <span class="nav-text">Inferring Type From Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicit-Returns-from-Single-Expression-Closures"><span class="nav-number">2.4.</span> <span class="nav-text">Implicit Returns from Single-Expression Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shorthand-Argument-Names"><span class="nav-number">2.5.</span> <span class="nav-text">Shorthand Argument Names</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator-Methods"><span class="nav-number">2.6.</span> <span class="nav-text">Operator Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trailing-Closures"><span class="nav-number">2.7.</span> <span class="nav-text">Trailing Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Capturing-Values"><span class="nav-number">2.8.</span> <span class="nav-text">Capturing Values</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weapen-generator"><span class="nav-number">2.8.1.</span> <span class="nav-text">Weapen generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-Weapen"><span class="nav-number">2.8.2.</span> <span class="nav-text">Generate Weapen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-weapen"><span class="nav-number">2.8.3.</span> <span class="nav-text">Use weapen</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closures-Are-Reference-Types"><span class="nav-number">2.9.</span> <span class="nav-text">Closures Are Reference Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Escaping-Closures"><span class="nav-number">2.10.</span> <span class="nav-text">Escaping Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autoclosures"><span class="nav-number">2.11.</span> <span class="nav-text">Autoclosures</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
