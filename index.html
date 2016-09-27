@@ -468,7 +468,52 @@ print(instance.x)
 completionHandlers.first?()
 print(instance.x)
 // Prints &quot;100&quot;
-</code></pre><h2 id="Autoclosures"><a href="#Autoclosures" class="headerlink" title="Autoclosures"></a>Autoclosures</h2>
+</code></pre><h2 id="Autoclosures"><a href="#Autoclosures" class="headerlink" title="Autoclosures"></a>Autoclosures</h2><p>An autoclosure is a closure that is automatically created to wrap an expression that’s being passed as an argument to a function.</p>
+<p>An autoclosure lets you delay evaluation, because the code inside isn’t run until you call the closure.</p>
+<p>Delays evaluation - <code>customersInLine</code> evaluation after <code>customerProvider</code> call</p>
+<pre><code>var customersInLine = [&quot;Chris&quot;, &quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]
+print(customersInLine.count)
+// Prints &quot;5&quot;
+
+let customerProvider = { customersInLine.remove(at: 0) }
+print(customersInLine.count)
+// Prints &quot;5&quot;
+
+print(&quot;Now serving \(customerProvider())!&quot;)
+// Prints &quot;Now serving Chris!&quot;
+print(customersInLine.count)
+// Prints &quot;4&quot;
+</code></pre><p>Delays evaluation - <code>customersInLine</code> evaluation after <code>serve</code> call</p>
+<pre><code>// customersInLine is [&quot;Alex&quot;, &quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]
+func serve(customer customerProvider: () -&gt; String) {
+    print(&quot;Now serving \(customerProvider())!&quot;)
+}
+serve(customer: { customersInLine.remove(at: 0) } )
+// Prints &quot;Now serving Alex!&quot;
+</code></pre><p>@autoclosure omit brace when function as argument</p>
+<pre><code>// customersInLine is [&quot;Ewa&quot;, &quot;Barry&quot;, &quot;Daniella&quot;]
+func serve(customer customerProvider: @autoclosure () -&gt; String) {
+    print(&quot;Now serving \(customerProvider())!&quot;)
+}
+serve(customer: customersInLine.remove(at: 0))
+// Prints &quot;Now serving Ewa!&quot;
+</code></pre><p>@autoclosure + @escaping</p>
+<pre><code>// customersInLine is [&quot;Barry&quot;, &quot;Daniella&quot;]
+var customerProviders: [() -&gt; String] = []
+func collectCustomerProviders(_ customerProvider: @autoclosure @escaping () -&gt; String) {
+    customerProviders.append(customerProvider)
+}
+collectCustomerProviders(customersInLine.remove(at: 0))
+collectCustomerProviders(customersInLine.remove(at: 0))
+
+print(&quot;Collected \(customerProviders.count) closures.&quot;)
+// Prints &quot;Collected 2 closures.&quot;
+for customerProvider in customerProviders {
+    print(&quot;Now serving \(customerProvider())!&quot;)
+}
+// Prints &quot;Now serving Barry!&quot;
+// Prints &quot;Now serving Daniella!&quot;
+</code></pre>
           
         
       
