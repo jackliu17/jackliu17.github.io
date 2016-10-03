@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-09-27T04:31:51.000Z</updated>
+  <updated>2016-10-03T09:49:17.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,340 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Grand_Central_Dispatch</title>
+    <link href="http://jackliu17.github.io/2016/09/28/Grand-Central-Dispatch/"/>
+    <id>http://jackliu17.github.io/2016/09/28/Grand-Central-Dispatch/</id>
+    <published>2016-09-28T07:02:59.000Z</published>
+    <updated>2016-10-03T09:49:17.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Closure&quot;&gt;&lt;a href=&quot;#Closure&quot; class=&quot;headerlink&quot; title=&quot;Closure&quot;&gt;&lt;/a&gt;Closure&lt;/h1&gt;&lt;h2 id=&quot;Closure-is-a-first-class-citizen-of-the-language&quot;&gt;&lt;a href=&quot;#Closure-is-a-first-class-citizen-of-the-language&quot; class=&quot;headerlink&quot; title=&quot;Closure is a first class citizen of the language&quot;&gt;&lt;/a&gt;Closure is a first class citizen of the language&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;assign them to variables or constants,&lt;/li&gt;
+&lt;li&gt;put then inside arrays or dictionaries&lt;/li&gt;
+&lt;li&gt;return them as the result of a function or closure&lt;/li&gt;
+&lt;li&gt;and even receive them as parameters of another function or closure!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;let f = { (x:Int) -&amp;gt; Int in
+    return x + 42
+}
+
+f(89)
+
+let closures = [
+    f,                                  // our previous closure
+    {(x:Int) -&amp;gt; Int in return x * 2},   // a new Int -&amp;gt; Int closure
+    {x in return x - 8},                // no need for the type of the closure!
+    {(x:Int) in x * x},                 // no need for return if only one line
+    {$0 * 42}                           // access parameter by position instead of name
+]
+
+for fn in closures {
+fn(42)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Functions-and-closures-are-the-same-thing&quot;&gt;&lt;a href=&quot;#Functions-and-closures-are-the-same-thing&quot; class=&quot;headerlink&quot; title=&quot;Functions and closures are the same thing&quot;&gt;&lt;/a&gt;Functions and closures are the same thing&lt;/h2&gt;&lt;p&gt;Actually, when the compiler finds a function declaration such as foo, it will take the following steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a closure that takes an Int and returns 42 plus that Int.&lt;/li&gt;
+&lt;li&gt;Then, assigns this closure to a constant called foo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;func foo(x:Int) -&amp;gt; Int {
+    return 42 + x
+}
+
+let bar = { (x: Int) -&amp;gt; Int in
+    return 42 + x
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;add a few functions to an array and then call them&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func larry(x:Int) -&amp;gt; Int {
+    return x * x
+}
+
+func curly(n:Int) -&amp;gt; Int {
+    return n * (n - 1)
+}
+
+func moe(n:Int) -&amp;gt; Int {
+    return n * (n - 1) * (n - 2)
+}
+
+var stooges = [larry, curly, moe]
+
+for stooge in stooges {
+    stooge(42)
+}
+
+stooges.append(bar)
+for each in stooges {
+    each(42)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Typealias-amp-Capture-value&quot;&gt;&lt;a href=&quot;#Typealias-amp-Capture-value&quot; class=&quot;headerlink&quot; title=&quot;Typealias &amp;amp; Capture value&quot;&gt;&lt;/a&gt;Typealias &amp;amp; Capture value&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;typealias IntMaker = (Void) -&amp;gt; Int
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Functions and closure capture variables defined before the closure or function is defined.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;func makeCounter() -&amp;gt; IntMaker {
+    var n = 0
+
+    // Functions within functions?
+    // Yes we can!
+    func adder() -&amp;gt; Integer {
+        n = n + 1
+        return n
+    }
+    return adder
+}
+
+let counter1 = makeCounter()
+let counter2 = makeCounter()
+
+counter1() //1
+counter1() //2
+counter1() //3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;each closure has its own copy of the environment (the values of all variables that were captured).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;counter2() //1
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD&quot;&gt;&lt;a href=&quot;#GCD&quot; class=&quot;headerlink&quot; title=&quot;GCD&quot;&gt;&lt;/a&gt;GCD&lt;/h1&gt;&lt;h2 id=&quot;Hiding-threads&quot;&gt;&lt;a href=&quot;#Hiding-threads&quot; class=&quot;headerlink&quot; title=&quot;Hiding threads&quot;&gt;&lt;/a&gt;Hiding threads&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Threads are inherently complex and dangerous&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GCD makes asynchronous programming easier and safer by hiding threads within the concept of a queue of closure from the developer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Blades are inherently dangerous ,add handles to make for safer knives&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Types-of-queues&quot;&gt;&lt;a href=&quot;#Types-of-queues&quot; class=&quot;headerlink&quot; title=&quot;Types of queues&quot;&gt;&lt;/a&gt;Types of queues&lt;/h2&gt;&lt;h3 id=&quot;Serial-or-synchronous-queue-predictable&quot;&gt;&lt;a href=&quot;#Serial-or-synchronous-queue-predictable&quot; class=&quot;headerlink&quot; title=&quot;Serial or synchronous queue - predictable&quot;&gt;&lt;/a&gt;Serial or synchronous queue - predictable&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Every closure gets to run when it reaches the end of the queue&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The order in which closures run is predictable&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Still have concurrency ,each queue will run on its own threads and will not block each other&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Concurrent-or-Asynchronous-queue-unpredictable&quot;&gt;&lt;a href=&quot;#Concurrent-or-Asynchronous-queue-unpredictable&quot; class=&quot;headerlink&quot; title=&quot;Concurrent or Asynchronous queue - unpredictable&quot;&gt;&lt;/a&gt;Concurrent or Asynchronous queue - unpredictable&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Have several threads pickup closures at any point of the queue for running&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The order in which closures run is not predictable&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Main-queue&quot;&gt;&lt;a href=&quot;#Main-queue&quot; class=&quot;headerlink&quot; title=&quot;Main queue&quot;&gt;&lt;/a&gt;Main queue&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;handles the UI of your app&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You should never run code that blocks on this queue&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Main-function-in-GCD&quot;&gt;&lt;a href=&quot;#Main-function-in-GCD&quot; class=&quot;headerlink&quot; title=&quot;Main function in GCD&quot;&gt;&lt;/a&gt;Main function in GCD&lt;/h2&gt;&lt;h3 id=&quot;create-a-queue&quot;&gt;&lt;a href=&quot;#create-a-queue&quot; class=&quot;headerlink&quot; title=&quot;create a queue&quot;&gt;&lt;/a&gt;create a queue&lt;/h3&gt;&lt;p&gt;Represents a queue&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ceate a queue from scratch,To specify serial, just pass dispatch_queue_serial or nil&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_create(name,serial/concurrent)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Global-queues&quot;&gt;&lt;a href=&quot;#Global-queues&quot; class=&quot;headerlink&quot; title=&quot;Global queues&quot;&gt;&lt;/a&gt;Global queues&lt;/h3&gt;&lt;p&gt;Use existing one queue instead of creating new queues&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;QOS_CLASS_USER_INTERACTIVE //top priority 
+
+QOS_CLASS_USER_INITIATED   //regular priority 
+
+QOS_CLASS_BACKGROUND    //low
+
+QOS_CLASS_UTILITY //lowes 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;access those global queues with function &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_get_global_queue
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Main-queue-1&quot;&gt;&lt;a href=&quot;#Main-queue-1&quot; class=&quot;headerlink&quot; title=&quot;Main queue&quot;&gt;&lt;/a&gt;Main queue&lt;/h3&gt;&lt;p&gt;get the main queue&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_get_main_queue()
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Add-a-closure-to-a-queue&quot;&gt;&lt;a href=&quot;#Add-a-closure-to-a-queue&quot; class=&quot;headerlink&quot; title=&quot;Add a closure to a queue&quot;&gt;&lt;/a&gt;Add a closure to a queue&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;the code inside the queue will run sometime in the immediate future&lt;/li&gt;
+&lt;li&gt;the exact time will depend on how many closures already waiting in the queue and the priority of the queue &lt;/li&gt;
+&lt;li&gt;dispatch_async adds your closures to each queue and return imediately&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Add a closure to a queue&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_async ()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example 1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let q = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE,0)
+
+//Imediately return and add the block to the q ,then run in the near future 
+dispatch_async(q){
+    () -&amp;gt; Void in
+    print(&amp;quot;tic&amp;quot;)
+}
+
+print (&amp;quot;tac&amp;quot;) //this run first
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Example 2&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//cannot predict order the code run below of each queue
+
+let q1 = dispatch_queue_create(&amp;quot;queue1&amp;quot;,nil)
+let q2 = dispatch_queue_create(&amp;quot;queue1&amp;quot;,nil)
+let q3 = dispatch_queue_create(&amp;quot;queue1&amp;quot;,nil)
+
+dispatch_async(q1){ ()-&amp;gt;Void in
+print(1)
+}
+
+dispatch_async(q2){ ()-&amp;gt;Void in
+print(2)
+}
+
+dispatch_async(q3){ ()-&amp;gt;Void in
+print(3)
+}
+
+print(&amp;quot;end&amp;quot;) //run first
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;UIKIT-amp-CoreData&quot;&gt;&lt;a href=&quot;#UIKIT-amp-CoreData&quot; class=&quot;headerlink&quot; title=&quot;UIKIT &amp;amp; CoreData&quot;&gt;&lt;/a&gt;UIKIT &amp;amp; CoreData&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;when the framework can run in the background it is said to be thread safe &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;cannot run anything from UIKit in the background&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;//maybe crash , uikit should run in Main queue
+
+let downloadQueue = dispatch_queue_create(&amp;quot;download&amp;quot;,nil)
+
+dispatch_async(downloadQueue){()-&amp;gt; Void in 
+
+let imgData = NSData (contentsOfURL:url!)
+
+let image = UIImage(data:imgData!)
+
+self.photoViewimage = image
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Synchronous-download&quot;&gt;&lt;a href=&quot;#Synchronous-download&quot; class=&quot;headerlink&quot; title=&quot;Synchronous download&quot;&gt;&lt;/a&gt;Synchronous download&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;// Get the URL for the image
+let url = NSURL(string: BigImages.seaLion.rawValue)
+
+// Obtain the NSData with the image
+let imgData = NSData(contentsOfURL: url!)
+
+// Turn it into a UIImage
+let image = UIImage(data: imgData!)
+
+// Display it
+photoView.image = image
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Refactor code by if-let &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if let url = NSURL(string: BigImages.seaLion.rawValue),
+    let imgData = NSData(contentsOfURL: url),
+    let image = UIImage(data: imgData){
+
+    // Display it
+    photoView.image = image
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Asynchronous-download&quot;&gt;&lt;a href=&quot;#Asynchronous-download&quot; class=&quot;headerlink&quot; title=&quot;Asynchronous download&quot;&gt;&lt;/a&gt;Asynchronous download&lt;/h2&gt;&lt;p&gt;Not all of UIkit is thread and save.There are a few exceptions, such as UIImage&lt;br&gt;All the visual stuff, the views are unsaved&lt;br&gt;if name end view, it must be main queue &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@IBAction func simpleAsynchronousDownload(sender: UIBarButtonItem) {
+
+        let url = NSURL(string: BigImages.shark.rawValue)
+
+        // create a queue
+        let downloadQueue = dispatch_queue_create(&amp;quot;download&amp;quot;, nil)
+
+        // add a closure that encapsulates the blocking operation
+        // run it asynchronously: some time in the near future
+
+        dispatch_async(downloadQueue) { () -&amp;gt; Void in
+
+            // Obtain the NSData with the image
+            let imgData = NSData(contentsOfURL: url!)
+
+            // Turn it into a UIImage
+            let image = UIImage(data: imgData!)
+
+            // Run the code that updates the UI in the main queue!
+            dispatch_async(dispatch_get_main_queue(), { () -&amp;gt; Void in
+                // Display it
+                self.photoView.image = image
+            })
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Completion-Closure&quot;&gt;&lt;a href=&quot;#Completion-Closure&quot; class=&quot;headerlink&quot; title=&quot;Completion Closure&quot;&gt;&lt;/a&gt;Completion Closure&lt;/h2&gt;&lt;p&gt;It is a good practice to make sure that always all your completion handlers run in the main queue&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    func withBigImage(completionHandler handler: (image: UIImage) -&amp;gt; Void){
+
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -&amp;gt; Void in
+
+        // get the url
+        // get the NSData
+        // turn it into a UIImage
+
+        if let url = NSURL(string: BigImages.whale.rawValue), let imgData = NSData(contentsOfURL: url), let img = UIImage(data: imgData) {
+
+            // run the completion block
+            // always in the main queue, just in case!
+
+            dispatch_async(dispatch_get_main_queue(), { () -&amp;gt; Void in
+                handler(image: img)
+            })
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Async-amp-Sync&quot;&gt;&lt;a href=&quot;#Async-amp-Sync&quot; class=&quot;headerlink&quot; title=&quot;Async &amp;amp; Sync&quot;&gt;&lt;/a&gt;Async &amp;amp; Sync&lt;/h2&gt;&lt;p&gt;doesn’t wait for the closure to finish ,and moves on Always use until you know very well what you are doing&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_async()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;won’t return immediately.waits until the closure is done ,could easily get stalled!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_sync()
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Closure&quot;&gt;&lt;a href=&quot;#Closure&quot; class=&quot;headerlink&quot; title=&quot;Closure&quot;&gt;&lt;/a&gt;Closure&lt;/h1&gt;&lt;h2 id=&quot;Closure-is-a-first-class-citizen-of-the-langu
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+      <category term="udacity" scheme="http://jackliu17.github.io/tags/udacity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grand_Central_Dispatch_Tutorial_for_Swift1</title>
+    <link href="http://jackliu17.github.io/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/"/>
+    <id>http://jackliu17.github.io/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/</id>
+    <published>2016-09-28T05:34:43.000Z</published>
+    <updated>2016-09-28T10:35:18.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Term&quot;&gt;&lt;a href=&quot;#Term&quot; class=&quot;headerlink&quot; title=&quot;Term&quot;&gt;&lt;/a&gt;Term&lt;/h1&gt;&lt;p&gt;GCD is the marketing name for libdispatch&lt;/p&gt;
+&lt;h2 id=&quot;Serial-vs-Concurrent&quot;&gt;&lt;a href=&quot;#Serial-vs-Concurrent&quot; class=&quot;headerlink&quot; title=&quot;Serial vs. Concurrent&quot;&gt;&lt;/a&gt;Serial vs. Concurrent&lt;/h2&gt;&lt;p&gt;These terms describe when tasks are executed with respect to each other.&lt;/p&gt;
+&lt;p&gt;Tasks executed serially are always executed one at a time.&lt;/p&gt;
+&lt;p&gt;Tasks executed concurrently might be executed at the same time.&lt;/p&gt;
+&lt;h2 id=&quot;Synchronous-vs-Asynchronous-同步和异步&quot;&gt;&lt;a href=&quot;#Synchronous-vs-Asynchronous-同步和异步&quot; class=&quot;headerlink&quot; title=&quot;Synchronous vs. Asynchronous(同步和异步)&quot;&gt;&lt;/a&gt;Synchronous vs. Asynchronous(同步和异步)&lt;/h2&gt;&lt;p&gt;These terms describe when a function will return control to the caller, and how much work will have been done by that point.&lt;/p&gt;
+&lt;p&gt;A synchronous function returns only after the completion of a task that it orders.&lt;/p&gt;
+&lt;p&gt;An asynchronous function, on the other hand, returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.&lt;/p&gt;
+&lt;h2 id=&quot;Critical-Section&quot;&gt;&lt;a href=&quot;#Critical-Section&quot; class=&quot;headerlink&quot; title=&quot;Critical Section&quot;&gt;&lt;/a&gt;Critical Section&lt;/h2&gt;&lt;p&gt;This is a piece of code that must not be executed concurrently, which might manipulates a shared resource&lt;/p&gt;
+&lt;h2 id=&quot;Race-Condition&quot;&gt;&lt;a href=&quot;#Race-Condition&quot; class=&quot;headerlink&quot; title=&quot;Race Condition&quot;&gt;&lt;/a&gt;Race Condition&lt;/h2&gt;&lt;h2 id=&quot;Deadlock&quot;&gt;&lt;a href=&quot;#Deadlock&quot; class=&quot;headerlink&quot; title=&quot;Deadlock&quot;&gt;&lt;/a&gt;Deadlock&lt;/h2&gt;&lt;p&gt;两个thread互相等待对方完成，陷入僵局&lt;/p&gt;
+&lt;h2 id=&quot;Thread-Safe&quot;&gt;&lt;a href=&quot;#Thread-Safe&quot; class=&quot;headerlink&quot; title=&quot;Thread Safe&quot;&gt;&lt;/a&gt;Thread Safe&lt;/h2&gt;&lt;p&gt;Thread safe code can be safely called from multiple threads or concurrent tasks without causing any problems&lt;/p&gt;
+&lt;p&gt;设定常量是线程安全的，变量不一定安全，因为可能被其他线程的所改变值&lt;/p&gt;
+&lt;p&gt;Variables and data structures that are mutable and not inherently thread-safe should only be accessed from one thread at a time.&lt;/p&gt;
+&lt;h2 id=&quot;Context-Switch&quot;&gt;&lt;a href=&quot;#Context-Switch&quot; class=&quot;headerlink&quot; title=&quot;Context Switch&quot;&gt;&lt;/a&gt;Context Switch&lt;/h2&gt;&lt;p&gt;A context switch is the process of storing and restoring execution state when you switch between executing different threads on a single process.&lt;/p&gt;
+&lt;h2 id=&quot;Concurrency-vs-Parallelism&quot;&gt;&lt;a href=&quot;#Concurrency-vs-Parallelism&quot; class=&quot;headerlink&quot; title=&quot;Concurrency vs Parallelism&quot;&gt;&lt;/a&gt;Concurrency vs Parallelism&lt;/h2&gt;&lt;p&gt;Multi-core devices execute multiple threads at the same time via parallelism&lt;/p&gt;
+&lt;p&gt;Single-cored devices must run a thread, perform a context switch&lt;/p&gt;
+&lt;p&gt;Parallelism requires concurrency, but concurrency does not guarantee parallelism.&lt;/p&gt;
+&lt;h1 id=&quot;Queues&quot;&gt;&lt;a href=&quot;#Queues&quot; class=&quot;headerlink&quot; title=&quot;Queues&quot;&gt;&lt;/a&gt;Queues&lt;/h1&gt;&lt;p&gt;GCD provides dispatch queues to handle submitted tasks; these queues manage the tasks you provide to GCD and execute those tasks in FIFO order&lt;/p&gt;
+&lt;h2 id=&quot;Serial-Queues&quot;&gt;&lt;a href=&quot;#Serial-Queues&quot; class=&quot;headerlink&quot; title=&quot;Serial Queues&quot;&gt;&lt;/a&gt;Serial Queues&lt;/h2&gt;&lt;p&gt;executes only one task at a time&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3ghgkn5eg52vd0t/2016092801.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Concurrent-Queues&quot;&gt;&lt;a href=&quot;#Concurrent-Queues&quot; class=&quot;headerlink&quot; title=&quot;Concurrent Queues&quot;&gt;&lt;/a&gt;Concurrent Queues&lt;/h2&gt;&lt;p&gt;The decision of when to start a task is entirely up to GCD.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ivkbyp2306tqry4/2016092802.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Queue-Types&quot;&gt;&lt;a href=&quot;#Queue-Types&quot; class=&quot;headerlink&quot; title=&quot;Queue Types&quot;&gt;&lt;/a&gt;Queue Types&lt;/h2&gt;&lt;p&gt;You have at least five queues at your disposal: the main queue, four global dispatch queues, plus any custom queues&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Main queue:which is the only thread allowed to update your UI.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;QOS_CLASS_USER_INTERACTIVE&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;QOS_CLASS_USER_INITIATED&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;QOS_CLASS_UTILITY&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;QOS_CLASS_BACKGROUND&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Term&quot;&gt;&lt;a href=&quot;#Term&quot; class=&quot;headerlink&quot; title=&quot;Term&quot;&gt;&lt;/a&gt;Term&lt;/h1&gt;&lt;p&gt;GCD is the marketing name for libdispatch&lt;/p&gt;
+&lt;h2 id=&quot;Serial-v
+    
+    </summary>
+    
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+      <category term="raywenderlich" scheme="http://jackliu17.github.io/tags/raywenderlich/"/>
+    
+  </entry>
   
   <entry>
     <title>The-Swift-Programming-Language-Swift3</title>
@@ -2627,264 +2961,6 @@ self.block = ^{
     
     
       <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AFNetworking简介</title>
-    <link href="http://jackliu17.github.io/2016/08/01/AFNetworking%E7%AE%80%E4%BB%8B/"/>
-    <id>http://jackliu17.github.io/2016/08/01/AFNetworking简介/</id>
-    <published>2016-08-01T07:25:21.000Z</published>
-    <updated>2016-08-03T11:12:49.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;HTTP请求&quot;&gt;&lt;a href=&quot;#HTTP请求&quot; class=&quot;headerlink&quot; title=&quot;HTTP请求&quot;&gt;&lt;/a&gt;HTTP请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&amp;quot;;
-
-AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
-
-// 设置回复内容信息
-manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
-                                                     setByAddingObject:@&amp;quot;text/html&amp;quot;];
-
-[manager GET:urlStr
-  parameters:nil
-
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-         //请求正文数据
-         //NSLog(@&amp;quot;%@&amp;quot;,responseObject);
-
-         //请求头部信息(我们执行网络请求的时候给服务器发送的信息)
-         //NSLog(@&amp;quot;%@&amp;quot;,operation.request.allHTTPHeaderFields);
-
-         //服务器返回的包的头部信息
-         NSLog(@&amp;quot;%@&amp;quot;,operation.response);
-     }
-     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-         NSLog(@&amp;quot;%@&amp;quot;,error);
-
-     }];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求方法&quot;&gt;&lt;a href=&quot;#请求方法&quot; class=&quot;headerlink&quot; title=&quot;请求方法&quot;&gt;&lt;/a&gt;请求方法&lt;/h2&gt;&lt;p&gt;(GET、POST等)  &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hypertext Transfer Protocol&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 执行POST请求，需要将参数写在parameter处，而不能如同get方法一样直接写在地址栏
-
-[manager POST:@&amp;quot;http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx/getMobileCodeInfo&amp;quot;
-   parameters:@{@&amp;quot;mobileCode&amp;quot; : @&amp;quot;15910514636&amp;quot;,
-                @&amp;quot;userID&amp;quot;     : @&amp;quot;&amp;quot;}
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          NSLog(@&amp;quot;%@&amp;quot;, responseObject);
-
-      }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          NSLog(@&amp;quot;%@&amp;quot;, error);
-      }];
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求头&quot;&gt;&lt;a href=&quot;#请求头&quot; class=&quot;headerlink&quot; title=&quot;请求头&quot;&gt;&lt;/a&gt;请求头&lt;/h2&gt;&lt;p&gt;(HttpHeaderFields) &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_HTTP_header_fields&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;List of HTTP header fields&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//请求头部信息(我们执行网络请求的时候给服务器发送的信息)
-NSLog(@&amp;quot;%@&amp;quot;,operation.request.allHTTPHeaderFields);
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;请求正文-数据&quot;&gt;&lt;a href=&quot;#请求正文-数据&quot; class=&quot;headerlink&quot; title=&quot;请求正文 (数据)&quot;&gt;&lt;/a&gt;请求正文 (数据)&lt;/h2&gt;&lt;p&gt;问号后的字符串，使用get方法是可以在地址栏中看见的&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&amp;quot;;            
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;序列化&quot;&gt;&lt;a href=&quot;#序列化&quot; class=&quot;headerlink&quot; title=&quot;序列化&quot;&gt;&lt;/a&gt;序列化&lt;/h2&gt;&lt;p&gt;采用不同的序列化格式，得到不同的response结果&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
-
-// 请求的序列化
-manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-
-// 回复序列化
-
-//responseObject就变成二进制文件
-manager.responseSerializer[AFHTTPResponseSerializer serializer];
-
-//responseObject就变成JSON格式
-manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-//responseObject成为xml格式
-manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;上传文件&quot;&gt;&lt;a href=&quot;#上传文件&quot; class=&quot;headerlink&quot; title=&quot;上传文件&quot;&gt;&lt;/a&gt;上传文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;// 获取数据
-UIImage *image  = [UIImage imageNamed:@&amp;quot;demo&amp;quot;];
-NSData *dataObj = UIImageJPEGRepresentation(image, 1.0);
-
-// 参数
-NSDictionary *paras = @{@&amp;quot;ContactName&amp;quot;        : @&amp;quot;Lilis&amp;quot;,
-                        @&amp;quot;ContactPhoneNumber&amp;quot; : @&amp;quot;15910514635&amp;quot;,
-                        @&amp;quot;LoseDetail&amp;quot;         : @&amp;quot;...&amp;quot;,
-                        @&amp;quot;address&amp;quot;            : @&amp;quot;&amp;quot;,
-                        @&amp;quot;gender&amp;quot;             : @&amp;quot;2&amp;quot;,
-                        @&amp;quot;verify&amp;quot;             : @&amp;quot;012460&amp;quot;};
-
-
-[Networking UploadDataWithUrlString:BASE_URL // 请更换网址
-                         parameters:paras
-                    timeoutInterval:nil
-                        requestType:HTTPRequestType
-                       responseType:JSONResponseType
-          constructingBodyWithBlock:^(id&amp;lt;AFMultipartFormData&amp;gt; formData) {
-              // 构造数据的地方
-              [formData appendPartWithFileData:dataObj name:@&amp;quot;upload&amp;quot; fileName:@&amp;quot;image1.jpg&amp;quot; mimeType:@&amp;quot;&amp;quot;];
-              [formData appendPartWithFileData:dataObj name:@&amp;quot;upload&amp;quot; fileName:@&amp;quot;image2.jpg&amp;quot; mimeType:@&amp;quot;&amp;quot;];
-          }
-                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-                                // 请求头
-                                NSLog(@&amp;quot;%@&amp;quot;, operation.request.allHTTPHeaderFields);
-
-                                // 服务器回复的头
-                                NSLog(@&amp;quot;%@&amp;quot;, operation.response);
-
-                                NSLog(@&amp;quot;%@&amp;quot;, responseObject);
-                            }
-                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-
-                            }];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;断点下载&quot;&gt;&lt;a href=&quot;#断点下载&quot; class=&quot;headerlink&quot; title=&quot;断点下载&quot;&gt;&lt;/a&gt;断点下载&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@&amp;quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&amp;quot;]];
-AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request
-                                                                             fileIdentifier:@&amp;quot;fuck.jpg&amp;quot;
-                                                                                 targetPath:[NSHomeDirectory() stringByAppendingPathComponent:@&amp;quot;/Library/Caches/fuck.jpg&amp;quot;]
-                                                                               shouldResume:YES];
-operation.shouldOverwrite = YES;
-
-
-// 开始下载
-[operation start];
-
-// 2s后暂停
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&amp;quot;暂停&amp;quot;);
-    [operation pause];
-} afterDelaySecs:2.f];
-
-// 4s后继续恢复
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&amp;quot;开始&amp;quot;);
-    [operation resume];
-} afterDelaySecs:4.f];
-
-// 查看下载进度
-[operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-
-    CGFloat percent = (float)totalBytesReadForFile / (float)totalBytesExpectedToReadForFile;
-    NSLog(@&amp;quot;百分比:%.3f%% %ld  %lld  %lld  %lld&amp;quot;, percent * 100, (long)bytesRead, totalBytesRead, totalBytesReadForFile, totalBytesExpectedToReadForFile);
-}];
-
-// 结束block
-[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-    NSLog(@&amp;quot;下载成功 %@&amp;quot;, responseObject);
-
-} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-    NSLog(@&amp;quot;下载失败 %@&amp;quot;, error);
-
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;监听网络&quot;&gt;&lt;a href=&quot;#监听网络&quot; class=&quot;headerlink&quot; title=&quot;监听网络&quot;&gt;&lt;/a&gt;监听网络&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-// 开启网络指示器
-[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-
-NSURL *url = [NSURL URLWithString:@&amp;quot;http://baidu.com&amp;quot;];
-
-AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
-NSOperationQueue *operationQueue       = manager.operationQueue;
-
-[manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-
-    switch (status) {
-        case AFNetworkReachabilityStatusReachableViaWWAN:
-        case AFNetworkReachabilityStatusReachableViaWiFi:
-
-            [operationQueue setSuspended:NO];
-
-            NSLog(@&amp;quot;有网络&amp;quot;);
-
-            break;
-
-        case AFNetworkReachabilityStatusNotReachable:
-        default:
-
-            [operationQueue setSuspended:YES];
-
-            NSLog(@&amp;quot;无网络&amp;quot;);
-
-            break;
-    }
-
-}];
-
-// 开始监听
-[manager.reachabilityManager startMonitoring];
-
-return YES;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;下载图片（Category）&quot;&gt;&lt;a href=&quot;#下载图片（Category）&quot; class=&quot;headerlink&quot; title=&quot;下载图片（Category）&quot;&gt;&lt;/a&gt;下载图片（Category）&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-#import &amp;quot;AFNetworking.h&amp;quot;
-#import &amp;quot;UIKit+AFNetworking.h&amp;quot;
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-[self.view addSubview:imageView];
-
-// 加载图片
-[imageView setImageWithURL:[NSURL URLWithString:@&amp;quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&amp;quot;]
-          placeholderImage:nil];
-}
-&lt;/code&gt;&lt;/pre&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;HTTP请求&quot;&gt;&lt;a href=&quot;#HTTP请求&quot; class=&quot;headerlink&quot; title=&quot;HTTP请求&quot;&gt;&lt;/a&gt;HTTP请求&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;NSString *urlStr = @&amp;quot;http://api.openweath
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS_networking" scheme="http://jackliu17.github.io/tags/iOS-networking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>手机屏幕图像尺寸说明</title>
-    <link href="http://jackliu17.github.io/2016/07/29/%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%9B%BE%E5%83%8F%E5%B0%BA%E5%AF%B8%E8%AF%B4%E6%98%8E/"/>
-    <id>http://jackliu17.github.io/2016/07/29/手机屏幕图像尺寸说明/</id>
-    <published>2016-07-29T06:41:29.000Z</published>
-    <updated>2016-08-15T06:23:18.000Z</updated>
-    
-    <content type="html">&lt;p&gt;其他都当放屁，只要记住一点，iphone设计稿以640&lt;em&gt;1136像素做（我一般使用750&lt;/em&gt;1334），android设计稿以1080&lt;em&gt;1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元素，如图标，线条，色块，全部用矢量图形的做，不要用像素位图，以免&lt;/em&gt;2后模糊。&lt;/p&gt;
-&lt;h1 id=&quot;分辨率&quot;&gt;&lt;a href=&quot;#分辨率&quot; class=&quot;headerlink&quot; title=&quot;分辨率&quot;&gt;&lt;/a&gt;分辨率&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSize1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;屏幕尺寸&quot;&gt;&lt;a href=&quot;#屏幕尺寸&quot; class=&quot;headerlink&quot; title=&quot;屏幕尺寸&quot;&gt;&lt;/a&gt;屏幕尺寸&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/prqfsl2tl84m01l/MobileImageSize2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;像素密度&quot;&gt;&lt;a href=&quot;#像素密度&quot; class=&quot;headerlink&quot; title=&quot;像素密度&quot;&gt;&lt;/a&gt;像素密度&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ybjgllir4rb1xie/MobileImageSize3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/x7jmtbnkqptdxhl/MobileImageSize4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;逻辑像素与物理像素&quot;&gt;&lt;a href=&quot;#逻辑像素与物理像素&quot; class=&quot;headerlink&quot; title=&quot;逻辑像素与物理像素&quot;&gt;&lt;/a&gt;逻辑像素与物理像素&lt;/h1&gt;&lt;p&gt;苹果引进一个逻辑像素的概念(pt)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vjhiwkcwwvjxbyv/MobileImageSize5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kve933ie18u0o04/MobileImageSize6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/75nt73meb7zfica/MobileImageSize7.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;iPhone手机尺寸&quot;&gt;&lt;a href=&quot;#iPhone手机尺寸&quot; class=&quot;headerlink&quot; title=&quot;iPhone手机尺寸&quot;&gt;&lt;/a&gt;iPhone手机尺寸&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mgwnsz022fn7n1e/MobileImageSize8.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/b4zff1iwnm9jknd/MobileImageSize9.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Android手机尺寸&quot;&gt;&lt;a href=&quot;#Android手机尺寸&quot; class=&quot;headerlink&quot; title=&quot;Android手机尺寸&quot;&gt;&lt;/a&gt;Android手机尺寸&lt;/h1&gt;&lt;p&gt;Android引进一个逻辑像素概念(dp)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1r6tqvm5t0vp2sa/MobileImageSize10.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/bgoe3jpr14a9oh8/MobileImageSize11.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lmrademl1wb6p1i/MobileImageSize12.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3sz0oyx2rmdo8ob/MobileImageSize13.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;其他都当放屁，只要记住一点，iphone设计稿以640&lt;em&gt;1136像素做（我一般使用750&lt;/em&gt;1334），android设计稿以1080&lt;em&gt;1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
     
   </entry>
   

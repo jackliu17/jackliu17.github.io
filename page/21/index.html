@@ -238,6 +238,780 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/11/Swift面向对象基础(上)/" itemprop="url">
+                  Swift面向对象基础(上)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T18:06:33+11:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/Swift面向对象基础(上)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift面向对象基础(上)/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="面向对象的特点"><a href="#面向对象的特点" class="headerlink" title="面向对象的特点"></a>面向对象的特点</h1><ol>
+<li>面向对象编程的三大特征：封装，继承，和多态</li>
+<li>Swift可以定义枚举，结构体，和类三种面向对象的类型</li>
+</ol>
+<h1 id="Class-继承-引用类型"><a href="#Class-继承-引用类型" class="headerlink" title="Class - 继承/引用类型"></a>Class - 继承/引用类型</h1><ol>
+<li>内存里的对象可以有多个引用，即多个引用变量指向同一个对象</li>
+<li>如果一个引用更改了，那对象里的值也会更改。</li>
+<li>“===” 这个等号只能用于引用类型的比较，不能用于值类型的比较，所以不能用于枚举或者结构体</li>
+<li>“==” or “!=” ,这两个也可以用于比较引用类型，但是要用到运算符重载，详情见后期课程</li>
+</ol>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p>必须有init method</p>
+<pre><code>class Movie {
+
+    let title: String
+    let director: String
+    let releaseYear: Int
+
+    init(title: String, director: String, releaseYear: Int) {
+        self.title = title
+        self.director = director
+        self.releaseYear = releaseYear
+    }
+}
+</code></pre><h2 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h2><p>三类property: Stored property, Type properties, Computed property</p>
+<p>默认是internal，就是可以app内访问</p>
+<p><img src="https://www.dropbox.com/s/5rjjtamvk1890kv/20160902_property.png?dl=1" alt="1"></p>
+<h3 id="Stored-property"><a href="#Stored-property" class="headerlink" title="Stored property"></a>Stored property</h3><p>大多数的stored property 是定义为常量，必须在init的时候被设定,external name 在init method中是必须的</p>
+<pre><code>var thursdayNightMovie = Movie(title:&quot;Point Break&quot;, director:&quot;Kathryn Bigelow&quot;, releaseYear: 1991)
+</code></pre><h3 id="Type-properties-amp-Computed-Properties"><a href="#Type-properties-amp-Computed-Properties" class="headerlink" title="Type properties &amp; Computed Properties"></a>Type properties &amp; Computed Properties</h3><pre><code>class KidsMovie {
+    let title: String
+    let director: String
+    let releaseYear: Int
+    var mpaaRating: String
+
+    //Type property
+    static let permittedRatings = [&quot;G&quot;, &quot;PG&quot;]
+
+    let reviewScores:[Double]
+
+    var metaScore: Double {
+        get {
+            let value = reviewScores.reduce(0) { $0 + $1 } / Double(reviewScores.count)
+            return value
+        }
+    }
+
+    init(title: String, director: String, releaseYear: Int, mpaaRating:String, reviewScores: [Double]) {
+        self.mpaaRating = mpaaRating
+        self.title = title
+        self.director = director
+        self.releaseYear = releaseYear
+        self.reviewScores = reviewScores
+    }
+}
+</code></pre><h2 id="Calling-Type-methods"><a href="#Calling-Type-methods" class="headerlink" title="Calling Type methods"></a>Calling Type methods</h2><pre><code>UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary)
+</code></pre><p>使用class func ，子类可以重载，使用static则不会</p>
+<pre><code>class Hello {
+
+let pipi:String
+
+init (hello:String){
+    self.pipi = hello
+}
+
+//or class func .....
+static func diao (hello:String){
+print(&quot;why&quot;)
+}
+}
+</code></pre><h1 id="Enumeration-不能继承-值类型"><a href="#Enumeration-不能继承-值类型" class="headerlink" title="Enumeration - 不能继承/值类型"></a>Enumeration - 不能继承/值类型</h1><ol>
+<li>值对象是要复制的</li>
+<li>每个值对象的更改，不会影响其他对象的更改</li>
+<li>因此枚举和结构体是没有继承的  </li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>Enum可以看做是一组有限的“抽象概念”的集合 (数组需要指定具体的数值类型)</p>
+<pre><code>enum PrimaryColor {
+    case Red
+    case Blue
+    case Yellow
+}
+</code></pre><p>可以用一个case,然后其他用逗号隔开</p>
+<pre><code>enum Aunties {
+    case Aime, Billie, Diane, Gail, Janie, Pam
+}
+</code></pre><p>enum中的元素可以设定任何类型原始值,如string,int</p>
+<pre><code>enum AmericanLeagueWest: String {
+    case As = &quot;Oakland&quot;
+    case Astros = &quot;Houston&quot;
+    case Angels = &quot;Los Angeles&quot;
+    case Mariners = &quot;Seattle&quot;
+    case Rangers = &quot;Arlington&quot;    
+}
+
+var weather: AmericanLeagueWest
+weather = AmericanLeagueWest.As
+weather = .As //也可以这样写
+</code></pre><p>使用rawValue提取成员的原始值</p>
+<pre><code>var message = &quot;I hope the A&apos;s stay in \(AmericanLeagueWest.As.rawValue)&quot;
+</code></pre><h2 id="Enums-and-switch"><a href="#Enums-and-switch" class="headerlink" title="Enums and switch"></a>Enums and switch</h2><pre><code>enum CaliforniaPark {
+    case Yosemite, DeathValley, Lasson, Sequoia
+}
+
+var warning = &quot;&quot;
+var destination = CaliforniaPark.Yosemite
+</code></pre><p>例子 1：switch中的case如果没有覆盖枚举的所有值，必须添加default语句</p>
+<pre><code>switch destination {
+    case .Yosemite:
+        warning = &quot;Beware of aggressive bears!&quot;
+    case .DeathValley:
+        warning = &quot;Beware of dehydration!&quot;
+    case .Lasson:
+        warning = &quot;Watch out for boiling pools!&quot;
+    case .Sequoia:
+        warning = &quot;Watch out for falling trees!&quot;
+}
+</code></pre><p>例子 2：</p>
+<pre><code>// Below is an enum and an if-else statement for implementing the game Rock-Paper-Scissors.
+enum roshamboMove {
+    case Rock, Paper, Scissors
+}
+
+var myMove = roshamboMove.Scissors
+var yourMove = roshamboMove.Scissors
+
+var resultsMessage = &quot;&quot;
+
+if myMove == .Rock &amp;&amp; yourMove == .Paper || myMove == .Paper &amp;&amp; yourMove == .Rock {
+    resultsMessage = &quot;Paper covers Rock.&quot;
+} else if myMove == yourMove {
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+} else if myMove == .Rock &amp;&amp; yourMove == .Scissors || myMove == .Scissors &amp;&amp; yourMove == .Rock {
+    resultsMessage = &quot;Rock crushes Scissors. &quot;
+} else if myMove == .Paper &amp;&amp; yourMove == .Scissors || myMove == .Scissors &amp;&amp; yourMove == .Paper {
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+} 
+
+// Solution
+switch (myMove, yourMove) {
+case (.Rock, .Paper), (.Paper, .Rock):
+    resultsMessage = &quot;Paper covers Rock.&quot;
+case (.Rock, .Rock), (.Paper, .Paper), (.Scissors, .Scissors):
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+case (.Rock, .Scissors), (.Scissors, .Rock):
+    resultsMessage = &quot;Rock crushes Scissors.&quot;
+case (.Paper, .Scissors), (.Scissors, .Paper):
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+}
+
+// Alternate solution
+switch (myMove, yourMove) {
+case (.Rock, .Paper), (.Paper, .Rock):
+    resultsMessage = &quot;Paper covers Rock.&quot;
+case let (a, b) where a==b :
+    resultsMessage = &quot;It&apos;s a tie!&quot;
+case (.Rock, .Scissors), (.Scissors, .Rock):
+    resultsMessage = &quot;Rock crushes Scissors.&quot;
+case (.Paper, .Scissors), (.Scissors, .Paper):
+    resultsMessage = &quot;Scissors cut Paper.&quot;
+default:
+    resultsMessage = &quot;Paper covers Rock.&quot;
+}
+</code></pre><p>例子3</p>
+<pre><code>var score = 97
+var letterGrade = &quot;&quot;
+
+// Solution
+switch score {
+case 90...100:
+    letterGrade = &quot;A&quot;
+case 80...89:
+    letterGrade = &quot;B&quot;
+case 70...79:
+    letterGrade = &quot;C&quot;
+case 60...69:
+    letterGrade = &quot;D&quot;
+default:
+    letterGrade = &quot;Incomplete&quot;
+}
+</code></pre><h2 id="整型的枚举"><a href="#整型的枚举" class="headerlink" title="整型的枚举"></a>整型的枚举</h2><pre><code>//可以自动推断，不用每个都赋予原始值
+enum Weekday: Int{
+  case Mon, Tur, Wen = 3, Thur, Fri, Sat , Sun
+}
+</code></pre><h2 id="字符串枚举"><a href="#字符串枚举" class="headerlink" title="字符串枚举"></a>字符串枚举</h2><pre><code>//必须每个都赋予原始值，因为不能自动推断
+enum Season3: Character{
+  case Spring = &quot;春&quot;
+  case Summer = &quot;夏&quot;
+  case Fall = &quot;秋&quot;
+  case Winter = &quot;冬&quot;
+}
+</code></pre><h2 id="获取枚举值"><a href="#获取枚举值" class="headerlink" title="获取枚举值"></a>获取枚举值</h2><pre><code>var mySeason = Season3(rawValue:&quot;春&quot;)
+if mySeason != nil {
+  switch(mySeason!){ //不为空才能进行强制解析
+  case .Spring:
+    print(&quot;春天不是读书天&quot;)
+  case .Summer:
+    print(&quot;夏天炎炎正好眠&quot;)
+  case .Fall , .Winter:
+    print(&quot;秋多蚊蝇冬日冷&quot;)
+  default:
+    print(&quot;读书只好等明年&quot;)
+
+  }
+}
+</code></pre><h2 id="关联值"><a href="#关联值" class="headerlink" title="关联值"></a>关联值</h2><pre><code>enum Planet {
+case Earth(weight: Double , name:String)
+case Mars (density: Double, name: String, weight:Double)
+case Venus(Double, String)
+case Saturn
+case Neptune
+}
+
+var p1 = Planet.Earth(weight:1.0, name:&quot;地球&quot;)
+var p2 = Planet.Venus(0.815,&quot;金星&quot;)
+var p3 = Planet.Mars(density:3.95, name:&quot;火星&quot;,weight:0.1)
+
+switch (p3){
+//将关联值绑定到变量或者常量来提取
+case Planet.Earth(var weight , var name):
+   print(&quot;此行星的名字为:\(name),质量相当于\(weight)个地球&quot;)
+
+//将关联值都提取为常量或者变量，只将一个var或者let放在枚举成员之前
+case let Planet.Mars(density:d, name:n, weight:w):
+   print(&quot;此行星的名字为:\(n),质量相当于\(w)个地球，密度为\(d)&quot;)
+default:
+   break
+}
+</code></pre><h1 id="Struct-不能继承-值类型"><a href="#Struct-不能继承-值类型" class="headerlink" title="Struct - 不能继承/值类型"></a>Struct - 不能继承/值类型</h1><pre><code>struct PictureFrame {
+    var width = 5
+    var height = 7
+    var thickness: Double = 1.5
+
+    var area: Int {
+        get {
+            return (width * height)/2
+        }
+    }
+}
+</code></pre><p>Struct自动生成init method </p>
+<pre><code>var familyReunionFrame = PictureFrame(width: 10, height: 8, thickness: 1.5)
+familyReunionFrame.area
+</code></pre><h1 id="enum-class-or-struct"><a href="#enum-class-or-struct" class="headerlink" title="enum, class, or struct?"></a>enum, class, or struct?</h1><p> 只是单纯的存储数据，不需要继承</p>
+<pre><code> Struct Triangle {
+    let angles = [30, 60, 90]
+    let sides = [3,4,5]
+}
+</code></pre><p> 存储“有限“的“成员”，不必考虑什么类型的数值</p>
+<pre><code>enum UIImagePickerControllerSourceType : Int {    
+    case PhotoLibrary
+    case Camera
+    case SavedPhotosAlbum
+}
+</code></pre><p>只是单纯的存储数据，不需要继承</p>
+<pre><code>Struct Name {
+    var firstName: String
+    var lastName: String
+}
+</code></pre><p> 存储“有限“的“成员”，不必考虑什么类型的数值</p>
+<pre><code>enum Subject {
+    case Math
+    case English
+    case Spanish
+    case Science
+}
+</code></pre><p> 有各种类型的学生，大学，中学，意味着需要继承</p>
+<pre><code>class Student {
+    var grades = [97.0, 99.0, 98.0]
+    let name = Name(firstName:&quot;Grace&quot;, lastName:&quot;Hopper&quot;)
+    var favoriteSubject = Subject.Science
+
+    var gradePointAverage: Double {
+        get {
+            return (grades.reduce(0){$0 + $1})/Double (grades.count)
+        }
+    }
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/11/Swift中的函数和闭包/" itemprop="url">
+                  Swift中的函数和闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-11T12:38:16+11:00" content="2016-03-11">
+              2016-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/11/Swift中的函数和闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/11/Swift中的函数和闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="函数的种类和声明"><a href="#函数的种类和声明" class="headerlink" title="函数的种类和声明"></a>函数的种类和声明</h2><h3 id="Global-Functions"><a href="#Global-Functions" class="headerlink" title="Global Functions"></a>Global Functions</h3><p>在文件中的任何地方都可以调用，比如:</p>
+<pre><code>print(&quot;I&apos;m a global function!&quot;)
+</code></pre><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p>在某个class里声明，需要用对象来调用，比如</p>
+<pre><code>let array = [&quot;A&quot;, &quot;13&quot;, &quot;B&quot;,&quot;5&quot;,&quot;87&quot;, &quot;t&quot;, &quot;41&quot;]
+
+class Arithmetic {
+func sumOfStrings(aBunchOfStrings: [String]) -&gt; Int {
+    let array = aBunchOfStrings
+    var sum = 0
+    for string in array {
+        if Int(string) != nil {
+            let intToAdd = Int(string)!
+            sum += intToAdd
+        }
+    }
+    return sum
+}
+}
+</code></pre><h3 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h3><pre><code>func functionName (parameterName: parameterType) -&gt; returnType {
+    statements to execute
+    return object
+ }
+</code></pre><h3 id="外部参数名"><a href="#外部参数名" class="headerlink" title="外部参数名"></a>外部参数名</h3><pre><code>func functionName (externalParameterName localParameterName: parameterType) -&gt; returnType {
+    statements to execute
+    return object
+ }
+</code></pre><p>比如</p>
+<pre><code>func area (宽 width:Double ,高 height:Double ) -&gt;Double {
+
+return width * height
+}
+
+print (area(宽:3.4,高:4.7)) //宽和高为外部函数名
+</code></pre><h2 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h2><h3 id="数组参数"><a href="#数组参数" class="headerlink" title="数组参数"></a>数组参数</h3><pre><code>func sum(numbers:Int...)-&gt;Int {
+var total: Int = 0
+for num in numbers {
+   total += num
+}
+print(total)
+return total
+}
+sum(1,3,4,5)
+</code></pre><ol>
+<li>在参数类型后面添加…表示该参数可以接受多个参数值</li>
+<li>一个函数当中只有一个数组参数,并且位于列表的最后</li>
+</ol>
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> func sayHi(msg:String, name:String=&quot;Lily&quot;)&#123;</span><br><span class="line"> print (&quot;\(name),\(msg)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;) //目前只传入了一个参数，如果第二个参数没传入，就使用默认值</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;, name:&quot;Tom&quot;) //如果传入了，就使用传入的新值</span><br></pre></td></tr></table></figure>
+<h3 id="忽略形参名，添加下划线"><a href="#忽略形参名，添加下划线" class="headerlink" title="忽略形参名，添加下划线 _"></a>忽略形参名，添加下划线 _</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func sayHi(msg:String, _name:String=&quot;Lily&quot;)&#123; </span><br><span class="line"> print (&quot;\(name),\(msg)&quot;)</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&quot;Welcome to our city&quot;,&quot;Tom&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果函数里有可变参数也有默认参数，数组参数放在最后面，默认参数出现在次后面</p>
+<h3 id="变量形参"><a href="#变量形参" class="headerlink" title="变量形参"></a>变量形参</h3><p>因为传入的参数是常量，如果需要在函数内进行变动数据的话，需要先设个变量 (swift 3)</p>
+<pre><code>func placeFirstLetterLast(myString: String) -&gt; String {
+
+var newString = myString
+newString.append(firstCharacterOf(word: myString))
+newString.removeAtIndex(myString.startIndex)
+return newString
+}
+
+placeFirstLetterLast(&quot;Mom&quot;)
+</code></pre><p>swift2的解决办法。swift3将取消</p>
+<pre><code>//这里的形参是个变量，如果去掉var就是个常量，因为形参默认是常量constant
+func factorial(var number:Int) -&gt; Int{
+var result:Int = 1
+while number &gt; 1 {
+    result = result * number
+    number -= 1
+}
+return result
+}
+print(factorial(3))
+</code></pre><h3 id="In-out形参"><a href="#In-out形参" class="headerlink" title="In-out形参"></a>In-out形参</h3><pre><code>func swap (inout a:Int, inout b:Int){
+let tmp = a
+a = b
+b = tmp
+}
+
+var a:Int = 1
+var b:Int = 3
+swap(&amp;a,&amp;b)
+print(&quot;交换之后的结构为:a=\(a),b=\(b)&quot;)
+</code></pre><ol>
+<li>In-out参数就是强制传递变量的指针，因为在swift里，大多是值类型，而不是指针类型</li>
+<li>只能传入变量作为实参</li>
+<li>输入输出不能带有默认值</li>
+<li>如果你用关键字inout标记了一个参数，这个参数不能再用var或者let去标记</li>
+</ol>
+<h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2><h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><p>没有指定返回类型的函数总返回void,在swift中，void可以理解为空元组</p>
+<pre><code>func sayHi2(){
+print(&quot;welcome&quot;)
+}
+sayHi2()
+</code></pre><h3 id="多个返回值"><a href="#多个返回值" class="headerlink" title="多个返回值"></a>多个返回值</h3><pre><code>func area(width:Double,height:Double)-&gt;(Double,Double){
+let s = width * height
+let c = (width + height) * 2
+return (s,c)
+}
+print(area(3.1, height: 3.4))
+</code></pre><h2 id="函数使用"><a href="#函数使用" class="headerlink" title="函数使用"></a>函数使用</h2><h3 id="函数作为变量"><a href="#函数作为变量" class="headerlink" title="函数作为变量"></a>函数作为变量</h3><pre><code>func addTwoInts(a:Int,b:Int)-&gt;Int{
+return a+b
+}
+
+func multiplyTwoInts(a:Int,b:Int)-&gt;Int{ 
+return a*b
+}
+
+var mathFunction:(Int,Int) -&gt; Int = multiplyTwoInts
+print(&quot;Result:\(mathFunction(2,3))&quot;)
+</code></pre><h3 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h3><pre><code>func addTwoInts(a:Int,b:Int)-&gt;Int{
+return a+b
+}
+
+func multiplyTwoInts(a:Int,b:Int)-&gt;Int{
+return a*b
+}
+
+func printMathResult(mathFunction:(Int,Int)-&gt;Int,a:Int,b:Int){
+print(&quot;Result:\(mathFunction(a,b))&quot;)
+}
+
+printMathResult(addTwoInts,a: 3,b: 5)
+</code></pre><h3 id="函数类型作为返回值类型"><a href="#函数类型作为返回值类型" class="headerlink" title="函数类型作为返回值类型"></a>函数类型作为返回值类型</h3><pre><code>func squre(num:Int) -&gt;Int{
+return num * num
+}
+
+func cube(num:Int) -&gt;Int{
+return num * num * num
+}
+
+func getMathFunc (jack: String)-&gt; (Int)-&gt;Int {
+
+switch (jack){
+case &quot;squre&quot;:
+    return squre
+default:
+    return cube
+}
+}
+
+var mathFunc = getMathFunc(&quot;other&quot;) // 返回的值是需要传入整数的函数
+print(mathFunc(5)) //所以这里传入整数
+</code></pre><h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>形参和返回值不一样的同名函数</p>
+<pre><code>//1.
+func test(){
+print(&quot;无参数的test()函数&quot;)
+}
+
+//2.
+func test (msg: String){
+print(&quot;重载的test()函数\(msg)&quot;)
+}
+
+//3.
+func test(msg: String) -&gt; String {
+print(&quot;重载的test()函数\(msg),带返回值&quot;)
+return &quot;test&quot;
+}
+
+//4 这不算重载, 仅有形参名一样是不行的
+func test(message:String){
+print(&quot;重载的test()函数\(message)&quot;)
+}
+
+//调用1
+test()
+
+//调用2
+var result:Void = test(&quot;Jike&quot;)
+
+//调用3
+var result2: String = test(&quot;Welcome , Geek&quot;)
+</code></pre><h2 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h2><p>函数体内部所定义的函数</p>
+<pre><code>func getMathFunc(jackliu: String) -&gt; (Int) -&gt;Int{
+
+func squre (num:Int) -&gt; Int{
+    return num * num
+}
+
+func cube (num:Int) -&gt;Int{
+    return num * num * num
+}
+
+switch(jackliu){
+case &quot;squre&quot;:
+    return squre
+default: 
+    return cube
+}
+}
+
+var mathFunc:(Int)-&gt;Int  = getMathFunc (&quot;squre&quot;)
+var mathFunc = getMathFunc (&quot;squre&quot;) // 这样写说明即使不写变量的类型，系统也会进行推断
+print(mathFunc(4)) //outcome is 16
+
+mathFunc = getMathFunc (&quot;other&quot;)
+print(mathFunc(4)) //outcome is 64
+</code></pre><h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><p>一段可以作为参数传递给函数的代码</p>
+<pre><code>{ (parameters) -&gt; return type in
+
+ statements to execute
+
+}
+</code></pre><p> 例子</p>
+<pre><code>var bids = [48.1, 75.4, 63.7, 52.4, 68.2]
+var orderedBids = bids.sort( {(bid1: Double, bid2:Double) -&gt; Bool in
+    return  bid2 &gt; bid1
+})
+print(orderedBids)
+</code></pre><h2 id="Closure的简写形式"><a href="#Closure的简写形式" class="headerlink" title="Closure的简写形式"></a>Closure的简写形式</h2><p>Example -  原有形式</p>
+<pre><code>var soups = [&quot;tomato&quot;, &quot;hot and sour&quot;, &quot;french onion&quot;, &quot;vegetable&quot;]
+var alphabeticalSoups = soups.sort({(soup1: String, soup2: String) -&gt; Bool in
+    return soup2 &gt; soup1
+})
+</code></pre><p>Example - 简写 ($0,$1,$2….分别代表第几个参数)</p>
+<pre><code>var soups = [&quot;tomato&quot;, &quot;hot and sour&quot;, &quot;french onion&quot;, &quot;vegetable&quot;]
+var hello = soups.sort({
+
+    $1 &gt; $0
+
+})   
+</code></pre><h2 id="闭包的应用"><a href="#闭包的应用" class="headerlink" title="闭包的应用"></a>闭包的应用</h2><pre><code>func getMathFunc(jackliu: String) -&gt; (Int) -&gt;Int{
+
+switch(jackliu){
+case &quot;squre&quot;:
+    return { (num: Int) -&gt; Int in
+        return num * num
+    }
+default:
+    return { (num:Int) -&gt; Int in
+        return num * num * num
+
+    }
+}
+}
+
+var mathFunc = getMathFunc(&quot;squre&quot;)
+print(mathFunc(5)) //outcome is 25
+mathFunc = getMathFunc (&quot;other&quot;)
+print(mathFunc(5)) //outcome is 125
+</code></pre><h2 id="利用上下文推断类型"><a href="#利用上下文推断类型" class="headerlink" title="利用上下文推断类型"></a>利用上下文推断类型</h2><p>Swift可以推断闭包的形参类型和返回值类型<br>函数和闭包是统一的，函数和闭包都是引用类型，当赋值给变量时，不会复制，而是指向同一个闭包   </p>
+<p>省略形参类型，因为从左侧就可以推断了</p>
+<pre><code>var squre:(Int) -&gt; Int = {(num) in return num * num}
+print(squre(3))   //outcome is 9
+</code></pre><p>因为可以推断，所以小括号也是可以省略的</p>
+<pre><code>var squre:(Int) -&gt; Int = {num in return num * num}
+print(squre(3))   //outcome is 9
+</code></pre><p>如果闭包表达式只有一行代码，而且这行代码就是返回值，也可以省略return。通过$0,$1…来引用第一个，第二个参数</p>
+<pre><code>var squre:(Int) -&gt; Int = {$0 * $0}
+print(squre(3))  //out come is 9
+
+var result: Int = { //这里的Int不是返回值类型，而是形参
+    var result = 1
+for i in 1...$1{
+   result *= $0
+}
+return result
+}(4,3)
+print(result) //outcome is 64
+</code></pre><h2 id="捕获上下文中的变量或者常量"><a href="#捕获上下文中的变量或者常量" class="headerlink" title="捕获上下文中的变量或者常量"></a>捕获上下文中的变量或者常量</h2><p>闭包（嵌套函数）可以访问或者修改其所在上下文中的变量或常量</p>
+<pre><code>func makeArr(ele:String) -&gt; () -&gt; [String]{
+
+//创建一个不包含任何元素的数组
+var arr: [String] = []
+func addElement() -&gt;[String]{
+
+//向arr数组中添加一个元素
+arr.append(ele)
+
+return arr
+}
+return addElement
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/10/Swift中的字符串和集合/" itemprop="url">
                   Swift中的字符串和集合
                 </a>
@@ -1247,108 +2021,12 @@ repeat {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/04/今天/" itemprop="url">
-                  今天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T17:21:32+11:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/04/今天/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/04/今天/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天是个好日子。我的新博客开张了…..十年之前我也是每天写博客的，可惜短命的MSN space live 将数据迁移到wordpress ,期间我居然将密码忘记了。写了五年的博客呀…<br>不知写啥，就将这作为我的第一篇吧.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1389,7 +2067,7 @@ repeat {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">106</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1406,7 +2084,7 @@ repeat {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

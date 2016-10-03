@@ -238,6 +238,498 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/28/Grand-Central-Dispatch/" itemprop="url">
+                  Grand_Central_Dispatch
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T17:02:59+10:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/Grand-Central-Dispatch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/28/Grand-Central-Dispatch/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><h2 id="Closure-is-a-first-class-citizen-of-the-language"><a href="#Closure-is-a-first-class-citizen-of-the-language" class="headerlink" title="Closure is a first class citizen of the language"></a>Closure is a first class citizen of the language</h2><ul>
+<li>assign them to variables or constants,</li>
+<li>put then inside arrays or dictionaries</li>
+<li>return them as the result of a function or closure</li>
+<li>and even receive them as parameters of another function or closure!</li>
+</ul>
+<pre><code>let f = { (x:Int) -&gt; Int in
+    return x + 42
+}
+
+f(89)
+
+let closures = [
+    f,                                  // our previous closure
+    {(x:Int) -&gt; Int in return x * 2},   // a new Int -&gt; Int closure
+    {x in return x - 8},                // no need for the type of the closure!
+    {(x:Int) in x * x},                 // no need for return if only one line
+    {$0 * 42}                           // access parameter by position instead of name
+]
+
+for fn in closures {
+fn(42)
+}
+</code></pre><h2 id="Functions-and-closures-are-the-same-thing"><a href="#Functions-and-closures-are-the-same-thing" class="headerlink" title="Functions and closures are the same thing"></a>Functions and closures are the same thing</h2><p>Actually, when the compiler finds a function declaration such as foo, it will take the following steps:</p>
+<ul>
+<li>Create a closure that takes an Int and returns 42 plus that Int.</li>
+<li>Then, assigns this closure to a constant called foo</li>
+</ul>
+<pre><code>func foo(x:Int) -&gt; Int {
+    return 42 + x
+}
+
+let bar = { (x: Int) -&gt; Int in
+    return 42 + x
+}
+</code></pre><p>add a few functions to an array and then call them</p>
+<pre><code>func larry(x:Int) -&gt; Int {
+    return x * x
+}
+
+func curly(n:Int) -&gt; Int {
+    return n * (n - 1)
+}
+
+func moe(n:Int) -&gt; Int {
+    return n * (n - 1) * (n - 2)
+}
+
+var stooges = [larry, curly, moe]
+
+for stooge in stooges {
+    stooge(42)
+}
+
+stooges.append(bar)
+for each in stooges {
+    each(42)
+}
+</code></pre><h2 id="Typealias-amp-Capture-value"><a href="#Typealias-amp-Capture-value" class="headerlink" title="Typealias &amp; Capture value"></a>Typealias &amp; Capture value</h2><pre><code>typealias IntMaker = (Void) -&gt; Int
+</code></pre><p>Functions and closure capture variables defined before the closure or function is defined.</p>
+<pre><code>func makeCounter() -&gt; IntMaker {
+    var n = 0
+
+    // Functions within functions?
+    // Yes we can!
+    func adder() -&gt; Integer {
+        n = n + 1
+        return n
+    }
+    return adder
+}
+
+let counter1 = makeCounter()
+let counter2 = makeCounter()
+
+counter1() //1
+counter1() //2
+counter1() //3
+</code></pre><p>each closure has its own copy of the environment (the values of all variables that were captured).</p>
+<pre><code>counter2() //1
+</code></pre><h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="Hiding-threads"><a href="#Hiding-threads" class="headerlink" title="Hiding threads"></a>Hiding threads</h2><ul>
+<li><p>Threads are inherently complex and dangerous</p>
+</li>
+<li><p>GCD makes asynchronous programming easier and safer by hiding threads within the concept of a queue of closure from the developer</p>
+</li>
+<li><p>Blades are inherently dangerous ,add handles to make for safer knives</p>
+</li>
+</ul>
+<h2 id="Types-of-queues"><a href="#Types-of-queues" class="headerlink" title="Types of queues"></a>Types of queues</h2><h3 id="Serial-or-synchronous-queue-predictable"><a href="#Serial-or-synchronous-queue-predictable" class="headerlink" title="Serial or synchronous queue - predictable"></a>Serial or synchronous queue - predictable</h3><ul>
+<li><p>Every closure gets to run when it reaches the end of the queue</p>
+</li>
+<li><p>The order in which closures run is predictable</p>
+</li>
+<li><p>Still have concurrency ,each queue will run on its own threads and will not block each other</p>
+</li>
+</ul>
+<h3 id="Concurrent-or-Asynchronous-queue-unpredictable"><a href="#Concurrent-or-Asynchronous-queue-unpredictable" class="headerlink" title="Concurrent or Asynchronous queue - unpredictable"></a>Concurrent or Asynchronous queue - unpredictable</h3><ul>
+<li><p>Have several threads pickup closures at any point of the queue for running</p>
+</li>
+<li><p>The order in which closures run is not predictable</p>
+</li>
+</ul>
+<h3 id="Main-queue"><a href="#Main-queue" class="headerlink" title="Main queue"></a>Main queue</h3><ul>
+<li><p>handles the UI of your app</p>
+</li>
+<li><p>You should never run code that blocks on this queue</p>
+</li>
+</ul>
+<h2 id="Main-function-in-GCD"><a href="#Main-function-in-GCD" class="headerlink" title="Main function in GCD"></a>Main function in GCD</h2><h3 id="create-a-queue"><a href="#create-a-queue" class="headerlink" title="create a queue"></a>create a queue</h3><p>Represents a queue</p>
+<pre><code>dispatch_queue_t
+</code></pre><p>Ceate a queue from scratch,To specify serial, just pass dispatch_queue_serial or nil</p>
+<pre><code>dispatch_queue_create(name,serial/concurrent)
+</code></pre><h3 id="Global-queues"><a href="#Global-queues" class="headerlink" title="Global queues"></a>Global queues</h3><p>Use existing one queue instead of creating new queues</p>
+<pre><code>QOS_CLASS_USER_INTERACTIVE //top priority 
+
+QOS_CLASS_USER_INITIATED   //regular priority 
+
+QOS_CLASS_BACKGROUND    //low
+
+QOS_CLASS_UTILITY //lowes 
+</code></pre><p>access those global queues with function </p>
+<pre><code>dispatch_get_global_queue
+</code></pre><h3 id="Main-queue-1"><a href="#Main-queue-1" class="headerlink" title="Main queue"></a>Main queue</h3><p>get the main queue</p>
+<pre><code>dispatch_get_main_queue()
+</code></pre><h3 id="Add-a-closure-to-a-queue"><a href="#Add-a-closure-to-a-queue" class="headerlink" title="Add a closure to a queue"></a>Add a closure to a queue</h3><ul>
+<li>the code inside the queue will run sometime in the immediate future</li>
+<li>the exact time will depend on how many closures already waiting in the queue and the priority of the queue </li>
+<li>dispatch_async adds your closures to each queue and return imediately</li>
+</ul>
+<p>Add a closure to a queue</p>
+<pre><code>dispatch_async ()
+</code></pre><p>Example 1</p>
+<pre><code>let q = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE,0)
+
+//Imediately return and add the block to the q ,then run in the near future 
+dispatch_async(q){
+    () -&gt; Void in
+    print(&quot;tic&quot;)
+}
+
+print (&quot;tac&quot;) //this run first
+</code></pre><p>Example 2</p>
+<pre><code>//cannot predict order the code run below of each queue
+
+let q1 = dispatch_queue_create(&quot;queue1&quot;,nil)
+let q2 = dispatch_queue_create(&quot;queue1&quot;,nil)
+let q3 = dispatch_queue_create(&quot;queue1&quot;,nil)
+
+dispatch_async(q1){ ()-&gt;Void in
+print(1)
+}
+
+dispatch_async(q2){ ()-&gt;Void in
+print(2)
+}
+
+dispatch_async(q3){ ()-&gt;Void in
+print(3)
+}
+
+print(&quot;end&quot;) //run first
+</code></pre><h3 id="UIKIT-amp-CoreData"><a href="#UIKIT-amp-CoreData" class="headerlink" title="UIKIT &amp; CoreData"></a>UIKIT &amp; CoreData</h3><ul>
+<li><p>when the framework can run in the background it is said to be thread safe </p>
+</li>
+<li><p>cannot run anything from UIKit in the background</p>
+</li>
+</ul>
+<pre><code>//maybe crash , uikit should run in Main queue
+
+let downloadQueue = dispatch_queue_create(&quot;download&quot;,nil)
+
+dispatch_async(downloadQueue){()-&gt; Void in 
+
+let imgData = NSData (contentsOfURL:url!)
+
+let image = UIImage(data:imgData!)
+
+self.photoViewimage = image
+
+}
+</code></pre><h2 id="Synchronous-download"><a href="#Synchronous-download" class="headerlink" title="Synchronous download"></a>Synchronous download</h2><pre><code>// Get the URL for the image
+let url = NSURL(string: BigImages.seaLion.rawValue)
+
+// Obtain the NSData with the image
+let imgData = NSData(contentsOfURL: url!)
+
+// Turn it into a UIImage
+let image = UIImage(data: imgData!)
+
+// Display it
+photoView.image = image
+</code></pre><p>Refactor code by if-let </p>
+<pre><code>if let url = NSURL(string: BigImages.seaLion.rawValue),
+    let imgData = NSData(contentsOfURL: url),
+    let image = UIImage(data: imgData){
+
+    // Display it
+    photoView.image = image
+}
+</code></pre><h2 id="Asynchronous-download"><a href="#Asynchronous-download" class="headerlink" title="Asynchronous download"></a>Asynchronous download</h2><p>Not all of UIkit is thread and save.There are a few exceptions, such as UIImage<br>All the visual stuff, the views are unsaved<br>if name end view, it must be main queue </p>
+<pre><code>@IBAction func simpleAsynchronousDownload(sender: UIBarButtonItem) {
+
+        let url = NSURL(string: BigImages.shark.rawValue)
+
+        // create a queue
+        let downloadQueue = dispatch_queue_create(&quot;download&quot;, nil)
+
+        // add a closure that encapsulates the blocking operation
+        // run it asynchronously: some time in the near future
+
+        dispatch_async(downloadQueue) { () -&gt; Void in
+
+            // Obtain the NSData with the image
+            let imgData = NSData(contentsOfURL: url!)
+
+            // Turn it into a UIImage
+            let image = UIImage(data: imgData!)
+
+            // Run the code that updates the UI in the main queue!
+            dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
+                // Display it
+                self.photoView.image = image
+            })
+        }
+    }
+</code></pre><h2 id="Completion-Closure"><a href="#Completion-Closure" class="headerlink" title="Completion Closure"></a>Completion Closure</h2><p>It is a good practice to make sure that always all your completion handlers run in the main queue</p>
+<pre><code>    func withBigImage(completionHandler handler: (image: UIImage) -&gt; Void){
+
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -&gt; Void in
+
+        // get the url
+        // get the NSData
+        // turn it into a UIImage
+
+        if let url = NSURL(string: BigImages.whale.rawValue), let imgData = NSData(contentsOfURL: url), let img = UIImage(data: imgData) {
+
+            // run the completion block
+            // always in the main queue, just in case!
+
+            dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
+                handler(image: img)
+            })
+        }
+    }
+}
+</code></pre><h2 id="Async-amp-Sync"><a href="#Async-amp-Sync" class="headerlink" title="Async &amp; Sync"></a>Async &amp; Sync</h2><p>doesn’t wait for the closure to finish ,and moves on Always use until you know very well what you are doing</p>
+<pre><code>dispatch_async()
+</code></pre><p>won’t return immediately.waits until the closure is done ,could easily get stalled!</p>
+<pre><code>dispatch_sync()
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/" itemprop="url">
+                  Grand_Central_Dispatch_Tutorial_for_Swift1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T15:34:43+10:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h1><p>GCD is the marketing name for libdispatch</p>
+<h2 id="Serial-vs-Concurrent"><a href="#Serial-vs-Concurrent" class="headerlink" title="Serial vs. Concurrent"></a>Serial vs. Concurrent</h2><p>These terms describe when tasks are executed with respect to each other.</p>
+<p>Tasks executed serially are always executed one at a time.</p>
+<p>Tasks executed concurrently might be executed at the same time.</p>
+<h2 id="Synchronous-vs-Asynchronous-同步和异步"><a href="#Synchronous-vs-Asynchronous-同步和异步" class="headerlink" title="Synchronous vs. Asynchronous(同步和异步)"></a>Synchronous vs. Asynchronous(同步和异步)</h2><p>These terms describe when a function will return control to the caller, and how much work will have been done by that point.</p>
+<p>A synchronous function returns only after the completion of a task that it orders.</p>
+<p>An asynchronous function, on the other hand, returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.</p>
+<h2 id="Critical-Section"><a href="#Critical-Section" class="headerlink" title="Critical Section"></a>Critical Section</h2><p>This is a piece of code that must not be executed concurrently, which might manipulates a shared resource</p>
+<h2 id="Race-Condition"><a href="#Race-Condition" class="headerlink" title="Race Condition"></a>Race Condition</h2><h2 id="Deadlock"><a href="#Deadlock" class="headerlink" title="Deadlock"></a>Deadlock</h2><p>两个thread互相等待对方完成，陷入僵局</p>
+<h2 id="Thread-Safe"><a href="#Thread-Safe" class="headerlink" title="Thread Safe"></a>Thread Safe</h2><p>Thread safe code can be safely called from multiple threads or concurrent tasks without causing any problems</p>
+<p>设定常量是线程安全的，变量不一定安全，因为可能被其他线程的所改变值</p>
+<p>Variables and data structures that are mutable and not inherently thread-safe should only be accessed from one thread at a time.</p>
+<h2 id="Context-Switch"><a href="#Context-Switch" class="headerlink" title="Context Switch"></a>Context Switch</h2><p>A context switch is the process of storing and restoring execution state when you switch between executing different threads on a single process.</p>
+<h2 id="Concurrency-vs-Parallelism"><a href="#Concurrency-vs-Parallelism" class="headerlink" title="Concurrency vs Parallelism"></a>Concurrency vs Parallelism</h2><p>Multi-core devices execute multiple threads at the same time via parallelism</p>
+<p>Single-cored devices must run a thread, perform a context switch</p>
+<p>Parallelism requires concurrency, but concurrency does not guarantee parallelism.</p>
+<h1 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h1><p>GCD provides dispatch queues to handle submitted tasks; these queues manage the tasks you provide to GCD and execute those tasks in FIFO order</p>
+<h2 id="Serial-Queues"><a href="#Serial-Queues" class="headerlink" title="Serial Queues"></a>Serial Queues</h2><p>executes only one task at a time</p>
+<p><img src="https://www.dropbox.com/s/3ghgkn5eg52vd0t/2016092801.png?dl=1" alt="1"></p>
+<h2 id="Concurrent-Queues"><a href="#Concurrent-Queues" class="headerlink" title="Concurrent Queues"></a>Concurrent Queues</h2><p>The decision of when to start a task is entirely up to GCD.</p>
+<p><img src="https://www.dropbox.com/s/ivkbyp2306tqry4/2016092802.png?dl=1" alt="2"></p>
+<h2 id="Queue-Types"><a href="#Queue-Types" class="headerlink" title="Queue Types"></a>Queue Types</h2><p>You have at least five queues at your disposal: the main queue, four global dispatch queues, plus any custom queues</p>
+<ul>
+<li><p>Main queue:which is the only thread allowed to update your UI.</p>
+</li>
+<li><p>QOS_CLASS_USER_INTERACTIVE</p>
+</li>
+<li><p>QOS_CLASS_USER_INITIATED</p>
+</li>
+<li><p>QOS_CLASS_UTILITY</p>
+</li>
+<li><p>QOS_CLASS_BACKGROUND</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/26/The-Swift-Programming-Language-Swift3/" itemprop="url">
                   The-Swift-Programming-Language-Swift3
                 </a>
@@ -1271,364 +1763,12 @@ func callMather(){
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/TableView with searchBr视图的构建/" itemprop="url">
-                  TableView with searchBr视图的构建
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T11:21:42+10:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/07/TableView with searchBr视图的构建/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/TableView with searchBr视图的构建/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="" alt=""></p>
-<h1 id="Table-View"><a href="#Table-View" class="headerlink" title="Table View"></a>Table View</h1><h2 id="TableView-创建"><a href="#TableView-创建" class="headerlink" title="TableView 创建"></a>TableView 创建</h2><p>在视图中拖入一个tableView,并设置约束</p>
-<p><img src="https://www.dropbox.com/s/816psmm80wngd9o/2016091201.png?dl=1" alt="1"></p>
-<h2 id="TableView的行高"><a href="#TableView的行高" class="headerlink" title="TableView的行高"></a>TableView的行高</h2><p><img src="https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1" alt="3"></p>
-<h2 id="TableView的代理"><a href="#TableView的代理" class="headerlink" title="TableView的代理"></a>TableView的代理</h2><p>ctrl drag tableView to the controller</p>
-<p><img src="https://www.dropbox.com/s/ayu3maiwfsghw87/2016091204.png?dl=1" alt="4"></p>
-<h2 id="TableView-IBOutlet-in-controller"><a href="#TableView-IBOutlet-in-controller" class="headerlink" title="TableView IBOutlet in controller"></a>TableView IBOutlet in controller</h2><p><img src="https://www.dropbox.com/s/co4pzk3rpvkw894/2016091210.png?dl=1" alt="10"></p>
-<h2 id="ViewController-conforms-to-protocol"><a href="#ViewController-conforms-to-protocol" class="headerlink" title="ViewController conforms to protocol"></a>ViewController conforms to protocol</h2><p><img src="https://www.dropbox.com/s/w5qzdx3ul0l7p9e/2016091211.png?dl=1" alt="11"></p>
-<h1 id="Table-view-cell"><a href="#Table-view-cell" class="headerlink" title="Table view cell"></a>Table view cell</h1><h2 id="TableView中设置cell"><a href="#TableView中设置cell" class="headerlink" title="TableView中设置cell"></a>TableView中设置cell</h2><p><img src="https://www.dropbox.com/s/2mhplzoreycp3hn/2016091202.png?dl=1" alt="2"></p>
-<h2 id="TableViewCell-ID"><a href="#TableViewCell-ID" class="headerlink" title="TableViewCell ID"></a>TableViewCell ID</h2><p><img src="https://www.dropbox.com/s/9zhlhcqifo64m0y/2016091205.png?dl=1" alt="5"></p>
-<h2 id="TableViewCell-custom-class"><a href="#TableViewCell-custom-class" class="headerlink" title="TableViewCell custom class"></a>TableViewCell custom class</h2><p><img src="https://www.dropbox.com/s/sn53qqj3j38diib/2016091209.png?dl=1" alt="9"></p>
-<h2 id="TableViewCell取消分割线"><a href="#TableViewCell取消分割线" class="headerlink" title="TableViewCell取消分割线"></a>TableViewCell取消分割线</h2><p><img src="https://www.dropbox.com/s/7tdn4oxn6jptqeg/2016091212.png?dl=1" alt="12"></p>
-<h2 id="采用UIView作为分割线"><a href="#采用UIView作为分割线" class="headerlink" title="采用UIView作为分割线"></a>采用UIView作为分割线</h2><p><img src="https://www.dropbox.com/s/33hjj0qf66a1csq/2016091213.png?dl=1" alt="13"></p>
-<p>黑色，透明度2%</p>
-<p><img src="https://www.dropbox.com/s/gdvn98bqwqb2w2g/2016091214.png?dl=1" alt="14"></p>
-<h1 id="UIStoryBoard中的Constraints"><a href="#UIStoryBoard中的Constraints" class="headerlink" title="UIStoryBoard中的Constraints"></a>UIStoryBoard中的Constraints</h1><p>两者顶部对齐</p>
-<p><img src="https://www.dropbox.com/s/o3yxuzsv4t40sly/2016091206.png?dl=1" alt="6"></p>
-<p>两者底部对齐</p>
-<p><img src="https://www.dropbox.com/s/nl3h820ypcielce/2016091207.png?dl=1" alt="7"></p>
-<p>两者中线对齐</p>
-<p><img src="https://www.dropbox.com/s/1ocfn5c0u4l9m8y/2016091208.png?dl=1" alt="8"></p>
-<h1 id="View中的元素"><a href="#View中的元素" class="headerlink" title="View中的元素"></a>View中的元素</h1><h2 id="Lable内文字可以自动换行"><a href="#Lable内文字可以自动换行" class="headerlink" title="Lable内文字可以自动换行"></a>Lable内文字可以自动换行</h2><p>设为0</p>
-<p><img src="https://www.dropbox.com/s/7l8215vih3w5zw6/2016091215.png?dl=1" alt="15"></p>
-<h2 id="ImageView设为AspectFit"><a href="#ImageView设为AspectFit" class="headerlink" title="ImageView设为AspectFit"></a>ImageView设为AspectFit</h2><p><img src="https://www.dropbox.com/s/m9tgd7woh0qbdsf/2016091216.png?dl=1" alt="16"></p>
-<h1 id="Search-View"><a href="#Search-View" class="headerlink" title="Search View"></a>Search View</h1><h2 id="主视图中添加导航栏视图"><a href="#主视图中添加导航栏视图" class="headerlink" title="主视图中添加导航栏视图"></a>主视图中添加导航栏视图</h2><p>创建一个高度为64的导航栏视图，并将其底部与table view顶部相连接</p>
-<p><img src="https://www.dropbox.com/s/5pxhv35sqp1i979/2016091402.png?dl=1" alt="2"></p>
-<p><img src="https://www.dropbox.com/s/7vpj5w66dpc464a/2016091403.png?dl=1" alt="3"></p>
-<p><img src="https://www.dropbox.com/s/79zvuo5j4oixf0z/2016091406.png?dl=1" alt="6"></p>
-<h2 id="导航栏内嵌UIView-for-searchBar"><a href="#导航栏内嵌UIView-for-searchBar" class="headerlink" title="导航栏内嵌UIView for searchBar"></a>导航栏内嵌UIView for searchBar</h2><p>在导航栏中内嵌一个UIView 高度为44，透明</p>
-<p><img src="https://www.dropbox.com/s/5cjfu4g007l72hq/2016091407.png?dl=1" alt="7"></p>
-<p><img src="https://www.dropbox.com/s/nfsf4tfive1u0e6/2016091408.png?dl=1" alt="8"></p>
-<p><img src="https://www.dropbox.com/s/tog01z4o4zr458c/2016091409.png?dl=1" alt="9"></p>
-<h2 id="搜索结果界面创建"><a href="#搜索结果界面创建" class="headerlink" title="搜索结果界面创建"></a>搜索结果界面创建</h2><p>在storyboard中复制一个view controller scene 为search controller scene</p>
-<p><img src="https://www.dropbox.com/s/eg23hrkhohgqv7k/2016091401.png?dl=1" alt="1"></p>
-<p>搜索结果界面的导航栏和主视图的一致，内嵌view for searchbar, 不需要cell</p>
-<p><img src="https://www.dropbox.com/s/p2gr5uw6mrlrrxr/2016091410.png?dl=1" alt="10"></p>
-<p><img src="https://www.dropbox.com/s/4ub3sd8064j57tz/2016091412.png?dl=1" alt="12"></p>
-<h2 id="custom-class-和-storyboard-ID"><a href="#custom-class-和-storyboard-ID" class="headerlink" title="custom class 和 storyboard ID"></a>custom class 和 storyboard ID</h2><p><img src="https://www.dropbox.com/s/hl4qxhc0tsyp8sb/2016091413.png?dl=1" alt="13"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/02/CodePractice/" itemprop="url">
-                  CodePractice
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-02T13:00:36+10:00" content="2016-09-02">
-              2016-09-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/02/CodePractice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/02/CodePractice/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="将数组中的最后一个字符合并"><a href="#将数组中的最后一个字符合并" class="headerlink" title="将数组中的最后一个字符合并"></a>将数组中的最后一个字符合并</h2><pre><code>var nonsenseArray = [&quot;bungalow&quot;, &quot;buffalo&quot;, &quot;indigo&quot;, &quot;although&quot;, &quot;Ontario&quot;, &quot;albino&quot;, &quot;%$&amp;#!&quot;]
-
-func combineLastCharacters(wordArray:[String]) -&gt; String {
-
-    var newWord = &quot;&quot;
-    for var word in wordArray {
-        let lastCharacter = word.removeAtIndex(word.endIndex.predecessor())
-        newWord.append(lastCharacter)
-    }
-    return newWord
-}
-
-combineLastCharacters(nonsenseArray)
-
-//output :&quot;woohoo!&quot;
-</code></pre><h2 id="字符串中有数字则返回true-字符则false"><a href="#字符串中有数字则返回true-字符则false" class="headerlink" title="字符串中有数字则返回true,字符则false"></a>字符串中有数字则返回true,字符则false</h2><pre><code>//创建只有数字的set
-let digits = NSCharacterSet.decimalDigitCharacterSet()
-
-func digitsOnly(word: String) -&gt; Bool {
-
-    for character in word.unicodeScalars {
-
-        if !digits.longCharacterIsMember(character.value) {
-            return false
-        }
-    }
-    return true
-}
-
-digitsOnly(&quot;123&quot;)  //output : true
-
-digitsOnly(&quot;12a&quot;)  //output : false
-</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="去除掉数组中四个字母的字符串"><a href="#去除掉数组中四个字母的字符串" class="headerlink" title="去除掉数组中四个字母的字符串"></a>去除掉数组中四个字母的字符串</h2><pre><code>let dirtyWordsArray = [&quot;phooey&quot;, &quot;darn&quot;, &quot;drat&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;argh&quot;, &quot;fudge&quot;]
-
-func cleanUp(dirtyArray: [String]) -&gt; [String] {
-    var cleanArray = [String]()
-    for word in dirtyArray {
-        if word.characters.count == 4 {
-        } else {
-            cleanArray.append(word)
-        }
-    }
-    return cleanArray
-}
-
-cleanUp(dirtyWordsArray) //output : [&quot;phooey&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;fudge&quot;]
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="筛选出字典中指定value的key值数组"><a href="#筛选出字典中指定value的key值数组" class="headerlink" title="筛选出字典中指定value的key值数组"></a>筛选出字典中指定value的key值数组</h2><pre><code>var movies:Dictionary&lt;String,String&gt; = [ &quot;Boyhood&quot;:&quot;Richard Linklater&quot;,&quot;Inception&quot;:&quot;Christopher Nolan&quot;, &quot;The Hurt Locker&quot;:&quot;Kathryn Bigelow&quot;, &quot;Selma&quot;:&quot;Ava Du Vernay&quot;, &quot;Interstellar&quot;:&quot;Christopher Nolan&quot;]
-
-class MovieArchive {
-    func filterByDirector(currentDirector:String, movies: Dictionary&lt;String, String&gt;) -&gt; [String] {
-        var filteredArray = [String]()
-        for (movie, director) in movies {
-            if director == currentDirector {
-                filteredArray.append(movie)
-            }
-        }
-        return filteredArray
-    }
-}
-
-// Solution
-var myArchive = MovieArchive()
-myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //output : [&quot;Boyhood&quot;]
-</code></pre><h1 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h1><h2 id="Fade-Out-and-Fade-in"><a href="#Fade-Out-and-Fade-in" class="headerlink" title="Fade Out and Fade in"></a>Fade Out and Fade in</h2><pre><code>@IBAction func sunRiseAndSet(sender: AnyObject) {
-       // Fade out
-
-       UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-
-           self.imageView.alpha = 0.0
-
-           }, completion: {
-               (finished: Bool) -&gt; Void in
-
-               //Once the label is completely invisible, set the text and fade it back in
-               if (self.imageView.image == UIImage(named: &quot;sunrise&quot;)) {
-                   self.imageView.image = UIImage(named:&quot;sunset&quot;)!
-               } else {
-                   self.imageView.image = UIImage(named:&quot;sunrise&quot;)!
-               }
-
-               // Fade in
-               UIView.animateWithDuration(1.0, delay:0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
-                   self.imageView.alpha = 1.0
-                   }, completion: nil)
-       })
-   }
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1669,7 +1809,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">106</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1686,7 +1826,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

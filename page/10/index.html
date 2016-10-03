@@ -238,6 +238,549 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/26/iOS设计模式-观察者/" itemprop="url">
+                  iOS设计模式-观察者
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-26T19:46:49+10:00" content="2016-05-26">
+              2016-05-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/26/iOS设计模式-观察者/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/26/iOS设计模式-观察者/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="通知中心业务逻辑"><a href="#通知中心业务逻辑" class="headerlink" title="通知中心业务逻辑"></a>通知中心业务逻辑</h1><p><img src="https://www.dropbox.com/s/jziwyqxoi8ktxvr/iOS_designPattern0401.png?dl=1" alt=""></p>
+<ol>
+<li>订阅中心是单例模式，只有一个</li>
+<li>订阅中心维护书刊的信息，书刊号维护用户的信息</li>
+<li>用户信息是某种集合(NSDictionary, NSSet, NSArray)</li>
+<li>观察者(用户)是被动接收消息的，不会影响到订阅中心的发布</li>
+</ol>
+<h1 id="抽象接口设计"><a href="#抽象接口设计" class="headerlink" title="抽象接口设计"></a>抽象接口设计</h1><p>按照业务逻辑，和涉及的对象，将逻辑理顺，<strong>不需要考虑如何实现</strong>，先设计接口。例如，通知中心可以这样:</p>
+<p>维护订阅信息</p>
+<pre><code>//创建订阅号
++ (void)createSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//移除订阅号
++ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><p>维护客户信息</p>
+<pre><code>//添加客户到具体的订阅号当中
++ (void)addCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+
+//从具体的订阅号当中移除客户
++ (void)removeCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><p>发送消息</p>
+<pre><code>//发送消息到具体的订阅号当中
++ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber;
+</code></pre><h1 id="通知中心与用户的消息传递-协议"><a href="#通知中心与用户的消息传递-协议" class="headerlink" title="通知中心与用户的消息传递(协议)"></a>通知中心与用户的消息传递(协议)</h1><p>消息传递，就让它遵循某类协议，例如订阅的用户</p>
+<pre><code>id &lt;SubscriptionServiceCenterProtocol&gt;
+</code></pre><h1 id="订阅中心实例"><a href="#订阅中心实例" class="headerlink" title="订阅中心实例"></a>订阅中心实例</h1><p><img src="https://www.dropbox.com/s/a0sjohhdcrw40q2/iOS_designPattern0402.png?dl=1" alt=""></p>
+<ol>
+<li>NSHashTable对持有的对象是weak引用。这里的例子用来存储”订阅杂志的用户集合”</li>
+<li>NSSet, NSArray, NSDictionary中对持有对象是strong引用</li>
+<li>NSParameterAssert判断不能为nil，否则程序会奔溃</li>
+</ol>
+<h2 id="订阅中心创建发行杂志的集合"><a href="#订阅中心创建发行杂志的集合" class="headerlink" title="订阅中心创建发行杂志的集合"></a>订阅中心创建发行杂志的集合</h2><p>发行杂志的集合:NSMutableDictionary</p>
+<pre><code>+ (void)initialize {
+
+if (self == [SubscriptionServiceCenter class]) {
+
+    _subscriptionDictionary = [NSMutableDictionary dictionary];
+}
+}
+</code></pre><h2 id="获得某订阅号的用户集合"><a href="#获得某订阅号的用户集合" class="headerlink" title="获得某订阅号的用户集合"></a>获得某订阅号的用户集合</h2><p>用户集合:NSHashTable</p>
+<pre><code>+ (NSHashTable *)existSubscriptionNumber:(NSString *)subscriptionNumber {
+
+return [_subscriptionDictionary objectForKey:subscriptionNumber];
+}
+</code></pre><h2 id="创建订阅号"><a href="#创建订阅号" class="headerlink" title="创建订阅号"></a>创建订阅号</h2><p>创建订阅号，实质上是创建它的用户集合</p>
+<pre><code>+ (void)createSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+//如果这杂志的用户集合不存在，则创建
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+
+if (hashTable == nil) {
+    hashTable = [NSHashTable weakObjectsHashTable];
+    [_subscriptionDictionary setObject:hashTable forKey:subscriptionNumber];
+}
+}
+</code></pre><h2 id="移除订阅号"><a href="#移除订阅号" class="headerlink" title="移除订阅号"></a>移除订阅号</h2><p>移除订阅号，实质上是移除它的用户集合</p>
+<pre><code>+ (void)removeSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    [_subscriptionDictionary removeObjectForKey:subscriptionNumber];
+}
+}
+</code></pre><h2 id="添加客户到具体的订阅号当中"><a href="#添加客户到具体的订阅号当中" class="headerlink" title="添加客户到具体的订阅号当中"></a>添加客户到具体的订阅号当中</h2><p>根据订阅号，取出用户集合，并添加至NSHashTable集合中</p>
+<pre><code>+ (void)addCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(customer);
+NSParameterAssert(subscriptionNumber);
+
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable addObject:customer];
+}
+</code></pre><h2 id="从具体的订阅号当中移除客户"><a href="#从具体的订阅号当中移除客户" class="headerlink" title="从具体的订阅号当中移除客户"></a>从具体的订阅号当中移除客户</h2><p>根据订阅号，取出用户集合，从NSHashTable集合中删除，这里customer可以为nil，因为该customer可能本来就没有订阅。所以不需要NSParameterAssert判断</p>
+<pre><code>+ (void)removeCustomer:(id &lt;SubscriptionServiceCenterProtocol&gt;)customer withSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+[hashTable removeObject:customer];
+}
+</code></pre><h2 id="订阅中心发行期刊"><a href="#订阅中心发行期刊" class="headerlink" title="订阅中心发行期刊"></a>订阅中心发行期刊</h2><p>从用户集合中，遍历取出每个用户，只要它实现了协议，就可以获得消息</p>
+<pre><code>+ (void)sendMessage:(id)message toSubscriptionNumber:(NSString *)subscriptionNumber {
+
+NSParameterAssert(subscriptionNumber);
+
+NSHashTable *hashTable = [self existSubscriptionNumber:subscriptionNumber];
+if (hashTable) {
+
+    NSEnumerator *enumerator = [hashTable objectEnumerator];
+    id &lt;SubscriptionServiceCenterProtocol&gt; object = nil;
+    while (object = [enumerator nextObject]) {
+
+        if ([object respondsToSelector:@selector(subscriptionMessage:subscriptionNumber:)]) {
+
+            [object subscriptionMessage:message subscriptionNumber:subscriptionNumber];
+        }
+    }
+}
+}
+</code></pre><h2 id="订阅中心的工作过程"><a href="#订阅中心的工作过程" class="headerlink" title="订阅中心的工作过程"></a>订阅中心的工作过程</h2><pre><code>// 创建订阅号SCIENCE
+[SubscriptionServiceCenter createSubscriptionNumber:SCIENCE];
+
+// 添加订阅的用户到指定的刊物
+[SubscriptionServiceCenter addCustomer:self(这里是viewcontroller,只要实现了协议，任何对象都可以)
+                withSubscriptionNumber:SCIENCE];
+
+// 发行机构发送消息
+[SubscriptionServiceCenter sendMessage:@&quot;V1.0&quot; toSubscriptionNumber:SCIENCE];
+</code></pre><h2 id="用户接收消息的实现"><a href="#用户接收消息的实现" class="headerlink" title="用户接收消息的实现"></a>用户接收消息的实现</h2><pre><code>- (void)subscriptionMessage:(id)message subscriptionNumber:(NSString *)subscriptionNumber {
+NSLog(@&quot;%@  %@&quot;, message, subscriptionNumber);
+}
+</code></pre><h1 id="框架级别的观察者模式1-NSNotificationCenter"><a href="#框架级别的观察者模式1-NSNotificationCenter" class="headerlink" title="框架级别的观察者模式1:NSNotificationCenter"></a>框架级别的观察者模式1:NSNotificationCenter</h1><pre><code>// 添加客户到指定的订阅号中
+[[NSNotificationCenter defaultCenter] addObserver:self  (用户)
+                                         selector:@selector(notificationCenterEvent:)
+                                             name:SCIENCE（订阅号）
+                                           object:nil];
+
+// 发送信息到指定的订阅号当中
+[[NSNotificationCenter defaultCenter] postNotificationName:SCIENCE
+                                                    object:@&quot;V1.0&quot;];
+
+
+
+//通知中心方法
+- (void)notificationCenterEvent:(id)sender {
+NSLog(@&quot;%@&quot;, sender);
+}
+
+- (void)dealloc {
+
+// 移除通知中心
+[[NSNotificationCenter defaultCenter] removeObserver:self
+                                          forKeyPath:SCIENCE];
+                                      }
+</code></pre><h1 id="框架级别的观察者模式2-KVO"><a href="#框架级别的观察者模式2-KVO" class="headerlink" title="框架级别的观察者模式2:KVO"></a>框架级别的观察者模式2:KVO</h1><p>kVO(key value obeserveing)是一种非常重要的机制，他允许监听对象属性的变化</p>
+<pre><code>// 创建订阅中心
+self.model = [Model new];
+
+// 客户添加了订阅中心的&quot;name&quot;服务
+[self.model addObserver:self （用户）
+             forKeyPath:@&quot;name&quot; （订阅号）
+                options:NSKeyValueObservingOptionNew (当订阅号改变时，需要传递什么值给监听器（枚举类型）)
+                context:nil];
+
+// 订阅中心发送消息(通过修改属性值)
+self.model.name = @&quot;V1.0&quot;;
+
+//KVO方法
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+        ofObject:(id)object 
+        change:(NSDictionary *)change 
+        context:(void *)context {
+
+NSLog(@&quot;%@&quot;, change);
+}
+
+
+- (void)dealloc {
+// 移除KVO
+[self.model removeObserver:self forKeyPath:@&quot;name&quot;];
+
+}
+</code></pre><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="强引用和弱引用的叙述-转载"><a href="#强引用和弱引用的叙述-转载" class="headerlink" title="强引用和弱引用的叙述(转载)"></a>强引用和弱引用的叙述(转载)</h2><p>一个对象:类比为一条狗,释放对象:类比为狗要跑掉</p>
+<ol>
+<li>strong类型的指针就像是栓住的狗，只要你用绳子拴住狗，那么狗就不会跑掉.——- (一个对象new过以后，不会自动的释放)</li>
+<li>如果有5个人都牵着这一条狗(5条绳子栓一只狗)——- (5个strong类型指针指向一个对象.)</li>
+<li>除非5个绳子都脱落，否则狗是不会跑掉的———— 5个strong指针都=nil，则该对象释放</li>
+<li>weak型指针就像是一个小孩子指着狗喊道：“看，有一只狗在那里”，只要狗一直被拴着，那么小孩子就能看到狗（weak指针）会一直指向它，</li>
+<li>只要狗的绳子脱落，那么狗就会跑掉，不管有多少的小孩在看着它。</li>
+<li>只要最后一个strong型指针不再指向对象，那么对象就会被释放，同时所有的weak型指针都将会被清除。</li>
+</ol>
+<h2 id="NSEnumerator遍历"><a href="#NSEnumerator遍历" class="headerlink" title="NSEnumerator遍历"></a>NSEnumerator遍历</h2><pre><code>NSEnumerator *enumerator = [hashTable objectEnumerator];
+id object = nil
+while (object = [enumerator nextObject]) {
+
+}
+</code></pre><h2 id="NSParameterAssert"><a href="#NSParameterAssert" class="headerlink" title="NSParameterAssert"></a>NSParameterAssert</h2><p>判断不能为nil，否则程序会奔溃</p>
+<h2 id="判断对象存在与否"><a href="#判断对象存在与否" class="headerlink" title="判断对象存在与否"></a>判断对象存在与否</h2><pre><code>//对象存在
+if (hashTable) {...}
+
+//对象不存在
+if (hashTable == nil) {....}
+</code></pre><h2 id="initialize"><a href="#initialize" class="headerlink" title="initialize"></a>initialize</h2><p>每个对象都具有的初始化方法，只执行一次</p>
+<pre><code>+ (void)initialize {...}    
+</code></pre><h2 id="KVC-key-value-coding"><a href="#KVC-key-value-coding" class="headerlink" title="KVC (key value coding)"></a>KVC (key value coding)</h2><p>使用valueforKey:获取Student对象的name。</p>
+<pre><code>NSString *name = [Student valueForKey :@&quot;name&quot;];
+</code></pre><p>使用setValue：ForKey:设置student对象的name。</p>
+<pre><code>[Student setVlue:@&quot;zhangjl&quot; forKey:@&quot;name&quot;];
+</code></pre><p>支持通过键路径(key path)进行访问和赋值。比如：利用键路径对Student对象的Card对象的no属性进行访问和赋值</p>
+<pre><code>[Student setValue:@&quot;1234&quot; forKeyPath: @&quot;card.no&quot;];
+[Student valueForKeyPath:@&quot;card.no&quot;]
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/24/iOS设计模式-策略/" itemprop="url">
+                  iOS设计模式-策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-24T19:10:03+10:00" content="2016-05-24">
+              2016-05-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/24/iOS设计模式-策略/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/iOS设计模式-策略/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1" alt=""></p>
+<p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
+<pre><code>typedef enum : NSUInteger {
+
+EType_01,
+EType_02,
+EType_03,
+EType_04,
+EType_05,
+EType_06,
+EType_07,
+EType_08,
+EType_09,
+
+} ETypes;
+
+// 输入条件
+ETypes type = EType_01;
+
+// 输出条件
+NSString *showString = nil;
+
+if (type == EType_01) {
+
+    // showString = ...
+
+} else if (type == EType_02) {
+
+    // showString = ...
+
+} else if (type == EType_03) {
+
+    // showStri
+    ......
+</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1" alt=""></p>
+<ol>
+<li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
+<li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
+<li>判断的每个条件生成对应的一个对象</li>
+<li>需要事先知道输入的条件</li>
+<li>策略类对象属于使用场景的一部分</li>
+</ol>
+<h1 id="策略的使用案例"><a href="#策略的使用案例" class="headerlink" title="策略的使用案例"></a>策略的使用案例</h1><h2 id="抽象的策略-Strategy"><a href="#抽象的策略-Strategy" class="headerlink" title="抽象的策略 (Strategy)"></a>抽象的策略 (Strategy)</h2><p>CustomField: 内含inputValidator验证策略</p>
+<pre><code>@interface CustomField : UITextField
+
+@property (nonatomic, strong) InputValidator *validator;
+
+- (BOOL)validate {
+return [self.validator validateInput:self];
+}
+@end
+</code></pre><p>InputValidator:策略的输入</p>
+<pre><code>@interface InputValidator : NSObject
+
+@property (nonatomic, strong) NSString *errorMessage;
+
+- (BOOL)validateInput:(UITextField *)input {
+return NO;
+}
+</code></pre><h2 id="Email的验证-Strategy-A"><a href="#Email的验证-Strategy-A" class="headerlink" title="Email的验证 (Strategy A)"></a>Email的验证 (Strategy A)</h2><p>EmailValidator:重载了父类的验证方法</p>
+<pre><code>@interface EmailValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的邮箱&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="Phone的验证-Strategy-B"><a href="#Phone的验证-Strategy-B" class="headerlink" title="Phone的验证  (Strategy B)"></a>Phone的验证  (Strategy B)</h2><p>PhoneNumberValidator :重载了父类的验证方法</p>
+<pre><code>@interface PhoneNumberValidator : InputValidator
+
+- (BOOL)validateInput:(UITextField *)input {
+
+if (input.text.length &lt;= 0) {
+    self.errorMessage = @&quot;没有输入&quot;;
+} else {
+    BOOL isMatch = [input.text isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
+    if (isMatch == NO) {
+        self.errorMessage = @&quot;请输入正确的手机号码&quot;;
+    } else {
+        self.errorMessage = nil;
+    }
+}
+
+return self.errorMessage == nil ? YES : NO;
+}
+</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>ViewController</p>
+<pre><code>@property (nonatomic, strong) CustomField  *emailField;
+@property (nonatomic, strong) CustomField  *phoneNumberField;
+
+......
+self.emailField.validator   = [EmailValidator new];
+......
+self.phoneNumberField.validator   = [PhoneNumberValidator new];
+......
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+CustomField *customField = (CustomField *)textField;
+
+//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
+
+if ([customField validate] == NO) {
+    [UIInfomationView showAlertViewWithTitle:nil
+                                     message:customField.validator.errorMessage
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@[@&quot;确定&quot;]
+                                clickAtIndex:^(NSInteger buttonIndex) {
+
+                                }];
+}
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/23/iOS设计模式-适配器/" itemprop="url">
                   iOS设计模式-适配器
                 </a>
@@ -881,356 +1424,12 @@ BaseAnimationView *animationView = [[ScaleAnimationView alloc] init];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/21/iOS视频播放和录制/" itemprop="url">
-                  iOS视频播放和录制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T15:39:21+10:00" content="2016-05-21">
-              2016-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS视频播放和录制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS视频播放和录制/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Play-Video"><a href="#Play-Video" class="headerlink" title="Play Video"></a>Play Video</h1><pre><code>import UIKit
-import MediaPlayer
-
-class ViewController: UIViewController {
-
-var pc:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&quot;video&quot;, withExtension: &quot;mp4&quot;))
-    presentViewController(pc, animated: true, completion: nil)
-}
-}
-</code></pre><h1 id="Record-Video"><a href="#Record-Video" class="headerlink" title="Record Video"></a>Record Video</h1><pre><code>import UIKit
-import MobileCoreServices
-import MediaPlayer
-
-class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
-
-var picker:UIImagePickerController!
-var videoUrl:NSURL?
-var player:MPMoviePlayerViewController!
-
-@IBAction func playVideoBtnClicked(sender: AnyObject) {
-
-    if let url = videoUrl{
-        player = MPMoviePlayerViewController(contentURL: url)
-        presentViewController(player, animated: true, completion: nil)
-    }
-}
-
-
-@IBAction func recVideoBtnClicked(sender: AnyObject) {
-
-    picker = UIImagePickerController()
-    picker.mediaTypes = [kUTTypeMovie as String]
-    picker.sourceType = UIImagePickerControllerSourceType.Camera
-    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
-    picker.delegate = self
-
-    presentViewController(picker, animated: true, completion: nil) 
-}
-
-
-func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
-
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-
-func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    picker.dismissViewControllerAnimated(true, completion: nil)
-}
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/21/iOS-HTTP通信/" itemprop="url">
-                  iOS-HTTP通信
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-21T13:11:52+10:00" content="2016-05-21">
-              2016-05-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/21/iOS-HTTP通信/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS-HTTP通信/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="URL-path"><a href="#URL-path" class="headerlink" title="URL path"></a>URL path</h1><pre><code>let httpPath = NSURL(string:&quot;http://jikexueyuan.com&quot; )
-let httpRequest = NSURLRequest(URL: httpPath!)
-</code></pre><h1 id="打印HTML代码"><a href="#打印HTML代码" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h1><h2 id="字符串类型输出"><a href="#字符串类型输出" class="headerlink" title="字符串类型输出"></a>字符串类型输出</h2><pre><code>do {
-    let httpCode = try NSString(contentsOfURL: httpPath!, encoding: NSUTF8StringEncoding)
-    print(httpCode)
-}catch{
-    print(error)
-}
-</code></pre><h2 id="二进制类型输出"><a href="#二进制类型输出" class="headerlink" title="二进制类型输出"></a>二进制类型输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
-print(data!)
-</code></pre><h2 id="二进制转字符串输出"><a href="#二进制转字符串输出" class="headerlink" title="二进制转字符串输出"></a>二进制转字符串输出</h2><pre><code>let data = NSData(contentsOfURL:httpPath!)
-print(NSString(data:data!, encoding: NSUTF8StringEncoding))
-</code></pre><h1 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h1><h2 id="打印HTML代码-1"><a href="#打印HTML代码-1" class="headerlink" title="打印HTML代码"></a>打印HTML代码</h2><pre><code>do{
-    let data = try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: nil)
-    print(NSString(data:data, encoding: NSUTF8StringEncoding))
-}catch{
-}
-</code></pre><h2 id="打印HTTP-header"><a href="#打印HTTP-header" class="headerlink" title="打印HTTP header"></a>打印HTTP header</h2><pre><code>var resp:NSURLResponse?
-
-    do{
-     try NSURLConnection.sendSynchronousRequest(NSURLRequest(URL: httpPath!), returningResponse: &amp;resp)
-    }catch{
-    }
-
-    if let r = resp{
-       print(r)
-    }
-</code></pre><h1 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h1><pre><code>NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-
-    print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-
-}
-</code></pre><h1 id="Get-communication"><a href="#Get-communication" class="headerlink" title="Get communication"></a>Get communication</h1><pre><code>let httpPath:NSURL? = NSURL(string:&quot;http://localhost:8080/MyServer/Hello.jsp?name=\(self.tvInput.text)&quot;)       
-let httpRequest:NSURLRequest = NSURLRequest(URL:httpPath!)
-
-NSURLConnection.sendAsynchronousRequest(httpRequest, queue: NSOperationQueue()){
-(resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-    dispatch_sync(dispatch_get_main_queue(), {
-        self.tvOut.text = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-    })
-}
-</code></pre><ol>
-<li>Get方式是将传输数据放在地址栏</li>
-<li>改变UI界面需要在主线程执行</li>
-<li>不能传输庞大的数据</li>
-</ol>
-<h1 id="Post-communication"><a href="#Post-communication" class="headerlink" title="Post communication"></a>Post communication</h1><pre><code>let httpUrl = NSURL(string: &quot;http://localhost:8080/MyServer/hello.jsp&quot;)
-let req = NSMutableURLRequest(URL:httpUrl!)
-req.HTTPMethod = &quot;POST&quot;
-req.HTTPBody = NSString(string:&quot;name=\(tvInput.text)&quot;).dataUsingEncoding(NSUTF8StringEncoding)
-
-NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
-
-    (resp:NSURLResponse?, data:NSData?, error:NSError?) -&gt; Void in
-
-    if let d = data {
-        dispatch_sync(dispatch_get_main_queue(), {
-            self.tvOut.text = NSString(data: d, encoding: NSUTF8StringEncoding)! as String
-        })}
-    }
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1271,7 +1470,7 @@ NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">106</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1288,7 +1487,7 @@ NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue()){
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

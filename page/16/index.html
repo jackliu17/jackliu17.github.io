@@ -238,6 +238,561 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/30/设计复杂的iOS动画效果/" itemprop="url">
+                  设计复杂的iOS动画效果
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-30T18:56:02+10:00" content="2016-04-30">
+              2016-04-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/30/设计复杂的iOS动画效果/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/30/设计复杂的iOS动画效果/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="动画效果的UIView-Object"><a href="#动画效果的UIView-Object" class="headerlink" title="动画效果的UIView Object"></a>动画效果的UIView Object</h1><p><img src="https://www.dropbox.com/s/hivb6ciky4ikfab/iOS_animate_001.png?dl=1" alt=""></p>
+<pre><code>// 显示动画
+- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated;
+
+// 隐藏动画
+- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated;
+
+// 创建view
+- (void)buildView;
+
+// 动画百分比（手动设置动画的程度）
+- (void)percent:(CGFloat)percent;
+</code></pre><h1 id="制定统一的动画接口"><a href="#制定统一的动画接口" class="headerlink" title="制定统一的动画接口"></a>制定统一的动画接口</h1><p>即：相关有动画效果的类，有同一的动画方法命名</p>
+<ol>
+<li>为了实现后续复杂的动画组合</li>
+<li>后续的代码维护极为方便</li>
+<li>优先考虑里氏代换原则</li>
+</ol>
+<h1 id="动画中的高内聚低耦合原理"><a href="#动画中的高内聚低耦合原理" class="headerlink" title="动画中的高内聚低耦合原理"></a>动画中的高内聚低耦合原理</h1><ol>
+<li>高内聚：有动画效果的类，自身具有动画方法</li>
+<li>不要把实现动画的细节暴露在外</li>
+<li>设计动画类尽量要符合单一职能原则，以便后续方便组合成复杂的动画效果</li>
+</ol>
+<h1 id="设计动画函数的注意事项"><a href="#设计动画函数的注意事项" class="headerlink" title="设计动画函数的注意事项"></a>设计动画函数的注意事项</h1><ol>
+<li>动画方法的命名统一</li>
+<li>预留非动画情形的设计（tableView等reuse情况）</li>
+<li>用百分比来表示动画的执行程度</li>
+<li>懒加载的使用</li>
+</ol>
+<h1 id="动画效果就是frame值的重新设定"><a href="#动画效果就是frame值的重新设定" class="headerlink" title="动画效果就是frame值的重新设定"></a>动画效果就是frame值的重新设定</h1><pre><code>[UIView animateWithDuration:duration animations:^{
+        self.frame = self.midRect;
+        self.alpha = 1.f;
+    }];
+</code></pre><h1 id="一个具有动画效果的类"><a href="#一个具有动画效果的类" class="headerlink" title="一个具有动画效果的类"></a>一个具有动画效果的类</h1><pre><code>#import &quot;LineView.h&quot;
+
+@interface LineView ()
+@property (nonatomic) CGRect startRect;
+@property (nonatomic) CGRect midRect;
+@property (nonatomic) CGRect endRect;
+@end
+
+@implementation LineView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+    self.alpha = 0.f;
+}
+return self;
+}
+
+// 创建view
+- (void)buildView {
+// todo
+self.startRect = self.frame;
+self.midRect   = CGRectMake(self.startRect.origin.x + self.offsetX,
+                            self.startRect.origin.y,
+                            self.startRect.size.width,
+                            self.startRect.size.height);
+self.endRect   = CGRectMake(self.startRect.origin.x + self.offsetX * 2,
+                            self.startRect.origin.y,
+                            self.startRect.size.width,
+                            self.startRect.size.height);
+                        }
+
+
+// 显示动画
+- (void)showWithDuration:(CGFloat)duration animated:(BOOL)animated {
+if (animated == YES) {
+    [UIView animateWithDuration:duration animations:^{
+        self.frame = self.midRect;
+        self.alpha = 1.f;
+    }];
+} else {
+    self.frame = self.midRect;
+    self.alpha = 1.f;
+}
+}
+
+// 隐藏动画
+- (void)hideWithDuration:(CGFloat)duration animated:(BOOL)animated {
+if (animated == YES) {
+    [UIView animateWithDuration:duration animations:^{
+        self.frame = self.endRect;
+        self.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        self.frame = self.startRect;
+    }];
+} else {
+    self.frame = self.startRect;
+    self.alpha = 0.f;
+}
+}
+
+
+
+// 动画百分比（手动设置动画的程度）
+- (void)percent:(CGFloat)percent {
+CGFloat tmpOffsetX = 0;
+
+if (percent &lt;= 0) {
+    tmpOffsetX = 0;
+} else if (percent &gt;= 1) {
+    tmpOffsetX = self.offsetX;
+} else {
+    tmpOffsetX = percent * self.offsetX;
+}
+
+self.frame = CGRectMake(self.startRect.origin.x + tmpOffsetX,
+                        self.startRect.origin.y,
+                        self.startRect.size.width,
+                        self.startRect.size.height);
+}
+</code></pre><h1 id="里氏代换原则处理动画类的继承问题"><a href="#里氏代换原则处理动画类的继承问题" class="headerlink" title="里氏代换原则处理动画类的继承问题"></a>里氏代换原则处理动画类的继承问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SourceView *tmpView = [[ChildTwoView alloc] init];</span><br><span class="line">[tmpView show];</span><br></pre></td></tr></table></figure>
+<ol>
+<li>里氏代换原则的基本原理 (多态)</li>
+<li>设计中要确保父类可以直接调用子类的方法</li>
+<li>将父类设计成虚类</li>
+</ol>
+<h1 id="动画中的模块化设计"><a href="#动画中的模块化设计" class="headerlink" title="动画中的模块化设计"></a>动画中的模块化设计</h1><ol>
+<li>动画效果实现难度的判断</li>
+<li>将看到的动画效果拆分成小模块</li>
+<li>将写好的小模块组合成你所需要的动画效果</li>
+</ol>
+<p>ViewController.m</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 复杂的动画被写进了BaseAnimationView当中，没有暴露不必要的细节
+BaseAnimationView *baseView = [[BaseAnimationView alloc] initWithFrame:CGRectZero];
+[self.view addSubview:baseView];
+[baseView show];
+}
+</code></pre><p>BaseAnimation.m</p>
+<pre><code>- (void)show {
+[self.circleView show];
+[self.lineView show];
+}
+
+- (void)hide {
+[self.circleView hide];
+[self.lineView hide];
+}
+
+- (void)buildView {
+self.circleView = [[CircleView alloc] initWithFrame:CGRectZero];
+[self addSubview:self.circleView];
+
+self.lineView = [[RectView alloc] initWithFrame:CGRectZero];
+[self addSubview:self.lineView];
+}
+</code></pre><p>circleView.m / lineView.m</p>
+<pre><code>- (void)show {}
+- (void)hide {}
+- (void)buildView {}
+</code></pre><h1 id="延时执行某方法"><a href="#延时执行某方法" class="headerlink" title="延时执行某方法"></a>延时执行某方法</h1><pre><code>[self performSelector:@selector(excuteAfterDelay) withObject:nil afterDelay:6];
+</code></pre><h1 id="初始化UIView"><a href="#初始化UIView" class="headerlink" title="初始化UIView"></a>初始化UIView</h1><pre><code>- (instancetype)initWithFrame:(CGRect)frame {
+self = [super initWithFrame:frame];
+if (self) {
+    self.rect = frame;
+}
+return self;
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/29/iOS项目8-QQ下拉菜单/" itemprop="url">
+                  iOS项目8.QQ下拉菜单
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-29T22:56:05+10:00" content="2016-04-29">
+              2016-04-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/29/iOS项目8-QQ下拉菜单/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/29/iOS项目8-QQ下拉菜单/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/bgs2k80vp7849xb/iOS_008_1.png?dl=1" alt=""></p>
+<h1 id="项目分析"><a href="#项目分析" class="headerlink" title="项目分析"></a>项目分析</h1><p><img src="https://www.dropbox.com/s/enl49h7dh5nujxd/iOS_008_2.png?dl=1" alt=""></p>
+<h1 id="JKFriendsModel"><a href="#JKFriendsModel" class="headerlink" title="JKFriendsModel"></a>JKFriendsModel</h1><h2 id="加载数据-字典"><a href="#加载数据-字典" class="headerlink" title="加载数据(字典)"></a>加载数据(字典)</h2><pre><code>- (instancetype)initWithDict:(NSDictionary *)dict{
+if (self = [super init]) {
+    [self setValuesForKeysWithDictionary:dict];
+}
+return self;
+}
+</code></pre><h2 id="构建class-method"><a href="#构建class-method" class="headerlink" title="构建class method"></a>构建class method</h2><pre><code>+ (instancetype)friendWithDict:(NSDictionary *)dict{
+return [[self alloc] initWithDict:dict];
+}
+</code></pre><h1 id="JKGroupModel"><a href="#JKGroupModel" class="headerlink" title="JKGroupModel"></a>JKGroupModel</h1><h2 id="加载数据-字典内含数组"><a href="#加载数据-字典内含数组" class="headerlink" title="加载数据(字典内含数组)"></a>加载数据(字典内含数组)</h2><pre><code>- (instancetype)initWithDict:(NSDictionary *)dict{
+
+if (self = [super init]) {
+
+    //加载组内字典数据
+    [self setValuesForKeysWithDictionary:dict];
+
+    //加载组内数组数据
+    NSMutableArray *muArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.friends) {
+        JKFriendsModel *model = [JKFriendsModel friendWithDict:dict];
+        [muArray addObject:model];
+    }
+    self.friends = muArray;
+}
+return self;
+}
+</code></pre><h1 id="HeaderView"><a href="#HeaderView" class="headerlink" title="HeaderView"></a>HeaderView</h1><h2 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h2><pre><code>@interface HeaderView : UITableViewHeaderFooterView
+</code></pre><h2 id="初始化headerView"><a href="#初始化headerView" class="headerlink" title="初始化headerView"></a>初始化headerView</h2><pre><code>//类似cell的创建
+
++ (instancetype)headerView:(UITableView *)tableView{
+
+    static NSString *identifier = @&quot;header&quot;;
+    HeaderView *header =(HeaderView *) [tableView dequeueReusableCellWithIdentifier:identifier];
+
+    //用以下这个方式，则只创建一次,此项目不采用
+    //HeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+
+    if (!header) {
+header = [[HeaderView alloc] initWithReuseIdentifier:identifier];
+}
+return header;
+}
+
+
+//这个headerview其实就是个button
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+
+if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@&quot;header_bg&quot;] forState:UIControlStateNormal];
+    //[button setBackgroundImage:[UIImage imageNamed:@&quot;header_bg_highlighted&quot;] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@&quot;arrow&quot;] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    button.imageView.contentMode = UIViewContentModeCenter;
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+    button.imageView.clipsToBounds = NO;
+    _arrowBtn = button;
+
+    [self addSubview:_arrowBtn];
+    //创建label，显示当前在线人数
+    UILabel *labelRight = [[UILabel alloc] init];
+    labelRight.textAlignment = NSTextAlignmentCenter;
+    _label = labelRight;
+    [self addSubview:_label];
+}
+
+return self;
+}
+</code></pre><h2 id="UIButton的属性设置"><a href="#UIButton的属性设置" class="headerlink" title="UIButton的属性设置"></a>UIButton的属性设置</h2><pre><code>//内容框的内边距
+button.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
+//内容的对齐
+button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+
+//标题的内边距
+button.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+
+//为button设定方法
+[button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
+</code></pre><h2 id="BOOL值取反"><a href="#BOOL值取反" class="headerlink" title="BOOL值取反"></a>BOOL值取反</h2><pre><code>self.groupModel.isOpen = !self.groupModel.isOpen;
+</code></pre><h2 id="调用代理方法"><a href="#调用代理方法" class="headerlink" title="调用代理方法"></a>调用代理方法</h2><p>代理就好比是自己有个武器不能用，然后让自己的小喽啰”id delegate” 交给他人来”viewController” 使用</p>
+<pre><code>if ([self.delegate respondsToSelector:@selector(clickView)]) {
+[self.delegate clickView];
+}
+</code></pre><h2 id="小箭头的旋转"><a href="#小箭头的旋转" class="headerlink" title="小箭头的旋转"></a>小箭头的旋转</h2><pre><code>//调用了tableView 的 reload方法,这个方法就会刷新headview,那样的话,就会重新生成一个headview
+- (void)didMoveToSuperview{
+    _arrowBtn.imageView.transform = self.groupModel.isOpen ? CGAffineTransformMakeRotation(M_PI_2):CGAffineTransformMakeRotation(0);
+}
+</code></pre><h2 id="布局子视图"><a href="#布局子视图" class="headerlink" title="布局子视图"></a>布局子视图</h2><pre><code>- (void)layoutSubviews{
+    [super layoutSubviews];
+    _arrowBtn.frame = self.bounds;
+    _label.frame = CGRectMake(self.frame.size.width - 70, 0, 60, self.frame.size.height);
+}
+</code></pre><ol>
+<li>layoutSubviews方法，是当改变父控件高度的时候，自动调用这个方法，所以一般在这里面设置子控件的frame。因为子控件随着父控件而改变。</li>
+<li>UITableViewHeaderFooterView不可以用xib，只能用代码创建</li>
+</ol>
+<h2 id="setter赋值button-title"><a href="#setter赋值button-title" class="headerlink" title="setter赋值button title"></a>setter赋值button title</h2><pre><code>- (void)setGroupModel:(JKGroupModel *)groupModel{
+_groupModel = groupModel;
+[_arrowBtn setTitle:_groupModel.name forState:UIControlStateNormal];
+_label.text = [NSString stringWithFormat:@&quot;%@/%lu&quot;,_groupModel.online,(unsigned long)_groupModel.friends.count];
+}
+</code></pre><h2 id="imageView-contentMode"><a href="#imageView-contentMode" class="headerlink" title="imageView.contentMode"></a>imageView.contentMode</h2><pre><code>button.imageView.contentMode = UIViewContentModeCenter;
+button.imageView.clipsToBounds = NO;
+</code></pre><p>这个居中是包括了，横向和纵向都是居中。图片不会拉伸或者压缩，就是按照imageView的frame和图片的大小来居中显示的。</p>
+<p>这里有两种情况：</p>
+<ol>
+<li>图片比view的区域更大。这个时候会截取图片的中间部位显示在frame区域里面。</li>
+<li>图片比view的区域更小。这个时候图片会完整的显示在frame的中间位置。</li>
+</ol>
+<p>如果在默认情况，图片的多出来的部分还是会显示屏幕上。如果不希望超过frame的区域显示在屏幕上要设置。clipsToBounds属性。</p>
+<h1 id="ListTableViewController"><a href="#ListTableViewController" class="headerlink" title="ListTableViewController"></a>ListTableViewController</h1><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><pre><code>- (NSArray *)dataArray{
+//为什么不能用self.dataArray?? BadAccess
+if (!_dataArray) {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@&quot;friends.plist&quot; ofType:nil];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:array.count];
+    for (NSDictionary *dict in array) {
+        JKGroupModel *groupModel = [JKGroupModel GroupWithDict:dict];
+        [muArray addObject:groupModel];
+    }
+    _dataArray = [muArray copy];
+}
+return _dataArray;
+}
+</code></pre><ol>
+<li>每个字典对应一个数据模型(Model class），plist中有多少个字典就有多少个Model class</li>
+<li>使用该方法加载数据 — [self setValuesForKeysWithDictionary:dict]</li>
+<li>plist的第一层级都是数组，所以懒加载返回的也是数组</li>
+</ol>
+<h2 id="尾部去掉多余的线"><a href="#尾部去掉多余的线" class="headerlink" title="尾部去掉多余的线"></a>尾部去掉多余的线</h2><pre><code>#pragma mark - 去掉多余的线 ,将尾部设为一个透明的UIView
+- (void)clipExtraCellLine:(UITableView *)tableView{
+UIView *view = [[UIView alloc] init];
+view.backgroundColor = [UIColor clearColor];
+[self.tableView setTableFooterView:view];
+}
+</code></pre><h2 id="Section-Header"><a href="#Section-Header" class="headerlink" title="Section Header"></a>Section Header</h2><pre><code>- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+</code></pre><h2 id="每次表视图变动需要reload"><a href="#每次表视图变动需要reload" class="headerlink" title="每次表视图变动需要reload"></a>每次表视图变动需要reload</h2><pre><code>[self.tableView reloadData];
+</code></pre><h2 id="判断展开的Item数量"><a href="#判断展开的Item数量" class="headerlink" title="判断展开的Item数量"></a>判断展开的Item数量</h2><pre><code>NSInteger count = groupModel.isOpen ? groupModel.friends.count : 0;
+</code></pre><h2 id="设置cell的代码"><a href="#设置cell的代码" class="headerlink" title="设置cell的代码"></a>设置cell的代码</h2><pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @&quot;friendCell&quot;;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];    
+}
+//对应的哪一个section
+JKGroupModel *groupModel = self.dataArray[indexPath.section];
+//对应的哪一个row
+JKFriendsModel *friendModel = groupModel.friends[indexPath.row];
+cell.imageView.image = [UIImage imageNamed:friendModel.icon];
+cell.textLabel.text = friendModel.name;
+cell.detailTextLabel.text = friendModel.intro;
+return cell;
+}
+</code></pre><h1 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h1><h2 id="创建导航视图"><a href="#创建导航视图" class="headerlink" title="创建导航视图"></a>创建导航视图</h2><pre><code>ListTableViewController *listVC = [[ListTableViewController alloc] init];
+UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:listVC];
+self.window.rootViewController = navCtrl;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/28/iOS项目7-超级猜图/" itemprop="url">
                   iOS项目7.超级猜图
                 </a>
@@ -1104,326 +1659,12 @@ mTriangle.draw(scratch);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/24/OpenGL-ES/" itemprop="url">
-                  OpenGL_ES
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T16:43:39+10:00" content="2016-04-24">
-              2016-04-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/24/OpenGL-ES/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/24/OpenGL-ES/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>OpenGL 是跨平台的图像API，定义了3D图像处理的标准</li>
-<li>OpenGL ES是为OPenGL在嵌入式设备上的标准</li>
-</ol>
-<p>安卓支持如下OpenGL</p>
-<ol>
-<li>OpenGL ES 1.0 and 1.1 - This API specification is supported by Android 1.0 and higher.</li>
-<li>OpenGL ES 2.0 - This API specification is supported by Android 2.2 (API level 8) and higher.</li>
-<li>OpenGL ES 3.0 - This API specification is supported by Android 4.3 (API level 18) and higher.</li>
-<li>OpenGL ES 3.1 - This API specification is supported by Android 5.0 (API level 21) and higher.</li>
-</ol>
-<p>OpenGL ES 3.0以上需要厂家在设备上安装某图像处理，Android4.3以上可能不支持OpenGL ES 3.0</p>
-<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><p>Android中两个class需要特别注意</p>
-<p><code>GLSurfaceView</code><br>这是一个view,用来绘画和管理对象，和SurfaceView很相似</p>
-<p><code>GLSurfaceView.Renderer</code><br>在GLSurfaceView中绘画的接口，提供了必要的方法</p>
-<ol>
-<li>onSurfaceCreated():  //初始化环境</li>
-<li>onDrawFrame(): //绘画对象</li>
-<li>onSurfaceChanged(): //当界面改变时，比如屏幕旋转</li>
-</ol>
-<h3 id="OpenGL-ES-packages"><a href="#OpenGL-ES-packages" class="headerlink" title="OpenGL ES packages"></a>OpenGL ES packages</h3><p>OpenGL ES 1.0/1.1 API Packages</p>
-<pre><code>android.opengl
-javax.microedition.khronos.opengles
-</code></pre><p>OpenGL ES 2.0 API Class</p>
-<pre><code>android.opengl.GLES20
-</code></pre><p>OpenGL ES 3.0/3.1 API Packages</p>
-<pre><code>android.opengl
-</code></pre><h2 id="Declaring-OpenGL-Requirements"><a href="#Declaring-OpenGL-Requirements" class="headerlink" title="Declaring OpenGL Requirements"></a>Declaring OpenGL Requirements</h2><p>在AndroidManifest.xml中声明OpenGL版本要求</p>
-<pre><code>For OpenGL ES 2.0:
-&lt;!-- Tell the system this app requires OpenGL ES 2.0. --&gt;
-&lt;uses-feature android:glEsVersion=&quot;0x00020000&quot; android:required=&quot;true&quot; /&gt;
-
-For OpenGL ES 3.0:
-&lt;!-- Tell the system this app requires OpenGL ES 3.0. --&gt;
-&lt;uses-feature android:glEsVersion=&quot;0x00030000&quot; android:required=&quot;true&quot; /&gt;
-</code></pre><p>纹理压缩要求 </p>
-<pre><code>&lt;supports-gl-texture&gt;
-</code></pre><h2 id="Mapping-Coordinates-for-Drawn-Objects"><a href="#Mapping-Coordinates-for-Drawn-Objects" class="headerlink" title="Mapping Coordinates for Drawn Objects"></a>Mapping Coordinates for Drawn Objects</h2><h2 id="Shape-Faces-and-Winding"><a href="#Shape-Faces-and-Winding" class="headerlink" title="Shape Faces and Winding"></a>Shape Faces and Winding</h2><h2 id="OpenGL-Versions-and-Device-Compatibility"><a href="#OpenGL-Versions-and-Device-Compatibility" class="headerlink" title="OpenGL Versions and Device Compatibility"></a>OpenGL Versions and Device Compatibility</h2><h2 id="Choosing-an-OpenGL-API-Version"><a href="#Choosing-an-OpenGL-API-Version" class="headerlink" title="Choosing an OpenGL API Version"></a>Choosing an OpenGL API Version</h2><p><a href="http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version" target="_blank" rel="external">Abstract from Android API Guides - OpenGL</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="url">
-                  iOS项目6.UIScrollView图片自动滚动
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T11:13:06+10:00" content="2016-04-22">
-              2016-04-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/22/iOS项目6-UIScrollView图片自动滚动/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/22/iOS项目6-UIScrollView图片自动滚动/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/g0ayo6wgvglckix/uiscrollViewPlay.png?dl=1" alt="效果图"></p>
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="https://www.dropbox.com/s/flznuxuzo806l1m/%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png?dl=1" alt="功能分析"></p>
-<h1 id="定义常量的两种方式"><a href="#定义常量的两种方式" class="headerlink" title="定义常量的两种方式"></a>定义常量的两种方式</h1><pre><code>//屏幕高度
-#define kScreenHeight [UIScreen mainScreen].bounds.size.height
-//屏幕宽度
-#define kScreenWidth [UIScreen mainScreen].bounds.size.width
-//图像数量
-CGFloat kImgCount = 10;
-//Y轴坐标
-CGFloat scrollY = 20;
-//页面控制器宽度
-CGFloat pageCtrlWidth = 200;
-</code></pre><h1 id="UIScrollView的配置"><a href="#UIScrollView的配置" class="headerlink" title="UIScrollView的配置"></a>UIScrollView的配置</h1><pre><code>//配置滚动视图的可见区域 -- 延伸出屏幕外的
-self.scrollView.contentSize = CGSizeMake(kScreenWidth * kImgCount, kScreenHeight - scrollY);
-
-
-//配置滚动视图可以页面显示
-self.scrollView.pagingEnabled = YES;
-
-
-//在滚动视图中实现图像偏移
-[self.scrollView setContentOffset:point animated:YES];
-
-
-//滚动视图滚动之后
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
-}
-
-//当视图将要拖动的时候
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
-}
-
-//当视图停止拖拽的时候
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
-</code></pre><h1 id="添加视图-插入"><a href="#添加视图-插入" class="headerlink" title="添加视图 - 插入"></a>添加视图 - 插入</h1><pre><code>[self.view insertSubview:self.pageCtrl aboveSubview:self.scrollView];
-</code></pre><h1 id="定时器添加和停止"><a href="#定时器添加和停止" class="headerlink" title="定时器添加和停止"></a>定时器添加和停止</h1><pre><code>//创建定时器来调用翻页方法
-self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
-                                              target:self
-                                            selector:@selector(nextPage)
-                                            userInfo:nil
-                                             repeats:YES];
-
-//停止定时器
-[self.timer invalidate];
-</code></pre><h1 id="循环调用"><a href="#循环调用" class="headerlink" title="循环调用"></a>循环调用</h1><pre><code>[[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1464,7 +1705,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">106</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1481,7 +1722,7 @@ self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

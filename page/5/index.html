@@ -238,6 +238,448 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/01/AFNetworking简介/" itemprop="url">
+                  AFNetworking简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T17:25:21+10:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/01/AFNetworking简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/01/AFNetworking简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><pre><code>NSString *urlStr = @&quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&quot;;
+
+AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
+
+// 设置回复内容信息
+manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
+                                                     setByAddingObject:@&quot;text/html&quot;];
+
+[manager GET:urlStr
+  parameters:nil
+
+     success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+         //请求正文数据
+         //NSLog(@&quot;%@&quot;,responseObject);
+
+         //请求头部信息(我们执行网络请求的时候给服务器发送的信息)
+         //NSLog(@&quot;%@&quot;,operation.request.allHTTPHeaderFields);
+
+         //服务器返回的包的头部信息
+         NSLog(@&quot;%@&quot;,operation.response);
+     }
+     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+         NSLog(@&quot;%@&quot;,error);
+
+     }];
+</code></pre><h2 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h2><p>(GET、POST等)  </p>
+<p><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="external">Hypertext Transfer Protocol</a></p>
+<pre><code>// 执行POST请求，需要将参数写在parameter处，而不能如同get方法一样直接写在地址栏
+
+[manager POST:@&quot;http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx/getMobileCodeInfo&quot;
+   parameters:@{@&quot;mobileCode&quot; : @&quot;15910514636&quot;,
+                @&quot;userID&quot;     : @&quot;&quot;}
+      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+          NSLog(@&quot;%@&quot;, responseObject);
+
+      }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+          NSLog(@&quot;%@&quot;, error);
+      }];
+</code></pre><h2 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h2><p>(HttpHeaderFields) </p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields" target="_blank" rel="external">List of HTTP header fields</a></p>
+<pre><code>//请求头部信息(我们执行网络请求的时候给服务器发送的信息)
+NSLog(@&quot;%@&quot;,operation.request.allHTTPHeaderFields);
+</code></pre><h2 id="请求正文-数据"><a href="#请求正文-数据" class="headerlink" title="请求正文 (数据)"></a>请求正文 (数据)</h2><p>问号后的字符串，使用get方法是可以在地址栏中看见的</p>
+<pre><code>NSString *urlStr = @&quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&quot;;            
+</code></pre><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>采用不同的序列化格式，得到不同的response结果</p>
+<pre><code>AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
+
+// 请求的序列化
+manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+
+// 回复序列化
+
+//responseObject就变成二进制文件
+manager.responseSerializer[AFHTTPResponseSerializer serializer];
+
+//responseObject就变成JSON格式
+manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+//responseObject成为xml格式
+manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+</code></pre><h1 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h1><pre><code>// 获取数据
+UIImage *image  = [UIImage imageNamed:@&quot;demo&quot;];
+NSData *dataObj = UIImageJPEGRepresentation(image, 1.0);
+
+// 参数
+NSDictionary *paras = @{@&quot;ContactName&quot;        : @&quot;Lilis&quot;,
+                        @&quot;ContactPhoneNumber&quot; : @&quot;15910514635&quot;,
+                        @&quot;LoseDetail&quot;         : @&quot;...&quot;,
+                        @&quot;address&quot;            : @&quot;&quot;,
+                        @&quot;gender&quot;             : @&quot;2&quot;,
+                        @&quot;verify&quot;             : @&quot;012460&quot;};
+
+
+[Networking UploadDataWithUrlString:BASE_URL // 请更换网址
+                         parameters:paras
+                    timeoutInterval:nil
+                        requestType:HTTPRequestType
+                       responseType:JSONResponseType
+          constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; formData) {
+              // 构造数据的地方
+              [formData appendPartWithFileData:dataObj name:@&quot;upload&quot; fileName:@&quot;image1.jpg&quot; mimeType:@&quot;&quot;];
+              [formData appendPartWithFileData:dataObj name:@&quot;upload&quot; fileName:@&quot;image2.jpg&quot; mimeType:@&quot;&quot;];
+          }
+                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+                                // 请求头
+                                NSLog(@&quot;%@&quot;, operation.request.allHTTPHeaderFields);
+
+                                // 服务器回复的头
+                                NSLog(@&quot;%@&quot;, operation.response);
+
+                                NSLog(@&quot;%@&quot;, responseObject);
+                            }
+                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+
+                            }];
+</code></pre><h1 id="断点下载"><a href="#断点下载" class="headerlink" title="断点下载"></a>断点下载</h1><pre><code>NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&quot;]];
+AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request
+                                                                             fileIdentifier:@&quot;fuck.jpg&quot;
+                                                                                 targetPath:[NSHomeDirectory() stringByAppendingPathComponent:@&quot;/Library/Caches/fuck.jpg&quot;]
+                                                                               shouldResume:YES];
+operation.shouldOverwrite = YES;
+
+
+// 开始下载
+[operation start];
+
+// 2s后暂停
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&quot;暂停&quot;);
+    [operation pause];
+} afterDelaySecs:2.f];
+
+// 4s后继续恢复
+[GCDQueue executeInMainQueue:^{
+    NSLog(@&quot;开始&quot;);
+    [operation resume];
+} afterDelaySecs:4.f];
+
+// 查看下载进度
+[operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+
+    CGFloat percent = (float)totalBytesReadForFile / (float)totalBytesExpectedToReadForFile;
+    NSLog(@&quot;百分比:%.3f%% %ld  %lld  %lld  %lld&quot;, percent * 100, (long)bytesRead, totalBytesRead, totalBytesReadForFile, totalBytesExpectedToReadForFile);
+}];
+
+// 结束block
+[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+    NSLog(@&quot;下载成功 %@&quot;, responseObject);
+
+} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    NSLog(@&quot;下载失败 %@&quot;, error);
+
+}];
+</code></pre><h1 id="监听网络"><a href="#监听网络" class="headerlink" title="监听网络"></a>监听网络</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+// 开启网络指示器
+[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+
+NSURL *url = [NSURL URLWithString:@&quot;http://baidu.com&quot;];
+
+AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
+NSOperationQueue *operationQueue       = manager.operationQueue;
+
+[manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+
+    switch (status) {
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+
+            [operationQueue setSuspended:NO];
+
+            NSLog(@&quot;有网络&quot;);
+
+            break;
+
+        case AFNetworkReachabilityStatusNotReachable:
+        default:
+
+            [operationQueue setSuspended:YES];
+
+            NSLog(@&quot;无网络&quot;);
+
+            break;
+    }
+
+}];
+
+// 开始监听
+[manager.reachabilityManager startMonitoring];
+
+return YES;
+}
+</code></pre><h1 id="下载图片（Category）"><a href="#下载图片（Category）" class="headerlink" title="下载图片（Category）"></a>下载图片（Category）</h1><pre><code>#import &quot;ViewController.h&quot;
+#import &quot;AFNetworking.h&quot;
+#import &quot;UIKit+AFNetworking.h&quot;
+@interface ViewController ()
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+[self.view addSubview:imageView];
+
+// 加载图片
+[imageView setImageWithURL:[NSURL URLWithString:@&quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&quot;]
+          placeholderImage:nil];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/29/手机屏幕图像尺寸说明/" itemprop="url">
+                  手机屏幕图像尺寸说明
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-29T16:41:29+10:00" content="2016-07-29">
+              2016-07-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/29/手机屏幕图像尺寸说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/29/手机屏幕图像尺寸说明/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其他都当放屁，只要记住一点，iphone设计稿以640<em>1136像素做（我一般使用750</em>1334），android设计稿以1080<em>1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元素，如图标，线条，色块，全部用矢量图形的做，不要用像素位图，以免</em>2后模糊。</p>
+<h1 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h1><p><img src="https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSize1.png?dl=1" alt=""></p>
+<h1 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h1><p><img src="https://www.dropbox.com/s/prqfsl2tl84m01l/MobileImageSize2.png?dl=1" alt=""></p>
+<h1 id="像素密度"><a href="#像素密度" class="headerlink" title="像素密度"></a>像素密度</h1><p><img src="https://www.dropbox.com/s/ybjgllir4rb1xie/MobileImageSize3.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/x7jmtbnkqptdxhl/MobileImageSize4.png?dl=1" alt=""></p>
+<h1 id="逻辑像素与物理像素"><a href="#逻辑像素与物理像素" class="headerlink" title="逻辑像素与物理像素"></a>逻辑像素与物理像素</h1><p>苹果引进一个逻辑像素的概念(pt)</p>
+<p><img src="https://www.dropbox.com/s/vjhiwkcwwvjxbyv/MobileImageSize5.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/kve933ie18u0o04/MobileImageSize6.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/75nt73meb7zfica/MobileImageSize7.png?dl=1" alt=""></p>
+<h1 id="iPhone手机尺寸"><a href="#iPhone手机尺寸" class="headerlink" title="iPhone手机尺寸"></a>iPhone手机尺寸</h1><p><img src="https://www.dropbox.com/s/mgwnsz022fn7n1e/MobileImageSize8.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/b4zff1iwnm9jknd/MobileImageSize9.png?dl=1" alt=""></p>
+<h1 id="Android手机尺寸"><a href="#Android手机尺寸" class="headerlink" title="Android手机尺寸"></a>Android手机尺寸</h1><p>Android引进一个逻辑像素概念(dp)</p>
+<p><img src="https://www.dropbox.com/s/1r6tqvm5t0vp2sa/MobileImageSize10.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/bgoe3jpr14a9oh8/MobileImageSize11.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/lmrademl1wb6p1i/MobileImageSize12.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/3sz0oyx2rmdo8ob/MobileImageSize13.png?dl=1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/24/美食台系列/" itemprop="url">
                   美食台系列
                 </a>
@@ -947,486 +1389,12 @@ return pinAnnotationView;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/08/MapKit地图应用基础/" itemprop="url">
-                  MapKit地图应用基础
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-08T15:38:00+10:00" content="2016-06-08">
-              2016-06-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/08/MapKit地图应用基础/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/08/MapKit地图应用基础/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="MapKit基础讲解"><a href="#MapKit基础讲解" class="headerlink" title="MapKit基础讲解"></a>MapKit基础讲解</h1><p>Map Kit（地图套件）提供了一个接口，可以将地图直接嵌入到自己的视图中。通过Map Kit框架，可以在iOS应用程序中显示地图以及当前位置。通过属性的设定，可以轻松实现位置显示、添加地图注释，通过给定信息查找确定地标信息等相关功能。</p>
-<ol>
-<li>MKMapView：提供了一个可嵌入应用的地图界面。</li>
-<li>MKCoordinateRegin：设置地图显示区域。</li>
-<li>MKPointAnnotation：提供了在指定点添加注释的功能，不能自定义该类。</li>
-<li>MKPinAnnotation：通过此类可以对地图标注进行配置。</li>
-<li>MKAnnotationView：通过此类实现自定义地图标注功能。</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/895ubxdvyo136lh/iOS_MapKitBasic02.png?dl=1" alt=""></p>
-<h1 id="创建地图应用"><a href="#创建地图应用" class="headerlink" title="创建地图应用"></a>创建地图应用</h1><h2 id="添加MKMapView到视图"><a href="#添加MKMapView到视图" class="headerlink" title="添加MKMapView到视图"></a>添加MKMapView到视图</h2><pre><code>MKMapView * mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-[self.view addSubview:mapView];
-</code></pre><h2 id="MKMapView相关属性"><a href="#MKMapView相关属性" class="headerlink" title="MKMapView相关属性"></a>MKMapView相关属性</h2><pre><code>[mapView setDelegate:self];
-[mapView setMapType:MKMapTypeStandard]; //有卫星，标准地图等
-[mapView setZoomEnabled:YES];  //设置地图缩放
-[mapView setScrollEnabled:YES]; //设置地图移动
-[mapView setRotateEnabled:YES]; //设置地图旋转
-</code></pre><h2 id="地图的显示区域"><a href="#地图的显示区域" class="headerlink" title="地图的显示区域"></a>地图的显示区域</h2><pre><code>//Method.1 -- 通过跨度来设置地图的显示区域
-//MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(-37.855339, 145.153377), MKCoordinateSpanMake(0.1, 0.1));
-
-//Method.2 -- 通过距离来设置地图显示区域
-MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-37.855339, 145.153377),100 ,100);
-
-[mapView setRegion:[mapView regionThatFits:region]];
-</code></pre><h1 id="添加地图标注"><a href="#添加地图标注" class="headerlink" title="添加地图标注"></a>添加地图标注</h1><h2 id="设置地点坐标"><a href="#设置地点坐标" class="headerlink" title="设置地点坐标"></a>设置地点坐标</h2><pre><code>//Method.1
-CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846 , 116.503729);
-
-//Method.2
-CLLocationCoordinate2D coordinate2D;
-coordinate2D.latitude = 39.936846;
-coordinate2D.longitude = 116.503729;
-</code></pre><h2 id="指定坐标点添加标注"><a href="#指定坐标点添加标注" class="headerlink" title="指定坐标点添加标注"></a>指定坐标点添加标注</h2><pre><code>MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
-[pointAnntation1 setTitle:@&quot;当前位置&quot;];
-[pointAnntation1 setSubtitle:@&quot;位置说明&quot;];
-[pointAnntation1 setCoordinate:coordinate2D];
-[mapView addAnnotation:pointAnntation1];
-</code></pre><h2 id="添加多个标注"><a href="#添加多个标注" class="headerlink" title="添加多个标注"></a>添加多个标注</h2><pre><code>//标注一
-MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
-[pointAnntation1 setTitle:@&quot;当前位置&quot;];
-[pointAnntation1 setSubtitle:@&quot;位置说明&quot;];
-[pointAnntation1 setCoordinate:coordinate2D];
-
-//标注二
-MKPointAnnotation * pointAnntation2 = [[MKPointAnnotation alloc] init];
-[pointAnntation2 setTitle:@&quot;当前位置&quot;];
-[pointAnntation2 setSubtitle:@&quot;位置说明&quot;];
-[pointAnntation2 setCoordinate:coordinate2d];
-
-NSArray * arrAnnitations = @[pointAnntation1,pointAnntation2];
-[mapView addAnnotations:arrAnnitations];
-</code></pre><h2 id="地图启动时显示标注气泡"><a href="#地图启动时显示标注气泡" class="headerlink" title="地图启动时显示标注气泡"></a>地图启动时显示标注气泡</h2><pre><code>[mapView selectAnnotation:pointAnntation1 animated:YES];
-</code></pre><h2 id="设置标注样式"><a href="#设置标注样式" class="headerlink" title="设置标注样式"></a>设置标注样式</h2><pre><code>- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&lt;MKAnnotation&gt;)annotation{
-
-static NSString * pinIdentifier = @&quot;pin&quot;;
-
-MKPinAnnotationView * pintAnntation = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
-
-if(!pintAnntation){
-
-        pintAnntation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
-        [pintAnntation setPinColor:MKPinAnnotationColorPurple];
-        [pintAnntation setAnimatesDrop:YES];
-        [pintAnntation setCanShowCallout:YES];
-}
-
-return pintAnntation;
-</code></pre><h1 id="自定义标注视图"><a href="#自定义标注视图" class="headerlink" title="自定义标注视图"></a>自定义标注视图</h1><ol>
-<li>创建annotation object,并实现MKAnnotation协议</li>
-<li>创建自定义标注视图，继承自MKAnnotationView</li>
-</ol>
-<p>ViewController</p>
-<pre><code>- (void)viewDidLoad {
-...............
-CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846, 116.503729);
-CustomAnnotation * customAnnotation = [[CustomAnnotation alloc] initWithCoordinate2D:coordinate2D];
-[customAnnotation setTitle:@&quot;我的位置&quot;];
-[customAnnotation setSubTitle:@&quot;具体说明&quot;];
-[mapView addAnnotation:customAnnotation];    
-}
-
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&lt;MKAnnotation&gt;)annotation{
-static NSString * customIdentifier = @&quot;customView&quot;;
-
-CustomAnnotationView * customAnnotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:customIdentifier];
-if(!customAnnotationView){
-    customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customIdentifier];
-    [customAnnotationView setImage:[UIImage imageNamed:@&quot;an&quot;]];
-    }
-    return customAnnotationView;    
-}
-</code></pre><p>CustomAnnotation</p>
-<pre><code>@interface CustomAnnotation : NSObject&lt;MKAnnotation&gt;{
-CLLocationCoordinate2D coord;
-}
-
-@property (nonatomic, readonly) CLLocationCoordinate2D coord;
-
-@property (nonatomic, copy) NSString * title;
-@property (nonatomic, copy) NSString * subTitle;
-
-- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D;
-
-@end
-
-@implementation CustomAnnotation
-@synthesize coord;
-@synthesize title,subTitle;
-
-- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D{
-self = [super init];
-if(self){
-    coord = coordinate2D;
-}
-
-return self;
-}
-
-- (CLLocationCoordinate2D)coordinate{
-return coord;
-}
-
-- (NSString *)title{
-return title;
-}
-
-- (NSString *)subtitle{
-return subTitle;
-}
-@end
-</code></pre><p>CustomAnnotationView</p>
-<pre><code>@interface CustomAnnotationView : MKAnnotationView
-
-@end
-
-@interface CustomAnnotationView()
-
-@property (nonatomic, strong) CustomAnnotation * customAnnotation;
-@property (nonatomic, strong) UIView *infoView;
-
-@end
-
-@implementation CustomAnnotationView
-
-- (instancetype)initWithAnnotation:(id&lt;MKAnnotation&gt;)annotation reuseIdentifier:(NSString *)reuseIdentifier{
-self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
-if(self){
-    self.customAnnotation = annotation;
-}
-
-return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-[super setSelected:selected animated:animated];
-if(selected){
-    self.infoView = [[UIView alloc] initWithFrame:CGRectMake(-(150-50)/2, -30, 150, 30)];
-    [_infoView.layer setBorderColor:[UIColor blackColor].CGColor];
-    [_infoView.layer setBorderWidth:1.f];
-    [_infoView.layer setCornerRadius:5.f];
-    [self.infoView setBackgroundColor:[UIColor whiteColor]];
-    [self addSubview:self.infoView];
-
-    UILabel * label = [[UILabel alloc] initWithFrame:_infoView.bounds];
-    [label setFont:[UIFont systemFontOfSize:12]];
-    [label setTextAlignment:NSTextAlignmentCenter];
-    [label setText:[NSString stringWithFormat:@&quot;%f %f&quot;,_customAnnotation.coordinate.latitude,_customAnnotation.coordinate.longitude]];
-    [_infoView addSubview:label];
-
-    CGFloat scale = 0.001f;
-
-    [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
-    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        CGFloat scale = 1.1f;
-        [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 2)];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            CGFloat scale = 0.9;
-            [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, -2)];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                CGFloat scale = 1.0f;
-                [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
-            } completion:^(BOOL finished) {}];
-        }];
-    }];
-
-
-}else{
-    [UIView animateWithDuration:0.2 animations:^{
-        [_infoView setAlpha:0.1];
-    } completion:^(BOOL finished) {
-        [_infoView removeFromSuperview];
-    }];
-}
-}
-</code></pre><h2 id="选中标注时执行"><a href="#选中标注时执行" class="headerlink" title="选中标注时执行"></a>选中标注时执行</h2><p>MKAnnotationView </p>
-<pre><code>- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-
-
-}
-</code></pre><h1 id="MKMapView代理方法讲解"><a href="#MKMapView代理方法讲解" class="headerlink" title="MKMapView代理方法讲解"></a>MKMapView代理方法讲解</h1><pre><code>- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
-    //地图将要载入执行
-}
-
-- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView{
-    //地图载入完成以后执行
-}
-
-- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error{
-    //地图载入失败执行
-    NSLog(@&quot;error:%@&quot;,[error description]);
-}
-
-- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
-    //地图显示区域将要发生改变时执行
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;地图位置将要改变&quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&quot;确定&quot;, nil];
-        [alertView show];
-}
-
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
-    //地图显示区域改变以后执行
-            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;地图位置已经改变&quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&quot;确定&quot;, nil];
-            [alertView show];
-
-}
-
-//添加标注时调用
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views{
-
-}
-
-//标注被选中时执行此方法
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
-
-}
-
-//标注失去焦点时执行
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
-
-}
-
-//添加左右配件控件时才会调用
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/07/iOS推送通知流程/" itemprop="url">
-                  iOS推送通知流程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-07T18:46:28+10:00" content="2016-06-07">
-              2016-06-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/07/iOS推送通知流程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/07/iOS推送通知流程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://www.dropbox.com/s/mclekty67botrv0/iOS_pushNotificationProcess.png?dl=1" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1467,7 +1435,7 @@ if(selected){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">104</span>
+              <span class="site-state-item-count">106</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1484,7 +1452,7 @@ if(selected){
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
