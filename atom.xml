@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-03T09:49:17.000Z</updated>
+  <updated>2016-10-04T10:12:44.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,387 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GCD学习笔记</title>
+    <link href="http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://jackliu17.github.io/2016/10/04/GCD学习笔记/</id>
+    <published>2016-10-03T21:57:43.000Z</published>
+    <updated>2016-10-04T10:12:44.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;多线程基础&quot;&gt;&lt;a href=&quot;#多线程基础&quot; class=&quot;headerlink&quot; title=&quot;多线程基础&quot;&gt;&lt;/a&gt;多线程基础&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot; title=&quot;进程&quot;&gt;&lt;/a&gt;进程&lt;/h2&gt;&lt;p&gt;进程是指在系统中正在运行的一个应用程序&lt;/p&gt;
+&lt;p&gt;每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内&lt;/p&gt;
+&lt;h2 id=&quot;线程&quot;&gt;&lt;a href=&quot;#线程&quot; class=&quot;headerlink&quot; title=&quot;线程&quot;&gt;&lt;/a&gt;线程&lt;/h2&gt;&lt;p&gt;1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）&lt;/p&gt;
+&lt;p&gt;一个进程（程序）的所有任务都在线程中执行&lt;/p&gt;
+&lt;h2 id=&quot;进程和线程的比较&quot;&gt;&lt;a href=&quot;#进程和线程的比较&quot; class=&quot;headerlink&quot; title=&quot;进程和线程的比较&quot;&gt;&lt;/a&gt;进程和线程的比较&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;线程是CPU调用(执行任务)的最小单位。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进程是CPU分配资源的最小单位。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;一个进程中至少要有一个线程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;同一个进程内的线程共享进程的资源。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h2&gt;&lt;p&gt;1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务&lt;/p&gt;
+&lt;p&gt;多线程技术可以提高程序的执行效率&lt;/p&gt;
+&lt;p&gt;同一时间，CPU只能处理1条线程，只有1条线程在工作（执行），多线程并发（同时）执行，其实是CPU快速地在多条线程之间调度（切换），如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象。&lt;/p&gt;
+&lt;h1 id=&quot;GCD&quot;&gt;&lt;a href=&quot;#GCD&quot; class=&quot;headerlink&quot; title=&quot;GCD&quot;&gt;&lt;/a&gt;GCD&lt;/h1&gt;&lt;h2 id=&quot;任务执行方式&quot;&gt;&lt;a href=&quot;#任务执行方式&quot; class=&quot;headerlink&quot; title=&quot;任务执行方式&quot;&gt;&lt;/a&gt;任务执行方式&lt;/h2&gt;&lt;h3 id=&quot;同步执行：&quot;&gt;&lt;a href=&quot;#同步执行：&quot; class=&quot;headerlink&quot; title=&quot;同步执行：&quot;&gt;&lt;/a&gt;同步执行：&lt;/h3&gt;&lt;p&gt;只能在当前线程中执行任务，不具备开启新线程的能力，任务立刻马上执行，会阻塞当前线程并等待 Block中的任务执行完毕，然后当前线程才会继续往下运行&lt;/p&gt;
+&lt;h3 id=&quot;异步执行：&quot;&gt;&lt;a href=&quot;#异步执行：&quot; class=&quot;headerlink&quot; title=&quot;异步执行：&quot;&gt;&lt;/a&gt;异步执行：&lt;/h3&gt;&lt;p&gt;可以在新的线程中执行任务，具备开启新线程的能力，但不一定会开新线程，当前线程会直接往下执行，不会阻塞当前线程&lt;/p&gt;
+&lt;h2 id=&quot;队列：&quot;&gt;&lt;a href=&quot;#队列：&quot; class=&quot;headerlink&quot; title=&quot;队列：&quot;&gt;&lt;/a&gt;队列：&lt;/h2&gt;&lt;p&gt;即用来存放任务的队列。队列是一种特殊的线性表，采用FIFO（先进先出）的原则，即新任务总是被插入到队列的末尾，而读取任务的时候总是从队列的头部开始读取。每读取一个任务，则从队列中释放一个任务。在GCD中有两种队列：串行队列和并发队列。&lt;/p&gt;
+&lt;h3 id=&quot;串行队列（Serial-Dispatch-Queue）&quot;&gt;&lt;a href=&quot;#串行队列（Serial-Dispatch-Queue）&quot; class=&quot;headerlink&quot; title=&quot;串行队列（Serial Dispatch Queue）&quot;&gt;&lt;/a&gt;串行队列（Serial Dispatch Queue）&lt;/h3&gt;&lt;p&gt;让任务一个接着一个地执行（一个任务执行完毕后，再执行下一个任务）&lt;/p&gt;
+&lt;h3 id=&quot;并发队列（Concurrent-Dispatch-Queue）&quot;&gt;&lt;a href=&quot;#并发队列（Concurrent-Dispatch-Queue）&quot; class=&quot;headerlink&quot; title=&quot;并发队列（Concurrent Dispatch Queue）&quot;&gt;&lt;/a&gt;并发队列（Concurrent Dispatch Queue）&lt;/h3&gt;&lt;p&gt;可以让多个任务并发（同时）执行（自动开启多个线程同时执行任务）,并发功能只有在异步（dispatch_async）函数下才有效&lt;/p&gt;
+&lt;h2 id=&quot;GCD的使用&quot;&gt;&lt;a href=&quot;#GCD的使用&quot; class=&quot;headerlink&quot; title=&quot;GCD的使用&quot;&gt;&lt;/a&gt;GCD的使用&lt;/h2&gt;&lt;h3 id=&quot;队列的创建&quot;&gt;&lt;a href=&quot;#队列的创建&quot; class=&quot;headerlink&quot; title=&quot;队列的创建&quot;&gt;&lt;/a&gt;队列的创建&lt;/h3&gt;&lt;p&gt;创建并发队列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t queue = dispatch_queue_create(&amp;quot;com.xxcc&amp;quot;, DISPATCH_QUEUE_CONCURRENT);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GCD默认已经提供了全局并发队列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t quque1 =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建串行队列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t queue = dispatch_queue_create(&amp;quot;com.xxcc&amp;quot;, DISPATCH_QUEUE_SERIAL);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;获得主队列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t  queue = dispatch_get_main_queue();
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;任务的执行&quot;&gt;&lt;a href=&quot;#任务的执行&quot; class=&quot;headerlink&quot; title=&quot;任务的执行&quot;&gt;&lt;/a&gt;任务的执行&lt;/h3&gt;&lt;p&gt;队列在queue中，任务在block块中&lt;/p&gt;
+&lt;p&gt;同步函数：要求立刻马上开始执行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/*
+第一个参数:队列
+第二个参数:block,在里面封装任务
+*/
+dispatch_sync(queue, ^{
+
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;异步函数 ：等主线程执行完毕之后，回过头开线程执行任务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_async(queue, ^{
+
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD的使用-1&quot;&gt;&lt;a href=&quot;#GCD的使用-1&quot; class=&quot;headerlink&quot; title=&quot;GCD的使用&quot;&gt;&lt;/a&gt;GCD的使用&lt;/h1&gt;&lt;h2 id=&quot;六种组合使用&quot;&gt;&lt;a href=&quot;#六种组合使用&quot; class=&quot;headerlink&quot; title=&quot;六种组合使用&quot;&gt;&lt;/a&gt;六种组合使用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;并发队列 + 同步执行: 无新线程，串行执行 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;并发队列 + 异步执行：有新线程，并发执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;串行队列 + 同步执行: 无新线程，串行执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;串行队列 + 异步执行：有1条新线程，并发执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;主队列 + 同步执行: 无新线程，串行执行 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;主队列 + 异步执行: 无新线程，串行执行 &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;并发队列-同步执行&quot;&gt;&lt;a href=&quot;#并发队列-同步执行&quot; class=&quot;headerlink&quot; title=&quot;并发队列 + 同步执行&quot;&gt;&lt;/a&gt;并发队列 + 同步执行&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;所有任务都是在主线程中执行的,不会开启新线程，由于只有一个线程，所以任务只能一个一个执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;所有任务都在打印的syncConcurrent—begin和syncConcurrent—end之间，这说明任务是添加到队列中马上执行的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;- (void) syncConcurrent
+{
+    NSLog(@&amp;quot;syncConcurrent---begin&amp;quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&amp;quot;test.queue&amp;quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&amp;quot;syncConcurrent---end&amp;quot;);
+}
+
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] syncConcurrent---begin
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] 1------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 1------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&amp;lt;NSThread: 0x61800006d8c0&amp;gt;{number = 1, name = main}
+2016-10-04 12:28:52.935 FL_GCD_DEMO[6892:714486] syncConcurrent---end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;并发队列-异步执行&quot;&gt;&lt;a href=&quot;#并发队列-异步执行&quot; class=&quot;headerlink&quot; title=&quot;并发队列 + 异步执行&quot;&gt;&lt;/a&gt;并发队列 + 异步执行&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;除了主线程，又开启了3个线程，并且任务是交替着同时执行的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;- (void) asyncConcurrent
+{
+    NSLog(@&amp;quot;asyncConcurrent---begin&amp;quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&amp;quot;test.queue&amp;quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&amp;quot;asyncConcurrent---end&amp;quot;);
+}
+
+2016-10-04 12:41:45.567 FL_GCD_DEMO[7091:747862] asyncConcurrent---begin
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747862] asyncConcurrent---end
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&amp;lt;NSThread: 0x610000071900&amp;gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&amp;lt;NSThread: 0x60000006f380&amp;gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&amp;lt;NSThread: 0x60800006f800&amp;gt;{number = 5, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&amp;lt;NSThread: 0x610000071900&amp;gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&amp;lt;NSThread: 0x60000006f380&amp;gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&amp;lt;NSThread: 0x60800006f800&amp;gt;{number = 5, name = (null)}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;串行队列-同步执行&quot;&gt;&lt;a href=&quot;#串行队列-同步执行&quot; class=&quot;headerlink&quot; title=&quot;串行队列 + 同步执行&quot;&gt;&lt;/a&gt;串行队列 + 同步执行&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;- (void) syncSerial
+{
+    NSLog(@&amp;quot;syncSerial---begin&amp;quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&amp;quot;test.queue&amp;quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&amp;quot;syncSerial---end&amp;quot;);
+}
+
+2016-10-04 12:46:10.354 FL_GCD_DEMO[7152:759077] syncSerial---begin
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 3------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] 3------&amp;lt;NSThread: 0x60800007b580&amp;gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] syncSerial---end
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;串行队列-异步执行&quot;&gt;&lt;a href=&quot;#串行队列-异步执行&quot; class=&quot;headerlink&quot; title=&quot;串行队列 + 异步执行&quot;&gt;&lt;/a&gt;串行队列 + 异步执行&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;- (void) asyncSerial
+{
+    NSLog(@&amp;quot;asyncSerial---begin&amp;quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&amp;quot;test.queue&amp;quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&amp;quot;asyncSerial---end&amp;quot;);
+}
+
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---begin
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---end
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007620] 1------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 1------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&amp;lt;NSThread: 0x610000068940&amp;gt;{number = 3, name = (null)}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;主队列-同步执行&quot;&gt;&lt;a href=&quot;#主队列-同步执行&quot; class=&quot;headerlink&quot; title=&quot;主队列 + 同步执行&quot;&gt;&lt;/a&gt;主队列 + 同步执行&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)syncMain
+{
+    NSLog(@&amp;quot;syncMain---begin&amp;quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });   
+
+    NSLog(@&amp;quot;syncMain---end&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;互等卡住不可行(在主线程中调用),dispatch_sync需要立即执行，而现在正在执行syncMain,除非将syncMain放到其他线程&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_queue_t queue = dispatch_queue_create(&amp;quot;test.queue&amp;quot;, DISPATCH_QUEUE_CONCURRENT);
+
+dispatch_async(queue, ^{
+    [self syncMain];
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;主队列-异步执行&quot;&gt;&lt;a href=&quot;#主队列-异步执行&quot; class=&quot;headerlink&quot; title=&quot;主队列 + 异步执行&quot;&gt;&lt;/a&gt;主队列 + 异步执行&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;- (void)asyncMain
+{
+    NSLog(@&amp;quot;asyncMain---begin&amp;quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;2------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &amp;lt; 2; ++i) {
+            NSLog(@&amp;quot;3------%@&amp;quot;,[NSThread currentThread]);
+        }
+    });  
+
+    NSLog(@&amp;quot;asyncMain---end&amp;quot;);
+}
+
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&amp;lt;NSThread: 0x618000078700&amp;gt;{number = 1, name = main}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;其他线程中返回到主线程&quot;&gt;&lt;a href=&quot;#其他线程中返回到主线程&quot; class=&quot;headerlink&quot; title=&quot;其他线程中返回到主线程&quot;&gt;&lt;/a&gt;其他线程中返回到主线程&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    for (int i = 0; i &amp;lt; 2; ++i) {
+        NSLog(@&amp;quot;1------%@&amp;quot;,[NSThread currentThread]);
+    }
+
+    // 回到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@&amp;quot;2-------%@&amp;quot;,[NSThread currentThread]);
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;栅栏方法-dispatch-barrier-async&quot;&gt;&lt;a href=&quot;#栅栏方法-dispatch-barrier-async&quot; class=&quot;headerlink&quot; title=&quot;栅栏方法 dispatch_barrier_async&quot;&gt;&lt;/a&gt;栅栏方法 dispatch_barrier_async&lt;/h2&gt;&lt;p&gt;异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于栅栏一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到dispatch_barrier_async方法在两个操作组间形成栅栏。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- (void)barrier
+{
+    dispatch_queue_t queue = dispatch_queue_create(&amp;quot;12312312&amp;quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        NSLog(@&amp;quot;----1-----%@&amp;quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&amp;quot;----2-----%@&amp;quot;, [NSThread currentThread]);
+    });
+
+    dispatch_barrier_async(queue, ^{
+        NSLog(@&amp;quot;----barrier-----%@&amp;quot;, [NSThread currentThread]);
+    });
+
+    dispatch_async(queue, ^{
+        NSLog(@&amp;quot;----3-----%@&amp;quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&amp;quot;----4-----%@&amp;quot;, [NSThread currentThread]);
+    });
+}
+
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168918] ----1-----&amp;lt;NSThread: 0x60000006e280&amp;gt;{number = 3, name = (null)}
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168921] ----2-----&amp;lt;NSThread: 0x60000006e240&amp;gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----barrier-----&amp;lt;NSThread: 0x60000006e240&amp;gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----3-----&amp;lt;NSThread: 0x60000006e240&amp;gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168918] ----4-----&amp;lt;NSThread: 0x60000006e280&amp;gt;{number = 3, name = (null)}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;延时执行方法-dispatch-after&quot;&gt;&lt;a href=&quot;#延时执行方法-dispatch-after&quot; class=&quot;headerlink&quot; title=&quot;延时执行方法 dispatch_after&quot;&gt;&lt;/a&gt;延时执行方法 dispatch_after&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // 2秒后异步执行这里的代码...
+NSLog(@&amp;quot;run-----&amp;quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;一次性代码-dispatch-once&quot;&gt;&lt;a href=&quot;#一次性代码-dispatch-once&quot; class=&quot;headerlink&quot; title=&quot;一次性代码 dispatch_once&quot;&gt;&lt;/a&gt;一次性代码 dispatch_once&lt;/h2&gt;&lt;p&gt;使用dispatch_once函数能保证某段代码在程序运行过程中只被执行1次。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;static dispatch_once_t onceToken;
+dispatch_once(&amp;amp;onceToken, ^{
+    // 只执行1次的代码(这里面默认是线程安全的)
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;多线程同时遍历-dispatch-apply&quot;&gt;&lt;a href=&quot;#多线程同时遍历-dispatch-apply&quot; class=&quot;headerlink&quot; title=&quot;多线程同时遍历 dispatch_apply&quot;&gt;&lt;/a&gt;多线程同时遍历 dispatch_apply&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+dispatch_apply(6, queue, ^(size_t index) {
+    NSLog(@&amp;quot;%zd------%@&amp;quot;,index, [NSThread currentThread]);
+});
+
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191743] 1------&amp;lt;NSThread: 0x610000067840&amp;gt;{number = 3, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191746] 3------&amp;lt;NSThread: 0x610000067800&amp;gt;{number = 5, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191744] 2------&amp;lt;NSThread: 0x60000006a200&amp;gt;{number = 4, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191661] 0------&amp;lt;NSThread: 0x610000060e80&amp;gt;{number = 1, name = main}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&amp;lt;NSThread: 0x610000067880&amp;gt;{number = 6, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&amp;lt;NSThread: 0x610000067b00&amp;gt;{number = 7, name = (null)}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;队列组-dispatch-group&quot;&gt;&lt;a href=&quot;#队列组-dispatch-group&quot; class=&quot;headerlink&quot; title=&quot;队列组 dispatch_group&quot;&gt;&lt;/a&gt;队列组 dispatch_group&lt;/h2&gt;&lt;p&gt;分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dispatch_group_t group =  dispatch_group_create();
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    // 等前面的异步操作都执行完毕后，回到主线程...
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;WWDC-2016-What’s-new-in-GCD-swift&quot;&gt;&lt;a href=&quot;#WWDC-2016-What’s-new-in-GCD-swift&quot; class=&quot;headerlink&quot; title=&quot;WWDC 2016 What’s new in GCD(swift)&quot;&gt;&lt;/a&gt;WWDC 2016 What’s new in GCD(swift)&lt;/h1&gt;&lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
+&lt;p&gt;Asynchronous ：可以先加入队列，将来再执行&lt;/p&gt;
+&lt;p&gt;Synchronous：必须执行完才到下一个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;摘自&lt;a href=&quot;http://www.jianshu.com/p/2d57c72016c6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS多线程–彻底学会多线程之GCD&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;多线程基础&quot;&gt;&lt;a href=&quot;#多线程基础&quot; class=&quot;headerlink&quot; title=&quot;多线程基础&quot;&gt;&lt;/a&gt;多线程基础&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot; title=&quot;进程&quot;&gt;&lt;/a&gt;进
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+  </entry>
   
   <entry>
     <title>Grand_Central_Dispatch</title>
@@ -282,9 +663,9 @@ photoView.image = image
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
       <category term="udacity" scheme="http://jackliu17.github.io/tags/udacity/"/>
     
@@ -341,9 +722,9 @@ photoView.image = image
     </summary>
     
     
-      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
-    
       <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+      <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
     
       <category term="raywenderlich" scheme="http://jackliu17.github.io/tags/raywenderlich/"/>
     
@@ -2752,215 +3133,6 @@ return [UIImage imageWithData:data];
     
     
       <category term="iOS_GCD" scheme="http://jackliu17.github.io/tags/iOS-GCD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Blocks</title>
-    <link href="http://jackliu17.github.io/2016/08/02/Blocks/"/>
-    <id>http://jackliu17.github.io/2016/08/02/Blocks/</id>
-    <published>2016-08-02T05:19:02.000Z</published>
-    <updated>2016-08-02T07:31:03.000Z</updated>
-    
-    <content type="html">&lt;p&gt;原文链接:&lt;a href=&quot;http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;working with block&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&quot;什么是block&quot;&gt;&lt;a href=&quot;#什么是block&quot; class=&quot;headerlink&quot; title=&quot;什么是block&quot;&gt;&lt;/a&gt;什么是block&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。&lt;/li&gt;
-&lt;li&gt;块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;没有参数和返回值的块&quot;&gt;&lt;a href=&quot;#没有参数和返回值的块&quot; class=&quot;headerlink&quot; title=&quot;没有参数和返回值的块&quot;&gt;&lt;/a&gt;没有参数和返回值的块&lt;/h1&gt;&lt;p&gt;定义一个块&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;^{
-     NSLog(@&amp;quot;This is a block&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;声明块变量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void (^simpleBlock)(void);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块变量赋值&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void (^simpleBlock)(void) = ^{
-    NSLog(@&amp;quot;This is a block&amp;quot;);
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块变量赋值的简约形式   &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;simpleBlock = ^{
-    NSLog(@&amp;quot;This is a block&amp;quot;);
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;调用块命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;simpleBlock();
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;有参数和返回值的块&quot;&gt;&lt;a href=&quot;#有参数和返回值的块&quot; class=&quot;headerlink&quot; title=&quot;有参数和返回值的块&quot;&gt;&lt;/a&gt;有参数和返回值的块&lt;/h1&gt;&lt;p&gt;定义一个块&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//1.
-
-^ (double firstValue, double secondValue) {
-    return firstValue * secondValue;
-}
-
-//2.
-^ double (double firstValue, double secondValue) {
-    return firstValue * secondValue;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;声明块变量&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;double (^multiplyTwoValues)(double, double);    
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;调用块命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;double (^multiplyTwoValues)(double, double) =
-                          ^(double firstValue, double secondValue) {
-                              return firstValue * secondValue;
-                          };
-
-double result = multiplyTwoValues(2,4);
-
-NSLog(@&amp;quot;The result is %f&amp;quot;, result);
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;块的值域&quot;&gt;&lt;a href=&quot;#块的值域&quot; class=&quot;headerlink&quot; title=&quot;块的值域&quot;&gt;&lt;/a&gt;块的值域&lt;/h1&gt;&lt;p&gt;如果你在一个方法中声明了块，他可以捕捉到任何在方法域中可以访问到的值&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)testMethod {
-int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
-};
-
-testBlock();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一旦捕获后，即使在捕获后和调用期间改变值，不受影响.块不能够改变初始变量的值，或者是被捕获的值  &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
-};
-
-anInteger = 84;
-
-testBlock();  
-
-//Integer is: 42 
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;block变量（块变量的改变）&quot;&gt;&lt;a href=&quot;#block变量（块变量的改变）&quot; class=&quot;headerlink&quot; title=&quot;__block变量（块变量的改变）&quot;&gt;&lt;/a&gt;__block变量（块变量的改变）&lt;/h1&gt;&lt;p&gt;变量和块共享存储空间。变量改变，块内的也改变&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;__block int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
-};
-
-anInteger = 84;
-testBlock(); 
-
-//Integer is：84
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;变量可以在块内被改变&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;__block int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&amp;quot;Integer is: %i&amp;quot;, anInteger);
-    anInteger = 100;
-};
-
-testBlock();
-NSLog(@&amp;quot;Value of original variable is now: %i&amp;quot;, anInteger); 
-
-//Integer is: 42
-//Value of original variable is now: 100  
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;块作为方法或函数的参数&quot;&gt;&lt;a href=&quot;#块作为方法或函数的参数&quot; class=&quot;headerlink&quot; title=&quot;块作为方法或函数的参数&quot;&gt;&lt;/a&gt;块作为方法或函数的参数&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
-
-
-- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {
-...
-callbackBlock();
-}
-
-- (void)doSomethingWithBlock:(void (^)(double, double))block {
-...
-block(21.0, 2.0);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块应该总是一个方法的最后一个参数&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//声明
-- (void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
-
-//调用
-[self beginTaskWithName:@&amp;quot;MyTask&amp;quot; completion:^{
-    NSLog(@&amp;quot;The task is complete&amp;quot;);
-}];
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;块也用于回调 — 定义了当一个任务结束时将被执行的代码&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (IBAction)fetchRemoteInformation:(id)sender {
-[self showProgressIndicator];
-
-XYZWebTask *task = ...
-
-[task beginTaskWithCallbackBlock:^{
-    [self hideProgressIndicator];
-}];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定义块的数据类型&quot;&gt;&lt;a href=&quot;#定义块的数据类型&quot; class=&quot;headerlink&quot; title=&quot;定义块的数据类型&quot;&gt;&lt;/a&gt;定义块的数据类型&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;typedef void (^XYZSimpleBlock)(void);
-
-
-XYZSimpleBlock anotherBlock = ^{
-    ...
-};
-
-
-- (void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {
-
-...
-callbackBlock();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;该 complexBlock 变量是指一个块需要另一块作为一个参数（ABLOCK）并返回另一个块&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
-...
-return ^{
-    ...
-};
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重写代码使用类型定义使其可读性更高，将块定义成数据类型&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {
-...
-return ^{
-    ...
-};
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定义块为属性&quot;&gt;&lt;a href=&quot;#定义块为属性&quot; class=&quot;headerlink&quot; title=&quot;定义块为属性&quot;&gt;&lt;/a&gt;定义块为属性&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;@interface XYZObject : NSObject
-@property (copy) void (^blockProperty)(void);  //通常使用copy,why?
-@end
-
-
-self.blockProperty = ^{
-    ...
-};
-self.blockProperty();
-
-
-使用块属性声明的类型定义
-
-typedef void (^XYZSimpleBlock)(void);
-
-@interface XYZObject : NSObject
-@property (copy) XYZSimpleBlock blockProperty;
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Avoid-Strong-Reference-Cycles-when-Capturing-self&quot;&gt;&lt;a href=&quot;#Avoid-Strong-Reference-Cycles-when-Capturing-self&quot; class=&quot;headerlink&quot; title=&quot;Avoid Strong Reference Cycles when Capturing self&quot;&gt;&lt;/a&gt;Avoid Strong Reference Cycles when Capturing self&lt;/h1&gt;&lt;p&gt;Blocks maintain strong references to any captured objects, including self, which means that it’s easy to end up with a strong reference cycle。 block对任何捕获的对象是强引用。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface XYZBlockKeeper : NSObject
-@property (copy) void (^block)(void);
-@end
-
-@implementation XYZBlockKeeper
-- (void)configureBlock {
-self.block = ^{
-    [self doSomething];    // capturing a strong reference to self
-                           // creates a strong reference cycle
-};
-}
-...
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;正确做法如下&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)configureBlock {
-XYZBlockKeeper * __weak weakSelf = self;
-self.block = ^{
-    [weakSelf doSomething];   // capture the weak reference
-                              // to avoid the reference cycle
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By capturing the weak pointer to self, the block won’t maintain a strong relationship back to the XYZBlockKeeper object. If that object is deallocated before the block is called, the weakSelf pointer will simply be set to nil.&lt;/p&gt;
-&lt;h1 id=&quot;块可以简化枚举-待阅&quot;&gt;&lt;a href=&quot;#块可以简化枚举-待阅&quot; class=&quot;headerlink&quot; title=&quot;块可以简化枚举 (待阅)&quot;&gt;&lt;/a&gt;块可以简化枚举 (待阅)&lt;/h1&gt;&lt;h1 id=&quot;使用块操作与运行队列-待阅&quot;&gt;&lt;a href=&quot;#使用块操作与运行队列-待阅&quot; class=&quot;headerlink&quot; title=&quot;使用块操作与运行队列 (待阅)&quot;&gt;&lt;/a&gt;使用块操作与运行队列 (待阅)&lt;/h1&gt;&lt;h1 id=&quot;用GCD技术在调度队列调度块-待阅&quot;&gt;&lt;a href=&quot;#用GCD技术在调度队列调度块-待阅&quot; class=&quot;headerlink&quot; title=&quot;用GCD技术在调度队列调度块 (待阅)&quot;&gt;&lt;/a&gt;用GCD技术在调度队列调度块 (待阅)&lt;/h1&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原文链接:&lt;a href=&quot;http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;w
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="objective-C" scheme="http://jackliu17.github.io/tags/objective-C/"/>
     
   </entry>
   

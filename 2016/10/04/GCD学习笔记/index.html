@@ -1,0 +1,1139 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="gcd," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="多线程基础进程进程是指在系统中正在运行的一个应用程序
+每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内
+线程1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）
+一个进程（程序）的所有任务都在线程中执行
+进程和线程的比较
+线程是CPU调用(执行任务)的最小单位。
+
+进程是CPU分配资源的最小单位。
+
+一个进程中至少要有一个线程。
+
+同一个进程内的线程共享进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD学习笔记">
+<meta property="og:url" content="http://jackliu17.github.io/2016/10/04/GCD学习笔记/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="多线程基础进程进程是指在系统中正在运行的一个应用程序
+每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内
+线程1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）
+一个进程（程序）的所有任务都在线程中执行
+进程和线程的比较
+线程是CPU调用(执行任务)的最小单位。
+
+进程是CPU分配资源的最小单位。
+
+一个进程中至少要有一个线程。
+
+同一个进程内的线程共享进程">
+<meta property="og:updated_time" content="2016-10-04T10:12:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCD学习笔记">
+<meta name="twitter:description" content="多线程基础进程进程是指在系统中正在运行的一个应用程序
+每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内
+线程1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）
+一个进程（程序）的所有任务都在线程中执行
+进程和线程的比较
+线程是CPU调用(执行任务)的最小单位。
+
+进程是CPU分配资源的最小单位。
+
+一个进程中至少要有一个线程。
+
+同一个进程内的线程共享进程">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> GCD学习笔记 | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GCD学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T08:57:43+11:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/04/GCD学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/04/GCD学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="多线程基础"><a href="#多线程基础" class="headerlink" title="多线程基础"></a>多线程基础</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程是指在系统中正在运行的一个应用程序</p>
+<p>每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）</p>
+<p>一个进程（程序）的所有任务都在线程中执行</p>
+<h2 id="进程和线程的比较"><a href="#进程和线程的比较" class="headerlink" title="进程和线程的比较"></a>进程和线程的比较</h2><ol>
+<li><p>线程是CPU调用(执行任务)的最小单位。</p>
+</li>
+<li><p>进程是CPU分配资源的最小单位。</p>
+</li>
+<li><p>一个进程中至少要有一个线程。</p>
+</li>
+<li><p>同一个进程内的线程共享进程的资源。</p>
+</li>
+</ol>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务</p>
+<p>多线程技术可以提高程序的执行效率</p>
+<p>同一时间，CPU只能处理1条线程，只有1条线程在工作（执行），多线程并发（同时）执行，其实是CPU快速地在多条线程之间调度（切换），如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象。</p>
+<h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="任务执行方式"><a href="#任务执行方式" class="headerlink" title="任务执行方式"></a>任务执行方式</h2><h3 id="同步执行："><a href="#同步执行：" class="headerlink" title="同步执行："></a>同步执行：</h3><p>只能在当前线程中执行任务，不具备开启新线程的能力，任务立刻马上执行，会阻塞当前线程并等待 Block中的任务执行完毕，然后当前线程才会继续往下运行</p>
+<h3 id="异步执行："><a href="#异步执行：" class="headerlink" title="异步执行："></a>异步执行：</h3><p>可以在新的线程中执行任务，具备开启新线程的能力，但不一定会开新线程，当前线程会直接往下执行，不会阻塞当前线程</p>
+<h2 id="队列："><a href="#队列：" class="headerlink" title="队列："></a>队列：</h2><p>即用来存放任务的队列。队列是一种特殊的线性表，采用FIFO（先进先出）的原则，即新任务总是被插入到队列的末尾，而读取任务的时候总是从队列的头部开始读取。每读取一个任务，则从队列中释放一个任务。在GCD中有两种队列：串行队列和并发队列。</p>
+<h3 id="串行队列（Serial-Dispatch-Queue）"><a href="#串行队列（Serial-Dispatch-Queue）" class="headerlink" title="串行队列（Serial Dispatch Queue）"></a>串行队列（Serial Dispatch Queue）</h3><p>让任务一个接着一个地执行（一个任务执行完毕后，再执行下一个任务）</p>
+<h3 id="并发队列（Concurrent-Dispatch-Queue）"><a href="#并发队列（Concurrent-Dispatch-Queue）" class="headerlink" title="并发队列（Concurrent Dispatch Queue）"></a>并发队列（Concurrent Dispatch Queue）</h3><p>可以让多个任务并发（同时）执行（自动开启多个线程同时执行任务）,并发功能只有在异步（dispatch_async）函数下才有效</p>
+<h2 id="GCD的使用"><a href="#GCD的使用" class="headerlink" title="GCD的使用"></a>GCD的使用</h2><h3 id="队列的创建"><a href="#队列的创建" class="headerlink" title="队列的创建"></a>队列的创建</h3><p>创建并发队列</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_CONCURRENT);
+</code></pre><p>GCD默认已经提供了全局并发队列</p>
+<pre><code>dispatch_queue_t quque1 =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</code></pre><p>创建串行队列</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_SERIAL);
+</code></pre><p>获得主队列</p>
+<pre><code>dispatch_queue_t  queue = dispatch_get_main_queue();
+</code></pre><h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
+<p>同步函数：要求立刻马上开始执行</p>
+<pre><code>/*
+第一个参数:队列
+第二个参数:block,在里面封装任务
+*/
+dispatch_sync(queue, ^{
+
+});
+</code></pre><p>异步函数 ：等主线程执行完毕之后，回过头开线程执行任务</p>
+<pre><code>dispatch_async(queue, ^{
+
+});
+</code></pre><h1 id="GCD的使用-1"><a href="#GCD的使用-1" class="headerlink" title="GCD的使用"></a>GCD的使用</h1><h2 id="六种组合使用"><a href="#六种组合使用" class="headerlink" title="六种组合使用"></a>六种组合使用</h2><ol>
+<li><p>并发队列 + 同步执行: 无新线程，串行执行 </p>
+</li>
+<li><p>并发队列 + 异步执行：有新线程，并发执行</p>
+</li>
+<li><p>串行队列 + 同步执行: 无新线程，串行执行</p>
+</li>
+<li><p>串行队列 + 异步执行：有1条新线程，并发执行</p>
+</li>
+<li><p>主队列 + 同步执行: 无新线程，串行执行 </p>
+</li>
+<li><p>主队列 + 异步执行: 无新线程，串行执行 </p>
+</li>
+</ol>
+<h2 id="并发队列-同步执行"><a href="#并发队列-同步执行" class="headerlink" title="并发队列 + 同步执行"></a>并发队列 + 同步执行</h2><ol>
+<li><p>所有任务都是在主线程中执行的,不会开启新线程，由于只有一个线程，所以任务只能一个一个执行。</p>
+</li>
+<li><p>所有任务都在打印的syncConcurrent—begin和syncConcurrent—end之间，这说明任务是添加到队列中马上执行的。</p>
+</li>
+</ol>
+<pre><code>- (void) syncConcurrent
+{
+    NSLog(@&quot;syncConcurrent---begin&quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;syncConcurrent---end&quot;);
+}
+
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] syncConcurrent---begin
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] 1------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 1------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.935 FL_GCD_DEMO[6892:714486] syncConcurrent---end
+</code></pre><h2 id="并发队列-异步执行"><a href="#并发队列-异步执行" class="headerlink" title="并发队列 + 异步执行"></a>并发队列 + 异步执行</h2><ol>
+<li><p>除了主线程，又开启了3个线程，并且任务是交替着同时执行的。</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) asyncConcurrent
+{
+    NSLog(@&quot;asyncConcurrent---begin&quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;asyncConcurrent---end&quot;);
+}
+
+2016-10-04 12:41:45.567 FL_GCD_DEMO[7091:747862] asyncConcurrent---begin
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747862] asyncConcurrent---end
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&lt;NSThread: 0x610000071900&gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&lt;NSThread: 0x60000006f380&gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&lt;NSThread: 0x60800006f800&gt;{number = 5, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&lt;NSThread: 0x610000071900&gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&lt;NSThread: 0x60000006f380&gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&lt;NSThread: 0x60800006f800&gt;{number = 5, name = (null)}
+</code></pre><h2 id="串行队列-同步执行"><a href="#串行队列-同步执行" class="headerlink" title="串行队列 + 同步执行"></a>串行队列 + 同步执行</h2><ol>
+<li><p>不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) syncSerial
+{
+    NSLog(@&quot;syncSerial---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;syncSerial---end&quot;);
+}
+
+2016-10-04 12:46:10.354 FL_GCD_DEMO[7152:759077] syncSerial---begin
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 3------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] 3------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] syncSerial---end
+</code></pre><h2 id="串行队列-异步执行"><a href="#串行队列-异步执行" class="headerlink" title="串行队列 + 异步执行"></a>串行队列 + 异步执行</h2><ol>
+<li><p>会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) asyncSerial
+{
+    NSLog(@&quot;asyncSerial---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;asyncSerial---end&quot;);
+}
+
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---begin
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---end
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007620] 1------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 1------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+</code></pre><h2 id="主队列-同步执行"><a href="#主队列-同步执行" class="headerlink" title="主队列 + 同步执行"></a>主队列 + 同步执行</h2><pre><code>- (void)syncMain
+{
+    NSLog(@&quot;syncMain---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });   
+
+    NSLog(@&quot;syncMain---end&quot;);
+}
+</code></pre><p>互等卡住不可行(在主线程中调用),dispatch_sync需要立即执行，而现在正在执行syncMain,除非将syncMain放到其他线程</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+dispatch_async(queue, ^{
+    [self syncMain];
+});
+</code></pre><h2 id="主队列-异步执行"><a href="#主队列-异步执行" class="headerlink" title="主队列 + 异步执行"></a>主队列 + 异步执行</h2><pre><code>- (void)asyncMain
+{
+    NSLog(@&quot;asyncMain---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });  
+
+    NSLog(@&quot;asyncMain---end&quot;);
+}
+
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+</code></pre><h2 id="其他线程中返回到主线程"><a href="#其他线程中返回到主线程" class="headerlink" title="其他线程中返回到主线程"></a>其他线程中返回到主线程</h2><pre><code>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    for (int i = 0; i &lt; 2; ++i) {
+        NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+    }
+
+    // 回到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@&quot;2-------%@&quot;,[NSThread currentThread]);
+    });
+});
+</code></pre><h2 id="栅栏方法-dispatch-barrier-async"><a href="#栅栏方法-dispatch-barrier-async" class="headerlink" title="栅栏方法 dispatch_barrier_async"></a>栅栏方法 dispatch_barrier_async</h2><p>异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于栅栏一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到dispatch_barrier_async方法在两个操作组间形成栅栏。</p>
+<pre><code>- (void)barrier
+{
+    dispatch_queue_t queue = dispatch_queue_create(&quot;12312312&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----1-----%@&quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----2-----%@&quot;, [NSThread currentThread]);
+    });
+
+    dispatch_barrier_async(queue, ^{
+        NSLog(@&quot;----barrier-----%@&quot;, [NSThread currentThread]);
+    });
+
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----3-----%@&quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----4-----%@&quot;, [NSThread currentThread]);
+    });
+}
+
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168918] ----1-----&lt;NSThread: 0x60000006e280&gt;{number = 3, name = (null)}
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168921] ----2-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----barrier-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----3-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168918] ----4-----&lt;NSThread: 0x60000006e280&gt;{number = 3, name = (null)}
+</code></pre><h2 id="延时执行方法-dispatch-after"><a href="#延时执行方法-dispatch-after" class="headerlink" title="延时执行方法 dispatch_after"></a>延时执行方法 dispatch_after</h2><pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // 2秒后异步执行这里的代码...
+NSLog(@&quot;run-----&quot;);
+});
+</code></pre><h2 id="一次性代码-dispatch-once"><a href="#一次性代码-dispatch-once" class="headerlink" title="一次性代码 dispatch_once"></a>一次性代码 dispatch_once</h2><p>使用dispatch_once函数能保证某段代码在程序运行过程中只被执行1次。</p>
+<pre><code>static dispatch_once_t onceToken;
+dispatch_once(&amp;onceToken, ^{
+    // 只执行1次的代码(这里面默认是线程安全的)
+});
+</code></pre><h2 id="多线程同时遍历-dispatch-apply"><a href="#多线程同时遍历-dispatch-apply" class="headerlink" title="多线程同时遍历 dispatch_apply"></a>多线程同时遍历 dispatch_apply</h2><pre><code>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+dispatch_apply(6, queue, ^(size_t index) {
+    NSLog(@&quot;%zd------%@&quot;,index, [NSThread currentThread]);
+});
+
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191743] 1------&lt;NSThread: 0x610000067840&gt;{number = 3, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191746] 3------&lt;NSThread: 0x610000067800&gt;{number = 5, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191744] 2------&lt;NSThread: 0x60000006a200&gt;{number = 4, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191661] 0------&lt;NSThread: 0x610000060e80&gt;{number = 1, name = main}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&lt;NSThread: 0x610000067880&gt;{number = 6, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&lt;NSThread: 0x610000067b00&gt;{number = 7, name = (null)}
+</code></pre><h2 id="队列组-dispatch-group"><a href="#队列组-dispatch-group" class="headerlink" title="队列组 dispatch_group"></a>队列组 dispatch_group</h2><p>分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。</p>
+<pre><code>dispatch_group_t group =  dispatch_group_create();
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    // 等前面的异步操作都执行完毕后，回到主线程...
+});
+</code></pre><h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
+<p>Asynchronous ：可以先加入队列，将来再执行</p>
+<p>Synchronous：必须执行完才到下一个</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+} 
+</code></pre><p>摘自<a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gcd/" rel="tag">#gcd</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/28/Grand-Central-Dispatch/" rel="next" title="Grand_Central_Dispatch">
+                <i class="fa fa-chevron-left"></i> Grand_Central_Dispatch
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">107</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程基础"><span class="nav-number">1.</span> <span class="nav-text">多线程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的比较"><span class="nav-number">1.3.</span> <span class="nav-text">进程和线程的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.4.</span> <span class="nav-text">多线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务执行方式"><span class="nav-number">2.1.</span> <span class="nav-text">任务执行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步执行："><span class="nav-number">2.1.1.</span> <span class="nav-text">同步执行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行："><span class="nav-number">2.1.2.</span> <span class="nav-text">异步执行：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列："><span class="nav-number">2.2.</span> <span class="nav-text">队列：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#串行队列（Serial-Dispatch-Queue）"><span class="nav-number">2.2.1.</span> <span class="nav-text">串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">2.2.2.</span> <span class="nav-text">并发队列（Concurrent Dispatch Queue）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD的使用"><span class="nav-number">2.3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#队列的创建"><span class="nav-number">2.3.1.</span> <span class="nav-text">队列的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务的执行"><span class="nav-number">2.3.2.</span> <span class="nav-text">任务的执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD的使用-1"><span class="nav-number">3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#六种组合使用"><span class="nav-number">3.1.</span> <span class="nav-text">六种组合使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-同步执行"><span class="nav-number">3.2.</span> <span class="nav-text">并发队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-异步执行"><span class="nav-number">3.3.</span> <span class="nav-text">并发队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-同步执行"><span class="nav-number">3.4.</span> <span class="nav-text">串行队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-异步执行"><span class="nav-number">3.5.</span> <span class="nav-text">串行队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-同步执行"><span class="nav-number">3.6.</span> <span class="nav-text">主队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-异步执行"><span class="nav-number">3.7.</span> <span class="nav-text">主队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他线程中返回到主线程"><span class="nav-number">3.8.</span> <span class="nav-text">其他线程中返回到主线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栅栏方法-dispatch-barrier-async"><span class="nav-number">3.9.</span> <span class="nav-text">栅栏方法 dispatch_barrier_async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延时执行方法-dispatch-after"><span class="nav-number">3.10.</span> <span class="nav-text">延时执行方法 dispatch_after</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性代码-dispatch-once"><span class="nav-number">3.11.</span> <span class="nav-text">一次性代码 dispatch_once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程同时遍历-dispatch-apply"><span class="nav-number">3.12.</span> <span class="nav-text">多线程同时遍历 dispatch_apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列组-dispatch-group"><span class="nav-number">3.13.</span> <span class="nav-text">队列组 dispatch_group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WWDC-2016-What’s-new-in-GCD-swift"><span class="nav-number">4.</span> <span class="nav-text">WWDC 2016 What’s new in GCD(swift)</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/10/04/GCD学习笔记/';
+      var disqus_title = 'GCD学习笔记';
+      var disqus_url = 'http://jackliu17.github.io/2016/10/04/GCD学习笔记/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

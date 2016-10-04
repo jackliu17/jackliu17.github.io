@@ -238,6 +238,479 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/04/GCD学习笔记/" itemprop="url">
+                  GCD学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-04T08:57:43+11:00" content="2016-10-04">
+              2016-10-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/04/GCD学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/04/GCD学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="多线程基础"><a href="#多线程基础" class="headerlink" title="多线程基础"></a>多线程基础</h1><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程是指在系统中正在运行的一个应用程序</p>
+<p>每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>1个进程要想执行任务，必须得有线程（每1个进程至少要有1条线程，称为主线程）</p>
+<p>一个进程（程序）的所有任务都在线程中执行</p>
+<h2 id="进程和线程的比较"><a href="#进程和线程的比较" class="headerlink" title="进程和线程的比较"></a>进程和线程的比较</h2><ol>
+<li><p>线程是CPU调用(执行任务)的最小单位。</p>
+</li>
+<li><p>进程是CPU分配资源的最小单位。</p>
+</li>
+<li><p>一个进程中至少要有一个线程。</p>
+</li>
+<li><p>同一个进程内的线程共享进程的资源。</p>
+</li>
+</ol>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>1个进程中可以开启多条线程，每条线程可以并行（同时）执行不同的任务</p>
+<p>多线程技术可以提高程序的执行效率</p>
+<p>同一时间，CPU只能处理1条线程，只有1条线程在工作（执行），多线程并发（同时）执行，其实是CPU快速地在多条线程之间调度（切换），如果CPU调度线程的时间足够快，就造成了多线程并发执行的假象。</p>
+<h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="任务执行方式"><a href="#任务执行方式" class="headerlink" title="任务执行方式"></a>任务执行方式</h2><h3 id="同步执行："><a href="#同步执行：" class="headerlink" title="同步执行："></a>同步执行：</h3><p>只能在当前线程中执行任务，不具备开启新线程的能力，任务立刻马上执行，会阻塞当前线程并等待 Block中的任务执行完毕，然后当前线程才会继续往下运行</p>
+<h3 id="异步执行："><a href="#异步执行：" class="headerlink" title="异步执行："></a>异步执行：</h3><p>可以在新的线程中执行任务，具备开启新线程的能力，但不一定会开新线程，当前线程会直接往下执行，不会阻塞当前线程</p>
+<h2 id="队列："><a href="#队列：" class="headerlink" title="队列："></a>队列：</h2><p>即用来存放任务的队列。队列是一种特殊的线性表，采用FIFO（先进先出）的原则，即新任务总是被插入到队列的末尾，而读取任务的时候总是从队列的头部开始读取。每读取一个任务，则从队列中释放一个任务。在GCD中有两种队列：串行队列和并发队列。</p>
+<h3 id="串行队列（Serial-Dispatch-Queue）"><a href="#串行队列（Serial-Dispatch-Queue）" class="headerlink" title="串行队列（Serial Dispatch Queue）"></a>串行队列（Serial Dispatch Queue）</h3><p>让任务一个接着一个地执行（一个任务执行完毕后，再执行下一个任务）</p>
+<h3 id="并发队列（Concurrent-Dispatch-Queue）"><a href="#并发队列（Concurrent-Dispatch-Queue）" class="headerlink" title="并发队列（Concurrent Dispatch Queue）"></a>并发队列（Concurrent Dispatch Queue）</h3><p>可以让多个任务并发（同时）执行（自动开启多个线程同时执行任务）,并发功能只有在异步（dispatch_async）函数下才有效</p>
+<h2 id="GCD的使用"><a href="#GCD的使用" class="headerlink" title="GCD的使用"></a>GCD的使用</h2><h3 id="队列的创建"><a href="#队列的创建" class="headerlink" title="队列的创建"></a>队列的创建</h3><p>创建并发队列</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_CONCURRENT);
+</code></pre><p>GCD默认已经提供了全局并发队列</p>
+<pre><code>dispatch_queue_t quque1 =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</code></pre><p>创建串行队列</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_SERIAL);
+</code></pre><p>获得主队列</p>
+<pre><code>dispatch_queue_t  queue = dispatch_get_main_queue();
+</code></pre><h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
+<p>同步函数：要求立刻马上开始执行</p>
+<pre><code>/*
+第一个参数:队列
+第二个参数:block,在里面封装任务
+*/
+dispatch_sync(queue, ^{
+
+});
+</code></pre><p>异步函数 ：等主线程执行完毕之后，回过头开线程执行任务</p>
+<pre><code>dispatch_async(queue, ^{
+
+});
+</code></pre><h1 id="GCD的使用-1"><a href="#GCD的使用-1" class="headerlink" title="GCD的使用"></a>GCD的使用</h1><h2 id="六种组合使用"><a href="#六种组合使用" class="headerlink" title="六种组合使用"></a>六种组合使用</h2><ol>
+<li><p>并发队列 + 同步执行: 无新线程，串行执行 </p>
+</li>
+<li><p>并发队列 + 异步执行：有新线程，并发执行</p>
+</li>
+<li><p>串行队列 + 同步执行: 无新线程，串行执行</p>
+</li>
+<li><p>串行队列 + 异步执行：有1条新线程，并发执行</p>
+</li>
+<li><p>主队列 + 同步执行: 无新线程，串行执行 </p>
+</li>
+<li><p>主队列 + 异步执行: 无新线程，串行执行 </p>
+</li>
+</ol>
+<h2 id="并发队列-同步执行"><a href="#并发队列-同步执行" class="headerlink" title="并发队列 + 同步执行"></a>并发队列 + 同步执行</h2><ol>
+<li><p>所有任务都是在主线程中执行的,不会开启新线程，由于只有一个线程，所以任务只能一个一个执行。</p>
+</li>
+<li><p>所有任务都在打印的syncConcurrent—begin和syncConcurrent—end之间，这说明任务是添加到队列中马上执行的。</p>
+</li>
+</ol>
+<pre><code>- (void) syncConcurrent
+{
+    NSLog(@&quot;syncConcurrent---begin&quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;syncConcurrent---end&quot;);
+}
+
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] syncConcurrent---begin
+2016-10-04 12:28:52.933 FL_GCD_DEMO[6892:714486] 1------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 1------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 2------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.934 FL_GCD_DEMO[6892:714486] 3------&lt;NSThread: 0x61800006d8c0&gt;{number = 1, name = main}
+2016-10-04 12:28:52.935 FL_GCD_DEMO[6892:714486] syncConcurrent---end
+</code></pre><h2 id="并发队列-异步执行"><a href="#并发队列-异步执行" class="headerlink" title="并发队列 + 异步执行"></a>并发队列 + 异步执行</h2><ol>
+<li><p>除了主线程，又开启了3个线程，并且任务是交替着同时执行的。</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) asyncConcurrent
+{
+    NSLog(@&quot;asyncConcurrent---begin&quot;);
+
+    dispatch_queue_t queue= dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;asyncConcurrent---end&quot;);
+}
+
+2016-10-04 12:41:45.567 FL_GCD_DEMO[7091:747862] asyncConcurrent---begin
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747862] asyncConcurrent---end
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&lt;NSThread: 0x610000071900&gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&lt;NSThread: 0x60000006f380&gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&lt;NSThread: 0x60800006f800&gt;{number = 5, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747987] 1------&lt;NSThread: 0x610000071900&gt;{number = 3, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747986] 2------&lt;NSThread: 0x60000006f380&gt;{number = 4, name = (null)}
+2016-10-04 12:41:45.568 FL_GCD_DEMO[7091:747989] 3------&lt;NSThread: 0x60800006f800&gt;{number = 5, name = (null)}
+</code></pre><h2 id="串行队列-同步执行"><a href="#串行队列-同步执行" class="headerlink" title="串行队列 + 同步执行"></a>串行队列 + 同步执行</h2><ol>
+<li><p>不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) syncSerial
+{
+    NSLog(@&quot;syncSerial---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;syncSerial---end&quot;);
+}
+
+2016-10-04 12:46:10.354 FL_GCD_DEMO[7152:759077] syncSerial---begin
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 1------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 2------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.355 FL_GCD_DEMO[7152:759077] 3------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] 3------&lt;NSThread: 0x60800007b580&gt;{number = 1, name = main}
+2016-10-04 12:46:10.356 FL_GCD_DEMO[7152:759077] syncSerial---end
+</code></pre><h2 id="串行队列-异步执行"><a href="#串行队列-异步执行" class="headerlink" title="串行队列 + 异步执行"></a>串行队列 + 异步执行</h2><ol>
+<li><p>会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务</p>
+</li>
+<li><p>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的。说明任务不是马上执行，而是将所有任务添加到队列之后才开始同步执行。</p>
+</li>
+</ol>
+<pre><code>- (void) asyncSerial
+{
+    NSLog(@&quot;asyncSerial---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });
+
+    NSLog(@&quot;asyncSerial---end&quot;);
+}
+
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---begin
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007533] asyncSerial---end
+2016-10-04 15:22:49.819 FL_GCD_DEMO[8557:1007620] 1------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 1------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 2------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+2016-10-04 15:22:49.820 FL_GCD_DEMO[8557:1007620] 3------&lt;NSThread: 0x610000068940&gt;{number = 3, name = (null)}
+</code></pre><h2 id="主队列-同步执行"><a href="#主队列-同步执行" class="headerlink" title="主队列 + 同步执行"></a>主队列 + 同步执行</h2><pre><code>- (void)syncMain
+{
+    NSLog(@&quot;syncMain---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_sync(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });   
+
+    NSLog(@&quot;syncMain---end&quot;);
+}
+</code></pre><p>互等卡住不可行(在主线程中调用),dispatch_sync需要立即执行，而现在正在执行syncMain,除非将syncMain放到其他线程</p>
+<pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+dispatch_async(queue, ^{
+    [self syncMain];
+});
+</code></pre><h2 id="主队列-异步执行"><a href="#主队列-异步执行" class="headerlink" title="主队列 + 异步执行"></a>主队列 + 异步执行</h2><pre><code>- (void)asyncMain
+{
+    NSLog(@&quot;asyncMain---begin&quot;);
+
+    dispatch_queue_t queue = dispatch_get_main_queue();
+
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+        }
+    });    
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;2------%@&quot;,[NSThread currentThread]);
+        }
+    });
+    dispatch_async(queue, ^{
+        for (int i = 0; i &lt; 2; ++i) {
+            NSLog(@&quot;3------%@&quot;,[NSThread currentThread]);
+        }
+    });  
+
+    NSLog(@&quot;asyncMain---end&quot;);
+}
+
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.551 FL_GCD_DEMO[9244:1128884] 1------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 2------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+2016-10-04 16:09:35.552 FL_GCD_DEMO[9244:1128884] 3------&lt;NSThread: 0x618000078700&gt;{number = 1, name = main}
+</code></pre><h2 id="其他线程中返回到主线程"><a href="#其他线程中返回到主线程" class="headerlink" title="其他线程中返回到主线程"></a>其他线程中返回到主线程</h2><pre><code>dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    for (int i = 0; i &lt; 2; ++i) {
+        NSLog(@&quot;1------%@&quot;,[NSThread currentThread]);
+    }
+
+    // 回到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@&quot;2-------%@&quot;,[NSThread currentThread]);
+    });
+});
+</code></pre><h2 id="栅栏方法-dispatch-barrier-async"><a href="#栅栏方法-dispatch-barrier-async" class="headerlink" title="栅栏方法 dispatch_barrier_async"></a>栅栏方法 dispatch_barrier_async</h2><p>异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于栅栏一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到dispatch_barrier_async方法在两个操作组间形成栅栏。</p>
+<pre><code>- (void)barrier
+{
+    dispatch_queue_t queue = dispatch_queue_create(&quot;12312312&quot;, DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----1-----%@&quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----2-----%@&quot;, [NSThread currentThread]);
+    });
+
+    dispatch_barrier_async(queue, ^{
+        NSLog(@&quot;----barrier-----%@&quot;, [NSThread currentThread]);
+    });
+
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----3-----%@&quot;, [NSThread currentThread]);
+    });
+    dispatch_async(queue, ^{
+        NSLog(@&quot;----4-----%@&quot;, [NSThread currentThread]);
+    });
+}
+
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168918] ----1-----&lt;NSThread: 0x60000006e280&gt;{number = 3, name = (null)}
+2016-10-04 16:23:38.931 FL_GCD_DEMO[9572:1168921] ----2-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----barrier-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168921] ----3-----&lt;NSThread: 0x60000006e240&gt;{number = 4, name = (null)}
+2016-10-04 16:23:38.932 FL_GCD_DEMO[9572:1168918] ----4-----&lt;NSThread: 0x60000006e280&gt;{number = 3, name = (null)}
+</code></pre><h2 id="延时执行方法-dispatch-after"><a href="#延时执行方法-dispatch-after" class="headerlink" title="延时执行方法 dispatch_after"></a>延时执行方法 dispatch_after</h2><pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // 2秒后异步执行这里的代码...
+NSLog(@&quot;run-----&quot;);
+});
+</code></pre><h2 id="一次性代码-dispatch-once"><a href="#一次性代码-dispatch-once" class="headerlink" title="一次性代码 dispatch_once"></a>一次性代码 dispatch_once</h2><p>使用dispatch_once函数能保证某段代码在程序运行过程中只被执行1次。</p>
+<pre><code>static dispatch_once_t onceToken;
+dispatch_once(&amp;onceToken, ^{
+    // 只执行1次的代码(这里面默认是线程安全的)
+});
+</code></pre><h2 id="多线程同时遍历-dispatch-apply"><a href="#多线程同时遍历-dispatch-apply" class="headerlink" title="多线程同时遍历 dispatch_apply"></a>多线程同时遍历 dispatch_apply</h2><pre><code>dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+dispatch_apply(6, queue, ^(size_t index) {
+    NSLog(@&quot;%zd------%@&quot;,index, [NSThread currentThread]);
+});
+
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191743] 1------&lt;NSThread: 0x610000067840&gt;{number = 3, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191746] 3------&lt;NSThread: 0x610000067800&gt;{number = 5, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191744] 2------&lt;NSThread: 0x60000006a200&gt;{number = 4, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191661] 0------&lt;NSThread: 0x610000060e80&gt;{number = 1, name = main}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&lt;NSThread: 0x610000067880&gt;{number = 6, name = (null)}
+2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&lt;NSThread: 0x610000067b00&gt;{number = 7, name = (null)}
+</code></pre><h2 id="队列组-dispatch-group"><a href="#队列组-dispatch-group" class="headerlink" title="队列组 dispatch_group"></a>队列组 dispatch_group</h2><p>分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。</p>
+<pre><code>dispatch_group_t group =  dispatch_group_create();
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 执行1个耗时的异步操作
+});
+
+dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+    // 等前面的异步操作都执行完毕后，回到主线程...
+});
+</code></pre><h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
+<p>Asynchronous ：可以先加入队列，将来再执行</p>
+<p>Synchronous：必须执行完才到下一个</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+} 
+</code></pre><p>摘自<a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/28/Grand-Central-Dispatch/" itemprop="url">
                   Grand_Central_Dispatch
                 </a>
@@ -1579,190 +2052,6 @@ func doSomething() throws -&gt; Data {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" itemprop="url">
-                  WWDC2016学习笔记-Introduction_to_Xcode
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T16:12:14+10:00" content="2016-09-19">
-              2016-09-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Four-scheme-actions"><a href="#Four-scheme-actions" class="headerlink" title="Four scheme actions"></a>Four scheme actions</h1><p><img src="https://www.dropbox.com/s/hateetfoio6862m/2016091901.png?dl=1" alt="1"></p>
-<ul>
-<li>Run will run my app in the debugger.</li>
-<li>Test will run my tests.</li>
-<li>Profile will run my app in instruments so I can measure its performance.</li>
-<li>Analyze will run Xcode’s static analyzer and help catch problems I might otherwise have missed</li>
-<li>Archive action will build my app for release.This command will become enabled in this menu once I select a device as my run destination.</li>
-</ul>
-<h1 id="查看不同设备屏幕的Storyboard-scene"><a href="#查看不同设备屏幕的Storyboard-scene" class="headerlink" title="查看不同设备屏幕的Storyboard scene"></a>查看不同设备屏幕的Storyboard scene</h1><p><img src="https://www.dropbox.com/s/ul3z7a59tu6g11f/2016091903.png?dl=1" alt="3"> </p>
-<h1 id="Method-classify"><a href="#Method-classify" class="headerlink" title="Method classify"></a>Method classify</h1><p>使用TODO or MARK 使方法归类。直接输入可自动弹出搜索框</p>
-<p><img src="https://www.dropbox.com/s/i7s4sjdhkccrs8g/2016091904.png?dl=1" alt="4"></p>
-<p><img src="https://www.dropbox.com/s/ke27rzjhnqujrtr/2016091907.png?dl=1" alt="7"></p>
-<pre><code>import Foundation
-
-// TODO: Call Hero
-
-let myHero = &quot;Mother&quot;
-
-func callHero(){
-
-    print (myHero)
-
-}
-
-
-// MARK: Call Father
-
-func callMather(){
-
-    print (myHero)
-
-}
-</code></pre><h1 id="PO-Command-in-console"><a href="#PO-Command-in-console" class="headerlink" title="PO Command in console"></a>PO Command in console</h1><p><img src="https://www.dropbox.com/s/etru1yruuwqk10s/2016091905.png?dl=1" alt="5"></p>
-<h1 id="Search-shortcut-key"><a href="#Search-shortcut-key" class="headerlink" title="Search shortcut key"></a>Search shortcut key</h1><p>shift + command + O</p>
-<p><img src="https://www.dropbox.com/s/agc216ypg07sbwj/2016091902.png?dl=1" alt="2"></p>
-<p><img src="https://www.dropbox.com/s/5gld03t9bs8k5wt/2016091906.png?dl=1" alt="6"></p>
-<h1 id="Option-or-Command-click"><a href="#Option-or-Command-click" class="headerlink" title="Option or Command + click"></a>Option or Command + click</h1><p>查看某方法或对象的详情</p>
-<p><img src="https://www.dropbox.com/s/p9n8z2j56u8es79/2016091908.png?dl=1" alt="8"></p>
-<h1 id="Project-amp-Target"><a href="#Project-amp-Target" class="headerlink" title="Project &amp; Target"></a>Project &amp; Target</h1><p><img src="https://www.dropbox.com/s/g0ispuasi6giib1/2016091909.png?dl=1" alt="9"></p>
-<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><p>A project is a document that you use to organize your code an resources in Xcode. </p>
-<h2 id="project-settings"><a href="#project-settings" class="headerlink" title="project settings"></a>project settings</h2><p>deployment target is the minimum OS version that your app can run on and support. </p>
-<p><img src="https://www.dropbox.com/s/3zaixggkmde6757/2016091910.png?dl=1" alt="10"></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>targets which actually build those files into products like your app</p>
-<p>A target contains the instructions to build one thing like an app or a framework.</p>
-<p><img src="https://www.dropbox.com/s/rem9glphbydrlfd/2016091911.png?dl=1" alt="11"></p>
-<h2 id="Build-phases"><a href="#Build-phases" class="headerlink" title="Build phases"></a>Build phases</h2><p>The thing that your target produces is called its product. The set of steps that your target takes to build its product are called build phases.</p>
-<p><img src="https://www.dropbox.com/s/m9b90l0rols1kdi/2016091912.png?dl=1" alt="12"></p>
-<h2 id="Build-Setting-for-project-amp-target"><a href="#Build-Setting-for-project-amp-target" class="headerlink" title="Build Setting for project &amp; target"></a>Build Setting for project &amp; target</h2><p>Build settings which configure how your targets build their products, schemes which configure how you perform actions, such as Run, with your targets. </p>
-<p>Both projects and targets have Build settings, and targets inherit the value set at the project level but can override them with a target-specific value.</p>
-<p><img src="https://www.dropbox.com/s/zfzt51tr27ues0l/2016091913.png?dl=1" alt="13"></p>
-<p>A Build setting contains a name and a value of some aspect that controls some aspect of the build process. </p>
-<p>For example, there are Build settings for specifying which architectures you want to build, whether your code is optimized, what your product is named, and even how you deal with warnings. </p>
-<p><img src="https://www.dropbox.com/s/novtmh5kzyp6mqw/2016091916.png?dl=1" alt="16"></p>
-<p>Now, Build settings can also vary by what’s called a build configuration, and by default, a project has a debug and a release configuration. For example, when you’re building for debug, you probably don’t want your code to be optimized, but when you’re building for release, you do want your code to be optimized.</p>
-<p><img src="https://www.dropbox.com/s/v6i6eqoks9w784s/2016091917.png?dl=1" alt="17"></p>
-<h2 id="Target’s-build-phases"><a href="#Target’s-build-phases" class="headerlink" title="Target’s build phases"></a>Target’s build phases</h2><p>A target’s build phases do things like cause dependencies to build first, compile the source files in that target, and link the target against libraries and frameworks.</p>
-<p>You can also add what’s called a run script build phase to configure other aspects of the build that you’d like. </p>
-<p><img src="https://www.dropbox.com/s/8mhu1l1mg676b30/2016091914.png?dl=1" alt="14"></p>
-<h2 id="Capabilities"><a href="#Capabilities" class="headerlink" title="Capabilities"></a>Capabilities</h2><p>Capabilities, which allows you to easily turn on specific features.</p>
-<p>For example, for iOS, there are capabilities for enabling in-app purchases and Apple Maps integration</p>
-<p><img src="https://www.dropbox.com/s/nrryd26rfql0wkn/2016091918.png?dl=1" alt="18"></p>
-<h1 id="Workspaces"><a href="#Workspaces" class="headerlink" title="Workspaces"></a>Workspaces</h1><p>Two projects that share the same framework and you like to work on them together.</p>
-<p>In this situation, you can create an Xcode workspace that references your projects. So when you open your workspace in Xcode, </p>
-<p>it’ll contain all of the contents of the projects that you’ve referenced, which makes it easy to edit and navigate across them </p>
-<p>as related code.</p>
-<p><img src="https://www.dropbox.com/s/c4ki5is4pwvicip/2016091919.png?dl=1" alt="19"></p>
-<h1 id="有待进一步学习的地方"><a href="#有待进一步学习的地方" class="headerlink" title="有待进一步学习的地方"></a>有待进一步学习的地方</h1><p>Review &amp; Commit</p>
-<p>Edit Scheme</p>
-<p>Test</p>
-<p>Debug</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1809,7 +2098,7 @@ func callMather(){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">107</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

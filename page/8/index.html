@@ -238,6 +238,691 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/04/iOS设计模式-组合/" itemprop="url">
+                  iOS设计模式-组合
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-04T17:56:46+10:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/04/iOS设计模式-组合/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/04/iOS设计模式-组合/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h1><ol>
+<li>层次嵌套</li>
+<li>外层和内层具有相似的结构</li>
+<li>可以递归的表示</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/l1vo0cv0eyojcnm/iOS_designPatternComposite01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/mg3smynabreawjx/iOS_designPatternComposite02.png?dl=1" alt=""></p>
+<h1 id="简易的二叉树"><a href="#简易的二叉树" class="headerlink" title="简易的二叉树"></a>简易的二叉树</h1><p><img src="https://www.dropbox.com/s/pj2coj2fk0le8mt/iOS_designPatternComposite04.png?dl=1" alt=""></p>
+<p>Node</p>
+<pre><code>@interface Node : NSObject
+
+@property (nonatomic, strong) NSString *nodeName;
+@property (nonatomic, strong) Node *leftNode;
+@property (nonatomic, strong) Node *rightNode;
++ (instancetype)nodeWithName:(NSString *)nodeName;
+
+@implementation Node
++ (instancetype)nodeWithName:(NSString *)nodeName {
+
+//这里用self,因为它可能会被子类继承
+Node *node    = [[[self class] alloc] init];
+node.nodeName = nodeName;
+
+return node;
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+
+@property (nonatomic, strong) Node *rootNode;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.rootNode = [Node nodeWithName:@&quot;A&quot;];
+
+// 插入节点
+[self insertNodeTree:self.rootNode node:[Node nodeWithName:@&quot;B&quot;]];
+[self insertNodeTree:self.rootNode node:[Node nodeWithName:@&quot;C&quot;]];
+[self insertNodeTree:self.rootNode node:[Node nodeWithName:@&quot;D&quot;]];
+[self insertNodeTree:self.rootNode node:[Node nodeWithName:@&quot;E&quot;]];
+[self insertNodeTree:self.rootNode node:[Node nodeWithName:@&quot;F&quot;]];
+
+// 遍历二叉树
+[self treeInfomationWithNode:self.rootNode];
+}
+
+
+//往根节点上插入节点
+
+- (void)insertNodeTree:(Node *)tree node:(Node *)node {
+
+if (tree.leftNode == nil) {
+    tree.leftNode = node;
+    return;
+}
+
+if (tree.rightNode == nil) {
+    tree.rightNode = node;
+    return;
+}
+
+[self insertNodeTree:tree.leftNode node:node];
+}
+
+// 遍历二叉树
+- (void)treeInfomationWithNode:(Node *)node {
+
+if (node.leftNode) {
+    [self treeInfomationWithNode:node.leftNode];
+}
+
+NSLog(@&quot;%@&quot;, node.nodeName);
+
+if (node.rightNode) {
+    [self treeInfomationWithNode:node.rightNode];
+}
+@end
+</code></pre><h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><ol>
+<li>组合模式，将对象组合成树形结构以表示“部分-整体”的层次结构，组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
+<li>掌握组合模式的重点是要理解清楚 “部分/整体” 还有 ”单个对象“ 与 “组合对象” 的含义。</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/7t4gchgj3fjl2d3/iOS_designPatternComposite03.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/bpvdq156u7hjopy/iOS_designPatternComposite05.png?dl=1" alt=""></p>
+<p>Node </p>
+<pre><code>@interface Node : NSObject
+
+@property (nonatomic, strong) NSString *nodeName;
+
+//便利构造器
++ (instancetype)nodeWithNodeName:(NSString *)nodeName;
+
+//子节点集合
+@property (nonatomic, strong, readonly) NSMutableArray &lt;Node *&gt;  *childNodes;
+
+//添加子节点
+- (void)addNode:(Node *)node;
+
+//删除子节点
+- (void)removeNode:(Node *)node;
+
+//获取子节点
+- (Node *)nodeAtIndex:(NSInteger)index;
+
+//打印Node
+- (void)operation;
+@end
+
+//------------------------------------------------------------------------
+@interface Node ()
+@property (nonatomic, strong) NSMutableArray &lt;Node *&gt;  *childNodes;
+@end
+
+@implementation Node
+
+- (instancetype)init {
+self = [super init];
+if (self) {  
+    self.childNodes = [NSMutableArray array];
+}
+return self;
+}
+
++ (instancetype)nodeWithNodeName:(NSString *)nodeName {
+Node *node    = [[[self class] alloc] init];
+node.nodeName = nodeName;
+return node;
+}
+
+- (void)addNode:(Node *)node {
+[self.childNodes addObject:node];
+}
+
+- (void)removeNode:(Node *)node {
+[self.childNodes removeObject:node];
+}
+
+- (Node *)nodeAtIndex:(NSInteger)index {
+if (index &gt;= self.childNodes.count) {     
+    return nil;  
+} else {
+    return self.childNodes[index];
+}
+}
+
+- (void)operation {
+NSLog(@&quot;nodeName --&gt; %@&quot;, self.nodeName);
+}
+
+- (NSString *)description {
+return [NSString stringWithFormat:@&quot;[Node] - %@&quot;, self.nodeName];
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()
+@property (nonatomic, strong) Node  *rootNode;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+
+// 创建根节点
+self.rootNode = [Node nodeWithNodeName:@&quot;A&quot;];
+
+// 创建第一级子节点(A -&gt; B,C,D)
+[self.rootNode addNode:[Node nodeWithNodeName:@&quot;B&quot;]];
+Node *c = [Node nodeWithNodeName:@&quot;C&quot;];
+[self.rootNode addNode:c];
+[self.rootNode addNode:[Node nodeWithNodeName:@&quot;D&quot;]];
+
+// 创建第二级子节点(C -&gt; E,F)
+[c addNode:[Node nodeWithNodeName:@&quot;E&quot;]];
+[c addNode:[Node nodeWithNodeName:@&quot;F&quot;]];
+
+NSLog(@&quot;%@&quot;, self.rootNode.childNodes);
+NSLog(@&quot;%@&quot;, c.childNodes);
+}
+</code></pre><h1 id="编写文件夹系统"><a href="#编写文件夹系统" class="headerlink" title="编写文件夹系统"></a>编写文件夹系统</h1><p><img src="https://www.dropbox.com/s/mwdqu4m17v8rd01/iOS_designPatternComposite06.png?dl=1" alt=""></p>
+<p>File</p>
+<pre><code>typedef enum : NSUInteger {
+kFile,   // 文件
+kFolder, // 文件夹   
+} EFile;
+
+@interface File : NSObject
+
+//文件夹或者文件的名字,根据EFile类别来区分
+@property (nonatomic, strong) NSString *name;
+
+//文件类型
+@property (nonatomic) EFile             fileType;
+
+//子文件集合
+@property (nonatomic, strong, readonly) NSMutableArray &lt;File *&gt;  *childFiles;
+
+//添加文件
+- (void)addFile:(File *)file;
+
+//便利构造器
++ (instancetype)fileWithFileType:(EFile)fileType fileName:(NSString *)name;
+@end
+
+-------------------------------------------------------------
+
+@interface File ()
+@property (nonatomic, strong) NSMutableArray &lt;File *&gt;  *childFiles;
+@end
+
+@implementation File
+
+- (instancetype)init {
+self = [super init];
+if (self) {
+    self.childFiles = [NSMutableArray array];
+}
+return self;
+}
+
+- (void)addFile:(File *)file {
+NSParameterAssert(file);
+[self.childFiles addObject:file];
+}
+
++ (instancetype)fileWithFileType:(EFile)fileType fileName:(NSString *)name {
+File *file    = [[[self class] alloc] init];
+file.fileType = fileType;
+file.name     = name;
+return file;
+}
+
+@end
+</code></pre><p>FileCell</p>
+<pre><code>@interface FileCell : UITableViewCell
+
+@property (nonatomic, weak) id                data;
+@property (nonatomic, weak) NSIndexPath      *indexPath;
+@property (nonatomic, weak) UITableView      *tableView;
+@property (nonatomic, weak) UIViewController *controller;
+
+- (void)loadContent;
+
+@end
+---------------------------------------------------------------------
+@interface FileCell ()
+
+@property (nonatomic, strong) UIImageView  *fileImageView;
+@property (nonatomic, strong) UIImageView  *folderImageView;
+@property (nonatomic, strong) UILabel      *iconNameLabel;
+@property (nonatomic, strong) UIButton     *button;
+@property (nonatomic, strong) UILabel      *nameLabel;
+
+@end
+
+@implementation FileCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+
+if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    [self buildView];
+}
+
+return self;
+}
+
+- (void)buildView {
+
+UIView *line         = [[UIView alloc] initWithFrame:CGRectMake(0, 79.5f, 500, 0.5f)];
+line.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.25f];
+[self addSubview:line];
+
+self.fileImageView   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;File&quot;]];
+self.folderImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;Folder&quot;]];
+self.fileImageView.center   = CGPointMake(40, 50);
+self.folderImageView.center = CGPointMake(40, 50);
+[self addSubview:self.folderImageView];
+[self addSubview:self.fileImageView];
+
+self.iconNameLabel               = [[UILabel alloc] initWithFrame:CGRectMake(0, 13, 80, 20)];
+self.iconNameLabel.font          = [UIFont fontWithName:@&quot;AppleSDGothicNeo-Light&quot; size:12.f];
+self.iconNameLabel.textAlignment = NSTextAlignmentCenter;
+[self addSubview:self.iconNameLabel];
+
+self.nameLabel      = [[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 60)];
+self.nameLabel.font = [UIFont fontWithName:@&quot;Avenir-Book&quot; size:12.f];
+[self addSubview:self.nameLabel];
+
+self.button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 500, 80)];
+[self.button addTarget:self
+                action:@selector(buttonEvent)
+      forControlEvents:UIControlEventTouchUpInside];
+[self addSubview:self.button];
+}    
+
+- (void)loadContent {
+
+File *file = self.data; 
+self.nameLabel.text = file.name;
+if (file.fileType == kFolder) { 
+    [self changeToFolderState];
+} else if (file.fileType == kFile) {
+    [self changeToFileState];
+}
+}
+
+//切换到文件夹状态
+- (void)changeToFolderState {
+self.fileImageView.hidden    = YES;
+self.folderImageView.hidden  = NO;
+self.iconNameLabel.textColor = [UIColor blackColor];
+self.nameLabel.textColor     = [UIColor blackColor];
+self.iconNameLabel.text      = @&quot;Folder&quot;;
+}
+
+//切换到文件状态
+- (void)changeToFileState {
+self.fileImageView.hidden    = NO;
+self.folderImageView.hidden  = YES;
+self.iconNameLabel.textColor = [UIColor grayColor];
+self.nameLabel.textColor     = [UIColor grayColor];
+self.iconNameLabel.text      = @&quot;File&quot;;
+}
+
+- (void)buttonEvent {
+File *file = self.data;
+if (file.fileType == kFolder) {    
+    FileViewController *fvc = [[FileViewController alloc] init];
+    fvc.rootFile            = file;
+    [self.controller.navigationController pushViewController:fvc
+                                                    animated:YES];
+}
+}
+@end
+</code></pre><p>FileViewController</p>
+<pre><code>@interface FileViewController : UIViewController
+
+@property (nonatomic, strong) File  *rootFile;
+
+@end
+
+-----------------------------------------------------------------
+
+@interface FileViewController () &lt;UITableViewDelegate, UITableViewDataSource&gt;
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@end
+
+@implementation FileViewController
+
+- (void)viewDidLoad {
+
+[super viewDidLoad];
+
+self.title = self.rootFile.name;
+
+[self initTableView];
+}
+
+#pragma mark - tableView相关
+- (void)initTableView {
+
+self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+
+self.tableView.delegate       = self;
+self.tableView.dataSource     = self;
+self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+[self.tableView registerClass:[FileCell class] forCellReuseIdentifier:@&quot;fileCell&quot;];
+
+[self.view addSubview:self.tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+return self.rootFile.childFiles.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+FileCell *cell  = [tableView dequeueReusableCellWithIdentifier:@&quot;fileCell&quot;];
+cell.indexPath  = indexPath;
+cell.tableView  = tableView;
+cell.controller = self;
+
+// 传入节点File
+cell.data       = self.rootFile.childFiles[indexPath.row];
+
+[cell loadContent];
+
+return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+return 80.f;
+}
+@end
+</code></pre><p>ViewController</p>
+<pre><code>@interface ViewController ()&lt;UITableViewDelegate, UITableViewDataSource&gt;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) File        *root;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+self.title = @&quot;Root&quot;;
+
+// 创建根节点
+self.root = [File fileWithFileType:kFolder fileName:@&quot;root&quot;];
+
+// 创建第一级文件
+File *folder_A_1 = [File fileWithFileType:kFolder fileName:@&quot;Folder-A-1&quot;];
+File *file_A_2   = [File fileWithFileType:kFile fileName:@&quot;File-A-2&quot;];
+File *file_A_3   = [File fileWithFileType:kFile fileName:@&quot;File-A-3&quot;];
+File *file_A_4   = [File fileWithFileType:kFile fileName:@&quot;File-A-4&quot;];
+
+// 创建第二级文件
+File *folder_B_1 = [File fileWithFileType:kFolder fileName:@&quot;Folder-B-1&quot;];
+File *file_B_2   = [File fileWithFileType:kFile fileName:@&quot;File-B-2&quot;];
+File *file_B_3   = [File fileWithFileType:kFile fileName:@&quot;File-B-3&quot;];
+File *folder_B_2 = [File fileWithFileType:kFolder fileName:@&quot;Folder-B-2&quot;];
+
+// 创建第三级文件
+File *folder_C_1 = [File fileWithFileType:kFolder fileName:@&quot;Folder-C-1&quot;];
+File *file_C_1   = [File fileWithFileType:kFile fileName:@&quot;File-C-1&quot;];
+File *file_C_2   = [File fileWithFileType:kFile fileName:@&quot;File-C-2&quot;];
+
+[self.root addFile:folder_A_1];
+[self.root addFile:file_A_2];
+[self.root addFile:file_A_3];
+[self.root addFile:file_A_4];
+
+[folder_A_1 addFile:folder_B_1];
+[folder_A_1 addFile:file_B_2];
+[folder_A_1 addFile:file_B_3];
+[folder_A_1 addFile:folder_B_2];
+
+[folder_B_1 addFile:folder_C_1];
+[folder_B_1 addFile:file_C_1];
+[folder_B_2 addFile:file_C_2];
+
+[self initTableView];
+}
+
+#pragma mark - tableView相关
+- (void)initTableView {
+
+self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+
+self.tableView.delegate       = self;
+self.tableView.dataSource     = self;
+self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+[self.tableView registerClass:[FileCell class] forCellReuseIdentifier:@&quot;fileCell&quot;];
+
+[self.view addSubview:self.tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+return self.root.childFiles.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+FileCell *cell  = [tableView dequeueReusableCellWithIdentifier:@&quot;fileCell&quot;];
+cell.indexPath  = indexPath;
+cell.tableView  = tableView;
+cell.controller = self;
+
+// 传入节点File
+cell.data       = self.root.childFiles[indexPath.row];
+
+[cell loadContent];
+
+return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+return 80.f;
+}
+
+@end
+</code></pre><h1 id="Node类里含有Node的属性"><a href="#Node类里含有Node的属性" class="headerlink" title="Node类里含有Node的属性"></a>Node类里含有Node的属性</h1><p>Node.h</p>
+<pre><code>@property (nonatomic, strong) Node *leftNode;
+</code></pre><p>Node.h</p>
+<pre><code>@property (nonatomic, strong) NSMutableArray &lt;Node *&gt;  *childNodes;
+</code></pre><h1 id="便利构造器里调用alloc-init方法"><a href="#便利构造器里调用alloc-init方法" class="headerlink" title="便利构造器里调用alloc init方法"></a>便利构造器里调用alloc init方法</h1><pre><code>+ (instancetype)nodeWithNodeName:(NSString *)nodeName {
+
+//使用self class以便子类继承
+
+Node *node    = [[[self class] alloc] init];
+node.nodeName = nodeName;
+return node;
+}
+</code></pre><h1 id="Override-init-method"><a href="#Override-init-method" class="headerlink" title="Override init method"></a>Override init method</h1><pre><code>- (instancetype)init { 
+self = [super init];
+if (self) {
+    self.childNodes = [NSMutableArray array];
+}
+return self;
+}
+</code></pre><h1 id="调用description显示对象的打印结果"><a href="#调用description显示对象的打印结果" class="headerlink" title="调用description显示对象的打印结果"></a>调用description显示对象的打印结果</h1><pre><code>- (NSString *)description {
+return [NSString stringWithFormat:@&quot;[Node] - %@&quot;, self.nodeName];
+}
+</code></pre><h1 id="枚举类型的属性和参数"><a href="#枚举类型的属性和参数" class="headerlink" title="枚举类型的属性和参数"></a>枚举类型的属性和参数</h1><pre><code>typedef enum : NSUInteger {  
+kFile,   // 文件
+kFolder, // 文件夹  
+} EFile;
+
+@property (nonatomic) EFile             fileType;
+
++ (instancetype)fileWithFileType:(EFile)fileType fileName:(NSString *)name;
+</code></pre><h1 id="表视图间隔灰线"><a href="#表视图间隔灰线" class="headerlink" title="表视图间隔灰线"></a>表视图间隔灰线</h1><pre><code>UIView *line         = [[UIView alloc] initWithFrame:CGRectMake(0, 79.5f, 500, 0.5f)];
+line.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.25f];
+[self addSubview:line];
+</code></pre><h1 id="以中心定位某视图"><a href="#以中心定位某视图" class="headerlink" title="以中心定位某视图"></a>以中心定位某视图</h1><pre><code>self.fileImageView.center   = CGPointMake(40, 50);
+self.folderImageView.center = CGPointMake(40, 50);
+</code></pre><h1 id="视图导航栏的标签设定"><a href="#视图导航栏的标签设定" class="headerlink" title="视图导航栏的标签设定"></a>视图导航栏的标签设定</h1><pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+
+self.title = self.rootFile.name; 
+
+[self initTableView];
+}
+</code></pre><h1 id="代码创建tableView"><a href="#代码创建tableView" class="headerlink" title="代码创建tableView"></a>代码创建tableView</h1><pre><code>- (void)initTableView {
+
+self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+
+self.tableView.delegate       = self;
+self.tableView.dataSource     = self;
+self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+[self.tableView registerClass:[FileCell class] forCellReuseIdentifier:@&quot;fileCell&quot;];
+
+[self.view addSubview:self.tableView];
+}
+</code></pre><h1 id="代码创建tableViewCell"><a href="#代码创建tableViewCell" class="headerlink" title="代码创建tableViewCell"></a>代码创建tableViewCell</h1><p>FileCell</p>
+<pre><code>- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;      
+    [self buildView];
+}   
+return self;
+}
+</code></pre><p>ViewController</p>
+<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+FileCell *cell  = [tableView dequeueReusableCellWithIdentifier:@&quot;fileCell&quot;];
+cell.indexPath  = indexPath;
+cell.tableView  = tableView;
+cell.controller = self;   
+// 传入节点File
+cell.data       = self.root.childFiles[indexPath.row];
+
+[cell loadContent];
+
+return cell;
+}
+</code></pre><h1 id="Self-class"><a href="#Self-class" class="headerlink" title="[Self class]"></a>[Self class]</h1><pre><code>File *file    = [[[self class] alloc] init];
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/03/iOS设计模式-命令/" itemprop="url">
                   iOS设计模式-命令
                 </a>
@@ -1700,223 +2385,6 @@ return [[StoreValue sharedInstance] valueWithKey:key];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/30/iOS设计模式-代理/" itemprop="url">
-                  iOS设计模式-代理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T15:12:37+10:00" content="2016-05-30">
-              2016-05-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/30/iOS设计模式-代理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/30/iOS设计模式-代理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="代理模式的原理"><a href="#代理模式的原理" class="headerlink" title="代理模式的原理"></a>代理模式的原理</h1><p>一个对象和另一个对象耦合，代理模式是为了降低耦合度</p>
-<p><img src="https://www.dropbox.com/s/voou7iy91ipezcd/iOS_designPattern_Delegate01.png?dl=1" alt=""></p>
-<h2 id="Customer-amp-使用代理的注意事项"><a href="#Customer-amp-使用代理的注意事项" class="headerlink" title="Customer  &amp; 使用代理的注意事项"></a>Customer  &amp; 使用代理的注意事项</h2><ol>
-<li>@class, 提示协议方法有该类的引用</li>
-<li>weak 防止循环引用</li>
-<li>@required or @Optional 要写清楚</li>
-</ol>
-<p>Customer</p>
-<pre><code>@class Customer;
-
-@protocol CustomerDelegate &lt;NSObject&gt;
-
-@required
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
-@end
-
-@interface Customer : NSObject
-
-// 经销商
-@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
-
-// 顾客买卖行为
-- (void)buyItemCount:(NSInteger)count;
-@end
-
-- (void)buyItemCount:(NSInteger)count {
-    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-        [self.delegate custmer:self buyItemCount:count];
-    }
-}
-</code></pre><h2 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h2><pre><code>#import &quot;ViewController.h&quot;
-#import &quot;Customer.h&quot;
-
-// 经销商
-@interface ViewController ()&lt;CustomerDelegate&gt;
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-Customer *customer  = [[Customer alloc] init];
-customer.delegate   = self;  
-[customer buyItemCount:5];
-}
-
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
-NSLog(@&quot;%ld&quot;, (long)count);
-}
-</code></pre><h2 id="使用场景：用于类与类之间的值传递"><a href="#使用场景：用于类与类之间的值传递" class="headerlink" title="使用场景：用于类与类之间的值传递"></a>使用场景：用于类与类之间的值传递</h2><p>Customer设定消息接受方的遵循条件</p>
-<pre><code>@required
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count;
-@end
-
-@interface Customer : NSObject
-
-// 经销商
-@property (nonatomic, weak) id &lt;CustomerDelegate&gt; delegate;
-</code></pre><p>Customer发送消息</p>
-<pre><code>- (void)buyItemCount:(NSInteger)count {
-
-    //代理存在，并且代理能响应这个方法
-
-    if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-        [self.delegate custmer:self buyItemCount:count];
-    }
-}
-</code></pre><p>ViewController准备接收</p>
-<pre><code>@interface ViewController ()&lt;CustomerDelegate&gt;
-</code></pre><p>ViewController获得所传递的消息</p>
-<pre><code>Customer *customer  = [[Customer alloc] init];
-customer.delegate   = self;  
-[customer buyItemCount:5];
-}
-
-- (void)custmer:(Customer *)custmer buyItemCount:(NSInteger)count {   
-NSLog(@&quot;%ld&quot;, (long)count);
-}
-</code></pre><h2 id="代理使用验证"><a href="#代理使用验证" class="headerlink" title="代理使用验证"></a>代理使用验证</h2><pre><code>//代理存在，并且代理能响应这个方法
-
-if (self.delegate &amp;&amp; [self.delegate respondsToSelector:@selector(custmer:buyItemCount:)]) {   
-    [self.delegate custmer:self buyItemCount:count];
-}
-</code></pre><h1 id="协议使用场景"><a href="#协议使用场景" class="headerlink" title="协议使用场景"></a>协议使用场景</h1><p>约束对象，筛选对象。比如传递的对象，必须实现某种方法</p>
-<h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><pre><code>@protocol TCPProtocol &lt;NSObject&gt;
-@required
-// 获取源端口号
-- (NSInteger)sourcePort;
-// 获取目的地端口号
-- (NSInteger)destinationPort;
-@end
-</code></pre><h2 id="遵循协议的类"><a href="#遵循协议的类" class="headerlink" title="遵循协议的类"></a>遵循协议的类</h2><pre><code>@interface Model : NSObject &lt;TCPProtocol&gt;
-// 获取源端口号
-- (NSInteger)sourcePort {
-return 10;
-}
-
-// 获取目的地端口号
-- (NSInteger)destinationPort {
-return 20;
-}
-</code></pre><h2 id="传递遵循协议的对象"><a href="#传递遵循协议的对象" class="headerlink" title="传递遵循协议的对象"></a>传递遵循协议的对象</h2><pre><code>- (void)accessTCPData:(id &lt;TCPProtocol&gt;)data { 
-self.sourcePort      = [data sourcePort];
-self.destinationPort = [data destinationPort];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1963,7 +2431,7 @@ self.destinationPort = [data destinationPort];
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">107</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

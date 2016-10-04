@@ -238,6 +238,190 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" itemprop="url">
+                  WWDC2016学习笔记-Introduction_to_Xcode
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T16:12:14+10:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/19/WWDC2016学习笔记-Introduction-to-Xcode/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Four-scheme-actions"><a href="#Four-scheme-actions" class="headerlink" title="Four scheme actions"></a>Four scheme actions</h1><p><img src="https://www.dropbox.com/s/hateetfoio6862m/2016091901.png?dl=1" alt="1"></p>
+<ul>
+<li>Run will run my app in the debugger.</li>
+<li>Test will run my tests.</li>
+<li>Profile will run my app in instruments so I can measure its performance.</li>
+<li>Analyze will run Xcode’s static analyzer and help catch problems I might otherwise have missed</li>
+<li>Archive action will build my app for release.This command will become enabled in this menu once I select a device as my run destination.</li>
+</ul>
+<h1 id="查看不同设备屏幕的Storyboard-scene"><a href="#查看不同设备屏幕的Storyboard-scene" class="headerlink" title="查看不同设备屏幕的Storyboard scene"></a>查看不同设备屏幕的Storyboard scene</h1><p><img src="https://www.dropbox.com/s/ul3z7a59tu6g11f/2016091903.png?dl=1" alt="3"> </p>
+<h1 id="Method-classify"><a href="#Method-classify" class="headerlink" title="Method classify"></a>Method classify</h1><p>使用TODO or MARK 使方法归类。直接输入可自动弹出搜索框</p>
+<p><img src="https://www.dropbox.com/s/i7s4sjdhkccrs8g/2016091904.png?dl=1" alt="4"></p>
+<p><img src="https://www.dropbox.com/s/ke27rzjhnqujrtr/2016091907.png?dl=1" alt="7"></p>
+<pre><code>import Foundation
+
+// TODO: Call Hero
+
+let myHero = &quot;Mother&quot;
+
+func callHero(){
+
+    print (myHero)
+
+}
+
+
+// MARK: Call Father
+
+func callMather(){
+
+    print (myHero)
+
+}
+</code></pre><h1 id="PO-Command-in-console"><a href="#PO-Command-in-console" class="headerlink" title="PO Command in console"></a>PO Command in console</h1><p><img src="https://www.dropbox.com/s/etru1yruuwqk10s/2016091905.png?dl=1" alt="5"></p>
+<h1 id="Search-shortcut-key"><a href="#Search-shortcut-key" class="headerlink" title="Search shortcut key"></a>Search shortcut key</h1><p>shift + command + O</p>
+<p><img src="https://www.dropbox.com/s/agc216ypg07sbwj/2016091902.png?dl=1" alt="2"></p>
+<p><img src="https://www.dropbox.com/s/5gld03t9bs8k5wt/2016091906.png?dl=1" alt="6"></p>
+<h1 id="Option-or-Command-click"><a href="#Option-or-Command-click" class="headerlink" title="Option or Command + click"></a>Option or Command + click</h1><p>查看某方法或对象的详情</p>
+<p><img src="https://www.dropbox.com/s/p9n8z2j56u8es79/2016091908.png?dl=1" alt="8"></p>
+<h1 id="Project-amp-Target"><a href="#Project-amp-Target" class="headerlink" title="Project &amp; Target"></a>Project &amp; Target</h1><p><img src="https://www.dropbox.com/s/g0ispuasi6giib1/2016091909.png?dl=1" alt="9"></p>
+<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><p>A project is a document that you use to organize your code an resources in Xcode. </p>
+<h2 id="project-settings"><a href="#project-settings" class="headerlink" title="project settings"></a>project settings</h2><p>deployment target is the minimum OS version that your app can run on and support. </p>
+<p><img src="https://www.dropbox.com/s/3zaixggkmde6757/2016091910.png?dl=1" alt="10"></p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>targets which actually build those files into products like your app</p>
+<p>A target contains the instructions to build one thing like an app or a framework.</p>
+<p><img src="https://www.dropbox.com/s/rem9glphbydrlfd/2016091911.png?dl=1" alt="11"></p>
+<h2 id="Build-phases"><a href="#Build-phases" class="headerlink" title="Build phases"></a>Build phases</h2><p>The thing that your target produces is called its product. The set of steps that your target takes to build its product are called build phases.</p>
+<p><img src="https://www.dropbox.com/s/m9b90l0rols1kdi/2016091912.png?dl=1" alt="12"></p>
+<h2 id="Build-Setting-for-project-amp-target"><a href="#Build-Setting-for-project-amp-target" class="headerlink" title="Build Setting for project &amp; target"></a>Build Setting for project &amp; target</h2><p>Build settings which configure how your targets build their products, schemes which configure how you perform actions, such as Run, with your targets. </p>
+<p>Both projects and targets have Build settings, and targets inherit the value set at the project level but can override them with a target-specific value.</p>
+<p><img src="https://www.dropbox.com/s/zfzt51tr27ues0l/2016091913.png?dl=1" alt="13"></p>
+<p>A Build setting contains a name and a value of some aspect that controls some aspect of the build process. </p>
+<p>For example, there are Build settings for specifying which architectures you want to build, whether your code is optimized, what your product is named, and even how you deal with warnings. </p>
+<p><img src="https://www.dropbox.com/s/novtmh5kzyp6mqw/2016091916.png?dl=1" alt="16"></p>
+<p>Now, Build settings can also vary by what’s called a build configuration, and by default, a project has a debug and a release configuration. For example, when you’re building for debug, you probably don’t want your code to be optimized, but when you’re building for release, you do want your code to be optimized.</p>
+<p><img src="https://www.dropbox.com/s/v6i6eqoks9w784s/2016091917.png?dl=1" alt="17"></p>
+<h2 id="Target’s-build-phases"><a href="#Target’s-build-phases" class="headerlink" title="Target’s build phases"></a>Target’s build phases</h2><p>A target’s build phases do things like cause dependencies to build first, compile the source files in that target, and link the target against libraries and frameworks.</p>
+<p>You can also add what’s called a run script build phase to configure other aspects of the build that you’d like. </p>
+<p><img src="https://www.dropbox.com/s/8mhu1l1mg676b30/2016091914.png?dl=1" alt="14"></p>
+<h2 id="Capabilities"><a href="#Capabilities" class="headerlink" title="Capabilities"></a>Capabilities</h2><p>Capabilities, which allows you to easily turn on specific features.</p>
+<p>For example, for iOS, there are capabilities for enabling in-app purchases and Apple Maps integration</p>
+<p><img src="https://www.dropbox.com/s/nrryd26rfql0wkn/2016091918.png?dl=1" alt="18"></p>
+<h1 id="Workspaces"><a href="#Workspaces" class="headerlink" title="Workspaces"></a>Workspaces</h1><p>Two projects that share the same framework and you like to work on them together.</p>
+<p>In this situation, you can create an Xcode workspace that references your projects. So when you open your workspace in Xcode, </p>
+<p>it’ll contain all of the contents of the projects that you’ve referenced, which makes it easy to edit and navigate across them </p>
+<p>as related code.</p>
+<p><img src="https://www.dropbox.com/s/c4ki5is4pwvicip/2016091919.png?dl=1" alt="19"></p>
+<h1 id="有待进一步学习的地方"><a href="#有待进一步学习的地方" class="headerlink" title="有待进一步学习的地方"></a>有待进一步学习的地方</h1><p>Review &amp; Commit</p>
+<p>Edit Scheme</p>
+<p>Test</p>
+<p>Debug</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/07/TableView with searchBr视图的构建/" itemprop="url">
                   TableView with searchBr视图的构建
                 </a>
@@ -865,328 +1049,6 @@ Type *               UnsafeMutablePointer&lt;Type&gt;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/14/NSAttributedString使用详解/" itemprop="url">
-                  NSAttributedString使用详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-14T20:23:13+10:00" content="2016-08-14">
-              2016-08-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/14/NSAttributedString使用详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/14/NSAttributedString使用详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="NSAttributedString-的基本使用"><a href="#NSAttributedString-的基本使用" class="headerlink" title="NSAttributedString 的基本使用"></a>NSAttributedString 的基本使用</h1><h2 id="处理简单的字符串"><a href="#处理简单的字符串" class="headerlink" title="处理简单的字符串"></a>处理简单的字符串</h2><pre><code>NSString *string = @&quot;天道酬勤&quot;;
-NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-
-// 设置富文本样式
-[attributedString addAttribute:NSForegroundColorAttributeName
-                         value:[UIColor redColor]
-                         range:NSMakeRange(0, 1)];
-
-[attributedString addAttribute:NSFontAttributeName
-                         value:[UIFont systemFontOfSize:24.f]
-                         range:NSMakeRange(0, 2)];
-
-UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
-label.attributedText = attributedString;
-[self.view addSubview:label];
-</code></pre><h2 id="处理段落样式"><a href="#处理段落样式" class="headerlink" title="处理段落样式"></a>处理段落样式</h2><pre><code>NSString *string = @&quot;天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤天道酬勤\n天道酬勤真不错！&quot;;
-NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-
-// 设置富文本 - 段落样式
-NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-style.lineSpacing              = 10.f;
-style.paragraphSpacing         = 20.f;
-
-[attributedString addAttribute:NSParagraphStyleAttributeName
-                         value:style
-                         range:NSMakeRange(0, string.length)];
-
-UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
-
-//设置段落样式的时候，numberOfLines必须为0
-label.numberOfLines  = 0;
-label.attributedText = attributedString;
-[self.view addSubview:label];
-</code></pre><h2 id="NSAttributedString设置的作用域"><a href="#NSAttributedString设置的作用域" class="headerlink" title="NSAttributedString设置的作用域"></a>NSAttributedString设置的作用域</h2><p>设置富文本的时候，先设置的先显示，后设置的，如果与先设置的样式不一致，是不会覆盖的，富文本设置的效果具有先后顺序</p>
-<h1 id="NSAtrributedString的简易封装"><a href="#NSAtrributedString的简易封装" class="headerlink" title="NSAtrributedString的简易封装"></a>NSAtrributedString的简易封装</h1><p>ViewController.m</p>
-<pre><code>#import &quot;ViewController.h&quot;
-#import &quot;NSString+AttributeStyle.h&quot;
-#import &quot;ForeGroundColorStyle.h&quot;
-#import &quot;FontStyle.h&quot;
-
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-NSString *string = @&quot;极客学院&quot;;
-
-UILabel *label       = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 30)];
-label.attributedText = \
-    [string createAttributedStringWithStyles:\
-       @[colorStyle([UIColor redColor],             NSMakeRange(0, 2)),
-         fontStyle ([UIFont systemFontOfSize:20.f], NSMakeRange(1, 2))]];
-
-[self.view addSubview:label];
-}
-</code></pre><p>AttributedStyle.h</p>
-<pre><code>#import &lt;Foundation/Foundation.h&gt;
-#import &lt;UIKit/UIKit.h&gt;
-
-@interface AttributedStyle : NSObject
-
-@property (nonatomic, strong) NSString  *attributeName;
-@property (nonatomic, strong) id         value;
-@property (nonatomic)         NSRange    range;
-
-/**
- *  便利构造器
- *
- *  @param attributeName 属性名字
- *  @param value         设置的值
- *  @param range         取值范围
- *
- *  @return 实例对象
- */
-+ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range;
-@end
-</code></pre><p>AttributedStyle.m</p>
-<pre><code>#import &quot;AttributedStyle.h&quot;
-
-@implementation AttributedStyle
-
-+ (AttributedStyle *)attributeName:(NSString *)attributeName value:(id)value range:(NSRange)range {
-
-AttributedStyle *style = [[self class] new];
-
-style.attributeName = attributeName;
-style.value         = value;
-style.range         = range;
-
-return style;
-}
-
-@end
-</code></pre><p>NSString + AttributeStyle.h</p>
-<pre><code>#import &lt;Foundation/Foundation.h&gt;
-#import &quot;AttributedStyle.h&quot;
-
-@interface NSString (AttributeStyle)
-
-/**
- *  根据styles数组创建出富文本
- *
- *  @param styles AttributedStyle对象构成的数组
- *
- *  @return 富文本
- */
-- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles;
-
-@end
-</code></pre><p>NSString + AttributeStyle.m</p>
-<pre><code>#import &quot;NSString+AttributeStyle.h&quot;
-
-@implementation NSString (AttributeStyle)
-
-- (NSAttributedString *)createAttributedStringWithStyles:(NSArray *)styles {
-if (self.length &lt;= 0) {
-    return nil;
-}
-
-NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self];
-
-for (int count = 0; count &lt; styles.count; count++) {
-    AttributedStyle *style = styles[count];
-
-    [attributedString addAttribute:style.attributeName
-                             value:style.value
-                             range:style.range];
-}
-
-
-return attributedString;
-}
-
-@end
-</code></pre><p>ForeGroundColorStyle.h</p>
-<pre><code>#import &quot;AttributedStyle.h&quot;
-
-@interface ForeGroundColorStyle : AttributedStyle
-
-+ (id)withColor:(UIColor *)color range:(NSRange)range;
-
-@end
-
-/**
- *  内联函数
- *
- *  @param color 颜色
- *  @param range 范围
- *
- *  @return 实例对象
- */
-static inline AttributedStyle* colorStyle(UIColor *color, NSRange range) {
-return [ForeGroundColorStyle withColor:color range:range];
-}
-</code></pre><p>ForeGroundColorStyle.m</p>
-<pre><code>#import &quot;ForeGroundColorStyle.h&quot;
-
-@implementation ForeGroundColorStyle
-
-+ (id)withColor:(UIColor *)color range:(NSRange)range {
-
-id style = [super attributeName:NSForegroundColorAttributeName
-                          value:color
-                          range:range];
-
-return style;
-}
-
-@end
-</code></pre><p>FontStyle.h</p>
-<pre><code>#import &quot;AttributedStyle.h&quot;
-
-@interface FontStyle : AttributedStyle
-
-+ (id)withFont:(UIFont *)font range:(NSRange)range;
-
-@end
-
-/**
- *  内联函数
- *
- *  @param font  字体
- *  @param range 范围
- *
- *  @return 实例对象
- */
-static inline AttributedStyle* fontStyle(UIFont *font, NSRange range) {
-return [FontStyle withFont:font range:range];
-}
-</code></pre><p>FontStyle.m</p>
-<pre><code>#import &quot;FontStyle.h&quot;
-
-@implementation FontStyle
-
-+ (id)withFont:(UIFont *)font range:(NSRange)range {
-
-id fontStyle = [super attributeName:NSFontAttributeName
-                              value:font
-                              range:range];
-
-return fontStyle;
-}
-
-@end
-</code></pre><h1 id="使用开源代码GONMarkupPaser处理富文本-略"><a href="#使用开源代码GONMarkupPaser处理富文本-略" class="headerlink" title="使用开源代码GONMarkupPaser处理富文本 (略)"></a>使用开源代码GONMarkupPaser处理富文本 (略)</h1><h1 id="UITextKit简介-略"><a href="#UITextKit简介-略" class="headerlink" title="UITextKit简介(略)"></a>UITextKit简介(略)</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1233,7 +1095,7 @@ return fontStyle;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">106</span>
+              <span class="site-state-item-count">107</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
