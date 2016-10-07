@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-04T10:12:44.000Z</updated>
+  <updated>2016-10-07T07:06:52.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,11 +16,135 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>App_Distribution_Guide</title>
+    <link href="http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/"/>
+    <id>http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/</id>
+    <published>2016-10-07T07:05:27.000Z</published>
+    <updated>2016-10-07T07:06:52.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Maintaining-Your-Signing-Identities-and-Certificates&quot;&gt;&lt;a href=&quot;#Maintaining-Your-Signing-Identities-and-Certificates&quot; class=&quot;headerlink&quot; title=&quot;Maintaining Your Signing Identities and Certificates&quot;&gt;&lt;/a&gt;Maintaining Your Signing Identities and Certificates&lt;/h1&gt;&lt;h2 id=&quot;About-Signing-Identities-and-Certificates&quot;&gt;&lt;a href=&quot;#About-Signing-Identities-and-Certificates&quot; class=&quot;headerlink&quot; title=&quot;About Signing Identities and Certificates&quot;&gt;&lt;/a&gt;About Signing Identities and Certificates&lt;/h2&gt;&lt;p&gt;Code signing your app lets users trust that your app has been created by a source known to Apple and that it hasn’t been tampered with.&lt;/p&gt;
+&lt;p&gt;signing identities—stored in your keychain&lt;/p&gt;
+&lt;p&gt;certificates—stored in your developer account&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Viewing-Signing-Identities-and-Provisioning-Profiles&quot;&gt;&lt;a href=&quot;#Viewing-Signing-Identities-and-Provisioning-Profiles&quot; class=&quot;headerlink&quot; title=&quot;Viewing Signing Identities and Provisioning Profiles&quot;&gt;&lt;/a&gt;Viewing Signing Identities and Provisioning Profiles&lt;/h2&gt;&lt;p&gt;To view account details&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Choose Xcode &amp;gt; Preferences.&lt;/li&gt;
+&lt;li&gt;Click Accounts at the top of the window.&lt;/li&gt;
+&lt;li&gt;Select the team you want to view, and click View Details.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If a Create button appears next to a certificate, it hasn’t been created yet. If a Download button appears next to a provisioning profile, it’s not on your Mac.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Creating-Signing-Identities&quot;&gt;&lt;a href=&quot;#Creating-Signing-Identities&quot; class=&quot;headerlink&quot; title=&quot;Creating Signing Identities&quot;&gt;&lt;/a&gt;Creating Signing Identities&lt;/h2&gt;&lt;p&gt;In the dialog that appears, click the Create button in the row of the type of certificate you want to create.&lt;br&gt;If the Create button is disabled, you are not allowed to create that type of signing identity.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Verifying-Your-Steps&quot;&gt;&lt;a href=&quot;#Verifying-Your-Steps&quot; class=&quot;headerlink&quot; title=&quot;Verifying Your Steps&quot;&gt;&lt;/a&gt;Verifying Your Steps&lt;/h2&gt;&lt;h3 id=&quot;Verifying-Using-Your-Developer-Account&quot;&gt;&lt;a href=&quot;#Verifying-Using-Your-Developer-Account&quot; class=&quot;headerlink&quot; title=&quot;Verifying Using Your Developer Account&quot;&gt;&lt;/a&gt;Verifying Using Your Developer Account&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Sign in to developer.apple.com/account, and click Certificates, IDs &amp;amp; Profiles.&lt;/li&gt;
+&lt;li&gt;In the Certificates section of the sidebar, select Development or Production depending on the type of certificate you want to verify.&lt;/li&gt;
+&lt;li&gt;The type and expiration date of the certificate should &lt;strong&gt;match&lt;/strong&gt; the information that you view in Keychain Access.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Verifying-Using-Keychain-Access&quot;&gt;&lt;a href=&quot;#Verifying-Using-Keychain-Access&quot; class=&quot;headerlink&quot; title=&quot;Verifying Using Keychain Access&quot;&gt;&lt;/a&gt;Verifying Using Keychain Access&lt;/h2&gt;&lt;p&gt;When you create a development or distribution certificate using Xcode, the certificate is automatically installed in your login keychain.&lt;/p&gt;
+&lt;p&gt;In the left pane, select “login” in the Keychains section and select Certificates in the Category section.&lt;/p&gt;
+&lt;p&gt;The name of the development certificate begins with the text “iPhone Developer”&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;p&gt;If you click the disclosure triangle next to the certificate name, your private key appears. If the disclosure triangle doesn’t appear, you’re missing your private key&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Installing-Missing-Intermediate-Certificate-Authorities&quot;&gt;&lt;a href=&quot;#Installing-Missing-Intermediate-Certificate-Authorities&quot; class=&quot;headerlink&quot; title=&quot;Installing Missing Intermediate Certificate Authorities&quot;&gt;&lt;/a&gt;Installing Missing Intermediate Certificate Authorities&lt;/h2&gt;&lt;p&gt;To use your certificates, the correct intermediate certificate needs to be in your keychain.&lt;/p&gt;
+&lt;p&gt;An intermediate certificate ensures that your certificates were issued by a trusted source. &lt;/p&gt;
+&lt;p&gt;The intermediate certificate, named Apple Worldwide Developer Relations Certification Authority, is installed in your system keychain when you install Xcode. &lt;/p&gt;
+&lt;p&gt;First try downloading your provisioning profiles in Xcode to install missing intermediate certificates. If that doesn’t work for you, download and install the missing intermediate certificate.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;a href=&quot;http://www.apple.com/certificateauthority&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.apple.com/certificateauthority&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Under Apple Intermediate Certificates, click the link for the intermediate certificate you’re missing.A certificate file, with a .cer extension, appears in your Downloads folder.&lt;/li&gt;
+&lt;li&gt;Double-click the certificate file to install it in your system keychain.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Exporting-and-Importing-Certificates-and-Profiles&quot;&gt;&lt;a href=&quot;#Exporting-and-Importing-Certificates-and-Profiles&quot; class=&quot;headerlink&quot; title=&quot;Exporting and Importing Certificates and Profiles&quot;&gt;&lt;/a&gt;Exporting and Importing Certificates and Profiles&lt;/h2&gt;&lt;p&gt;After Xcode creates your certificates and profiles for you, export them to create a backup of all your assets. You do this to, for example, transfer your assets to another Mac you use for development or repair a certificate if the private key is missing.&lt;/p&gt;
+&lt;p&gt;The export file, called a &lt;strong&gt;developer profile&lt;/strong&gt;, contains the following team assets:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Development certificates&lt;/li&gt;
+&lt;li&gt;Distribution certificates&lt;/li&gt;
+&lt;li&gt;Provisioning profiles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Exporting-Selected-Certificates&quot;&gt;&lt;a href=&quot;#Exporting-Selected-Certificates&quot; class=&quot;headerlink&quot; title=&quot;Exporting Selected Certificates&quot;&gt;&lt;/a&gt;Exporting Selected Certificates&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1&quot; alt=&quot;19&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Importing-Your-Developer-Profile&quot;&gt;&lt;a href=&quot;#Importing-Your-Developer-Profile&quot; class=&quot;headerlink&quot; title=&quot;Importing Your Developer Profile&quot;&gt;&lt;/a&gt;Importing Your Developer Profile&lt;/h3&gt;&lt;p&gt;You import your developer profile to restore missing private keys or when you want to switch to another Mac.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1&quot; alt=&quot;20&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Removing-Signing-Identities-from-Your-Keychain&quot;&gt;&lt;a href=&quot;#Removing-Signing-Identities-from-Your-Keychain&quot; class=&quot;headerlink&quot; title=&quot;Removing Signing Identities from Your Keychain&quot;&gt;&lt;/a&gt;Removing Signing Identities from Your Keychain&lt;/h2&gt;&lt;p&gt;Delete in key category first , then delete them in My certificate category&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1&quot; alt=&quot;21&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Revoking-Certificates&quot;&gt;&lt;a href=&quot;#Revoking-Certificates&quot; class=&quot;headerlink&quot; title=&quot;Revoking Certificates&quot;&gt;&lt;/a&gt;Revoking Certificates&lt;/h2&gt;&lt;p&gt;If you’re a team admin for an organization, you may want to revoke development certificates of team members who no longer work on your project. &lt;/p&gt;
+&lt;p&gt;Revoking certificates may invalidate provisioning profiles,&lt;/p&gt;
+&lt;p&gt;Revoking development or distribution certificates doesn’t affect apps that you’ve submitted to the store nor does it affect your ability to update them&lt;/p&gt;
+&lt;h3 id=&quot;Resetting-Certificates-Using-Xcode&quot;&gt;&lt;a href=&quot;#Resetting-Certificates-Using-Xcode&quot; class=&quot;headerlink&quot; title=&quot;Resetting Certificates Using Xcode&quot;&gt;&lt;/a&gt;Resetting Certificates Using Xcode&lt;/h3&gt;&lt;p&gt;If Xcode displays a Create button, the signing identity doesn’t exist in your developer account or on your Mac. &lt;/p&gt;
+&lt;p&gt;If Xcode displays a Reset button, the signing identity is not usable on your Mac—for example, it is missing the private key. &lt;/p&gt;
+&lt;p&gt;If you click the Reset button, Xcode revokes and re-creates the corresponding certificate.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1&quot; alt=&quot;22&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Revoking-Certificates-Using-the-Developer-Account&quot;&gt;&lt;a href=&quot;#Revoking-Certificates-Using-the-Developer-Account&quot; class=&quot;headerlink&quot; title=&quot;Revoking Certificates Using the Developer Account&quot;&gt;&lt;/a&gt;Revoking Certificates Using the Developer Account&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1&quot; alt=&quot;23&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles&quot;&gt;&lt;a href=&quot;#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles&quot; class=&quot;headerlink&quot; title=&quot;Re-Creating Certificates and Updating Related Provisioning Profiles&quot;&gt;&lt;/a&gt;Re-Creating Certificates and Updating Related Provisioning Profiles&lt;/h2&gt;&lt;p&gt;Revoke the certificates using your developer account&lt;/p&gt;
+&lt;p&gt;Provisioning profiles containing a revoked certificate become invalid.&lt;/p&gt;
+&lt;p&gt;If necessary, remove the signing identities for these certificates from your keychain&lt;/p&gt;
+&lt;p&gt;Remove or regenerate other types of provisioning profiles that contain the revoked certificates,&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1&quot; alt=&quot;24&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Maintaining-Identifiers-Devices-and-Profiles&quot;&gt;&lt;a href=&quot;#Maintaining-Identifiers-Devices-and-Profiles&quot; class=&quot;headerlink&quot; title=&quot;Maintaining Identifiers, Devices, and Profiles&quot;&gt;&lt;/a&gt;Maintaining Identifiers, Devices, and Profiles&lt;/h1&gt;&lt;h2 id=&quot;App-IDs-Registering-Editing-Deleting&quot;&gt;&lt;a href=&quot;#App-IDs-Registering-Editing-Deleting&quot; class=&quot;headerlink&quot; title=&quot;App IDs-Registering/Editing/Deleting&quot;&gt;&lt;/a&gt;App IDs-Registering/Editing/Deleting&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Locating-Your-Team-ID&quot;&gt;&lt;a href=&quot;#Locating-Your-Team-ID&quot; class=&quot;headerlink&quot; title=&quot;Locating Your Team ID&quot;&gt;&lt;/a&gt;Locating Your Team ID&lt;/h2&gt;&lt;p&gt;Sign in to developer.apple.com/account, and click Membership in the sidebar.Your Team ID appears in the Membership Information section under the team name.&lt;/p&gt;
+&lt;h2 id=&quot;Provisioning-profiles&quot;&gt;&lt;a href=&quot;#Provisioning-profiles&quot; class=&quot;headerlink&quot; title=&quot;Provisioning profiles&quot;&gt;&lt;/a&gt;Provisioning profiles&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;A provisioning profile includes signing certificates, device identifiers, and an App ID.&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;Development provisioning profiles are used to build and install versions of your app during the development cycle, &lt;/p&gt;
+&lt;p&gt;Distribution provisioning profiles are used to submit your apps to the App Store and distribute them to beta testers.&lt;/p&gt;
+&lt;h3 id=&quot;Generate-Provisioning-Profiles-with-Xcode&quot;&gt;&lt;a href=&quot;#Generate-Provisioning-Profiles-with-Xcode&quot; class=&quot;headerlink&quot; title=&quot;Generate Provisioning Profiles with Xcode&quot;&gt;&lt;/a&gt;Generate Provisioning Profiles with Xcode&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;Connect your device to your Mac and click Use for Development in Xcode’s Organizer window. &lt;/li&gt;
+&lt;li&gt;Sign in with the Apple ID associated with your iOS Developer Program membership and Xcode will generate a provisioning profile containing your certificate and device identifier.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;Creating-Provisioning-Profiles-Using-Your-Developer-Account-略&quot;&gt;&lt;a href=&quot;#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略&quot; class=&quot;headerlink&quot; title=&quot;Creating Provisioning Profiles Using Your Developer Account (略)&quot;&gt;&lt;/a&gt;Creating Provisioning Profiles Using Your Developer Account (略)&lt;/h3&gt;&lt;h3 id=&quot;Downloading-Provisioning-Profiles-in-Xcode&quot;&gt;&lt;a href=&quot;#Downloading-Provisioning-Profiles-in-Xcode&quot; class=&quot;headerlink&quot; title=&quot;Downloading Provisioning Profiles in Xcode&quot;&gt;&lt;/a&gt;Downloading Provisioning Profiles in Xcode&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;In the Xcode Preferences window, click Accounts.&lt;/li&gt;
+&lt;li&gt;Select your team, and click View Details.&lt;/li&gt;
+&lt;li&gt;In the dialog that appears, click the “Download all” button in the lower-left corner under the Provisioning Profiles table.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Editing-Provisioning-Profiles-in-Your-Developer-Account&quot;&gt;&lt;a href=&quot;#Editing-Provisioning-Profiles-in-Your-Developer-Account&quot; class=&quot;headerlink&quot; title=&quot;Editing Provisioning Profiles in Your Developer Account&quot;&gt;&lt;/a&gt;Editing Provisioning Profiles in Your Developer Account&lt;/h3&gt;&lt;p&gt;After doing so, download provisioning profiles in Xcode&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Renewing-Expired-Provisioning-Profiles&quot;&gt;&lt;a href=&quot;#Renewing-Expired-Provisioning-Profiles&quot; class=&quot;headerlink&quot; title=&quot;Renewing Expired Provisioning Profiles&quot;&gt;&lt;/a&gt;Renewing Expired Provisioning Profiles&lt;/h3&gt;&lt;p&gt;You don’t need to make any changes to the provisioning profile. Just scroll to the bottom of the Edit iOS Provisioning Profile or the Edit Mac Provisioning Profile page, and click Generate&lt;/p&gt;
+&lt;h1 id=&quot;Configuring-Your-Xcode-Project-for-Distribution&quot;&gt;&lt;a href=&quot;#Configuring-Your-Xcode-Project-for-Distribution&quot; class=&quot;headerlink&quot; title=&quot;Configuring Your Xcode Project for Distribution&quot;&gt;&lt;/a&gt;Configuring Your Xcode Project for Distribution&lt;/h1&gt;&lt;h2 id=&quot;Configuring-Identity-and-Team-Settings&quot;&gt;&lt;a href=&quot;#Configuring-Identity-and-Team-Settings&quot; class=&quot;headerlink&quot; title=&quot;Configuring Identity and Team Settings&quot;&gt;&lt;/a&gt;Configuring Identity and Team Settings&lt;/h2&gt;&lt;h3 id=&quot;About-Bundle-IDs&quot;&gt;&lt;a href=&quot;#About-Bundle-IDs&quot; class=&quot;headerlink&quot; title=&quot;About Bundle IDs&quot;&gt;&lt;/a&gt;About Bundle IDs&lt;/h3&gt;&lt;p&gt;A bundle ID precisely identifies a single app&lt;/p&gt;
+&lt;p&gt;reverse-DNS format. com.Acme.Hello &lt;/p&gt;
+&lt;p&gt;use an app’s bundle ID in many different places to identify the app&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;App-ID&quot;&gt;&lt;a href=&quot;#App-ID&quot; class=&quot;headerlink&quot; title=&quot;App ID&quot;&gt;&lt;/a&gt;App ID&lt;/h3&gt;&lt;p&gt;app’s bundle ID needs to be unique. &lt;/p&gt;
+&lt;p&gt;The string consists of a Team ID and a bundle ID search string&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;There are two types of App IDs:&lt;/p&gt;
+&lt;p&gt;An Explicit App ID Matches a Single App&lt;/p&gt;
+&lt;p&gt;Wildcard App IDs Match Multiple Apps&lt;/p&gt;
+&lt;h3 id=&quot;Setting-the-Bundle-ID&quot;&gt;&lt;a href=&quot;#Setting-the-Bundle-ID&quot; class=&quot;headerlink&quot; title=&quot;Setting the Bundle ID&quot;&gt;&lt;/a&gt;Setting the Bundle ID&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Assigning-the-Xcode-Project-to-a-Team&quot;&gt;&lt;a href=&quot;#Assigning-the-Xcode-Project-to-a-Team&quot; class=&quot;headerlink&quot; title=&quot;Assigning the Xcode Project to a Team&quot;&gt;&lt;/a&gt;Assigning the Xcode Project to a Team&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Creating-the-Team-Provisioning-Profile&quot;&gt;&lt;a href=&quot;#Creating-the-Team-Provisioning-Profile&quot; class=&quot;headerlink&quot; title=&quot;Creating the Team Provisioning Profile&quot;&gt;&lt;/a&gt;Creating the Team Provisioning Profile&lt;/h2&gt;&lt;p&gt;After you select a team, &lt;strong&gt;Xcode attempts to create a specialized development provisioning profile&lt;/strong&gt; called a team provisioning profile that it manages for you. &lt;/p&gt;
+&lt;p&gt;A team provisioning profile allows an app to be signed and run by all team members on all their devices.&lt;/p&gt;
+&lt;h2 id=&quot;Setting-the-Version-Number-and-Build-String&quot;&gt;&lt;a href=&quot;#Setting-the-Version-Number-and-Build-String&quot; class=&quot;headerlink&quot; title=&quot;Setting the Version Number and Build String&quot;&gt;&lt;/a&gt;Setting the Version Number and Build String&lt;/h2&gt;&lt;p&gt;The version number is a two-period-separated list of positive integers, as in 4.5.2. &lt;/p&gt;
+&lt;p&gt;The first integer represents a major revision, the second a minor revision, and the third a maintenance release. &lt;/p&gt;
+&lt;p&gt;The version number is shown in the store&lt;/p&gt;
+&lt;p&gt;The build string represents an iteration (released or unreleased) of the bundle and is also a two-period-separated list of positive integers, as in 1.2.3. &lt;/p&gt;
+&lt;h2 id=&quot;Setting-Deployment-Info&quot;&gt;&lt;a href=&quot;#Setting-Deployment-Info&quot; class=&quot;headerlink&quot; title=&quot;Setting Deployment Info&quot;&gt;&lt;/a&gt;Setting Deployment Info&lt;/h2&gt;&lt;p&gt;The deployment target setting specifies the lowest operating system version that your app can run on.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Adding-App-Icons-and-a-Launch-Screen-File-略&quot;&gt;&lt;a href=&quot;#Adding-App-Icons-and-a-Launch-Screen-File-略&quot; class=&quot;headerlink&quot; title=&quot;Adding App Icons and a Launch Screen File (略)&quot;&gt;&lt;/a&gt;Adding App Icons and a Launch Screen File (略)&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Maintaining-Your-Signing-Identities-and-Certificates&quot;&gt;&lt;a href=&quot;#Maintaining-Your-Signing-Identities-and-Certificates&quot; class=&quot;headerl
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="apple_doc" scheme="http://jackliu17.github.io/tags/apple-doc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GCD学习笔记</title>
     <link href="http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://jackliu17.github.io/2016/10/04/GCD学习笔记/</id>
     <published>2016-10-03T21:57:43.000Z</published>
-    <updated>2016-10-04T10:12:44.000Z</updated>
+    <updated>2016-10-05T23:30:13.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;多线程基础&quot;&gt;&lt;a href=&quot;#多线程基础&quot; class=&quot;headerlink&quot; title=&quot;多线程基础&quot;&gt;&lt;/a&gt;多线程基础&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot; title=&quot;进程&quot;&gt;&lt;/a&gt;进程&lt;/h2&gt;&lt;p&gt;进程是指在系统中正在运行的一个应用程序&lt;/p&gt;
 &lt;p&gt;每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内&lt;/p&gt;
@@ -51,8 +175,8 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建串行队列&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;dispatch_queue_t queue = dispatch_queue_create(&amp;quot;com.xxcc&amp;quot;, DISPATCH_QUEUE_SERIAL);
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;获得主队列&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dispatch_queue_t  queue = dispatch_get_main_queue();
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;任务的执行&quot;&gt;&lt;a href=&quot;#任务的执行&quot; class=&quot;headerlink&quot; title=&quot;任务的执行&quot;&gt;&lt;/a&gt;任务的执行&lt;/h3&gt;&lt;p&gt;队列在queue中，任务在block块中&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dispatch_queue_t  queue = dispatch_get_main_queue();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;任务的执行&quot;&gt;&lt;a href=&quot;#任务的执行&quot; class=&quot;headerlink&quot; title=&quot;任务的执行&quot;&gt;&lt;/a&gt;任务的执行&lt;/h3&gt;&lt;p&gt;队列在queue中，任务在block块中&lt;/p&gt;
 &lt;p&gt;同步函数：要求立刻马上开始执行&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;/*
 第一个参数:队列
@@ -357,20 +481,85 @@ dispatch_apply(6, queue, ^(size_t index) {
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&amp;lt;NSThread: 0x610000067880&amp;gt;{number = 6, name = (null)}
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&amp;lt;NSThread: 0x610000067b00&amp;gt;{number = 7, name = (null)}
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;队列组-dispatch-group&quot;&gt;&lt;a href=&quot;#队列组-dispatch-group&quot; class=&quot;headerlink&quot; title=&quot;队列组 dispatch_group&quot;&gt;&lt;/a&gt;队列组 dispatch_group&lt;/h2&gt;&lt;p&gt;分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;dispatch_group_t group =  dispatch_group_create();
+&lt;pre&gt;&lt;code&gt;-(void)testGroupQueue
+{
+        NSLog(@&amp;quot;用户想要登录&amp;quot;);
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_t group = dispatch_group_create();
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&amp;quot;填写账号完成&amp;quot;);
+        });
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&amp;quot;填写密码完成&amp;quot;);
+        });
 
-dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-    // 等前面的异步操作都执行完毕后，回到主线程...
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;WWDC-2016-What’s-new-in-GCD-swift&quot;&gt;&lt;a href=&quot;#WWDC-2016-What’s-new-in-GCD-swift&quot; class=&quot;headerlink&quot; title=&quot;WWDC 2016 What’s new in GCD(swift)&quot;&gt;&lt;/a&gt;WWDC 2016 What’s new in GCD(swift)&lt;/h1&gt;&lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSLog(@&amp;quot;用户可以登录了&amp;quot;);
+        });
+}
+
+2016-02-26 13:22:09.973 FL_GCD_DEMO[5494:3812823] 用户想要登录
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812859] 填写密码完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 填写账号完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 用户可以登录了
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Suspend和Resume&quot;&gt;&lt;a href=&quot;#Suspend和Resume&quot; class=&quot;headerlink&quot; title=&quot;Suspend和Resume&quot;&gt;&lt;/a&gt;Suspend和Resume&lt;/h1&gt;&lt;p&gt;有时可能需要我们中断某些操作，还需要我们恢复执行，这个时候就可以用到suspend和resume操作.&lt;/p&gt;
+&lt;p&gt;suspend不会停止当当前正在执行的block,而是中断了后面未执行的，在resume之后再执行后面的block&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(void)testSuspendAndResume
+{
+    dispatch_queue_t queue = dispatch_queue_create(&amp;quot;myqueue&amp;quot;, DISPATCH_QUEUE_SERIAL);
+    NSLog(@&amp;quot;start&amp;quot;);
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&amp;quot;1&amp;quot;);
+    });
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&amp;quot;2&amp;quot;);
+    });
+
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@&amp;quot;suspend&amp;quot;);
+    dispatch_suspend(queue);
+    [NSThread sleepForTimeInterval:5];
+    NSLog(@&amp;quot;resume&amp;quot;);
+    dispatch_resume(queue);
+}
+
+2016-02-25 22:01:02.475 FL_GCD_DEMO[4890:3722720] start
+2016-02-25 22:01:05.476 FL_GCD_DEMO[4890:3722720] suspend
+2016-02-25 22:01:07.479 FL_GCD_DEMO[4890:3722759] 1
+2016-02-25 22:01:10.478 FL_GCD_DEMO[4890:3722720] resume
+2016-02-25 22:01:15.478 FL_GCD_DEMO[4890:3722759] 2
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;dispatch-semaphore&quot;&gt;&lt;a href=&quot;#dispatch-semaphore&quot; class=&quot;headerlink&quot; title=&quot;dispatch_semaphore&quot;&gt;&lt;/a&gt;dispatch_semaphore&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;-(void)testSemaphore
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    for (int i = 0; i &amp;lt;10; i++)
+    {
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_async(queue, ^{
+            NSLog(@&amp;quot;下载资源：%i&amp;quot;,i);
+            sleep(2);
+            dispatch_semaphore_signal(semaphore);
+        });
+    }
+}
+
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848434] 下载资源：1
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848431] 下载资源：0
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848434] 下载资源：2
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848431] 下载资源：3
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848434] 下载资源：5
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848431] 下载资源：4
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848431] 下载资源：6
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848434] 下载资源：7
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848434] 下载资源：9
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848431] 下载资源：8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明:dispatch_semaphore_create(2)创建了一个单位为2的信号量&lt;br&gt;dispatch_semaphore_wait()会消耗一个单位&lt;br&gt;ispatch_semaphore_signal()会增加一个单位&lt;br&gt;而dispatch_semaphore_create(2)中传入的“2”决定了这个信号量最多包含2个单位。&lt;br&gt;dispatch_semaphore_wait()中的参数2DISPATCH_TIME_FOREVER表示当信号量单位变为0个，则使得代码的执行停止在当前位置不再继续下去，直到收到signal使得单位大于0，才继续往下执行。&lt;br&gt;在上述代码中，每执行一次下载会占用一个单位，下载完成后通过signal告诉wait可以继续向下执行代码，从而控制同时进行的下载数量。&lt;/p&gt;
+&lt;h1 id=&quot;WWDC-2016-What’s-new-in-GCD-swift&quot;&gt;&lt;a href=&quot;#WWDC-2016-What’s-new-in-GCD-swift&quot; class=&quot;headerlink&quot; title=&quot;WWDC 2016 What’s new in GCD(swift)&quot;&gt;&lt;/a&gt;WWDC 2016 What’s new in GCD(swift)&lt;/h1&gt;&lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
 &lt;p&gt;Asynchronous ：可以先加入队列，将来再执行&lt;/p&gt;
 &lt;p&gt;Synchronous：必须执行完才到下一个&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
@@ -379,8 +568,37 @@ let smallImage = image.resize(to: rect)
 DispatchQueue.main.async {
 imageView.image = smallImage
 }
-} 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;摘自&lt;a href=&quot;http://www.jianshu.com/p/2d57c72016c6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS多线程–彻底学会多线程之GCD&lt;/a&gt;&lt;/p&gt;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Getting-Work-Off-Your-Main-Thread&quot;&gt;&lt;a href=&quot;#Getting-Work-Off-Your-Main-Thread&quot; class=&quot;headerlink&quot; title=&quot;Getting Work Off Your Main Thread&quot;&gt;&lt;/a&gt;Getting Work Off Your Main Thread&lt;/h2&gt;&lt;p&gt;Create a Dispatch Queue to which you submit work&lt;/p&gt;
+&lt;p&gt;Dispatch Queues execute work items in FIFO order&lt;/p&gt;
+&lt;p&gt;Use .async to execute your work on the queue&lt;/p&gt;
+&lt;p&gt;Dispatch main queue executes all items on the main thread&lt;/p&gt;
+&lt;p&gt;Simple to chain work between queues&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Grouping-Work-Together&quot;&gt;&lt;a href=&quot;#Grouping-Work-Together&quot; class=&quot;headerlink&quot; title=&quot;Grouping Work Together&quot;&gt;&lt;/a&gt;Grouping Work Together&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Choosing-a-Quality-of-Service&quot;&gt;&lt;a href=&quot;#Choosing-a-Quality-of-Service&quot; class=&quot;headerlink&quot; title=&quot;Choosing a Quality of Service&quot;&gt;&lt;/a&gt;Choosing a Quality of Service&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Using-Quality-of-Service-Classes&quot;&gt;&lt;a href=&quot;#Using-Quality-of-Service-Classes&quot; class=&quot;headerlink&quot; title=&quot;Using Quality of Service Classes&quot;&gt;&lt;/a&gt;Using Quality of Service Classes&lt;/h2&gt;&lt;p&gt;Use .async to submit work with a specific QoS class&lt;/p&gt;
+&lt;p&gt;Dispatch helps resolve priority inversions&lt;/p&gt;
+&lt;p&gt;Create single-purpose queues with a specific QoS class&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;queue.async(qos: .background) {
+print(&amp;quot;Maintenance work&amp;quot;)
+}
+queue.async(qos: .userInitiated) {
+print(“Button tapped”)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;摘自 &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/2d57c72016c6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS多线程–彻底学会多线程之GCD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/5efa458c9340&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD（Grand Central Dispatch）快速上手&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/7efbecee6af8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD in Swift 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/66eb7e2a8b0f&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD for Swift&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </content>
     
     <summary type="html">
@@ -663,9 +881,9 @@ photoView.image = image
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
     
       <category term="udacity" scheme="http://jackliu17.github.io/tags/udacity/"/>
     
@@ -722,9 +940,9 @@ photoView.image = image
     </summary>
     
     
-      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
     
       <category term="raywenderlich" scheme="http://jackliu17.github.io/tags/raywenderlich/"/>
     
@@ -2765,374 +2983,6 @@ end
     
     
       <category term="iOS_conf" scheme="http://jackliu17.github.io/tags/iOS-conf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GCD编程</title>
-    <link href="http://jackliu17.github.io/2016/08/02/GCD%E7%BC%96%E7%A8%8B/"/>
-    <id>http://jackliu17.github.io/2016/08/02/GCD编程/</id>
-    <published>2016-08-02T11:01:19.000Z</published>
-    <updated>2016-08-10T11:25:34.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;串行队列&quot;&gt;&lt;a href=&quot;#串行队列&quot; class=&quot;headerlink&quot; title=&quot;串行队列&quot;&gt;&lt;/a&gt;串行队列&lt;/h1&gt;&lt;p&gt;串行队列一次只执行一个线程，按照添加到队列的顺序依次执行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[self serailQueue];
-}
-
-
-//串行队列
-- (void)serailQueue {
-
-//创建出了队列
-GCDQueue *queue = [[GCDQueue alloc]initSerial];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;1&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;2&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;3&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;4&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;5&amp;quot;);
-}];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;并发队列&quot;&gt;&lt;a href=&quot;#并发队列&quot; class=&quot;headerlink&quot; title=&quot;并发队列&quot;&gt;&lt;/a&gt;并发队列&lt;/h1&gt;&lt;p&gt;并发队列一次可以执行多个线程，线程的执行没有先后顺序&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[self serailQueue];
-}
-
-//并发队列,5个线程同时执行
-- (void)initConcurrent{
-
-//创建出了队列
-GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;1&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;2&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;3&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;4&amp;quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&amp;quot;5&amp;quot;);
-}];
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;UI界面所在的线程队列是串行队列&quot;&gt;&lt;a href=&quot;#UI界面所在的线程队列是串行队列&quot; class=&quot;headerlink&quot; title=&quot;UI界面所在的线程队列是串行队列&quot;&gt;&lt;/a&gt;UI界面所在的线程队列是串行队列&lt;/h1&gt;&lt;p&gt;在子线程中处理业务逻辑，在主线程中更新UI&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-
-self.imageView        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-self.imageView.center = self.view.center;
-[self.view addSubview:self.imageView];
-
-[GCDQueue executeInGlobalQueue:^{
-
-    //处理业务逻辑,下载操作
-
-    NSString *netUrlString = @&amp;quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&amp;quot;;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:netUrlString]];
-    NSData *picData = [NSURLConnection sendSynchronousRequest:request
-                                            returningResponse:nil
-                                                        error:nil];
-
-
-    [GCDQueue executeInMainQueue:^{
-
-        //更新UI
-        self.imageView.image = [[UIImage alloc] initWithData:picData];
-
-    }];
-
-}];
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;延时操作&quot;&gt;&lt;a href=&quot;#延时操作&quot; class=&quot;headerlink&quot; title=&quot;延时操作&quot;&gt;&lt;/a&gt;延时操作&lt;/h1&gt;&lt;h2 id=&quot;NSThread方式&quot;&gt;&lt;a href=&quot;#NSThread方式&quot; class=&quot;headerlink&quot; title=&quot;NSThread方式&quot;&gt;&lt;/a&gt;NSThread方式&lt;/h2&gt;&lt;p&gt;优点:时间比较精确，而且可以用方法取消。缺点:比较繁琐&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-NSLog(@&amp;quot;启动&amp;quot;);
-
-//NSThread方式的延时执行操作
-[self performSelector:@selector(threadEvent:)
-           withObject:self
-           afterDelay:2.f];
-
-//取消延时执行操作
-[NSObject cancelPreviousPerformRequestsWithTarget:self];
-
-}
-
-- (void)threadEvent:(id)sender{
-NSLog(@&amp;quot;线程事件&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;GCD方式&quot;&gt;&lt;a href=&quot;#GCD方式&quot; class=&quot;headerlink&quot; title=&quot;GCD方式&quot;&gt;&lt;/a&gt;GCD方式&lt;/h2&gt;&lt;p&gt;优点:简单快捷。缺点:时间不够精确，不能取消。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-NSLog(@&amp;quot;启动&amp;quot;);
-//GCD方式的延时执行操作
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&amp;quot;GCD线程事件&amp;quot;);
-} afterDelaySecs:2.f];
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD线程组-管理线程&quot;&gt;&lt;a href=&quot;#GCD线程组-管理线程&quot; class=&quot;headerlink&quot; title=&quot;GCD线程组(管理线程)&quot;&gt;&lt;/a&gt;GCD线程组(管理线程)&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-//初始化线程组合
-GCDGroup *group = [[GCDGroup alloc]init];
-
-//创建一个线程队列
-GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
-
-//让线程在group中执行线程1
-[queue execute:^{
-    sleep(1);
-    NSLog(@&amp;quot;线程1执行完毕&amp;quot;);
-} inGroup:group];
-
-//让线程在group中执行线程2
-[queue execute:^{
-     sleep(3);
-    NSLog(@&amp;quot;线程2执行完毕&amp;quot;);
-} inGroup:group];
-
-//监听线程组是否执行结束，然后执行线程3
-[queue notify:^{
-    NSLog(@&amp;quot;线程3执行完毕&amp;quot;);
-} inGroup:group];
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;定时器&quot;&gt;&lt;a href=&quot;#定时器&quot; class=&quot;headerlink&quot; title=&quot;定时器&quot;&gt;&lt;/a&gt;定时器&lt;/h1&gt;&lt;h2 id=&quot;GCD定时器&quot;&gt;&lt;a href=&quot;#GCD定时器&quot; class=&quot;headerlink&quot; title=&quot;GCD定时器&quot;&gt;&lt;/a&gt;GCD定时器&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-@property (nonatomic, strong) GCDTimer *timer;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.timer = [[GCDTimer alloc] initInQueue:[GCDQueue mainQueue]];
-[self.timer event:^{
-    NSLog(@&amp;quot;GCD定时器&amp;quot;);
-} timeInterval:NSEC_PER_SEC];
-
-[self.timer start];
-}
-
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;NSTimer定时器&quot;&gt;&lt;a href=&quot;#NSTimer定时器&quot; class=&quot;headerlink&quot; title=&quot;NSTimer定时器&quot;&gt;&lt;/a&gt;NSTimer定时器&lt;/h2&gt;&lt;p&gt;仅运行在当前runloop? 不能用于tableView?&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@interface ViewController ()
-@property (nonatomic,strong)NSTimer *normalTimer;
-@end
-
-- (void)viewDidLoad {
-[super viewDidLoad];   
- self.normalTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                    target:self
-                                                  selector:@selector(timerEvent)
-                                                  userInfo:nil
-                                                   repeats:YES];
-}
-
-- (void)timerEvent{
-NSLog(@&amp;quot;NSTimer定时器&amp;quot;);
-}    
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD信号量-异步线程转换为同步线程&quot;&gt;&lt;a href=&quot;#GCD信号量-异步线程转换为同步线程&quot; class=&quot;headerlink&quot; title=&quot;GCD信号量- 异步线程转换为同步线程&quot;&gt;&lt;/a&gt;GCD信号量- 异步线程转换为同步线程&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-//必须线程1先执行完，然后再执行完线程2
-
-//创建信号量, 可以将异步线程转化为同步线程
-GCDSemaphore * semaphore = [[GCDSemaphore alloc]init];
-
-
-//线程1 - 异步
-[GCDQueue executeInGlobalQueue:^{
-    NSLog(@&amp;quot;线程1&amp;quot;);
-
-    //发送信号
-    [semaphore signal];
-
-}];
-
-//线程2 - 异步
-[GCDQueue executeInGlobalQueue:^{
-
-    //等待信号，这时会堵塞住，不会往下执行，直到接收到信号
-    [semaphore wait];
-
-    NSLog(@&amp;quot;线程2&amp;quot;);
-}];
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;综合使用-采用GCD逐一下载图片&quot;&gt;&lt;a href=&quot;#综合使用-采用GCD逐一下载图片&quot; class=&quot;headerlink&quot; title=&quot;综合使用:采用GCD逐一下载图片&quot;&gt;&lt;/a&gt;综合使用:采用GCD逐一下载图片&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;#import &amp;quot;ViewController.h&amp;quot;
-#import &amp;quot;GCD.h&amp;quot;
-
-@interface ViewController ()
-
-@property(nonatomic, strong) UIImageView *view1;
-@property(nonatomic, strong) UIImageView *view2;
-@property(nonatomic, strong) UIImageView *view3;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.view1 = [self createImageViewWithFrame:CGRectMake(0, 0, 100, 100)];
-self.view2 = [self createImageViewWithFrame:CGRectMake(100, 0, 100, 100)];
-self.view3 = [self createImageViewWithFrame:CGRectMake(200, 0, 100, 100)];
-
-NSString *net1 = @&amp;quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&amp;quot;;
-NSString *net2 = @&amp;quot;http://pic.cnitblog.com/avatar/708810/20141230105233.png&amp;quot;;
-NSString *net3 = @&amp;quot;http://pic.cnitblog.com/avatar/704178/20141216150843.png&amp;quot;;
-
-//初始化信号量
-GCDSemaphore *semaphore = [[GCDSemaphore alloc]init];
-
-
-//图片1
-[GCDQueue executeInGlobalQueue:^{
-    UIImage *image1 = [self accessDataByNetString:net1];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view1.image = image1;
-            self.view1.alpha = 1.f;
-        } completion:^(BOOL finished) {
-
-            //发送信号
-            [semaphore signal];
-        }];
-    }];
-}];
-
-//图片2
-[GCDQueue executeInGlobalQueue:^{
-
-    UIImage *image2 = [self accessDataByNetString:net2];
-
-    [semaphore wait];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view2.image = image2;
-            self.view2.alpha = 1.f;
-        } completion:^(BOOL finished) {
-
-            //发送信号
-            [semaphore signal];
-
-        }];
-    }];
-}];
-
-//图片3
-[GCDQueue executeInGlobalQueue:^{
-
-    UIImage *image3 = [self accessDataByNetString:net3];
-
-    [semaphore wait];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view3.image = image3;
-            self.view3.alpha = 1.f;
-        } completion:^(BOOL finished) {
-            //发送信号
-            [semaphore signal];            }];
-    }];
-}];
-}
-
-//创建view
-- (UIImageView *)createImageViewWithFrame:(CGRect)frame {
-
-UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];
-imageView.alpha = 0.f;
-[self.view addSubview:imageView];
-
-return imageView;
-}
-
-//获取网络图片
-- (UIImage *)accessDataByNetString:(NSString *)string{
-
-NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:string]];
-
-NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                 returningResponse:nil
-                                             error:nil];
-
-return [UIImage imageWithData:data];
-}
-@end
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD和NSOperationQueue的区别&quot;&gt;&lt;a href=&quot;#GCD和NSOperationQueue的区别&quot; class=&quot;headerlink&quot; title=&quot;GCD和NSOperationQueue的区别&quot;&gt;&lt;/a&gt;GCD和NSOperationQueue的区别&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;GCD是纯C语言的API，NSOperationQueue是基于GCD的OC版本封装&lt;/li&gt;
-&lt;li&gt;GCD只支持FIFO的队列，NSOperationQueue可以很方便的调整执行顺序，设置最大并发数量&lt;/li&gt;
-&lt;li&gt;NSOperationQueue可以轻松在Operation间设置依赖关系，而GCD需要写很多的代码才能实现&lt;/li&gt;
-&lt;li&gt;NSOperatinQueue支持KVO，可以监测operation是否正在执行(isExecuted)，是否结束(isFinished），是否取消(isCanceled)&lt;/li&gt;
-&lt;li&gt;GCD的执行速度比NSOperationQueue快&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;总结:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;任务之间不太互相依赖:GCD&lt;/li&gt;
-&lt;li&gt;任务之间有依赖\或者要监听任务的执行情况:NSOperationQueue&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;串行队列&quot;&gt;&lt;a href=&quot;#串行队列&quot; class=&quot;headerlink&quot; title=&quot;串行队列&quot;&gt;&lt;/a&gt;串行队列&lt;/h1&gt;&lt;p&gt;串行队列一次只执行一个线程，按照添加到队列的顺序依次执行&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- (void)viewDidLoa
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS_GCD" scheme="http://jackliu17.github.io/tags/iOS-GCD/"/>
     
   </entry>
   

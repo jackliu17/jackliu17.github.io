@@ -89,7 +89,9 @@
 一个进程中至少要有一个线程。
 
 同一个进程内的线程共享进程">
-<meta property="og:updated_time" content="2016-10-04T10:12:44.000Z">
+<meta property="og:image" content="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1">
+<meta property="og:updated_time" content="2016-10-05T23:30:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD学习笔记">
 <meta name="twitter:description" content="多线程基础进程进程是指在系统中正在运行的一个应用程序
@@ -104,6 +106,7 @@
 一个进程中至少要有一个线程。
 
 同一个进程内的线程共享进程">
+<meta name="twitter:image" content="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1">
 
 
 
@@ -357,8 +360,8 @@
 </code></pre><p>创建串行队列</p>
 <pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_SERIAL);
 </code></pre><p>获得主队列</p>
-<pre><code>dispatch_queue_t  queue = dispatch_get_main_queue();
-</code></pre><h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t  queue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+<h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
 <p>同步函数：要求立刻马上开始执行</p>
 <pre><code>/*
 第一个参数:队列
@@ -663,20 +666,85 @@ dispatch_apply(6, queue, ^(size_t index) {
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&lt;NSThread: 0x610000067880&gt;{number = 6, name = (null)}
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&lt;NSThread: 0x610000067b00&gt;{number = 7, name = (null)}
 </code></pre><h2 id="队列组-dispatch-group"><a href="#队列组-dispatch-group" class="headerlink" title="队列组 dispatch_group"></a>队列组 dispatch_group</h2><p>分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。</p>
-<pre><code>dispatch_group_t group =  dispatch_group_create();
+<pre><code>-(void)testGroupQueue
+{
+        NSLog(@&quot;用户想要登录&quot;);
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_t group = dispatch_group_create();
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&quot;填写账号完成&quot;);
+        });
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&quot;填写密码完成&quot;);
+        });
 
-dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-    // 等前面的异步操作都执行完毕后，回到主线程...
-});
-</code></pre><h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSLog(@&quot;用户可以登录了&quot;);
+        });
+}
+
+2016-02-26 13:22:09.973 FL_GCD_DEMO[5494:3812823] 用户想要登录
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812859] 填写密码完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 填写账号完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 用户可以登录了
+</code></pre><h1 id="Suspend和Resume"><a href="#Suspend和Resume" class="headerlink" title="Suspend和Resume"></a>Suspend和Resume</h1><p>有时可能需要我们中断某些操作，还需要我们恢复执行，这个时候就可以用到suspend和resume操作.</p>
+<p>suspend不会停止当当前正在执行的block,而是中断了后面未执行的，在resume之后再执行后面的block</p>
+<pre><code>-(void)testSuspendAndResume
+{
+    dispatch_queue_t queue = dispatch_queue_create(&quot;myqueue&quot;, DISPATCH_QUEUE_SERIAL);
+    NSLog(@&quot;start&quot;);
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&quot;1&quot;);
+    });
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&quot;2&quot;);
+    });
+
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@&quot;suspend&quot;);
+    dispatch_suspend(queue);
+    [NSThread sleepForTimeInterval:5];
+    NSLog(@&quot;resume&quot;);
+    dispatch_resume(queue);
+}
+
+2016-02-25 22:01:02.475 FL_GCD_DEMO[4890:3722720] start
+2016-02-25 22:01:05.476 FL_GCD_DEMO[4890:3722720] suspend
+2016-02-25 22:01:07.479 FL_GCD_DEMO[4890:3722759] 1
+2016-02-25 22:01:10.478 FL_GCD_DEMO[4890:3722720] resume
+2016-02-25 22:01:15.478 FL_GCD_DEMO[4890:3722759] 2
+</code></pre><h1 id="dispatch-semaphore"><a href="#dispatch-semaphore" class="headerlink" title="dispatch_semaphore"></a>dispatch_semaphore</h1><pre><code>-(void)testSemaphore
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    for (int i = 0; i &lt;10; i++)
+    {
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_async(queue, ^{
+            NSLog(@&quot;下载资源：%i&quot;,i);
+            sleep(2);
+            dispatch_semaphore_signal(semaphore);
+        });
+    }
+}
+
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848434] 下载资源：1
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848431] 下载资源：0
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848434] 下载资源：2
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848431] 下载资源：3
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848434] 下载资源：5
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848431] 下载资源：4
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848431] 下载资源：6
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848434] 下载资源：7
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848434] 下载资源：9
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848431] 下载资源：8
+</code></pre><p>说明:dispatch_semaphore_create(2)创建了一个单位为2的信号量<br>dispatch_semaphore_wait()会消耗一个单位<br>ispatch_semaphore_signal()会增加一个单位<br>而dispatch_semaphore_create(2)中传入的“2”决定了这个信号量最多包含2个单位。<br>dispatch_semaphore_wait()中的参数2DISPATCH_TIME_FOREVER表示当信号量单位变为0个，则使得代码的执行停止在当前位置不再继续下去，直到收到signal使得单位大于0，才继续往下执行。<br>在上述代码中，每执行一次下载会占用一个单位，下载完成后通过signal告诉wait可以继续向下执行代码，从而控制同时进行的下载数量。</p>
+<h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
 <p>Asynchronous ：可以先加入队列，将来再执行</p>
 <p>Synchronous：必须执行完才到下一个</p>
 <pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
@@ -685,8 +753,37 @@ let smallImage = image.resize(to: rect)
 DispatchQueue.main.async {
 imageView.image = smallImage
 }
-} 
-</code></pre><p>摘自<a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></p>
+}
+</code></pre><h2 id="Getting-Work-Off-Your-Main-Thread"><a href="#Getting-Work-Off-Your-Main-Thread" class="headerlink" title="Getting Work Off Your Main Thread"></a>Getting Work Off Your Main Thread</h2><p>Create a Dispatch Queue to which you submit work</p>
+<p>Dispatch Queues execute work items in FIFO order</p>
+<p>Use .async to execute your work on the queue</p>
+<p>Dispatch main queue executes all items on the main thread</p>
+<p>Simple to chain work between queues</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+}
+</code></pre><h2 id="Grouping-Work-Together"><a href="#Grouping-Work-Together" class="headerlink" title="Grouping Work Together"></a>Grouping Work Together</h2><p><img src="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1" alt=""></p>
+<h2 id="Choosing-a-Quality-of-Service"><a href="#Choosing-a-Quality-of-Service" class="headerlink" title="Choosing a Quality of Service"></a>Choosing a Quality of Service</h2><p><img src="https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1" alt=""></p>
+<h2 id="Using-Quality-of-Service-Classes"><a href="#Using-Quality-of-Service-Classes" class="headerlink" title="Using Quality of Service Classes"></a>Using Quality of Service Classes</h2><p>Use .async to submit work with a specific QoS class</p>
+<p>Dispatch helps resolve priority inversions</p>
+<p>Create single-purpose queues with a specific QoS class</p>
+<pre><code>queue.async(qos: .background) {
+print(&quot;Maintenance work&quot;)
+}
+queue.async(qos: .userInitiated) {
+print(“Button tapped”)
+}
+</code></pre><p>摘自 </p>
+<ol>
+<li><a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></li>
+<li><a href="http://www.jianshu.com/p/5efa458c9340" target="_blank" rel="external">GCD（Grand Central Dispatch）快速上手</a></li>
+<li><a href="http://www.jianshu.com/p/7efbecee6af8" target="_blank" rel="external">GCD in Swift 3</a></li>
+<li><a href="http://www.jianshu.com/p/66eb7e2a8b0f" target="_blank" rel="external">GCD for Swift</a></li>
+</ol>
 
       
     </div>
@@ -717,6 +814,10 @@ imageView.image = smallImage
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/07/App-Distribution-Guide/" rel="prev" title="App_Distribution_Guide">
+                App_Distribution_Guide <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -791,7 +892,7 @@ imageView.image = smallImage
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">107</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -808,7 +909,7 @@ imageView.image = smallImage
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -848,7 +949,7 @@ imageView.image = smallImage
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程基础"><span class="nav-number">1.</span> <span class="nav-text">多线程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的比较"><span class="nav-number">1.3.</span> <span class="nav-text">进程和线程的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.4.</span> <span class="nav-text">多线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务执行方式"><span class="nav-number">2.1.</span> <span class="nav-text">任务执行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步执行："><span class="nav-number">2.1.1.</span> <span class="nav-text">同步执行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行："><span class="nav-number">2.1.2.</span> <span class="nav-text">异步执行：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列："><span class="nav-number">2.2.</span> <span class="nav-text">队列：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#串行队列（Serial-Dispatch-Queue）"><span class="nav-number">2.2.1.</span> <span class="nav-text">串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">2.2.2.</span> <span class="nav-text">并发队列（Concurrent Dispatch Queue）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD的使用"><span class="nav-number">2.3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#队列的创建"><span class="nav-number">2.3.1.</span> <span class="nav-text">队列的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务的执行"><span class="nav-number">2.3.2.</span> <span class="nav-text">任务的执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD的使用-1"><span class="nav-number">3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#六种组合使用"><span class="nav-number">3.1.</span> <span class="nav-text">六种组合使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-同步执行"><span class="nav-number">3.2.</span> <span class="nav-text">并发队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-异步执行"><span class="nav-number">3.3.</span> <span class="nav-text">并发队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-同步执行"><span class="nav-number">3.4.</span> <span class="nav-text">串行队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-异步执行"><span class="nav-number">3.5.</span> <span class="nav-text">串行队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-同步执行"><span class="nav-number">3.6.</span> <span class="nav-text">主队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-异步执行"><span class="nav-number">3.7.</span> <span class="nav-text">主队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他线程中返回到主线程"><span class="nav-number">3.8.</span> <span class="nav-text">其他线程中返回到主线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栅栏方法-dispatch-barrier-async"><span class="nav-number">3.9.</span> <span class="nav-text">栅栏方法 dispatch_barrier_async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延时执行方法-dispatch-after"><span class="nav-number">3.10.</span> <span class="nav-text">延时执行方法 dispatch_after</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性代码-dispatch-once"><span class="nav-number">3.11.</span> <span class="nav-text">一次性代码 dispatch_once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程同时遍历-dispatch-apply"><span class="nav-number">3.12.</span> <span class="nav-text">多线程同时遍历 dispatch_apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列组-dispatch-group"><span class="nav-number">3.13.</span> <span class="nav-text">队列组 dispatch_group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WWDC-2016-What’s-new-in-GCD-swift"><span class="nav-number">4.</span> <span class="nav-text">WWDC 2016 What’s new in GCD(swift)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程基础"><span class="nav-number">1.</span> <span class="nav-text">多线程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程和线程的比较"><span class="nav-number">1.3.</span> <span class="nav-text">进程和线程的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">1.4.</span> <span class="nav-text">多线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD"><span class="nav-number">2.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务执行方式"><span class="nav-number">2.1.</span> <span class="nav-text">任务执行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步执行："><span class="nav-number">2.1.1.</span> <span class="nav-text">同步执行：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步执行："><span class="nav-number">2.1.2.</span> <span class="nav-text">异步执行：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列："><span class="nav-number">2.2.</span> <span class="nav-text">队列：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#串行队列（Serial-Dispatch-Queue）"><span class="nav-number">2.2.1.</span> <span class="nav-text">串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">2.2.2.</span> <span class="nav-text">并发队列（Concurrent Dispatch Queue）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD的使用"><span class="nav-number">2.3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#队列的创建"><span class="nav-number">2.3.1.</span> <span class="nav-text">队列的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务的执行"><span class="nav-number">2.3.2.</span> <span class="nav-text">任务的执行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD的使用-1"><span class="nav-number">3.</span> <span class="nav-text">GCD的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#六种组合使用"><span class="nav-number">3.1.</span> <span class="nav-text">六种组合使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-同步执行"><span class="nav-number">3.2.</span> <span class="nav-text">并发队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发队列-异步执行"><span class="nav-number">3.3.</span> <span class="nav-text">并发队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-同步执行"><span class="nav-number">3.4.</span> <span class="nav-text">串行队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#串行队列-异步执行"><span class="nav-number">3.5.</span> <span class="nav-text">串行队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-同步执行"><span class="nav-number">3.6.</span> <span class="nav-text">主队列 + 同步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列-异步执行"><span class="nav-number">3.7.</span> <span class="nav-text">主队列 + 异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他线程中返回到主线程"><span class="nav-number">3.8.</span> <span class="nav-text">其他线程中返回到主线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栅栏方法-dispatch-barrier-async"><span class="nav-number">3.9.</span> <span class="nav-text">栅栏方法 dispatch_barrier_async</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延时执行方法-dispatch-after"><span class="nav-number">3.10.</span> <span class="nav-text">延时执行方法 dispatch_after</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性代码-dispatch-once"><span class="nav-number">3.11.</span> <span class="nav-text">一次性代码 dispatch_once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程同时遍历-dispatch-apply"><span class="nav-number">3.12.</span> <span class="nav-text">多线程同时遍历 dispatch_apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列组-dispatch-group"><span class="nav-number">3.13.</span> <span class="nav-text">队列组 dispatch_group</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Suspend和Resume"><span class="nav-number">4.</span> <span class="nav-text">Suspend和Resume</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dispatch-semaphore"><span class="nav-number">5.</span> <span class="nav-text">dispatch_semaphore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WWDC-2016-What’s-new-in-GCD-swift"><span class="nav-number">6.</span> <span class="nav-text">WWDC 2016 What’s new in GCD(swift)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Work-Off-Your-Main-Thread"><span class="nav-number">6.1.</span> <span class="nav-text">Getting Work Off Your Main Thread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grouping-Work-Together"><span class="nav-number">6.2.</span> <span class="nav-text">Grouping Work Together</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choosing-a-Quality-of-Service"><span class="nav-number">6.3.</span> <span class="nav-text">Choosing a Quality of Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Quality-of-Service-Classes"><span class="nav-number">6.4.</span> <span class="nav-text">Using Quality of Service Classes</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

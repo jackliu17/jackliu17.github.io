@@ -238,6 +238,222 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/07/App-Distribution-Guide/" itemprop="url">
+                  App_Distribution_Guide
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T18:05:27+11:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/07/App-Distribution-Guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/07/App-Distribution-Guide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Maintaining-Your-Signing-Identities-and-Certificates"><a href="#Maintaining-Your-Signing-Identities-and-Certificates" class="headerlink" title="Maintaining Your Signing Identities and Certificates"></a>Maintaining Your Signing Identities and Certificates</h1><h2 id="About-Signing-Identities-and-Certificates"><a href="#About-Signing-Identities-and-Certificates" class="headerlink" title="About Signing Identities and Certificates"></a>About Signing Identities and Certificates</h2><p>Code signing your app lets users trust that your app has been created by a source known to Apple and that it hasn’t been tampered with.</p>
+<p>signing identities—stored in your keychain</p>
+<p>certificates—stored in your developer account</p>
+<p><img src="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1" alt=""></p>
+<h2 id="Viewing-Signing-Identities-and-Provisioning-Profiles"><a href="#Viewing-Signing-Identities-and-Provisioning-Profiles" class="headerlink" title="Viewing Signing Identities and Provisioning Profiles"></a>Viewing Signing Identities and Provisioning Profiles</h2><p>To view account details</p>
+<ol>
+<li>Choose Xcode &gt; Preferences.</li>
+<li>Click Accounts at the top of the window.</li>
+<li>Select the team you want to view, and click View Details.</li>
+</ol>
+<p>If a Create button appears next to a certificate, it hasn’t been created yet. If a Download button appears next to a provisioning profile, it’s not on your Mac.</p>
+<p><img src="https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1" alt=""></p>
+<h2 id="Creating-Signing-Identities"><a href="#Creating-Signing-Identities" class="headerlink" title="Creating Signing Identities"></a>Creating Signing Identities</h2><p>In the dialog that appears, click the Create button in the row of the type of certificate you want to create.<br>If the Create button is disabled, you are not allowed to create that type of signing identity.</p>
+<p><img src="https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1" alt=""></p>
+<h2 id="Verifying-Your-Steps"><a href="#Verifying-Your-Steps" class="headerlink" title="Verifying Your Steps"></a>Verifying Your Steps</h2><h3 id="Verifying-Using-Your-Developer-Account"><a href="#Verifying-Using-Your-Developer-Account" class="headerlink" title="Verifying Using Your Developer Account"></a>Verifying Using Your Developer Account</h3><ol>
+<li>Sign in to developer.apple.com/account, and click Certificates, IDs &amp; Profiles.</li>
+<li>In the Certificates section of the sidebar, select Development or Production depending on the type of certificate you want to verify.</li>
+<li>The type and expiration date of the certificate should <strong>match</strong> the information that you view in Keychain Access.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1" alt=""></p>
+<h2 id="Verifying-Using-Keychain-Access"><a href="#Verifying-Using-Keychain-Access" class="headerlink" title="Verifying Using Keychain Access"></a>Verifying Using Keychain Access</h2><p>When you create a development or distribution certificate using Xcode, the certificate is automatically installed in your login keychain.</p>
+<p>In the left pane, select “login” in the Keychains section and select Certificates in the Category section.</p>
+<p>The name of the development certificate begins with the text “iPhone Developer”</p>
+<p><img src="https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1" alt="11"></p>
+<p>If you click the disclosure triangle next to the certificate name, your private key appears. If the disclosure triangle doesn’t appear, you’re missing your private key</p>
+<p><img src="https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1" alt="12"></p>
+<h2 id="Installing-Missing-Intermediate-Certificate-Authorities"><a href="#Installing-Missing-Intermediate-Certificate-Authorities" class="headerlink" title="Installing Missing Intermediate Certificate Authorities"></a>Installing Missing Intermediate Certificate Authorities</h2><p>To use your certificates, the correct intermediate certificate needs to be in your keychain.</p>
+<p>An intermediate certificate ensures that your certificates were issued by a trusted source. </p>
+<p>The intermediate certificate, named Apple Worldwide Developer Relations Certification Authority, is installed in your system keychain when you install Xcode. </p>
+<p>First try downloading your provisioning profiles in Xcode to install missing intermediate certificates. If that doesn’t work for you, download and install the missing intermediate certificate.</p>
+<ol>
+<li>Go to <a href="http://www.apple.com/certificateauthority" target="_blank" rel="external">http://www.apple.com/certificateauthority</a>.</li>
+<li>Under Apple Intermediate Certificates, click the link for the intermediate certificate you’re missing.A certificate file, with a .cer extension, appears in your Downloads folder.</li>
+<li>Double-click the certificate file to install it in your system keychain.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1" alt="13"></p>
+<h2 id="Exporting-and-Importing-Certificates-and-Profiles"><a href="#Exporting-and-Importing-Certificates-and-Profiles" class="headerlink" title="Exporting and Importing Certificates and Profiles"></a>Exporting and Importing Certificates and Profiles</h2><p>After Xcode creates your certificates and profiles for you, export them to create a backup of all your assets. You do this to, for example, transfer your assets to another Mac you use for development or repair a certificate if the private key is missing.</p>
+<p>The export file, called a <strong>developer profile</strong>, contains the following team assets:</p>
+<ul>
+<li>Development certificates</li>
+<li>Distribution certificates</li>
+<li>Provisioning profiles</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1" alt="17"></p>
+<p><img src="https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1" alt="18"></p>
+<h3 id="Exporting-Selected-Certificates"><a href="#Exporting-Selected-Certificates" class="headerlink" title="Exporting Selected Certificates"></a>Exporting Selected Certificates</h3><p><img src="https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1" alt="19"></p>
+<h3 id="Importing-Your-Developer-Profile"><a href="#Importing-Your-Developer-Profile" class="headerlink" title="Importing Your Developer Profile"></a>Importing Your Developer Profile</h3><p>You import your developer profile to restore missing private keys or when you want to switch to another Mac.</p>
+<p><img src="https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1" alt="20"></p>
+<h2 id="Removing-Signing-Identities-from-Your-Keychain"><a href="#Removing-Signing-Identities-from-Your-Keychain" class="headerlink" title="Removing Signing Identities from Your Keychain"></a>Removing Signing Identities from Your Keychain</h2><p>Delete in key category first , then delete them in My certificate category</p>
+<p><img src="https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1" alt="21"></p>
+<h2 id="Revoking-Certificates"><a href="#Revoking-Certificates" class="headerlink" title="Revoking Certificates"></a>Revoking Certificates</h2><p>If you’re a team admin for an organization, you may want to revoke development certificates of team members who no longer work on your project. </p>
+<p>Revoking certificates may invalidate provisioning profiles,</p>
+<p>Revoking development or distribution certificates doesn’t affect apps that you’ve submitted to the store nor does it affect your ability to update them</p>
+<h3 id="Resetting-Certificates-Using-Xcode"><a href="#Resetting-Certificates-Using-Xcode" class="headerlink" title="Resetting Certificates Using Xcode"></a>Resetting Certificates Using Xcode</h3><p>If Xcode displays a Create button, the signing identity doesn’t exist in your developer account or on your Mac. </p>
+<p>If Xcode displays a Reset button, the signing identity is not usable on your Mac—for example, it is missing the private key. </p>
+<p>If you click the Reset button, Xcode revokes and re-creates the corresponding certificate.</p>
+<p><img src="https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1" alt="22"></p>
+<h3 id="Revoking-Certificates-Using-the-Developer-Account"><a href="#Revoking-Certificates-Using-the-Developer-Account" class="headerlink" title="Revoking Certificates Using the Developer Account"></a>Revoking Certificates Using the Developer Account</h3><p><img src="https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1" alt="23"></p>
+<h2 id="Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles"><a href="#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles" class="headerlink" title="Re-Creating Certificates and Updating Related Provisioning Profiles"></a>Re-Creating Certificates and Updating Related Provisioning Profiles</h2><p>Revoke the certificates using your developer account</p>
+<p>Provisioning profiles containing a revoked certificate become invalid.</p>
+<p>If necessary, remove the signing identities for these certificates from your keychain</p>
+<p>Remove or regenerate other types of provisioning profiles that contain the revoked certificates,</p>
+<p><img src="https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1" alt="24"></p>
+<h1 id="Maintaining-Identifiers-Devices-and-Profiles"><a href="#Maintaining-Identifiers-Devices-and-Profiles" class="headerlink" title="Maintaining Identifiers, Devices, and Profiles"></a>Maintaining Identifiers, Devices, and Profiles</h1><h2 id="App-IDs-Registering-Editing-Deleting"><a href="#App-IDs-Registering-Editing-Deleting" class="headerlink" title="App IDs-Registering/Editing/Deleting"></a>App IDs-Registering/Editing/Deleting</h2><p><img src="https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1" alt="14"></p>
+<h2 id="Locating-Your-Team-ID"><a href="#Locating-Your-Team-ID" class="headerlink" title="Locating Your Team ID"></a>Locating Your Team ID</h2><p>Sign in to developer.apple.com/account, and click Membership in the sidebar.Your Team ID appears in the Membership Information section under the team name.</p>
+<h2 id="Provisioning-profiles"><a href="#Provisioning-profiles" class="headerlink" title="Provisioning profiles"></a>Provisioning profiles</h2><p><strong>A provisioning profile includes signing certificates, device identifiers, and an App ID.</strong> </p>
+<p>Development provisioning profiles are used to build and install versions of your app during the development cycle, </p>
+<p>Distribution provisioning profiles are used to submit your apps to the App Store and distribute them to beta testers.</p>
+<h3 id="Generate-Provisioning-Profiles-with-Xcode"><a href="#Generate-Provisioning-Profiles-with-Xcode" class="headerlink" title="Generate Provisioning Profiles with Xcode"></a>Generate Provisioning Profiles with Xcode</h3><ol>
+<li>Connect your device to your Mac and click Use for Development in Xcode’s Organizer window. </li>
+<li>Sign in with the Apple ID associated with your iOS Developer Program membership and Xcode will generate a provisioning profile containing your certificate and device identifier.</li>
+</ol>
+<h3 id="Creating-Provisioning-Profiles-Using-Your-Developer-Account-略"><a href="#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略" class="headerlink" title="Creating Provisioning Profiles Using Your Developer Account (略)"></a>Creating Provisioning Profiles Using Your Developer Account (略)</h3><h3 id="Downloading-Provisioning-Profiles-in-Xcode"><a href="#Downloading-Provisioning-Profiles-in-Xcode" class="headerlink" title="Downloading Provisioning Profiles in Xcode"></a>Downloading Provisioning Profiles in Xcode</h3><ol>
+<li>In the Xcode Preferences window, click Accounts.</li>
+<li>Select your team, and click View Details.</li>
+<li>In the dialog that appears, click the “Download all” button in the lower-left corner under the Provisioning Profiles table.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1" alt="15"></p>
+<h3 id="Editing-Provisioning-Profiles-in-Your-Developer-Account"><a href="#Editing-Provisioning-Profiles-in-Your-Developer-Account" class="headerlink" title="Editing Provisioning Profiles in Your Developer Account"></a>Editing Provisioning Profiles in Your Developer Account</h3><p>After doing so, download provisioning profiles in Xcode</p>
+<p><img src="https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1" alt="16"></p>
+<h3 id="Renewing-Expired-Provisioning-Profiles"><a href="#Renewing-Expired-Provisioning-Profiles" class="headerlink" title="Renewing Expired Provisioning Profiles"></a>Renewing Expired Provisioning Profiles</h3><p>You don’t need to make any changes to the provisioning profile. Just scroll to the bottom of the Edit iOS Provisioning Profile or the Edit Mac Provisioning Profile page, and click Generate</p>
+<h1 id="Configuring-Your-Xcode-Project-for-Distribution"><a href="#Configuring-Your-Xcode-Project-for-Distribution" class="headerlink" title="Configuring Your Xcode Project for Distribution"></a>Configuring Your Xcode Project for Distribution</h1><h2 id="Configuring-Identity-and-Team-Settings"><a href="#Configuring-Identity-and-Team-Settings" class="headerlink" title="Configuring Identity and Team Settings"></a>Configuring Identity and Team Settings</h2><h3 id="About-Bundle-IDs"><a href="#About-Bundle-IDs" class="headerlink" title="About Bundle IDs"></a>About Bundle IDs</h3><p>A bundle ID precisely identifies a single app</p>
+<p>reverse-DNS format. com.Acme.Hello </p>
+<p>use an app’s bundle ID in many different places to identify the app</p>
+<p><img src="https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1" alt=""></p>
+<h3 id="App-ID"><a href="#App-ID" class="headerlink" title="App ID"></a>App ID</h3><p>app’s bundle ID needs to be unique. </p>
+<p>The string consists of a Team ID and a bundle ID search string</p>
+<p><img src="https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1" alt=""></p>
+<p>There are two types of App IDs:</p>
+<p>An Explicit App ID Matches a Single App</p>
+<p>Wildcard App IDs Match Multiple Apps</p>
+<h3 id="Setting-the-Bundle-ID"><a href="#Setting-the-Bundle-ID" class="headerlink" title="Setting the Bundle ID"></a>Setting the Bundle ID</h3><p><img src="https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1" alt=""></p>
+<h3 id="Assigning-the-Xcode-Project-to-a-Team"><a href="#Assigning-the-Xcode-Project-to-a-Team" class="headerlink" title="Assigning the Xcode Project to a Team"></a>Assigning the Xcode Project to a Team</h3><p><img src="https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1" alt="5"></p>
+<h2 id="Creating-the-Team-Provisioning-Profile"><a href="#Creating-the-Team-Provisioning-Profile" class="headerlink" title="Creating the Team Provisioning Profile"></a>Creating the Team Provisioning Profile</h2><p>After you select a team, <strong>Xcode attempts to create a specialized development provisioning profile</strong> called a team provisioning profile that it manages for you. </p>
+<p>A team provisioning profile allows an app to be signed and run by all team members on all their devices.</p>
+<h2 id="Setting-the-Version-Number-and-Build-String"><a href="#Setting-the-Version-Number-and-Build-String" class="headerlink" title="Setting the Version Number and Build String"></a>Setting the Version Number and Build String</h2><p>The version number is a two-period-separated list of positive integers, as in 4.5.2. </p>
+<p>The first integer represents a major revision, the second a minor revision, and the third a maintenance release. </p>
+<p>The version number is shown in the store</p>
+<p>The build string represents an iteration (released or unreleased) of the bundle and is also a two-period-separated list of positive integers, as in 1.2.3. </p>
+<h2 id="Setting-Deployment-Info"><a href="#Setting-Deployment-Info" class="headerlink" title="Setting Deployment Info"></a>Setting Deployment Info</h2><p>The deployment target setting specifies the lowest operating system version that your app can run on.</p>
+<p><img src="https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1" alt=""></p>
+<h2 id="Adding-App-Icons-and-a-Launch-Screen-File-略"><a href="#Adding-App-Icons-and-a-Launch-Screen-File-略" class="headerlink" title="Adding App Icons and a Launch Screen File (略)"></a>Adding App Icons and a Launch Screen File (略)</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/04/GCD学习笔记/" itemprop="url">
                   GCD学习笔记
                 </a>
@@ -336,8 +552,8 @@
 </code></pre><p>创建串行队列</p>
 <pre><code>dispatch_queue_t queue = dispatch_queue_create(&quot;com.xxcc&quot;, DISPATCH_QUEUE_SERIAL);
 </code></pre><p>获得主队列</p>
-<pre><code>dispatch_queue_t  queue = dispatch_get_main_queue();
-</code></pre><h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t  queue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+<h3 id="任务的执行"><a href="#任务的执行" class="headerlink" title="任务的执行"></a>任务的执行</h3><p>队列在queue中，任务在block块中</p>
 <p>同步函数：要求立刻马上开始执行</p>
 <pre><code>/*
 第一个参数:队列
@@ -642,20 +858,85 @@ dispatch_apply(6, queue, ^(size_t index) {
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191762] 4------&lt;NSThread: 0x610000067880&gt;{number = 6, name = (null)}
 2016-10-04 16:30:58.280 FL_GCD_DEMO[9720:1191763] 5------&lt;NSThread: 0x610000067b00&gt;{number = 7, name = (null)}
 </code></pre><h2 id="队列组-dispatch-group"><a href="#队列组-dispatch-group" class="headerlink" title="队列组 dispatch_group"></a>队列组 dispatch_group</h2><p>分别异步执行2个耗时操作，然后当2个耗时操作都执行完毕后再回到主线程执行操作。</p>
-<pre><code>dispatch_group_t group =  dispatch_group_create();
+<pre><code>-(void)testGroupQueue
+{
+        NSLog(@&quot;用户想要登录&quot;);
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_t group = dispatch_group_create();
 
-dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 执行1个耗时的异步操作
-});
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&quot;填写账号完成&quot;);
+        });
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            sleep(1);
+            NSLog(@&quot;填写密码完成&quot;);
+        });
 
-dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-    // 等前面的异步操作都执行完毕后，回到主线程...
-});
-</code></pre><h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            NSLog(@&quot;用户可以登录了&quot;);
+        });
+}
+
+2016-02-26 13:22:09.973 FL_GCD_DEMO[5494:3812823] 用户想要登录
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812859] 填写密码完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 填写账号完成
+2016-02-26 13:22:10.978 FL_GCD_DEMO[5494:3812860] 用户可以登录了
+</code></pre><h1 id="Suspend和Resume"><a href="#Suspend和Resume" class="headerlink" title="Suspend和Resume"></a>Suspend和Resume</h1><p>有时可能需要我们中断某些操作，还需要我们恢复执行，这个时候就可以用到suspend和resume操作.</p>
+<p>suspend不会停止当当前正在执行的block,而是中断了后面未执行的，在resume之后再执行后面的block</p>
+<pre><code>-(void)testSuspendAndResume
+{
+    dispatch_queue_t queue = dispatch_queue_create(&quot;myqueue&quot;, DISPATCH_QUEUE_SERIAL);
+    NSLog(@&quot;start&quot;);
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&quot;1&quot;);
+    });
+    dispatch_async(queue, ^{
+        [NSThread sleepForTimeInterval:5];
+        NSLog(@&quot;2&quot;);
+    });
+
+    [NSThread sleepForTimeInterval:3];
+    NSLog(@&quot;suspend&quot;);
+    dispatch_suspend(queue);
+    [NSThread sleepForTimeInterval:5];
+    NSLog(@&quot;resume&quot;);
+    dispatch_resume(queue);
+}
+
+2016-02-25 22:01:02.475 FL_GCD_DEMO[4890:3722720] start
+2016-02-25 22:01:05.476 FL_GCD_DEMO[4890:3722720] suspend
+2016-02-25 22:01:07.479 FL_GCD_DEMO[4890:3722759] 1
+2016-02-25 22:01:10.478 FL_GCD_DEMO[4890:3722720] resume
+2016-02-25 22:01:15.478 FL_GCD_DEMO[4890:3722759] 2
+</code></pre><h1 id="dispatch-semaphore"><a href="#dispatch-semaphore" class="headerlink" title="dispatch_semaphore"></a>dispatch_semaphore</h1><pre><code>-(void)testSemaphore
+{
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(2);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    for (int i = 0; i &lt;10; i++)
+    {
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_async(queue, ^{
+            NSLog(@&quot;下载资源：%i&quot;,i);
+            sleep(2);
+            dispatch_semaphore_signal(semaphore);
+        });
+    }
+}
+
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848434] 下载资源：1
+2016-02-26 14:04:33.392 FL_GCD_DEMO[5713:3848431] 下载资源：0
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848434] 下载资源：2
+2016-02-26 14:04:35.397 FL_GCD_DEMO[5713:3848431] 下载资源：3
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848434] 下载资源：5
+2016-02-26 14:04:37.400 FL_GCD_DEMO[5713:3848431] 下载资源：4
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848431] 下载资源：6
+2016-02-26 14:04:39.401 FL_GCD_DEMO[5713:3848434] 下载资源：7
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848434] 下载资源：9
+2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848431] 下载资源：8
+</code></pre><p>说明:dispatch_semaphore_create(2)创建了一个单位为2的信号量<br>dispatch_semaphore_wait()会消耗一个单位<br>ispatch_semaphore_signal()会增加一个单位<br>而dispatch_semaphore_create(2)中传入的“2”决定了这个信号量最多包含2个单位。<br>dispatch_semaphore_wait()中的参数2DISPATCH_TIME_FOREVER表示当信号量单位变为0个，则使得代码的执行停止在当前位置不再继续下去，直到收到signal使得单位大于0，才继续往下执行。<br>在上述代码中，每执行一次下载会占用一个单位，下载完成后通过signal告诉wait可以继续向下执行代码，从而控制同时进行的下载数量。</p>
+<h1 id="WWDC-2016-What’s-new-in-GCD-swift"><a href="#WWDC-2016-What’s-new-in-GCD-swift" class="headerlink" title="WWDC 2016 What’s new in GCD(swift)"></a>WWDC 2016 What’s new in GCD(swift)</h1><p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
 <p>Asynchronous ：可以先加入队列，将来再执行</p>
 <p>Synchronous：必须执行完才到下一个</p>
 <pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
@@ -664,8 +945,37 @@ let smallImage = image.resize(to: rect)
 DispatchQueue.main.async {
 imageView.image = smallImage
 }
-} 
-</code></pre><p>摘自<a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></p>
+}
+</code></pre><h2 id="Getting-Work-Off-Your-Main-Thread"><a href="#Getting-Work-Off-Your-Main-Thread" class="headerlink" title="Getting Work Off Your Main Thread"></a>Getting Work Off Your Main Thread</h2><p>Create a Dispatch Queue to which you submit work</p>
+<p>Dispatch Queues execute work items in FIFO order</p>
+<p>Use .async to execute your work on the queue</p>
+<p>Dispatch main queue executes all items on the main thread</p>
+<p>Simple to chain work between queues</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+}
+</code></pre><h2 id="Grouping-Work-Together"><a href="#Grouping-Work-Together" class="headerlink" title="Grouping Work Together"></a>Grouping Work Together</h2><p><img src="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1" alt=""></p>
+<h2 id="Choosing-a-Quality-of-Service"><a href="#Choosing-a-Quality-of-Service" class="headerlink" title="Choosing a Quality of Service"></a>Choosing a Quality of Service</h2><p><img src="https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1" alt=""></p>
+<h2 id="Using-Quality-of-Service-Classes"><a href="#Using-Quality-of-Service-Classes" class="headerlink" title="Using Quality of Service Classes"></a>Using Quality of Service Classes</h2><p>Use .async to submit work with a specific QoS class</p>
+<p>Dispatch helps resolve priority inversions</p>
+<p>Create single-purpose queues with a specific QoS class</p>
+<pre><code>queue.async(qos: .background) {
+print(&quot;Maintenance work&quot;)
+}
+queue.async(qos: .userInitiated) {
+print(“Button tapped”)
+}
+</code></pre><p>摘自 </p>
+<ol>
+<li><a href="http://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS多线程–彻底学会多线程之GCD</a></li>
+<li><a href="http://www.jianshu.com/p/5efa458c9340" target="_blank" rel="external">GCD（Grand Central Dispatch）快速上手</a></li>
+<li><a href="http://www.jianshu.com/p/7efbecee6af8" target="_blank" rel="external">GCD in Swift 3</a></li>
+<li><a href="http://www.jianshu.com/p/66eb7e2a8b0f" target="_blank" rel="external">GCD for Swift</a></li>
+</ol>
 
           
         
@@ -1502,556 +1812,6 @@ for customerProvider in customerProviders {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="url">
-                  WWWDC2016学习笔记Getting_started_with_swift
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T19:08:43+10:00" content="2016-09-19">
-              2016-09-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/19/WWWDC2016学习笔记Getting-started-with-swift/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h1><p>常量为let,变量为var</p>
-<pre><code>let language: String = &quot;Swift&quot;
-let introduced: Int = 2014
-let isAwesome: Bool = true
-</code></pre><p>Type Inference</p>
-<pre><code>let language = &quot;Swift&quot;    // Inferred as String
-let introduced = 2014     // Inferred as Int
-let isAwesome = true     // Inferred as Bool
-</code></pre><h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><p>Building Strings</p>
-<pre><code>let conference = &quot;WWDC&quot;
-let message = &quot;Hello, &quot; + conference + &quot;!&quot;
-
-// &quot;Hello, WWDC!&quot;
-</code></pre><p>String Interpolation</p>
-<pre><code>let conference = &quot;WWDC&quot;
-let year = 2016
-let message = &quot;Hello, \(conference) \(year + 1)!&quot;
-
-// &quot;Hello, WWDC 2017!&quot;
-</code></pre><p>Characters</p>
-<pre><code>let dogString = &quot;Dog⁈🐶&quot;
-print(&quot;\(dogString) is \(dogString.characters.count) characters long&quot;)
-
-//Dog⁈🐶 is 5 characters long.
-</code></pre><h1 id="Array-and-Dictionary"><a href="#Array-and-Dictionary" class="headerlink" title="Array and Dictionary"></a>Array and Dictionary</h1><pre><code>let names: [String] = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;]    
-
-let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] // Type Inference
-
-let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-</code></pre><h2 id="Modifying-an-Array"><a href="#Modifying-an-Array" class="headerlink" title="Modifying an Array"></a>Modifying an Array</h2><pre><code>var packingList = [&quot;Socks&quot;, &quot;Shoes&quot;]    
-//[&quot;Socks&quot;, &quot;Shoes&quot;]
-
-print(packingList[0])    
-//&quot;Socks&quot;
-
-packingList.append(&quot;Trousers&quot;)    
-//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Trousers&quot;]
-
-packingList[2] = &quot;Jeans&quot;    
-//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;]
-
-packingList.append(contentsOf: [&quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;])
-//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Shorts&quot;, &quot;Sandals&quot;, &quot;Sunblock&quot;]
-
-packingList[3...5] = [&quot;Hoodie&quot;, &quot;Scarf&quot;]
-//[&quot;Socks&quot;, &quot;Shoes&quot;, &quot;Jeans&quot;, &quot;Hoodie&quot;, &quot;Scarf&quot;]
-</code></pre><h2 id="Modifying-a-Dictionary"><a href="#Modifying-a-Dictionary" class="headerlink" title="Modifying a Dictionary"></a>Modifying a Dictionary</h2><pre><code>var ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-
-ages[&quot;Justyn&quot;] = 67 // Adds a new value for &quot;Justyn&quot;
-//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 67]
-
-ages[&quot;Justyn&quot;] = 68 // Changes the value for &quot;Justyn&quot;
-//[&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5, &quot;Justyn&quot;: 68]
-</code></pre><h2 id="Retrieving-a-Value-from-a-Dictionary"><a href="#Retrieving-a-Value-from-a-Dictionary" class="headerlink" title="Retrieving a Value from a Dictionary"></a>Retrieving a Value from a Dictionary</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-let possibleAge = ages[&quot;Amy&quot;]    
-</code></pre><h1 id="While-amp-For-In-Loop"><a href="#While-amp-For-In-Loop" class="headerlink" title="While &amp; For-In Loop"></a>While &amp; For-In Loop</h1><h2 id="While-and-Repeat-While"><a href="#While-and-Repeat-While" class="headerlink" title="While and Repeat-While"></a>While and Repeat-While</h2><pre><code>while !endOfFile {
-readLine()
-}
-
-
-repeat {
-performTask()
-} while tasksRemaining &gt; 0
-</code></pre><h2 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h2><pre><code>let dogString = &quot;Dog⁈🐶&quot;
-for character in dogString.characters {
-print(character)
-}
-</code></pre><h2 id="Closed-Ranges"><a href="#Closed-Ranges" class="headerlink" title="Closed Ranges"></a>Closed Ranges</h2><pre><code>for number in 1...5 {
-print(&quot;\(number) times 4 is \(number * 4)&quot;)
-}
-</code></pre><h2 id="Half-Closed-Ranges"><a href="#Half-Closed-Ranges" class="headerlink" title="Half-Closed Ranges"></a>Half-Closed Ranges</h2><pre><code>let results = [7, 52, 9, 33, 6, 12, 86, 4, 22, 18, 3]
-let maxResultCount = 5
-for index in 0..&lt;maxResultCount {
-print(&quot;Result \(index) is \(results[index])&quot;)
-}
-</code></pre><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><pre><code>for name in [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Justyn&quot;, &quot;Aadya&quot;] {
-print(&quot;Hello, \(name)!&quot;)
-}   
-</code></pre><h2 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-for (name, age) in ages {
-print(&quot;\(name) is \(age) years old&quot;)
-}
-</code></pre><h1 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h1><h2 id="If-Statement"><a href="#If-Statement" class="headerlink" title="If Statement"></a>If Statement</h2><pre><code>let age = 32
-if age == 1 {
-print(&quot;Happy first birthday!&quot;)
-} else if age == 40 {
-print(&quot;Happy 40th birthday!&quot;)
-} else {
-print(&quot;Happy plain old boring birthday.&quot;)
-} 
-</code></pre><h2 id="Switch-Statement（需要将所有情况都考虑到）"><a href="#Switch-Statement（需要将所有情况都考虑到）" class="headerlink" title="Switch Statement（需要将所有情况都考虑到）"></a>Switch Statement（需要将所有情况都考虑到）</h2><p>例子1</p>
-<pre><code>let age = 32
-switch age {
-case 1:
-    print(&quot;Happy first birthday!&quot;)
-case 13...19:
-    print(&quot;Happy birthday, teenager!&quot;)
-case let decade where decade % 10 == 0:
-    print(&quot;Happy significant \(decade)th birthday!&quot;)
-default:
-    print(&quot;Happy plain old boring birthday.&quot;)
-}
-</code></pre><p>例子2</p>
-<pre><code>let userName = &quot;bob&quot;
-let passwordIsValid = false
-switch (userName, passwordIsValid) {
-    case (&quot;admin&quot;, true):
-print(&quot;Welcome back, administrator!&quot;)
-    case (&quot;guest&quot;, _):
-print(&quot;Guests are not allowed in this restricted area.&quot;)
-    case (_, let isValid):
-print(isValid ? &quot;Welcome to the restricted area!&quot; : &quot;ACCESS DENIED.&quot;)
-}
-</code></pre><h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><h2 id="Checking-for-an-Optional-Value"><a href="#Checking-for-an-Optional-Value" class="headerlink" title="Checking for an Optional Value"></a>Checking for an Optional Value</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-
-let possibleAge: Int? = ages[&quot;Daryl&quot;]
-
-if possibleAge == nil {
-print(&quot;Age not found.&quot;)
-}
-</code></pre><h2 id="If-Let-Statement-when-use-optional"><a href="#If-Let-Statement-when-use-optional" class="headerlink" title="If-Let Statement(when use optional)"></a>If-Let Statement(when use optional)</h2><pre><code>let ages = [&quot;Mohsen&quot;: 17, &quot;Amy&quot;: 40, &quot;Graham&quot;: 5]
-
-if let age = ages[&quot;Amy&quot;] {
-print(&quot;An age of \(age) was found.&quot;)
-}  
-
-//An age of 40 was found.
-</code></pre><h1 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h1><h2 id="Multiple-Parameters"><a href="#Multiple-Parameters" class="headerlink" title="Multiple Parameters"></a>Multiple Parameters</h2><pre><code>func sendMessage(recipient: String, shouting: Bool) {
-var message = &quot;Hey there, \(recipient)!&quot;
-if shouting {
-    message = message.uppercased()
-}
-    print(message)
-}
-sendMessage(recipient: &quot;Morgan&quot;, shouting: false) 
-</code></pre><h2 id="Explicit-Argument-Labels"><a href="#Explicit-Argument-Labels" class="headerlink" title="Explicit Argument Labels"></a>Explicit Argument Labels</h2><pre><code>func sendMessage(to recipient: String, shouting: Bool) {
-var message = &quot;Hey there, \(recipient)!&quot;
-if shouting {
-    message = message.uppercased()
-}
-    print(message)
-}
-sendMessage(to: &quot;Morgan&quot;, shouting: false)
-</code></pre><h2 id="Omitting-Argument-Labels"><a href="#Omitting-Argument-Labels" class="headerlink" title="Omitting Argument Labels"></a>Omitting Argument Labels</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool) {
-var message = &quot;\(message), \(recipient)!&quot;
-if shouting {
-    message = message.uppercased()
-}
-    print(message)
-}
-sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;, shouting: false)
-</code></pre><h2 id="Parameters-with-Default-Values"><a href="#Parameters-with-Default-Values" class="headerlink" title="Parameters with Default Values"></a>Parameters with Default Values</h2><pre><code>func sendMessage(_ message: String, to recipient: String, shouting: Bool = false) {
-var message = &quot;\(message), \(recipient)!&quot;
-if shouting {
-    message = message.uppercased()
-}
-    print(message)
-}
-sendMessage(&quot;See you at the Bash&quot;, to: &quot;Morgan&quot;)
-</code></pre><h2 id="Returning-Optional-Values"><a href="#Returning-Optional-Values" class="headerlink" title="Returning Optional Values"></a>Returning Optional Values</h2><pre><code>func firstString(havingPrefix prefix: String, in strings: [String]) -&gt; String? {
-for string in strings {
-if string.hasPrefix(prefix) {
-return string
-}
-}
-return nil
-}
-</code></pre><p>使用if-let，当使用optional value时</p>
-<pre><code>var guests = [&quot;Jack&quot;, &quot;Kumar&quot;, &quot;Anita&quot;, &quot;Anna&quot;]
-if let guest = firstString(havingPrefix: &quot;A&quot;, in: guests) {
-print(&quot;See you at the party, \(guest)!&quot;)
-} else {
-print(&quot;Invite must be in the mail.&quot;)
-}
-
-//See you at the party, Anita!
-</code></pre><h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><h2 id="Functions-as-Parameters"><a href="#Functions-as-Parameters" class="headerlink" title="Functions as Parameters"></a>Functions as Parameters</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {
-var result: [Int] = []
-for number in numbers {
-if includeNumber(number) {
-    result.append(number)
-}
-}
-    return result
-}
-
-let numbers = [4, 17, 34, 41, 82]
-
-func divisibleByTwo(_ number: Int) -&gt; Bool {
-    return number % 2 == 0
-}
-let evenNumbers = filterInts(numbers, divisibleByTwo)
-
-//let evenNumbers = filterInts([4, 17, 34, 41, 82], divisibleByTwo)
-
-
-print(evenNumbers)
-</code></pre><h2 id="Implicit-Arguments-in-Closures"><a href="#Implicit-Arguments-in-Closures" class="headerlink" title="Implicit Arguments in Closures"></a>Implicit Arguments in Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
-let evenNumbers = filterInts(numbers, { $0 % 2 == 0 })
-print(evenNumbers)
-</code></pre><h2 id="Trailing-Closures"><a href="#Trailing-Closures" class="headerlink" title="Trailing Closures"></a>Trailing Closures</h2><pre><code>func filterInts(_ numbers: [Int], _ includeNumber: (Int) -&gt; Bool) -&gt; [Int] {…}
-</code></pre><p>方式1.如果传递的闭包是最后一个参数，可以将其大括号移除到小括号后面方便阅读. $0代表第一个参数</p>
-<pre><code>let evenNumbers = filterInts(numbers) { $0 % 2 == 0 }
-print(evenNumbers)
-</code></pre><p>方式2.</p>
-<pre><code>let evenNumbers = filterInts(numbers) { (firstItem) -&gt; Bool in
-    return firstItem % 2==0
-}
-print(evenNumbers)
-</code></pre><p>如果闭包是唯一参数，可以将前面的小括号移除</p>
-<pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
-let shortNames = names.filter { name in name.characters.count &lt; 5 }
-</code></pre><h2 id="Filter-and-Map-Methods"><a href="#Filter-and-Map-Methods" class="headerlink" title="Filter and Map Methods"></a>Filter and Map Methods</h2><pre><code>let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
-
-let capitalizedShortNames = names.filter { name in name.characters.count &lt; 5 }
-    .map { name in name.uppercased() }
-
-print(capitalizedShortNames)
-</code></pre><h1 id="Generic"><a href="#Generic" class="headerlink" title="Generic"></a>Generic</h1><h2 id="Calling-Generic-Functions"><a href="#Calling-Generic-Functions" class="headerlink" title="Calling Generic Functions"></a>Calling Generic Functions</h2><pre><code>let numbers = [24,45,65,76,84,200,4]
-let names = [&quot;Lily&quot;, &quot;Santiago&quot;, &quot;Aadya&quot;, &quot;Jack&quot;, &quot;Anna&quot;, &quot;Andrés&quot;]
-
-func filter&lt;Element&gt;(_ source: [Element], _ includeElement: (Element) -&gt; Bool) -&gt; [Element] {
-    var result: [Element] = []
-    for element in source {
-        if includeElement(element) {
-            result.append(element)
-        }
-    }
-    return result
-}
-
-let evenNumbers = filter(numbers) { $0 % 2 == 0 }
-let shortNames = filter(names) { name in name.characters.count &lt; 5 }
-
-print(evenNumbers)
-print(shortNames)
-</code></pre><h2 id="Generic-Types"><a href="#Generic-Types" class="headerlink" title="Generic Types"></a>Generic Types</h2><pre><code>struct NamedArray&lt;Element&gt; {
-    var name: String
-    var items: [Element]
-}
-
-let boardGames: NamedArray&lt;String&gt; = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
-let primes: NamedArray&lt;Int&gt; = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
-
-//Infer types
-//let boardGames: NamedArray = NamedArray(name: &quot;Board Games&quot;, items: [&quot;Chess&quot;, &quot;Go&quot;])
-//let primes: NamedArray = NamedArray(name: &quot;Primes&quot;, items: [1, 3, 5, 7, 13])
-
-print(boardGames)
-print(primes)
-</code></pre><h1 id="Structures"><a href="#Structures" class="headerlink" title="Structures"></a>Structures</h1><pre><code>struct Rectangle {
-    var width = 12
-    var height = 10
-}
-
-var rectangle = Rectangle()
-rectangle.height = 4
-
-
-struct Rectangle {
-var width: Int
-var height: Int
-}
-var rectangle = Rectangle(width: 4, height: 5)
-</code></pre><h2 id="Computed-Properties"><a href="#Computed-Properties" class="headerlink" title="Computed Properties"></a>Computed Properties</h2><pre><code>struct Rectangle {
-    var width: Int
-    var height: Int
-    var area: Int {
-        return width * height
-    }
-}
-let rectangle = Rectangle(width: 4, height: 5)
-print(&quot;Width is \(rectangle.width) and area is \(rectangle.area).&quot;)
-</code></pre><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><pre><code>struct Rectangle {
-    var width: Int
-    var height: Int
-    func fitsInside(_ other: Rectangle) -&gt; Bool {
-        return (width &lt; other.width) &amp;&amp; (height &lt; other.height)
-    }
-}
-let small = Rectangle(width: 1, height: 2)
-let large = Rectangle(width: 5, height: 5)
-
-print(small.fitsInside(large)) // Returns true
-</code></pre><h2 id="Initializers"><a href="#Initializers" class="headerlink" title="Initializers"></a>Initializers</h2><p>自动生成init method</p>
-<pre><code>struct Rectangle {
-    var width: Int
-    var height: Int
-}
-
-var rectangl = Rectangle(width: 4, height: 5)
-</code></pre><p>也可以自己明确的写一个init method</p>
-<pre><code>struct Rectangle {
-    var width: Int
-    var height: Int
-
-    init(width: Int, height: Int) {
-        self.width = width
-        self.height = height
-    }
-}
-var rectangle = Rectangle(width: 4, height: 5)
-</code></pre><h1 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h1><pre><code>class ScoreLogFile {
-    var highScores: [Score]
-    func record(score: Score, for player: Player) -&gt; Void {…}
-}
-</code></pre><h2 id="Subclasses-Can-Add-Functionality"><a href="#Subclasses-Can-Add-Functionality" class="headerlink" title="Subclasses Can Add Functionality"></a>Subclasses Can Add Functionality</h2><pre><code>class Fish {
-    func swim() {
-        print(&quot;I&apos;m swimming.&quot;)
-    }
-}
-
-class FlyingFish: Fish {
-    func fly() {
-        print(&quot;Flying throught the air!&quot;)
-    }
-    // Inherits swim() with no changes.
-}
-</code></pre><h2 id="Subclasses-Can-Override-Functionality"><a href="#Subclasses-Can-Override-Functionality" class="headerlink" title="Subclasses Can Override Functionality"></a>Subclasses Can Override Functionality</h2><p>需要加上override字符，否则会报错</p>
-<pre><code>class Fish {
-    func swim() {
-        print(&quot;I&apos;m swimming.&quot;)
-    }
-}
-
-class ComplainingFish: Fish {
-   override func swim() {
-        print(&quot;Grumble grumble grumble...&quot;)
-        //super.swim()
-    }
-}
-</code></pre><h2 id="Subclass-Initializers"><a href="#Subclass-Initializers" class="headerlink" title="Subclass Initializers"></a>Subclass Initializers</h2><pre><code>class Fish {
-    var name: String
-    init(name: String) {
-        self.name = name
-    }
-}
-
-class ComplainingFish: Fish {
-    var complaint: String
-    init(name: String, complaint: String) {
-        self.complaint = complaint
-        super.init(name: name)
-    }
-}
-</code></pre><h1 id="Class-vs-Structure"><a href="#Class-vs-Structure" class="headerlink" title="Class vs. Structure"></a>Class vs. Structure</h1><ol>
-<li><p>可以复制，不相互影响的object，采用structure。例如两个球员，他们各自的比分</p>
-</li>
-<li><p>可以方便被多处访问的同一个object,采用class。例如比赛记分册，需要被多个球员同时访问。一旦更新，大家都能看见</p>
-</li>
-<li><p>需要被继承的，采用Class</p>
-<p><img src="https://www.dropbox.com/s/gmaj0jp2hge5547/2016092001.png?dl=1" alt=""></p>
-</li>
-</ol>
-<h1 id="Enumerations"><a href="#Enumerations" class="headerlink" title="Enumerations"></a>Enumerations</h1><pre><code>enum Alignment {
-    case left, right, center
-}
-
-let textAlignment = Alignment.left
-switch textAlignment {
-case .left:
-    print(&quot;Lean to the left&quot;)
-case .right:
-    print(&quot;Lean to the right&quot;)
-case .center:
-    print(&quot;Stand up straight&quot;)
-}
-</code></pre><h2 id="Enumerations-with-Associated-Values"><a href="#Enumerations-with-Associated-Values" class="headerlink" title="Enumerations with Associated Values"></a>Enumerations with Associated Values</h2><pre><code>enum Alignment {
-
-    case left(padding: Double), right(padding: Double), center
-}
-
-let textAlignment = Alignment.left(padding: 42.7)
-
-switch textAlignment {
-
-case .left(let padding):
-    print(&quot;Left with \(padding) pixels of padding&quot;)
-
-default:
-    print(&quot;this is default&quot;)
-}
-</code></pre><h2 id="Enumerations-with-Raw-Values"><a href="#Enumerations-with-Raw-Values" class="headerlink" title="Enumerations with Raw Values"></a>Enumerations with Raw Values</h2><pre><code>enum ServerAddress: String {
-    case staging = &quot;https://staging.example.com&quot;
-    case production = &quot;https://example.com&quot;
-}
-
-func findPhotos(matchingQuery query: String, from server: ServerAddress) {
-    let serverAddress = server.rawValue
-    …
-}
-
-findPhotos(matchingQuery: &quot;strawberry&quot;, from: .staging)
-</code></pre><h1 id="Protocols-amp-Extension"><a href="#Protocols-amp-Extension" class="headerlink" title="Protocols &amp; Extension"></a>Protocols &amp; Extension</h1><h2 id="Protocols"><a href="#Protocols" class="headerlink" title="Protocols"></a>Protocols</h2><p>protocol is like blueprint ,like interface or abstract classes</p>
-<pre><code>protocol Player {
-    func takeTurn(on board: Board)
-}
-struct HumanPlayer: Player {
-    func takeTurn(on board: Board) { /* Show move UI and wait */ }
-}
-struct ComputerPlayer: Player {
-    func takeTurn(on board: Board) { /* Pick the best legal move using AI */ }
-}
-</code></pre><h2 id="Extensions-for-additional-functionality"><a href="#Extensions-for-additional-functionality" class="headerlink" title="Extensions for additional functionality"></a>Extensions for additional functionality</h2><pre><code>struct Rectangle {
-    var width: Int
-    var height: Int
-}
-
-extension Rectangle {
-    func fitsInside(_ other: Rectangle) -&gt; Bool {…}
-    var area {…}
-}
-</code></pre><h2 id="Protocols-Extensions"><a href="#Protocols-Extensions" class="headerlink" title="Protocols + Extensions"></a>Protocols + Extensions</h2><pre><code>struct HumanPlayer: Player {…}
-extension HumanPlayer: CustomStringConvertible {
-    var description: String {
-        return &quot;Human player \(name) has a score of \(score)&quot;
-    }
-}
-let player = HumanPlayer(name: &quot;Lynn&quot;, score: 0)
-print(player)
-</code></pre><h1 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h1><pre><code>enum SomeError: ErrorProtocol {
-    case somethingWentWrong, somethingFailed
-}
-func doSomething() throws -&gt; Data {
-    progressBar.visible = true
-    defer { progressBar.visible = false }
-    let data: Data?
-    do {
-        data = try somethingThatMightFail()
-    } catch SomeError.somethingWentWrong {
-        data = nil
-    }
-    guard let result = summarize(data) else { throw SomeError.somethingFailed }
-    return result
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -2098,7 +1858,7 @@ func doSomething() throws -&gt; Data {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">107</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -2115,7 +1875,7 @@ func doSomething() throws -&gt; Data {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

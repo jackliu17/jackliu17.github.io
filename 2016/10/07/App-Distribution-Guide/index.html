@@ -1,0 +1,874 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="apple_doc," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Maintaining Your Signing Identities and CertificatesAbout Signing Identities and CertificatesCode signing your app lets users trust that your app has been created by a source known to Apple and that i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="App_Distribution_Guide">
+<meta property="og:url" content="http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Maintaining Your Signing Identities and CertificatesAbout Signing Identities and CertificatesCode signing your app lets users trust that your app has been created by a source known to Apple and that i">
+<meta property="og:image" content="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1">
+<meta property="og:updated_time" content="2016-10-07T07:06:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="App_Distribution_Guide">
+<meta name="twitter:description" content="Maintaining Your Signing Identities and CertificatesAbout Signing Identities and CertificatesCode signing your app lets users trust that your app has been created by a source known to Apple and that i">
+<meta name="twitter:image" content="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> App_Distribution_Guide | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                App_Distribution_Guide
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T18:05:27+11:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/07/App-Distribution-Guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/07/App-Distribution-Guide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Maintaining-Your-Signing-Identities-and-Certificates"><a href="#Maintaining-Your-Signing-Identities-and-Certificates" class="headerlink" title="Maintaining Your Signing Identities and Certificates"></a>Maintaining Your Signing Identities and Certificates</h1><h2 id="About-Signing-Identities-and-Certificates"><a href="#About-Signing-Identities-and-Certificates" class="headerlink" title="About Signing Identities and Certificates"></a>About Signing Identities and Certificates</h2><p>Code signing your app lets users trust that your app has been created by a source known to Apple and that it hasn’t been tampered with.</p>
+<p>signing identities—stored in your keychain</p>
+<p>certificates—stored in your developer account</p>
+<p><img src="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1" alt=""></p>
+<h2 id="Viewing-Signing-Identities-and-Provisioning-Profiles"><a href="#Viewing-Signing-Identities-and-Provisioning-Profiles" class="headerlink" title="Viewing Signing Identities and Provisioning Profiles"></a>Viewing Signing Identities and Provisioning Profiles</h2><p>To view account details</p>
+<ol>
+<li>Choose Xcode &gt; Preferences.</li>
+<li>Click Accounts at the top of the window.</li>
+<li>Select the team you want to view, and click View Details.</li>
+</ol>
+<p>If a Create button appears next to a certificate, it hasn’t been created yet. If a Download button appears next to a provisioning profile, it’s not on your Mac.</p>
+<p><img src="https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1" alt=""></p>
+<h2 id="Creating-Signing-Identities"><a href="#Creating-Signing-Identities" class="headerlink" title="Creating Signing Identities"></a>Creating Signing Identities</h2><p>In the dialog that appears, click the Create button in the row of the type of certificate you want to create.<br>If the Create button is disabled, you are not allowed to create that type of signing identity.</p>
+<p><img src="https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1" alt=""></p>
+<h2 id="Verifying-Your-Steps"><a href="#Verifying-Your-Steps" class="headerlink" title="Verifying Your Steps"></a>Verifying Your Steps</h2><h3 id="Verifying-Using-Your-Developer-Account"><a href="#Verifying-Using-Your-Developer-Account" class="headerlink" title="Verifying Using Your Developer Account"></a>Verifying Using Your Developer Account</h3><ol>
+<li>Sign in to developer.apple.com/account, and click Certificates, IDs &amp; Profiles.</li>
+<li>In the Certificates section of the sidebar, select Development or Production depending on the type of certificate you want to verify.</li>
+<li>The type and expiration date of the certificate should <strong>match</strong> the information that you view in Keychain Access.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1" alt=""></p>
+<h2 id="Verifying-Using-Keychain-Access"><a href="#Verifying-Using-Keychain-Access" class="headerlink" title="Verifying Using Keychain Access"></a>Verifying Using Keychain Access</h2><p>When you create a development or distribution certificate using Xcode, the certificate is automatically installed in your login keychain.</p>
+<p>In the left pane, select “login” in the Keychains section and select Certificates in the Category section.</p>
+<p>The name of the development certificate begins with the text “iPhone Developer”</p>
+<p><img src="https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1" alt="11"></p>
+<p>If you click the disclosure triangle next to the certificate name, your private key appears. If the disclosure triangle doesn’t appear, you’re missing your private key</p>
+<p><img src="https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1" alt="12"></p>
+<h2 id="Installing-Missing-Intermediate-Certificate-Authorities"><a href="#Installing-Missing-Intermediate-Certificate-Authorities" class="headerlink" title="Installing Missing Intermediate Certificate Authorities"></a>Installing Missing Intermediate Certificate Authorities</h2><p>To use your certificates, the correct intermediate certificate needs to be in your keychain.</p>
+<p>An intermediate certificate ensures that your certificates were issued by a trusted source. </p>
+<p>The intermediate certificate, named Apple Worldwide Developer Relations Certification Authority, is installed in your system keychain when you install Xcode. </p>
+<p>First try downloading your provisioning profiles in Xcode to install missing intermediate certificates. If that doesn’t work for you, download and install the missing intermediate certificate.</p>
+<ol>
+<li>Go to <a href="http://www.apple.com/certificateauthority" target="_blank" rel="external">http://www.apple.com/certificateauthority</a>.</li>
+<li>Under Apple Intermediate Certificates, click the link for the intermediate certificate you’re missing.A certificate file, with a .cer extension, appears in your Downloads folder.</li>
+<li>Double-click the certificate file to install it in your system keychain.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1" alt="13"></p>
+<h2 id="Exporting-and-Importing-Certificates-and-Profiles"><a href="#Exporting-and-Importing-Certificates-and-Profiles" class="headerlink" title="Exporting and Importing Certificates and Profiles"></a>Exporting and Importing Certificates and Profiles</h2><p>After Xcode creates your certificates and profiles for you, export them to create a backup of all your assets. You do this to, for example, transfer your assets to another Mac you use for development or repair a certificate if the private key is missing.</p>
+<p>The export file, called a <strong>developer profile</strong>, contains the following team assets:</p>
+<ul>
+<li>Development certificates</li>
+<li>Distribution certificates</li>
+<li>Provisioning profiles</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1" alt="17"></p>
+<p><img src="https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1" alt="18"></p>
+<h3 id="Exporting-Selected-Certificates"><a href="#Exporting-Selected-Certificates" class="headerlink" title="Exporting Selected Certificates"></a>Exporting Selected Certificates</h3><p><img src="https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1" alt="19"></p>
+<h3 id="Importing-Your-Developer-Profile"><a href="#Importing-Your-Developer-Profile" class="headerlink" title="Importing Your Developer Profile"></a>Importing Your Developer Profile</h3><p>You import your developer profile to restore missing private keys or when you want to switch to another Mac.</p>
+<p><img src="https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1" alt="20"></p>
+<h2 id="Removing-Signing-Identities-from-Your-Keychain"><a href="#Removing-Signing-Identities-from-Your-Keychain" class="headerlink" title="Removing Signing Identities from Your Keychain"></a>Removing Signing Identities from Your Keychain</h2><p>Delete in key category first , then delete them in My certificate category</p>
+<p><img src="https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1" alt="21"></p>
+<h2 id="Revoking-Certificates"><a href="#Revoking-Certificates" class="headerlink" title="Revoking Certificates"></a>Revoking Certificates</h2><p>If you’re a team admin for an organization, you may want to revoke development certificates of team members who no longer work on your project. </p>
+<p>Revoking certificates may invalidate provisioning profiles,</p>
+<p>Revoking development or distribution certificates doesn’t affect apps that you’ve submitted to the store nor does it affect your ability to update them</p>
+<h3 id="Resetting-Certificates-Using-Xcode"><a href="#Resetting-Certificates-Using-Xcode" class="headerlink" title="Resetting Certificates Using Xcode"></a>Resetting Certificates Using Xcode</h3><p>If Xcode displays a Create button, the signing identity doesn’t exist in your developer account or on your Mac. </p>
+<p>If Xcode displays a Reset button, the signing identity is not usable on your Mac—for example, it is missing the private key. </p>
+<p>If you click the Reset button, Xcode revokes and re-creates the corresponding certificate.</p>
+<p><img src="https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1" alt="22"></p>
+<h3 id="Revoking-Certificates-Using-the-Developer-Account"><a href="#Revoking-Certificates-Using-the-Developer-Account" class="headerlink" title="Revoking Certificates Using the Developer Account"></a>Revoking Certificates Using the Developer Account</h3><p><img src="https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1" alt="23"></p>
+<h2 id="Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles"><a href="#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles" class="headerlink" title="Re-Creating Certificates and Updating Related Provisioning Profiles"></a>Re-Creating Certificates and Updating Related Provisioning Profiles</h2><p>Revoke the certificates using your developer account</p>
+<p>Provisioning profiles containing a revoked certificate become invalid.</p>
+<p>If necessary, remove the signing identities for these certificates from your keychain</p>
+<p>Remove or regenerate other types of provisioning profiles that contain the revoked certificates,</p>
+<p><img src="https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1" alt="24"></p>
+<h1 id="Maintaining-Identifiers-Devices-and-Profiles"><a href="#Maintaining-Identifiers-Devices-and-Profiles" class="headerlink" title="Maintaining Identifiers, Devices, and Profiles"></a>Maintaining Identifiers, Devices, and Profiles</h1><h2 id="App-IDs-Registering-Editing-Deleting"><a href="#App-IDs-Registering-Editing-Deleting" class="headerlink" title="App IDs-Registering/Editing/Deleting"></a>App IDs-Registering/Editing/Deleting</h2><p><img src="https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1" alt="14"></p>
+<h2 id="Locating-Your-Team-ID"><a href="#Locating-Your-Team-ID" class="headerlink" title="Locating Your Team ID"></a>Locating Your Team ID</h2><p>Sign in to developer.apple.com/account, and click Membership in the sidebar.Your Team ID appears in the Membership Information section under the team name.</p>
+<h2 id="Provisioning-profiles"><a href="#Provisioning-profiles" class="headerlink" title="Provisioning profiles"></a>Provisioning profiles</h2><p><strong>A provisioning profile includes signing certificates, device identifiers, and an App ID.</strong> </p>
+<p>Development provisioning profiles are used to build and install versions of your app during the development cycle, </p>
+<p>Distribution provisioning profiles are used to submit your apps to the App Store and distribute them to beta testers.</p>
+<h3 id="Generate-Provisioning-Profiles-with-Xcode"><a href="#Generate-Provisioning-Profiles-with-Xcode" class="headerlink" title="Generate Provisioning Profiles with Xcode"></a>Generate Provisioning Profiles with Xcode</h3><ol>
+<li>Connect your device to your Mac and click Use for Development in Xcode’s Organizer window. </li>
+<li>Sign in with the Apple ID associated with your iOS Developer Program membership and Xcode will generate a provisioning profile containing your certificate and device identifier.</li>
+</ol>
+<h3 id="Creating-Provisioning-Profiles-Using-Your-Developer-Account-略"><a href="#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略" class="headerlink" title="Creating Provisioning Profiles Using Your Developer Account (略)"></a>Creating Provisioning Profiles Using Your Developer Account (略)</h3><h3 id="Downloading-Provisioning-Profiles-in-Xcode"><a href="#Downloading-Provisioning-Profiles-in-Xcode" class="headerlink" title="Downloading Provisioning Profiles in Xcode"></a>Downloading Provisioning Profiles in Xcode</h3><ol>
+<li>In the Xcode Preferences window, click Accounts.</li>
+<li>Select your team, and click View Details.</li>
+<li>In the dialog that appears, click the “Download all” button in the lower-left corner under the Provisioning Profiles table.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1" alt="15"></p>
+<h3 id="Editing-Provisioning-Profiles-in-Your-Developer-Account"><a href="#Editing-Provisioning-Profiles-in-Your-Developer-Account" class="headerlink" title="Editing Provisioning Profiles in Your Developer Account"></a>Editing Provisioning Profiles in Your Developer Account</h3><p>After doing so, download provisioning profiles in Xcode</p>
+<p><img src="https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1" alt="16"></p>
+<h3 id="Renewing-Expired-Provisioning-Profiles"><a href="#Renewing-Expired-Provisioning-Profiles" class="headerlink" title="Renewing Expired Provisioning Profiles"></a>Renewing Expired Provisioning Profiles</h3><p>You don’t need to make any changes to the provisioning profile. Just scroll to the bottom of the Edit iOS Provisioning Profile or the Edit Mac Provisioning Profile page, and click Generate</p>
+<h1 id="Configuring-Your-Xcode-Project-for-Distribution"><a href="#Configuring-Your-Xcode-Project-for-Distribution" class="headerlink" title="Configuring Your Xcode Project for Distribution"></a>Configuring Your Xcode Project for Distribution</h1><h2 id="Configuring-Identity-and-Team-Settings"><a href="#Configuring-Identity-and-Team-Settings" class="headerlink" title="Configuring Identity and Team Settings"></a>Configuring Identity and Team Settings</h2><h3 id="About-Bundle-IDs"><a href="#About-Bundle-IDs" class="headerlink" title="About Bundle IDs"></a>About Bundle IDs</h3><p>A bundle ID precisely identifies a single app</p>
+<p>reverse-DNS format. com.Acme.Hello </p>
+<p>use an app’s bundle ID in many different places to identify the app</p>
+<p><img src="https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1" alt=""></p>
+<h3 id="App-ID"><a href="#App-ID" class="headerlink" title="App ID"></a>App ID</h3><p>app’s bundle ID needs to be unique. </p>
+<p>The string consists of a Team ID and a bundle ID search string</p>
+<p><img src="https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1" alt=""></p>
+<p>There are two types of App IDs:</p>
+<p>An Explicit App ID Matches a Single App</p>
+<p>Wildcard App IDs Match Multiple Apps</p>
+<h3 id="Setting-the-Bundle-ID"><a href="#Setting-the-Bundle-ID" class="headerlink" title="Setting the Bundle ID"></a>Setting the Bundle ID</h3><p><img src="https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1" alt=""></p>
+<h3 id="Assigning-the-Xcode-Project-to-a-Team"><a href="#Assigning-the-Xcode-Project-to-a-Team" class="headerlink" title="Assigning the Xcode Project to a Team"></a>Assigning the Xcode Project to a Team</h3><p><img src="https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1" alt="5"></p>
+<h2 id="Creating-the-Team-Provisioning-Profile"><a href="#Creating-the-Team-Provisioning-Profile" class="headerlink" title="Creating the Team Provisioning Profile"></a>Creating the Team Provisioning Profile</h2><p>After you select a team, <strong>Xcode attempts to create a specialized development provisioning profile</strong> called a team provisioning profile that it manages for you. </p>
+<p>A team provisioning profile allows an app to be signed and run by all team members on all their devices.</p>
+<h2 id="Setting-the-Version-Number-and-Build-String"><a href="#Setting-the-Version-Number-and-Build-String" class="headerlink" title="Setting the Version Number and Build String"></a>Setting the Version Number and Build String</h2><p>The version number is a two-period-separated list of positive integers, as in 4.5.2. </p>
+<p>The first integer represents a major revision, the second a minor revision, and the third a maintenance release. </p>
+<p>The version number is shown in the store</p>
+<p>The build string represents an iteration (released or unreleased) of the bundle and is also a two-period-separated list of positive integers, as in 1.2.3. </p>
+<h2 id="Setting-Deployment-Info"><a href="#Setting-Deployment-Info" class="headerlink" title="Setting Deployment Info"></a>Setting Deployment Info</h2><p>The deployment target setting specifies the lowest operating system version that your app can run on.</p>
+<p><img src="https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1" alt=""></p>
+<h2 id="Adding-App-Icons-and-a-Launch-Screen-File-略"><a href="#Adding-App-Icons-and-a-Launch-Screen-File-略" class="headerlink" title="Adding App Icons and a Launch Screen File (略)"></a>Adding App Icons and a Launch Screen File (略)</h2>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/apple-doc/" rel="tag">#apple_doc</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/04/GCD学习笔记/" rel="next" title="GCD学习笔记">
+                <i class="fa fa-chevron-left"></i> GCD学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">108</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maintaining-Your-Signing-Identities-and-Certificates"><span class="nav-number">1.</span> <span class="nav-text">Maintaining Your Signing Identities and Certificates</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Signing-Identities-and-Certificates"><span class="nav-number">1.1.</span> <span class="nav-text">About Signing Identities and Certificates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Viewing-Signing-Identities-and-Provisioning-Profiles"><span class="nav-number">1.2.</span> <span class="nav-text">Viewing Signing Identities and Provisioning Profiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-Signing-Identities"><span class="nav-number">1.3.</span> <span class="nav-text">Creating Signing Identities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Verifying-Your-Steps"><span class="nav-number">1.4.</span> <span class="nav-text">Verifying Your Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Verifying-Using-Your-Developer-Account"><span class="nav-number">1.4.1.</span> <span class="nav-text">Verifying Using Your Developer Account</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Verifying-Using-Keychain-Access"><span class="nav-number">1.5.</span> <span class="nav-text">Verifying Using Keychain Access</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Installing-Missing-Intermediate-Certificate-Authorities"><span class="nav-number">1.6.</span> <span class="nav-text">Installing Missing Intermediate Certificate Authorities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exporting-and-Importing-Certificates-and-Profiles"><span class="nav-number">1.7.</span> <span class="nav-text">Exporting and Importing Certificates and Profiles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exporting-Selected-Certificates"><span class="nav-number">1.7.1.</span> <span class="nav-text">Exporting Selected Certificates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Importing-Your-Developer-Profile"><span class="nav-number">1.7.2.</span> <span class="nav-text">Importing Your Developer Profile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Removing-Signing-Identities-from-Your-Keychain"><span class="nav-number">1.8.</span> <span class="nav-text">Removing Signing Identities from Your Keychain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Revoking-Certificates"><span class="nav-number">1.9.</span> <span class="nav-text">Revoking Certificates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Resetting-Certificates-Using-Xcode"><span class="nav-number">1.9.1.</span> <span class="nav-text">Resetting Certificates Using Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Revoking-Certificates-Using-the-Developer-Account"><span class="nav-number">1.9.2.</span> <span class="nav-text">Revoking Certificates Using the Developer Account</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles"><span class="nav-number">1.10.</span> <span class="nav-text">Re-Creating Certificates and Updating Related Provisioning Profiles</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maintaining-Identifiers-Devices-and-Profiles"><span class="nav-number">2.</span> <span class="nav-text">Maintaining Identifiers, Devices, and Profiles</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#App-IDs-Registering-Editing-Deleting"><span class="nav-number">2.1.</span> <span class="nav-text">App IDs-Registering/Editing/Deleting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Locating-Your-Team-ID"><span class="nav-number">2.2.</span> <span class="nav-text">Locating Your Team ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Provisioning-profiles"><span class="nav-number">2.3.</span> <span class="nav-text">Provisioning profiles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-Provisioning-Profiles-with-Xcode"><span class="nav-number">2.3.1.</span> <span class="nav-text">Generate Provisioning Profiles with Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略"><span class="nav-number">2.3.2.</span> <span class="nav-text">Creating Provisioning Profiles Using Your Developer Account (略)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Downloading-Provisioning-Profiles-in-Xcode"><span class="nav-number">2.3.3.</span> <span class="nav-text">Downloading Provisioning Profiles in Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Editing-Provisioning-Profiles-in-Your-Developer-Account"><span class="nav-number">2.3.4.</span> <span class="nav-text">Editing Provisioning Profiles in Your Developer Account</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Renewing-Expired-Provisioning-Profiles"><span class="nav-number">2.3.5.</span> <span class="nav-text">Renewing Expired Provisioning Profiles</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configuring-Your-Xcode-Project-for-Distribution"><span class="nav-number">3.</span> <span class="nav-text">Configuring Your Xcode Project for Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuring-Identity-and-Team-Settings"><span class="nav-number">3.1.</span> <span class="nav-text">Configuring Identity and Team Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#About-Bundle-IDs"><span class="nav-number">3.1.1.</span> <span class="nav-text">About Bundle IDs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#App-ID"><span class="nav-number">3.1.2.</span> <span class="nav-text">App ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-the-Bundle-ID"><span class="nav-number">3.1.3.</span> <span class="nav-text">Setting the Bundle ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assigning-the-Xcode-Project-to-a-Team"><span class="nav-number">3.1.4.</span> <span class="nav-text">Assigning the Xcode Project to a Team</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-the-Team-Provisioning-Profile"><span class="nav-number">3.2.</span> <span class="nav-text">Creating the Team Provisioning Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-the-Version-Number-and-Build-String"><span class="nav-number">3.3.</span> <span class="nav-text">Setting the Version Number and Build String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setting-Deployment-Info"><span class="nav-number">3.4.</span> <span class="nav-text">Setting Deployment Info</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-App-Icons-and-a-Launch-Screen-File-略"><span class="nav-number">3.5.</span> <span class="nav-text">Adding App Icons and a Launch Screen File (略)</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/10/07/App-Distribution-Guide/';
+      var disqus_title = 'App_Distribution_Guide';
+      var disqus_url = 'http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

@@ -238,6 +238,231 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/20/iOS项目4-应用程序管理/" itemprop="url">
+                  iOS项目4.应用程序管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T12:07:50+10:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/20/iOS项目4-应用程序管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/20/iOS项目4-应用程序管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/5ta2b78e2dwfwmw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86.png?dl=1" alt="效果图"></p>
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="https://www.dropbox.com/s/aufizc1f78t8slv/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90.png?dl=1" alt="功能分析"></p>
+<h1 id="freeform-UIView-in-Empty-XIB"><a href="#freeform-UIView-in-Empty-XIB" class="headerlink" title="freeform UIView in Empty XIB"></a>freeform UIView in Empty XIB</h1><p><img src="https://www.dropbox.com/s/cwbogvewlv3ah30/freeForm.png?dl=1" alt="设置xib为freeform"></p>
+<h1 id="ViewController"><a href="#ViewController" class="headerlink" title="ViewController"></a>ViewController</h1><h2 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h2><pre><code>//屏幕的高
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+//屏幕的宽
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+//应用界面的高
+#define kAppViewH [JKAppView appView].bounds.size.height
+//应用界面的宽
+#define kAppViewW [JKAppView appView].bounds.size.width
+//每行的个数
+#define kTotalCol 3
+</code></pre><h2 id="加载plist中的数据"><a href="#加载plist中的数据" class="headerlink" title="加载plist中的数据"></a>加载plist中的数据</h2><pre><code>- (NSArray *)appViews{
+
+    if (!_appViews) {
+
+    NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;app&quot; ofType:@&quot;plist&quot;];
+    NSArray *array = [NSArray arrayWithContentsOfFile:path];
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
+
+    for (NSDictionary *dict in array) {
+
+        JKAppInfo *appInfo = [JKAppInfo appInfoWithDict:dict];
+        JKAppView *appView = [JKAppView appView];
+        appView.appInfo = appInfo;
+        appView.delegate = self;
+
+        [arrayM addObject:appView];
+    }
+    _appViews = [arrayM copy];
+}
+return _appViews;
+}
+</code></pre><h2 id="列间距计算"><a href="#列间距计算" class="headerlink" title="列间距计算"></a>列间距计算</h2><pre><code>CGFloat margin = (kScreenW - kTotalCol * kAppViewW)/(kTotalCol + 1);
+</code></pre><h2 id="九宫格加载视图"><a href="#九宫格加载视图" class="headerlink" title="九宫格加载视图"></a>九宫格加载视图</h2><pre><code>//遍历应用界面数组
+for (int i = 0 ; i&lt;self.appViews.count; i++) {
+
+    //根据索引值取出单个应用界面
+    JKAppView *appView = self.appViews[i];
+
+    //九宫格的算法创建每个应用界面
+    int col = i % kTotalCol;
+    int row = i / kTotalCol;
+
+    CGFloat centerX = (margin + kAppViewW * 0.5) +(margin + kAppViewW) *col;
+    CGFloat centerY = (margin + kAppViewH * 0.5) +(margin + kAppViewH) *row;
+
+    appView.center = CGPointMake(centerX, centerY);
+    //加入到主视图中
+    [self.view addSubview:appView];
+}
+</code></pre><h2 id="根据点击的按钮获得相关视图"><a href="#根据点击的按钮获得相关视图" class="headerlink" title="根据点击的按钮获得相关视图"></a>根据点击的按钮获得相关视图</h2><pre><code>JKAppView *appView = (JKAppView*)btn.superview;
+</code></pre><h2 id="菊花的frame值设定"><a href="#菊花的frame值设定" class="headerlink" title="菊花的frame值设定"></a>菊花的frame值设定</h2><pre><code>juhua.frame = self.view.bounds;
+</code></pre><h2 id="菊花与”正在下载”标签"><a href="#菊花与”正在下载”标签" class="headerlink" title="菊花与”正在下载”标签"></a>菊花与”正在下载”标签</h2><p>因为”正在下载”标签是添加在菊花上的，所以当菊花停止时，标签也会自动消失</p>
+<h2 id="标签逐渐消失-使用alpha"><a href="#标签逐渐消失-使用alpha" class="headerlink" title="标签逐渐消失 - 使用alpha"></a>标签逐渐消失 - 使用alpha</h2><p>其效果为隐式动画，重新设定alpha值</p>
+<pre><code>noteLabel.alpha = 1;  
+[self.view addSubview:noteLabel];
+
+[UIView animateWithDuration:5.0 animations:^{
+         noteLabel.alpha = 0; 
+     } completion:^(BOOL finished) {
+         .....
+     }];
+</code></pre><h2 id="标签消失后"><a href="#标签消失后" class="headerlink" title="标签消失后"></a>标签消失后</h2><pre><code>[UIView animateWithDuration:5.0 animations:^{
+
+         noteLabel.alpha = 0; 
+     } completion:^(BOOL finished) {
+
+         btn.enabled = NO;
+         [btn setTitle:@&quot;已下载&quot; forState:UIControlStateDisabled];
+         [noteLabel removeFromSuperview];
+
+     }];
+</code></pre><h1 id="JKAppInfo"><a href="#JKAppInfo" class="headerlink" title="JKAppInfo"></a>JKAppInfo</h1><h2 id="字典加载数据模型"><a href="#字典加载数据模型" class="headerlink" title="字典加载数据模型"></a>字典加载数据模型</h2><p>属性名需要和plist中的字典key一一对应</p>
+<pre><code>- (instancetype)initWithDict:(NSDictionary *)dict{
+
+if (self=[super init]) {
+    [self setValuesForKeysWithDictionary:dict];
+}
+return self;
+}
+</code></pre><h2 id="创建image图像"><a href="#创建image图像" class="headerlink" title="创建image图像"></a>创建image图像</h2><pre><code>- (UIImage *)image{
+if (!_image) {
+    _image = [UIImage imageNamed:self.icon];
+}
+return _image ;
+}
+</code></pre><h1 id="JKAppView"><a href="#JKAppView" class="headerlink" title="JKAppView"></a>JKAppView</h1><h2 id="协议方法-点击下载按钮"><a href="#协议方法-点击下载按钮" class="headerlink" title="协议方法-点击下载按钮"></a>协议方法-点击下载按钮</h2><pre><code>@protocol JKAppViewDelegate &lt;NSObject&gt;
+@optional
+-(void)downloadClickWithBtn:(UIButton*)btn;
+@end
+
+@interface JKAppView : UIView
+@property (nonatomic,weak) id&lt;JKAppViewDelegate&gt; delegate;
+</code></pre><ol>
+<li>类与类之间的通讯，有三种方法：代理，通知，block</li>
+<li>协议就好像一个武器，类本身不能使用，于是叫他的小弟”id<jkappviewdelegate> delegate” ,交由他人(viewController)使用</jkappviewdelegate></li>
+</ol>
+<h2 id="调用代理执行"><a href="#调用代理执行" class="headerlink" title="调用代理执行"></a>调用代理执行</h2><pre><code>- (IBAction)downloadBtnOnClick:(UIButton *)sender {
+
+if ([self.delegate respondsToSelector:@selector(downloadClickWithBtn:)]) {
+
+    [self.delegate downloadClickWithBtn:sender];
+}
+}
+</code></pre><h2 id="UIView中加载XIB视图"><a href="#UIView中加载XIB视图" class="headerlink" title="UIView中加载XIB视图"></a>UIView中加载XIB视图</h2><p>UIView子类 + (Freeform View in Empty XIB)</p>
+<pre><code>+ (instancetype)appView{
+//因为只有一个object,所以first or last都可以
+return [[[NSBundle mainBundle]loadNibNamed:@&quot;JKAppView&quot; owner:nil options:nil]lastObject];
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/18/iOS项目3-英雄图片表视图展示/" itemprop="url">
                   iOS项目3.英雄图片表视图展示
                 </a>
@@ -759,320 +984,6 @@ if(!self.textTwo.hasText()){...}
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/26/iOS项目10 -通讯录/" itemprop="url">
-                  iOS项目10-通讯录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-26T17:59:29+11:00" content="2016-03-26">
-              2016-03-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/26/iOS项目10 -通讯录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/26/iOS项目10 -通讯录/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="https://www.dropbox.com/s/m8v8ci8tqji6zub/iOS_proj010.png?dl=1" alt=""></p>
-<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p><img src="https://www.dropbox.com/s/vu7s3zagbl3dtcv/iOS_proj010Structure.png?dl=1" alt=""></p>
-<h1 id="JKContactModel"><a href="#JKContactModel" class="headerlink" title="JKContactModel"></a>JKContactModel</h1><h2 id="编码和解码"><a href="#编码和解码" class="headerlink" title="编码和解码"></a>编码和解码</h2><pre><code>/*
-将某个对象写入文件时候会调用
-在这个方法中说清楚哪些属性需要存储
-*/
-- (void)encodeWithCoder:(NSCoder *)encoder{
-[encoder encodeObject:self.name forKey:@&quot;name&quot;];
-[encoder encodeObject:self.phone forKey:@&quot;phone&quot;];
-}
-
-/*
-解析对象会调用这个方法
-需要解析哪些属性
-*/
-- (id)initWithCoder:(NSCoder *)decoder{
-if (self = [super init]) {
-self.name = [decoder decodeObjectForKey:@&quot;name&quot;];
-self.phone = [decoder decodeObjectForKey:@&quot;phone&quot;];
-}
-return self;
-}
-</code></pre><h1 id="LoginViewController"><a href="#LoginViewController" class="headerlink" title="LoginViewController"></a>LoginViewController</h1><h2 id="保存和读取登录信息"><a href="#保存和读取登录信息" class="headerlink" title="保存和读取登录信息"></a>保存和读取登录信息</h2><pre><code>//保存
-NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-[defaults setObject:self.nameField.text forKey:UserNameKey];
-[defaults setObject:self.pwdField.text forKey:PwdKey];
-[defaults setBool:self.rembSwitch.isOn forKey:RmbPwdKey];
-//设置同步,只有设置同步，其保存的信息才是最新的！！！！！
-[defaults synchronize];
-
-//读取
-NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-self.nameField.text = [defaults valueForKey:UserNameKey];
-self.pwdField.text = [defaults valueForKey:PwdKey];
-self.rembSwitch.on = [defaults boolForKey:RmbPwdKey];
-</code></pre><h2 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h2><p>当文本框里都填有数字时，按钮才可以点击</p>
-<pre><code>//添加观察者,如果object为nil，就会检测到所有的变化。因此必须得针对性的设定object监测
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChange) name:UITextFieldTextDidChangeNotification object:self.nameField];
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChange) name:UITextFieldTextDidChangeNotification object:self.pwdField];
-</code></pre><h2 id="条件语句设置BOOL值"><a href="#条件语句设置BOOL值" class="headerlink" title="条件语句设置BOOL值"></a>条件语句设置BOOL值</h2><pre><code>self.loginBtn.enabled = (self.nameField.text.length &amp;&amp; self.pwdField.text.length);
-</code></pre><h2 id="执行Segue进行视图跳转"><a href="#执行Segue进行视图跳转" class="headerlink" title="执行Segue进行视图跳转"></a>执行Segue进行视图跳转</h2><pre><code>[self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];
-</code></pre><h2 id="Segue跳转之前执行"><a href="#Segue跳转之前执行" class="headerlink" title="Segue跳转之前执行"></a>Segue跳转之前执行</h2><pre><code>/*
-一般在这里给下一个控制器传值
-这个sender是当初performSegueWithIdentifier方法传入的sender
-*/
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-//1.取得目标控制器
-UIViewController *contactVc = segue.destinationViewController;
-//2.设置标题（传值）
-contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
-}
-</code></pre><h2 id="设置字符串"><a href="#设置字符串" class="headerlink" title="设置字符串"></a>设置字符串</h2><pre><code>[NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text]
-</code></pre><h2 id="MBProgressHUD"><a href="#MBProgressHUD" class="headerlink" title="MBProgressHUD"></a>MBProgressHUD</h2><pre><code>if (![self.nameField.text isEqualToString:@&quot;jike&quot;]) {
-    [MBProgressHUD showError:@&quot;账号不存在&quot;];
-    return;
-}
-if (![self.pwdField.text isEqualToString:@&quot;qq&quot;]) {
-    [MBProgressHUD showError:@&quot;密码错误&quot;];
-    return;
-}
-//显示蒙版（遮盖）
-[MBProgressHUD showMessage:@&quot;努力加载中&quot;];
-</code></pre><h1 id="ContactTableViewController"><a href="#ContactTableViewController" class="headerlink" title="ContactTableViewController"></a>ContactTableViewController</h1><h2 id="对象的归档和解档"><a href="#对象的归档和解档" class="headerlink" title="对象的归档和解档"></a>对象的归档和解档</h2><pre><code>//定义文件的路径
-#define ContactFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@&quot;contacts.data&quot;]
-
-//每次操作都需要将数据归档
-[NSKeyedArchiver archiveRootObject:self.contactArr toFile:ContactFilePath];
-
-//解档
-_contactArr = [NSKeyedUnarchiver unarchiveObjectWithFile:ContactFilePath];
-</code></pre><h2 id="懒加载数据"><a href="#懒加载数据" class="headerlink" title="懒加载数据"></a>懒加载数据</h2><pre><code>- (NSMutableArray *)contactArr{
-if (!_contactArr) {
-    _contactArr = [NSKeyedUnarchiver unarchiveObjectWithFile:ContactFilePath];
-    if (_contactArr == nil) {
-        _contactArr  = [NSMutableArray array];
-    }
-}
-return _contactArr;
-}
-</code></pre><h2 id="UIAlertcontroller"><a href="#UIAlertcontroller" class="headerlink" title="UIAlertcontroller"></a>UIAlertcontroller</h2><pre><code>- (IBAction)backAction:(id)sender {
-//初始化
-//UIAlertcontroller = UIAlertView + UIActionSheet , iOS 8以后出现的
-
-UIAlertController *alert = [UIAlertController
-                            alertControllerWithTitle:@&quot;是否注销?&quot;
-                            message:@&quot;真的要注销吗&quot;
-                            preferredStyle:UIAlertControllerStyleActionSheet];
-
-//添加按钮
-[alert addAction:[UIAlertAction
-                  actionWithTitle:@&quot;取消&quot;
-                  style:UIAlertActionStyleCancel
-                  handler:nil]];
-
-[alert addAction:[UIAlertAction
-                  actionWithTitle:@&quot;确定&quot;
-                  style:UIAlertActionStyleDestructive
-                  handler:^(UIAlertAction *action) {
-
-    [self.navigationController popViewControllerAnimated:YES];
-}]];
-
-
-//弹出
-[self presentViewController:alert animated:YES completion:NULL];
-}
-</code></pre><h2 id="去掉TableView中多余的线"><a href="#去掉TableView中多余的线" class="headerlink" title="去掉TableView中多余的线"></a>去掉TableView中多余的线</h2><pre><code>- (void)clearExtraLine :(UITableView *)tableView{
-UIView *view = [[UIView alloc] init];
-view.backgroundColor = [UIColor clearColor];
-[self.tableView setTableFooterView:view];
-}
-</code></pre><h2 id="when-reloadData"><a href="#when-reloadData" class="headerlink" title="when reloadData ?"></a>when reloadData ?</h2><pre><code>[self.tableView reloadData];
-</code></pre><h2 id="Prepare-for-multiple-segue"><a href="#Prepare-for-multiple-segue" class="headerlink" title="Prepare for multiple segue"></a>Prepare for multiple segue</h2><pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-id vc = segue.destinationViewController;
-
-if ([vc isKindOfClass:[AddViewController class]]) {
-
-    AddViewController *addVc = vc;
-    addVc.delegate = self;
-
-}else if ([vc isKindOfClass:[EditViewController class]]){
-    EditViewController *editVc = vc;
-
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    editVc.contactModel = self.contactArr[path.row];
-    editVc.delagate = self;
-}
-}
-</code></pre><h2 id="判断what-class"><a href="#判断what-class" class="headerlink" title="判断what class"></a>判断what class</h2><pre><code>[vc isKindOfClass:[EditViewController class]
-</code></pre><h2 id="确定选中哪一行"><a href="#确定选中哪一行" class="headerlink" title="确定选中哪一行"></a>确定选中哪一行</h2><pre><code>NSIndexPath *path = [self.tableView indexPathForSelectedRow]
-</code></pre><h2 id="动态删除一行"><a href="#动态删除一行" class="headerlink" title="动态删除一行"></a>动态删除一行</h2><pre><code>- (void)tableView:(UITableView *)tableView
-commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath{
-
-if (editingStyle == UITableViewCellEditingStyleDelete) {
-    //1.删除数据模型
-    [self.contactArr removeObjectAtIndex:indexPath.row];
-    //2.刷新表视图
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
-
-    //以下也是一个刷新的方法，是全部表格刷新
-    //[self.tableView reloadData];
-    //3. 归档
-    [NSKeyedArchiver archiveRootObject:self.contactArr toFile:ContactFilePath];
-}
-}
-</code></pre><h1 id="AddViewController"><a href="#AddViewController" class="headerlink" title="AddViewController"></a>AddViewController</h1><h2 id="设置代理方法"><a href="#设置代理方法" class="headerlink" title="设置代理方法"></a>设置代理方法</h2><pre><code>@protocol AddViewControllerDelegate &lt;NSObject&gt;
-@optional
-- (void)addContact:(AddViewController *)addVc didAddContact:(JKContactModel *)contact;
-@end
-
-@interface AddViewController : UIViewController
-//assign类型防止循环引用？
-@property (nonatomic, assign) id&lt;AddViewControllerDelegate&gt; delegate;
-@end
-</code></pre><h2 id="文本框为第一响应"><a href="#文本框为第一响应" class="headerlink" title="文本框为第一响应"></a>文本框为第一响应</h2><pre><code>- (void)viewDidAppear:(BOOL)animated{
-[super viewDidAppear:animated];
-//让姓名文本框成为第一响应者（叫出键盘）
-[self.nameField becomeFirstResponder];
-}
-</code></pre><h2 id="代理传值"><a href="#代理传值" class="headerlink" title="代理传值"></a>代理传值</h2><p><strong>delegate就相当于是一个信使，适用于视图控制器之间的传值(review 应用程序管理)</strong></p>
-<pre><code>- (IBAction)AddAction {
-//1.关闭当前视图控制器
-[self.navigationController popViewControllerAnimated:YES];
-
-if ([self.delegate respondsToSelector:@selector(addContact:didAddContact:)]) {
-    JKContactModel *contactModel = [[JKContactModel alloc] init];
-    contactModel.name = self.nameField.text;
-    contactModel.phone = self.phoneField.text;
-    [self.delegate addContact:self didAddContact:contactModel];
-}
-}
-</code></pre><p><strong>记得接收方要设置代理对象</strong></p>
-<pre><code>- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    AddViewController *addVc = segue.destinationViewController;
-    addVc.delegate = self;
-</code></pre><h1 id="EditViewController"><a href="#EditViewController" class="headerlink" title="EditViewController"></a>EditViewController</h1><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view.
-self.nameField.text = self.contactModel.name;
-self.phoneField.text = self.contactModel.phone;
-}
-</code></pre><h2 id="代理传值-1"><a href="#代理传值-1" class="headerlink" title="代理传值"></a>代理传值</h2><pre><code>//保存
-- (IBAction)saveAction:(id)sender {
-//1.关闭当前页面
-[self.navigationController popViewControllerAnimated:YES];
-//2.通知代理
-if ([self.delagate respondsToSelector:@selector(enditViewController:didSaveContact:)]) {
-    //更新数据模型
-    self.contactModel.name = self.nameField.text;
-    self.contactModel.phone = self.phoneField.text;
-    [self.delagate enditViewController:self didSaveContact:self.contactModel];
-}
-}
-</code></pre><h2 id="UIButton-amp-UITextfield-amp-UIView"><a href="#UIButton-amp-UITextfield-amp-UIView" class="headerlink" title="UIButton &amp; UITextfield &amp; UIView"></a>UIButton &amp; UITextfield &amp; UIView</h2><pre><code>self.nameField.enabled = NO;
-[self.view endEditing:YES];
-self.savebtn.hidden = YES;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1119,7 +1030,7 @@ self.savebtn.hidden = YES;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">107</span>
+              <span class="site-state-item-count">108</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1136,7 +1047,7 @@ self.savebtn.hidden = YES;
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
