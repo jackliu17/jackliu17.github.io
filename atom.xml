@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-07T07:06:52.000Z</updated>
+  <updated>2016-10-07T07:44:25.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Technical_issue</title>
+    <link href="http://jackliu17.github.io/2016/10/07/Technical-issue/"/>
+    <id>http://jackliu17.github.io/2016/10/07/Technical-issue/</id>
+    <published>2016-10-07T07:11:47.000Z</published>
+    <updated>2016-10-07T07:44:25.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;EasyCat-iOS&quot;&gt;&lt;a href=&quot;#EasyCat-iOS&quot; class=&quot;headerlink&quot; title=&quot;EasyCat iOS&quot;&gt;&lt;/a&gt;EasyCat iOS&lt;/h1&gt;&lt;h2 id=&quot;Issue-071016&quot;&gt;&lt;a href=&quot;#Issue-071016&quot; class=&quot;headerlink&quot; title=&quot;Issue 071016&quot;&gt;&lt;/a&gt;Issue 071016&lt;/h2&gt;&lt;p&gt;在验证archive准备上传到app store的时候，屡次出现”No matching provisioning file for ……”&lt;/p&gt;
+&lt;h2 id=&quot;Solution-071016&quot;&gt;&lt;a href=&quot;#Solution-071016&quot; class=&quot;headerlink&quot; title=&quot;Solution 071016&quot;&gt;&lt;/a&gt;Solution 071016&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;删除keychain和developer account里所有过期的证书&lt;/li&gt;
+&lt;li&gt;Xcode - preference - account 重新下载provisioning file&lt;/li&gt;
+&lt;li&gt;最后发现是实际的bundle id 和team provisioning file里的不一致，如图&lt;/li&gt;
+&lt;li&gt;最后在bundle id的空格里重新填写一遍，然后team provisioning file里的就和实际一致了，这应该是xcode 8的bug.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sciwlcnc0pjkal8/2016100701.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Question&quot;&gt;&lt;a href=&quot;#Question&quot; class=&quot;headerlink&quot; title=&quot;Question&quot;&gt;&lt;/a&gt;Question&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;怎么创建和修改team provisioning profile?&lt;/li&gt;
+&lt;li&gt;为什么xcode managed profile中生成的是team provisioning profile?&lt;/li&gt;
+&lt;li&gt;App ID 为什么是 *&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;EasyCat-iOS&quot;&gt;&lt;a href=&quot;#EasyCat-iOS&quot; class=&quot;headerlink&quot; title=&quot;EasyCat iOS&quot;&gt;&lt;/a&gt;EasyCat iOS&lt;/h1&gt;&lt;h2 id=&quot;Issue-071016&quot;&gt;&lt;a href=&quot;#Issue
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="issue" scheme="http://jackliu17.github.io/tags/issue/"/>
+    
+  </entry>
   
   <entry>
     <title>App_Distribution_Guide</title>
@@ -2858,131 +2893,6 @@ Alamofire.request(.POST, URLComponents)
     
     
       <category term="iOS_networking" scheme="http://jackliu17.github.io/tags/iOS-networking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用CocoaPods管理iOS库</title>
-    <link href="http://jackliu17.github.io/2016/08/04/%E4%BD%BF%E7%94%A8CocoaPods%E7%AE%A1%E7%90%86iOS%E5%BA%93/"/>
-    <id>http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/</id>
-    <published>2016-08-04T04:17:13.000Z</published>
-    <updated>2016-08-04T11:18:29.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;iOS库的介绍&quot;&gt;&lt;a href=&quot;#iOS库的介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS库的介绍&quot;&gt;&lt;/a&gt;iOS库的介绍&lt;/h1&gt;&lt;h2 id=&quot;动态库和静态库&quot;&gt;&lt;a href=&quot;#动态库和静态库&quot; class=&quot;headerlink&quot; title=&quot;动态库和静态库&quot;&gt;&lt;/a&gt;动态库和静态库&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;动态库在运行时实时部署，静态库必须在编译时连接到代码&lt;/li&gt;
-&lt;li&gt;动态库加载到内存后可以重复使用,静态库每次import都引入一次&lt;/li&gt;
-&lt;li&gt;自定义的动态库只能部署在 iOS8 以上系统&lt;/li&gt;
-&lt;li&gt;.a(静态库，只有代码，没有任何资源,图片xib文件等)&lt;/li&gt;
-&lt;li&gt;.dylib (动态库，只有代码，没有任何资源)&lt;/li&gt;
-&lt;li&gt;.framework 可以包含资源，分为两种：dynamic 和 static&lt;/li&gt;
-&lt;li&gt;use_frameworks! 生成 dynamic framework&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;制作库&quot;&gt;&lt;a href=&quot;#制作库&quot; class=&quot;headerlink&quot; title=&quot;制作库&quot;&gt;&lt;/a&gt;制作库&lt;/h2&gt;&lt;p&gt;iOS 体系结构&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;armv7： iPhone 4/4s&lt;/li&gt;
-&lt;li&gt;armv7s：iPhone 5 和 iPhone 5C&lt;/li&gt;
-&lt;li&gt;arm64：iPhone 5S+&lt;/li&gt;
-&lt;li&gt;x86-64、i386：模拟器&lt;/li&gt;
-&lt;li&gt;lipo –info – 查看库支持的体系结构&lt;/li&gt;
-&lt;li&gt;lipo -create  -output  - 将模拟器和真机的库合成一个库&lt;/li&gt;
-&lt;li&gt;Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;设定系统为8-0以上才能部署自定义动态库&quot;&gt;&lt;a href=&quot;#设定系统为8-0以上才能部署自定义动态库&quot; class=&quot;headerlink&quot; title=&quot;设定系统为8.0以上才能部署自定义动态库&quot;&gt;&lt;/a&gt;设定系统为8.0以上才能部署自定义动态库&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;创建一个库&quot;&gt;&lt;a href=&quot;#创建一个库&quot; class=&quot;headerlink&quot; title=&quot;创建一个库&quot;&gt;&lt;/a&gt;创建一个库&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;MyFramework-swift&quot;&gt;&lt;a href=&quot;#MyFramework-swift&quot; class=&quot;headerlink&quot; title=&quot;MyFramework.swift&quot;&gt;&lt;/a&gt;MyFramework.swift&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;import UIKit
-
-public class MyFramework: NSObject {
-
-static let bundle = NSBundle(forClass: MyFramework.self)
-
-static let MyFrameworkStr = &amp;quot;MyFramework&amp;quot;
-
-public static func openVCFromStoryboard() {
-    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&amp;quot;MyFrameworkViewController&amp;quot;)
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-}
-
-public static func openVCFromXib() {
-    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-}
-
-public static func loadImage() -&amp;gt; UIImage{
-    let image = UIImage(named: MyFrameworkStr + &amp;quot;.png&amp;quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
-    return image!
-}
-
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;分别在真机和模拟下运行，Product下生成，在show-in-finder中打开&quot;&gt;&lt;a href=&quot;#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开&quot; class=&quot;headerlink&quot; title=&quot;分别在真机和模拟下运行，Product下生成，在show in finder中打开&quot;&gt;&lt;/a&gt;分别在真机和模拟下运行，Product下生成，在show in finder中打开&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;找到xxx-framework目录下的MyFramework文件，如图所示&quot;&gt;&lt;a href=&quot;#找到xxx-framework目录下的MyFramework文件，如图所示&quot; class=&quot;headerlink&quot; title=&quot;找到xxx.framework目录下的MyFramework文件，如图所示&quot;&gt;&lt;/a&gt;找到xxx.framework目录下的MyFramework文件，如图所示&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径&quot;&gt;&lt;a href=&quot;#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径&quot; class=&quot;headerlink&quot; title=&quot;合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)&quot;&gt;&lt;/a&gt;合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;合并库中的module也要模拟器module-真机module&quot;&gt;&lt;a href=&quot;#合并库中的module也要模拟器module-真机module&quot; class=&quot;headerlink&quot; title=&quot;合并库中的module也要模拟器module + 真机module&quot;&gt;&lt;/a&gt;合并库中的module也要模拟器module + 真机module&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;使用库&quot;&gt;&lt;a href=&quot;#使用库&quot; class=&quot;headerlink&quot; title=&quot;使用库&quot;&gt;&lt;/a&gt;使用库&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries&lt;/li&gt;
-&lt;li&gt;使用 pod：use_frameworks!&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;利用-dynamic-库实时部署&quot;&gt;&lt;a href=&quot;#利用-dynamic-库实时部署&quot; class=&quot;headerlink&quot; title=&quot;利用 dynamic 库实时部署&quot;&gt;&lt;/a&gt;利用 dynamic 库实时部署&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let libPath = &amp;quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&amp;quot;
-if let bundle = NSBundle(path: libPath) {
-do {
-    try bundle.loadAndReturnError()
-    if let myFramework = NSClassFromString(&amp;quot;MyFramework&amp;quot;) as? MyFramework.Type{
-        myFramework.init().whereIsFrom()
-    }
-} catch {
-    print(&amp;quot;动态库加载失败&amp;quot;)
-}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Cocoapods&quot;&gt;&lt;a href=&quot;#Cocoapods&quot; class=&quot;headerlink&quot; title=&quot;Cocoapods&quot;&gt;&lt;/a&gt;Cocoapods&lt;/h1&gt;&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;在Terminal输入以下安装命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo gem install cocoapods
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;出现以下报错&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;You don&amp;apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再Terminal输入以下命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo gem update
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;还是出现以下报错&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Operation not permitted - /usr/bin/xcodeproj
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考官方文档&lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/issues/3692&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Operation not permitted&lt;/a&gt;输入以下命令，成功&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ sudo gem install -n /usr/local/bin cocoapods
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;CocoaPods基础知识-—-使用步骤&quot;&gt;&lt;a href=&quot;#CocoaPods基础知识-—-使用步骤&quot; class=&quot;headerlink&quot; title=&quot;CocoaPods基础知识 — 使用步骤&quot;&gt;&lt;/a&gt;CocoaPods基础知识 — 使用步骤&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;创建或打开 Xcode 项目&lt;/li&gt;
-&lt;li&gt;命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)&lt;/li&gt;
-&lt;li&gt;使用 pod init 创建 Podfile&lt;/li&gt;
-&lt;li&gt;pod search Alamofire &lt;/li&gt;
-&lt;li&gt;修改 Podfile&lt;/li&gt;
-&lt;li&gt;pod install&lt;/li&gt;
-&lt;li&gt;打开 pod 创建的 xcworkspace&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;CocoaPods基础知识-—-Podfile&quot;&gt;&lt;a href=&quot;#CocoaPods基础知识-—-Podfile&quot; class=&quot;headerlink&quot; title=&quot;CocoaPods基础知识 — Podfile&quot;&gt;&lt;/a&gt;CocoaPods基础知识 — Podfile&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;platform : ios &amp;apos;9.0&amp;apos;
-use_frameworks! (swift下必须使用)
-inhibit_all_warnings! (隐藏所有报错信息)
-target  &amp;apos;PodTest&amp;apos; do
-    pod &amp;apos;AFNetworking&amp;apos;,  &amp;apos;~&amp;gt; 3.0&amp;apos;
-    pod &amp;apos;FBSDKCoreKit&amp;apos;, &amp;apos;~&amp;gt; 4.9&amp;apos;
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Podfile-lock&quot;&gt;&lt;a href=&quot;#Podfile-lock&quot; class=&quot;headerlink&quot; title=&quot;Podfile.lock&quot;&gt;&lt;/a&gt;Podfile.lock&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;第一次 pod install 时生成记录每个 Pod 版本&lt;/li&gt;
-&lt;li&gt;Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本&lt;/li&gt;
-&lt;li&gt;多人协作时防止第三方库升级时造成版本不一致&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;pod-install-和-pod-update&quot;&gt;&lt;a href=&quot;#pod-install-和-pod-update&quot; class=&quot;headerlink&quot; title=&quot;pod install 和 pod update&quot;&gt;&lt;/a&gt;pod install 和 pod update&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods&lt;/li&gt;
-&lt;li&gt;pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本&lt;/li&gt;
-&lt;li&gt;使用 pod update podName 来更新指定 pod 的版本&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;iOS库的介绍&quot;&gt;&lt;a href=&quot;#iOS库的介绍&quot; class=&quot;headerlink&quot; title=&quot;iOS库的介绍&quot;&gt;&lt;/a&gt;iOS库的介绍&lt;/h1&gt;&lt;h2 id=&quot;动态库和静态库&quot;&gt;&lt;a href=&quot;#动态库和静态库&quot; class=&quot;headerlink
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS_conf" scheme="http://jackliu17.github.io/tags/iOS-conf/"/>
     
   </entry>
   

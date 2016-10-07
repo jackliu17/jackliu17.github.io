@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_designPattern," />
+  <meta name="keywords" content="issue," />
 
 
 
@@ -61,70 +61,30 @@
 
 
 
-<meta name="description" content="if-else的问题
-如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象
-typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes">
+<meta name="description" content="EasyCat iOSIssue 071016在验证archive准备上传到app store的时候，屡次出现”No matching provisioning file for ……”
+Solution 071016
+删除keychain和developer account里所有过期的证书
+Xcode - preference - account 重新下载provisioning file
+最后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-策略">
-<meta property="og:url" content="http://jackliu17.github.io/2016/05/24/iOS设计模式-策略/index.html">
+<meta property="og:title" content="Technical_issue">
+<meta property="og:url" content="http://jackliu17.github.io/2016/10/07/Technical-issue/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="if-else的问题
-如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象
-typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes">
-<meta property="og:image" content="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T05:41:44.000Z">
+<meta property="og:description" content="EasyCat iOSIssue 071016在验证archive准备上传到app store的时候，屡次出现”No matching provisioning file for ……”
+Solution 071016
+删除keychain和developer account里所有过期的证书
+Xcode - preference - account 重新下载provisioning file
+最后">
+<meta property="og:image" content="https://www.dropbox.com/s/sciwlcnc0pjkal8/2016100701.png?dl=1">
+<meta property="og:updated_time" content="2016-10-07T07:44:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-策略">
-<meta name="twitter:description" content="if-else的问题
-如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象
-typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes">
-<meta name="twitter:image" content="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1">
+<meta name="twitter:title" content="Technical_issue">
+<meta name="twitter:description" content="EasyCat iOSIssue 071016在验证archive准备上传到app store的时候，屡次出现”No matching provisioning file for ……”
+Solution 071016
+删除keychain和developer account里所有过期的证书
+Xcode - preference - account 重新下载provisioning file
+最后">
+<meta name="twitter:image" content="https://www.dropbox.com/s/sciwlcnc0pjkal8/2016100701.png?dl=1">
 
 
 
@@ -142,7 +102,7 @@ ETypes">
   };
 </script>
 
-  <title> iOS设计模式-策略 | Cowboy Tech </title>
+  <title> Technical_issue | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +244,7 @@ ETypes">
             
             
               
-                iOS设计模式-策略
+                Technical_issue
               
             
           </h1>
@@ -296,8 +256,8 @@ ETypes">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T19:10:03+10:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2016-10-07T18:11:47+11:00" content="2016-10-07">
+              2016-10-07
             </time>
           </span>
 
@@ -326,8 +286,8 @@ ETypes">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/24/iOS设计模式-策略/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/24/iOS设计模式-策略/" itemprop="commentsCount"></span>
+                <a href="/2016/10/07/Technical-issue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/07/Technical-issue/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -349,125 +309,20 @@ ETypes">
       
 
       
-        <h1 id="if-else的问题"><a href="#if-else的问题" class="headerlink" title="if-else的问题"></a>if-else的问题</h1><p><img src="https://www.dropbox.com/s/r0cxzyxfjm8peny/iOS_designPattern0301.png?dl=1" alt=""></p>
-<p>如果判断逻辑都使用if - else,将if - else 的每个判断逻辑抽象为对象</p>
-<pre><code>typedef enum : NSUInteger {
-
-EType_01,
-EType_02,
-EType_03,
-EType_04,
-EType_05,
-EType_06,
-EType_07,
-EType_08,
-EType_09,
-
-} ETypes;
-
-// 输入条件
-ETypes type = EType_01;
-
-// 输出条件
-NSString *showString = nil;
-
-if (type == EType_01) {
-
-    // showString = ...
-
-} else if (type == EType_02) {
-
-    // showString = ...
-
-} else if (type == EType_03) {
-
-    // showStri
-    ......
-</code></pre><h1 id="策略的原理"><a href="#策略的原理" class="headerlink" title="策略的原理"></a>策略的原理</h1><p><img src="https://www.dropbox.com/s/hbke8s3r9oy3v8b/iOS_designPattern0302.png?dl=1" alt=""></p>
-<ol>
-<li>使用场景有策略的父类(strategy)引用，但是实际利用多态调用的是其子类(strategy A, stategy B, stategy C)的方法, 具体实现的算法封装在各个子类里。</li>
-<li><strong>相同的输入，不同的输出</strong>。抽象的父类strategy定义了一个相同的接口，就是相同的输入。具体的实现在其各个子类strategyABC, 输出各不相同，就是不同的输出,因为每个子类里有不同的算法封装</li>
-<li>判断的每个条件生成对应的一个对象</li>
-<li>需要事先知道输入的条件</li>
-<li>策略类对象属于使用场景的一部分</li>
+        <h1 id="EasyCat-iOS"><a href="#EasyCat-iOS" class="headerlink" title="EasyCat iOS"></a>EasyCat iOS</h1><h2 id="Issue-071016"><a href="#Issue-071016" class="headerlink" title="Issue 071016"></a>Issue 071016</h2><p>在验证archive准备上传到app store的时候，屡次出现”No matching provisioning file for ……”</p>
+<h2 id="Solution-071016"><a href="#Solution-071016" class="headerlink" title="Solution 071016"></a>Solution 071016</h2><ol>
+<li>删除keychain和developer account里所有过期的证书</li>
+<li>Xcode - preference - account 重新下载provisioning file</li>
+<li>最后发现是实际的bundle id 和team provisioning file里的不一致，如图</li>
+<li>最后在bundle id的空格里重新填写一遍，然后team provisioning file里的就和实际一致了，这应该是xcode 8的bug.</li>
 </ol>
-<h1 id="策略的使用案例"><a href="#策略的使用案例" class="headerlink" title="策略的使用案例"></a>策略的使用案例</h1><h2 id="抽象的策略-Strategy"><a href="#抽象的策略-Strategy" class="headerlink" title="抽象的策略 (Strategy)"></a>抽象的策略 (Strategy)</h2><p>CustomField: 内含inputValidator验证策略</p>
-<pre><code>@interface CustomField : UITextField
+<p><img src="https://www.dropbox.com/s/sciwlcnc0pjkal8/2016100701.png?dl=1" alt=""></p>
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><ol>
+<li>怎么创建和修改team provisioning profile?</li>
+<li>为什么xcode managed profile中生成的是team provisioning profile?</li>
+<li>App ID 为什么是 *</li>
+</ol>
 
-@property (nonatomic, strong) InputValidator *validator;
-
-- (BOOL)validate {
-return [self.validator validateInput:self];
-}
-@end
-</code></pre><p>InputValidator:策略的输入</p>
-<pre><code>@interface InputValidator : NSObject
-
-@property (nonatomic, strong) NSString *errorMessage;
-
-- (BOOL)validateInput:(UITextField *)input {
-return NO;
-}
-</code></pre><h2 id="Email的验证-Strategy-A"><a href="#Email的验证-Strategy-A" class="headerlink" title="Email的验证 (Strategy A)"></a>Email的验证 (Strategy A)</h2><p>EmailValidator:重载了父类的验证方法</p>
-<pre><code>@interface EmailValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &lt;= 0) {
-    self.errorMessage = @&quot;没有输入&quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&quot;请输入正确的邮箱&quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-return self.errorMessage == nil ? YES : NO;
-}
-</code></pre><h2 id="Phone的验证-Strategy-B"><a href="#Phone的验证-Strategy-B" class="headerlink" title="Phone的验证  (Strategy B)"></a>Phone的验证  (Strategy B)</h2><p>PhoneNumberValidator :重载了父类的验证方法</p>
-<pre><code>@interface PhoneNumberValidator : InputValidator
-
-- (BOOL)validateInput:(UITextField *)input {
-
-if (input.text.length &lt;= 0) {
-    self.errorMessage = @&quot;没有输入&quot;;
-} else {
-    BOOL isMatch = [input.text isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
-    if (isMatch == NO) {
-        self.errorMessage = @&quot;请输入正确的手机号码&quot;;
-    } else {
-        self.errorMessage = nil;
-    }
-}
-
-return self.errorMessage == nil ? YES : NO;
-}
-</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>ViewController</p>
-<pre><code>@property (nonatomic, strong) CustomField  *emailField;
-@property (nonatomic, strong) CustomField  *phoneNumberField;
-
-......
-self.emailField.validator   = [EmailValidator new];
-......
-self.phoneNumberField.validator   = [PhoneNumberValidator new];
-......
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-CustomField *customField = (CustomField *)textField;
-
-//使用这行代码也可以 if ([customField.validator validateInput:customField] == NO){...}
-
-if ([customField validate] == NO) {
-    [UIInfomationView showAlertViewWithTitle:nil
-                                     message:customField.validator.errorMessage
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[@&quot;确定&quot;]
-                                clickAtIndex:^(NSInteger buttonIndex) {
-
-                                }];
-}
-}
-</code></pre>
       
     </div>
 
@@ -481,9 +336,7 @@ if ([customField validate] == NO) {
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+            <a href="/tags/issue/" rel="tag">#issue</a>
           
         </div>
       
@@ -492,17 +345,13 @@ if ([customField validate] == NO) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/23/iOS设计模式-适配器/" rel="next" title="iOS设计模式-适配器">
-                <i class="fa fa-chevron-left"></i> iOS设计模式-适配器
+              <a href="/2016/10/07/App-Distribution-Guide/" rel="next" title="App_Distribution_Guide">
+                <i class="fa fa-chevron-left"></i> App_Distribution_Guide
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/26/iOS设计模式-观察者/" rel="prev" title="iOS设计模式-观察者">
-                iOS设计模式-观察者 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -634,7 +483,7 @@ if ([customField validate] == NO) {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#if-else的问题"><span class="nav-number">1.</span> <span class="nav-text">if-else的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略的原理"><span class="nav-number">2.</span> <span class="nav-text">策略的原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略的使用案例"><span class="nav-number">3.</span> <span class="nav-text">策略的使用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象的策略-Strategy"><span class="nav-number">3.1.</span> <span class="nav-text">抽象的策略 (Strategy)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Email的验证-Strategy-A"><span class="nav-number">3.2.</span> <span class="nav-text">Email的验证 (Strategy A)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phone的验证-Strategy-B"><span class="nav-number">3.3.</span> <span class="nav-text">Phone的验证  (Strategy B)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">3.4.</span> <span class="nav-text">使用场景</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EasyCat-iOS"><span class="nav-number">1.</span> <span class="nav-text">EasyCat iOS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Issue-071016"><span class="nav-number">1.1.</span> <span class="nav-text">Issue 071016</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-071016"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 071016</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question"><span class="nav-number">1.3.</span> <span class="nav-text">Question</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -892,9 +741,9 @@ if ([customField validate] == NO) {
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/05/24/iOS设计模式-策略/';
-      var disqus_title = 'iOS设计模式-策略';
-      var disqus_url = 'http://jackliu17.github.io/2016/05/24/iOS设计模式-策略/';
+      var disqus_identifier = '2016/10/07/Technical-issue/';
+      var disqus_title = 'Technical_issue';
+      var disqus_url = 'http://jackliu17.github.io/2016/10/07/Technical-issue/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
