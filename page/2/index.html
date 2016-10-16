@@ -238,6 +238,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/" itemprop="url">
+                  Grand_Central_Dispatch_Tutorial_for_Swift1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T15:34:43+10:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/28/Grand-Central-Dispatch-Tutorial-for-Swift1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Term"><a href="#Term" class="headerlink" title="Term"></a>Term</h1><p>GCD is the marketing name for libdispatch</p>
+<h2 id="Serial-vs-Concurrent"><a href="#Serial-vs-Concurrent" class="headerlink" title="Serial vs. Concurrent"></a>Serial vs. Concurrent</h2><p>These terms describe when tasks are executed with respect to each other.</p>
+<p>Tasks executed serially are always executed one at a time.</p>
+<p>Tasks executed concurrently might be executed at the same time.</p>
+<h2 id="Synchronous-vs-Asynchronous-同步和异步"><a href="#Synchronous-vs-Asynchronous-同步和异步" class="headerlink" title="Synchronous vs. Asynchronous(同步和异步)"></a>Synchronous vs. Asynchronous(同步和异步)</h2><p>These terms describe when a function will return control to the caller, and how much work will have been done by that point.</p>
+<p>A synchronous function returns only after the completion of a task that it orders.</p>
+<p>An asynchronous function, on the other hand, returns immediately, ordering the task to be done but not waiting for it. Thus, an asynchronous function does not block the current thread of execution from proceeding on to the next function.</p>
+<h2 id="Critical-Section"><a href="#Critical-Section" class="headerlink" title="Critical Section"></a>Critical Section</h2><p>This is a piece of code that must not be executed concurrently, which might manipulates a shared resource</p>
+<h2 id="Race-Condition"><a href="#Race-Condition" class="headerlink" title="Race Condition"></a>Race Condition</h2><h2 id="Deadlock"><a href="#Deadlock" class="headerlink" title="Deadlock"></a>Deadlock</h2><p>两个thread互相等待对方完成，陷入僵局</p>
+<h2 id="Thread-Safe"><a href="#Thread-Safe" class="headerlink" title="Thread Safe"></a>Thread Safe</h2><p>Thread safe code can be safely called from multiple threads or concurrent tasks without causing any problems</p>
+<p>设定常量是线程安全的，变量不一定安全，因为可能被其他线程的所改变值</p>
+<p>Variables and data structures that are mutable and not inherently thread-safe should only be accessed from one thread at a time.</p>
+<h2 id="Context-Switch"><a href="#Context-Switch" class="headerlink" title="Context Switch"></a>Context Switch</h2><p>A context switch is the process of storing and restoring execution state when you switch between executing different threads on a single process.</p>
+<h2 id="Concurrency-vs-Parallelism"><a href="#Concurrency-vs-Parallelism" class="headerlink" title="Concurrency vs Parallelism"></a>Concurrency vs Parallelism</h2><p>Multi-core devices execute multiple threads at the same time via parallelism</p>
+<p>Single-cored devices must run a thread, perform a context switch</p>
+<p>Parallelism requires concurrency, but concurrency does not guarantee parallelism.</p>
+<h1 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h1><p>GCD provides dispatch queues to handle submitted tasks; these queues manage the tasks you provide to GCD and execute those tasks in FIFO order</p>
+<h2 id="Serial-Queues"><a href="#Serial-Queues" class="headerlink" title="Serial Queues"></a>Serial Queues</h2><p>executes only one task at a time</p>
+<p><img src="https://www.dropbox.com/s/3ghgkn5eg52vd0t/2016092801.png?dl=1" alt="1"></p>
+<h2 id="Concurrent-Queues"><a href="#Concurrent-Queues" class="headerlink" title="Concurrent Queues"></a>Concurrent Queues</h2><p>The decision of when to start a task is entirely up to GCD.</p>
+<p><img src="https://www.dropbox.com/s/ivkbyp2306tqry4/2016092802.png?dl=1" alt="2"></p>
+<h2 id="Queue-Types"><a href="#Queue-Types" class="headerlink" title="Queue Types"></a>Queue Types</h2><p>You have at least five queues at your disposal: the main queue, four global dispatch queues, plus any custom queues</p>
+<ul>
+<li><p>Main queue:which is the only thread allowed to update your UI.</p>
+</li>
+<li><p>QOS_CLASS_USER_INTERACTIVE</p>
+</li>
+<li><p>QOS_CLASS_USER_INITIATED</p>
+</li>
+<li><p>QOS_CLASS_UTILITY</p>
+</li>
+<li><p>QOS_CLASS_BACKGROUND</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/26/The-Swift-Programming-Language-Swift3/" itemprop="url">
                   The-Swift-Programming-Language-Swift3
                 </a>
@@ -1423,206 +1552,6 @@ func callMather(){
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/02/CodePractice/" itemprop="url">
-                  CodePractice
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-02T13:00:36+10:00" content="2016-09-02">
-              2016-09-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/02/CodePractice/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/02/CodePractice/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="将数组中的最后一个字符合并"><a href="#将数组中的最后一个字符合并" class="headerlink" title="将数组中的最后一个字符合并"></a>将数组中的最后一个字符合并</h2><pre><code>var nonsenseArray = [&quot;bungalow&quot;, &quot;buffalo&quot;, &quot;indigo&quot;, &quot;although&quot;, &quot;Ontario&quot;, &quot;albino&quot;, &quot;%$&amp;#!&quot;]
-
-func combineLastCharacters(wordArray:[String]) -&gt; String {
-
-    var newWord = &quot;&quot;
-    for var word in wordArray {
-        let lastCharacter = word.removeAtIndex(word.endIndex.predecessor())
-        newWord.append(lastCharacter)
-    }
-    return newWord
-}
-
-combineLastCharacters(nonsenseArray)
-
-//output :&quot;woohoo!&quot;
-</code></pre><h2 id="字符串中有数字则返回true-字符则false"><a href="#字符串中有数字则返回true-字符则false" class="headerlink" title="字符串中有数字则返回true,字符则false"></a>字符串中有数字则返回true,字符则false</h2><pre><code>//创建只有数字的set
-let digits = NSCharacterSet.decimalDigitCharacterSet()
-
-func digitsOnly(word: String) -&gt; Bool {
-
-    for character in word.unicodeScalars {
-
-        if !digits.longCharacterIsMember(character.value) {
-            return false
-        }
-    }
-    return true
-}
-
-digitsOnly(&quot;123&quot;)  //output : true
-
-digitsOnly(&quot;12a&quot;)  //output : false
-</code></pre><h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="去除掉数组中四个字母的字符串"><a href="#去除掉数组中四个字母的字符串" class="headerlink" title="去除掉数组中四个字母的字符串"></a>去除掉数组中四个字母的字符串</h2><pre><code>let dirtyWordsArray = [&quot;phooey&quot;, &quot;darn&quot;, &quot;drat&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;argh&quot;, &quot;fudge&quot;]
-
-func cleanUp(dirtyArray: [String]) -&gt; [String] {
-    var cleanArray = [String]()
-    for word in dirtyArray {
-        if word.characters.count == 4 {
-        } else {
-            cleanArray.append(word)
-        }
-    }
-    return cleanArray
-}
-
-cleanUp(dirtyWordsArray) //output : [&quot;phooey&quot;, &quot;blurgh&quot;, &quot;jupiters&quot;, &quot;fudge&quot;]
-</code></pre><h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="筛选出字典中指定value的key值数组"><a href="#筛选出字典中指定value的key值数组" class="headerlink" title="筛选出字典中指定value的key值数组"></a>筛选出字典中指定value的key值数组</h2><pre><code>var movies:Dictionary&lt;String,String&gt; = [ &quot;Boyhood&quot;:&quot;Richard Linklater&quot;,&quot;Inception&quot;:&quot;Christopher Nolan&quot;, &quot;The Hurt Locker&quot;:&quot;Kathryn Bigelow&quot;, &quot;Selma&quot;:&quot;Ava Du Vernay&quot;, &quot;Interstellar&quot;:&quot;Christopher Nolan&quot;]
-
-class MovieArchive {
-    func filterByDirector(currentDirector:String, movies: Dictionary&lt;String, String&gt;) -&gt; [String] {
-        var filteredArray = [String]()
-        for (movie, director) in movies {
-            if director == currentDirector {
-                filteredArray.append(movie)
-            }
-        }
-        return filteredArray
-    }
-}
-
-// Solution
-var myArchive = MovieArchive()
-myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //output : [&quot;Boyhood&quot;]
-</code></pre><h1 id="UIView"><a href="#UIView" class="headerlink" title="UIView"></a>UIView</h1><h2 id="Fade-Out-and-Fade-in"><a href="#Fade-Out-and-Fade-in" class="headerlink" title="Fade Out and Fade in"></a>Fade Out and Fade in</h2><pre><code>@IBAction func sunRiseAndSet(sender: AnyObject) {
-       // Fade out
-
-       UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-
-           self.imageView.alpha = 0.0
-
-           }, completion: {
-               (finished: Bool) -&gt; Void in
-
-               //Once the label is completely invisible, set the text and fade it back in
-               if (self.imageView.image == UIImage(named: &quot;sunrise&quot;)) {
-                   self.imageView.image = UIImage(named:&quot;sunset&quot;)!
-               } else {
-                   self.imageView.image = UIImage(named:&quot;sunrise&quot;)!
-               }
-
-               // Fade in
-               UIView.animateWithDuration(1.0, delay:0.0, options:UIViewAnimationOptions.CurveEaseIn, animations: {
-                   self.imageView.alpha = 1.0
-                   }, completion: nil)
-       })
-   }
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1669,7 +1598,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">109</span>
+              <span class="site-state-item-count">110</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1677,7 +1606,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1686,7 +1615,7 @@ myArchive.filterByDirector(&quot;Richard Linklater&quot;, movies: movies)    //o
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

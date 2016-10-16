@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-07T07:44:25.000Z</updated>
+  <updated>2016-10-16T09:39:01.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BEP-Telephoning</title>
+    <link href="http://jackliu17.github.io/2016/10/16/BEP-Telephoning/"/>
+    <id>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</id>
+    <published>2016-10-16T09:22:29.000Z</published>
+    <updated>2016-10-16T09:39:01.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;George: Hello, this is George Kline.&lt;/p&gt;
+&lt;p&gt;Nathan: Yes, this is Nathan Beale from Cyclops. I haven’t heard from you, and I’mtrying to find out if you are still interested in this contract.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;道歉安慰&quot;&gt;&lt;a href=&quot;#道歉安慰&quot; class=&quot;headerlink&quot; title=&quot;道歉安慰&quot;&gt;&lt;/a&gt;道歉安慰&lt;/h2&gt;&lt;p&gt;回应时先道歉，然后给予安慰，然后说明自己的行动，不用解释太多&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;George: Yes, we certainly are. I do apologize for not contacting you directly, but I did try to call you this week about the contract, but you were out of the office. But we’re working very hard on this contract, and will be sending it to you today.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;道歉和安慰的方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I’m really sorry about all of this.&lt;/li&gt;
+&lt;li&gt;I’d like to apologize for this mix-up.&lt;/li&gt;
+&lt;li&gt;I’m afraid there has been a mistake, but we’ll get it sorted out.&lt;/li&gt;
+&lt;li&gt;My apologies for this, and we’ll clear it up very soon.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;重申强调&quot;&gt;&lt;a href=&quot;#重申强调&quot; class=&quot;headerlink&quot; title=&quot;重申强调&quot;&gt;&lt;/a&gt;重申强调&lt;/h2&gt;&lt;p&gt;进一步强调行动的必要性&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nathan: Well, I’m glad to hear it, but I wish you had let me know you weresending it to us today. Today’s the deadline for proposals, you know.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;强调重要性的几种方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Well, here’s the thing…&lt;/li&gt;
+&lt;li&gt;I’d just like to emphasize that…&lt;/li&gt;
+&lt;li&gt;I’m sure you’re aware that…&lt;/li&gt;
+&lt;li&gt;At the end of the day, what’s important is that…&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot;
+    
+    </summary>
+    
+      <category term="英语学习" scheme="http://jackliu17.github.io/categories/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="bep" scheme="http://jackliu17.github.io/tags/bep/"/>
+    
+  </entry>
   
   <entry>
     <title>Technical_issue</title>
@@ -179,7 +228,7 @@
     <link href="http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://jackliu17.github.io/2016/10/04/GCD学习笔记/</id>
     <published>2016-10-03T21:57:43.000Z</published>
-    <updated>2016-10-05T23:30:13.000Z</updated>
+    <updated>2016-10-14T11:20:59.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;多线程基础&quot;&gt;&lt;a href=&quot;#多线程基础&quot; class=&quot;headerlink&quot; title=&quot;多线程基础&quot;&gt;&lt;/a&gt;多线程基础&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot; title=&quot;进程&quot;&gt;&lt;/a&gt;进程&lt;/h2&gt;&lt;p&gt;进程是指在系统中正在运行的一个应用程序&lt;/p&gt;
 &lt;p&gt;每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内&lt;/p&gt;
@@ -627,7 +676,22 @@ print(&amp;quot;Maintenance work&amp;quot;)
 queue.async(qos: .userInitiated) {
 print(“Button tapped”)
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;摘自 &lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD-for-swift3&quot;&gt;&lt;a href=&quot;#GCD-for-swift3&quot; class=&quot;headerlink&quot; title=&quot;GCD for swift3&quot;&gt;&lt;/a&gt;GCD for swift3&lt;/h1&gt;&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; queue = &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;(label: &lt;span class=&quot;string&quot;&gt;&quot;Kenneth&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;queue.async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;DispatchQueue.global(qos: DispatchQoS.*)&lt;/p&gt;
+&lt;p&gt;DispatchQoS&lt;/p&gt;
+&lt;p&gt;.userInitiated&lt;/p&gt;
+&lt;p&gt;.default&lt;/p&gt;
+&lt;p&gt;.utility&lt;/p&gt;
+&lt;p&gt;.background&lt;/p&gt;
+&lt;p&gt;DispatchQueue.main&lt;/p&gt;
+&lt;p&gt;DispatchQueue.global()      // 等于 DispatchQueue.global(qos: .default)&lt;/p&gt;
+&lt;p&gt;let conQueue = DispatchQueue(label: “Kenneth”, attributes: .concurrent)&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;全局队列异步&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.global().async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//Something that wastes time&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.main.async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//返回主线程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;fefdsfsd&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;延时操作，注意这里的单位是秒&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.main.asyncAfter(deadline: &lt;span class=&quot;type&quot;&gt;DispatchTime&lt;/span&gt;.now() + &lt;span class=&quot;number&quot;&gt;3.5&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 你想做啥&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ewrewrew&lt;/p&gt;
+&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;创建队列同步&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; queue = &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;(label: &lt;span class=&quot;string&quot;&gt;&quot;Kenneth&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;queue.sync &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;摘自 &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/2d57c72016c6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS多线程–彻底学会多线程之GCD&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/5efa458c9340&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD（Grand Central Dispatch）快速上手&lt;/a&gt;&lt;/li&gt;
@@ -2823,76 +2887,6 @@ private func configureTraitOverrideForSize(size:CGSize) {
       <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
     
       <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Alamofire简介</title>
-    <link href="http://jackliu17.github.io/2016/08/05/Alamofire%E7%AE%80%E4%BB%8B/"/>
-    <id>http://jackliu17.github.io/2016/08/05/Alamofire简介/</id>
-    <published>2016-08-05T01:43:01.000Z</published>
-    <updated>2016-08-05T10:57:40.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;iOS中的网络连接方案&quot;&gt;&lt;a href=&quot;#iOS中的网络连接方案&quot; class=&quot;headerlink&quot; title=&quot;iOS中的网络连接方案&quot;&gt;&lt;/a&gt;iOS中的网络连接方案&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;NSURLConnection：用法简单，最古老最经典最直接的一种方案&lt;/li&gt;
-&lt;li&gt;NSURLSession：iOS 7 新出的技术，功能比 NSURLConnection 更加强大&lt;/li&gt;
-&lt;li&gt;AFNetworking：简单易用，提供了基本够用的常用功能&lt;/li&gt;
-&lt;li&gt;Alamofire：纯Swift网络请求库&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;Alamofire响应处理&quot;&gt;&lt;a href=&quot;#Alamofire响应处理&quot; class=&quot;headerlink&quot; title=&quot;Alamofire响应处理&quot;&gt;&lt;/a&gt;Alamofire响应处理&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;Alamofire.request(.GET, &amp;quot;https://httpbin.org/get&amp;quot;, parameters: [&amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;])
-.responseJSON { response in
-    print(response.request)  // 初始URL请求
-    print(response.response) // URL响应
-    print(response.data)     // 服务器数据
-    print(response.result)   // 响应序列化的结果
-
-    if let JSON = response.result.value {
-        print(&amp;quot;JSON: \(JSON)&amp;quot;)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Alamofire-HTTP-Headers&quot;&gt;&lt;a href=&quot;#Alamofire-HTTP-Headers&quot; class=&quot;headerlink&quot; title=&quot;Alamofire - HTTP Headers&quot;&gt;&lt;/a&gt;Alamofire - HTTP Headers&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let headers = [
-&amp;quot;Authorization&amp;quot;: &amp;quot;Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==&amp;quot;,
-&amp;quot;Content-Type&amp;quot;: &amp;quot;application/x-www-form-urlencoded&amp;quot;
-]
-
-Alamofire.request(.GET, &amp;quot;https://httpbin.org/get&amp;quot;, headers: headers)
-.responseJSON { response in
-    debugPrint(response)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Alamofire-使用默认的Download-Destination&quot;&gt;&lt;a href=&quot;#Alamofire-使用默认的Download-Destination&quot; class=&quot;headerlink&quot; title=&quot;Alamofire 使用默认的Download Destination&quot;&gt;&lt;/a&gt;Alamofire 使用默认的Download Destination&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let destination = Alamofire.Request.suggestedDownloadDestination(directory: .DocumentDirectory, domain: .UserDomainMask)
-Alamofire.download(.GET, &amp;quot;https://httpbin.org/stream/100&amp;quot;, destination: destination)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Alamofire-下载失败访问恢复文件&quot;&gt;&lt;a href=&quot;#Alamofire-下载失败访问恢复文件&quot; class=&quot;headerlink&quot; title=&quot;Alamofire 下载失败访问恢复文件&quot;&gt;&lt;/a&gt;Alamofire 下载失败访问恢复文件&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;Alamofire.download(.GET, &amp;quot;https://httpbin.org/stream/100&amp;quot;, destination: destination).response { _, _, data, _ in
-    if let data = data, resumeDataString = NSString(data: data, encoding: NSUTF8StringEncoding) {
-        print(&amp;quot;Resume Data: \(resumeDataString)&amp;quot;)
-    } else {
-        print(&amp;quot;Resume Data was empty&amp;quot;)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Alamofire-URLStringConvertible&quot;&gt;&lt;a href=&quot;#Alamofire-URLStringConvertible&quot; class=&quot;headerlink&quot; title=&quot;Alamofire - URLStringConvertible&quot;&gt;&lt;/a&gt;Alamofire - URLStringConvertible&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;let string = NSString(string: &amp;quot;https://httpbin.org/post&amp;quot;)
-Alamofire.request(.POST, string)
-
-let URL = NSURL(string: string)!
-Alamofire.request(.POST, URL)
-
-let URLRequest = NSURLRequest(URL: URL)
-Alamofire.request(.POST, URLRequest) // overrides `HTTPMethod` of `URLRequest`
-
-let URLComponents = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true)
-Alamofire.request(.POST, URLComponents)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Bug&quot;&gt;&lt;a href=&quot;#Bug&quot; class=&quot;headerlink&quot; title=&quot;Bug&quot;&gt;&lt;/a&gt;Bug&lt;/h1&gt;&lt;p&gt;Xcode的bug: 从cocoapods导入时，识别不了Alamofire。只要先Run一次，再import Alamofire就可以了&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;iOS中的网络连接方案&quot;&gt;&lt;a href=&quot;#iOS中的网络连接方案&quot; class=&quot;headerlink&quot; title=&quot;iOS中的网络连接方案&quot;&gt;&lt;/a&gt;iOS中的网络连接方案&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;NSURLConnection：用法简单，最古老最经典最
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="iOS_networking" scheme="http://jackliu17.github.io/tags/iOS-networking/"/>
     
   </entry>
   
