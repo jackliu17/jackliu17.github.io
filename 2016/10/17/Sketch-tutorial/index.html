@@ -1,0 +1,944 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sketch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="App设计标准矢量图和位图
+矢量图：图形
+像素图：图像。
+矢量图形通常是绘制出来的，而图像一般是拍摄获得的。
+矢量图放大后不会失真
+Sketch是矢量图制作的利器，但位图处理较弱
+
+PT和像素的关系
+Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)
+像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识
+
+
+iPh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sketch-tutorial">
+<meta property="og:url" content="http://jackliu17.github.io/2016/10/17/Sketch-tutorial/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="App设计标准矢量图和位图
+矢量图：图形
+像素图：图像。
+矢量图形通常是绘制出来的，而图像一般是拍摄获得的。
+矢量图放大后不会失真
+Sketch是矢量图制作的利器，但位图处理较弱
+
+PT和像素的关系
+Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)
+像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识
+
+
+iPh">
+<meta property="og:image" content="https://www.dropbox.com/s/6qbwery713acwhv/2016101904.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/e48o8p41yjnywge/2016101905.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/iwr11i38j69tlba/2016101906.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/08muccmvikkzood/2016101907.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/jp6dv3ixu2ylgyr/2016101908.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/seunhx9dwow24a0/2016101707.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/wojkpyz0qq2zl68/2016101709.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/97i7ew8mepigtdl/2016101901.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/so9lnlujw312wc2/2016101705.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/t2hj8elemmjyil3/2016101706.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/a93563nau9kyswb/2016101804.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/2qukyiepiw7c7em/2016101708.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/izmno708hl4q1s8/2016101701.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6zspmqfnlq5nmen/2016101702.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ii0eb7a92u3vbcj/2016101819.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/1xc2f8xdiqvm7an/2016101822.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/1psdzc1nad9t7q4/2016101703.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/lhzz4r9y9w5rxmx/2016101704.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/vah9h95o0azogre/2016101823.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zjvgl9hwj5bpe84/2016101824.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/k9cwfmadg2xm49a/2016101827.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/sycvdp447qritlo/2016101825.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/zvfofzgxhgpft5d/2016101826.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/jp8nv6px37q9ply/2016101801.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/x7ebwtwr2ej31ih/2016101802.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/srww0qwdf68tmdj/2016101815.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/w4e2kekfsdmc9q7/2016101803.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ddomwkgctsow22h/2016101816.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/sn9luwlcryjbpld/2016101817.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/fca226e5q4yg0no/2016101818.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/5fuxq7s0avo37l9/2016101805.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/6fqhk3ep6q26uj0/2016101806.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/tigbya85kqgh2cj/2016101807.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/3rfmz9ng3jb15ta/2016101814.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/826sw4ls3yq6pp8/2016101810.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/r7ypi5zrjicidiq/2016101811.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/0hyv0ruyfdx4zg0/2016101809.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/fc8af6rmcy9osdh/2016101902.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/4pcdfyb2gxrxnmn/2016101903.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/vpw4mflgdn7af7w/2016101909.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/vjbyrcitmwso019/2016101910.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ie78xfs1muq54fe/2016101911.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/ld652nywfz00wrh/2016101912.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/s8fektp48org65d/2016101914.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/3gytaltrdh4e0tw/2016101913.png?dl=1">
+<meta property="og:updated_time" content="2016-10-19T07:25:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sketch-tutorial">
+<meta name="twitter:description" content="App设计标准矢量图和位图
+矢量图：图形
+像素图：图像。
+矢量图形通常是绘制出来的，而图像一般是拍摄获得的。
+矢量图放大后不会失真
+Sketch是矢量图制作的利器，但位图处理较弱
+
+PT和像素的关系
+Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)
+像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识
+
+
+iPh">
+<meta name="twitter:image" content="https://www.dropbox.com/s/6qbwery713acwhv/2016101904.png?dl=1">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Sketch-tutorial | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Sketch-tutorial
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T10:38:01+11:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/Sketch-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/17/Sketch-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="App设计标准"><a href="#App设计标准" class="headerlink" title="App设计标准"></a>App设计标准</h1><h2 id="矢量图和位图"><a href="#矢量图和位图" class="headerlink" title="矢量图和位图"></a>矢量图和位图</h2><ol>
+<li>矢量图：图形</li>
+<li>像素图：图像。</li>
+<li>矢量图形通常是绘制出来的，而图像一般是拍摄获得的。</li>
+<li>矢量图放大后不会失真</li>
+<li>Sketch是矢量图制作的利器，但位图处理较弱</li>
+</ol>
+<h2 id="PT和像素的关系"><a href="#PT和像素的关系" class="headerlink" title="PT和像素的关系"></a>PT和像素的关系</h2><ul>
+<li>Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)</li>
+<li>像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/6qbwery713acwhv/2016101904.png?dl=1" alt="4"></p>
+<h2 id="iPhone-resoulutions"><a href="#iPhone-resoulutions" class="headerlink" title="iPhone resoulutions"></a>iPhone resoulutions</h2><p><a href="https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions" target="_blank" rel="external">The Ultimate Guide To iPhone Resolutions</a></p>
+<p><img src="https://www.dropbox.com/s/e48o8p41yjnywge/2016101905.png?dl=1" alt="5"><br><img src="https://www.dropbox.com/s/iwr11i38j69tlba/2016101906.png?dl=1" alt="6"></p>
+<h2 id="iPhone-size-standard"><a href="#iPhone-size-standard" class="headerlink" title="iPhone size standard"></a>iPhone size standard</h2><p><a href="https://developer.apple.com/ios/human-interface-guidelines/#//apple_ref/doc/uid/TP40006556-CH66-SW1" target="_blank" rel="external">iOS Human Interface Guidelines</a></p>
+<p><img src="https://www.dropbox.com/s/08muccmvikkzood/2016101907.png?dl=1" alt="7"></p>
+<p><img src="https://www.dropbox.com/s/jp6dv3ixu2ylgyr/2016101908.png?dl=1" alt="8"></p>
+<h1 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h1><p><img src="https://www.dropbox.com/s/seunhx9dwow24a0/2016101707.png?dl=1" alt="7"></p>
+<h2 id="Attribute-of-layer"><a href="#Attribute-of-layer" class="headerlink" title="Attribute of layer"></a>Attribute of layer</h2><ul>
+<li>Allignment</li>
+<li>Fills</li>
+<li>Borders</li>
+<li>Shadows</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/wojkpyz0qq2zl68/2016101709.png?dl=1" alt="9"></p>
+<h2 id="Fill-Color-with-existing-one"><a href="#Fill-Color-with-existing-one" class="headerlink" title="Fill Color with existing one"></a>Fill Color with existing one</h2><p><img src="https://www.dropbox.com/s/97i7ew8mepigtdl/2016101901.png?dl=1" alt="1"></p>
+<h2 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h2><p><img src="https://www.dropbox.com/s/so9lnlujw312wc2/2016101705.png?dl=1" alt="5"></p>
+<h2 id="All-Version"><a href="#All-Version" class="headerlink" title="All Version"></a>All Version</h2><p><img src="https://www.dropbox.com/s/t2hj8elemmjyil3/2016101706.png?dl=1" alt="6"></p>
+<h2 id="Customize-tool-bar"><a href="#Customize-tool-bar" class="headerlink" title="Customize tool bar"></a>Customize tool bar</h2><p><img src="https://www.dropbox.com/s/a93563nau9kyswb/2016101804.png?dl=1" alt="4"></p>
+<h2 id="Create-iPhone-art-board"><a href="#Create-iPhone-art-board" class="headerlink" title="Create iPhone art board"></a>Create iPhone art board</h2><p><img src="https://www.dropbox.com/s/2qukyiepiw7c7em/2016101708.png?dl=1" alt="8"></p>
+<h1 id="Functionality"><a href="#Functionality" class="headerlink" title="Functionality"></a>Functionality</h1><h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>Symbol好比是个全局变量。创造出来后可以从库中调用。对库中的symbol所做的任何变动都会反应到实例中。</p>
+<p>create Symbol</p>
+<p><img src="https://www.dropbox.com/s/izmno708hl4q1s8/2016101701.png?dl=1" alt="1"></p>
+<p>Use Symbol</p>
+<p><img src="https://www.dropbox.com/s/6zspmqfnlq5nmen/2016101702.png?dl=1" alt="2"></p>
+<h2 id="Rotate-Copy"><a href="#Rotate-Copy" class="headerlink" title="Rotate Copy"></a>Rotate Copy</h2><p><img src="https://www.dropbox.com/s/ii0eb7a92u3vbcj/2016101819.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1" alt=""></p>
+<h2 id="Siccer"><a href="#Siccer" class="headerlink" title="Siccer"></a>Siccer</h2><p><img src="https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/1xc2f8xdiqvm7an/2016101822.png?dl=1" alt=""></p>
+<h2 id="Make-Grid"><a href="#Make-Grid" class="headerlink" title="Make Grid"></a>Make Grid</h2><p><img src="" alt="15"></p>
+<p><img src="" alt="16"></p>
+<h1 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h1><h2 id="Text-Style"><a href="#Text-Style" class="headerlink" title="Text Style"></a>Text Style</h2><p>类似symbol。创造出来后可以从库中调用。对库中的text style所做的任何变动都会反应到实例中。</p>
+<p>create and organize text style</p>
+<p><img src="https://www.dropbox.com/s/1psdzc1nad9t7q4/2016101703.png?dl=1" alt="3"></p>
+<p>Use text style</p>
+<p><img src="https://www.dropbox.com/s/lhzz4r9y9w5rxmx/2016101704.png?dl=1" alt="4"></p>
+<h2 id="Text-convert-to-outline"><a href="#Text-convert-to-outline" class="headerlink" title="Text convert to outline"></a>Text convert to outline</h2><p>将字体转为矢量图后可以采用渐变等图像的处理方式</p>
+<p><img src="https://www.dropbox.com/s/vah9h95o0azogre/2016101823.png?dl=1" alt=""></p>
+<h2 id="Text-font"><a href="#Text-font" class="headerlink" title="Text font"></a>Text font</h2><p><img src="https://www.dropbox.com/s/zjvgl9hwj5bpe84/2016101824.png?dl=1" alt=""></p>
+<h1 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h1><h2 id="Image-Property"><a href="#Image-Property" class="headerlink" title="Image Property"></a>Image Property</h2><p><img src="https://www.dropbox.com/s/k9cwfmadg2xm49a/2016101827.png?dl=1" alt=""></p>
+<h2 id="Edit"><a href="#Edit" class="headerlink" title="Edit"></a>Edit</h2><p>双击图像</p>
+<p><img src="https://www.dropbox.com/s/sycvdp447qritlo/2016101825.png?dl=1" alt=""></p>
+<h2 id="9-slice"><a href="#9-slice" class="headerlink" title="9-slice"></a>9-slice</h2><p>只有在九宫格内的图像才能放大或缩小</p>
+<p><img src="https://www.dropbox.com/s/zvfofzgxhgpft5d/2016101826.png?dl=1" alt=""></p>
+<h1 id="Mask"><a href="#Mask" class="headerlink" title="Mask"></a>Mask</h1><h2 id="重叠Mask"><a href="#重叠Mask" class="headerlink" title="重叠Mask"></a>重叠Mask</h2><p>将两者重叠</p>
+<p><img src="https://www.dropbox.com/s/jp8nv6px37q9ply/2016101801.png?dl=1" alt="1"></p>
+<p>调用mask</p>
+<p><img src="https://www.dropbox.com/s/x7ebwtwr2ej31ih/2016101802.png?dl=1" alt="2"></p>
+<p>或者这样采用mask</p>
+<p><img src="https://www.dropbox.com/s/srww0qwdf68tmdj/2016101815.png?dl=1" alt="15"></p>
+<p>最终效果</p>
+<p><img src="https://www.dropbox.com/s/w4e2kekfsdmc9q7/2016101803.png?dl=1" alt="3"></p>
+<h2 id="限制性的使用Mask"><a href="#限制性的使用Mask" class="headerlink" title="限制性的使用Mask"></a>限制性的使用Mask</h2><p>顶部的text可以完全显示</p>
+<p><img src="https://www.dropbox.com/s/ddomwkgctsow22h/2016101816.png?dl=1" alt="16"></p>
+<h2 id="渐变Mask"><a href="#渐变Mask" class="headerlink" title="渐变Mask"></a>渐变Mask</h2><p><img src="https://www.dropbox.com/s/sn9luwlcryjbpld/2016101817.png?dl=1" alt="17"></p>
+<p><img src="https://www.dropbox.com/s/fca226e5q4yg0no/2016101818.png?dl=1" alt="18"></p>
+<h1 id="Bool-effect"><a href="#Bool-effect" class="headerlink" title="Bool effect"></a>Bool effect</h1><p><img src="https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1" alt="12"></p>
+<p>将圆圈拖拽至矩形上，组合成combined shape</p>
+<p><img src="https://www.dropbox.com/s/5fuxq7s0avo37l9/2016101805.png?dl=1" alt="5"></p>
+<p>点击subtract</p>
+<p><img src="https://www.dropbox.com/s/6fqhk3ep6q26uj0/2016101806.png?dl=1" alt="6"></p>
+<p><img src="https://www.dropbox.com/s/tigbya85kqgh2cj/2016101807.png?dl=1" alt="7"></p>
+<h1 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h1><h2 id="Add-Layer"><a href="#Add-Layer" class="headerlink" title="Add Layer"></a>Add Layer</h2><ul>
+<li>Insert —-&gt; Click + shift 保证是正方形或正圆</li>
+<li>Insert —&gt; Click + opt 是以鼠标为中心，而不是左上角绘制图</li>
+</ul>
+<h2 id="Choose-Layer"><a href="#Choose-Layer" class="headerlink" title="Choose Layer"></a>Choose Layer</h2><ul>
+<li>select layer —&gt; option 看尺寸及在artboard的位置</li>
+<li>Select layer —&gt; 点击眼睛标志 —&gt; 隐藏图层</li>
+<li>Select layer —&gt; Click + 方向键（左为宽度增大，右为宽度减小，同时按住shift变化10，否则变化1）</li>
+<li>Select beneath layer —&gt; opt + cmd —&gt; 选中下部图层</li>
+<li>Select layer with cmd or shift ——&gt;点击 Group —&gt;将所选图层归为一组</li>
+<li>Select layer + right click ——&gt; Lock this layer ( cannot move)</li>
+</ul>
+<h2 id="Move-Layer"><a href="#Move-Layer" class="headerlink" title="Move Layer"></a>Move Layer</h2><ul>
+<li>移动时使用shift键 —&gt;上下移动</li>
+<li>按住图层，移动时使用opt键 - duplicate</li>
+<li>cmd + D — 重复上次的行为</li>
+</ul>
+<h1 id="Shape"><a href="#Shape" class="headerlink" title="Shape"></a>Shape</h1><p><img src="https://www.dropbox.com/s/3rfmz9ng3jb15ta/2016101814.png?dl=1" alt="14"></p>
+<h2 id="Bezier-curve"><a href="#Bezier-curve" class="headerlink" title="Bezier curve"></a>Bezier curve</h2><p>锚点</p>
+<ul>
+<li>在线上点击，选择锚点</li>
+<li>按住shift，选中所有锚点</li>
+<li>按住cmd，锚点在原来两个锚点的中间 </li>
+</ul>
+<p>创建</p>
+<p><img src="https://www.dropbox.com/s/826sw4ls3yq6pp8/2016101810.png?dl=1" alt="10"></p>
+<p>闭合</p>
+<p><img src="https://www.dropbox.com/s/r7ypi5zrjicidiq/2016101811.png?dl=1" alt="11"></p>
+<p>矩形编辑</p>
+<p>双击矩形，可以按住端点编辑其形状</p>
+<p><img src="https://www.dropbox.com/s/0hyv0ruyfdx4zg0/2016101809.png?dl=1" alt="9"></p>
+<h1 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h1><p>使用模板</p>
+<p><img src="https://www.dropbox.com/s/fc8af6rmcy9osdh/2016101902.png?dl=1" alt="2"></p>
+<p>采用自定义模板 - 先打开下载好的sketch文件，再存入系统的template文件夹</p>
+<p><img src="https://www.dropbox.com/s/4pcdfyb2gxrxnmn/2016101903.png?dl=1" alt="3"></p>
+<h1 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h1><h2 id="Content-generator"><a href="#Content-generator" class="headerlink" title="Content generator"></a>Content generator</h2><p><img src="https://www.dropbox.com/s/vpw4mflgdn7af7w/2016101909.png?dl=1" alt="09"></p>
+<h2 id="Renamit"><a href="#Renamit" class="headerlink" title="Renamit"></a>Renamit</h2><p><img src="https://www.dropbox.com/s/vjbyrcitmwso019/2016101910.png?dl=1" alt="10"></p>
+<h2 id="Measure"><a href="#Measure" class="headerlink" title="Measure"></a>Measure</h2><p><img src="https://www.dropbox.com/s/ie78xfs1muq54fe/2016101911.png?dl=1" alt="11"></p>
+<h2 id="Notebook"><a href="#Notebook" class="headerlink" title="Notebook"></a>Notebook</h2><p><img src="https://www.dropbox.com/s/ld652nywfz00wrh/2016101912.png?dl=1" alt="12"></p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="取色技巧-with-Sip"><a href="#取色技巧-with-Sip" class="headerlink" title="取色技巧 with Sip"></a>取色技巧 with Sip</h2><h2 id="导出的方式"><a href="#导出的方式" class="headerlink" title="导出的方式"></a>导出的方式</h2><ol>
+<li>直接拖拽图层到桌面</li>
+<li>选中图层，底部Export</li>
+<li>选中artboard,底部Export,同时可以选择”background color”</li>
+<li>Insert —&gt; Slice 剪切图层</li>
+<li>顶部Export all </li>
+</ol>
+<h2 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h2><p>在命名artboard或symbol时，采用”/“，这样导出会自动产生文件夹</p>
+<p><img src="https://www.dropbox.com/s/s8fektp48org65d/2016101914.png?dl=1" alt="14"></p>
+<h2 id="设置grid"><a href="#设置grid" class="headerlink" title="设置grid"></a>设置grid</h2><p><img src="https://www.dropbox.com/s/3gytaltrdh4e0tw/2016101913.png?dl=1" alt="13"></p>
+<h1 id="Shortcut-key"><a href="#Shortcut-key" class="headerlink" title="Shortcut key"></a>Shortcut key</h1><p>需要设置的快捷键</p>
+<ul>
+<li>对齐功能</li>
+<li>分布功能</li>
+<li>对齐像素功能</li>
+</ul>
+<p>方法: System preference -&gt; Keyboard -&gt; Shortcut</p>
+<p><img src="" alt="18"></p>
+<p>如果有重复的，需要用 -&gt;输入完整的路径</p>
+<p><img src="" alt="17"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sketch/" rel="tag">#sketch</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/16/BEP-Telephoning/" rel="next" title="BEP-Telephoning">
+                <i class="fa fa-chevron-left"></i> BEP-Telephoning
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#App设计标准"><span class="nav-number">1.</span> <span class="nav-text">App设计标准</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矢量图和位图"><span class="nav-number">1.1.</span> <span class="nav-text">矢量图和位图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PT和像素的关系"><span class="nav-number">1.2.</span> <span class="nav-text">PT和像素的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iPhone-resoulutions"><span class="nav-number">1.3.</span> <span class="nav-text">iPhone resoulutions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iPhone-size-standard"><span class="nav-number">1.4.</span> <span class="nav-text">iPhone size standard</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Interface"><span class="nav-number">2.</span> <span class="nav-text">Interface</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Attribute-of-layer"><span class="nav-number">2.1.</span> <span class="nav-text">Attribute of layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fill-Color-with-existing-one"><span class="nav-number">2.2.</span> <span class="nav-text">Fill Color with existing one</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Export"><span class="nav-number">2.3.</span> <span class="nav-text">Export</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#All-Version"><span class="nav-number">2.4.</span> <span class="nav-text">All Version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Customize-tool-bar"><span class="nav-number">2.5.</span> <span class="nav-text">Customize tool bar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-iPhone-art-board"><span class="nav-number">2.6.</span> <span class="nav-text">Create iPhone art board</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Functionality"><span class="nav-number">3.</span> <span class="nav-text">Functionality</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol"><span class="nav-number">3.1.</span> <span class="nav-text">Symbol</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotate-Copy"><span class="nav-number">3.2.</span> <span class="nav-text">Rotate Copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Siccer"><span class="nav-number">3.3.</span> <span class="nav-text">Siccer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Make-Grid"><span class="nav-number">3.4.</span> <span class="nav-text">Make Grid</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Text"><span class="nav-number">4.</span> <span class="nav-text">Text</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-Style"><span class="nav-number">4.1.</span> <span class="nav-text">Text Style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-convert-to-outline"><span class="nav-number">4.2.</span> <span class="nav-text">Text convert to outline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Text-font"><span class="nav-number">4.3.</span> <span class="nav-text">Text font</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Image"><span class="nav-number">5.</span> <span class="nav-text">Image</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Property"><span class="nav-number">5.1.</span> <span class="nav-text">Image Property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edit"><span class="nav-number">5.2.</span> <span class="nav-text">Edit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-slice"><span class="nav-number">5.3.</span> <span class="nav-text">9-slice</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mask"><span class="nav-number">6.</span> <span class="nav-text">Mask</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重叠Mask"><span class="nav-number">6.1.</span> <span class="nav-text">重叠Mask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#限制性的使用Mask"><span class="nav-number">6.2.</span> <span class="nav-text">限制性的使用Mask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渐变Mask"><span class="nav-number">6.3.</span> <span class="nav-text">渐变Mask</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bool-effect"><span class="nav-number">7.</span> <span class="nav-text">Bool effect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Layer"><span class="nav-number">8.</span> <span class="nav-text">Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Layer"><span class="nav-number">8.1.</span> <span class="nav-text">Add Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choose-Layer"><span class="nav-number">8.2.</span> <span class="nav-text">Choose Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Move-Layer"><span class="nav-number">8.3.</span> <span class="nav-text">Move Layer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shape"><span class="nav-number">9.</span> <span class="nav-text">Shape</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bezier-curve"><span class="nav-number">9.1.</span> <span class="nav-text">Bezier curve</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Template"><span class="nav-number">10.</span> <span class="nav-text">Template</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Extension"><span class="nav-number">11.</span> <span class="nav-text">Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Content-generator"><span class="nav-number">11.1.</span> <span class="nav-text">Content generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Renamit"><span class="nav-number">11.2.</span> <span class="nav-text">Renamit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Measure"><span class="nav-number">11.3.</span> <span class="nav-text">Measure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notebook"><span class="nav-number">11.4.</span> <span class="nav-text">Notebook</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tips"><span class="nav-number">12.</span> <span class="nav-text">Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取色技巧-with-Sip"><span class="nav-number">12.1.</span> <span class="nav-text">取色技巧 with Sip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导出的方式"><span class="nav-number">12.2.</span> <span class="nav-text">导出的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命名技巧"><span class="nav-number">12.3.</span> <span class="nav-text">命名技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置grid"><span class="nav-number">12.4.</span> <span class="nav-text">设置grid</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shortcut-key"><span class="nav-number">13.</span> <span class="nav-text">Shortcut key</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/10/17/Sketch-tutorial/';
+      var disqus_title = 'Sketch-tutorial';
+      var disqus_url = 'http://jackliu17.github.io/2016/10/17/Sketch-tutorial/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+</body>
+</html>

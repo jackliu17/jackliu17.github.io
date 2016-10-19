@@ -238,6 +238,365 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/08/MapKit地图应用基础/" itemprop="url">
+                  MapKit地图应用基础
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-08T15:38:00+10:00" content="2016-06-08">
+              2016-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/08/MapKit地图应用基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/08/MapKit地图应用基础/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MapKit基础讲解"><a href="#MapKit基础讲解" class="headerlink" title="MapKit基础讲解"></a>MapKit基础讲解</h1><p>Map Kit（地图套件）提供了一个接口，可以将地图直接嵌入到自己的视图中。通过Map Kit框架，可以在iOS应用程序中显示地图以及当前位置。通过属性的设定，可以轻松实现位置显示、添加地图注释，通过给定信息查找确定地标信息等相关功能。</p>
+<ol>
+<li>MKMapView：提供了一个可嵌入应用的地图界面。</li>
+<li>MKCoordinateRegin：设置地图显示区域。</li>
+<li>MKPointAnnotation：提供了在指定点添加注释的功能，不能自定义该类。</li>
+<li>MKPinAnnotation：通过此类可以对地图标注进行配置。</li>
+<li>MKAnnotationView：通过此类实现自定义地图标注功能。</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/895ubxdvyo136lh/iOS_MapKitBasic02.png?dl=1" alt=""></p>
+<h1 id="创建地图应用"><a href="#创建地图应用" class="headerlink" title="创建地图应用"></a>创建地图应用</h1><h2 id="添加MKMapView到视图"><a href="#添加MKMapView到视图" class="headerlink" title="添加MKMapView到视图"></a>添加MKMapView到视图</h2><pre><code>MKMapView * mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+[self.view addSubview:mapView];
+</code></pre><h2 id="MKMapView相关属性"><a href="#MKMapView相关属性" class="headerlink" title="MKMapView相关属性"></a>MKMapView相关属性</h2><pre><code>[mapView setDelegate:self];
+[mapView setMapType:MKMapTypeStandard]; //有卫星，标准地图等
+[mapView setZoomEnabled:YES];  //设置地图缩放
+[mapView setScrollEnabled:YES]; //设置地图移动
+[mapView setRotateEnabled:YES]; //设置地图旋转
+</code></pre><h2 id="地图的显示区域"><a href="#地图的显示区域" class="headerlink" title="地图的显示区域"></a>地图的显示区域</h2><pre><code>//Method.1 -- 通过跨度来设置地图的显示区域
+//MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(-37.855339, 145.153377), MKCoordinateSpanMake(0.1, 0.1));
+
+//Method.2 -- 通过距离来设置地图显示区域
+MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-37.855339, 145.153377),100 ,100);
+
+[mapView setRegion:[mapView regionThatFits:region]];
+</code></pre><h1 id="添加地图标注"><a href="#添加地图标注" class="headerlink" title="添加地图标注"></a>添加地图标注</h1><h2 id="设置地点坐标"><a href="#设置地点坐标" class="headerlink" title="设置地点坐标"></a>设置地点坐标</h2><pre><code>//Method.1
+CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846 , 116.503729);
+
+//Method.2
+CLLocationCoordinate2D coordinate2D;
+coordinate2D.latitude = 39.936846;
+coordinate2D.longitude = 116.503729;
+</code></pre><h2 id="指定坐标点添加标注"><a href="#指定坐标点添加标注" class="headerlink" title="指定坐标点添加标注"></a>指定坐标点添加标注</h2><pre><code>MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
+[pointAnntation1 setTitle:@&quot;当前位置&quot;];
+[pointAnntation1 setSubtitle:@&quot;位置说明&quot;];
+[pointAnntation1 setCoordinate:coordinate2D];
+[mapView addAnnotation:pointAnntation1];
+</code></pre><h2 id="添加多个标注"><a href="#添加多个标注" class="headerlink" title="添加多个标注"></a>添加多个标注</h2><pre><code>//标注一
+MKPointAnnotation * pointAnntation1 = [[MKPointAnnotation alloc] init];
+[pointAnntation1 setTitle:@&quot;当前位置&quot;];
+[pointAnntation1 setSubtitle:@&quot;位置说明&quot;];
+[pointAnntation1 setCoordinate:coordinate2D];
+
+//标注二
+MKPointAnnotation * pointAnntation2 = [[MKPointAnnotation alloc] init];
+[pointAnntation2 setTitle:@&quot;当前位置&quot;];
+[pointAnntation2 setSubtitle:@&quot;位置说明&quot;];
+[pointAnntation2 setCoordinate:coordinate2d];
+
+NSArray * arrAnnitations = @[pointAnntation1,pointAnntation2];
+[mapView addAnnotations:arrAnnitations];
+</code></pre><h2 id="地图启动时显示标注气泡"><a href="#地图启动时显示标注气泡" class="headerlink" title="地图启动时显示标注气泡"></a>地图启动时显示标注气泡</h2><pre><code>[mapView selectAnnotation:pointAnntation1 animated:YES];
+</code></pre><h2 id="设置标注样式"><a href="#设置标注样式" class="headerlink" title="设置标注样式"></a>设置标注样式</h2><pre><code>- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&lt;MKAnnotation&gt;)annotation{
+
+static NSString * pinIdentifier = @&quot;pin&quot;;
+
+MKPinAnnotationView * pintAnntation = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+
+if(!pintAnntation){
+
+        pintAnntation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+        [pintAnntation setPinColor:MKPinAnnotationColorPurple];
+        [pintAnntation setAnimatesDrop:YES];
+        [pintAnntation setCanShowCallout:YES];
+}
+
+return pintAnntation;
+</code></pre><h1 id="自定义标注视图"><a href="#自定义标注视图" class="headerlink" title="自定义标注视图"></a>自定义标注视图</h1><ol>
+<li>创建annotation object,并实现MKAnnotation协议</li>
+<li>创建自定义标注视图，继承自MKAnnotationView</li>
+</ol>
+<p>ViewController</p>
+<pre><code>- (void)viewDidLoad {
+...............
+CLLocationCoordinate2D coordinate2D = CLLocationCoordinate2DMake(39.936846, 116.503729);
+CustomAnnotation * customAnnotation = [[CustomAnnotation alloc] initWithCoordinate2D:coordinate2D];
+[customAnnotation setTitle:@&quot;我的位置&quot;];
+[customAnnotation setSubTitle:@&quot;具体说明&quot;];
+[mapView addAnnotation:customAnnotation];    
+}
+
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&lt;MKAnnotation&gt;)annotation{
+static NSString * customIdentifier = @&quot;customView&quot;;
+
+CustomAnnotationView * customAnnotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:customIdentifier];
+if(!customAnnotationView){
+    customAnnotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:customIdentifier];
+    [customAnnotationView setImage:[UIImage imageNamed:@&quot;an&quot;]];
+    }
+    return customAnnotationView;    
+}
+</code></pre><p>CustomAnnotation</p>
+<pre><code>@interface CustomAnnotation : NSObject&lt;MKAnnotation&gt;{
+CLLocationCoordinate2D coord;
+}
+
+@property (nonatomic, readonly) CLLocationCoordinate2D coord;
+
+@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy) NSString * subTitle;
+
+- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D;
+
+@end
+
+@implementation CustomAnnotation
+@synthesize coord;
+@synthesize title,subTitle;
+
+- (instancetype)initWithCoordinate2D:(CLLocationCoordinate2D)coordinate2D{
+self = [super init];
+if(self){
+    coord = coordinate2D;
+}
+
+return self;
+}
+
+- (CLLocationCoordinate2D)coordinate{
+return coord;
+}
+
+- (NSString *)title{
+return title;
+}
+
+- (NSString *)subtitle{
+return subTitle;
+}
+@end
+</code></pre><p>CustomAnnotationView</p>
+<pre><code>@interface CustomAnnotationView : MKAnnotationView
+
+@end
+
+@interface CustomAnnotationView()
+
+@property (nonatomic, strong) CustomAnnotation * customAnnotation;
+@property (nonatomic, strong) UIView *infoView;
+
+@end
+
+@implementation CustomAnnotationView
+
+- (instancetype)initWithAnnotation:(id&lt;MKAnnotation&gt;)annotation reuseIdentifier:(NSString *)reuseIdentifier{
+self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
+if(self){
+    self.customAnnotation = annotation;
+}
+
+return self;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+[super setSelected:selected animated:animated];
+if(selected){
+    self.infoView = [[UIView alloc] initWithFrame:CGRectMake(-(150-50)/2, -30, 150, 30)];
+    [_infoView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [_infoView.layer setBorderWidth:1.f];
+    [_infoView.layer setCornerRadius:5.f];
+    [self.infoView setBackgroundColor:[UIColor whiteColor]];
+    [self addSubview:self.infoView];
+
+    UILabel * label = [[UILabel alloc] initWithFrame:_infoView.bounds];
+    [label setFont:[UIFont systemFontOfSize:12]];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setText:[NSString stringWithFormat:@&quot;%f %f&quot;,_customAnnotation.coordinate.latitude,_customAnnotation.coordinate.longitude]];
+    [_infoView addSubview:label];
+
+    CGFloat scale = 0.001f;
+
+    [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
+    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGFloat scale = 1.1f;
+        [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 2)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            CGFloat scale = 0.9;
+            [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, -2)];
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.075 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                CGFloat scale = 1.0f;
+                [_infoView setTransform:CGAffineTransformMake(scale, 0, 0, scale, 0, 0)];
+            } completion:^(BOOL finished) {}];
+        }];
+    }];
+
+
+}else{
+    [UIView animateWithDuration:0.2 animations:^{
+        [_infoView setAlpha:0.1];
+    } completion:^(BOOL finished) {
+        [_infoView removeFromSuperview];
+    }];
+}
+}
+</code></pre><h2 id="选中标注时执行"><a href="#选中标注时执行" class="headerlink" title="选中标注时执行"></a>选中标注时执行</h2><p>MKAnnotationView </p>
+<pre><code>- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+
+
+}
+</code></pre><h1 id="MKMapView代理方法讲解"><a href="#MKMapView代理方法讲解" class="headerlink" title="MKMapView代理方法讲解"></a>MKMapView代理方法讲解</h1><pre><code>- (void)mapViewWillStartLoadingMap:(MKMapView *)mapView{
+    //地图将要载入执行
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView{
+    //地图载入完成以后执行
+}
+
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error{
+    //地图载入失败执行
+    NSLog(@&quot;error:%@&quot;,[error description]);
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+    //地图显示区域将要发生改变时执行
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;地图位置将要改变&quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&quot;确定&quot;, nil];
+        [alertView show];
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    //地图显示区域改变以后执行
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;地图位置已经改变&quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&quot;确定&quot;, nil];
+            [alertView show];
+
+}
+
+//添加标注时调用
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views{
+
+}
+
+//标注被选中时执行此方法
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+
+}
+
+//标注失去焦点时执行
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
+
+}
+
+//添加左右配件控件时才会调用
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/07/iOS推送通知流程/" itemprop="url">
                   iOS推送通知流程
                 </a>
@@ -895,558 +1254,12 @@ NSLog(@&quot;%@&quot;, [self.mediator values]);
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/06/iOS设计模式-责任链/" itemprop="url">
-                  iOS设计模式-责任链
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-06T13:33:31+10:00" content="2016-06-06">
-              2016-06-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/06/iOS设计模式-责任链/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/06/iOS设计模式-责任链/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="快递分拣中心"><a href="#快递分拣中心" class="headerlink" title="快递分拣中心"></a>快递分拣中心</h1><ol>
-<li>传送带 —&gt; 线性表</li>
-<li>包裹   —&gt; 符合某种规范的物品</li>
-<li>货物种类 —&gt; 特定种类的货物</li>
-</ol>
-<p>特点:提升效率</p>
-<p><img src="https://www.dropbox.com/s/ifhh4d0f2oxy9zh/iOS_designPatternChains01.png?dl=1" alt=""></p>
-<h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><p>定义:责任链模式是一种设计模式。在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链。请求在这个链上传递，直到链上的某一个对象决定处理此请求。发出这个请求的客户端并不知道链上的哪一个对象最终处理这个请求，这使得系统可以在不影响客户端的情况下动态地重新组织和分配责任。</p>
-<p>步骤:</p>
-<ol>
-<li>将责任抽象成对象</li>
-<li>将责任对象链接起来</li>
-<li>处理输入的事件</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/usl9cvfj7aaly1m/iOS_designPatternChains02.png?dl=1" alt=""></p>
-<p>ChainProtocol</p>
-<pre><code>protocol ChainProtocol &lt;NSObject&gt;
-
-//设置继任者
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
-
-//获取继任者
-- (id &lt;ChainProtocol&gt;)successor;
-
-//处理请求
-- (void)handleRequest:(id)request;
-
-@end
-</code></pre><h1 id="对输入文本进行类别检测"><a href="#对输入文本进行类别检测" class="headerlink" title="对输入文本进行类别检测"></a>对输入文本进行类别检测</h1><ol>
-<li>职能分解,有电话号码检测，邮箱检测，用户名检测。类似不同种类的包裹</li>
-<li>设定共有的接口。比如不同种类的产品都能装入一个纸箱</li>
-<li>严格说来还要设定一个尾节点，处理什么都不是的情况</li>
-<li>如果用if else的话，就不能进行拆解</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/s3c2zqcwuitmeug/iOS_designPatternChains03.png?dl=1" alt=""></p>
-<p>ChainProtocol</p>
-<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
-- (id &lt;ChainProtocol&gt;)successor;
-- (void)handleRequest:(id)request;
-@end
-</code></pre><p>EmailChain</p>
-<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface EmailChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation EmailChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-NSString *string = request;
-
-BOOL isMatch = [string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
-if (isMatch == NO) {
-
-    [self.nextSuccessor handleRequest:string];
-
-} else {
-
-    NSLog(@&quot;%@ 是邮箱&quot;, string);
-}
-}
-
-@end
-</code></pre><p>PhoneNumChain</p>
-<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface PhoneNumChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation PhoneNumChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-NSString *string = request;
-
-BOOL isMatch = [string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
-if (isMatch == NO) {
-
-    [self.nextSuccessor handleRequest:string];
-
-} else {
-
-    NSLog(@&quot;%@ 是电话号码&quot;, string);
-}
-}
-
-@end
-</code></pre><p>UserNameChain</p>
-<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface UserNameChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation UserNameChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-NSString *string = request;
-
-BOOL isMatch = [string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
-if (isMatch == NO) {
-
-    [self.nextSuccessor handleRequest:string];
-
-} else {
-
-    NSLog(@&quot;%@ 是用户名&quot;, string);
-}
-}
-
-@end
-</code></pre><p>HeadChain</p>
-<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface HeadChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation HeadChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-    self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-    return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-    [self.nextSuccessor handleRequest:request];
-}
-
-
-@end
-</code></pre><p>ViewController    </p>
-<pre><code>@interface ViewController ()
-@property (nonatomic, strong) HeadChain      *head;
-@property (nonatomic, strong) PhoneNumChain  *phoneNum;
-@property (nonatomic, strong) EmailChain     *email;
-@property (nonatomic, strong) UserNameChain  *userName;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // 创建责任对象
-    self.head     = [HeadChain new];
-    self.phoneNum = [PhoneNumChain new];
-    self.email    = [EmailChain new];
-    self.userName = [UserNameChain new];
-
-    // 链接责任链对象
-    self.head.successor     = self.phoneNum;
-    self.phoneNum.successor = self.email;
-    self.email.successor    = self.userName;
-
-    // 处理请求
-    [self.head handleRequest:@&quot;349323YX&quot;];
-}
-@end
-</code></pre><h1 id="对输入文本进行”全类别”检测"><a href="#对输入文本进行”全类别”检测" class="headerlink" title="对输入文本进行”全类别”检测"></a>对输入文本进行”全类别”检测</h1><p>ChainProtocol</p>
-<pre><code>@protocol ChainProtocol &lt;NSObject&gt;
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor;
-- (id &lt;ChainProtocol&gt;)successor;
-- (void)handleRequest:(id)request;
-
-@end
-</code></pre><p>HeadChain </p>
-<pre><code>@interface HeadChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface HeadChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation HeadChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-[self.nextSuccessor handleRequest:request];
-}
-@end
-</code></pre><p>RequestEvent</p>
-<pre><code>@interface RequestEvent : NSObject
-
-@property (nonatomic, strong) NSString            *string;
-@property (nonatomic, strong) NSMutableDictionary *infomation;
-
-@end
-
-@implementation RequestEvent
-
-- (instancetype)init {
-
-    self = [super init];
-
-    if (self) {
-
-        self.infomation = [NSMutableDictionary dictionary];
-    }
-
-    return self;
-}
-
-@end
-</code></pre><p>EmailChain    </p>
-<pre><code>@interface EmailChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface EmailChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation EmailChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-RequestEvent *event = request;
-
-BOOL isMatch = [event.string isMatch:RX(@&quot;[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}&quot;)];
-if (isMatch == NO) {
-
-    event.infomation[@&quot;Email&quot;] = @(NO);
-
-} else {
-
-    event.infomation[@&quot;Email&quot;] = @(YES);
-}
-
-[self.nextSuccessor handleRequest:request];
-}
-
-@end
-</code></pre><p>PhoneNumChain</p>
-<pre><code>@interface PhoneNumChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface PhoneNumChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation PhoneNumChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-RequestEvent *event = request;
-
-BOOL isMatch = [event.string isMatch:RX(@&quot;^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$&quot;)];
-if (isMatch == NO) {
-
-    event.infomation[@&quot;PhoneNumber&quot;] = @(NO);
-
-} else {
-
-    event.infomation[@&quot;PhoneNumber&quot;] = @(YES);
-}
-
-[self.nextSuccessor handleRequest:request];
-}
-
-@end
-</code></pre><p>UserNameChain</p>
-<pre><code>@interface UserNameChain : NSObject &lt;ChainProtocol&gt;
-
-@end
-
-@interface UserNameChain ()
-
-@property (nonatomic, strong) id &lt;ChainProtocol&gt; nextSuccessor;
-
-@end
-
-@implementation UserNameChain
-
-- (void)setSuccessor:(id &lt;ChainProtocol&gt;)successor {
-
-self.nextSuccessor = successor;
-}
-
-- (id &lt;ChainProtocol&gt;)successor {
-
-return self.nextSuccessor;
-}
-
-- (void)handleRequest:(id)request {
-
-RequestEvent *event = request;
-
-BOOL isMatch = [event.string isMatch:RX(@&quot;^[A-Za-z0-9]{6,20}+$&quot;)];
-if (isMatch == NO) {
-
-    event.infomation[@&quot;UserName&quot;] = @(NO);
-
-} else {
-
-    event.infomation[@&quot;UserName&quot;] = @(YES);
-}
-
-[self.nextSuccessor handleRequest:request];
-}
-
-@end
-</code></pre><p>ViewController</p>
-<pre><code>@interface ViewController ()
-@property (nonatomic, strong) HeadChain      *head;
-@property (nonatomic, strong) PhoneNumChain  *phoneNum;
-@property (nonatomic, strong) EmailChain     *email;
-@property (nonatomic, strong) UserNameChain  *userName;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// 创建责任对象
-self.head     = [HeadChain new];
-self.phoneNum = [PhoneNumChain new];
-self.email    = [EmailChain new];
-self.userName = [UserNameChain new];
-
-// 链接责任链对象
-self.head.successor     = self.phoneNum;
-self.phoneNum.successor = self.email;
-self.email.successor    = self.userName;
-
-RequestEvent *event = [RequestEvent new];
-event.string        = @&quot;349323YX@qq.com&quot;;
-
-// 处理请求
-[self.head handleRequest:event];
-
-NSLog(@&quot;%@&quot;, event.infomation);
-
-}
-@end
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1487,7 +1300,7 @@ NSLog(@&quot;%@&quot;, event.infomation);
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-count">111</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1504,7 +1317,7 @@ NSLog(@&quot;%@&quot;, event.infomation);
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

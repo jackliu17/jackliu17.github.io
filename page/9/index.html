@@ -238,6 +238,545 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/03/iOS设计模式-命令/" itemprop="url">
+                  iOS设计模式-命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-03T10:14:07+10:00" content="2016-06-03">
+              2016-06-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/03/iOS设计模式-命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/03/iOS设计模式-命令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="电视机、遥控器与接收器之间的关系"><a href="#电视机、遥控器与接收器之间的关系" class="headerlink" title="电视机、遥控器与接收器之间的关系"></a>电视机、遥控器与接收器之间的关系</h1><ol>
+<li>遥控器与接收器并非必要的设备，比如手动调节电视机的音量也可以</li>
+<li>接收器转换遥控器的信号</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/ra5t6od2dn3j47j/iOS_designPatternCommand01.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/8fxyvkj5487zenk/iOS_designPatternCommand02.png?dl=1" alt=""></p>
+<h1 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h1><p>在软件系统中，“行为请求者”与“行为实现者”通常呈现一种“紧耦合”。但在某些场合，比如要对行为进行“记录、撤销/重做、事务”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，实现二者之间的松耦合。这就是命令模式（Command Pattern）。命令的执行者和命令的发起者是解耦的，比如最后一个实例中的command的和view是没有直接关联，命令模式能执行回退，撤销，重做等操作，这是最大的用途</p>
+<ol>
+<li>Client:可以有多个实体，client即使没有receiver，自身也能操作。</li>
+<li>Receiver: 持有了client的引用,将遥控器的指令翻译成电视机能接收的,它的方法就是针对client的操作。</li>
+<li>CommandProtocol:所有对象必须遵循的规范。</li>
+<li>Command: 每个命令抽象成一个对象，且必须遵循命令协议。好比遥控器上的每个按钮。</li>
+<li>Invoker:单例，存储命令的地方。好比一个含有很多按钮的遥控器。</li>
+</ol>
+<p>CommandProtocol</p>
+<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
+
+@required
+
+//命令的执行
+- (void)excute;
+
+//与接收器绑定并设置参数
+- (void)initWithReceiver:(Receiver *)receiver paramter:(id)paramter;
+</code></pre><p>Invoker ： </p>
+<pre><code>@interface Invoker : NSObject
+
+//回退操作
+- (void)rollBack;
+
+//添加指令操作
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
+@end
+
+@interface Invoker ()
+
+@property (nonatomic, strong) NSMutableArray  *queue;
+@end
+
+@implementation Invoker
+
++ (instancetype)shareInstance {
+
+static Invoker *shareInstanceValue = nil;
+static dispatch_once_t oncePredicate;
+
+dispatch_once(&amp;oncePredicate, ^{
+
+    shareInstanceValue       = [[Invoker alloc] init];
+    shareInstanceValue.queue = [NSMutableArray array];
+});
+
+return shareInstanceValue;
+}
+
+- (void)rollBack {
+
+// todo
+}
+
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
+
+NSParameterAssert(command);
+
+[self.queue addObject:command];
+[command excute];
+}
+</code></pre><p>Receiver </p>
+<pre><code>@interface Receiver : NSObject
+//被服务对象
+@property (nonatomic, strong) id client;
+//增加频道
+- (void)addNum:(NSNumber *)num;
+//减少频道
+- (void)delNum:(NSNumber *)num;
+
+@end
+
+@implementation Receiver
+
+- (void)addNum:(NSNumber *)num {
+
+// todo
+}
+
+- (void)delNum:(NSNumber *)num {
+
+// todo
+}
+@end
+</code></pre><h1 id="改变一个视图的明暗程度"><a href="#改变一个视图的明暗程度" class="headerlink" title="改变一个视图的明暗程度"></a>改变一个视图的明暗程度</h1><p><img src="https://www.dropbox.com/s/c76u6xbm42yu6i4/iOS_designPatternCommand03.png?dl=1" alt=""></p>
+<p>ViewController</p>
+<pre><code>typedef enum : NSUInteger {
+
+kAddButtonTag = 10, // 增加按钮枚举值
+kDelButtonTag,      // 减少按钮枚举值
+kRolButtonTag,      // 回退按钮枚举值
+
+} ViewControllerEnumValue;
+
+@interface ViewController ()
+
+@property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIButton *delButton;
+@property (nonatomic, strong) UIButton *rolButton;
+@property (nonatomic, strong) Receiver *receiver;
+
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view, typically from a nib.
+
+// 接收器
+self.receiver            = [[Receiver alloc] init];
+self.receiver.clientView = self.view;
+
+// 初始化按钮
+[self initButtons];
+}
+
+- (void)buttonsEvent:(UIButton *)button {
+
+if (button.tag == kAddButtonTag) {
+
+    NSLog(@&quot;增加操作&quot;);
+    LighterCommond *commond = [[LighterCommond alloc] initWithReceiver:self.receiver paramter:0.1];
+    [[Invoker shareInstance] addAndExcute:commond];
+
+} else if (button.tag == kDelButtonTag) {
+
+    NSLog(@&quot;减少操作&quot;);
+    DarkerCommand *commond = [[DarkerCommand alloc] initWithReceiver:self.receiver paramter:0.1];
+    [[Invoker shareInstance] addAndExcute:commond];
+
+} else if (button.tag == kRolButtonTag) {
+
+    NSLog(@&quot;回退操作&quot;);
+    [[Invoker shareInstance] rollBack];
+}
+}
+
+#pragma mark - 无关初始化
+- (void)initButtons {
+
+// delButton
+self.delButton     = [[UIButton alloc] initWithFrame:CGRectMake(10, 25, 30, 30)];
+
+self.delButton.tag               = kDelButtonTag;
+self.delButton.layer.borderWidth = 1.f;
+
+[self.delButton setTitle:@&quot;-&quot;
+                forState:UIControlStateNormal];
+
+[self.delButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.delButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.delButton];
+
+// addButton
+self.addButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 40, 25, 30, 30)];
+
+self.addButton.tag               = kAddButtonTag;
+self.addButton.layer.borderWidth = 1.f;
+
+[self.addButton setTitle:@&quot;+&quot;
+                forState:UIControlStateNormal];
+
+[self.addButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.addButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.addButton];
+
+// rolButton
+self.rolButton     = [[UIButton alloc] initWithFrame:CGRectMake(10 + 80, 25, 90, 30)];
+
+self.rolButton.tag               = kRolButtonTag;
+self.rolButton.layer.borderWidth = 1.f;
+
+[self.rolButton setTitle:@&quot;rollBack&quot;
+                forState:UIControlStateNormal];
+
+[self.rolButton setTitleColor:[UIColor redColor]
+                     forState:UIControlStateNormal];
+
+[self.rolButton addTarget:self
+                   action:@selector(buttonsEvent:)
+         forControlEvents:UIControlEventTouchUpInside];
+
+[self.view addSubview:self.rolButton];
+}
+</code></pre><p>CommandProtocol</p>
+<pre><code>@protocol CommandProtocol &lt;NSObject&gt;
+
+@required
+
+//执行命令
+- (void)excute;
+//撤销命令
+- (void)rollBackExcute;
+
+@end
+</code></pre><p>DarkerCommand</p>
+<pre><code>@interface DarkerCommand : NSObject &lt;CommandProtocol&gt;
+//与接收器绑定并设置参数
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
+
+@end
+
+@interface DarkerCommand ()
+
+@property (nonatomic, weak) Receiver *receiver;
+@property (nonatomic)       CGFloat   paramter;
+
+@end
+
+@implementation DarkerCommand
+
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
+
+self = [super init];
+if (self) {
+
+    self.receiver = receiver;
+    self.paramter = paramter;
+}
+
+return self;
+}
+
+- (void)excute {
+
+[self.receiver makeDarker:self.paramter];
+}
+
+- (void)rollBackExcute {
+
+[self.receiver makeLighter:self.paramter];
+}
+
+@end
+</code></pre><p>LighterCommond </p>
+<pre><code>@interface LighterCommond : NSObject &lt;CommandProtocol&gt;
+
+//与接收器绑定并设置参数
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter;
+@end
+
+
+@interface LighterCommond ()
+
+@property (nonatomic, weak) Receiver *receiver;
+@property (nonatomic)       CGFloat   paramter;
+
+@end
+
+@implementation LighterCommond
+
+- (instancetype)initWithReceiver:(Receiver *)receiver paramter:(CGFloat)paramter {
+
+    self = [super init];
+    if (self) {
+
+        self.receiver = receiver;
+        self.paramter = paramter;
+    }
+
+    return self;
+}
+
+- (void)excute {
+
+    [self.receiver makeLighter:self.paramter];
+}
+
+- (void)rollBackExcute {
+
+    [self.receiver makeDarker:self.paramter];
+}
+@end
+</code></pre><p>Invoker </p>
+<pre><code>@interface Invoker : NSObject
+
++ (instancetype)shareInstance;
+//回退操作
+- (void)rollBack;
+
+//添加指令操作
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command;
+
+@end
+
+@interface Invoker ()
+
+@property (nonatomic, strong) NSMutableArray  *queue;
+
+@end
+
+@implementation Invoker
+
++ (instancetype)shareInstance {
+
+static Invoker *shareInstanceValue = nil;
+static dispatch_once_t oncePredicate;
+
+dispatch_once(&amp;oncePredicate, ^{
+
+    shareInstanceValue       = [[Invoker alloc] init];
+    shareInstanceValue.queue = [NSMutableArray array];
+});
+
+return shareInstanceValue;
+}
+
+- (void)rollBack {
+
+id &lt;CommandProtocol&gt; command = self.queue.lastObject;
+[command rollBackExcute];
+
+[self.queue removeLastObject];
+}
+
+- (void)addAndExcute:(id &lt;CommandProtocol&gt;)command {
+
+NSParameterAssert(command);
+
+[self.queue addObject:command];
+[command excute];
+}
+
+@end
+</code></pre><p>Receiver</p>
+<pre><code>@interface Receiver : NSObject {
+
+CGFloat _hud;
+CGFloat _saturation;
+CGFloat _brightness;
+CGFloat _alpha;
+}
+
+//被服务对象
+@property (nonatomic, weak) UIView  *clientView;
+//变暗
+- (void)makeDarker:(CGFloat)pamameter;
+//变亮
+- (void)makeLighter:(CGFloat)pamameter;
+@end
+
+@implementation Receiver
+
+//根据传入的UIView，获取各个维度的值
+
+- (void)setClientView:(UIView *)clientView {
+
+_clientView    = clientView;
+UIColor *color = _clientView.backgroundColor;
+
+//获取背景色各个维度的值
+[color getHue:&amp;_hud
+   saturation:&amp;_saturation
+   brightness:&amp;_brightness
+        alpha:&amp;_alpha];
+    }
+
+    - (void)makeDarker:(CGFloat)pamameter {
+
+_brightness -= pamameter;
+_brightness  = MAX(0, _brightness);
+
+_clientView.backgroundColor = [UIColor colorWithHue:_hud
+                                         saturation:_saturation
+                                         brightness:_brightness
+                                              alpha:_alpha];
+                                          }
+
+- (void)makeLighter:(CGFloat)pamameter {
+
+_brightness += pamameter;
+_brightness  = MIN(1, _brightness);
+
+_clientView.backgroundColor = [UIColor colorWithHue:_hud
+                                         saturation:_saturation
+                                         brightness:_brightness
+                                              alpha:_alpha];
+                                          }
+
+@end
+</code></pre><h1 id="Tag-for-Button"><a href="#Tag-for-Button" class="headerlink" title="Tag for Button"></a>Tag for Button</h1><p>通过设定tag值，来调用相对应的button</p>
+<pre><code>typedef enum : NSUInteger {
+
+kAddButtonTag = 10, // 增加按钮枚举值
+kDelButtonTag,      // 减少按钮枚举值
+kRolButtonTag,      // 回退按钮枚举值
+
+} ViewControllerEnumValue;
+
+..........
+
+self.delButton.tag = kDelButtonTag;
+self.addButton.tag = kAddButtonTag;
+self.rolButton.tag = kRolButtonTag;
+
+..........
+
+if (button.tag == kAddButtonTag) {
+
+
+} else if (button.tag == kDelButtonTag) {
+
+
+} else if (button.tag == kRolButtonTag) {
+
+
+}
+</code></pre><h1 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h1><p>协议就是抽象归纳出某一类对象共同拥有的特性</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/02/iOS设计模式-生成器/" itemprop="url">
                   iOS设计模式-生成器
                 </a>
@@ -1378,248 +1917,12 @@ self.destinationPort = [data destinationPort];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/29/iOS设计模式-桥接/" itemprop="url">
-                  iOS设计模式-桥接
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-29T19:20:04+10:00" content="2016-05-29">
-              2016-05-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/29/iOS设计模式-桥接/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/29/iOS设计模式-桥接/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="遥控器和电视机"><a href="#遥控器和电视机" class="headerlink" title="遥控器和电视机"></a>遥控器和电视机</h1><ol>
-<li>每个遥控器对应一个电视机，遥控器是控制类，电视机是执行类</li>
-<li>通用的功能抽象出来成为一个模块，增加复用性, 例如每个遥控器都会有音量键，频道键</li>
-</ol>
-<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><ol>
-<li>把抽象层次结构从具体的实现中分离出来，使其能够独立变更。</li>
-<li>抽象层次定义了供客户端使用的上层抽象接口。实现层结构定义了供抽象层使用的底层接口。</li>
-<li>实现类的引用被封装到抽象层的实例中，桥接就形成了。</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/h3a3xi0l1giqmz0/iOS_designPatternBridge01.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/vgzti8blkicn769/iOS_designPatternBridge02.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/5ulsrw1lym0zwhi/iOS_designPatternBridge03.png?dl=1" alt=""></p>
-<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>AbstractSystem</p>
-<pre><code>//拥有执行者的引用，让执行者去执行
-
-@property (nonatomic, strong) AbstractImplementor  *implementor;
-
-- (void)command_up {
-[self.implementor loadCommand:kUp];
-}
-
-- (void)command_down {
-[self.implementor loadCommand:kDown];
-}
-
-- (void)loadSystem {    
-}
-</code></pre><p>AbstractImplementor</p>
-<pre><code>//执行类要包含所有情形，例如KO, KX只是某个子类才有的特性，但也要包含在这里
-
-typedef enum : NSUInteger {
-
-kUp,
-kDown,
-kLeft,
-kRight,
-kA,
-kB,
-
-KO,
-KX,
-
-} EcommandType;
-
-- (void)loadCommand:(EcommandType)command {
-
-}
-</code></pre><h1 id="实现层1"><a href="#实现层1" class="headerlink" title="实现层1"></a>实现层1</h1><p>GBASystem </p>
-<pre><code>@interface GBASystem : AbstractSystem
-
-- (void)loadSystem {   
-NSLog(@&quot;GBASystem&quot;);
-}
-</code></pre><p>GBAImplementor</p>
-<pre><code>@interface GBAImplementor : AbstractImplementor
-
-- (void)loadCommand:(EcommandType)command {
-
-switch (command) {
-
-    case kUp:
-
-        NSLog(@&quot;GBA up&quot;);
-        break;
-
-    case kDown:
-
-        NSLog(@&quot;GBA down&quot;);
-        break;
-
-        ......
-}
-</code></pre><h1 id="实现层2"><a href="#实现层2" class="headerlink" title="实现层2"></a>实现层2</h1><p>PSPSystem</p>
-<pre><code>@interface PSPSystem : AbstractSystem
-
-- (void)loadSystem {   
-NSLog(@&quot;PSPSystem&quot;);
-}
-
-- (void)command_X {
-[self.implementor loadCommand:KX];
-}
-
-- (void)command_O {
-[self.implementor loadCommand:KO];
-}
-</code></pre><p>PSPImplementor</p>
-<pre><code>@interface PSPImplementor : AbstractImplementor
-
-- (void)loadCommand:(EcommandType)command {
-
-switch (command) {
-  ....
-      case KO:
-
-        NSLog(@&quot;PSP O&quot;);
-        break;
-
-    case KX:
-
-        NSLog(@&quot;PSP X&quot;);
-        break;
-}
-</code></pre><h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><pre><code>@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-// GBA系统 + GBA执行器
-AbstractSystem *gbaSystem = [[GBASystem alloc] init];
-gbaSystem.implementor     = [[GBAImplementor alloc] init];
-
-[gbaSystem loadSystem];
-[gbaSystem command_up];
-
-// PSP系统 + PSP执行器
-PSPSystem *pspSystem  = [[PSPSystem alloc] init];
-pspSystem.implementor = [[PSPImplementor alloc] init];
-
-[pspSystem loadSystem];
-[pspSystem command_X];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1660,7 +1963,7 @@ pspSystem.implementor = [[PSPImplementor alloc] init];
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-count">111</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1677,7 +1980,7 @@ pspSystem.implementor = [[PSPImplementor alloc] init];
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

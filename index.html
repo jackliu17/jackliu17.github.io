@@ -238,6 +238,232 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/17/Sketch-tutorial/" itemprop="url">
+                  Sketch-tutorial
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T10:38:01+11:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/17/Sketch-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/17/Sketch-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="App设计标准"><a href="#App设计标准" class="headerlink" title="App设计标准"></a>App设计标准</h1><h2 id="矢量图和位图"><a href="#矢量图和位图" class="headerlink" title="矢量图和位图"></a>矢量图和位图</h2><ol>
+<li>矢量图：图形</li>
+<li>像素图：图像。</li>
+<li>矢量图形通常是绘制出来的，而图像一般是拍摄获得的。</li>
+<li>矢量图放大后不会失真</li>
+<li>Sketch是矢量图制作的利器，但位图处理较弱</li>
+</ol>
+<h2 id="PT和像素的关系"><a href="#PT和像素的关系" class="headerlink" title="PT和像素的关系"></a>PT和像素的关系</h2><ul>
+<li>Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)</li>
+<li>像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/6qbwery713acwhv/2016101904.png?dl=1" alt="4"></p>
+<h2 id="iPhone-resoulutions"><a href="#iPhone-resoulutions" class="headerlink" title="iPhone resoulutions"></a>iPhone resoulutions</h2><p><a href="https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions" target="_blank" rel="external">The Ultimate Guide To iPhone Resolutions</a></p>
+<p><img src="https://www.dropbox.com/s/e48o8p41yjnywge/2016101905.png?dl=1" alt="5"><br><img src="https://www.dropbox.com/s/iwr11i38j69tlba/2016101906.png?dl=1" alt="6"></p>
+<h2 id="iPhone-size-standard"><a href="#iPhone-size-standard" class="headerlink" title="iPhone size standard"></a>iPhone size standard</h2><p><a href="https://developer.apple.com/ios/human-interface-guidelines/#//apple_ref/doc/uid/TP40006556-CH66-SW1" target="_blank" rel="external">iOS Human Interface Guidelines</a></p>
+<p><img src="https://www.dropbox.com/s/08muccmvikkzood/2016101907.png?dl=1" alt="7"></p>
+<p><img src="https://www.dropbox.com/s/jp6dv3ixu2ylgyr/2016101908.png?dl=1" alt="8"></p>
+<h1 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h1><p><img src="https://www.dropbox.com/s/seunhx9dwow24a0/2016101707.png?dl=1" alt="7"></p>
+<h2 id="Attribute-of-layer"><a href="#Attribute-of-layer" class="headerlink" title="Attribute of layer"></a>Attribute of layer</h2><ul>
+<li>Allignment</li>
+<li>Fills</li>
+<li>Borders</li>
+<li>Shadows</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/wojkpyz0qq2zl68/2016101709.png?dl=1" alt="9"></p>
+<h2 id="Fill-Color-with-existing-one"><a href="#Fill-Color-with-existing-one" class="headerlink" title="Fill Color with existing one"></a>Fill Color with existing one</h2><p><img src="https://www.dropbox.com/s/97i7ew8mepigtdl/2016101901.png?dl=1" alt="1"></p>
+<h2 id="Export"><a href="#Export" class="headerlink" title="Export"></a>Export</h2><p><img src="https://www.dropbox.com/s/so9lnlujw312wc2/2016101705.png?dl=1" alt="5"></p>
+<h2 id="All-Version"><a href="#All-Version" class="headerlink" title="All Version"></a>All Version</h2><p><img src="https://www.dropbox.com/s/t2hj8elemmjyil3/2016101706.png?dl=1" alt="6"></p>
+<h2 id="Customize-tool-bar"><a href="#Customize-tool-bar" class="headerlink" title="Customize tool bar"></a>Customize tool bar</h2><p><img src="https://www.dropbox.com/s/a93563nau9kyswb/2016101804.png?dl=1" alt="4"></p>
+<h2 id="Create-iPhone-art-board"><a href="#Create-iPhone-art-board" class="headerlink" title="Create iPhone art board"></a>Create iPhone art board</h2><p><img src="https://www.dropbox.com/s/2qukyiepiw7c7em/2016101708.png?dl=1" alt="8"></p>
+<h1 id="Functionality"><a href="#Functionality" class="headerlink" title="Functionality"></a>Functionality</h1><h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>Symbol好比是个全局变量。创造出来后可以从库中调用。对库中的symbol所做的任何变动都会反应到实例中。</p>
+<p>create Symbol</p>
+<p><img src="https://www.dropbox.com/s/izmno708hl4q1s8/2016101701.png?dl=1" alt="1"></p>
+<p>Use Symbol</p>
+<p><img src="https://www.dropbox.com/s/6zspmqfnlq5nmen/2016101702.png?dl=1" alt="2"></p>
+<h2 id="Rotate-Copy"><a href="#Rotate-Copy" class="headerlink" title="Rotate Copy"></a>Rotate Copy</h2><p><img src="https://www.dropbox.com/s/ii0eb7a92u3vbcj/2016101819.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1" alt=""></p>
+<h2 id="Siccer"><a href="#Siccer" class="headerlink" title="Siccer"></a>Siccer</h2><p><img src="https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/1xc2f8xdiqvm7an/2016101822.png?dl=1" alt=""></p>
+<h2 id="Make-Grid"><a href="#Make-Grid" class="headerlink" title="Make Grid"></a>Make Grid</h2><p><img src="" alt="15"></p>
+<p><img src="" alt="16"></p>
+<h1 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h1><h2 id="Text-Style"><a href="#Text-Style" class="headerlink" title="Text Style"></a>Text Style</h2><p>类似symbol。创造出来后可以从库中调用。对库中的text style所做的任何变动都会反应到实例中。</p>
+<p>create and organize text style</p>
+<p><img src="https://www.dropbox.com/s/1psdzc1nad9t7q4/2016101703.png?dl=1" alt="3"></p>
+<p>Use text style</p>
+<p><img src="https://www.dropbox.com/s/lhzz4r9y9w5rxmx/2016101704.png?dl=1" alt="4"></p>
+<h2 id="Text-convert-to-outline"><a href="#Text-convert-to-outline" class="headerlink" title="Text convert to outline"></a>Text convert to outline</h2><p>将字体转为矢量图后可以采用渐变等图像的处理方式</p>
+<p><img src="https://www.dropbox.com/s/vah9h95o0azogre/2016101823.png?dl=1" alt=""></p>
+<h2 id="Text-font"><a href="#Text-font" class="headerlink" title="Text font"></a>Text font</h2><p><img src="https://www.dropbox.com/s/zjvgl9hwj5bpe84/2016101824.png?dl=1" alt=""></p>
+<h1 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h1><h2 id="Image-Property"><a href="#Image-Property" class="headerlink" title="Image Property"></a>Image Property</h2><p><img src="https://www.dropbox.com/s/k9cwfmadg2xm49a/2016101827.png?dl=1" alt=""></p>
+<h2 id="Edit"><a href="#Edit" class="headerlink" title="Edit"></a>Edit</h2><p>双击图像</p>
+<p><img src="https://www.dropbox.com/s/sycvdp447qritlo/2016101825.png?dl=1" alt=""></p>
+<h2 id="9-slice"><a href="#9-slice" class="headerlink" title="9-slice"></a>9-slice</h2><p>只有在九宫格内的图像才能放大或缩小</p>
+<p><img src="https://www.dropbox.com/s/zvfofzgxhgpft5d/2016101826.png?dl=1" alt=""></p>
+<h1 id="Mask"><a href="#Mask" class="headerlink" title="Mask"></a>Mask</h1><h2 id="重叠Mask"><a href="#重叠Mask" class="headerlink" title="重叠Mask"></a>重叠Mask</h2><p>将两者重叠</p>
+<p><img src="https://www.dropbox.com/s/jp8nv6px37q9ply/2016101801.png?dl=1" alt="1"></p>
+<p>调用mask</p>
+<p><img src="https://www.dropbox.com/s/x7ebwtwr2ej31ih/2016101802.png?dl=1" alt="2"></p>
+<p>或者这样采用mask</p>
+<p><img src="https://www.dropbox.com/s/srww0qwdf68tmdj/2016101815.png?dl=1" alt="15"></p>
+<p>最终效果</p>
+<p><img src="https://www.dropbox.com/s/w4e2kekfsdmc9q7/2016101803.png?dl=1" alt="3"></p>
+<h2 id="限制性的使用Mask"><a href="#限制性的使用Mask" class="headerlink" title="限制性的使用Mask"></a>限制性的使用Mask</h2><p>顶部的text可以完全显示</p>
+<p><img src="https://www.dropbox.com/s/ddomwkgctsow22h/2016101816.png?dl=1" alt="16"></p>
+<h2 id="渐变Mask"><a href="#渐变Mask" class="headerlink" title="渐变Mask"></a>渐变Mask</h2><p><img src="https://www.dropbox.com/s/sn9luwlcryjbpld/2016101817.png?dl=1" alt="17"></p>
+<p><img src="https://www.dropbox.com/s/fca226e5q4yg0no/2016101818.png?dl=1" alt="18"></p>
+<h1 id="Bool-effect"><a href="#Bool-effect" class="headerlink" title="Bool effect"></a>Bool effect</h1><p><img src="https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1" alt="12"></p>
+<p>将圆圈拖拽至矩形上，组合成combined shape</p>
+<p><img src="https://www.dropbox.com/s/5fuxq7s0avo37l9/2016101805.png?dl=1" alt="5"></p>
+<p>点击subtract</p>
+<p><img src="https://www.dropbox.com/s/6fqhk3ep6q26uj0/2016101806.png?dl=1" alt="6"></p>
+<p><img src="https://www.dropbox.com/s/tigbya85kqgh2cj/2016101807.png?dl=1" alt="7"></p>
+<h1 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h1><h2 id="Add-Layer"><a href="#Add-Layer" class="headerlink" title="Add Layer"></a>Add Layer</h2><ul>
+<li>Insert —-&gt; Click + shift 保证是正方形或正圆</li>
+<li>Insert —&gt; Click + opt 是以鼠标为中心，而不是左上角绘制图</li>
+</ul>
+<h2 id="Choose-Layer"><a href="#Choose-Layer" class="headerlink" title="Choose Layer"></a>Choose Layer</h2><ul>
+<li>select layer —&gt; option 看尺寸及在artboard的位置</li>
+<li>Select layer —&gt; 点击眼睛标志 —&gt; 隐藏图层</li>
+<li>Select layer —&gt; Click + 方向键（左为宽度增大，右为宽度减小，同时按住shift变化10，否则变化1）</li>
+<li>Select beneath layer —&gt; opt + cmd —&gt; 选中下部图层</li>
+<li>Select layer with cmd or shift ——&gt;点击 Group —&gt;将所选图层归为一组</li>
+<li>Select layer + right click ——&gt; Lock this layer ( cannot move)</li>
+</ul>
+<h2 id="Move-Layer"><a href="#Move-Layer" class="headerlink" title="Move Layer"></a>Move Layer</h2><ul>
+<li>移动时使用shift键 —&gt;上下移动</li>
+<li>按住图层，移动时使用opt键 - duplicate</li>
+<li>cmd + D — 重复上次的行为</li>
+</ul>
+<h1 id="Shape"><a href="#Shape" class="headerlink" title="Shape"></a>Shape</h1><p><img src="https://www.dropbox.com/s/3rfmz9ng3jb15ta/2016101814.png?dl=1" alt="14"></p>
+<h2 id="Bezier-curve"><a href="#Bezier-curve" class="headerlink" title="Bezier curve"></a>Bezier curve</h2><p>锚点</p>
+<ul>
+<li>在线上点击，选择锚点</li>
+<li>按住shift，选中所有锚点</li>
+<li>按住cmd，锚点在原来两个锚点的中间 </li>
+</ul>
+<p>创建</p>
+<p><img src="https://www.dropbox.com/s/826sw4ls3yq6pp8/2016101810.png?dl=1" alt="10"></p>
+<p>闭合</p>
+<p><img src="https://www.dropbox.com/s/r7ypi5zrjicidiq/2016101811.png?dl=1" alt="11"></p>
+<p>矩形编辑</p>
+<p>双击矩形，可以按住端点编辑其形状</p>
+<p><img src="https://www.dropbox.com/s/0hyv0ruyfdx4zg0/2016101809.png?dl=1" alt="9"></p>
+<h1 id="Template"><a href="#Template" class="headerlink" title="Template"></a>Template</h1><p>使用模板</p>
+<p><img src="https://www.dropbox.com/s/fc8af6rmcy9osdh/2016101902.png?dl=1" alt="2"></p>
+<p>采用自定义模板 - 先打开下载好的sketch文件，再存入系统的template文件夹</p>
+<p><img src="https://www.dropbox.com/s/4pcdfyb2gxrxnmn/2016101903.png?dl=1" alt="3"></p>
+<h1 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h1><h2 id="Content-generator"><a href="#Content-generator" class="headerlink" title="Content generator"></a>Content generator</h2><p><img src="https://www.dropbox.com/s/vpw4mflgdn7af7w/2016101909.png?dl=1" alt="09"></p>
+<h2 id="Renamit"><a href="#Renamit" class="headerlink" title="Renamit"></a>Renamit</h2><p><img src="https://www.dropbox.com/s/vjbyrcitmwso019/2016101910.png?dl=1" alt="10"></p>
+<h2 id="Measure"><a href="#Measure" class="headerlink" title="Measure"></a>Measure</h2><p><img src="https://www.dropbox.com/s/ie78xfs1muq54fe/2016101911.png?dl=1" alt="11"></p>
+<h2 id="Notebook"><a href="#Notebook" class="headerlink" title="Notebook"></a>Notebook</h2><p><img src="https://www.dropbox.com/s/ld652nywfz00wrh/2016101912.png?dl=1" alt="12"></p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="取色技巧-with-Sip"><a href="#取色技巧-with-Sip" class="headerlink" title="取色技巧 with Sip"></a>取色技巧 with Sip</h2><h2 id="导出的方式"><a href="#导出的方式" class="headerlink" title="导出的方式"></a>导出的方式</h2><ol>
+<li>直接拖拽图层到桌面</li>
+<li>选中图层，底部Export</li>
+<li>选中artboard,底部Export,同时可以选择”background color”</li>
+<li>Insert —&gt; Slice 剪切图层</li>
+<li>顶部Export all </li>
+</ol>
+<h2 id="命名技巧"><a href="#命名技巧" class="headerlink" title="命名技巧"></a>命名技巧</h2><p>在命名artboard或symbol时，采用”/“，这样导出会自动产生文件夹</p>
+<p><img src="https://www.dropbox.com/s/s8fektp48org65d/2016101914.png?dl=1" alt="14"></p>
+<h2 id="设置grid"><a href="#设置grid" class="headerlink" title="设置grid"></a>设置grid</h2><p><img src="https://www.dropbox.com/s/3gytaltrdh4e0tw/2016101913.png?dl=1" alt="13"></p>
+<h1 id="Shortcut-key"><a href="#Shortcut-key" class="headerlink" title="Shortcut key"></a>Shortcut key</h1><p>需要设置的快捷键</p>
+<ul>
+<li>对齐功能</li>
+<li>分布功能</li>
+<li>对齐像素功能</li>
+</ul>
+<p>方法: System preference -&gt; Keyboard -&gt; Shortcut</p>
+<p><img src="" alt="18"></p>
+<p>如果有重复的，需要用 -&gt;输入完整的路径</p>
+<p><img src="" alt="17"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/16/BEP-Telephoning/" itemprop="url">
                   BEP-Telephoning
                 </a>
@@ -307,7 +533,8 @@
       
         
           
-            <h1 id="Geting-Action"><a href="#Geting-Action" class="headerlink" title="Geting Action"></a>Geting Action</h1><h2 id="直入主题"><a href="#直入主题" class="headerlink" title="直入主题"></a>直入主题</h2><p>如果事情紧急，不需要很多寒暄，直入主题</p>
+            <p>[TOC]</p>
+<h1 id="Geting-Action"><a href="#Geting-Action" class="headerlink" title="Geting Action"></a>Geting Action</h1><h2 id="直入主题"><a href="#直入主题" class="headerlink" title="直入主题"></a>直入主题</h2><p>如果事情紧急，不需要很多寒暄，直入主题</p>
 <blockquote>
 <p>George: Hello, this is George Kline.</p>
 <p>Nathan: Yes, this is Nathan Beale from Cyclops. I haven’t heard from you, and I’m trying to find out if you are still interested in this contract.</p>
@@ -1342,375 +1569,12 @@ print(“Button tapped”)
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/28/Grand-Central-Dispatch/" itemprop="url">
-                  Grand_Central_Dispatch
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-28T17:02:59+10:00" content="2016-09-28">
-              2016-09-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/28/Grand-Central-Dispatch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/28/Grand-Central-Dispatch/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h1><h2 id="Closure-is-a-first-class-citizen-of-the-language"><a href="#Closure-is-a-first-class-citizen-of-the-language" class="headerlink" title="Closure is a first class citizen of the language"></a>Closure is a first class citizen of the language</h2><ul>
-<li>assign them to variables or constants,</li>
-<li>put then inside arrays or dictionaries</li>
-<li>return them as the result of a function or closure</li>
-<li>and even receive them as parameters of another function or closure!</li>
-</ul>
-<pre><code>let f = { (x:Int) -&gt; Int in
-    return x + 42
-}
-
-f(89)
-
-let closures = [
-    f,                                  // our previous closure
-    {(x:Int) -&gt; Int in return x * 2},   // a new Int -&gt; Int closure
-    {x in return x - 8},                // no need for the type of the closure!
-    {(x:Int) in x * x},                 // no need for return if only one line
-    {$0 * 42}                           // access parameter by position instead of name
-]
-
-for fn in closures {
-fn(42)
-}
-</code></pre><h2 id="Functions-and-closures-are-the-same-thing"><a href="#Functions-and-closures-are-the-same-thing" class="headerlink" title="Functions and closures are the same thing"></a>Functions and closures are the same thing</h2><p>Actually, when the compiler finds a function declaration such as foo, it will take the following steps:</p>
-<ul>
-<li>Create a closure that takes an Int and returns 42 plus that Int.</li>
-<li>Then, assigns this closure to a constant called foo</li>
-</ul>
-<pre><code>func foo(x:Int) -&gt; Int {
-    return 42 + x
-}
-
-let bar = { (x: Int) -&gt; Int in
-    return 42 + x
-}
-</code></pre><p>add a few functions to an array and then call them</p>
-<pre><code>func larry(x:Int) -&gt; Int {
-    return x * x
-}
-
-func curly(n:Int) -&gt; Int {
-    return n * (n - 1)
-}
-
-func moe(n:Int) -&gt; Int {
-    return n * (n - 1) * (n - 2)
-}
-
-var stooges = [larry, curly, moe]
-
-for stooge in stooges {
-    stooge(42)
-}
-
-stooges.append(bar)
-for each in stooges {
-    each(42)
-}
-</code></pre><h2 id="Typealias-amp-Capture-value"><a href="#Typealias-amp-Capture-value" class="headerlink" title="Typealias &amp; Capture value"></a>Typealias &amp; Capture value</h2><pre><code>typealias IntMaker = (Void) -&gt; Int
-</code></pre><p>Functions and closure capture variables defined before the closure or function is defined.</p>
-<pre><code>func makeCounter() -&gt; IntMaker {
-    var n = 0
-
-    // Functions within functions?
-    // Yes we can!
-    func adder() -&gt; Integer {
-        n = n + 1
-        return n
-    }
-    return adder
-}
-
-let counter1 = makeCounter()
-let counter2 = makeCounter()
-
-counter1() //1
-counter1() //2
-counter1() //3
-</code></pre><p>each closure has its own copy of the environment (the values of all variables that were captured).</p>
-<pre><code>counter2() //1
-</code></pre><h1 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h1><h2 id="Hiding-threads"><a href="#Hiding-threads" class="headerlink" title="Hiding threads"></a>Hiding threads</h2><ul>
-<li><p>Threads are inherently complex and dangerous</p>
-</li>
-<li><p>GCD makes asynchronous programming easier and safer by hiding threads within the concept of a queue of closure from the developer</p>
-</li>
-<li><p>Blades are inherently dangerous ,add handles to make for safer knives</p>
-</li>
-</ul>
-<h2 id="Types-of-queues"><a href="#Types-of-queues" class="headerlink" title="Types of queues"></a>Types of queues</h2><h3 id="Serial-or-synchronous-queue-predictable"><a href="#Serial-or-synchronous-queue-predictable" class="headerlink" title="Serial or synchronous queue - predictable"></a>Serial or synchronous queue - predictable</h3><ul>
-<li><p>Every closure gets to run when it reaches the end of the queue</p>
-</li>
-<li><p>The order in which closures run is predictable</p>
-</li>
-<li><p>Still have concurrency ,each queue will run on its own threads and will not block each other</p>
-</li>
-</ul>
-<h3 id="Concurrent-or-Asynchronous-queue-unpredictable"><a href="#Concurrent-or-Asynchronous-queue-unpredictable" class="headerlink" title="Concurrent or Asynchronous queue - unpredictable"></a>Concurrent or Asynchronous queue - unpredictable</h3><ul>
-<li><p>Have several threads pickup closures at any point of the queue for running</p>
-</li>
-<li><p>The order in which closures run is not predictable</p>
-</li>
-</ul>
-<h3 id="Main-queue"><a href="#Main-queue" class="headerlink" title="Main queue"></a>Main queue</h3><ul>
-<li><p>handles the UI of your app</p>
-</li>
-<li><p>You should never run code that blocks on this queue</p>
-</li>
-</ul>
-<h2 id="Main-function-in-GCD"><a href="#Main-function-in-GCD" class="headerlink" title="Main function in GCD"></a>Main function in GCD</h2><h3 id="create-a-queue"><a href="#create-a-queue" class="headerlink" title="create a queue"></a>create a queue</h3><p>Represents a queue</p>
-<pre><code>dispatch_queue_t
-</code></pre><p>Ceate a queue from scratch,To specify serial, just pass dispatch_queue_serial or nil</p>
-<pre><code>dispatch_queue_create(name,serial/concurrent)
-</code></pre><h3 id="Global-queues"><a href="#Global-queues" class="headerlink" title="Global queues"></a>Global queues</h3><p>Use existing one queue instead of creating new queues</p>
-<pre><code>QOS_CLASS_USER_INTERACTIVE //top priority 
-
-QOS_CLASS_USER_INITIATED   //regular priority 
-
-QOS_CLASS_BACKGROUND    //low
-
-QOS_CLASS_UTILITY //lowes 
-</code></pre><p>access those global queues with function </p>
-<pre><code>dispatch_get_global_queue
-</code></pre><h3 id="Main-queue-1"><a href="#Main-queue-1" class="headerlink" title="Main queue"></a>Main queue</h3><p>get the main queue</p>
-<pre><code>dispatch_get_main_queue()
-</code></pre><h3 id="Add-a-closure-to-a-queue"><a href="#Add-a-closure-to-a-queue" class="headerlink" title="Add a closure to a queue"></a>Add a closure to a queue</h3><ul>
-<li>the code inside the queue will run sometime in the immediate future</li>
-<li>the exact time will depend on how many closures already waiting in the queue and the priority of the queue </li>
-<li>dispatch_async adds your closures to each queue and return imediately</li>
-</ul>
-<p>Add a closure to a queue</p>
-<pre><code>dispatch_async ()
-</code></pre><p>Example 1</p>
-<pre><code>let q = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE,0)
-
-//Imediately return and add the block to the q ,then run in the near future 
-dispatch_async(q){
-    () -&gt; Void in
-    print(&quot;tic&quot;)
-}
-
-print (&quot;tac&quot;) //this run first
-</code></pre><p>Example 2</p>
-<pre><code>//cannot predict order the code run below of each queue
-
-let q1 = dispatch_queue_create(&quot;queue1&quot;,nil)
-let q2 = dispatch_queue_create(&quot;queue1&quot;,nil)
-let q3 = dispatch_queue_create(&quot;queue1&quot;,nil)
-
-dispatch_async(q1){ ()-&gt;Void in
-print(1)
-}
-
-dispatch_async(q2){ ()-&gt;Void in
-print(2)
-}
-
-dispatch_async(q3){ ()-&gt;Void in
-print(3)
-}
-
-print(&quot;end&quot;) //run first
-</code></pre><h3 id="UIKIT-amp-CoreData"><a href="#UIKIT-amp-CoreData" class="headerlink" title="UIKIT &amp; CoreData"></a>UIKIT &amp; CoreData</h3><ul>
-<li><p>when the framework can run in the background it is said to be thread safe </p>
-</li>
-<li><p>cannot run anything from UIKit in the background</p>
-</li>
-</ul>
-<pre><code>//maybe crash , uikit should run in Main queue
-
-let downloadQueue = dispatch_queue_create(&quot;download&quot;,nil)
-
-dispatch_async(downloadQueue){()-&gt; Void in 
-
-let imgData = NSData (contentsOfURL:url!)
-
-let image = UIImage(data:imgData!)
-
-self.photoViewimage = image
-
-}
-</code></pre><h2 id="Synchronous-download"><a href="#Synchronous-download" class="headerlink" title="Synchronous download"></a>Synchronous download</h2><pre><code>// Get the URL for the image
-let url = NSURL(string: BigImages.seaLion.rawValue)
-
-// Obtain the NSData with the image
-let imgData = NSData(contentsOfURL: url!)
-
-// Turn it into a UIImage
-let image = UIImage(data: imgData!)
-
-// Display it
-photoView.image = image
-</code></pre><p>Refactor code by if-let </p>
-<pre><code>if let url = NSURL(string: BigImages.seaLion.rawValue),
-    let imgData = NSData(contentsOfURL: url),
-    let image = UIImage(data: imgData){
-
-    // Display it
-    photoView.image = image
-}
-</code></pre><h2 id="Asynchronous-download"><a href="#Asynchronous-download" class="headerlink" title="Asynchronous download"></a>Asynchronous download</h2><p>Not all of UIkit is thread and save.There are a few exceptions, such as UIImage<br>All the visual stuff, the views are unsaved<br>if name end view, it must be main queue </p>
-<pre><code>@IBAction func simpleAsynchronousDownload(sender: UIBarButtonItem) {
-
-        let url = NSURL(string: BigImages.shark.rawValue)
-
-        // create a queue
-        let downloadQueue = dispatch_queue_create(&quot;download&quot;, nil)
-
-        // add a closure that encapsulates the blocking operation
-        // run it asynchronously: some time in the near future
-
-        dispatch_async(downloadQueue) { () -&gt; Void in
-
-            // Obtain the NSData with the image
-            let imgData = NSData(contentsOfURL: url!)
-
-            // Turn it into a UIImage
-            let image = UIImage(data: imgData!)
-
-            // Run the code that updates the UI in the main queue!
-            dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
-                // Display it
-                self.photoView.image = image
-            })
-        }
-    }
-</code></pre><h2 id="Completion-Closure"><a href="#Completion-Closure" class="headerlink" title="Completion Closure"></a>Completion Closure</h2><p>It is a good practice to make sure that always all your completion handlers run in the main queue</p>
-<pre><code>    func withBigImage(completionHandler handler: (image: UIImage) -&gt; Void){
-
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -&gt; Void in
-
-        // get the url
-        // get the NSData
-        // turn it into a UIImage
-
-        if let url = NSURL(string: BigImages.whale.rawValue), let imgData = NSData(contentsOfURL: url), let img = UIImage(data: imgData) {
-
-            // run the completion block
-            // always in the main queue, just in case!
-
-            dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
-                handler(image: img)
-            })
-        }
-    }
-}
-</code></pre><h2 id="Async-amp-Sync"><a href="#Async-amp-Sync" class="headerlink" title="Async &amp; Sync"></a>Async &amp; Sync</h2><p>doesn’t wait for the closure to finish ,and moves on Always use until you know very well what you are doing</p>
-<pre><code>dispatch_async()
-</code></pre><p>won’t return immediately.waits until the closure is done ,could easily get stalled!</p>
-<pre><code>dispatch_sync()
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1751,7 +1615,7 @@ photoView.image = image
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-count">111</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1768,7 +1632,7 @@ photoView.image = image
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

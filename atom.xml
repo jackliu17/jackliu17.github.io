@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-16T11:13:44.000Z</updated>
+  <updated>2016-10-19T07:25:30.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,13 +16,165 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Sketch-tutorial</title>
+    <link href="http://jackliu17.github.io/2016/10/17/Sketch-tutorial/"/>
+    <id>http://jackliu17.github.io/2016/10/17/Sketch-tutorial/</id>
+    <published>2016-10-16T23:38:01.000Z</published>
+    <updated>2016-10-19T07:25:30.000Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;App设计标准&quot;&gt;&lt;a href=&quot;#App设计标准&quot; class=&quot;headerlink&quot; title=&quot;App设计标准&quot;&gt;&lt;/a&gt;App设计标准&lt;/h1&gt;&lt;h2 id=&quot;矢量图和位图&quot;&gt;&lt;a href=&quot;#矢量图和位图&quot; class=&quot;headerlink&quot; title=&quot;矢量图和位图&quot;&gt;&lt;/a&gt;矢量图和位图&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;矢量图：图形&lt;/li&gt;
+&lt;li&gt;像素图：图像。&lt;/li&gt;
+&lt;li&gt;矢量图形通常是绘制出来的，而图像一般是拍摄获得的。&lt;/li&gt;
+&lt;li&gt;矢量图放大后不会失真&lt;/li&gt;
+&lt;li&gt;Sketch是矢量图制作的利器，但位图处理较弱&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;PT和像素的关系&quot;&gt;&lt;a href=&quot;#PT和像素的关系&quot; class=&quot;headerlink&quot; title=&quot;PT和像素的关系&quot;&gt;&lt;/a&gt;PT和像素的关系&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Point (PT) - 表示独立于设备的像素点 (在Android上叫DP)&lt;/li&gt;
+&lt;li&gt;像素点: 相同Point的按钮，在Retina屏幕上的图片像素是非Retina屏幕的两倍,通过@2x后缀标识&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6qbwery713acwhv/2016101904.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;iPhone-resoulutions&quot;&gt;&lt;a href=&quot;#iPhone-resoulutions&quot; class=&quot;headerlink&quot; title=&quot;iPhone resoulutions&quot;&gt;&lt;/a&gt;iPhone resoulutions&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.paintcodeapp.com/news/ultimate-guide-to-iphone-resolutions&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Ultimate Guide To iPhone Resolutions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/e48o8p41yjnywge/2016101905.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;br&gt;&lt;img src=&quot;https://www.dropbox.com/s/iwr11i38j69tlba/2016101906.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;iPhone-size-standard&quot;&gt;&lt;a href=&quot;#iPhone-size-standard&quot; class=&quot;headerlink&quot; title=&quot;iPhone size standard&quot;&gt;&lt;/a&gt;iPhone size standard&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/ios/human-interface-guidelines/#//apple_ref/doc/uid/TP40006556-CH66-SW1&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS Human Interface Guidelines&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/08muccmvikkzood/2016101907.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/jp6dv3ixu2ylgyr/2016101908.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Interface&quot;&gt;&lt;a href=&quot;#Interface&quot; class=&quot;headerlink&quot; title=&quot;Interface&quot;&gt;&lt;/a&gt;Interface&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/seunhx9dwow24a0/2016101707.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Attribute-of-layer&quot;&gt;&lt;a href=&quot;#Attribute-of-layer&quot; class=&quot;headerlink&quot; title=&quot;Attribute of layer&quot;&gt;&lt;/a&gt;Attribute of layer&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Allignment&lt;/li&gt;
+&lt;li&gt;Fills&lt;/li&gt;
+&lt;li&gt;Borders&lt;/li&gt;
+&lt;li&gt;Shadows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/wojkpyz0qq2zl68/2016101709.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Fill-Color-with-existing-one&quot;&gt;&lt;a href=&quot;#Fill-Color-with-existing-one&quot; class=&quot;headerlink&quot; title=&quot;Fill Color with existing one&quot;&gt;&lt;/a&gt;Fill Color with existing one&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/97i7ew8mepigtdl/2016101901.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Export&quot;&gt;&lt;a href=&quot;#Export&quot; class=&quot;headerlink&quot; title=&quot;Export&quot;&gt;&lt;/a&gt;Export&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/so9lnlujw312wc2/2016101705.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;All-Version&quot;&gt;&lt;a href=&quot;#All-Version&quot; class=&quot;headerlink&quot; title=&quot;All Version&quot;&gt;&lt;/a&gt;All Version&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/t2hj8elemmjyil3/2016101706.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Customize-tool-bar&quot;&gt;&lt;a href=&quot;#Customize-tool-bar&quot; class=&quot;headerlink&quot; title=&quot;Customize tool bar&quot;&gt;&lt;/a&gt;Customize tool bar&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a93563nau9kyswb/2016101804.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Create-iPhone-art-board&quot;&gt;&lt;a href=&quot;#Create-iPhone-art-board&quot; class=&quot;headerlink&quot; title=&quot;Create iPhone art board&quot;&gt;&lt;/a&gt;Create iPhone art board&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2qukyiepiw7c7em/2016101708.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Functionality&quot;&gt;&lt;a href=&quot;#Functionality&quot; class=&quot;headerlink&quot; title=&quot;Functionality&quot;&gt;&lt;/a&gt;Functionality&lt;/h1&gt;&lt;h2 id=&quot;Symbol&quot;&gt;&lt;a href=&quot;#Symbol&quot; class=&quot;headerlink&quot; title=&quot;Symbol&quot;&gt;&lt;/a&gt;Symbol&lt;/h2&gt;&lt;p&gt;Symbol好比是个全局变量。创造出来后可以从库中调用。对库中的symbol所做的任何变动都会反应到实例中。&lt;/p&gt;
+&lt;p&gt;create Symbol&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/izmno708hl4q1s8/2016101701.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Use Symbol&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6zspmqfnlq5nmen/2016101702.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Rotate-Copy&quot;&gt;&lt;a href=&quot;#Rotate-Copy&quot; class=&quot;headerlink&quot; title=&quot;Rotate Copy&quot;&gt;&lt;/a&gt;Rotate Copy&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ii0eb7a92u3vbcj/2016101819.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Siccer&quot;&gt;&lt;a href=&quot;#Siccer&quot; class=&quot;headerlink&quot; title=&quot;Siccer&quot;&gt;&lt;/a&gt;Siccer&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1xc2f8xdiqvm7an/2016101822.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Make-Grid&quot;&gt;&lt;a href=&quot;#Make-Grid&quot; class=&quot;headerlink&quot; title=&quot;Make Grid&quot;&gt;&lt;/a&gt;Make Grid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Text&quot;&gt;&lt;a href=&quot;#Text&quot; class=&quot;headerlink&quot; title=&quot;Text&quot;&gt;&lt;/a&gt;Text&lt;/h1&gt;&lt;h2 id=&quot;Text-Style&quot;&gt;&lt;a href=&quot;#Text-Style&quot; class=&quot;headerlink&quot; title=&quot;Text Style&quot;&gt;&lt;/a&gt;Text Style&lt;/h2&gt;&lt;p&gt;类似symbol。创造出来后可以从库中调用。对库中的text style所做的任何变动都会反应到实例中。&lt;/p&gt;
+&lt;p&gt;create and organize text style&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1psdzc1nad9t7q4/2016101703.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Use text style&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lhzz4r9y9w5rxmx/2016101704.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Text-convert-to-outline&quot;&gt;&lt;a href=&quot;#Text-convert-to-outline&quot; class=&quot;headerlink&quot; title=&quot;Text convert to outline&quot;&gt;&lt;/a&gt;Text convert to outline&lt;/h2&gt;&lt;p&gt;将字体转为矢量图后可以采用渐变等图像的处理方式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vah9h95o0azogre/2016101823.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Text-font&quot;&gt;&lt;a href=&quot;#Text-font&quot; class=&quot;headerlink&quot; title=&quot;Text font&quot;&gt;&lt;/a&gt;Text font&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zjvgl9hwj5bpe84/2016101824.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Image&quot;&gt;&lt;a href=&quot;#Image&quot; class=&quot;headerlink&quot; title=&quot;Image&quot;&gt;&lt;/a&gt;Image&lt;/h1&gt;&lt;h2 id=&quot;Image-Property&quot;&gt;&lt;a href=&quot;#Image-Property&quot; class=&quot;headerlink&quot; title=&quot;Image Property&quot;&gt;&lt;/a&gt;Image Property&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/k9cwfmadg2xm49a/2016101827.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Edit&quot;&gt;&lt;a href=&quot;#Edit&quot; class=&quot;headerlink&quot; title=&quot;Edit&quot;&gt;&lt;/a&gt;Edit&lt;/h2&gt;&lt;p&gt;双击图像&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sycvdp447qritlo/2016101825.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;9-slice&quot;&gt;&lt;a href=&quot;#9-slice&quot; class=&quot;headerlink&quot; title=&quot;9-slice&quot;&gt;&lt;/a&gt;9-slice&lt;/h2&gt;&lt;p&gt;只有在九宫格内的图像才能放大或缩小&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zvfofzgxhgpft5d/2016101826.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Mask&quot;&gt;&lt;a href=&quot;#Mask&quot; class=&quot;headerlink&quot; title=&quot;Mask&quot;&gt;&lt;/a&gt;Mask&lt;/h1&gt;&lt;h2 id=&quot;重叠Mask&quot;&gt;&lt;a href=&quot;#重叠Mask&quot; class=&quot;headerlink&quot; title=&quot;重叠Mask&quot;&gt;&lt;/a&gt;重叠Mask&lt;/h2&gt;&lt;p&gt;将两者重叠&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/jp8nv6px37q9ply/2016101801.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;调用mask&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/x7ebwtwr2ej31ih/2016101802.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;或者这样采用mask&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/srww0qwdf68tmdj/2016101815.png?dl=1&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最终效果&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w4e2kekfsdmc9q7/2016101803.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;限制性的使用Mask&quot;&gt;&lt;a href=&quot;#限制性的使用Mask&quot; class=&quot;headerlink&quot; title=&quot;限制性的使用Mask&quot;&gt;&lt;/a&gt;限制性的使用Mask&lt;/h2&gt;&lt;p&gt;顶部的text可以完全显示&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ddomwkgctsow22h/2016101816.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;渐变Mask&quot;&gt;&lt;a href=&quot;#渐变Mask&quot; class=&quot;headerlink&quot; title=&quot;渐变Mask&quot;&gt;&lt;/a&gt;渐变Mask&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sn9luwlcryjbpld/2016101817.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fca226e5q4yg0no/2016101818.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Bool-effect&quot;&gt;&lt;a href=&quot;#Bool-effect&quot; class=&quot;headerlink&quot; title=&quot;Bool effect&quot;&gt;&lt;/a&gt;Bool effect&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;p&gt;将圆圈拖拽至矩形上，组合成combined shape&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5fuxq7s0avo37l9/2016101805.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
+&lt;p&gt;点击subtract&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6fqhk3ep6q26uj0/2016101806.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/tigbya85kqgh2cj/2016101807.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Layer&quot;&gt;&lt;a href=&quot;#Layer&quot; class=&quot;headerlink&quot; title=&quot;Layer&quot;&gt;&lt;/a&gt;Layer&lt;/h1&gt;&lt;h2 id=&quot;Add-Layer&quot;&gt;&lt;a href=&quot;#Add-Layer&quot; class=&quot;headerlink&quot; title=&quot;Add Layer&quot;&gt;&lt;/a&gt;Add Layer&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Insert —-&amp;gt; Click + shift 保证是正方形或正圆&lt;/li&gt;
+&lt;li&gt;Insert —&amp;gt; Click + opt 是以鼠标为中心，而不是左上角绘制图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Choose-Layer&quot;&gt;&lt;a href=&quot;#Choose-Layer&quot; class=&quot;headerlink&quot; title=&quot;Choose Layer&quot;&gt;&lt;/a&gt;Choose Layer&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;select layer —&amp;gt; option 看尺寸及在artboard的位置&lt;/li&gt;
+&lt;li&gt;Select layer —&amp;gt; 点击眼睛标志 —&amp;gt; 隐藏图层&lt;/li&gt;
+&lt;li&gt;Select layer —&amp;gt; Click + 方向键（左为宽度增大，右为宽度减小，同时按住shift变化10，否则变化1）&lt;/li&gt;
+&lt;li&gt;Select beneath layer —&amp;gt; opt + cmd —&amp;gt; 选中下部图层&lt;/li&gt;
+&lt;li&gt;Select layer with cmd or shift ——&amp;gt;点击 Group —&amp;gt;将所选图层归为一组&lt;/li&gt;
+&lt;li&gt;Select layer + right click ——&amp;gt; Lock this layer ( cannot move)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Move-Layer&quot;&gt;&lt;a href=&quot;#Move-Layer&quot; class=&quot;headerlink&quot; title=&quot;Move Layer&quot;&gt;&lt;/a&gt;Move Layer&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;移动时使用shift键 —&amp;gt;上下移动&lt;/li&gt;
+&lt;li&gt;按住图层，移动时使用opt键 - duplicate&lt;/li&gt;
+&lt;li&gt;cmd + D — 重复上次的行为&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Shape&quot;&gt;&lt;a href=&quot;#Shape&quot; class=&quot;headerlink&quot; title=&quot;Shape&quot;&gt;&lt;/a&gt;Shape&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3rfmz9ng3jb15ta/2016101814.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Bezier-curve&quot;&gt;&lt;a href=&quot;#Bezier-curve&quot; class=&quot;headerlink&quot; title=&quot;Bezier curve&quot;&gt;&lt;/a&gt;Bezier curve&lt;/h2&gt;&lt;p&gt;锚点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在线上点击，选择锚点&lt;/li&gt;
+&lt;li&gt;按住shift，选中所有锚点&lt;/li&gt;
+&lt;li&gt;按住cmd，锚点在原来两个锚点的中间 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/826sw4ls3yq6pp8/2016101810.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;p&gt;闭合&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/r7ypi5zrjicidiq/2016101811.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;p&gt;矩形编辑&lt;/p&gt;
+&lt;p&gt;双击矩形，可以按住端点编辑其形状&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0hyv0ruyfdx4zg0/2016101809.png?dl=1&quot; alt=&quot;9&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Template&quot;&gt;&lt;a href=&quot;#Template&quot; class=&quot;headerlink&quot; title=&quot;Template&quot;&gt;&lt;/a&gt;Template&lt;/h1&gt;&lt;p&gt;使用模板&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fc8af6rmcy9osdh/2016101902.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;p&gt;采用自定义模板 - 先打开下载好的sketch文件，再存入系统的template文件夹&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4pcdfyb2gxrxnmn/2016101903.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Extension&quot;&gt;&lt;a href=&quot;#Extension&quot; class=&quot;headerlink&quot; title=&quot;Extension&quot;&gt;&lt;/a&gt;Extension&lt;/h1&gt;&lt;h2 id=&quot;Content-generator&quot;&gt;&lt;a href=&quot;#Content-generator&quot; class=&quot;headerlink&quot; title=&quot;Content generator&quot;&gt;&lt;/a&gt;Content generator&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vpw4mflgdn7af7w/2016101909.png?dl=1&quot; alt=&quot;09&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Renamit&quot;&gt;&lt;a href=&quot;#Renamit&quot; class=&quot;headerlink&quot; title=&quot;Renamit&quot;&gt;&lt;/a&gt;Renamit&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/vjbyrcitmwso019/2016101910.png?dl=1&quot; alt=&quot;10&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Measure&quot;&gt;&lt;a href=&quot;#Measure&quot; class=&quot;headerlink&quot; title=&quot;Measure&quot;&gt;&lt;/a&gt;Measure&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ie78xfs1muq54fe/2016101911.png?dl=1&quot; alt=&quot;11&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Notebook&quot;&gt;&lt;a href=&quot;#Notebook&quot; class=&quot;headerlink&quot; title=&quot;Notebook&quot;&gt;&lt;/a&gt;Notebook&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ld652nywfz00wrh/2016101912.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Tips&quot;&gt;&lt;a href=&quot;#Tips&quot; class=&quot;headerlink&quot; title=&quot;Tips&quot;&gt;&lt;/a&gt;Tips&lt;/h1&gt;&lt;h2 id=&quot;取色技巧-with-Sip&quot;&gt;&lt;a href=&quot;#取色技巧-with-Sip&quot; class=&quot;headerlink&quot; title=&quot;取色技巧 with Sip&quot;&gt;&lt;/a&gt;取色技巧 with Sip&lt;/h2&gt;&lt;h2 id=&quot;导出的方式&quot;&gt;&lt;a href=&quot;#导出的方式&quot; class=&quot;headerlink&quot; title=&quot;导出的方式&quot;&gt;&lt;/a&gt;导出的方式&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;直接拖拽图层到桌面&lt;/li&gt;
+&lt;li&gt;选中图层，底部Export&lt;/li&gt;
+&lt;li&gt;选中artboard,底部Export,同时可以选择”background color”&lt;/li&gt;
+&lt;li&gt;Insert —&amp;gt; Slice 剪切图层&lt;/li&gt;
+&lt;li&gt;顶部Export all &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;命名技巧&quot;&gt;&lt;a href=&quot;#命名技巧&quot; class=&quot;headerlink&quot; title=&quot;命名技巧&quot;&gt;&lt;/a&gt;命名技巧&lt;/h2&gt;&lt;p&gt;在命名artboard或symbol时，采用”/“，这样导出会自动产生文件夹&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s8fektp48org65d/2016101914.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;设置grid&quot;&gt;&lt;a href=&quot;#设置grid&quot; class=&quot;headerlink&quot; title=&quot;设置grid&quot;&gt;&lt;/a&gt;设置grid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3gytaltrdh4e0tw/2016101913.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Shortcut-key&quot;&gt;&lt;a href=&quot;#Shortcut-key&quot; class=&quot;headerlink&quot; title=&quot;Shortcut key&quot;&gt;&lt;/a&gt;Shortcut key&lt;/h1&gt;&lt;p&gt;需要设置的快捷键&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对齐功能&lt;/li&gt;
+&lt;li&gt;分布功能&lt;/li&gt;
+&lt;li&gt;对齐像素功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;方法: System preference -&amp;gt; Keyboard -&amp;gt; Shortcut&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果有重复的，需要用 -&amp;gt;输入完整的路径&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;App设计标准&quot;&gt;&lt;a href=&quot;#App设计标准&quot; class=&quot;headerlink&quot; title=&quot;App设计标准&quot;&gt;&lt;/a&gt;App设计标准&lt;/h1&gt;&lt;h2 id=&quot;矢量图和位图&quot;&gt;&lt;a href=&quot;#矢量图和位图&quot; class=&quot;headerlink&quot; 
+    
+    </summary>
+    
+    
+      <category term="sketch" scheme="http://jackliu17.github.io/tags/sketch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>BEP-Telephoning</title>
     <link href="http://jackliu17.github.io/2016/10/16/BEP-Telephoning/"/>
     <id>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</id>
     <published>2016-10-16T09:22:29.000Z</published>
-    <updated>2016-10-16T11:13:44.000Z</updated>
+    <updated>2016-10-17T11:40:48.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
+    <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;George: Hello, this is George Kline.&lt;/p&gt;
 &lt;p&gt;Nathan: Yes, this is Nathan Beale from Cyclops. I haven’t heard from you, and I’m trying to find out if you are still interested in this contract.&lt;/p&gt;
@@ -112,7 +264,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot;
+      &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a
     
     </summary>
     
@@ -2758,194 +2911,6 @@ slider.maximumValue = 1.f;
     
     
       <category term="Thoughts" scheme="http://jackliu17.github.io/tags/Thoughts/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AdaptiveLayout设计用户界面</title>
-    <link href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2/"/>
-    <id>http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/</id>
-    <published>2016-08-07T05:02:22.000Z</published>
-    <updated>2016-08-18T23:30:58.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Device里选择Universal&quot;&gt;&lt;a href=&quot;#Device里选择Universal&quot; class=&quot;headerlink&quot; title=&quot;Device里选择Universal&quot;&gt;&lt;/a&gt;Device里选择Universal&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/px81xxqmt4opae6/20160807_adaptive1.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;a href=&quot;#AutoLayout基本布局和SizeClasses的个别调整&quot; class=&quot;headerlink&quot; title=&quot;AutoLayout基本布局和SizeClasses的个别调整&quot;&gt;&lt;/a&gt;AutoLayout基本布局和SizeClasses的个别调整&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ttx2r0rlsz7lkfe/20160807_adaptive2.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;设置初始约束&quot;&gt;&lt;a href=&quot;#设置初始约束&quot; class=&quot;headerlink&quot; title=&quot;设置初始约束&quot;&gt;&lt;/a&gt;设置初始约束&lt;/h1&gt;&lt;h2 id=&quot;为ImageView设置约束&quot;&gt;&lt;a href=&quot;#为ImageView设置约束&quot; class=&quot;headerlink&quot; title=&quot;为ImageView设置约束&quot;&gt;&lt;/a&gt;为ImageView设置约束&lt;/h2&gt;&lt;h3 id=&quot;约束1：水平居中&quot;&gt;&lt;a href=&quot;#约束1：水平居中&quot; class=&quot;headerlink&quot; title=&quot;约束1：水平居中&quot;&gt;&lt;/a&gt;约束1：水平居中&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fcv3tds5qp51qo9/20160807_adaptive3.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;约束2：顶部置顶-含电池边距&quot;&gt;&lt;a href=&quot;#约束2：顶部置顶-含电池边距&quot; class=&quot;headerlink&quot; title=&quot;约束2：顶部置顶(含电池边距)&quot;&gt;&lt;/a&gt;约束2：顶部置顶(含电池边距)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/is0gh2p27vr6dhs/20160807_adaptive4.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;约束3：与下方view的垂直高度&quot;&gt;&lt;a href=&quot;#约束3：与下方view的垂直高度&quot; class=&quot;headerlink&quot; title=&quot;约束3：与下方view的垂直高度&quot;&gt;&lt;/a&gt;约束3：与下方view的垂直高度&lt;/h3&gt;&lt;p&gt;按住imageview + ctrl 拖向下方的view，选择vertical spacing&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/276deqb1udpey1i/20160807_adaptive5.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;点击image view，在右侧可以看见已经设定的约束,Edit vertical spacing to 20&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fuazugw3fjk3xjw/20160807_adaptive20.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;约束4：与父视图的关系-高度40&quot;&gt;&lt;a href=&quot;#约束4：与父视图的关系-高度40&quot; class=&quot;headerlink&quot; title=&quot;约束4：与父视图的关系-高度40%&quot;&gt;&lt;/a&gt;约束4：与父视图的关系-高度40%&lt;/h3&gt;&lt;p&gt;ctrl + 按住image view 拖向view,设定其与父视图的关系&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/m7ef3ambbfckb0q/20160807_adaptive13.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ysfu2ds12yi4upl/20160807_adaptive14.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;为view设置约束&quot;&gt;&lt;a href=&quot;#为view设置约束&quot; class=&quot;headerlink&quot; title=&quot;为view设置约束&quot;&gt;&lt;/a&gt;为view设置约束&lt;/h2&gt;&lt;h3 id=&quot;左-中-下&quot;&gt;&lt;a href=&quot;#左-中-下&quot; class=&quot;headerlink&quot; title=&quot;左 + 中 + 下&quot;&gt;&lt;/a&gt;左 + 中 + 下&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/op5hztvdwsyy4tf/20160807_adaptive6.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;ImageSet为项目添加相关图片&quot;&gt;&lt;a href=&quot;#ImageSet为项目添加相关图片&quot; class=&quot;headerlink&quot; title=&quot;ImageSet为项目添加相关图片&quot;&gt;&lt;/a&gt;ImageSet为项目添加相关图片&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zqks25yybeid6us/20160807_adaptive8.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;双击后为图片组更名&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/rhgz1ine9uhtykg/20160807_adaptive9.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;更新frame让约束生效&quot;&gt;&lt;a href=&quot;#更新frame让约束生效&quot; class=&quot;headerlink&quot; title=&quot;更新frame让约束生效&quot;&gt;&lt;/a&gt;更新frame让约束生效&lt;/h2&gt;&lt;p&gt;橘红色的是可以调整的，红色的是有问题的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zgrlxmwrngcq21h/20160807_adaptive10.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;预览功能查看不同设备屏幕&quot;&gt;&lt;a href=&quot;#预览功能查看不同设备屏幕&quot; class=&quot;headerlink&quot; title=&quot;预览功能查看不同设备屏幕&quot;&gt;&lt;/a&gt;预览功能查看不同设备屏幕&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ojpckspdj8bo45g/20160807_adaptive11.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/quy3ojxr8jlpzw1/20160807_adaptive12.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;为label1设定约束&quot;&gt;&lt;a href=&quot;#为label1设定约束&quot; class=&quot;headerlink&quot; title=&quot;为label1设定约束&quot;&gt;&lt;/a&gt;为label1设定约束&lt;/h2&gt;&lt;h3 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u8sluq2j9wyhmnj/20160807_adaptive15.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;顶部置顶&quot;&gt;&lt;a href=&quot;#顶部置顶&quot; class=&quot;headerlink&quot; title=&quot;顶部置顶&quot;&gt;&lt;/a&gt;顶部置顶&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3wxg7vm8gf7avwb/20160807_adaptive16.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;为label2设定约束&quot;&gt;&lt;a href=&quot;#为label2设定约束&quot; class=&quot;headerlink&quot; title=&quot;为label2设定约束&quot;&gt;&lt;/a&gt;为label2设定约束&lt;/h2&gt;&lt;h3 id=&quot;水平居中-1&quot;&gt;&lt;a href=&quot;#水平居中-1&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a5orqx2vb626l1i/20160807_adaptive17.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;下部间隔&quot;&gt;&lt;a href=&quot;#下部间隔&quot; class=&quot;headerlink&quot; title=&quot;下部间隔&quot;&gt;&lt;/a&gt;下部间隔&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/89ypns9m1muwtag/20160807_adaptive18.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;更新frame让约束生效-1&quot;&gt;&lt;a href=&quot;#更新frame让约束生效-1&quot; class=&quot;headerlink&quot; title=&quot;更新frame让约束生效&quot;&gt;&lt;/a&gt;更新frame让约束生效&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/er9295gpjdftvo5/20160807_adaptive19.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Size-Classes的使用&quot;&gt;&lt;a href=&quot;#Size-Classes的使用&quot; class=&quot;headerlink&quot; title=&quot;Size Classes的使用&quot;&gt;&lt;/a&gt;Size Classes的使用&lt;/h1&gt;&lt;h2 id=&quot;两种尺寸组合表达所有设备-Regular-and-Compact&quot;&gt;&lt;a href=&quot;#两种尺寸组合表达所有设备-Regular-and-Compact&quot; class=&quot;headerlink&quot; title=&quot;两种尺寸组合表达所有设备: Regular and Compact&quot;&gt;&lt;/a&gt;两种尺寸组合表达所有设备: Regular and Compact&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u2gdmu6k1d8gksd/20160807_sizeClass.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;构建iPhone-landscape-size-Class&quot;&gt;&lt;a href=&quot;#构建iPhone-landscape-size-Class&quot; class=&quot;headerlink&quot; title=&quot;构建iPhone landscape size Class&quot;&gt;&lt;/a&gt;构建iPhone landscape size Class&lt;/h2&gt;&lt;p&gt;点击下方的”W any H any”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lp1del2ve1g92r7/20160807_adaptive21.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1mb2xqh4xsit8w6/20160807_adaptive22.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;重设image-view约束-仅在该sizeClass&quot;&gt;&lt;a href=&quot;#重设image-view约束-仅在该sizeClass&quot; class=&quot;headerlink&quot; title=&quot;重设image view约束(仅在该sizeClass)&quot;&gt;&lt;/a&gt;重设image view约束(仅在该sizeClass)&lt;/h2&gt;&lt;h3 id=&quot;卸载所有约束&quot;&gt;&lt;a href=&quot;#卸载所有约束&quot; class=&quot;headerlink&quot; title=&quot;卸载所有约束&quot;&gt;&lt;/a&gt;卸载所有约束&lt;/h3&gt;&lt;p&gt;点击image view，在右侧删除所有约束 - （只是在这个size class里uninstalling ）&lt;br&gt;&lt;img src=&quot;https://www.dropbox.com/s/j8diywf0anrlric/20160807_adaptive23.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gsm084vyj5aw8uc/20160807_adaptive24.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zskuue3ap4eri39/20160807_adaptive25.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;将所有约束删除&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/698wfvuerw06ue3/20160807_adaptive26.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;新约束1-垂直居中&quot;&gt;&lt;a href=&quot;#新约束1-垂直居中&quot; class=&quot;headerlink&quot; title=&quot;新约束1:垂直居中&quot;&gt;&lt;/a&gt;新约束1:垂直居中&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/e9md11gwb2e1z7b/20160807_adaptive27.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;新约束2-左间隔10&quot;&gt;&lt;a href=&quot;#新约束2-左间隔10&quot; class=&quot;headerlink&quot; title=&quot;新约束2:左间隔10&quot;&gt;&lt;/a&gt;新约束2:左间隔10&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/at6xdz1d14j04kh/20160807_adaptive28.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;新约束3-与父视图的宽度比例为40&quot;&gt;&lt;a href=&quot;#新约束3-与父视图的宽度比例为40&quot; class=&quot;headerlink&quot; title=&quot;新约束3:与父视图的宽度比例为40%&quot;&gt;&lt;/a&gt;新约束3:与父视图的宽度比例为40%&lt;/h3&gt;&lt;p&gt;ctrl拖动到父视图view，设置宽度比例&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7fm6lqc1kvhqtu9/20160807_adaptive29.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/nbrng2hh4j6hmm6/20160807_adaptive30.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;重设TextContainer约束-仅在该sizeClass&quot;&gt;&lt;a href=&quot;#重设TextContainer约束-仅在该sizeClass&quot; class=&quot;headerlink&quot; title=&quot;重设TextContainer约束(仅在该sizeClass)&quot;&gt;&lt;/a&gt;重设TextContainer约束(仅在该sizeClass)&lt;/h2&gt;&lt;h3 id=&quot;卸载约束&quot;&gt;&lt;a href=&quot;#卸载约束&quot; class=&quot;headerlink&quot; title=&quot;卸载约束&quot;&gt;&lt;/a&gt;卸载约束&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/7xxgxvse0a9jhdp/20160807_adaptive31.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;设定与父视图的顶部间距和宽度比例&quot;&gt;&lt;a href=&quot;#设定与父视图的顶部间距和宽度比例&quot; class=&quot;headerlink&quot; title=&quot;设定与父视图的顶部间距和宽度比例&quot;&gt;&lt;/a&gt;设定与父视图的顶部间距和宽度比例&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/c5ef55gf4riqlir/20160807_adaptive32.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4c9wlje6hqr8a39/20160807_adaptive33.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/of9a0fnkofgvw24/20160807_adaptive34.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;更新Frame&quot;&gt;&lt;a href=&quot;#更新Frame&quot; class=&quot;headerlink&quot; title=&quot;更新Frame&quot;&gt;&lt;/a&gt;更新Frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ou0qkqjww0zxpyf/20160807_adaptive35.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;在故事板中设置自适应字体&quot;&gt;&lt;a href=&quot;#在故事板中设置自适应字体&quot; class=&quot;headerlink&quot; title=&quot;在故事板中设置自适应字体&quot;&gt;&lt;/a&gt;在故事板中设置自适应字体&lt;/h1&gt;&lt;h2 id=&quot;回到Any界面-w-h&quot;&gt;&lt;a href=&quot;#回到Any界面-w-h&quot; class=&quot;headerlink&quot; title=&quot;回到Any界面(w+h)&quot;&gt;&lt;/a&gt;回到Any界面(w+h)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/i5nn0nh63yfzkda/20160807_adaptive36.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置某个size-class类别下的字体&quot;&gt;&lt;a href=&quot;#设置某个size-class类别下的字体&quot; class=&quot;headerlink&quot; title=&quot;设置某个size class类别下的字体&quot;&gt;&lt;/a&gt;设置某个size class类别下的字体&lt;/h2&gt;&lt;p&gt;点击字体旁的 + 按钮&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/dlcyxnxaoyb71ho/20160807_adaptive37.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xbz1zln8m1d2uoy/20160807_adaptive38.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置字体能自动缩小50&quot;&gt;&lt;a href=&quot;#设置字体能自动缩小50&quot; class=&quot;headerlink&quot; title=&quot;设置字体能自动缩小50%&quot;&gt;&lt;/a&gt;设置字体能自动缩小50%&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s9a8ba0ja9gxae1/20160807_adaptive39.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置label与父视图的约束&quot;&gt;&lt;a href=&quot;#设置label与父视图的约束&quot; class=&quot;headerlink&quot; title=&quot;设置label与父视图的约束&quot;&gt;&lt;/a&gt;设置label与父视图的约束&lt;/h2&gt;&lt;p&gt;避免标签的尺寸超出父视图&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/0msqdq39diijzsh/20160807_adaptive40.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;设置适配不同设备的图片&quot;&gt;&lt;a href=&quot;#设置适配不同设备的图片&quot; class=&quot;headerlink&quot; title=&quot;设置适配不同设备的图片&quot;&gt;&lt;/a&gt;设置适配不同设备的图片&lt;/h1&gt;&lt;p&gt;点击图片组，分别选择右侧的 iPhone , iPad。拖入图片，将针对不同设备采用不同的图片&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/zfphysc527297i5/20160807_adaptive42.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;表格单元格的自我调整（代码略）&quot;&gt;&lt;a href=&quot;#表格单元格的自我调整（代码略）&quot; class=&quot;headerlink&quot; title=&quot;表格单元格的自我调整（代码略）&quot;&gt;&lt;/a&gt;表格单元格的自我调整（代码略）&lt;/h1&gt;&lt;h2 id=&quot;效果图&quot;&gt;&lt;a href=&quot;#效果图&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3oeercgj23sylge/20160807_adaptive52.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;单元格的设定&quot;&gt;&lt;a href=&quot;#单元格的设定&quot; class=&quot;headerlink&quot; title=&quot;单元格的设定&quot;&gt;&lt;/a&gt;单元格的设定&lt;/h2&gt;&lt;p&gt;style为custom,selection为none &lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/u41c4qfpofo9e5y/20160807_adaptive43.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;imageView约束设定-铺满整个cell&quot;&gt;&lt;a href=&quot;#imageView约束设定-铺满整个cell&quot; class=&quot;headerlink&quot; title=&quot;imageView约束设定(铺满整个cell)&quot;&gt;&lt;/a&gt;imageView约束设定(铺满整个cell)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/b6m5iq0uu17k7g0/20160807_adaptive44.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Label约束设定&quot;&gt;&lt;a href=&quot;#Label约束设定&quot; class=&quot;headerlink&quot; title=&quot;Label约束设定&quot;&gt;&lt;/a&gt;Label约束设定&lt;/h2&gt;&lt;p&gt;Press ctrl to drag to contentView and press shift to select all&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/oa17kouurjo6ymi/20160807_adaptive45.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3sqz1wu3zbfwzf7/20160807_adaptive49.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;场景布局与实际布局不符合，就会出现橘红色的标注&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ipd4pfvj76i94gj/20160807_adaptive48.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Label字体-背景色-透明度设定&quot;&gt;&lt;a href=&quot;#Label字体-背景色-透明度设定&quot; class=&quot;headerlink&quot; title=&quot;Label字体/背景色/透明度设定&quot;&gt;&lt;/a&gt;Label字体/背景色/透明度设定&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/qqk6shnj0vqet6z/20160807_adaptive50.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置单元格高度解决冲突&quot;&gt;&lt;a href=&quot;#设置单元格高度解决冲突&quot; class=&quot;headerlink&quot; title=&quot;设置单元格高度解决冲突&quot;&gt;&lt;/a&gt;设置单元格高度解决冲突&lt;/h2&gt;&lt;p&gt;点击单元格，将高度拖至120&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/juqfxh9wrp3olnu/20160807_adaptive46.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;更新frame&quot;&gt;&lt;a href=&quot;#更新frame&quot; class=&quot;headerlink&quot; title=&quot;更新frame&quot;&gt;&lt;/a&gt;更新frame&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/rgslw0en2jnsxa1/20160807_adaptive47.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设置table-cell之间的分割符&quot;&gt;&lt;a href=&quot;#设置table-cell之间的分割符&quot; class=&quot;headerlink&quot; title=&quot;设置table cell之间的分割符&quot;&gt;&lt;/a&gt;设置table cell之间的分割符&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/eq7nntoh41ec8kc/20160807_adaptive51.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;在Controller中必须添加的两行代码&quot;&gt;&lt;a href=&quot;#在Controller中必须添加的两行代码&quot; class=&quot;headerlink&quot; title=&quot;在Controller中必须添加的两行代码&quot;&gt;&lt;/a&gt;在Controller中必须添加的两行代码&lt;/h2&gt;&lt;p&gt;ViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;override func viewDidLoad() {
-  super.viewDidLoad()
-
-  tableView.rowHeight = UITableViewAutomaticDimension
-  tableView.estimatedRowHeight = 100
-  }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;必须要由tableView来决定表格的宽度&lt;/li&gt;
-&lt;li&gt;Autolayout必须约束高度，并且不能有冲突。比如该例子中的label。需要手动调整高度&lt;/li&gt;
-&lt;li&gt;两行代码&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;安装集合视图（代码略）&quot;&gt;&lt;a href=&quot;#安装集合视图（代码略）&quot; class=&quot;headerlink&quot; title=&quot;安装集合视图（代码略）&quot;&gt;&lt;/a&gt;安装集合视图（代码略）&lt;/h1&gt;&lt;h2 id=&quot;效果图-1&quot;&gt;&lt;a href=&quot;#效果图-1&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/bo371qdejtb4x9w/20160807_adaptive62.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;安装ContainerView并添加约束&quot;&gt;&lt;a href=&quot;#安装ContainerView并添加约束&quot; class=&quot;headerlink&quot; title=&quot;安装ContainerView并添加约束&quot;&gt;&lt;/a&gt;安装ContainerView并添加约束&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/t9y6oxw2614n8mf/20160807_adaptive59.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;ContainerView会自动创建ViewController&quot;&gt;&lt;a href=&quot;#ContainerView会自动创建ViewController&quot; class=&quot;headerlink&quot; title=&quot;ContainerView会自动创建ViewController&quot;&gt;&lt;/a&gt;ContainerView会自动创建ViewController&lt;/h2&gt;&lt;p&gt;本案例不需要，可以删除&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/4pi06h57oynyxsh/20160807_adaptive53.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Container内嵌集合视图-代码略&quot;&gt;&lt;a href=&quot;#Container内嵌集合视图-代码略&quot; class=&quot;headerlink&quot; title=&quot;Container内嵌集合视图 (代码略)&quot;&gt;&lt;/a&gt;Container内嵌集合视图 (代码略)&lt;/h2&gt;&lt;p&gt;Press ctrl to drag to collectionView ,选择 Embed&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2wmy6xolald7x2w/20160807_adaptive54.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/w45ig9dn298sq64/20160807_adaptive55.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;重新设定Label约束&quot;&gt;&lt;a href=&quot;#重新设定Label约束&quot; class=&quot;headerlink&quot; title=&quot;重新设定Label约束&quot;&gt;&lt;/a&gt;重新设定Label约束&lt;/h2&gt;&lt;h3 id=&quot;删除顶部约束&quot;&gt;&lt;a href=&quot;#删除顶部约束&quot; class=&quot;headerlink&quot; title=&quot;删除顶部约束&quot;&gt;&lt;/a&gt;删除顶部约束&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/iynvi7o4ahb5idw/20160807_adaptive56.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;与Container的顶部垂直距离为0&quot;&gt;&lt;a href=&quot;#与Container的顶部垂直距离为0&quot; class=&quot;headerlink&quot; title=&quot;与Container的顶部垂直距离为0&quot;&gt;&lt;/a&gt;与Container的顶部垂直距离为0&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l7ptx3cy8l9uyt0/20160807_adaptive60.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/x4tclqlyrule5r1/20160807_adaptive61.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;在iPhone横屏中去除集合视图&quot;&gt;&lt;a href=&quot;#在iPhone横屏中去除集合视图&quot; class=&quot;headerlink&quot; title=&quot;在iPhone横屏中去除集合视图&quot;&gt;&lt;/a&gt;在iPhone横屏中去除集合视图&lt;/h1&gt;&lt;h2 id=&quot;效果图-2&quot;&gt;&lt;a href=&quot;#效果图-2&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6y3wvxbxdjrfsi4/20160807_adaptive70.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;设定iPhone横屏size-class&quot;&gt;&lt;a href=&quot;#设定iPhone横屏size-class&quot; class=&quot;headerlink&quot; title=&quot;设定iPhone横屏size class&quot;&gt;&lt;/a&gt;设定iPhone横屏size class&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ne3xclzasd478pn/20160807_adaptive63.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;在该size-class中卸载container&quot;&gt;&lt;a href=&quot;#在该size-class中卸载container&quot; class=&quot;headerlink&quot; title=&quot;在该size class中卸载container&quot;&gt;&lt;/a&gt;在该size class中卸载container&lt;/h2&gt;&lt;p&gt;cmd + Delete = 卸载&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xidc81x6efg170g/20160807_adaptive64.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;卸载container-view的约束-右侧删除&quot;&gt;&lt;a href=&quot;#卸载container-view的约束-右侧删除&quot; class=&quot;headerlink&quot; title=&quot;卸载container view的约束(右侧删除)&quot;&gt;&lt;/a&gt;卸载container view的约束(右侧删除)&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/t66clmb7wps0is2/20160807_adaptive65.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;重设label约束&quot;&gt;&lt;a href=&quot;#重设label约束&quot; class=&quot;headerlink&quot; title=&quot;重设label约束&quot;&gt;&lt;/a&gt;重设label约束&lt;/h2&gt;&lt;h3 id=&quot;显示Label所有约束-含卸载&quot;&gt;&lt;a href=&quot;#显示Label所有约束-含卸载&quot; class=&quot;headerlink&quot; title=&quot;显示Label所有约束(含卸载)&quot;&gt;&lt;/a&gt;显示Label所有约束(含卸载)&lt;/h3&gt;&lt;p&gt;点击All&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ndu6u825kaucjco/20160807_adaptive66.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;重设当前sizeClass约束&quot;&gt;&lt;a href=&quot;#重设当前sizeClass约束&quot; class=&quot;headerlink&quot; title=&quot;重设当前sizeClass约束&quot;&gt;&lt;/a&gt;重设当前sizeClass约束&lt;/h3&gt;&lt;p&gt;点击 + 号，选择size class ,然后install&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/kxz5ictnoofm02c/20160807_adaptive67.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/d8052c6i2p3qweo/20160807_adaptive68.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/leefz9n24lncaec/20160807_adaptive69.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;iPhone竖屏上去除集合视图&quot;&gt;&lt;a href=&quot;#iPhone竖屏上去除集合视图&quot; class=&quot;headerlink&quot; title=&quot;iPhone竖屏上去除集合视图&quot;&gt;&lt;/a&gt;iPhone竖屏上去除集合视图&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;DetailViewController&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    self.configureView()
-    provideDataToChildViewControllers()
-
-    navigationItem.leftItemsSupplementBackButton = true
-    navigationItem.hidesBackButton = false
-
-    configureTraitOverrideForSize(view.bounds.size)
-}
-
-override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    configureTraitOverrideForSize(size)
-}
-
-private func configureTraitOverrideForSize(size:CGSize) {
-    var traitOverride: UITraitCollection?
-
-    if size.height &amp;lt; 1000 {
-        traitOverride = UITraitCollection(verticalSizeClass: .Compact)
-    }
-
-    for vc in childViewControllers {
-        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;为SizeClass配置相关图片&quot;&gt;&lt;a href=&quot;#为SizeClass配置相关图片&quot; class=&quot;headerlink&quot; title=&quot;为SizeClass配置相关图片&quot;&gt;&lt;/a&gt;为SizeClass配置相关图片&lt;/h1&gt;&lt;h2 id=&quot;效果图-3&quot;&gt;&lt;a href=&quot;#效果图-3&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;如图，集合视图和顶部所使用的图片不一样&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/maja4iharq45ruh/20160807_adaptive71.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;在ImageAsset中构建size-class&quot;&gt;&lt;a href=&quot;#在ImageAsset中构建size-class&quot; class=&quot;headerlink&quot; title=&quot;在ImageAsset中构建size class&quot;&gt;&lt;/a&gt;在ImageAsset中构建size class&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;选择右侧width – Any&amp;amp;Compact&lt;/li&gt;
-&lt;li&gt;Universal打勾，对应拖入图片。 * 代表 any, - 代表compact , + 代表regular&lt;/li&gt;
-&lt;li&gt;右侧取消iPhone,iPad&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/9yinto1b1fghzac/20160807_adaptive77.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    configureView()
-
-    let traitOverride = UITraitCollection(horizontalSizeClass: .Compact)
-
-    for vc in childViewControllers {
-        setOverrideTraitCollection(traitOverride, forChildViewController: vc)
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;隐藏导航栏&quot;&gt;&lt;a href=&quot;#隐藏导航栏&quot; class=&quot;headerlink&quot; title=&quot;隐藏导航栏&quot;&gt;&lt;/a&gt;隐藏导航栏&lt;/h1&gt;&lt;h2 id=&quot;效果图-4&quot;&gt;&lt;a href=&quot;#效果图-4&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;如图，点击屏幕将导航栏隐藏&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2u7qh3xm9o3uvwe/20160807_adaptive74.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;UIStoryboard中设置NavigationBar&quot;&gt;&lt;a href=&quot;#UIStoryboard中设置NavigationBar&quot; class=&quot;headerlink&quot; title=&quot;UIStoryboard中设置NavigationBar&quot;&gt;&lt;/a&gt;UIStoryboard中设置NavigationBar&lt;/h2&gt;&lt;p&gt;选中NavigationController,在右侧hide bar打勾:“on tap” + “when vertically compact”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fdb56pi2p8awn5k/20160807_adaptive73.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;定制横竖屏的文字&quot;&gt;&lt;a href=&quot;#定制横竖屏的文字&quot; class=&quot;headerlink&quot; title=&quot;定制横竖屏的文字&quot;&gt;&lt;/a&gt;定制横竖屏的文字&lt;/h1&gt;&lt;h2 id=&quot;效果图-5&quot;&gt;&lt;a href=&quot;#效果图-5&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h2&gt;&lt;p&gt;横屏文字较小，竖屏文字较大&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/caualyqwgggl55d/20160807_adaptive75.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sv4rvtm0fgc6u3d/20160807_adaptive72.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;相关代码-1&quot;&gt;&lt;a href=&quot;#相关代码-1&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;private func prepareNavigationBarAppearance() {
-    let font = UIFont(name: &amp;quot;HelveticaNeue-Light&amp;quot;, size: 30)!
-    let regularVertical = UITraitCollection(verticalSizeClass: .Regular)
-    UINavigationBar.appearanceForTraitCollection(regularVertical).titleTextAttributes = [NSFontAttributeName: font]
-    let compactVertical = UITraitCollection(verticalSizeClass: .Compact)
-    UINavigationBar.appearanceForTraitCollection(compactVertical).titleTextAttributes = [NSFontAttributeName: font.fontWithSize(20)]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;设定某UI元素height或width的约束&quot;&gt;&lt;a href=&quot;#设定某UI元素height或width的约束&quot; class=&quot;headerlink&quot; title=&quot;设定某UI元素height或width的约束&quot;&gt;&lt;/a&gt;设定某UI元素height或width的约束&lt;/h1&gt;&lt;p&gt;ctrl + drag 在该元素内部拖动&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/xigfhpio2unf7le/20160819_autoLayout.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;使用Adaptive-Layout&quot;&gt;&lt;a href=&quot;#使用Adaptive-Layout&quot; class=&quot;headerlink&quot; title=&quot;使用Adaptive Layout&quot;&gt;&lt;/a&gt;使用Adaptive Layout&lt;/h1&gt;&lt;h2 id=&quot;Devic
-    
-    </summary>
-    
-      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
-    
-    
-      <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
-    
-      <category term="Xcode" scheme="http://jackliu17.github.io/tags/Xcode/"/>
     
   </entry>
   

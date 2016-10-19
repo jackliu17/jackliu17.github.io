@@ -238,6 +238,175 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/21/iOS视频播放和录制/" itemprop="url">
+                  iOS视频播放和录制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-21T15:39:21+10:00" content="2016-05-21">
+              2016-05-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/21/iOS视频播放和录制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/21/iOS视频播放和录制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Play-Video"><a href="#Play-Video" class="headerlink" title="Play Video"></a>Play Video</h1><pre><code>import UIKit
+import MediaPlayer
+
+class ViewController: UIViewController {
+
+var pc:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    pc = MPMoviePlayerViewController(contentURL: NSBundle.mainBundle().URLForResource(&quot;video&quot;, withExtension: &quot;mp4&quot;))
+    presentViewController(pc, animated: true, completion: nil)
+}
+}
+</code></pre><h1 id="Record-Video"><a href="#Record-Video" class="headerlink" title="Record Video"></a>Record Video</h1><pre><code>import UIKit
+import MobileCoreServices
+import MediaPlayer
+
+class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate  {
+
+var picker:UIImagePickerController!
+var videoUrl:NSURL?
+var player:MPMoviePlayerViewController!
+
+@IBAction func playVideoBtnClicked(sender: AnyObject) {
+
+    if let url = videoUrl{
+        player = MPMoviePlayerViewController(contentURL: url)
+        presentViewController(player, animated: true, completion: nil)
+    }
+}
+
+
+@IBAction func recVideoBtnClicked(sender: AnyObject) {
+
+    picker = UIImagePickerController()
+    picker.mediaTypes = [kUTTypeMovie as String]
+    picker.sourceType = UIImagePickerControllerSourceType.Camera
+    picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+    picker.delegate = self
+
+    presentViewController(picker, animated: true, completion: nil) 
+}
+
+
+func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+
+    videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL
+
+    picker.dismissViewControllerAnimated(true, completion: nil)
+}
+
+func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    picker.dismissViewControllerAnimated(true, completion: nil)
+}
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/21/iOS-HTTP通信/" itemprop="url">
                   iOS-HTTP通信
                 </a>
@@ -863,145 +1032,12 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/19/iOS数据存储-JSON/" itemprop="url">
-                  iOS数据存储-JSON
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-19T16:44:42+10:00" content="2016-05-19">
-              2016-05-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/19/iOS数据存储-JSON/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/19/iOS数据存储-JSON/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="读取JSON文件"><a href="#读取JSON文件" class="headerlink" title="读取JSON文件"></a>读取JSON文件</h1><pre><code>let filePath: NSString = NSBundle.mainBundle().pathForResource(&quot;obj&quot;, ofType: &quot;json&quot;)!
-let jsonUrl = NSURL(fileURLWithPath: filePath as String)
-let jsonData = NSData(contentsOfURL: jsonUrl)
-
-do{       
-let json = try NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions())
-let lang:AnyObject = json.objectForKey(&quot;language&quot;)!
-print(lang)           
-}catch{
-print(error)
-}
-</code></pre><h1 id="生成JSON数据"><a href="#生成JSON数据" class="headerlink" title="生成JSON数据"></a>生成JSON数据</h1><pre><code>let dict = [&quot;name&quot;:&quot;jikexueyuan&quot;,&quot;age&quot;:1]
-do{
-    let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions())
-    let str = NSString(data: jsonData, encoding: NSUTF8StringEncoding)!
-    print(str)
-}catch{
-    print(error)
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1042,7 +1078,7 @@ do{
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">110</span>
+              <span class="site-state-item-count">111</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1059,7 +1095,7 @@ do{
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
