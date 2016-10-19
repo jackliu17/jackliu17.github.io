@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-19T07:25:30.000Z</updated>
+  <updated>2016-10-19T08:09:19.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://jackliu17.github.io/2016/10/17/Sketch-tutorial/"/>
     <id>http://jackliu17.github.io/2016/10/17/Sketch-tutorial/</id>
     <published>2016-10-16T23:38:01.000Z</published>
-    <updated>2016-10-19T07:25:30.000Z</updated>
+    <updated>2016-10-19T08:09:19.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;App设计标准&quot;&gt;&lt;a href=&quot;#App设计标准&quot; class=&quot;headerlink&quot; title=&quot;App设计标准&quot;&gt;&lt;/a&gt;App设计标准&lt;/h1&gt;&lt;h2 id=&quot;矢量图和位图&quot;&gt;&lt;a href=&quot;#矢量图和位图&quot; class=&quot;headerlink&quot; title=&quot;矢量图和位图&quot;&gt;&lt;/a&gt;矢量图和位图&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;矢量图：图形&lt;/li&gt;
@@ -61,8 +61,8 @@
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Siccer&quot;&gt;&lt;a href=&quot;#Siccer&quot; class=&quot;headerlink&quot; title=&quot;Siccer&quot;&gt;&lt;/a&gt;Siccer&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1xc2f8xdiqvm7an/2016101822.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Make-Grid&quot;&gt;&lt;a href=&quot;#Make-Grid&quot; class=&quot;headerlink&quot; title=&quot;Make Grid&quot;&gt;&lt;/a&gt;Make Grid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Make-Grid&quot;&gt;&lt;a href=&quot;#Make-Grid&quot; class=&quot;headerlink&quot; title=&quot;Make Grid&quot;&gt;&lt;/a&gt;Make Grid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/lqgmvahd3tlx76i/2016101915.png?dl=1&quot; alt=&quot;15&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a9g72a6smimr1jc/2016101916.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;Text&quot;&gt;&lt;a href=&quot;#Text&quot; class=&quot;headerlink&quot; title=&quot;Text&quot;&gt;&lt;/a&gt;Text&lt;/h1&gt;&lt;h2 id=&quot;Text-Style&quot;&gt;&lt;a href=&quot;#Text-Style&quot; class=&quot;headerlink&quot; title=&quot;Text Style&quot;&gt;&lt;/a&gt;Text Style&lt;/h2&gt;&lt;p&gt;类似symbol。创造出来后可以从库中调用。对库中的text style所做的任何变动都会反应到实例中。&lt;/p&gt;
 &lt;p&gt;create and organize text style&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/1psdzc1nad9t7q4/2016101703.png?dl=1&quot; alt=&quot;3&quot;&gt;&lt;/p&gt;
@@ -143,16 +143,21 @@
 &lt;h2 id=&quot;命名技巧&quot;&gt;&lt;a href=&quot;#命名技巧&quot; class=&quot;headerlink&quot; title=&quot;命名技巧&quot;&gt;&lt;/a&gt;命名技巧&lt;/h2&gt;&lt;p&gt;在命名artboard或symbol时，采用”/“，这样导出会自动产生文件夹&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/s8fektp48org65d/2016101914.png?dl=1&quot; alt=&quot;14&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;设置grid&quot;&gt;&lt;a href=&quot;#设置grid&quot; class=&quot;headerlink&quot; title=&quot;设置grid&quot;&gt;&lt;/a&gt;设置grid&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3gytaltrdh4e0tw/2016101913.png?dl=1&quot; alt=&quot;13&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Shortcut-key&quot;&gt;&lt;a href=&quot;#Shortcut-key&quot; class=&quot;headerlink&quot; title=&quot;Shortcut key&quot;&gt;&lt;/a&gt;Shortcut key&lt;/h1&gt;&lt;p&gt;需要设置的快捷键&lt;/p&gt;
+&lt;h2 id=&quot;Shortcut-key&quot;&gt;&lt;a href=&quot;#Shortcut-key&quot; class=&quot;headerlink&quot; title=&quot;Shortcut key&quot;&gt;&lt;/a&gt;Shortcut key&lt;/h2&gt;&lt;p&gt;需要设置的快捷键&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;对齐功能&lt;/li&gt;
 &lt;li&gt;分布功能&lt;/li&gt;
 &lt;li&gt;对齐像素功能&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;方法: System preference -&amp;gt; Keyboard -&amp;gt; Shortcut&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2kw2y5x6ts5aeya/2016101918.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
 &lt;p&gt;如果有重复的，需要用 -&amp;gt;输入完整的路径&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/r2hdmt5lxiocbcp/2016101917.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;快速定位对象&quot;&gt;&lt;a href=&quot;#快速定位对象&quot; class=&quot;headerlink&quot; title=&quot;快速定位对象&quot;&gt;&lt;/a&gt;快速定位对象&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;cmd + 1 = 显示所有&lt;/li&gt;
+&lt;li&gt;cmd + 2 = 最大化显示&lt;/li&gt;
+&lt;li&gt;cmd + 0 = 100%显示&lt;/li&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
