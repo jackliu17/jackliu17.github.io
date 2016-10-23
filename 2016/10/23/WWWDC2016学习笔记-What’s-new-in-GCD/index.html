@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,iOS_designPattern," />
+  <meta name="keywords" content="gcd,WWDC," />
 
 
 
@@ -61,30 +61,28 @@
 
 
 
-<meta name="description" content="享元模式交叉的圆环，提取出公共部分进行复用。
-
-定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
-步骤: 共享物件的提取 —&amp;gt;">
+<meta name="description" content="Dispatch Queues execute work items in FIFO order，including two kind of execution
+Asynchronous ：可以先加入队列，将来再执行
+Synchronous：必须执行完才到下一个
+let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;qu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS设计模式-享元">
-<meta property="og:url" content="http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/index.html">
+<meta property="og:title" content="WWWDC2016学习笔记-What’s_new_in_GCD">
+<meta property="og:url" content="http://jackliu17.github.io/2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description" content="享元模式交叉的圆环，提取出公共部分进行复用。
-
-定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
-步骤: 共享物件的提取 —&amp;gt;">
-<meta property="og:image" content="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1">
-<meta property="og:image" content="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1">
-<meta property="og:updated_time" content="2016-07-31T04:56:21.000Z">
+<meta property="og:description" content="Dispatch Queues execute work items in FIFO order，including two kind of execution
+Asynchronous ：可以先加入队列，将来再执行
+Synchronous：必须执行完才到下一个
+let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;qu">
+<meta property="og:image" content="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1">
+<meta property="og:image" content="https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1">
+<meta property="og:updated_time" content="2016-10-23T03:58:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS设计模式-享元">
-<meta name="twitter:description" content="享元模式交叉的圆环，提取出公共部分进行复用。
-
-定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。
-步骤: 共享物件的提取 —&amp;gt;">
-<meta name="twitter:image" content="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1">
+<meta name="twitter:title" content="WWWDC2016学习笔记-What’s_new_in_GCD">
+<meta name="twitter:description" content="Dispatch Queues execute work items in FIFO order，including two kind of execution
+Asynchronous ：可以先加入队列，将来再执行
+Synchronous：必须执行完才到下一个
+let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;qu">
+<meta name="twitter:image" content="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1">
 
 
 
@@ -102,7 +100,7 @@
   };
 </script>
 
-  <title> iOS设计模式-享元 | Cowboy Tech </title>
+  <title> WWWDC2016学习笔记-What’s_new_in_GCD | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -244,7 +242,7 @@
             
             
               
-                iOS设计模式-享元
+                WWWDC2016学习笔记-What’s_new_in_GCD
               
             
           </h1>
@@ -256,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-05T15:43:19+10:00" content="2016-06-05">
-              2016-06-05
+            <time itemprop="dateCreated" datetime="2016-10-23T14:55:29+11:00" content="2016-10-23">
+              2016-10-23
             </time>
           </span>
 
@@ -286,8 +284,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/05/iOS设计模式-享元/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/05/iOS设计模式-享元/" itemprop="commentsCount"></span>
+                <a href="/2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,157 +307,39 @@
       
 
       
-        <h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>交叉的圆环，提取出公共部分进行复用。</p>
-<ol>
-<li>定义:享元模式（英语：Flyweight Pattern）是一种软件设计模式。它使用共享物件，用来尽可能减少内存使用量以及分享资讯给尽可能多的相似物件；它适合用于只是因重复而导致使用无法令人接受的大量内存的大量物件。通常物件中的部分状态是可以分享。常见做法是把它们放在外部数据结构，当需要使用时再将它们传递给享元。</li>
-<li>步骤: 共享物件的提取 —&gt; 管理共享对象 —&gt; 获取共享对象</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/6t58dlkm72czk5g/iOS_designPatternFlyweight02.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/al4cgnnv4ejazsl/iOS_designPatternFlyweight01.png?dl=1" alt=""></p>
-<pre><code>@interface ViewController ()
-
-@property(nonatomic,strong) NSMutableDictionary *flyweightFactory;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-self.flyweightFactory = [NSMutableDictionary dictionary];
-
-[self.flyweightFactory setObject:[Model new] forKey:@&quot;A&quot;];
-
-//方式一: 直接提取
-//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
-//    NSLog(@&quot;%@&quot;,self.flyweightFactory[@&quot;A&quot;]);
-
-
-//方式二: 享元模式(有,则返回，无则创建返回)
-NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
-NSLog(@&quot;%@&quot;,[self ModelWithName:@&quot;A&quot;]);
+        <p>Dispatch Queues execute work items in FIFO order，including two kind of execution</p>
+<p>Asynchronous ：可以先加入队列，将来再执行</p>
+<p>Synchronous：必须执行完才到下一个</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
 }
-
-- (id)ModelWithName:(NSString *)name {
-
-if (self.flyweightFactory[name]==nil) {
-
-    self.flyweightFactory[name] = [Model new];
-
-    return self.flyweightFactory[name];
-
-}else{
-
-    return self.flyweightFactory[name];
-
-}       
 }
-@end
-</code></pre><h1 id="咖啡厅案例"><a href="#咖啡厅案例" class="headerlink" title="咖啡厅案例"></a>咖啡厅案例</h1><p>分析创建咖啡菜单，相当于一个池子，将所有的享元咖啡存储在里面</p>
-<p>共享同种类的对象,三种对象:</p>
-<ol>
-<li>咖啡店</li>
-<li>咖啡table</li>
-<li>咖啡清单</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/oabiyi915qsfebu/iOS_designPatternFlyweight03.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/znds3ksanu7ntc1/iOS_designPatternFlyweight04.png?dl=1" alt=""></p>
-<p>CoffeeFlavor</p>
-<pre><code>@interface CoffeeFlavor : NSObject
-@property (nonatomic, strong) NSString *flavor;
-@end
-</code></pre><p>Menu (相当于一个池子，将所有的享元咖啡存储在里面)</p>
-<pre><code>@interface Menu : NSObject
-
-//获取指定味道的咖啡（如果没有则创建）
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor;
-@end
-
-@interface Menu ()
-@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
-@end
-
-@implementation Menu
-
-- (instancetype)init {   
-    self = [super init];  
-    if (self) {  
-        self.flavors = [NSMutableDictionary dictionary];
-    }   
-    return self;
+</code></pre><h2 id="Getting-Work-Off-Your-Main-Thread"><a href="#Getting-Work-Off-Your-Main-Thread" class="headerlink" title="Getting Work Off Your Main Thread"></a>Getting Work Off Your Main Thread</h2><p>Create a Dispatch Queue to which you submit work</p>
+<p>Dispatch Queues execute work items in FIFO order</p>
+<p>Use .async to execute your work on the queue</p>
+<p>Dispatch main queue executes all items on the main thread</p>
+<p>Simple to chain work between queues</p>
+<pre><code>let queue = DispatchQueue(label: &quot;com.example.imagetransform&quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
 }
-
-- (CoffeeFlavor *)lookupWithFlavor:(NSString *)flavor {
-    NSParameterAssert(flavor);
-    if ([self.flavors objectForKey:flavor] == nil) {       
-        CoffeeFlavor *coffeeFlavor = [[CoffeeFlavor alloc] init];
-        coffeeFlavor.flavor        = flavor;     
-        self.flavors[flavor] = coffeeFlavor;
-    }  
-    return [self.flavors objectForKey:flavor];
 }
-@end
-</code></pre><p>CoffeeShop</p>
-<pre><code>@interface CoffeeShop : NSObject
-- (void)takeOrder:(NSString *)flavor table:(int)table;
-- (void)serve;
-@end
-
-@interface CoffeeShop ()
-
-@property (nonatomic, strong) NSMutableDictionary &lt;NSNumber *, CoffeeFlavor *&gt;  *orders;
-@property (nonatomic, strong) Menu *menu;
-
-@end
-
-@implementation CoffeeShop
-
-- (instancetype)init {  
-    self = [super init];
-    if (self) { 
-        self.orders = [NSMutableDictionary dictionary];
-        self.menu   = [[Menu alloc] init];
-    }
-    return self;
+</code></pre><h2 id="Grouping-Work-Together"><a href="#Grouping-Work-Together" class="headerlink" title="Grouping Work Together"></a>Grouping Work Together</h2><p><img src="https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1" alt=""></p>
+<h2 id="Choosing-a-Quality-of-Service"><a href="#Choosing-a-Quality-of-Service" class="headerlink" title="Choosing a Quality of Service"></a>Choosing a Quality of Service</h2><p><img src="https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1" alt=""></p>
+<h2 id="Using-Quality-of-Service-Classes"><a href="#Using-Quality-of-Service-Classes" class="headerlink" title="Using Quality of Service Classes"></a>Using Quality of Service Classes</h2><p>Use .async to submit work with a specific QoS class</p>
+<p>Dispatch helps resolve priority inversions</p>
+<p>Create single-purpose queues with a specific QoS class</p>
+<pre><code>queue.async(qos: .background) {
+print(&quot;Maintenance work&quot;)
 }
-
-- (void)takeOrder:(NSString *)flavor table:(int)table {
-    [self.orders setObject:[self.menu lookupWithFlavor:flavor]
-                    forKey:@(table)];
+queue.async(qos: .userInitiated) {
+print(“Button tapped”)
 }
-
-- (void)serve {
-    NSArray *allKeys = self.orders.allKeys;
-    for (id key in allKeys) {  
-        NSLog(@&quot;[%@] Serving %@ to table %@&quot;, [self.orders objectForKey:key], [self.orders objectForKey:key].flavor, key);
-    }
-}
-@end
-</code></pre><p>ViewController</p>
-<pre><code>@interface ViewController ()
-@property (nonatomic, strong) CoffeeShop *coffeeShop;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // 创建咖啡厅
-    self.coffeeShop = [[CoffeeShop alloc] init];
-    // 相同类型的数据公用
-    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:1];
-    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:10];
-    [self.coffeeShop takeOrder:@&quot;Cappuccino&quot; table:6];
-    [self.coffeeShop takeOrder:@&quot;Espresso&quot;   table:9];
-    [self.coffeeShop takeOrder:@&quot;Frappe&quot;     table:8];
-
-    // 开始服务
-    [self.coffeeShop serve];
-}
-@end
-</code></pre><h1 id="字典属性"><a href="#字典属性" class="headerlink" title="字典属性"></a>字典属性</h1><pre><code>@property (nonatomic, strong) NSMutableDictionary &lt;NSString *, CoffeeFlavor *&gt;  *flavors;
 </code></pre>
       
     </div>
@@ -474,9 +354,9 @@ if (self.flyweightFactory[name]==nil) {
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/gcd/" rel="tag">#gcd</a>
           
-            <a href="/tags/iOS-designPattern/" rel="tag">#iOS_designPattern</a>
+            <a href="/tags/WWDC/" rel="tag">#WWDC</a>
           
         </div>
       
@@ -485,17 +365,13 @@ if (self.flyweightFactory[name]==nil) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/05/iOS设计模式-迭代器/" rel="next" title="iOS设计模式-迭代器">
-                <i class="fa fa-chevron-left"></i> iOS设计模式-迭代器
+              <a href="/2016/10/17/Sketch-tutorial/" rel="next" title="Sketch-tutorial">
+                <i class="fa fa-chevron-left"></i> Sketch-tutorial
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/05/iOS设计模式-模板/" rel="prev" title="iOS设计模式-模板">
-                iOS设计模式-模板 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -627,7 +503,7 @@ if (self.flyweightFactory[name]==nil) {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#享元模式"><span class="nav-number">1.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#咖啡厅案例"><span class="nav-number">2.</span> <span class="nav-text">咖啡厅案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典属性"><span class="nav-number">3.</span> <span class="nav-text">字典属性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Work-Off-Your-Main-Thread"><span class="nav-number">1.</span> <span class="nav-text">Getting Work Off Your Main Thread</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grouping-Work-Together"><span class="nav-number">2.</span> <span class="nav-text">Grouping Work Together</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Choosing-a-Quality-of-Service"><span class="nav-number">3.</span> <span class="nav-text">Choosing a Quality of Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Quality-of-Service-Classes"><span class="nav-number">4.</span> <span class="nav-text">Using Quality of Service Classes</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -885,9 +761,9 @@ if (self.flyweightFactory[name]==nil) {
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = '2016/06/05/iOS设计模式-享元/';
-      var disqus_title = 'iOS设计模式-享元';
-      var disqus_url = 'http://jackliu17.github.io/2016/06/05/iOS设计模式-享元/';
+      var disqus_identifier = '2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/';
+      var disqus_title = 'WWWDC2016学习笔记-What’s_new_in_GCD';
+      var disqus_url = 'http://jackliu17.github.io/2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

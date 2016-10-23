@@ -238,6 +238,307 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/02/Blocks/" itemprop="url">
+                  Blocks
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T15:19:02+10:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/Blocks/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/Blocks/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原文链接:<a href="http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html" target="_blank" rel="external">working with block</a></p>
+<h1 id="什么是block"><a href="#什么是block" class="headerlink" title="什么是block"></a>什么是block</h1><ol>
+<li>块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。</li>
+<li>块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.</li>
+</ol>
+<h1 id="没有参数和返回值的块"><a href="#没有参数和返回值的块" class="headerlink" title="没有参数和返回值的块"></a>没有参数和返回值的块</h1><p>定义一个块</p>
+<pre><code>^{
+     NSLog(@&quot;This is a block&quot;);
+}
+</code></pre><p>声明块变量</p>
+<pre><code>void (^simpleBlock)(void);
+</code></pre><p>块变量赋值</p>
+<pre><code>void (^simpleBlock)(void) = ^{
+    NSLog(@&quot;This is a block&quot;);
+};
+</code></pre><p>块变量赋值的简约形式   </p>
+<pre><code>simpleBlock = ^{
+    NSLog(@&quot;This is a block&quot;);
+};
+</code></pre><p>调用块命令</p>
+<pre><code>simpleBlock();
+</code></pre><h1 id="有参数和返回值的块"><a href="#有参数和返回值的块" class="headerlink" title="有参数和返回值的块"></a>有参数和返回值的块</h1><p>定义一个块</p>
+<pre><code>//1.
+
+^ (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+
+//2.
+^ double (double firstValue, double secondValue) {
+    return firstValue * secondValue;
+}
+</code></pre><p>声明块变量</p>
+<pre><code>double (^multiplyTwoValues)(double, double);    
+</code></pre><p>调用块命令</p>
+<pre><code>double (^multiplyTwoValues)(double, double) =
+                          ^(double firstValue, double secondValue) {
+                              return firstValue * secondValue;
+                          };
+
+double result = multiplyTwoValues(2,4);
+
+NSLog(@&quot;The result is %f&quot;, result);
+</code></pre><h1 id="块的值域"><a href="#块的值域" class="headerlink" title="块的值域"></a>块的值域</h1><p>如果你在一个方法中声明了块，他可以捕捉到任何在方法域中可以访问到的值</p>
+<pre><code>- (void)testMethod {
+int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+testBlock();
+}
+</code></pre><p>一旦捕获后，即使在捕获后和调用期间改变值，不受影响.块不能够改变初始变量的值，或者是被捕获的值  </p>
+<pre><code>int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+anInteger = 84;
+
+testBlock();  
+
+//Integer is: 42 
+</code></pre><h1 id="block变量（块变量的改变）"><a href="#block变量（块变量的改变）" class="headerlink" title="__block变量（块变量的改变）"></a>__block变量（块变量的改变）</h1><p>变量和块共享存储空间。变量改变，块内的也改变</p>
+<pre><code>__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+NSLog(@&quot;Integer is: %i&quot;, anInteger);
+};
+
+anInteger = 84;
+testBlock(); 
+
+//Integer is：84
+</code></pre><p>变量可以在块内被改变</p>
+<pre><code>__block int anInteger = 42;
+
+void (^testBlock)(void) = ^{
+    NSLog(@&quot;Integer is: %i&quot;, anInteger);
+    anInteger = 100;
+};
+
+testBlock();
+NSLog(@&quot;Value of original variable is now: %i&quot;, anInteger); 
+
+//Integer is: 42
+//Value of original variable is now: 100  
+</code></pre><h1 id="块作为方法或函数的参数"><a href="#块作为方法或函数的参数" class="headerlink" title="块作为方法或函数的参数"></a>块作为方法或函数的参数</h1><pre><code>- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
+
+
+- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {
+...
+callbackBlock();
+}
+
+- (void)doSomethingWithBlock:(void (^)(double, double))block {
+...
+block(21.0, 2.0);
+}
+</code></pre><p>块应该总是一个方法的最后一个参数</p>
+<pre><code>//声明
+- (void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
+
+//调用
+[self beginTaskWithName:@&quot;MyTask&quot; completion:^{
+    NSLog(@&quot;The task is complete&quot;);
+}];
+</code></pre><p>块也用于回调 — 定义了当一个任务结束时将被执行的代码</p>
+<pre><code>- (IBAction)fetchRemoteInformation:(id)sender {
+[self showProgressIndicator];
+
+XYZWebTask *task = ...
+
+[task beginTaskWithCallbackBlock:^{
+    [self hideProgressIndicator];
+}];
+}
+</code></pre><h1 id="定义块的数据类型"><a href="#定义块的数据类型" class="headerlink" title="定义块的数据类型"></a>定义块的数据类型</h1><pre><code>typedef void (^XYZSimpleBlock)(void);
+
+
+XYZSimpleBlock anotherBlock = ^{
+    ...
+};
+
+
+- (void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {
+
+...
+callbackBlock();
+}
+</code></pre><p>该 complexBlock 变量是指一个块需要另一块作为一个参数（ABLOCK）并返回另一个块</p>
+<pre><code>void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
+...
+return ^{
+    ...
+};
+};
+</code></pre><p>重写代码使用类型定义使其可读性更高，将块定义成数据类型</p>
+<pre><code>XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {
+...
+return ^{
+    ...
+};
+};
+</code></pre><h1 id="定义块为属性"><a href="#定义块为属性" class="headerlink" title="定义块为属性"></a>定义块为属性</h1><pre><code>@interface XYZObject : NSObject
+@property (copy) void (^blockProperty)(void);  //通常使用copy,why?
+@end
+
+
+self.blockProperty = ^{
+    ...
+};
+self.blockProperty();
+
+
+使用块属性声明的类型定义
+
+typedef void (^XYZSimpleBlock)(void);
+
+@interface XYZObject : NSObject
+@property (copy) XYZSimpleBlock blockProperty;
+@end
+</code></pre><h1 id="Avoid-Strong-Reference-Cycles-when-Capturing-self"><a href="#Avoid-Strong-Reference-Cycles-when-Capturing-self" class="headerlink" title="Avoid Strong Reference Cycles when Capturing self"></a>Avoid Strong Reference Cycles when Capturing self</h1><p>Blocks maintain strong references to any captured objects, including self, which means that it’s easy to end up with a strong reference cycle。 block对任何捕获的对象是强引用。</p>
+<pre><code>@interface XYZBlockKeeper : NSObject
+@property (copy) void (^block)(void);
+@end
+
+@implementation XYZBlockKeeper
+- (void)configureBlock {
+self.block = ^{
+    [self doSomething];    // capturing a strong reference to self
+                           // creates a strong reference cycle
+};
+}
+...
+@end
+</code></pre><p>正确做法如下</p>
+<pre><code>- (void)configureBlock {
+XYZBlockKeeper * __weak weakSelf = self;
+self.block = ^{
+    [weakSelf doSomething];   // capture the weak reference
+                              // to avoid the reference cycle
+}
+}
+</code></pre><p>By capturing the weak pointer to self, the block won’t maintain a strong relationship back to the XYZBlockKeeper object. If that object is deallocated before the block is called, the weakSelf pointer will simply be set to nil.</p>
+<h1 id="块可以简化枚举-待阅"><a href="#块可以简化枚举-待阅" class="headerlink" title="块可以简化枚举 (待阅)"></a>块可以简化枚举 (待阅)</h1><h1 id="使用块操作与运行队列-待阅"><a href="#使用块操作与运行队列-待阅" class="headerlink" title="使用块操作与运行队列 (待阅)"></a>使用块操作与运行队列 (待阅)</h1><h1 id="用GCD技术在调度队列调度块-待阅"><a href="#用GCD技术在调度队列调度块-待阅" class="headerlink" title="用GCD技术在调度队列调度块 (待阅)"></a>用GCD技术在调度队列调度块 (待阅)</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/01/AFNetworking简介/" itemprop="url">
                   AFNetworking简介
                 </a>
@@ -1074,321 +1375,6 @@ _localSearch = [[MKLocalSearch alloc] initWithRequest:searchRequest];
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/10/CoreLocation框架详解/" itemprop="url">
-                  CoreLocation框架详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-10T13:22:28+10:00" content="2016-06-10">
-              2016-06-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/10/CoreLocation框架详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/10/CoreLocation框架详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="定位基础及权限详解"><a href="#定位基础及权限详解" class="headerlink" title="定位基础及权限详解"></a>定位基础及权限详解</h1><p>Core Location框架为定位用户当前位置和方向（Heading）提供支持。负责从设备硬件收集信息并以异步方式报告给应用程序。</p>
-<ol>
-<li>定位方式:Wifi、蜂窝式移动电话基站、GPS卫星</li>
-<li>定位优先级:GPS、Wifi、蜂窝式移动电话基站</li>
-<li>定位准确性:GPS卫星（准确性高，但局限性大，比较耗费设备电量）、Wifi及蜂窝式移动电话基站（Wifi依赖网络，蜂窝取决于基站密度，耗费流量）</li>
-<li>iOS开发中，不能指定使用哪种方式进行定位，iOS系统会根据设备情况和周围环境，采用一套最佳的定位解决方案。</li>
-<li>iOS设备通过定位来确定用户位置信息，因为涉及用户隐私问题，所以在用户使用地图定位功能之前会与用户之间有交互行为。</li>
-<li>服务过程：用户进行定位授权，同意则进行定位操作，反之提示用户无授权无法进行定位操作。</li>
-</ol>
-<h1 id="通过CoreLocation实现定位功能"><a href="#通过CoreLocation实现定位功能" class="headerlink" title="通过CoreLocation实现定位功能"></a>通过CoreLocation实现定位功能</h1><h2 id="定位权限申请"><a href="#定位权限申请" class="headerlink" title="定位权限申请"></a>定位权限申请</h2><p>在info.plist文件里设置以下属性，对应的string值将会显示在弹出的对话框</p>
-<pre><code>NSLocationAlwaysUsageDescription
-NSLocationWhenInUseUsageDescription
-</code></pre><p>定位权限</p>
-<pre><code>if([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-    [_locationManager requestWhenInUseAuthorization];
-    [_locationManager requestAlwaysAuthorization];
-}
-</code></pre><p><img src="https://www.dropbox.com/s/0yao5q9riovmvu4/iOS_CLLocation01.png?dl=1" alt=""></p>
-<h2 id="位置管理器CLLocationManager"><a href="#位置管理器CLLocationManager" class="headerlink" title="位置管理器CLLocationManager"></a>位置管理器CLLocationManager</h2><p>ViewController </p>
-<pre><code>@interface ViewController () &lt;CLLocationManagerDelegate,MKMapViewDelegate&gt;
-
-@property (nonatomic, strong) MKMapView * mapView;
-@property (nonatomic, strong) CLLocationManager * locationManager;
-
-@end
-
-@implementation ViewController
-- (void)viewDidLoad {
-[super viewDidLoad];
-_mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-[_mapView setDelegate:self];
-
-//允许显示用户位置
-[_mapView setShowsUserLocation:YES];
-[_mapView setMapType:MKMapTypeStandard];
-[self.view addSubview:_mapView];
-
-//检测定位功能是否开启
-if([CLLocationManager locationServicesEnabled]){        
-    if(!_locationManager){       
-        _locationManager = [[CLLocationManager alloc] init];
-
-        //定位权限
-        if([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
-            [_locationManager requestWhenInUseAuthorization];
-            [_locationManager requestAlwaysAuthorization];
-        }
-
-        //设置代理
-        [_locationManager setDelegate:self];
-        //设置定位精度
-        [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-        //设置距离筛选
-        [_locationManager setDistanceFilter:100];
-        //开始定位
-        [_locationManager startUpdatingLocation];
-        //设置开始识别方向
-        //[_locationManager startUpdatingHeading];
-    }       
-}else{
-
-    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                         message:@&quot;您没有开启定位功能&quot;
-                                                        delegate:nil
-                                               cancelButtonTitle:@&quot;确定&quot;
-                                               otherButtonTitles:nil, nil];
-    [alertView show];
-}
-
-}
-</code></pre><h2 id="CLLocationManagerDelegate"><a href="#CLLocationManagerDelegate" class="headerlink" title="CLLocationManagerDelegate"></a>CLLocationManagerDelegate</h2><h3 id="授权状态发生改变的时候执行"><a href="#授权状态发生改变的时候执行" class="headerlink" title="授权状态发生改变的时候执行"></a>授权状态发生改变的时候执行</h3><pre><code>- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-
-switch(status){
-
-    case kCLAuthorizationStatusDenied:
-    {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                             message:@&quot;定位功能没有开启&quot; delegate:nil
-                                                   cancelButtonTitle:@&quot;确定&quot; otherButtonTitles:nil,nil];
-        [alertView show];
-    }
-        break;
-    default:
-        break;
-}
-}
-</code></pre><h3 id="定位成功以后调用"><a href="#定位成功以后调用" class="headerlink" title="定位成功以后调用"></a>定位成功以后调用</h3><pre><code>- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-
-//[_locationManager stopUpdatingLocation];
-CLLocation * location = locations.lastObject;
-
-MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
-
-[_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-//[self reverseGeocoder:location];
-}
-</code></pre><h3 id="定位失败"><a href="#定位失败" class="headerlink" title="定位失败"></a>定位失败</h3><pre><code>- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-NSLog(@&quot;error:%@&quot;,error);
-}
-</code></pre><h1 id="CLGeocoder"><a href="#CLGeocoder" class="headerlink" title="CLGeocoder"></a>CLGeocoder</h1><h2 id="地理编码-地址转经纬度"><a href="#地理编码-地址转经纬度" class="headerlink" title="地理编码 - 地址转经纬度"></a>地理编码 - 地址转经纬度</h2><pre><code>CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-[geocoder geocodeAddressString:str completionHandler:^(NSArray *placemarks, NSError *error) {
-
-    if(error || placemarks.count == 0){
-        NSLog(@&quot;error&quot;);
-    }else{
-
-        CLPlacemark * placemark = placemarks.firstObject;
-
-        //设置显示区域
-        MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));
-        [_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-        //设置标注
-        MKPointAnnotation * pointAnnotation = [[MKPointAnnotation alloc] init];
-        [pointAnnotation setTitle:placemark.name];
-        [pointAnnotation setCoordinate:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude)];
-        [_mapView addAnnotation:pointAnnotation];
-    }  
-}];
-</code></pre><h2 id="反地理编码-经纬度转地址"><a href="#反地理编码-经纬度转地址" class="headerlink" title="反地理编码 - 经纬度转地址"></a>反地理编码 - 经纬度转地址</h2><pre><code>CLGeocoder * geocoder = [[CLGeocoder alloc] init];
-[geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-
-    if(error || placemarks.count == 0){
-        NSLog(@&quot;error&quot;);
-    }else{
-
-        CLPlacemark * placemark = placemarks.firstObject;
-
-         //设置标注
-        MKPointAnnotation * pointAnnotation = [[MKPointAnnotation alloc] init];
-        [pointAnnotation setTitle:placemark.name];
-        [pointAnnotation setCoordinate:CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude)];
-        [_mapView addAnnotation:pointAnnotation];
-
-        //设置显示区域
-        MKCoordinateRegion coordinateRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(placemark.location.coordinate.latitude, placemark.location.coordinate.longitude), MKCoordinateSpanMake(0.1, 0.1));   
-        [_mapView setRegion:[_mapView regionThatFits:coordinateRegion] animated:YES];
-
-        NSLog(@&quot;placemark:%@&quot;,[[placemark addressDictionary] objectForKey:@&quot;City&quot;]);
-    }
-
-}];
-</code></pre><h2 id="CLPlacemark存储地址信息"><a href="#CLPlacemark存储地址信息" class="headerlink" title="CLPlacemark存储地址信息"></a>CLPlacemark存储地址信息</h2><pre><code>NSLog(@&quot;placemark:%@&quot;,[[placemark addressDictionary] objectForKey:@&quot;City&quot;]);
-</code></pre><h1 id="屏幕触摸实现地理位置选择"><a href="#屏幕触摸实现地理位置选择" class="headerlink" title="屏幕触摸实现地理位置选择"></a>屏幕触摸实现地理位置选择</h1><h2 id="长按设置坐标点"><a href="#长按设置坐标点" class="headerlink" title="长按设置坐标点"></a>长按设置坐标点</h2><pre><code>UILongPressGestureRecognizer * longpressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-[_mapView addGestureRecognizer:longpressGestureRecognizer];
-
-
-- (void)longPressed:(UILongPressGestureRecognizer *)recognizer {
-
-if(recognizer.state == UIGestureRecognizerStateBegan){
-
-
-    CGPoint point = [recognizer locationInView:_mapView];
-    CLLocationCoordinate2D coordinate2D = [_mapView convertPoint:point toCoordinateFromView:_mapView];
-
-    [_mapView removeAnnotations:_mapView.annotations];
-
-    CLLocation * location = [[CLLocation alloc] initWithLatitude:coordinate2D.latitude longitude:coordinate2D.longitude];
-
-    [self reverseGeocoder:location];
-
-}
-}
-</code></pre><h2 id="获取地图界面点"><a href="#获取地图界面点" class="headerlink" title="获取地图界面点"></a>获取地图界面点</h2><pre><code>CGPoint point = [recognizer locationInView:_mapView];
-CLLocationCoordinate2D coordinate2D = [_mapView convertPoint:point toCoordinateFromView:_mapView];
-</code></pre><h2 id="移除原有的标注"><a href="#移除原有的标注" class="headerlink" title="移除原有的标注"></a>移除原有的标注</h2><pre><code>[_mapView removeAnnotations:_mapView.annotations];
-</code></pre><h2 id="自定义标注"><a href="#自定义标注" class="headerlink" title="自定义标注"></a>自定义标注</h2><pre><code>- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id&lt;MKAnnotation&gt;)annotation{
-static NSString * key = @&quot;key&quot;;
-MKPinAnnotationView * pinAnnotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:key];
-
-if(pinAnnotationView == nil){
-    pinAnnotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:key];
-    [pinAnnotationView setCanShowCallout:YES];
-}
-
-if([annotation isKindOfClass:[MKUserLocation class]]){
-    [pinAnnotationView setPinColor:MKPinAnnotationColorRed];
-    [((MKUserLocation *)annotation) setTitle:_titleString];
-}else{
-    [pinAnnotationView setPinColor:MKPinAnnotationColorPurple];
-}
-return pinAnnotationView;
-}
-</code></pre><p>默认的是个蓝色闪烁点，如果自定义的话，就是插个大头针</p>
-<pre><code>[_mapView setShowsUserLocation:YES];
-</code></pre><h1 id="CoreLocation相关功能补充"><a href="#CoreLocation相关功能补充" class="headerlink" title="CoreLocation相关功能补充"></a>CoreLocation相关功能补充</h1><p>CLHeading介绍</p>
-<pre><code>//设置开始识别方向
-[_locationManager startUpdatingHeading];
-</code></pre><p>位置更新</p>
-<pre><code>//定位成功以后就停止位置更新
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-......
-[_locationManager stopUpdatingLocation];
-
-}
-</code></pre><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="文本框键盘退出"><a href="#文本框键盘退出" class="headerlink" title="文本框键盘退出"></a>文本框键盘退出</h2><pre><code>[_textField resignFirstResponder];
-</code></pre><h2 id="文本框输入的判断"><a href="#文本框输入的判断" class="headerlink" title="文本框输入的判断"></a>文本框输入的判断</h2><pre><code>if([_textField.text length] == 0){
-
-    return;
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1435,7 +1421,7 @@ return pinAnnotationView;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">111</span>
+              <span class="site-state-item-count">112</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

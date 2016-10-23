@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2016-10-23T06:49:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/10/23/WWWDC2016%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-What%E2%80%99s-new-in-GCD/</loc>
+    
+    <lastmod>2016-10-23T03:58:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2016/10/17/Sketch-tutorial/</loc>
     
-    <lastmod>2016-10-19T08:09:19.000Z</lastmod>
+    <lastmod>2016-10-23T03:10:19.000Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</loc>
     
     <lastmod>2016-10-17T11:40:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    
-    <lastmod>2016-10-14T11:20:59.000Z</lastmod>
     
   </url>
   

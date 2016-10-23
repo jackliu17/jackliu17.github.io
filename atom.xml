@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jackliu17.github.io/"/>
-  <updated>2016-10-19T08:09:19.000Z</updated>
+  <updated>2016-10-23T03:58:35.000Z</updated>
   <id>http://jackliu17.github.io/</id>
   
   <author>
@@ -16,11 +16,70 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>WWWDC2016学习笔记-What’s_new_in_GCD</title>
+    <link href="http://jackliu17.github.io/2016/10/23/WWWDC2016%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-What%E2%80%99s-new-in-GCD/"/>
+    <id>http://jackliu17.github.io/2016/10/23/WWWDC2016学习笔记-What’s-new-in-GCD/</id>
+    <published>2016-10-23T03:55:29.000Z</published>
+    <updated>2016-10-23T03:58:35.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
+&lt;p&gt;Asynchronous ：可以先加入队列，将来再执行&lt;/p&gt;
+&lt;p&gt;Synchronous：必须执行完才到下一个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Getting-Work-Off-Your-Main-Thread&quot;&gt;&lt;a href=&quot;#Getting-Work-Off-Your-Main-Thread&quot; class=&quot;headerlink&quot; title=&quot;Getting Work Off Your Main Thread&quot;&gt;&lt;/a&gt;Getting Work Off Your Main Thread&lt;/h2&gt;&lt;p&gt;Create a Dispatch Queue to which you submit work&lt;/p&gt;
+&lt;p&gt;Dispatch Queues execute work items in FIFO order&lt;/p&gt;
+&lt;p&gt;Use .async to execute your work on the queue&lt;/p&gt;
+&lt;p&gt;Dispatch main queue executes all items on the main thread&lt;/p&gt;
+&lt;p&gt;Simple to chain work between queues&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
+queue.async {
+let smallImage = image.resize(to: rect)
+DispatchQueue.main.async {
+imageView.image = smallImage
+}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Grouping-Work-Together&quot;&gt;&lt;a href=&quot;#Grouping-Work-Together&quot; class=&quot;headerlink&quot; title=&quot;Grouping Work Together&quot;&gt;&lt;/a&gt;Grouping Work Together&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Choosing-a-Quality-of-Service&quot;&gt;&lt;a href=&quot;#Choosing-a-Quality-of-Service&quot; class=&quot;headerlink&quot; title=&quot;Choosing a Quality of Service&quot;&gt;&lt;/a&gt;Choosing a Quality of Service&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Using-Quality-of-Service-Classes&quot;&gt;&lt;a href=&quot;#Using-Quality-of-Service-Classes&quot; class=&quot;headerlink&quot; title=&quot;Using Quality of Service Classes&quot;&gt;&lt;/a&gt;Using Quality of Service Classes&lt;/h2&gt;&lt;p&gt;Use .async to submit work with a specific QoS class&lt;/p&gt;
+&lt;p&gt;Dispatch helps resolve priority inversions&lt;/p&gt;
+&lt;p&gt;Create single-purpose queues with a specific QoS class&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;queue.async(qos: .background) {
+print(&amp;quot;Maintenance work&amp;quot;)
+}
+queue.async(qos: .userInitiated) {
+print(“Button tapped”)
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
+&lt;p&gt;Asynchronous ：可以先加入队列，将来再执行&lt;/p&gt;
+&lt;p&gt;Synchronous：必须
+    
+    </summary>
+    
+      <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
+    
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
+    
+      <category term="WWDC" scheme="http://jackliu17.github.io/tags/WWDC/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sketch-tutorial</title>
     <link href="http://jackliu17.github.io/2016/10/17/Sketch-tutorial/"/>
     <id>http://jackliu17.github.io/2016/10/17/Sketch-tutorial/</id>
     <published>2016-10-16T23:38:01.000Z</published>
-    <updated>2016-10-19T08:09:19.000Z</updated>
+    <updated>2016-10-23T03:10:19.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;App设计标准&quot;&gt;&lt;a href=&quot;#App设计标准&quot; class=&quot;headerlink&quot; title=&quot;App设计标准&quot;&gt;&lt;/a&gt;App设计标准&lt;/h1&gt;&lt;h2 id=&quot;矢量图和位图&quot;&gt;&lt;a href=&quot;#矢量图和位图&quot; class=&quot;headerlink&quot; title=&quot;矢量图和位图&quot;&gt;&lt;/a&gt;矢量图和位图&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;矢量图：图形&lt;/li&gt;
@@ -52,11 +111,14 @@
 &lt;h2 id=&quot;All-Version&quot;&gt;&lt;a href=&quot;#All-Version&quot; class=&quot;headerlink&quot; title=&quot;All Version&quot;&gt;&lt;/a&gt;All Version&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/t2hj8elemmjyil3/2016101706.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Customize-tool-bar&quot;&gt;&lt;a href=&quot;#Customize-tool-bar&quot; class=&quot;headerlink&quot; title=&quot;Customize tool bar&quot;&gt;&lt;/a&gt;Customize tool bar&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/a93563nau9kyswb/2016101804.png?dl=1&quot; alt=&quot;4&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Create-iPhone-art-board&quot;&gt;&lt;a href=&quot;#Create-iPhone-art-board&quot; class=&quot;headerlink&quot; title=&quot;Create iPhone art board&quot;&gt;&lt;/a&gt;Create iPhone art board&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/2qukyiepiw7c7em/2016101708.png?dl=1&quot; alt=&quot;8&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Functionality&quot;&gt;&lt;a href=&quot;#Functionality&quot; class=&quot;headerlink&quot; title=&quot;Functionality&quot;&gt;&lt;/a&gt;Functionality&lt;/h1&gt;&lt;h2 id=&quot;Symbol&quot;&gt;&lt;a href=&quot;#Symbol&quot; class=&quot;headerlink&quot; title=&quot;Symbol&quot;&gt;&lt;/a&gt;Symbol&lt;/h2&gt;&lt;p&gt;Symbol好比是个全局变量。创造出来后可以从库中调用。对库中的symbol所做的任何变动都会反应到实例中。&lt;/p&gt;
-&lt;p&gt;create Symbol&lt;/p&gt;
+&lt;h1 id=&quot;Functionality&quot;&gt;&lt;a href=&quot;#Functionality&quot; class=&quot;headerlink&quot; title=&quot;Functionality&quot;&gt;&lt;/a&gt;Functionality&lt;/h1&gt;&lt;h2 id=&quot;Symbol&quot;&gt;&lt;a href=&quot;#Symbol&quot; class=&quot;headerlink&quot; title=&quot;Symbol&quot;&gt;&lt;/a&gt;Symbol&lt;/h2&gt;&lt;h3 id=&quot;create-and-use-Symbol&quot;&gt;&lt;a href=&quot;#create-and-use-Symbol&quot; class=&quot;headerlink&quot; title=&quot;create and use Symbol&quot;&gt;&lt;/a&gt;create and use Symbol&lt;/h3&gt;&lt;p&gt;Symbol好比是个全局变量。创造出来后可以从库中调用。对库中的symbol所做的任何变动都会反应到实例中。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/izmno708hl4q1s8/2016101701.png?dl=1&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
-&lt;p&gt;Use Symbol&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6zspmqfnlq5nmen/2016101702.png?dl=1&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Symbol-resizing&quot;&gt;&lt;a href=&quot;#Symbol-resizing&quot; class=&quot;headerlink&quot; title=&quot;Symbol resizing&quot;&gt;&lt;/a&gt;Symbol resizing&lt;/h3&gt;&lt;p&gt;对于组合后的元素，如group or symbol,它们之间的相对关系有以下四种&lt;/p&gt;
+&lt;p&gt;要先选择”group”,再进行相关操作&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;1901&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Symbol-override&quot;&gt;&lt;a href=&quot;#Symbol-override&quot; class=&quot;headerlink&quot; title=&quot;Symbol override&quot;&gt;&lt;/a&gt;Symbol override&lt;/h3&gt;&lt;p&gt;可以只改变当前instance object的值，而不会直接修改symbol。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;1903&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Rotate-Copy&quot;&gt;&lt;a href=&quot;#Rotate-Copy&quot; class=&quot;headerlink&quot; title=&quot;Rotate Copy&quot;&gt;&lt;/a&gt;Rotate Copy&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ii0eb7a92u3vbcj/2016101819.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/k5udlh91oifntav/2016101820.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;Siccer&quot;&gt;&lt;a href=&quot;#Siccer&quot; class=&quot;headerlink&quot; title=&quot;Siccer&quot;&gt;&lt;/a&gt;Siccer&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/cm5x71nb5h6svks/2016101821.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -88,12 +150,18 @@
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/ddomwkgctsow22h/2016101816.png?dl=1&quot; alt=&quot;16&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;渐变Mask&quot;&gt;&lt;a href=&quot;#渐变Mask&quot; class=&quot;headerlink&quot; title=&quot;渐变Mask&quot;&gt;&lt;/a&gt;渐变Mask&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/sn9luwlcryjbpld/2016101817.png?dl=1&quot; alt=&quot;17&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/fca226e5q4yg0no/2016101818.png?dl=1&quot; alt=&quot;18&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;Bool-effect&quot;&gt;&lt;a href=&quot;#Bool-effect&quot; class=&quot;headerlink&quot; title=&quot;Bool effect&quot;&gt;&lt;/a&gt;Bool effect&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
-&lt;p&gt;将圆圈拖拽至矩形上，组合成combined shape&lt;/p&gt;
+&lt;h1 id=&quot;Bool-operation&quot;&gt;&lt;a href=&quot;#Bool-operation&quot; class=&quot;headerlink&quot; title=&quot;Bool operation&quot;&gt;&lt;/a&gt;Bool operation&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/mxn2hxacx1y75nb/2016101812.png?dl=1&quot; alt=&quot;12&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Method-1&quot;&gt;&lt;a href=&quot;#Method-1&quot; class=&quot;headerlink&quot; title=&quot;Method 1.&quot;&gt;&lt;/a&gt;Method 1.&lt;/h2&gt;&lt;p&gt;将圆圈拖拽至矩形上，组合成combined shape&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/5fuxq7s0avo37l9/2016101805.png?dl=1&quot; alt=&quot;5&quot;&gt;&lt;/p&gt;
 &lt;p&gt;点击subtract&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/6fqhk3ep6q26uj0/2016101806.png?dl=1&quot; alt=&quot;6&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/tigbya85kqgh2cj/2016101807.png?dl=1&quot; alt=&quot;7&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Method-2&quot;&gt;&lt;a href=&quot;#Method-2&quot; class=&quot;headerlink&quot; title=&quot;Method 2.&quot;&gt;&lt;/a&gt;Method 2.&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;同时选择两个图层。&lt;/li&gt;
+&lt;li&gt;点击BOOL operation 图标，如下图。&lt;/li&gt;
+&lt;li&gt;拖拽某个图层，可以显示交集在变化。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/gdmy75lhhfmgcqe/2016102004.png?dl=1&quot; alt=&quot;2004&quot;&gt;&lt;/p&gt;
 &lt;h1 id=&quot;Layer&quot;&gt;&lt;a href=&quot;#Layer&quot; class=&quot;headerlink&quot; title=&quot;Layer&quot;&gt;&lt;/a&gt;Layer&lt;/h1&gt;&lt;h2 id=&quot;Add-Layer&quot;&gt;&lt;a href=&quot;#Add-Layer&quot; class=&quot;headerlink&quot; title=&quot;Add Layer&quot;&gt;&lt;/a&gt;Add Layer&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Insert —-&amp;gt; Click + shift 保证是正方形或正圆&lt;/li&gt;
 &lt;li&gt;Insert —&amp;gt; Click + opt 是以鼠标为中心，而不是左上角绘制图&lt;/li&gt;
@@ -445,7 +513,7 @@
     <link href="http://jackliu17.github.io/2016/10/04/GCD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://jackliu17.github.io/2016/10/04/GCD学习笔记/</id>
     <published>2016-10-03T21:57:43.000Z</published>
-    <updated>2016-10-14T11:20:59.000Z</updated>
+    <updated>2016-10-23T06:49:53.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;多线程基础&quot;&gt;&lt;a href=&quot;#多线程基础&quot; class=&quot;headerlink&quot; title=&quot;多线程基础&quot;&gt;&lt;/a&gt;多线程基础&lt;/h1&gt;&lt;h2 id=&quot;进程&quot;&gt;&lt;a href=&quot;#进程&quot; class=&quot;headerlink&quot; title=&quot;进程&quot;&gt;&lt;/a&gt;进程&lt;/h2&gt;&lt;p&gt;进程是指在系统中正在运行的一个应用程序&lt;/p&gt;
 &lt;p&gt;每个进程之间是独立的，每个进程均运行在其专用且受保护的内存空间内&lt;/p&gt;
@@ -860,56 +928,54 @@ dispatch_apply(6, queue, ^(size_t index) {
 2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848434] 下载资源：9
 2016-02-26 14:04:41.406 FL_GCD_DEMO[5713:3848431] 下载资源：8
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明:dispatch_semaphore_create(2)创建了一个单位为2的信号量&lt;br&gt;dispatch_semaphore_wait()会消耗一个单位&lt;br&gt;ispatch_semaphore_signal()会增加一个单位&lt;br&gt;而dispatch_semaphore_create(2)中传入的“2”决定了这个信号量最多包含2个单位。&lt;br&gt;dispatch_semaphore_wait()中的参数2DISPATCH_TIME_FOREVER表示当信号量单位变为0个，则使得代码的执行停止在当前位置不再继续下去，直到收到signal使得单位大于0，才继续往下执行。&lt;br&gt;在上述代码中，每执行一次下载会占用一个单位，下载完成后通过signal告诉wait可以继续向下执行代码，从而控制同时进行的下载数量。&lt;/p&gt;
-&lt;h1 id=&quot;WWDC-2016-What’s-new-in-GCD-swift&quot;&gt;&lt;a href=&quot;#WWDC-2016-What’s-new-in-GCD-swift&quot; class=&quot;headerlink&quot; title=&quot;WWDC 2016 What’s new in GCD(swift)&quot;&gt;&lt;/a&gt;WWDC 2016 What’s new in GCD(swift)&lt;/h1&gt;&lt;p&gt;Dispatch Queues execute work items in FIFO order，including two kind of execution&lt;/p&gt;
-&lt;p&gt;Asynchronous ：可以先加入队列，将来再执行&lt;/p&gt;
-&lt;p&gt;Synchronous：必须执行完才到下一个&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
+&lt;h1 id=&quot;GCD-in-Swift-3&quot;&gt;&lt;a href=&quot;#GCD-in-Swift-3&quot; class=&quot;headerlink&quot; title=&quot;GCD in Swift 3&quot;&gt;&lt;/a&gt;GCD in Swift 3&lt;/h1&gt;&lt;h2 id=&quot;获取全局队列&quot;&gt;&lt;a href=&quot;#获取全局队列&quot; class=&quot;headerlink&quot; title=&quot;获取全局队列&quot;&gt;&lt;/a&gt;获取全局队列&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;DispatchQueue.global(qos: DispatchQoS.*)
+
+DispatchQueue.global(qos: .userInitiated).async {
+print(&amp;quot;user initiated task&amp;quot;)
+}
+
+DISPATCH_QUEUE_PRIORITY_HIGH    .userInitiated
+DISPATCH_QUEUE_PRIORITY_DEFAULT    .default
+DISPATCH_QUEUE_PRIORITY_LOW    .utility
+DISPATCH_QUEUE_PRIORITY_BACKGROUND    .background
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;创建队列&quot;&gt;&lt;a href=&quot;#创建队列&quot; class=&quot;headerlink&quot; title=&quot;创建队列&quot;&gt;&lt;/a&gt;创建队列&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;Kenneth&amp;quot;)
+
+let conQueue = DispatchQueue(label: &amp;quot;Kenneth&amp;quot;, attributes: .concurrent)
+
+let backgroundQueue = DispatchQueue(label: &amp;quot;com.app.queue&amp;quot;,
+                                qos: .background, 
+                                target: nil)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;同步任务&quot;&gt;&lt;a href=&quot;#同步任务&quot; class=&quot;headerlink&quot; title=&quot;同步任务&quot;&gt;&lt;/a&gt;同步任务&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;Kenneth&amp;quot;)
+queue.sync {
+    print(&amp;quot;Hello World&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;异步任务&quot;&gt;&lt;a href=&quot;#异步任务&quot; class=&quot;headerlink&quot; title=&quot;异步任务&quot;&gt;&lt;/a&gt;异步任务&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;Kenneth&amp;quot;)
 queue.async {
-let smallImage = image.resize(to: rect)
-DispatchQueue.main.async {
-imageView.image = smallImage
+    print(&amp;quot;Hello World&amp;quot;)
 }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;全局队列异步&quot;&gt;&lt;a href=&quot;#全局队列异步&quot; class=&quot;headerlink&quot; title=&quot;全局队列异步&quot;&gt;&lt;/a&gt;全局队列异步&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;DispatchQueue.global().async {
+    //Something that wastes time
+    DispatchQueue.main.async {
+    //返回主线程
+    }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Getting-Work-Off-Your-Main-Thread&quot;&gt;&lt;a href=&quot;#Getting-Work-Off-Your-Main-Thread&quot; class=&quot;headerlink&quot; title=&quot;Getting Work Off Your Main Thread&quot;&gt;&lt;/a&gt;Getting Work Off Your Main Thread&lt;/h2&gt;&lt;p&gt;Create a Dispatch Queue to which you submit work&lt;/p&gt;
-&lt;p&gt;Dispatch Queues execute work items in FIFO order&lt;/p&gt;
-&lt;p&gt;Use .async to execute your work on the queue&lt;/p&gt;
-&lt;p&gt;Dispatch main queue executes all items on the main thread&lt;/p&gt;
-&lt;p&gt;Simple to chain work between queues&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;com.example.imagetransform&amp;quot;)
-queue.async {
-let smallImage = image.resize(to: rect)
-DispatchQueue.main.async {
-imageView.image = smallImage
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;延时操作&quot;&gt;&lt;a href=&quot;#延时操作&quot; class=&quot;headerlink&quot; title=&quot;延时操作&quot;&gt;&lt;/a&gt;延时操作&lt;/h2&gt;&lt;p&gt;注意这里的单位是秒&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.5) {
+    // 你想做啥
 }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;dispatch-once&quot;&gt;&lt;a href=&quot;#dispatch-once&quot; class=&quot;headerlink&quot; title=&quot;dispatch_once&quot;&gt;&lt;/a&gt;dispatch_once&lt;/h2&gt;&lt;p&gt;dispatch_once 在 OC 时代是一个用来写单例的很好的工具，它保证任务只执行一次。然而在 Swift 3 中，这个函数被删除了。&lt;br&gt;在 Swift 中，好用又简洁的单例请使用 static let。&lt;/p&gt;
+&lt;h2 id=&quot;DispatchWorkItem&quot;&gt;&lt;a href=&quot;#DispatchWorkItem&quot; class=&quot;headerlink&quot; title=&quot;DispatchWorkItem&quot;&gt;&lt;/a&gt;DispatchWorkItem&lt;/h2&gt;&lt;p&gt;除了直接使用 Global Queue， 还可以定义 DispatchWorkItem。 DispatchWorkItem 定义了一个操作的内部代码，以及优先级，特性等等。 它可以直接在任何队列中执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let queue = DispatchQueue(label: &amp;quot;swift.queue&amp;quot;)
+let workItem = DispatchWorkItem(qos: .userInitiated, flags: .assignCurrentContext) { 
+
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Grouping-Work-Together&quot;&gt;&lt;a href=&quot;#Grouping-Work-Together&quot; class=&quot;headerlink&quot; title=&quot;Grouping Work Together&quot;&gt;&lt;/a&gt;Grouping Work Together&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/3m8l3xcxrstwb98/2016100501.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Choosing-a-Quality-of-Service&quot;&gt;&lt;a href=&quot;#Choosing-a-Quality-of-Service&quot; class=&quot;headerlink&quot; title=&quot;Choosing a Quality of Service&quot;&gt;&lt;/a&gt;Choosing a Quality of Service&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://www.dropbox.com/s/l6qskn8z4z37kzd/2016100502.png?dl=1&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Using-Quality-of-Service-Classes&quot;&gt;&lt;a href=&quot;#Using-Quality-of-Service-Classes&quot; class=&quot;headerlink&quot; title=&quot;Using Quality of Service Classes&quot;&gt;&lt;/a&gt;Using Quality of Service Classes&lt;/h2&gt;&lt;p&gt;Use .async to submit work with a specific QoS class&lt;/p&gt;
-&lt;p&gt;Dispatch helps resolve priority inversions&lt;/p&gt;
-&lt;p&gt;Create single-purpose queues with a specific QoS class&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;queue.async(qos: .background) {
-print(&amp;quot;Maintenance work&amp;quot;)
+queue.async(execute: workItem)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can also use same block of code many times by wrapping it in DispatchWorkItem instance and passing it to DispatchQueue&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;let block = DispatchWorkItem {
+    print(&amp;quot;do something&amp;quot;)
 }
-queue.async(qos: .userInitiated) {
-print(“Button tapped”)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;GCD-for-swift3&quot;&gt;&lt;a href=&quot;#GCD-for-swift3&quot; class=&quot;headerlink&quot; title=&quot;GCD for swift3&quot;&gt;&lt;/a&gt;GCD for swift3&lt;/h1&gt;&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; queue = &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;(label: &lt;span class=&quot;string&quot;&gt;&quot;Kenneth&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;queue.async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;DispatchQueue.global(qos: DispatchQoS.*)&lt;/p&gt;
-&lt;p&gt;DispatchQoS&lt;/p&gt;
-&lt;p&gt;.userInitiated&lt;/p&gt;
-&lt;p&gt;.default&lt;/p&gt;
-&lt;p&gt;.utility&lt;/p&gt;
-&lt;p&gt;.background&lt;/p&gt;
-&lt;p&gt;DispatchQueue.main&lt;/p&gt;
-&lt;p&gt;DispatchQueue.global()      // 等于 DispatchQueue.global(qos: .default)&lt;/p&gt;
-&lt;p&gt;let conQueue = DispatchQueue(label: “Kenneth”, attributes: .concurrent)&lt;/p&gt;
-&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;全局队列异步&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.global().async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//Something that wastes time&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.main.async &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;//返回主线程&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;fefdsfsd&lt;/p&gt;
-&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;延时操作，注意这里的单位是秒&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;.main.asyncAfter(deadline: &lt;span class=&quot;type&quot;&gt;DispatchTime&lt;/span&gt;.now() + &lt;span class=&quot;number&quot;&gt;3.5&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 你想做啥&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;ewrewrew&lt;/p&gt;
-&lt;figure class=&quot;highlight swift&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;创建队列同步&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; queue = &lt;span class=&quot;type&quot;&gt;DispatchQueue&lt;/span&gt;(label: &lt;span class=&quot;string&quot;&gt;&quot;Kenneth&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;queue.sync &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;Hello World&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;摘自 &lt;/p&gt;
-&lt;ol&gt;
+DispatchQueue.main.async(execute: block)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/2d57c72016c6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;iOS多线程–彻底学会多线程之GCD&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/5efa458c9340&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD（Grand Central Dispatch）快速上手&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.jianshu.com/p/7efbecee6af8&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GCD in Swift 3&lt;/a&gt;&lt;/li&gt;
@@ -2885,37 +2951,6 @@ slider.maximumValue = 1.f;
       <category term="UI" scheme="http://jackliu17.github.io/tags/UI/"/>
     
       <category term="iOS_animation" scheme="http://jackliu17.github.io/tags/iOS-animation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>罗辑思维听后感</title>
-    <link href="http://jackliu17.github.io/2016/08/07/%E7%BD%97%E8%BE%91%E6%80%9D%E7%BB%B4%E5%90%AC%E5%90%8E%E6%84%9F/"/>
-    <id>http://jackliu17.github.io/2016/08/07/罗辑思维听后感/</id>
-    <published>2016-08-07T10:38:31.000Z</published>
-    <updated>2016-09-12T10:33:56.000Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;什么是战略&quot;&gt;&lt;a href=&quot;#什么是战略&quot; class=&quot;headerlink&quot; title=&quot;什么是战略&quot;&gt;&lt;/a&gt;什么是战略&lt;/h1&gt;&lt;p&gt;战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么&lt;/p&gt;
-&lt;p&gt;战术是你死我活的决斗，其状态必然不稳定。&lt;/p&gt;
-&lt;h1 id=&quot;黄执中-你如何听懂我说的话&quot;&gt;&lt;a href=&quot;#黄执中-你如何听懂我说的话&quot; class=&quot;headerlink&quot; title=&quot;黄执中:你如何听懂我说的话&quot;&gt;&lt;/a&gt;黄执中:你如何听懂我说的话&lt;/h1&gt;&lt;p&gt;黄执中是辩论界的大神，听他的课还是有些收获的。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。&lt;/li&gt;
-&lt;li&gt;意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)&lt;/li&gt;
-&lt;li&gt;具体。具体的细节能让人产生深刻的印象。例如法庭上的两种证词: 妈妈很爱她，每晚陪她用小猫牙刷刷牙 / 每晚陪她刷牙。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;什么是战略&quot;&gt;&lt;a href=&quot;#什么是战略&quot; class=&quot;headerlink&quot; title=&quot;什么是战略&quot;&gt;&lt;/a&gt;什么是战略&lt;/h1&gt;&lt;p&gt;战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么&lt;/p&gt;
-&lt;p&gt;战术是你死我活的决斗，
-    
-    </summary>
-    
-      <category term="情感杂谈" scheme="http://jackliu17.github.io/categories/%E6%83%85%E6%84%9F%E6%9D%82%E8%B0%88/"/>
-    
-    
-      <category term="Thoughts" scheme="http://jackliu17.github.io/tags/Thoughts/"/>
     
   </entry>
   
