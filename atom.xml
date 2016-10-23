@@ -244,24 +244,24 @@ print(“Button tapped”)
     <link href="http://jackliu17.github.io/2016/10/16/BEP-Telephoning/"/>
     <id>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</id>
     <published>2016-10-16T09:22:29.000Z</published>
-    <updated>2016-10-23T09:43:49.000Z</updated>
+    <updated>2016-10-23T10:15:02.000Z</updated>
     
     <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
 &lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;George: Hello, this is George Kline.&lt;/p&gt;
-&lt;p&gt;Nathan: Yes, this is Nathan Beale from Cyclops. I haven’t heard from you, and I’m trying to find out if you are still interested in this contract.&lt;/p&gt;
+&lt;p&gt;Nathan: Yes, this is Nathan Beale from Cyclops. &lt;code&gt;I haven’t heard from you&lt;/code&gt;, and&lt;code&gt;I’m trying to find out&lt;/code&gt; if you are still interested in this contract.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;道歉安慰&quot;&gt;&lt;a href=&quot;#道歉安慰&quot; class=&quot;headerlink&quot; title=&quot;道歉安慰&quot;&gt;&lt;/a&gt;道歉安慰&lt;/h2&gt;&lt;p&gt;回应时先道歉，然后给予安慰，然后说明自己的行动，不用解释太多&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;George: Yes, we certainly are. I do apologize for not contacting you directly, but I did try to call you this week about the contract, but you were out of the office. But we’re working very hard on this contract, and will be sending it to you today.&lt;/p&gt;
+&lt;p&gt;George: Yes, we certainly are. &lt;code&gt;I do apologize for&lt;/code&gt;not contacting you directly, but I did try to call you this week about the contract, but you were out of the office. But we’re working very hard on this contract, and will be sending it to you today.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;道歉和安慰的方式&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;I’m really sorry about all of this.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;I’m really sorry about all of this.&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;I’d like to apologize for this mix-up.&lt;/li&gt;
-&lt;li&gt;I’m afraid there has been a mistake, but we’ll get it sorted out.&lt;/li&gt;
-&lt;li&gt;My apologies for this, and we’ll clear it up very soon.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;I’m afraid there has been a mistake, but we’ll get it sorted out.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;My apologies for this, and we’ll clear it up very soon.&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;重申强调&quot;&gt;&lt;a href=&quot;#重申强调&quot; class=&quot;headerlink&quot; title=&quot;重申强调&quot;&gt;&lt;/a&gt;重申强调&lt;/h2&gt;&lt;p&gt;进一步强调行动的必要性&lt;/p&gt;
 &lt;blockquote&gt;
@@ -269,20 +269,20 @@ print(“Button tapped”)
 &lt;/blockquote&gt;
 &lt;p&gt;强调重要性的几种方式&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Well, here’s the thing…&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Well, here’s the thing…&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;I’d just like to emphasize that…&lt;/li&gt;
 &lt;li&gt;I’m sure you’re aware that…&lt;/li&gt;
 &lt;li&gt;At the end of the day, what’s important is that…&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;关注重点&quot;&gt;&lt;a href=&quot;#关注重点&quot; class=&quot;headerlink&quot; title=&quot;关注重点&quot;&gt;&lt;/a&gt;关注重点&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;George: Yes, and we have been working night and day to meet that deadline.I called your office earlier this week and spoke with Simon Price to tell him that wewere going to send you the proposal by today. Did he pass that on to you?&lt;/p&gt;
-&lt;p&gt;Nathan: Uh! No, he didn’t. I guess he was pretty busy. But more importantly, doyou have all the right information to make your proposal?&lt;/p&gt;
-&lt;p&gt;George: I believe we do. One shipment at the end, no backup batteries in theradios, and all 20 radios built according to the new XV 9582 specifications. Did weget that correctly?&lt;/p&gt;
-&lt;p&gt;Nathan: Yes, that’s all correct. I just wanted to make sure. It would be a bigmess if your proposal didn’t have all those details in them.&lt;/p&gt;
+&lt;p&gt;George: &lt;code&gt;Yes, and we have been working night and day to meet that deadline&lt;/code&gt;.I called your office earlier this week and spoke with Simon Price to tell him that we were going to send you the proposal by today. Did he &lt;code&gt;pass that on to you&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;Nathan: Uh! No, he didn’t. I guess he was pretty busy. &lt;code&gt;But more importantly,&lt;/code&gt; do you have all the right information to make your proposal?&lt;/p&gt;
+&lt;p&gt;George: I believe we do. One shipment at the end, no backup batteries in theradios, and all 20 radios built according to the new XV 9582 specifications. Did we get that correctly?&lt;/p&gt;
+&lt;p&gt;Nathan: Yes, that’s all correct. I just wanted to make sure. &lt;code&gt;It would be a bigmess if your proposal didn’t have all those details in them&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;让对方知道什么才是重点:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;What I really need to know is this: when you will be able to pay?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;What I really need to know is this: when you will be able to pay?&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Now, here’s the thing: why doesn’t the packaging match our brand colors?&lt;/li&gt;
 &lt;li&gt;So, there’s one thing I really need to ask: why wasn’t this delivered yesterday?&lt;/li&gt;
 &lt;li&gt;Well, besides all that, please tell me: who is the manager for our region?&lt;/li&gt;
