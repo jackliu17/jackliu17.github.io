@@ -244,7 +244,7 @@ print(“Button tapped”)
     <link href="http://jackliu17.github.io/2016/10/16/BEP-Telephoning/"/>
     <id>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</id>
     <published>2016-10-16T09:22:29.000Z</published>
-    <updated>2016-10-23T09:33:51.000Z</updated>
+    <updated>2016-10-23T09:43:49.000Z</updated>
     
     <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
 &lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
@@ -334,13 +334,45 @@ print(“Button tapped”)
 &lt;p&gt;We don’t have the white chairs in stock, but we should get a new shipmenton Monday.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;Making-an-Enquiry&quot;&gt;&lt;a href=&quot;#Making-an-Enquiry&quot; class=&quot;headerlink&quot; title=&quot;Making an Enquiry&quot;&gt;&lt;/a&gt;Making an Enquiry&lt;/h1&gt;&lt;h2 id=&quot;来电背景&quot;&gt;&lt;a href=&quot;#来电背景&quot; class=&quot;headerlink&quot; title=&quot;来电背景&quot;&gt;&lt;/a&gt;来电背景&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Simon: Ah unfortunately, Nathan is out of the office visiting suppliers, but I mightbe able to help you. Can I ask what this is &lt;u&gt;in reference to &lt;/u&gt;?&lt;/p&gt;
+&lt;p&gt;Simon: Ah unfortunately, Nathan is out of the office visiting suppliers, but I mightbe able to help you. Can I ask what this is &lt;code&gt;in reference to&lt;/code&gt;?&lt;/p&gt;
 &lt;p&gt;George: Well, Nathan called last Friday about a contract for the A420 radios andwe have most of the information…&lt;/p&gt;
-&lt;p&gt;Simon: Oh yes… the A420 radios. Both Nathan and I are working on that contract.What can I help you with?&lt;/p&gt;
-&lt;p&gt;George: Well, I read Nathan’s email describing this contract, but I need a bit moreinformation in order to finish our proposal, and hopefully you can help us withthat.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Using “would” and “could” inquestions is nice and polite&lt;/p&gt;
-&lt;p&gt; by giving specificchoices, we can minimize confusion.&lt;/p&gt;
+&lt;h2 id=&quot;索要信息&quot;&gt;&lt;a href=&quot;#索要信息&quot; class=&quot;headerlink&quot; title=&quot;索要信息&quot;&gt;&lt;/a&gt;索要信息&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Simon: Oh yes… the A420 radios. Both Nathan and I are working on that contract.What can I help you with?&lt;/p&gt;
+&lt;p&gt;George: Well, I read Nathan’s email describing this contract, but I need a bit more information in order to finish our proposal, and hopefully you can help us with that.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;I have some questions about your recent order with us.&lt;/li&gt;
+&lt;li&gt;We’re just completing a mockup of your website but I need a bit more infoabout the company.&lt;/li&gt;
+&lt;li&gt;Could you tell me your shipping address so I can get this delivery to you right away?&lt;/li&gt;
+&lt;li&gt;I was wondering if you could go over some of the details on the design with me.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;选择式询问&quot;&gt;&lt;a href=&quot;#选择式询问&quot; class=&quot;headerlink&quot; title=&quot;选择式询问&quot;&gt;&lt;/a&gt;选择式询问&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Using “would” and “could” inquestions is nice and polite&lt;/li&gt;
+&lt;li&gt;by giving specificchoices, we can minimize confusion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Simon: I’ll do my best. Go ahead.&lt;/p&gt;
+&lt;p&gt;George: Ok first… could you tell me whether the radios are to be shipped to you in oneshipment after all of them are built, or whether we should ship each one as we finish it?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Were you interested in purchasing outright, or were you thinking of leasing?&lt;/li&gt;
+&lt;li&gt;Could you tell me whether you need the paper by next week, or is two weeksfrom today okay?&lt;/li&gt;
+&lt;li&gt;Would you prefer to have this delivered, or would you rather pick it up yourself?&lt;/li&gt;
+&lt;li&gt;Will you need installation as well, or will you take care of that yourself?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;电话中断&quot;&gt;&lt;a href=&quot;#电话中断&quot; class=&quot;headerlink&quot; title=&quot;电话中断&quot;&gt;&lt;/a&gt;电话中断&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Simon: We want all 20 of them delivered in one shipment at the end. Will that be aproblem?&lt;/p&gt;
+&lt;p&gt;George: Oh no. No problem at all. All in one shipment… much simpler. Next… arethese radios supposed to have backup batteries, in case of electrical failure onthe aircraft?&lt;/p&gt;
+&lt;p&gt;Simon: Nope. We don’t need them. We have a main backup battery for all systemsin the cockpit.&lt;/p&gt;
+&lt;p&gt;George: I’m sorry, come again? We’re having some breakups.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Sorry, what was that?&lt;/li&gt;
+&lt;li&gt;Would you mind repeating that for me?&lt;/li&gt;
+&lt;li&gt;I missed that last bit. What did you say?&lt;/li&gt;
+&lt;li&gt;Come again?&lt;/li&gt;
+&lt;/ul&gt;
 </content>
     
     <summary type="html">
