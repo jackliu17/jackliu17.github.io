@@ -244,7 +244,7 @@ print(“Button tapped”)
     <link href="http://jackliu17.github.io/2016/10/16/BEP-Telephoning/"/>
     <id>http://jackliu17.github.io/2016/10/16/BEP-Telephoning/</id>
     <published>2016-10-16T09:22:29.000Z</published>
-    <updated>2016-10-23T10:15:02.000Z</updated>
+    <updated>2016-10-25T10:03:45.000Z</updated>
     
     <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
 &lt;h1 id=&quot;Geting-Action&quot;&gt;&lt;a href=&quot;#Geting-Action&quot; class=&quot;headerlink&quot; title=&quot;Geting Action&quot;&gt;&lt;/a&gt;Geting Action&lt;/h1&gt;&lt;h2 id=&quot;直入主题&quot;&gt;&lt;a href=&quot;#直入主题&quot; class=&quot;headerlink&quot; title=&quot;直入主题&quot;&gt;&lt;/a&gt;直入主题&lt;/h2&gt;&lt;p&gt;如果事情紧急，不需要很多寒暄，直入主题&lt;/p&gt;
@@ -254,18 +254,18 @@ print(“Button tapped”)
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;道歉安慰&quot;&gt;&lt;a href=&quot;#道歉安慰&quot; class=&quot;headerlink&quot; title=&quot;道歉安慰&quot;&gt;&lt;/a&gt;道歉安慰&lt;/h2&gt;&lt;p&gt;回应时先道歉，然后给予安慰，然后说明自己的行动，不用解释太多&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;George: Yes, we certainly are. &lt;code&gt;I do apologize for&lt;/code&gt;not contacting you directly, but I did try to call you this week about the contract, but you were out of the office. But we’re working very hard on this contract, and will be sending it to you today.&lt;/p&gt;
+&lt;p&gt;George: Yes, we certainly are. &lt;code&gt;I do apologize for&lt;/code&gt;not contacting you directly, but I did try to call you this week about the contract, but you were out of the office. But we’re &lt;code&gt;working very hard on&lt;/code&gt; this contract, and will be sending it to you today.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;道歉和安慰的方式&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;I’m really sorry about all of this.&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;I’d like to apologize for this mix-up.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;I’m afraid there has been a mistake, but we’ll get it sorted out.&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;My apologies for this, and we’ll clear it up very soon.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;My apologies for this, and we’ll &lt;code&gt;clear it up&lt;/code&gt;very soon.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;重申强调&quot;&gt;&lt;a href=&quot;#重申强调&quot; class=&quot;headerlink&quot; title=&quot;重申强调&quot;&gt;&lt;/a&gt;重申强调&lt;/h2&gt;&lt;p&gt;进一步强调行动的必要性&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Nathan: Well, I’m glad to hear it, but I wish you had let me know you were sending it to us today. Today’s the deadline for proposals, you know.&lt;/p&gt;
+&lt;p&gt;Nathan: Well,&lt;code&gt;I’m glad to hear it&lt;/code&gt;, but I wish you had let me know you were sending it to us today. Today’s the deadline for proposals, you know.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;强调重要性的几种方式&lt;/p&gt;
 &lt;ul&gt;
@@ -278,7 +278,7 @@ print(“Button tapped”)
 &lt;p&gt;George: &lt;code&gt;Yes, and we have been working night and day to meet that deadline&lt;/code&gt;.I called your office earlier this week and spoke with Simon Price to tell him that we were going to send you the proposal by today. Did he &lt;code&gt;pass that on to you&lt;/code&gt;?&lt;/p&gt;
 &lt;p&gt;Nathan: Uh! No, he didn’t. I guess he was pretty busy. &lt;code&gt;But more importantly,&lt;/code&gt; do you have all the right information to make your proposal?&lt;/p&gt;
 &lt;p&gt;George: I believe we do. One shipment at the end, no backup batteries in theradios, and all 20 radios built according to the new XV 9582 specifications. Did we get that correctly?&lt;/p&gt;
-&lt;p&gt;Nathan: Yes, that’s all correct. I just wanted to make sure. &lt;code&gt;It would be a bigmess if your proposal didn’t have all those details in them&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Nathan: Yes, that’s all correct. I just wanted to make sure. &lt;code&gt;It would be a big mess if your proposal didn’t have all those details in them&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;让对方知道什么才是重点:&lt;/p&gt;
 &lt;ul&gt;
@@ -288,8 +288,8 @@ print(“Button tapped”)
 &lt;li&gt;Well, besides all that, please tell me: who is the manager for our region?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;保证做到&quot;&gt;&lt;a href=&quot;#保证做到&quot; class=&quot;headerlink&quot; title=&quot;保证做到&quot;&gt;&lt;/a&gt;保证做到&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Nathan: So… are you absolutely sure you’ll be able to send that to me today? Ihave a lot of people over here who want to read it immediately&lt;/p&gt;
-&lt;p&gt;George: Nathan, we guarantee this will be on your desk by 3pm. All we have todo now is get our CEO to sign it, and it will be on its way by courier.&lt;/p&gt;
+&lt;p&gt;Nathan: So… &lt;code&gt;are you absolutely sure&lt;/code&gt; you’ll be able to send that to me today? I have a lot of people over here who want to read it immediately&lt;/p&gt;
+&lt;p&gt;George: Nathan, we guarantee this will be on your desk by 3pm. All we have to do now is get our CEO to sign it, and it will be on its way by courier.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;寻求保证&lt;/p&gt;
 &lt;ul&gt;
@@ -306,24 +306,24 @@ print(“Button tapped”)
 &lt;li&gt;I’m absolutely certain that Windows 10 is installed on every unit.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Double-Check&quot;&gt;&lt;a href=&quot;#Double-Check&quot; class=&quot;headerlink&quot; title=&quot;Double Check&quot;&gt;&lt;/a&gt;Double Check&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Nathan: Ok, I just want to be sure that it’s coming today. Can you call us whenyou give it to the courier?&lt;/p&gt;
-&lt;p&gt;George: Will do. Is there anything else?&lt;/p&gt;
+&lt;p&gt;Nathan: Ok, I just want to be sure that it’s coming today. Can you call us when you give it to the courier?&lt;/p&gt;
+&lt;p&gt;George: &lt;code&gt;Will do&lt;/code&gt;. Is there anything else?&lt;/p&gt;
 &lt;p&gt;Nathan: Nope. Just that. Talk to you then. Bye now.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Double check 的几种方式&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;So, you’ll let me know as soon as you hear from Graham, right?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;So, you’ll let me know as soon as&lt;/code&gt;you hear from Graham, right?&lt;/li&gt;
 &lt;li&gt;Okay, you’ll be coming by with the contract by noon. Great.&lt;/li&gt;
-&lt;li&gt;Just to be clear, you’ll cancel the order for us, right?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Just to be clear&lt;/code&gt;, you’ll cancel the order for us, right?&lt;/li&gt;
 &lt;li&gt;So, a technician will be here within an hour, correct?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;Example-1&quot;&gt;&lt;a href=&quot;#Example-1&quot; class=&quot;headerlink&quot; title=&quot;Example 1&quot;&gt;&lt;/a&gt;Example 1&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Well, I’m very sorry about this whole situation.&lt;/p&gt;
-&lt;p&gt;Right, but I’d like to point out that our staff can’t work until thesoftware is installed correctly.&lt;/p&gt;
+&lt;p&gt;Well, I’m very sorry about this &lt;code&gt;whole situation&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Right, but &lt;code&gt;I’d like to point out&lt;/code&gt; that our staff can’t work until the software is installed correctly.&lt;/p&gt;
 &lt;p&gt;I understand that, and we’re working on a solution here&lt;/p&gt;
-&lt;p&gt;What I really need to know is when can you send a technician out to dothe work?&lt;/p&gt;
-&lt;p&gt;We’re going to try to send someone out tomorrow. I’ll call you when heleaves the office.&lt;/p&gt;
-&lt;p&gt;I see and can you guarantee that we’ll have someone here in the morning?&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;What I really need to know&lt;/code&gt; is when can you send a technician out to do the work?&lt;/p&gt;
+&lt;p&gt;We’re going to try to send someone out tomorrow. I’ll call you when he leaves the office.&lt;/p&gt;
+&lt;p&gt;I see and&lt;code&gt;can you guarantee&lt;/code&gt;that we’ll have someone here in the morning?&lt;/p&gt;
 &lt;p&gt;Yes, okay, I’ll make sure you’re first on our list for tomorrow&lt;/p&gt;
 &lt;p&gt;Great, and you’ll call me when your technician leaves, right?&lt;/p&gt;
 &lt;/blockquote&gt;
