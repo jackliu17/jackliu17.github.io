@@ -29,18 +29,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Android,openGL_ES,Android_API_Guides," />
@@ -54,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -110,6 +137,8 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
 
 
 
+
+
   
   
     
@@ -144,35 +173,15 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -180,7 +189,7 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -190,17 +199,13 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
 
-      
-
-
-      
       
     </ul>
   
@@ -292,6 +297,7 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
           
           
 
+          
         </div>
       </header>
     
@@ -791,6 +797,13 @@ mTriangle.draw(scratch);
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
@@ -885,7 +898,7 @@ mTriangle.draw(scratch);
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="/images/avatar.gif"
                alt="Jack Liu" />
           <p class="site-author-name" itemprop="name">Jack Liu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -897,13 +910,13 @@ mTriangle.draw(scratch);
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
@@ -934,17 +947,13 @@ mTriangle.draw(scratch);
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
@@ -952,9 +961,6 @@ mTriangle.draw(scratch);
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#建立OpenGL-ES的环境"><span class="nav-number">1.</span> <span class="nav-text">建立OpenGL ES的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在Manifest配置文件中声明使用OpenGL-ES"><span class="nav-number">1.1.</span> <span class="nav-text">在Manifest配置文件中声明使用OpenGL ES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为OpenGL-ES图形创建一个activity"><span class="nav-number">1.2.</span> <span class="nav-text">为OpenGL ES图形创建一个activity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建一个GLSurfaceView对象"><span class="nav-number">1.3.</span> <span class="nav-text">构建一个GLSurfaceView对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建一个渲染类"><span class="nav-number">1.4.</span> <span class="nav-text">构建一个渲染类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义形状"><span class="nav-number">2.</span> <span class="nav-text">定义形状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个三角形"><span class="nav-number">2.1.</span> <span class="nav-text">定义一个三角形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个矩形"><span class="nav-number">2.2.</span> <span class="nav-text">定义一个矩形</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制形状"><span class="nav-number">3.</span> <span class="nav-text">绘制形状</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化形状"><span class="nav-number">3.1.</span> <span class="nav-text">初始化形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画一个形状"><span class="nav-number">3.2.</span> <span class="nav-text">画一个形状</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运用投影与相机视角"><span class="nav-number">4.</span> <span class="nav-text">运用投影与相机视角</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个投影"><span class="nav-number">4.1.</span> <span class="nav-text">定义一个投影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个相机视角"><span class="nav-number">4.2.</span> <span class="nav-text">定义一个相机视角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用投影和相机变换"><span class="nav-number">4.3.</span> <span class="nav-text">应用投影和相机变换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加移动"><span class="nav-number">5.</span> <span class="nav-text">添加移动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转一个形状"><span class="nav-number">5.1.</span> <span class="nav-text">旋转一个形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用连续渲染"><span class="nav-number">5.2.</span> <span class="nav-text">启用连续渲染</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#响应触摸事件"><span class="nav-number">6.</span> <span class="nav-text">响应触摸事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置触摸监听器"><span class="nav-number">6.1.</span> <span class="nav-text">配置触摸监听器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公开旋转角度"><span class="nav-number">6.2.</span> <span class="nav-text">公开旋转角度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用旋转"><span class="nav-number">6.3.</span> <span class="nav-text">应用旋转</span></a></li></ol></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -990,213 +996,78 @@ mTriangle.draw(scratch);
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
 
   
 
 
 
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -1234,8 +1105,8 @@ mTriangle.draw(scratch);
   
 
   
-  
 
+  
 
 </body>
 </html>

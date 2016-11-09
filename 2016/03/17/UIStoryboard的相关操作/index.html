@@ -29,18 +29,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Xcode,iOS,UIKit," />
@@ -54,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -133,6 +160,8 @@
 
 
 
+
+
   
   
     
@@ -167,35 +196,15 @@
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -203,7 +212,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -213,17 +222,13 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
 
-      
-
-
-      
       
     </ul>
   
@@ -315,6 +320,7 @@
           
           
 
+          
         </div>
       </header>
     
@@ -423,6 +429,13 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
@@ -517,7 +530,7 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="/images/avatar.gif"
                alt="Jack Liu" />
           <p class="site-author-name" itemprop="name">Jack Liu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -529,13 +542,13 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
@@ -566,17 +579,13 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
@@ -584,9 +593,6 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Xcode建立文件夹"><span class="nav-number">1.</span> <span class="nav-text">Xcode建立文件夹</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指定启动视图"><span class="nav-number">2.</span> <span class="nav-text">指定启动视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指定启动的storyboard"><span class="nav-number">2.1.</span> <span class="nav-text">指定启动的storyboard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定启动的视图控制器"><span class="nav-number">2.2.</span> <span class="nav-text">指定启动的视图控制器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UINavigationController"><span class="nav-number">3.</span> <span class="nav-text">UINavigationController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导航视图顶部自定义"><span class="nav-number">3.1.</span> <span class="nav-text">导航视图顶部自定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITablViewController"><span class="nav-number">4.</span> <span class="nav-text">UITablViewController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TableView视图连接的设置"><span class="nav-number">4.1.</span> <span class="nav-text">TableView视图连接的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TableViewCell"><span class="nav-number">4.2.</span> <span class="nav-text">TableViewCell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置静态tableViewCell（cell可以复制粘贴）"><span class="nav-number">4.2.1.</span> <span class="nav-text">设置静态tableViewCell（cell可以复制粘贴）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-TableViewCell"><span class="nav-number">4.2.2.</span> <span class="nav-text">Static TableViewCell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-TableViewCell"><span class="nav-number">4.2.3.</span> <span class="nav-text">Dynamic TableViewCell</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITabBarController"><span class="nav-number">5.</span> <span class="nav-text">UITabBarController</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#新建new-tab"><span class="nav-number">5.1.</span> <span class="nav-text">新建new tab</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图的跳转和连接"><span class="nav-number">6.</span> <span class="nav-text">视图的跳转和连接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建新的rootViewController"><span class="nav-number">6.1.</span> <span class="nav-text">创建新的rootViewController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图跳转-模态视图"><span class="nav-number">6.2.</span> <span class="nav-text">视图跳转 - 模态视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#呈现使用present"><span class="nav-number">6.2.1.</span> <span class="nav-text">呈现使用present</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出使用dissmiss"><span class="nav-number">6.2.2.</span> <span class="nav-text">退出使用dissmiss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图跳转-push视图"><span class="nav-number">6.3.</span> <span class="nav-text">视图跳转 - push视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#呈现用导航视图push-show"><span class="nav-number">6.3.1.</span> <span class="nav-text">呈现用导航视图push/show</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出用pop-的三种方式"><span class="nav-number">6.3.2.</span> <span class="nav-text">退出用pop 的三种方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无Segue连接-StoryboardId"><span class="nav-number">6.4.</span> <span class="nav-text">无Segue连接 - StoryboardId</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segue自动连接-button"><span class="nav-number">6.5.</span> <span class="nav-text">Segue自动连接(button)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segue手动连接-login"><span class="nav-number">6.6.</span> <span class="nav-text">Segue手动连接(login)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图中传值"><span class="nav-number">7.</span> <span class="nav-text">视图中传值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自动跳转传值"><span class="nav-number">7.1.</span> <span class="nav-text">自动跳转传值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Segue跳转传值"><span class="nav-number">7.2.</span> <span class="nav-text">Segue跳转传值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI-Element"><span class="nav-number">8.</span> <span class="nav-text">UI Element</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UIButton"><span class="nav-number">8.1.</span> <span class="nav-text">UIButton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIBarbutton"><span class="nav-number">8.2.</span> <span class="nav-text">UIBarbutton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextfield"><span class="nav-number">8.3.</span> <span class="nav-text">UITextfield</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#若干UI元素重合时的排序"><span class="nav-number">9.</span> <span class="nav-text">若干UI元素重合时的排序</span></a></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -622,213 +628,78 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
 
   
 
 
 
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -866,8 +737,8 @@ contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,s
   
 
   
-  
 
+  
 
 </body>
 </html>

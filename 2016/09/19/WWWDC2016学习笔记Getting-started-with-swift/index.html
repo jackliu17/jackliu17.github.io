@@ -29,18 +29,45 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
 <link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="swift,WWDC," />
@@ -54,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
 
 
@@ -122,6 +149,8 @@ let intro">
 
 
 
+
+
   
   
     
@@ -156,35 +185,15 @@ let intro">
   
 
   
-    <ul id="menu" class="menu ">
+    <ul id="menu" class="menu">
       
         
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
           </a>
         </li>
       
@@ -192,7 +201,7 @@ let intro">
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -202,17 +211,13 @@ let intro">
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
         </li>
       
 
-      
-
-
-      
       
     </ul>
   
@@ -304,6 +309,7 @@ let intro">
           
           
 
+          
         </div>
       </header>
     
@@ -761,6 +767,13 @@ func doSomething() throws -&gt; Data {
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
+
     <footer class="post-footer">
       
         <div class="post-tags">
@@ -853,7 +866,7 @@ func doSomething() throws -&gt; Data {
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="/images/avatar.gif"
                alt="Jack Liu" />
           <p class="site-author-name" itemprop="name">Jack Liu</p>
           <p class="site-description motion-element" itemprop="description"></p>
@@ -865,13 +878,13 @@ func doSomething() throws -&gt; Data {
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
-          
+
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
@@ -902,17 +915,13 @@ func doSomething() throws -&gt; Data {
         
         
 
-        <div class="links-of-author motion-element">
-          
-        </div>
+        
+        
 
       </section>
 
       
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
           <div class="post-toc">
             
               
@@ -920,9 +929,6 @@ func doSomething() throws -&gt; Data {
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Constants"><span class="nav-number">1.</span> <span class="nav-text">Constants</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-and-Dictionary"><span class="nav-number">3.</span> <span class="nav-text">Array and Dictionary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying-an-Array"><span class="nav-number">3.1.</span> <span class="nav-text">Modifying an Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modifying-a-Dictionary"><span class="nav-number">3.2.</span> <span class="nav-text">Modifying a Dictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieving-a-Value-from-a-Dictionary"><span class="nav-number">3.3.</span> <span class="nav-text">Retrieving a Value from a Dictionary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#While-amp-For-In-Loop"><span class="nav-number">4.</span> <span class="nav-text">While & For-In Loop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#While-and-Repeat-While"><span class="nav-number">4.1.</span> <span class="nav-text">While and Repeat-While</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Characters"><span class="nav-number">4.2.</span> <span class="nav-text">Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-Ranges"><span class="nav-number">4.3.</span> <span class="nav-text">Closed Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Half-Closed-Ranges"><span class="nav-number">4.4.</span> <span class="nav-text">Half-Closed Ranges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrays"><span class="nav-number">4.5.</span> <span class="nav-text">Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dictionaries"><span class="nav-number">4.6.</span> <span class="nav-text">Dictionaries</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Condition"><span class="nav-number">5.</span> <span class="nav-text">Condition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#If-Statement"><span class="nav-number">5.1.</span> <span class="nav-text">If Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch-Statement（需要将所有情况都考虑到）"><span class="nav-number">5.2.</span> <span class="nav-text">Switch Statement（需要将所有情况都考虑到）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">6.</span> <span class="nav-text">Optional</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Checking-for-an-Optional-Value"><span class="nav-number">6.1.</span> <span class="nav-text">Checking for an Optional Value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#If-Let-Statement-when-use-optional"><span class="nav-number">6.2.</span> <span class="nav-text">If-Let Statement(when use optional)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Functions"><span class="nav-number">7.</span> <span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Parameters"><span class="nav-number">7.1.</span> <span class="nav-text">Multiple Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Explicit-Argument-Labels"><span class="nav-number">7.2.</span> <span class="nav-text">Explicit Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omitting-Argument-Labels"><span class="nav-number">7.3.</span> <span class="nav-text">Omitting Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameters-with-Default-Values"><span class="nav-number">7.4.</span> <span class="nav-text">Parameters with Default Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Returning-Optional-Values"><span class="nav-number">7.5.</span> <span class="nav-text">Returning Optional Values</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Closure"><span class="nav-number">8.</span> <span class="nav-text">Closure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-as-Parameters"><span class="nav-number">8.1.</span> <span class="nav-text">Functions as Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implicit-Arguments-in-Closures"><span class="nav-number">8.2.</span> <span class="nav-text">Implicit Arguments in Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trailing-Closures"><span class="nav-number">8.3.</span> <span class="nav-text">Trailing Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Filter-and-Map-Methods"><span class="nav-number">8.4.</span> <span class="nav-text">Filter and Map Methods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generic"><span class="nav-number">9.</span> <span class="nav-text">Generic</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Calling-Generic-Functions"><span class="nav-number">9.1.</span> <span class="nav-text">Calling Generic Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generic-Types"><span class="nav-number">9.2.</span> <span class="nav-text">Generic Types</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Structures"><span class="nav-number">10.</span> <span class="nav-text">Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Computed-Properties"><span class="nav-number">10.1.</span> <span class="nav-text">Computed Properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">10.2.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializers"><span class="nav-number">10.3.</span> <span class="nav-text">Initializers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Classes"><span class="nav-number">11.</span> <span class="nav-text">Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclasses-Can-Add-Functionality"><span class="nav-number">11.1.</span> <span class="nav-text">Subclasses Can Add Functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclasses-Can-Override-Functionality"><span class="nav-number">11.2.</span> <span class="nav-text">Subclasses Can Override Functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subclass-Initializers"><span class="nav-number">11.3.</span> <span class="nav-text">Subclass Initializers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-vs-Structure"><span class="nav-number">12.</span> <span class="nav-text">Class vs. Structure</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Enumerations"><span class="nav-number">13.</span> <span class="nav-text">Enumerations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-with-Associated-Values"><span class="nav-number">13.1.</span> <span class="nav-text">Enumerations with Associated Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-with-Raw-Values"><span class="nav-number">13.2.</span> <span class="nav-text">Enumerations with Raw Values</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocols-amp-Extension"><span class="nav-number">14.</span> <span class="nav-text">Protocols & Extension</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols"><span class="nav-number">14.1.</span> <span class="nav-text">Protocols</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extensions-for-additional-functionality"><span class="nav-number">14.2.</span> <span class="nav-text">Extensions for additional functionality</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-Extensions"><span class="nav-number">14.3.</span> <span class="nav-text">Protocols + Extensions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error-Handling"><span class="nav-number">15.</span> <span class="nav-text">Error Handling</span></a></li></ol></div>
             
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
           </div>
         </section>
       
@@ -958,213 +964,78 @@ func doSomething() throws -&gt; Data {
   </a>
 </div>
 
+        
 
-
+        
       </div>
     </footer>
 
-    <div class="back-to-top"></div>
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
 
   
 
 
 
+  
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
+  
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
+  
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
 
 
-
-  
-  
 
   
   
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
 
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
-        }
-      }
-    };
-  });
-</script>
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
 
 
 
@@ -1202,8 +1073,8 @@ func doSomething() throws -&gt; Data {
   
 
   
-  
 
+  
 
 </body>
 </html>
