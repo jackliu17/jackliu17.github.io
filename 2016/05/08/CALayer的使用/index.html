@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -31,7 +31,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -65,9 +65,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="iOS,iOS_CALayer,iOS_image," />
@@ -81,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -124,9 +124,10 @@ UIView中的CALayer动画必须显式触发才能生效
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -134,20 +135,29 @@ UIView中的CALayer动画必须显式触发才能生效
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://jackliu17.github.io/2016/05/08/CALayer的使用/"/>
+
+
+
 
 
   <title> CALayer的使用 | Cowboy Tech </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -168,7 +178,7 @@ UIView中的CALayer动画必须显式触发才能生效
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -200,6 +210,8 @@ UIView中的CALayer动画必须显式触发才能生效
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -207,6 +219,8 @@ UIView中的CALayer动画必须显式触发才能生效
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -216,15 +230,9 @@ UIView中的CALayer动画必须显式触发才能生效
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            日程
+            标签
           </a>
         </li>
       
@@ -235,6 +243,8 @@ UIView中的CALayer动画必须显式触发才能生效
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -249,13 +259,26 @@ UIView中的CALayer动画必须显式触发才能生效
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/05/08/CALayer的使用/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -278,9 +301,19 @@ UIView中的CALayer动画必须显式触发才能生效
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-08T17:07:09+10:00" content="2016-05-08">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-08T17:07:09+10:00">
               2016-05-08
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-07-31T13:23:06+10:00">
+              2016-07-31
+            </time>
+            
           </span>
 
           
@@ -291,7 +324,7 @@ UIView中的CALayer动画必须显式触发才能生效
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/IT/" itemprop="url" rel="index">
                     <span itemprop="name">IT</span>
                   </a>
@@ -309,7 +342,7 @@ UIView中的CALayer动画必须显式触发才能生效
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/05/08/CALayer的使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CALayer的使用/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/08/CALayer的使用/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -321,6 +354,9 @@ UIView中的CALayer动画必须显式触发才能生效
           
 
           
+          
+          
+
         </div>
       </header>
     
@@ -725,15 +761,16 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/iOS-CALayer/" rel="tag">#iOS_CALayer</a>
+            <a href="/tags/iOS-CALayer/" rel="tag"># iOS_CALayer</a>
           
-            <a href="/tags/iOS-image/" rel="tag">#iOS_image</a>
+            <a href="/tags/iOS-image/" rel="tag"># iOS_image</a>
           
         </div>
       
@@ -747,6 +784,8 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -816,8 +855,8 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="Jack Liu" />
@@ -871,19 +910,27 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CALayer简介"><span class="nav-number">1.</span> <span class="nav-text">CALayer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer定制下载进度条控件"><span class="nav-number">2.</span> <span class="nav-text">用CALayer定制下载进度条控件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐式动画进度条"><span class="nav-number">2.1.</span> <span class="nav-text">隐式动画进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装UIView实现进度条"><span class="nav-number">2.2.</span> <span class="nav-text">封装UIView实现进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer定制UIImageView淡入淡出切换图片效果"><span class="nav-number">3.</span> <span class="nav-text">用CALayer定制UIImageView淡入淡出切换图片效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.1.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用CALayer实现复杂遮罩效果"><span class="nav-number">4.</span> <span class="nav-text">用CALayer实现复杂遮罩效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CALayer实现遮罩淡化滤镜"><span class="nav-number">4.1.</span> <span class="nav-text">CALayer实现遮罩淡化滤镜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CALayer实现遮罩平移"><span class="nav-number">4.2.</span> <span class="nav-text">CALayer实现遮罩平移</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定时执行某方法"><span class="nav-number">5.</span> <span class="nav-text">定时执行某方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机取值"><span class="nav-number">6.</span> <span class="nav-text">随机取值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进度参数"><span class="nav-number">7.</span> <span class="nav-text">进度参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法执行开关"><span class="nav-number">8.</span> <span class="nav-text">方法执行开关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画执行与最终设定"><span class="nav-number">9.</span> <span class="nav-text">动画执行与最终设定</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -906,6 +953,7 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
   <span class="author" itemprop="copyrightHolder">Jack Liu</span>
 </div>
 
+
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -916,6 +964,7 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
     NexT.Muse
   </a>
 </div>
+
 
         
 
@@ -949,46 +998,46 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -1001,10 +1050,11 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
       var disqus_identifier = '2016/05/08/CALayer的使用/';
-      var disqus_title = "CALayer的使用";
-      var disqus_url = 'http://jackliu17.github.io/2016/05/08/CALayer的使用/';
 
-      function run_disqus_script(disqus_script){
+      var disqus_title = "CALayer的使用";
+
+
+      function run_disqus_script(disqus_script) {
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
@@ -1013,20 +1063,18 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
       }
 
       run_disqus_script('count.js');
+
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
         run_disqus_script('embed.js');
       
+
     </script>
   
 
 
 
 
+
   
   
 
@@ -1035,7 +1083,6 @@ self.imageLayer.bounds   = CGRectMake(0, 0, 302/2.f, 707/2.f);
   
 
   
-
   
 
 

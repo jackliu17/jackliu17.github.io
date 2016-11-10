@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -31,7 +31,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -65,9 +65,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="iOS,codeExample," />
@@ -81,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -134,9 +134,10 @@ return self;
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -144,20 +145,29 @@ return self;
     duoshuo: {
       userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://jackliu17.github.io/2016/04/18/iOS项目3-英雄图片表视图展示/"/>
+
+
+
 
 
   <title> iOS项目3.英雄图片表视图展示 | Cowboy Tech </title>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -178,7 +188,7 @@ return self;
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -210,6 +220,8 @@ return self;
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -217,6 +229,8 @@ return self;
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -226,15 +240,9 @@ return self;
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            日程
+            标签
           </a>
         </li>
       
@@ -245,6 +253,8 @@ return self;
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -259,13 +269,26 @@ return self;
     
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/04/18/iOS项目3-英雄图片表视图展示/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
 
     
       <header class="post-header">
@@ -288,9 +311,19 @@ return self;
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-18T17:40:30+10:00" content="2016-04-18">
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-18T17:40:30+10:00">
               2016-04-18
             </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-07-31T16:00:06+10:00">
+              2016-07-31
+            </time>
+            
           </span>
 
           
@@ -301,7 +334,7 @@ return self;
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/IT/" itemprop="url" rel="index">
                     <span itemprop="name">IT</span>
                   </a>
@@ -319,7 +352,7 @@ return self;
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/04/18/iOS项目3-英雄图片表视图展示/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目3-英雄图片表视图展示/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/iOS项目3-英雄图片表视图展示/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -331,6 +364,9 @@ return self;
           
 
           
+          
+          
+
         </div>
       </header>
     
@@ -412,13 +448,14 @@ return YES;
       
     </div>
 
+
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/codeExample/" rel="tag">#codeExample</a>
+            <a href="/tags/codeExample/" rel="tag"># codeExample</a>
           
         </div>
       
@@ -432,6 +469,8 @@ return YES;
               </a>
             
           </div>
+
+          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -501,8 +540,8 @@ return YES;
         </ul>
       
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="Jack Liu" />
@@ -556,19 +595,27 @@ return YES;
         
         
 
+        
+
+
       </section>
 
       
+      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
+
             
               
             
+
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字典加载数据模型"><span class="nav-number">3.</span> <span class="nav-text">字典加载数据模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载plist中的数组数据"><span class="nav-number">4.</span> <span class="nav-text">加载plist中的数组数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表视图cell的配置"><span class="nav-number">5.</span> <span class="nav-text">表视图cell的配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐藏状态栏"><span class="nav-number">6.</span> <span class="nav-text">隐藏状态栏</span></a></li></ol></div>
             
+
           </div>
         </section>
+      <!--/noindex-->
       
 
     </div>
@@ -591,6 +638,7 @@ return YES;
   <span class="author" itemprop="copyrightHolder">Jack Liu</span>
 </div>
 
+
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -601,6 +649,7 @@ return YES;
     NexT.Muse
   </a>
 </div>
+
 
         
 
@@ -634,46 +683,46 @@ return YES;
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
 
 
 
@@ -686,10 +735,11 @@ return YES;
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
       var disqus_identifier = '2016/04/18/iOS项目3-英雄图片表视图展示/';
-      var disqus_title = "iOS项目3.英雄图片表视图展示";
-      var disqus_url = 'http://jackliu17.github.io/2016/04/18/iOS项目3-英雄图片表视图展示/';
 
-      function run_disqus_script(disqus_script){
+      var disqus_title = "iOS项目3.英雄图片表视图展示";
+
+
+      function run_disqus_script(disqus_script) {
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
@@ -698,20 +748,18 @@ return YES;
       }
 
       run_disqus_script('count.js');
+
       
-        var disqus_config = function () {
-            this.page.url = disqus_url;
-            this.page.identifier = disqus_identifier;
-            this.page.title = disqus_title;
-        };
         run_disqus_script('embed.js');
       
+
     </script>
   
 
 
 
 
+
   
   
 
@@ -720,7 +768,6 @@ return YES;
   
 
   
-
   
 
 
