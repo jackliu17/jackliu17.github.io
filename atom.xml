@@ -1303,9 +1303,9 @@ photoView.image = image
       <category term="IT" scheme="http://jackliu17.github.io/categories/IT/"/>
     
     
-      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
     
       <category term="udacity" scheme="http://jackliu17.github.io/tags/udacity/"/>
     
@@ -1362,9 +1362,9 @@ photoView.image = image
     </summary>
     
     
-      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
-    
       <category term="swift" scheme="http://jackliu17.github.io/tags/swift/"/>
+    
+      <category term="gcd" scheme="http://jackliu17.github.io/tags/gcd/"/>
     
       <category term="raywenderlich" scheme="http://jackliu17.github.io/tags/raywenderlich/"/>
     

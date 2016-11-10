@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -31,7 +31,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -65,9 +65,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="iOS,iOS_dataStorage," />
@@ -81,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -121,10 +121,9 @@ class ViewController: UIViewController,NSXMLParserDelegate {
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -132,29 +131,20 @@ class ViewController: UIViewController,NSXMLParserDelegate {
     duoshuo: {
       userId: '0',
       author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
+
   <link rel="canonical" href="http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/"/>
-
-
-
 
 
   <title> iOS数据存储-XML | Cowboy Tech </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -175,7 +165,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -207,8 +197,6 @@ class ViewController: UIViewController,NSXMLParserDelegate {
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
             首页
           </a>
         </li>
@@ -216,8 +204,6 @@ class ViewController: UIViewController,NSXMLParserDelegate {
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -227,9 +213,15 @@ class ViewController: UIViewController,NSXMLParserDelegate {
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
           </a>
         </li>
       
@@ -240,8 +232,6 @@ class ViewController: UIViewController,NSXMLParserDelegate {
 
   
 </nav>
-
-
 
  </div>
     </header>
@@ -256,26 +246,13 @@ class ViewController: UIViewController,NSXMLParserDelegate {
     
 
   
+  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -298,19 +275,9 @@ class ViewController: UIViewController,NSXMLParserDelegate {
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-20T12:45:50+10:00">
+            <time itemprop="dateCreated" datetime="2016-05-20T12:45:50+10:00" content="2016-05-20">
               2016-05-20
             </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-07-31T14:45:32+10:00">
-              2016-07-31
-            </time>
-            
           </span>
 
           
@@ -321,7 +288,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/IT/" itemprop="url" rel="index">
                     <span itemprop="name">IT</span>
                   </a>
@@ -339,7 +306,7 @@ class ViewController: UIViewController,NSXMLParserDelegate {
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/05/20/iOS数据存储-XML/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-XML/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/20/iOS数据存储-XML/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -351,9 +318,6 @@ class ViewController: UIViewController,NSXMLParserDelegate {
           
 
           
-          
-          
-
         </div>
       </header>
     
@@ -464,14 +428,13 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
       
     </div>
 
-
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/iOS-dataStorage/" rel="tag"># iOS_dataStorage</a>
+            <a href="/tags/iOS-dataStorage/" rel="tag">#iOS_dataStorage</a>
           
         </div>
       
@@ -485,8 +448,6 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -556,8 +517,8 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="Jack Liu" />
@@ -611,27 +572,19 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
         
         
 
-        
-
-
       </section>
 
       
-      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
-
             
               
             
-
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Start-parse-XML"><span class="nav-number">1.</span> <span class="nav-text">Start parse XML</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-node-and-attribute"><span class="nav-number">2.</span> <span class="nav-text">Parse to get node and attribute</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Parse-to-get-Value-in-node"><span class="nav-number">3.</span> <span class="nav-text">Parse to get Value in node</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#剔除空格的字符串"><span class="nav-number">3.1.</span> <span class="nav-text">剔除空格的字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断不为空"><span class="nav-number">3.2.</span> <span class="nav-text">判断不为空</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Question-Project"><span class="nav-number">4.</span> <span class="nav-text">Question Project</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Qustion-Model"><span class="nav-number">4.1.</span> <span class="nav-text">Qustion Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parse-all-node-automatically-without-loop"><span class="nav-number">4.2.</span> <span class="nav-text">Parse all node automatically without loop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#After-Parse-finish"><span class="nav-number">4.3.</span> <span class="nav-text">After Parse finish</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-new-element-to-Array"><span class="nav-number">4.4.</span> <span class="nav-text">Add new element to Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Judge-if-equal-or-not"><span class="nav-number">4.5.</span> <span class="nav-text">Judge if equal or not</span></a></li></ol></li></ol></div>
             
-
           </div>
         </section>
-      <!--/noindex-->
       
 
     </div>
@@ -654,7 +607,6 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
   <span class="author" itemprop="copyrightHolder">Jack Liu</span>
 </div>
 
-
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -665,7 +617,6 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
     NexT.Muse
   </a>
 </div>
-
 
         
 
@@ -699,46 +650,46 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -751,11 +702,10 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
       var disqus_identifier = '2016/05/20/iOS数据存储-XML/';
-
       var disqus_title = "iOS数据存储-XML";
+      var disqus_url = 'http://jackliu17.github.io/2016/05/20/iOS数据存储-XML/';
 
-
-      function run_disqus_script(disqus_script) {
+      function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
@@ -764,18 +714,20 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
       }
 
       run_disqus_script('count.js');
-
       
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
         run_disqus_script('embed.js');
       
-
     </script>
   
 
 
 
 
-
   
   
 
@@ -784,6 +736,7 @@ func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceU
   
 
   
+
   
 
 

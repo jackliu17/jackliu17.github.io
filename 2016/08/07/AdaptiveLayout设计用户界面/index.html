@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -31,7 +31,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -65,9 +65,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="UI,Xcode," />
@@ -81,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -196,10 +196,9 @@ AutoLayout基本布局和SizeClasses的个别调整
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -207,29 +206,20 @@ AutoLayout基本布局和SizeClasses的个别调整
     duoshuo: {
       userId: '0',
       author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
+
   <link rel="canonical" href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/"/>
-
-
-
 
 
   <title> AdaptiveLayout设计用户界面 | Cowboy Tech </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -250,7 +240,7 @@ AutoLayout基本布局和SizeClasses的个别调整
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -282,8 +272,6 @@ AutoLayout基本布局和SizeClasses的个别调整
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
             首页
           </a>
         </li>
@@ -291,8 +279,6 @@ AutoLayout基本布局和SizeClasses的个别调整
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -302,9 +288,15 @@ AutoLayout基本布局和SizeClasses的个别调整
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
           </a>
         </li>
       
@@ -315,8 +307,6 @@ AutoLayout基本布局和SizeClasses的个别调整
 
   
 </nav>
-
-
 
  </div>
     </header>
@@ -331,26 +321,13 @@ AutoLayout基本布局和SizeClasses的个别调整
     
 
   
+  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -373,19 +350,9 @@ AutoLayout基本布局和SizeClasses的个别调整
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-07T15:02:22+10:00">
+            <time itemprop="dateCreated" datetime="2016-08-07T15:02:22+10:00" content="2016-08-07">
               2016-08-07
             </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-19T09:30:58+10:00">
-              2016-08-19
-            </time>
-            
           </span>
 
           
@@ -396,7 +363,7 @@ AutoLayout基本布局和SizeClasses的个别调整
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/IT/" itemprop="url" rel="index">
                     <span itemprop="name">IT</span>
                   </a>
@@ -414,7 +381,7 @@ AutoLayout基本布局和SizeClasses的个别调整
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/08/07/AdaptiveLayout设计用户界面/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/AdaptiveLayout设计用户界面/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/AdaptiveLayout设计用户界面/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -426,9 +393,6 @@ AutoLayout基本布局和SizeClasses的个别调整
           
 
           
-          
-          
-
         </div>
       </header>
     
@@ -622,14 +586,13 @@ private func configureTraitOverrideForSize(size:CGSize) {
       
     </div>
 
-
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/UI/" rel="tag"># UI</a>
+            <a href="/tags/UI/" rel="tag">#UI</a>
           
-            <a href="/tags/Xcode/" rel="tag"># Xcode</a>
+            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
           
         </div>
       
@@ -643,8 +606,6 @@ private func configureTraitOverrideForSize(size:CGSize) {
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -714,8 +675,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="Jack Liu" />
@@ -769,27 +730,19 @@ private func configureTraitOverrideForSize(size:CGSize) {
         
         
 
-        
-
-
       </section>
 
       
-      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
-
             
               
             
-
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Adaptive-Layout"><span class="nav-number">1.</span> <span class="nav-text">使用Adaptive Layout</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Device里选择Universal"><span class="nav-number">1.1.</span> <span class="nav-text">Device里选择Universal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AutoLayout基本布局和SizeClasses的个别调整"><span class="nav-number">1.2.</span> <span class="nav-text">AutoLayout基本布局和SizeClasses的个别调整</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置初始约束"><span class="nav-number">2.</span> <span class="nav-text">设置初始约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为ImageView设置约束"><span class="nav-number">2.1.</span> <span class="nav-text">为ImageView设置约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#约束1：水平居中"><span class="nav-number">2.1.1.</span> <span class="nav-text">约束1：水平居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束2：顶部置顶-含电池边距"><span class="nav-number">2.1.2.</span> <span class="nav-text">约束2：顶部置顶(含电池边距)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束3：与下方view的垂直高度"><span class="nav-number">2.1.3.</span> <span class="nav-text">约束3：与下方view的垂直高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束4：与父视图的关系-高度40"><span class="nav-number">2.1.4.</span> <span class="nav-text">约束4：与父视图的关系-高度40%</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为view设置约束"><span class="nav-number">2.2.</span> <span class="nav-text">为view设置约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#左-中-下"><span class="nav-number">2.2.1.</span> <span class="nav-text">左 + 中 + 下</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImageSet为项目添加相关图片"><span class="nav-number">2.3.</span> <span class="nav-text">ImageSet为项目添加相关图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新frame让约束生效"><span class="nav-number">2.4.</span> <span class="nav-text">更新frame让约束生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预览功能查看不同设备屏幕"><span class="nav-number">2.5.</span> <span class="nav-text">预览功能查看不同设备屏幕</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为label1设定约束"><span class="nav-number">2.6.</span> <span class="nav-text">为label1设定约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中"><span class="nav-number">2.6.1.</span> <span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顶部置顶"><span class="nav-number">2.6.2.</span> <span class="nav-text">顶部置顶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为label2设定约束"><span class="nav-number">2.7.</span> <span class="nav-text">为label2设定约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平居中-1"><span class="nav-number">2.7.1.</span> <span class="nav-text">水平居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下部间隔"><span class="nav-number">2.7.2.</span> <span class="nav-text">下部间隔</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新frame让约束生效-1"><span class="nav-number">2.8.</span> <span class="nav-text">更新frame让约束生效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Size-Classes的使用"><span class="nav-number">3.</span> <span class="nav-text">Size Classes的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种尺寸组合表达所有设备-Regular-and-Compact"><span class="nav-number">3.1.</span> <span class="nav-text">两种尺寸组合表达所有设备: Regular and Compact</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建iPhone-landscape-size-Class"><span class="nav-number">3.2.</span> <span class="nav-text">构建iPhone landscape size Class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重设image-view约束-仅在该sizeClass"><span class="nav-number">3.3.</span> <span class="nav-text">重设image view约束(仅在该sizeClass)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载所有约束"><span class="nav-number">3.3.1.</span> <span class="nav-text">卸载所有约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束1-垂直居中"><span class="nav-number">3.3.2.</span> <span class="nav-text">新约束1:垂直居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束2-左间隔10"><span class="nav-number">3.3.3.</span> <span class="nav-text">新约束2:左间隔10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新约束3-与父视图的宽度比例为40"><span class="nav-number">3.3.4.</span> <span class="nav-text">新约束3:与父视图的宽度比例为40%</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重设TextContainer约束-仅在该sizeClass"><span class="nav-number">3.4.</span> <span class="nav-text">重设TextContainer约束(仅在该sizeClass)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载约束"><span class="nav-number">3.4.1.</span> <span class="nav-text">卸载约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设定与父视图的顶部间距和宽度比例"><span class="nav-number">3.4.2.</span> <span class="nav-text">设定与父视图的顶部间距和宽度比例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Frame"><span class="nav-number">3.5.</span> <span class="nav-text">更新Frame</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在故事板中设置自适应字体"><span class="nav-number">4.</span> <span class="nav-text">在故事板中设置自适应字体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#回到Any界面-w-h"><span class="nav-number">4.1.</span> <span class="nav-text">回到Any界面(w+h)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置某个size-class类别下的字体"><span class="nav-number">4.2.</span> <span class="nav-text">设置某个size class类别下的字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置字体能自动缩小50"><span class="nav-number">4.3.</span> <span class="nav-text">设置字体能自动缩小50%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置label与父视图的约束"><span class="nav-number">4.4.</span> <span class="nav-text">设置label与父视图的约束</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置适配不同设备的图片"><span class="nav-number">5.</span> <span class="nav-text">设置适配不同设备的图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表格单元格的自我调整（代码略）"><span class="nav-number">6.</span> <span class="nav-text">表格单元格的自我调整（代码略）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图"><span class="nav-number">6.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元格的设定"><span class="nav-number">6.2.</span> <span class="nav-text">单元格的设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#imageView约束设定-铺满整个cell"><span class="nav-number">6.3.</span> <span class="nav-text">imageView约束设定(铺满整个cell)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Label约束设定"><span class="nav-number">6.4.</span> <span class="nav-text">Label约束设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Label字体-背景色-透明度设定"><span class="nav-number">6.5.</span> <span class="nav-text">Label字体/背景色/透明度设定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置单元格高度解决冲突"><span class="nav-number">6.6.</span> <span class="nav-text">设置单元格高度解决冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新frame"><span class="nav-number">6.7.</span> <span class="nav-text">更新frame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置table-cell之间的分割符"><span class="nav-number">6.8.</span> <span class="nav-text">设置table cell之间的分割符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Controller中必须添加的两行代码"><span class="nav-number">6.9.</span> <span class="nav-text">在Controller中必须添加的两行代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.10.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装集合视图（代码略）"><span class="nav-number">7.</span> <span class="nav-text">安装集合视图（代码略）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图-1"><span class="nav-number">7.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装ContainerView并添加约束"><span class="nav-number">7.2.</span> <span class="nav-text">安装ContainerView并添加约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContainerView会自动创建ViewController"><span class="nav-number">7.3.</span> <span class="nav-text">ContainerView会自动创建ViewController</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container内嵌集合视图-代码略"><span class="nav-number">7.4.</span> <span class="nav-text">Container内嵌集合视图 (代码略)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重新设定Label约束"><span class="nav-number">7.5.</span> <span class="nav-text">重新设定Label约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除顶部约束"><span class="nav-number">7.5.1.</span> <span class="nav-text">删除顶部约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与Container的顶部垂直距离为0"><span class="nav-number">7.5.2.</span> <span class="nav-text">与Container的顶部垂直距离为0</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在iPhone横屏中去除集合视图"><span class="nav-number">8.</span> <span class="nav-text">在iPhone横屏中去除集合视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图-2"><span class="nav-number">8.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设定iPhone横屏size-class"><span class="nav-number">8.2.</span> <span class="nav-text">设定iPhone横屏size class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在该size-class中卸载container"><span class="nav-number">8.3.</span> <span class="nav-text">在该size class中卸载container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载container-view的约束-右侧删除"><span class="nav-number">8.4.</span> <span class="nav-text">卸载container view的约束(右侧删除)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重设label约束"><span class="nav-number">8.5.</span> <span class="nav-text">重设label约束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示Label所有约束-含卸载"><span class="nav-number">8.5.1.</span> <span class="nav-text">显示Label所有约束(含卸载)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重设当前sizeClass约束"><span class="nav-number">8.5.2.</span> <span class="nav-text">重设当前sizeClass约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iPhone竖屏上去除集合视图"><span class="nav-number">9.</span> <span class="nav-text">iPhone竖屏上去除集合视图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为SizeClass配置相关图片"><span class="nav-number">10.</span> <span class="nav-text">为SizeClass配置相关图片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图-3"><span class="nav-number">10.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在ImageAsset中构建size-class"><span class="nav-number">10.2.</span> <span class="nav-text">在ImageAsset中构建size class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关代码"><span class="nav-number">10.3.</span> <span class="nav-text">相关代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐藏导航栏"><span class="nav-number">11.</span> <span class="nav-text">隐藏导航栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图-4"><span class="nav-number">11.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIStoryboard中设置NavigationBar"><span class="nav-number">11.2.</span> <span class="nav-text">UIStoryboard中设置NavigationBar</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定制横竖屏的文字"><span class="nav-number">12.</span> <span class="nav-text">定制横竖屏的文字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果图-5"><span class="nav-number">12.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关代码-1"><span class="nav-number">12.2.</span> <span class="nav-text">相关代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设定某UI元素height或width的约束"><span class="nav-number">13.</span> <span class="nav-text">设定某UI元素height或width的约束</span></a></li></ol></div>
             
-
           </div>
         </section>
-      <!--/noindex-->
       
 
     </div>
@@ -812,7 +765,6 @@ private func configureTraitOverrideForSize(size:CGSize) {
   <span class="author" itemprop="copyrightHolder">Jack Liu</span>
 </div>
 
-
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -823,7 +775,6 @@ private func configureTraitOverrideForSize(size:CGSize) {
     NexT.Muse
   </a>
 </div>
-
 
         
 
@@ -857,46 +808,46 @@ private func configureTraitOverrideForSize(size:CGSize) {
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -909,11 +860,10 @@ private func configureTraitOverrideForSize(size:CGSize) {
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
       var disqus_identifier = '2016/08/07/AdaptiveLayout设计用户界面/';
-
       var disqus_title = "AdaptiveLayout设计用户界面";
+      var disqus_url = 'http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/';
 
-
-      function run_disqus_script(disqus_script) {
+      function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
@@ -922,18 +872,20 @@ private func configureTraitOverrideForSize(size:CGSize) {
       }
 
       run_disqus_script('count.js');
-
       
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
         run_disqus_script('embed.js');
       
-
     </script>
   
 
 
 
 
-
   
   
 
@@ -942,6 +894,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
   
 
   
+
   
 
 

@@ -5,10 +5,10 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
@@ -31,7 +31,7 @@
 
   
   
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -65,9 +65,9 @@
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="food," />
@@ -81,7 +81,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -206,10 +206,9 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
     scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
@@ -217,29 +216,20 @@
     duoshuo: {
       userId: '0',
       author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
+
   <link rel="canonical" href="http://jackliu17.github.io/2016/07/24/美食台系列/"/>
-
-
-
 
 
   <title> 美食台系列 | Cowboy Tech </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -260,7 +250,7 @@
   <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
       <div class="header-inner"><div class="site-meta ">
   
 
@@ -292,8 +282,6 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
             首页
           </a>
         </li>
@@ -301,8 +289,6 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -312,9 +298,15 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+            日程
           </a>
         </li>
       
@@ -325,8 +317,6 @@
 
   
 </nav>
-
-
 
  </div>
     </header>
@@ -341,26 +331,13 @@
     
 
   
+  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/07/24/美食台系列/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
@@ -383,19 +360,9 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-24T21:01:05+10:00">
+            <time itemprop="dateCreated" datetime="2016-07-24T21:01:05+10:00" content="2016-07-24">
               2016-07-24
             </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-07-25T21:16:33+10:00">
-              2016-07-25
-            </time>
-            
           </span>
 
           
@@ -406,7 +373,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/情感杂谈/" itemprop="url" rel="index">
                     <span itemprop="name">情感杂谈</span>
                   </a>
@@ -424,7 +391,7 @@
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/07/24/美食台系列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/美食台系列/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/24/美食台系列/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -436,9 +403,6 @@
           
 
           
-          
-          
-
         </div>
       </header>
     
@@ -534,12 +498,11 @@
       
     </div>
 
-
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/food/" rel="tag"># food</a>
+            <a href="/tags/food/" rel="tag">#food</a>
           
         </div>
       
@@ -553,8 +516,6 @@
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -624,8 +585,8 @@
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
                alt="Jack Liu" />
@@ -679,27 +640,19 @@
         
         
 
-        
-
-
       </section>
 
       
-      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
-
             
               
             
-
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#五花肉"><span class="nav-number">1.</span> <span class="nav-text">五花肉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#蒜泥白肉"><span class="nav-number">1.1.</span> <span class="nav-text">蒜泥白肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回锅肉"><span class="nav-number">1.2.</span> <span class="nav-text">回锅肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#盐煎肉"><span class="nav-number">1.3.</span> <span class="nav-text">盐煎肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滷肉飯"><span class="nav-number">1.4.</span> <span class="nav-text">滷肉飯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#糖醋丸子"><span class="nav-number">1.5.</span> <span class="nav-text">糖醋丸子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脆漿魚露炒豬肉"><span class="nav-number">1.6.</span> <span class="nav-text">脆漿魚露炒豬肉</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#猪里脊肉"><span class="nav-number">2.</span> <span class="nav-text">猪里脊肉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#京酱肉丝"><span class="nav-number">2.1.</span> <span class="nav-text">京酱肉丝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自制肉松"><span class="nav-number">2.2.</span> <span class="nav-text">自制肉松</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#魚香肉絲"><span class="nav-number">2.3.</span> <span class="nav-text">魚香肉絲</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排骨"><span class="nav-number">3.</span> <span class="nav-text">排骨</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#豆瓣排骨"><span class="nav-number">3.1.</span> <span class="nav-text">豆瓣排骨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#茄汁排骨"><span class="nav-number">3.2.</span> <span class="nav-text">茄汁排骨</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可乐猪手"><span class="nav-number">3.3.</span> <span class="nav-text">可乐猪手</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#羊肉"><span class="nav-number">4.</span> <span class="nav-text">羊肉</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#羊肉抓飯"><span class="nav-number">4.1.</span> <span class="nav-text">羊肉抓飯</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#牛"><span class="nav-number">5.</span> <span class="nav-text">牛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#夫妻肺片"><span class="nav-number">5.1.</span> <span class="nav-text">夫妻肺片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#干炒牛河"><span class="nav-number">5.2.</span> <span class="nav-text">干炒牛河</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#果味醬牛肉"><span class="nav-number">5.3.</span> <span class="nav-text">果味醬牛肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛肉醬"><span class="nav-number">5.4.</span> <span class="nav-text">牛肉醬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乾拌牛肉"><span class="nav-number">5.5.</span> <span class="nav-text">乾拌牛肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酸湯肥牛"><span class="nav-number">5.6.</span> <span class="nav-text">酸湯肥牛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#香辣牛肉"><span class="nav-number">5.7.</span> <span class="nav-text">香辣牛肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#紅燴牛肉"><span class="nav-number">5.8.</span> <span class="nav-text">紅燴牛肉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑椒牛肉粒"><span class="nav-number">5.9.</span> <span class="nav-text">黑椒牛肉粒</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鸡"><span class="nav-number">6.</span> <span class="nav-text">鸡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#泡椒鸡杂"><span class="nav-number">6.1.</span> <span class="nav-text">泡椒鸡杂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#越式手撕雞"><span class="nav-number">6.2.</span> <span class="nav-text">越式手撕雞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大盤雞"><span class="nav-number">6.3.</span> <span class="nav-text">大盤雞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手撕椒麻雞"><span class="nav-number">6.4.</span> <span class="nav-text">手撕椒麻雞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宮保雞丁"><span class="nav-number">6.5.</span> <span class="nav-text">宮保雞丁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贵州辣子鸡"><span class="nav-number">6.6.</span> <span class="nav-text">贵州辣子鸡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#胡椒豬肚雞"><span class="nav-number">6.7.</span> <span class="nav-text">胡椒豬肚雞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鱼"><span class="nav-number">7.</span> <span class="nav-text">鱼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#照烧三文鱼"><span class="nav-number">7.1.</span> <span class="nav-text">照烧三文鱼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#糟溜鱼片"><span class="nav-number">7.2.</span> <span class="nav-text">糟溜鱼片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和風秋刀魚"><span class="nav-number">7.3.</span> <span class="nav-text">和風秋刀魚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#豆醬燜魚"><span class="nav-number">7.4.</span> <span class="nav-text">豆醬燜魚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#豆瓣鯽魚"><span class="nav-number">7.5.</span> <span class="nav-text">豆瓣鯽魚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#烤三文魚茶泡飯"><span class="nav-number">7.6.</span> <span class="nav-text">烤三文魚茶泡飯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粵式蒸鱼"><span class="nav-number">7.7.</span> <span class="nav-text">粵式蒸鱼</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蛋"><span class="nav-number">8.</span> <span class="nav-text">蛋</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#银鱼跑蛋"><span class="nav-number">8.1.</span> <span class="nav-text">银鱼跑蛋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兩種滑蛋"><span class="nav-number">8.2.</span> <span class="nav-text">兩種滑蛋</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#海鲜"><span class="nav-number">9.</span> <span class="nav-text">海鲜</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6種常見海鮮的處理方法"><span class="nav-number">9.1.</span> <span class="nav-text">6種常見海鮮的處理方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沙薑爆炒八爪魚"><span class="nav-number">9.2.</span> <span class="nav-text">沙薑爆炒八爪魚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#白灼蝦"><span class="nav-number">9.3.</span> <span class="nav-text">白灼蝦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檸檬葉香辣蝦"><span class="nav-number">9.4.</span> <span class="nav-text">檸檬葉香辣蝦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#海鲜都好烧"><span class="nav-number">9.5.</span> <span class="nav-text">海鲜都好烧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酒香蛤蜊"><span class="nav-number">9.6.</span> <span class="nav-text">酒香蛤蜊</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#瓜"><span class="nav-number">10.</span> <span class="nav-text">瓜</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#苦瓜两吃"><span class="nav-number">10.1.</span> <span class="nav-text">苦瓜两吃</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#豆及豆腐"><span class="nav-number">11.</span> <span class="nav-text">豆及豆腐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#乾煸四季豆"><span class="nav-number">11.1.</span> <span class="nav-text">乾煸四季豆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#鍋塌豆腐"><span class="nav-number">11.2.</span> <span class="nav-text">鍋塌豆腐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客家釀豆腐"><span class="nav-number">11.3.</span> <span class="nav-text">客家釀豆腐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面"><span class="nav-number">12.</span> <span class="nav-text">面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#香辣涼麵"><span class="nav-number">12.1.</span> <span class="nav-text">香辣涼麵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#西兰花明太子意面"><span class="nav-number">12.2.</span> <span class="nav-text">西兰花明太子意面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#青红意面酱"><span class="nav-number">12.3.</span> <span class="nav-text">青红意面酱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑白意面酱"><span class="nav-number">12.4.</span> <span class="nav-text">黑白意面酱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熬葱油"><span class="nav-number">12.5.</span> <span class="nav-text">熬葱油</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#酸辣粉"><span class="nav-number">12.6.</span> <span class="nav-text">酸辣粉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#肉末粉絲煲"><span class="nav-number">12.7.</span> <span class="nav-text">肉末粉絲煲</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#色拉及其他素食"><span class="nav-number">13.</span> <span class="nav-text">色拉及其他素食</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#三款果蔬色拉"><span class="nav-number">13.1.</span> <span class="nav-text">三款果蔬色拉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四喜烤麩"><span class="nav-number">13.2.</span> <span class="nav-text">四喜烤麩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#燒椒茄子"><span class="nav-number">13.3.</span> <span class="nav-text">燒椒茄子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蔬菜的8種切法"><span class="nav-number">13.4.</span> <span class="nav-text">蔬菜的8種切法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#揚州炒飯"><span class="nav-number">13.5.</span> <span class="nav-text">揚州炒飯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隔夜漬菜"><span class="nav-number">13.6.</span> <span class="nav-text">隔夜漬菜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#牛油果三吃"><span class="nav-number">13.7.</span> <span class="nav-text">牛油果三吃</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#干锅花菜"><span class="nav-number">13.8.</span> <span class="nav-text">干锅花菜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手撕包菜"><span class="nav-number">13.9.</span> <span class="nav-text">手撕包菜</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调味料"><span class="nav-number">14.</span> <span class="nav-text">调味料</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自製三種調味醬油"><span class="nav-number">14.1.</span> <span class="nav-text">自製三種調味醬油</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级菜品"><span class="nav-number">15.</span> <span class="nav-text">高级菜品</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扬州狮子头"><span class="nav-number">15.1.</span> <span class="nav-text">扬州狮子头</span></a></li></ol></li></ol></div>
             
-
           </div>
         </section>
-      <!--/noindex-->
       
 
     </div>
@@ -722,7 +675,6 @@
   <span class="author" itemprop="copyrightHolder">Jack Liu</span>
 </div>
 
-
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -733,7 +685,6 @@
     NexT.Muse
   </a>
 </div>
-
 
         
 
@@ -767,46 +718,46 @@
 
 
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
 
 
@@ -819,11 +770,10 @@
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
       var disqus_identifier = '2016/07/24/美食台系列/';
-
       var disqus_title = "美食台系列";
+      var disqus_url = 'http://jackliu17.github.io/2016/07/24/美食台系列/';
 
-
-      function run_disqus_script(disqus_script) {
+      function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
         dsq.type = 'text/javascript';
         dsq.async = true;
@@ -832,18 +782,20 @@
       }
 
       run_disqus_script('count.js');
-
       
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
         run_disqus_script('embed.js');
       
-
     </script>
   
 
 
 
 
-
   
   
 
@@ -852,6 +804,7 @@
   
 
   
+
   
 
 
