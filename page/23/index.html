@@ -243,6 +243,348 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/03/10/Swift中的字符串和集合/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/10/Swift中的字符串和集合/" itemprop="url">
+                  Swift中的字符串和集合
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-10T19:26:25+08:00">
+              2016-03-10
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-09-06T15:48:24+08:00">
+              2016-09-06
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IT/" itemprop="url" rel="index">
+                    <span itemprop="name">IT</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/10/Swift中的字符串和集合/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/10/Swift中的字符串和集合/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="字符串和字符"><a href="#字符串和字符" class="headerlink" title="字符串和字符"></a>字符串和字符</h1><p>表现形式</p>
+<pre><code>var dollarSign: Character = &quot;$&quot;
+var myFirstSwiftString: String = &quot;mo&apos; money&quot;
+var mySecondSwiftString: String = &quot;mo&apos; problems&quot;
+var concatenatedString = myFirstSwiftString + &quot;, &quot; + mySecondSwiftString
+
+//显示其类型
+concatenatedString.dynamicType
+</code></pre><p>遍历字符串中的字符数组</p>
+<pre><code>var password = &quot;Meet me in St. Louis&quot;
+for character in password.characters {
+if character == &quot;e&quot; {
+    print(&quot;found an e!&quot;)
+} else {
+}
+}
+</code></pre><h2 id="字符串中取值字符"><a href="#字符串中取值字符" class="headerlink" title="字符串中取值字符"></a>字符串中取值字符</h2><p>尾字符</p>
+<pre><code>var lastLetter = word.removeAtIndex(word.endIndex.predecessor())
+</code></pre><p>首字符</p>
+<pre><code>var firstLetter = word.removeAtIndex(word.startIndex)
+</code></pre><h2 id="将字符串转成数组，取出第一个"><a href="#将字符串转成数组，取出第一个" class="headerlink" title="将字符串转成数组，取出第一个"></a>将字符串转成数组，取出第一个</h2><pre><code>var word = &quot;tan&quot;
+var firstLetter = Array(word.characters)[0]
+</code></pre><h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="表现形式"><a href="#表现形式" class="headerlink" title="表现形式"></a>表现形式</h2><p>纯字符串</p>
+<pre><code>var s:Character = &quot;美&quot;
+var quote1 = &quot;\&apos;&quot;
+var quote2 = &quot;\u{22}&quot;
+</code></pre><p>带变量的字符串</p>
+<pre><code>print(&quot;quote1的值为:\(quote1),quote2的值为:\(quote2)&quot;)
+</code></pre><p>带表达式的字符串</p>
+<pre><code>var lbsPerDay = 0.75
+var daysPerMonth:Double = 30.0
+doggyDiet = &quot;\(dogName) eats \(lbsPerDay * daysPerMonth)lbs of dog food per month&quot;
+</code></pre><p>Swift中的字符串是结构体，而NSString中的字符串是Class.Swift中的字符串也可以使用NSString方法</p>
+<pre><code>let newPassword = password.stringByReplacingOccurrencesOfString(&quot;e&quot;, withString: &quot;3&quot;)
+</code></pre><ol>
+<li>单个字符来指定字符常量，如“A”，“9”</li>
+<li>转义字符表示特殊字符常量，如”\n”,”\t”</li>
+<li>使用\u{n}的Unicode形式，n代表一个1~8位的十六进制</li>
+<li>必须用双引号包起来</li>
+<li>Swift中的每一个字符代表了一个可扩展字母集</li>
+</ol>
+<h2 id="字符串创建"><a href="#字符串创建" class="headerlink" title="字符串创建"></a>字符串创建</h2><h3 id="方法1：直接赋值"><a href="#方法1：直接赋值" class="headerlink" title="方法1：直接赋值"></a>方法1：直接赋值</h3><pre><code>var str1 = &quot;Jike&quot;
+</code></pre><h3 id="方法2：构造函数"><a href="#方法2：构造函数" class="headerlink" title="方法2：构造函数"></a>方法2：构造函数</h3><pre><code>var str2 = String()
+
+//创建多个重复字符的字符串
+var str3 = String(count:4,repeatedValue:Character(&quot;a&quot;))
+var strRep = String(count:4,repeatedValue:UnicodeScalar(&quot;xxxxx&quot;)) //使用unicode
+print(strRep)
+</code></pre><h3 id="初始化空字符串"><a href="#初始化空字符串" class="headerlink" title="初始化空字符串"></a>初始化空字符串</h3><pre><code>// Here&apos;s one way to initialize an empty Swift string
+var characterPoorString = &quot;&quot;
+
+// And here&apos;s another 
+let potentialRichString = String()
+characterPoorString.characters
+</code></pre><h2 id="字符串是否为空"><a href="#字符串是否为空" class="headerlink" title="字符串是否为空"></a>字符串是否为空</h2><pre><code>print(str3.isEmpty)
+</code></pre><h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><h3 id="方式1-用-“-”"><a href="#方式1-用-“-”" class="headerlink" title="方式1.用 “+”"></a>方式1.用 “+”</h3><pre><code>var str4 = str1 + &quot;College&quot;
+str1 += &quot;Hello&quot;
+print(str4)
+</code></pre><h3 id="方式2-用append"><a href="#方式2-用append" class="headerlink" title="方式2.用append"></a>方式2.用append</h3><pre><code>let char:Character = &quot;!&quot;
+str1.append(char)
+print(str1)
+</code></pre><h2 id="字符数量"><a href="#字符数量" class="headerlink" title="字符数量"></a>字符数量</h2><h3 id="Swift1-x"><a href="#Swift1-x" class="headerlink" title="Swift1.x"></a>Swift1.x</h3><pre><code>print(&quot;str3 has \(countElements(str3)) characters&quot;)
+</code></pre><h3 id="Swift2-x"><a href="#Swift2-x" class="headerlink" title="Swift2.x"></a>Swift2.x</h3><pre><code>print(&quot;str3 has \(str4.characters.count) characters&quot;)
+</code></pre><h3 id="这两种的输出结果不一样"><a href="#这两种的输出结果不一样" class="headerlink" title="这两种的输出结果不一样"></a>这两种的输出结果不一样</h3><pre><code>var nWithTilde = &quot;\u{006E}\u{0303}&quot;
+nWithTilde.unicodeScalars.count
+nWithTilde.characters.count  //通常用这个
+</code></pre><ol>
+<li>Swift中的Unicode16Count函数所获得的值，才是和NSString中的length一样。因为SWIFT的count是基于Unicode，而OC的length是基于UTF-16</li>
+<li>Swift中的字符串是否可以修改仅通过定义的是变量还是常量来决定,也就是var or let</li>
+</ol>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><pre><code>let quotation = &quot;We are the same&quot;
+let sameQuotation = &quot;We are the same&quot;
+if quotation == sameQuotation {
+print(&quot;These are the same&quot;)
+}
+</code></pre><h2 id="字符串是否有特定的前缀后缀"><a href="#字符串是否有特定的前缀后缀" class="headerlink" title="字符串是否有特定的前缀后缀"></a>字符串是否有特定的前缀后缀</h2><pre><code>var food = [&quot;Fruits:apple&quot;,
+&quot;Fruits : orange&quot;,
+&quot;Fruits : banana&quot;,
+&quot;Vegetables: tomato&quot;,
+&quot;Vegetables: potato&quot;]
+
+for fry in food{
+if fry.hasPrefix(&quot;Fruits&quot;){
+   print(fry)
+}
+
+if fry.hasSuffix(&quot;o&quot;){
+   print(fry)
+}
+}
+</code></pre><h2 id="字符串是否包含某子字符串"><a href="#字符串是否包含某子字符串" class="headerlink" title="字符串是否包含某子字符串"></a>字符串是否包含某子字符串</h2><pre><code>let word = &quot;fortunate&quot;
+if word.rangeOfString(&quot;tuna&quot;) != nil {
+print(&quot;yes&quot;)
+}
+</code></pre><h2 id="替换子字符串"><a href="#替换子字符串" class="headerlink" title="替换子字符串"></a>替换子字符串</h2><pre><code>let lottaLikes = &quot;If like, you wanna learn Swift, like, you should build lots of small apps, cuz it&apos;s like, a good way to practice.&quot;
+
+let noLikes = lottaLikes.stringByReplacingOccurrencesOfString(&quot;like, &quot;, withString: &quot;&quot;)
+</code></pre><h2 id="字符串转为整形"><a href="#字符串转为整形" class="headerlink" title="字符串转为整形"></a>字符串转为整形</h2><h3 id="Swift-1-x"><a href="#Swift-1-x" class="headerlink" title="Swift 1.x"></a>Swift 1.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = myString.toInt()
+</code></pre><h3 id="Swift-2-x"><a href="#Swift-2-x" class="headerlink" title="Swift 2.x"></a>Swift 2.x</h3><pre><code>let myString: String = &quot;256&quot;
+let myInt: Int? = Int(myString)
+</code></pre><h2 id="字符串大小写转换"><a href="#字符串大小写转换" class="headerlink" title="字符串大小写转换"></a>字符串大小写转换</h2><pre><code>let didYouKnowString = &quot;Did you know that the Swift String class comes with lots of useful methods?&quot;
+let whisperString = &quot;psst&quot; + &quot;, &quot; + didYouKnowString.lowercaseString
+</code></pre><h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p><img src="https://www.dropbox.com/s/elzir5c7scwx4hb/20160901_Collection.png?dl=1" alt="1"></p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="数组的创建"><a href="#数组的创建" class="headerlink" title="数组的创建"></a>数组的创建</h3><p>方式1</p>
+<pre><code>var numbers = Array&lt;Double&gt;() //Array&lt;Double&gt;.init 后面省略了init方法
+</code></pre><p>方式2</p>
+<pre><code>var moreNumbers = [Double]()
+moreNumbers = [85.0, 90.0, 95.0]
+</code></pre><p>方式3</p>
+<pre><code>let differentNumbers = [97.5, 98.5, 99.0]
+</code></pre><h3 id="数组合并"><a href="#数组合并" class="headerlink" title="数组合并"></a>数组合并</h3><pre><code>moreNumbers = moreNumbers + differentNumbers
+</code></pre><h3 id="数组可持有任何类型对象"><a href="#数组可持有任何类型对象" class="headerlink" title="数组可持有任何类型对象"></a>数组可持有任何类型对象</h3><pre><code>var circuit = [livingRoomSwitch, kitchenSwitch, bathroomSwitch]
+</code></pre><h3 id="数组尾部添加"><a href="#数组尾部添加" class="headerlink" title="数组尾部添加"></a>数组尾部添加</h3><pre><code>var roadTripMusic = [&quot;Neil Young&quot;,&quot;Kendrick Lamar&quot;,&quot;Flo Rida&quot;, &quot;Nirvana&quot;]
+roadTripMusic.append(&quot;Rae Sremmurd&quot;)
+</code></pre><h3 id="数组插入"><a href="#数组插入" class="headerlink" title="数组插入"></a>数组插入</h3><pre><code>roadTripMusic.insert(&quot;Dej Loaf&quot;, atIndex: 2)
+</code></pre><h3 id="数组删除"><a href="#数组删除" class="headerlink" title="数组删除"></a>数组删除</h3><pre><code>roadTripMusic.removeAtIndex(3)
+</code></pre><h3 id="数组计数"><a href="#数组计数" class="headerlink" title="数组计数"></a>数组计数</h3><pre><code>roadTripMusic.count
+</code></pre><h3 id="数组取值"><a href="#数组取值" class="headerlink" title="数组取值"></a>数组取值</h3><pre><code>let musician = roadTripMusic[2]
+</code></pre><h3 id="数组替换"><a href="#数组替换" class="headerlink" title="数组替换"></a>数组替换</h3><pre><code>food[0...2] = [&quot;a&quot;,&quot;b&quot;]
+//从第一个到第三个元素进行替换，但只有两个元素，第三个将被删除，被“没有”所替换
+</code></pre><h3 id="数组删除最后一项"><a href="#数组删除最后一项" class="headerlink" title="数组删除最后一项"></a>数组删除最后一项</h3><pre><code>food.removeLast()
+</code></pre><h3 id="数组删除所有"><a href="#数组删除所有" class="headerlink" title="数组删除所有"></a>数组删除所有</h3><pre><code>food.removeAll(keepCapacity:false)
+</code></pre><h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h3 id="字典创建"><a href="#字典创建" class="headerlink" title="字典创建"></a>字典创建</h3><p>方式1</p>
+<pre><code>var groupsDict = [String:String]()
+</code></pre><p>方式2</p>
+<pre><code>var animalGroupsDict = [&quot;whales&quot;:&quot;pod&quot;, &quot;geese&quot;:&quot;flock&quot;, &quot;lions&quot;: &quot;pride&quot;]
+
+var averageLifeSpanDict = [String:Range&lt;Int&gt;]()
+var lifeSpanDict = [&quot;African Grey Parrot&quot;: 50...70, &quot;Tiger Salamander&quot;: 12...15, &quot;Bottlenose Dolphin&quot;: 20...30]
+</code></pre><h3 id="空字典"><a href="#空字典" class="headerlink" title="空字典"></a>空字典</h3><pre><code>var emptyDic:[String:Double] = [:] 
+print(emptyDic.isEmpty)
+</code></pre><h3 id="字典添加"><a href="#字典添加" class="headerlink" title="字典添加"></a>字典添加</h3><pre><code>animalGroupsDict[&quot;crows&quot;] = &quot;murder&quot;
+animalGroupsDict[&quot;monkeys&quot;] = &quot;troop&quot;
+</code></pre><h3 id="字典计数"><a href="#字典计数" class="headerlink" title="字典计数"></a>字典计数</h3><pre><code>animalGroupsDict.count
+</code></pre><h3 id="字典删除"><a href="#字典删除" class="headerlink" title="字典删除"></a>字典删除</h3><pre><code>animalGroupsDict[&quot;crows&quot;] = nil
+</code></pre><p>移除单个值</p>
+<pre><code>person.removeValueForKey(&quot;name&quot;)
+</code></pre><p>移除所有值</p>
+<pre><code>person.removeAll(keepCapacity:false)
+</code></pre><h3 id="字典更新"><a href="#字典更新" class="headerlink" title="字典更新"></a>字典更新</h3><p>方式1</p>
+<pre><code>animalGroupsDict[&quot;monkeys&quot;] = &quot;barrel&quot;
+</code></pre><p>方式2:返回值为optional类型，如果该key存在，则赋新值，返回old value,如果key不存在，则赋值，同时返回nil</p>
+<pre><code>var group = animalGroupsDict.updateValue(&quot;gaggle&quot;, forKey: &quot;geese&quot;)
+</code></pre><h3 id="字典取值"><a href="#字典取值" class="headerlink" title="字典取值"></a>字典取值</h3><p>字典取值所返回的是optional，因为很可能没有该key，所以使用前需要用if let unwrap</p>
+<pre><code>let groupOfWhales = animalGroupsDict[&quot;whales&quot;]
+
+if let groupOfWhales = animalGroupsDict[&quot;whales&quot;] {
+print(&quot;We saw a \(groupOfWhales) of whales from the boat.&quot;)
+} else {
+print(&quot;No value found for that key.&quot;)
+}
+</code></pre><h3 id="字典键和值的取出"><a href="#字典键和值的取出" class="headerlink" title="字典键和值的取出"></a>字典键和值的取出</h3><pre><code>let keysArr = [String](person.keys)
+let valueArr = [String](person.values)
+print(valuesArr)
+</code></pre><h3 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h3><p>字典的遍历后，返回时元组类型</p>
+<pre><code>for (key,value) in person{
+ print(&quot;\(key):\(value)&quot;)
+} 
+</code></pre><h3 id="字典的使用"><a href="#字典的使用" class="headerlink" title="字典的使用"></a>字典的使用</h3><p>这种的声明是不严谨的，因为值的类型都不是一样的，系统会推断它是NSObject类型</p>
+<p>字典的key or value 通常最好是同一类型，否则强制解析时会出错</p>
+<pre><code>var person = [&quot;age&quot;:18,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:178]
+</code></pre><p>这样会报错，因为是将NSObject转为int</p>
+<pre><code>var height:Int? = person[&quot;身高&quot;]  
+if height != nil {
+   print(height!)
+}
+</code></pre><p>以下才正确</p>
+<pre><code>var person = [&quot;age&quot;:&quot;18&quot;,&quot;name&quot;:&quot;Tom&quot;,&quot;身高&quot;:&quot;178&quot;]
+
+var height:String? = person[&quot;身高&quot;]  
+if height != nil {
+   print(height!)
+}
+
+print(person[&quot;age&quot;])
+</code></pre><h2 id="Set-无序且不能有相同的元素"><a href="#Set-无序且不能有相同的元素" class="headerlink" title="Set - 无序且不能有相同的元素"></a>Set - 无序且不能有相同的元素</h2><h3 id="集合创建"><a href="#集合创建" class="headerlink" title="集合创建"></a>集合创建</h3><p>方式1</p>
+<pre><code>var utensils = Set&lt;String&gt;()
+var trees = Set&lt;Character&gt;()
+var flowers:Set&lt;Character&gt; = [&quot;🌷&quot;,&quot;🌹&quot;,&quot;🌸&quot;]
+</code></pre><p>方式2</p>
+<pre><code>var cutlery: Set = [&quot;fork&quot;, &quot;knife&quot;, &quot;spoon&quot;]
+</code></pre><h3 id="集合的操作"><a href="#集合的操作" class="headerlink" title="集合的操作"></a>集合的操作</h3><pre><code>trees.insert(&quot;🌲&quot;)
+trees.insert(&quot;🌳&quot;)
+trees.insert(&quot;🌵&quot;)
+trees.remove(&quot;🌵&quot;)
+trees.count
+</code></pre><h2 id="AnyObject-and-Any"><a href="#AnyObject-and-Any" class="headerlink" title="AnyObject and Any"></a>AnyObject and Any</h2><p>Swift中有两种特殊的object:  </p>
+<ol>
+<li>Any:表示任何数据类型</li>
+<li>AnyObject:表示任何对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    //因为数组里的数据不一样，这里的数组默认是AnyObject类型，因为他们都不一样</span><br><span class="line">    var shoppingList = [&quot;Eggs&quot;,123,true] </span><br><span class="line">    for item in shoppingList &#123;</span><br><span class="line">      print(item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>for fruit in food{
+fruit = &quot;good&quot; //error, fruit默认是let类型
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/03/10/Swift语言基础/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1191,7 +1533,7 @@ repeat {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">113</span>
+              <span class="site-state-item-count">114</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1208,7 +1550,7 @@ repeat {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

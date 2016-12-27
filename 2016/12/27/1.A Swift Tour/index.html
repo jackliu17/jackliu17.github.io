@@ -1,0 +1,784 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift_3.0.1," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Simple ValuesUse let to make a constant and var to make a variable.
+123var myVariable = 42myVariable = 50let myConstant = 42
+Compiler infer its type or explicit declare
+1let explicitDouble: Double = 7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.A Swift Tour">
+<meta property="og:url" content="http://jackliu17.github.io/2016/12/27/1.A Swift Tour/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Simple ValuesUse let to make a constant and var to make a variable.
+123var myVariable = 42myVariable = 50let myConstant = 42
+Compiler infer its type or explicit declare
+1let explicitDouble: Double = 7">
+<meta property="og:updated_time" content="2016-12-27T10:00:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1.A Swift Tour">
+<meta name="twitter:description" content="Simple ValuesUse let to make a constant and var to make a variable.
+123var myVariable = 42myVariable = 50let myConstant = 42
+Compiler infer its type or explicit declare
+1let explicitDouble: Double = 7">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jackliu17.github.io/2016/12/27/1.A Swift Tour/"/>
+
+
+
+
+
+  <title> 1.A Swift Tour | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/12/27/1.A Swift Tour/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                1.A Swift Tour
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-27T17:48:55+08:00">
+              2016-12-27
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2016-12-27T18:00:01+08:00">
+              2016-12-27
+            </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/27/1.A Swift Tour/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/27/1.A Swift Tour/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Simple-Values"><a href="#Simple-Values" class="headerlink" title="Simple Values"></a>Simple Values</h1><p>Use <code>let</code> to make a constant and <code>var</code> to make a variable.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myVariable = <span class="number">42</span></span><br><span class="line">myVariable = <span class="number">50</span></span><br><span class="line"><span class="keyword">let</span> myConstant = <span class="number">42</span></span><br></pre></td></tr></table></figure>
+<p>Compiler infer its type or explicit declare</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> explicitDouble: <span class="type">Double</span> = <span class="number">70</span></span><br></pre></td></tr></table></figure>
+<p>Converted to another type</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> label = <span class="string">"The width is "</span></span><br><span class="line"><span class="keyword">let</span> width = <span class="number">94</span></span><br><span class="line"><span class="keyword">let</span> widthLabel = label + <span class="type">String</span>(width)</span><br></pre></td></tr></table></figure>
+<p>Placeholder </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> apples = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> oranges = <span class="number">5</span></span><br><span class="line"><span class="keyword">let</span> appleSummary = <span class="string">"I have <span class="subst">\(apples)</span> apples."</span></span><br><span class="line"><span class="keyword">let</span> fruitSummary = <span class="string">"I have <span class="subst">\(apples + oranges)</span> pieces of fruit."</span></span><br></pre></td></tr></table></figure>
+<p>Array and dictionary</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"catfish"</span>, <span class="string">"water"</span>, <span class="string">"tulips"</span>, <span class="string">"blue paint"</span>]</span><br><span class="line">shoppingList[<span class="number">1</span>] = <span class="string">"bottle of water"</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> occupations = [</span><br><span class="line">    <span class="string">"Malcolm"</span>: <span class="string">"Captain"</span>,</span><br><span class="line">    <span class="string">"Kaylee"</span>: <span class="string">"Mechanic"</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">occupations[<span class="string">"Jayne"</span>] = <span class="string">"Public Relations"</span></span><br></pre></td></tr></table></figure>
+<p>Empty array or dictionary</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyArray = [<span class="type">String</span>]()</span><br><span class="line"><span class="keyword">let</span> emptyDictionary = [<span class="type">String</span>: <span class="type">Float</span>]()</span><br></pre></td></tr></table></figure>
+<p>if type information can be inferred</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shoppingList = []</span><br><span class="line"></span><br><span class="line">occupations = [:]</span><br></pre></td></tr></table></figure>
+<h2 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h2><ol>
+<li>Use <code>if</code>and <code>switch</code> to make conditionals</li>
+<li>use <code>for-in</code>, for, <code>while</code>, and<code>repeat-while</code> to make loops</li>
+<li>Parentheses around the condition or loop variable are optional. Braces around the body are required.</li>
+</ol>
+<h3 id="For-in"><a href="#For-in" class="headerlink" title="For in"></a>For in</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> individualScores = [<span class="number">75</span>, <span class="number">43</span>, <span class="number">103</span>, <span class="number">87</span>, <span class="number">12</span>]</span><br><span class="line"><span class="keyword">var</span> teamScore = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> score <span class="keyword">in</span> individualScores &#123;</span><br><span class="line">    <span class="keyword">if</span> score &gt; <span class="number">50</span> &#123;</span><br><span class="line">        teamScore += <span class="number">3</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        teamScore += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(teamScore)</span><br></pre></td></tr></table></figure>
+<p>Use ..&lt; to make a range that omits its upper value, and use … to make a range that includes both values.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> total = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">4</span> &#123;</span><br><span class="line">    total += i</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(total)</span><br></pre></td></tr></table></figure>
+<h3 id="For-in-to-iterate-dictionary"><a href="#For-in-to-iterate-dictionary" class="headerlink" title="For-in to iterate  dictionary"></a>For-in to iterate  dictionary</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> interestingNumbers = [</span><br><span class="line">    <span class="string">"Prime"</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>],</span><br><span class="line">    <span class="string">"Fibonacci"</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>],</span><br><span class="line">    <span class="string">"Square"</span>: [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>],</span><br><span class="line">]</span><br><span class="line"><span class="keyword">var</span> largest = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (kind, numbers) <span class="keyword">in</span> interestingNumbers &#123;</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">        <span class="keyword">if</span> number &gt; largest &#123;</span><br><span class="line">            largest = number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(largest)</span><br></pre></td></tr></table></figure>
+<h3 id="If-let-to-unwrap-optionals"><a href="#If-let-to-unwrap-optionals" class="headerlink" title="If - let to unwrap optionals"></a>If - let to unwrap optionals</h3><p>An optional value either contains a value or contains nil to indicate that a value is missing</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalString: <span class="type">String</span>? = <span class="string">"Hello"</span></span><br><span class="line"><span class="built_in">print</span>(optionalString == <span class="literal">nil</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> optionalName: <span class="type">String</span>? = <span class="string">"John Appleseed"</span></span><br><span class="line"><span class="keyword">var</span> greeting = <span class="string">"Hello!"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = optionalName &#123;</span><br><span class="line">    greeting = <span class="string">"Hello, <span class="subst">\(name)</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>default value using the ?? operator. If the optional value is missing, the default value is used instead.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nickName: <span class="type">String</span>? = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> fullName: <span class="type">String</span> = <span class="string">"John Appleseed"</span></span><br><span class="line"><span class="keyword">let</span> informalGreeting = <span class="string">"Hi <span class="subst">\(nickName ?? fullName)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Switch-confusing……"><a href="#Switch-confusing……" class="headerlink" title="Switch (confusing……)"></a>Switch (confusing……)</h3><p>Switches support any kind of data </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vegetable = <span class="string">"red pepper"</span></span><br><span class="line"><span class="keyword">switch</span> vegetable &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"celery"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Add some raisins and make ants on a log."</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"cucumber"</span>, <span class="string">"watercress"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"That would make a good tea sandwich."</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> x <span class="keyword">where</span> x.hasSuffix(<span class="string">"pepper"</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Is it a spicy <span class="subst">\(x)</span>?"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Everything tastes good in soup."</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="While"><a href="#While" class="headerlink" title="While"></a>While</h3><p>while to repeat a block of code until a condition changes</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> n &lt; <span class="number">100</span> &#123;</span><br><span class="line">    n = n * <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(n)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> m = <span class="number">2</span></span><br><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">    m = m * <span class="number">2</span></span><br><span class="line">&#125; <span class="keyword">while</span> m &lt; <span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(m)</span><br></pre></td></tr></table></figure>
+<h2 id="Functions-and-Closures"><a href="#Functions-and-Closures" class="headerlink" title="Functions and Closures"></a>Functions and Closures</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String, day: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello <span class="subst">\(person)</span>, today is <span class="subst">\(day)</span>."</span></span><br><span class="line">&#125;</span><br><span class="line">greet(person: <span class="string">"Bob"</span>, day: <span class="string">"Tuesday"</span>)</span><br></pre></td></tr></table></figure>
+<p>custom argument label before the parameter name, or write _ to use no argument label</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String, on day: String)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello <span class="subst">\(person)</span>, today is <span class="subst">\(day)</span>."</span></span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">"John"</span>, on: <span class="string">"Wednesday"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Return-multiple-values-by-tuple"><a href="#Return-multiple-values-by-tuple" class="headerlink" title="Return multiple values by tuple"></a>Return multiple values by tuple</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculateStatistics</span><span class="params">(scores: [Int])</span></span> -&gt; (<span class="built_in">min</span>: <span class="type">Int</span>, <span class="built_in">max</span>: <span class="type">Int</span>, sum: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">min</span> = scores[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">max</span> = scores[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> score <span class="keyword">in</span> scores &#123;</span><br><span class="line">        <span class="keyword">if</span> score &gt; <span class="built_in">max</span> &#123;</span><br><span class="line">            <span class="built_in">max</span> = score</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> score &lt; <span class="built_in">min</span> &#123;</span><br><span class="line">            <span class="built_in">min</span> = score</span><br><span class="line">        &#125;</span><br><span class="line">        sum += score</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">min</span>, <span class="built_in">max</span>, sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// The elements of a tuple can be referred to either by name or by number.</span></span><br><span class="line"><span class="keyword">let</span> statistics = calculateStatistics(scores: [<span class="number">5</span>, <span class="number">3</span>, <span class="number">100</span>, <span class="number">3</span>, <span class="number">9</span>])</span><br><span class="line"><span class="built_in">print</span>(statistics.sum)</span><br><span class="line"><span class="built_in">print</span>(statistics.<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Take-a-variable-number-of-arguments"><a href="#Take-a-variable-number-of-arguments" class="headerlink" title="Take a variable number of arguments"></a>Take a variable number of arguments</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sumOf</span><span class="params">(numbers: Int...)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers &#123;</span><br><span class="line">        sum += number</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br><span class="line">sumOf()</span><br><span class="line">sumOf(numbers: <span class="number">42</span>, <span class="number">597</span>, <span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Nested-functions"><a href="#Nested-functions" class="headerlink" title="Nested functions"></a>Nested functions</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">returnFifteen</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">10</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// Nested functions have access to variables that were declared in the outer function</span></span><br><span class="line">        y += <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">    add()</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line">&#125;</span><br><span class="line">returnFifteen()</span><br></pre></td></tr></table></figure>
+<h3 id="Function-as-variable"><a href="#Function-as-variable" class="headerlink" title="Function as variable"></a>Function as variable</h3><p>Return another function as its value.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeIncrementer</span><span class="params">()</span></span> -&gt; ((<span class="type">Int</span>) -&gt; <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addOne</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + number</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> addOne</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> increment = makeIncrementer()</span><br><span class="line">increment(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<p>A function can take another function as one of its arguments.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasAnyMatches</span><span class="params">(list: [Int], condition: <span class="params">(Int)</span></span></span> -&gt; <span class="type">Bool</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> list &#123;</span><br><span class="line">        <span class="keyword">if</span> condition(item) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">lessThanTen</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> number &lt; <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">20</span>, <span class="number">19</span>, <span class="number">7</span>, <span class="number">12</span>]</span><br><span class="line">hasAnyMatches(list: numbers, condition: lessThanTen)</span><br></pre></td></tr></table></figure>
+<h3 id="Closure-confusing…"><a href="#Closure-confusing…" class="headerlink" title="Closure (confusing…)"></a>Closure (confusing…)</h3><p>write a closure without a name by surrounding code with braces ({}). Use <code>in</code> to separate the arguments and return type from the body.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">20</span>, <span class="number">19</span>, <span class="number">7</span>, <span class="number">12</span>]</span><br><span class="line">numbers.<span class="built_in">map</span>(&#123;</span><br><span class="line">    (number: <span class="type">Int</span>) -&gt; <span class="type">Int</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">let</span> result = <span class="number">3</span> * number</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Single statement closures</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mappedNumbers = numbers.<span class="built_in">map</span>(&#123; number <span class="keyword">in</span> <span class="number">3</span> * number &#125;)</span><br><span class="line"><span class="built_in">print</span>(mappedNumbers)</span><br></pre></td></tr></table></figure>
+<p>You can refer to parameters by number instead of by name.A closure passed as the last argument to a function can appear immediately after the parentheses. When a closure is the only argument to a function, you can omit the parentheses entirely.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sortedNumbers = numbers.sorted &#123; $<span class="number">0</span> &gt; $<span class="number">1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(sortedNumbers)</span><br></pre></td></tr></table></figure>
+<h2 id="Objects-and-Classes"><a href="#Objects-and-Classes" class="headerlink" title="Objects and Classes"></a>Objects and Classes</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numberOfSides = <span class="number">0</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"A shape with <span class="subst">\(numberOfSides)</span> sides."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = <span class="type">Shape</span>()</span><br><span class="line">shape.numberOfSides = <span class="number">7</span></span><br><span class="line"><span class="keyword">var</span> shapeDescription = shape.simpleDescription()</span><br></pre></td></tr></table></figure>
+<h3 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h3><p>Every property needs a value assigned—either in its declaration (as with numberOfSides) or in the initializer (as with name).</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NamedShape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numberOfSides: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"A shape with <span class="subst">\(numberOfSides)</span> sides."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Subclasses"><a href="#Subclasses" class="headerlink" title="Subclasses"></a>Subclasses</h3><ol>
+<li>There is no requirement for classes to subclass any standard root class, so you can include or omit a superclass as needed.</li>
+<li>Methods on a subclass that override the superclass’s implementation are marked with <code>override</code></li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span>: <span class="title">NamedShape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sideLength: <span class="type">Double</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(sideLength: <span class="type">Double</span>, name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.sideLength = sideLength</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">        numberOfSides = <span class="number">4</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">area</span><span class="params">()</span></span> -&gt;  <span class="type">Double</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> sideLength * sideLength</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"A square with sides of length <span class="subst">\(sideLength)</span>."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test = <span class="type">Square</span>(sideLength: <span class="number">5.2</span>, name: <span class="string">"my test square"</span>)</span><br><span class="line">test.area()</span><br><span class="line">test.simpleDescription()</span><br></pre></td></tr></table></figure>
+<h3 id="Getter-and-a-setter-confusing…"><a href="#Getter-and-a-setter-confusing…" class="headerlink" title="Getter and a setter (confusing…)"></a>Getter and a setter (confusing…)</h3><p>Notice the init method</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EquilateralTriangle</span>: <span class="title">NamedShape</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sideLength: <span class="type">Double</span> = <span class="number">0.0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(sideLength: <span class="type">Double</span>, name: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="comment">// Setting the value of properties that the subclass declares.</span></span><br><span class="line">        <span class="keyword">self</span>.sideLength = sideLength</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// Calling the superclass’s initializer</span></span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Changing the value of properties defined by the superclass. </span></span><br><span class="line">        numberOfSides = <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> perimeter: <span class="type">Double</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">3.0</span> * sideLength</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            sideLength = newValue / <span class="number">3.0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"An equilateral triangle with sides of length <span class="subst">\(sideLength)</span>."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> triangle = <span class="type">EquilateralTriangle</span>(sideLength: <span class="number">3.1</span>, name: <span class="string">"a triangle"</span>)</span><br><span class="line"><span class="built_in">print</span>(triangle.perimeter)</span><br><span class="line">triangle.perimeter = <span class="number">9.9</span></span><br><span class="line"><span class="built_in">print</span>(triangle.sideLength)</span><br></pre></td></tr></table></figure>
+<h3 id="WillSet-and-didSet-confusing…"><a href="#WillSet-and-didSet-confusing…" class="headerlink" title="WillSet and didSet (confusing…)"></a>WillSet and didSet (confusing…)</h3><ol>
+<li>If you don’t need to compute the property but still need to provide code that is run before and after setting a new value, use willSet and didSet. </li>
+<li>The code you provide is run any time the value changes outside of an initializer. </li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// For example, the class below ensures that the side length of its triangle is always the same as the side length of its square</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TriangleAndSquare</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> triangle: <span class="type">EquilateralTriangle</span> &#123;</span><br><span class="line">        <span class="keyword">willSet</span> &#123;</span><br><span class="line">            square.sideLength = newValue.sideLength</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> square: <span class="type">Square</span> &#123;</span><br><span class="line">        <span class="keyword">willSet</span> &#123;</span><br><span class="line">            triangle.sideLength = newValue.sideLength</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">init</span>(size: <span class="type">Double</span>, name: <span class="type">String</span>) &#123;</span><br><span class="line">        square = <span class="type">Square</span>(sideLength: size, name: name)</span><br><span class="line">        triangle = <span class="type">EquilateralTriangle</span>(sideLength: size, name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> triangleAndSquare = <span class="type">TriangleAndSquare</span>(size: <span class="number">10</span>, name: <span class="string">"another test shape"</span>)</span><br><span class="line"><span class="built_in">print</span>(triangleAndSquare.square.sideLength)</span><br><span class="line"><span class="built_in">print</span>(triangleAndSquare.triangle.sideLength)</span><br><span class="line">triangleAndSquare.square = <span class="type">Square</span>(sideLength: <span class="number">50</span>, name: <span class="string">"larger square"</span>)</span><br><span class="line"><span class="built_in">print</span>(triangleAndSquare.triangle.sideLength)</span><br></pre></td></tr></table></figure>
+<p>If the value before the <code>?</code> is nil, everything after the <code>?</code> is ignored and the value of the whole expression is nil. Otherwise, the optional value is unwrapped, and everything after the <code>?</code> acts on the unwrapped value. In both cases, the value of the whole expression is an optional value.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> optionalSquare: <span class="type">Square</span>? = <span class="type">Square</span>(sideLength: <span class="number">2.5</span>, name: <span class="string">"optional square"</span>)</span><br><span class="line"><span class="keyword">let</span> sideLength = optionalSquare?.sideLength</span><br></pre></td></tr></table></figure>
+<h2 id="Enumerations-and-Structures"><a href="#Enumerations-and-Structures" class="headerlink" title="Enumerations and Structures"></a>Enumerations and Structures</h2><h3 id="Raw-value"><a href="#Raw-value" class="headerlink" title="Raw value"></a>Raw value</h3><ol>
+<li>By default, Swift assigns the raw values starting at zero and incrementing by one each time</li>
+<li><code>Ace</code> is explicitly given a raw value of 1, and the rest of the raw values are assigned in order.</li>
+<li>Use the rawValue property to access the raw value of an enumeration case.</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Rank</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> ace = <span class="number">1</span></span><br><span class="line">    <span class="keyword">case</span> two, three, four, five, six, seven, eight, nine, ten</span><br><span class="line">    <span class="keyword">case</span> jack, queen, king</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .ace:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ace"</span></span><br><span class="line">        <span class="keyword">case</span> .jack:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"jack"</span></span><br><span class="line">        <span class="keyword">case</span> .queen:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"queen"</span></span><br><span class="line">        <span class="keyword">case</span> .king:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"king"</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="type">String</span>(<span class="keyword">self</span>.rawValue)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> ace = <span class="type">Rank</span>.ace</span><br><span class="line"><span class="keyword">let</span> aceRawValue = ace.rawValue</span><br></pre></td></tr></table></figure>
+<h3 id="init-rawValue"><a href="#init-rawValue" class="headerlink" title="init?(rawValue:)"></a>init?(rawValue:)</h3><p>Use the<code>init?(rawValue:)</code>initializer to make an instance of an enumeration from a raw value</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> convertedRank = <span class="type">Rank</span>(rawValue: <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> threeDescription = convertedRank.simpleDescription()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="No-raw-value"><a href="#No-raw-value" class="headerlink" title="No raw value"></a>No raw value</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Suit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> spades, hearts, diamonds, clubs</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .spades:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"spades"</span></span><br><span class="line">        <span class="keyword">case</span> .hearts:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"hearts"</span></span><br><span class="line">        <span class="keyword">case</span> .diamonds:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"diamonds"</span></span><br><span class="line">        <span class="keyword">case</span> .clubs:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"clubs"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> hearts = <span class="type">Suit</span>.hearts</span><br><span class="line"><span class="keyword">let</span> heartsDescription = hearts.simpleDescription()</span><br></pre></td></tr></table></figure>
+<h3 id="Associated-values-confusing……"><a href="#Associated-values-confusing……" class="headerlink" title="Associated values (confusing…….)"></a>Associated values (confusing…….)</h3><p>these values are determined when you make the instance, and they can be different for each instance of an enumeration case</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ServerResponse</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> result(<span class="type">String</span>, <span class="type">String</span>)</span><br><span class="line">    <span class="keyword">case</span> failure(<span class="type">String</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> success = <span class="type">ServerResponse</span>.result(<span class="string">"6:00 am"</span>, <span class="string">"8:09 pm"</span>)</span><br><span class="line"><span class="keyword">let</span> failure = <span class="type">ServerResponse</span>.failure(<span class="string">"Out of cheese."</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">switch</span> success &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .result(sunrise, sunset):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Sunrise is at <span class="subst">\(sunrise)</span> and sunset is at <span class="subst">\(sunset)</span>."</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> .failure(message):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Failure...  <span class="subst">\(message)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><p>One of the most important differences between structures and classes is that structures are always copied when they are passed around in your code, but classes are passed by reference.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Card</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rank: <span class="type">Rank</span></span><br><span class="line">    <span class="keyword">var</span> suit: <span class="type">Suit</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">simpleDescription</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"The <span class="subst">\(rank.simpleDescription()</span>) of <span class="subst">\(suit.simpleDescription()</span>)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> threeOfSpades = <span class="type">Card</span>(rank: .three, suit: .spades)</span><br><span class="line"><span class="keyword">let</span> threeOfSpadesDescription = threeOfSpades.simpleDescription()</span><br></pre></td></tr></table></figure>
+<h3 id="Thought-of-counfusing"><a href="#Thought-of-counfusing" class="headerlink" title="Thought of counfusing"></a>Thought of counfusing</h3><ol>
+<li>Mutating </li>
+<li>​</li>
+</ol>
+<h2 id="Protocols-and-Extensions"><a href="#Protocols-and-Extensions" class="headerlink" title="Protocols and Extensions"></a>Protocols and Extensions</h2><h3 id="Protocols-mutating-confusting…"><a href="#Protocols-mutating-confusting…" class="headerlink" title="Protocols (mutating confusting…)"></a>Protocols (mutating confusting…)</h3><p>Use protocol to declare a protocol.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ExampleProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> simpleDescription: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">adjust</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Classes, enumerations, and structs can all adopt protocols.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleClass</span>: <span class="title">ExampleProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> simpleDescription: <span class="type">String</span> = <span class="string">"A very simple class."</span></span><br><span class="line">    <span class="keyword">var</span> anotherProperty: <span class="type">Int</span> = <span class="number">69105</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//The declaration of SimpleClass doesn’t need any of its methods marked as mutating because methods on a class can always modify the class.</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">adjust</span><span class="params">()</span></span> &#123;</span><br><span class="line">        simpleDescription += <span class="string">"  Now 100% adjusted."</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="type">SimpleClass</span>()</span><br><span class="line">a.adjust()</span><br><span class="line"><span class="keyword">let</span> aDescription = a.simpleDescription</span><br><span class="line"><span class="comment">// ---------------------------------------------------------------------------</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SimpleStructure</span>: <span class="title">ExampleProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> simpleDescription: <span class="type">String</span> = <span class="string">"A simple structure"</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">adjust</span><span class="params">()</span></span> &#123;</span><br><span class="line">        simpleDescription += <span class="string">" (adjusted)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="type">SimpleStructure</span>()</span><br><span class="line">b.adjust()</span><br><span class="line"><span class="keyword">let</span> bDescription = b.simpleDescription</span><br></pre></td></tr></table></figure>
+<h3 id="Protocol-type"><a href="#Protocol-type" class="headerlink" title="Protocol type"></a>Protocol type</h3><ol>
+<li>use a protocol name just like any other named type</li>
+<li>When you work with values whose type is a protocol type, methods outside the protocol definition are not available</li>
+<li>Even though the variable <code>protocolValue</code> has a runtime type of <code>SimpleClass</code>, the compiler treats it as the given type of <code>ExampleProtocol</code>. This means that you can’t accidentally access methods or properties that the class implements in addition to its protocol conformance.</li>
+</ol>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> protocolValue: <span class="type">ExampleProtocol</span> = a</span><br><span class="line"><span class="built_in">print</span>(protocolValue.simpleDescription)</span><br><span class="line"></span><br><span class="line"><span class="comment">// print(protocolValue.anotherProperty)  // Uncomment to see the error</span></span><br></pre></td></tr></table></figure>
+<h3 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h3><p>Use extension to add functionality to an existing type, such as new methods and computed properties</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span>: <span class="title">ExampleProtocol</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> simpleDescription: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"The number <span class="subst">\(<span class="keyword">self</span>)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">adjust</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span> += <span class="number">42</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="number">7</span>.simpleDescription)</span><br></pre></td></tr></table></figure>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>represent errors using any type that adopts the <code>Error</code> protocol.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PrinterError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> outOfPaper</span><br><span class="line">    <span class="keyword">case</span> noToner</span><br><span class="line">    <span class="keyword">case</span> onFire</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use <code>throw</code> to throw an error and <code>throws</code> to mark a function that can throw an error. If you throw an error in a function, the function returns immediately and the code that called the function handles the error.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">send</span><span class="params">(job: Int, toPrinter printerName: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> printerName == <span class="string">"Never Has Toner"</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="type">PrinterError</span>.noToner</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Job sent"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Do-catch-handle-error"><a href="#Do-catch-handle-error" class="headerlink" title="Do-catch handle error"></a>Do-catch handle error</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> printerResponse = <span class="keyword">try</span> send(job: <span class="number">1040</span>, toPrinter: <span class="string">"Bi Sheng"</span>)</span><br><span class="line">    <span class="built_in">print</span>(printerResponse)</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Multiple-catch-blocks-that-handle-specific-errors-confusing…"><a href="#Multiple-catch-blocks-that-handle-specific-errors-confusing…" class="headerlink" title="Multiple catch blocks that handle specific errors (confusing…)"></a>Multiple catch blocks that handle specific errors (confusing…)</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> printerResponse = <span class="keyword">try</span> send(job: <span class="number">1440</span>, toPrinter: <span class="string">"Gutenberg"</span>)</span><br><span class="line">    <span class="built_in">print</span>(printerResponse)</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="type">PrinterError</span>.onFire &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I'll just put this over here, with the rest of the fire."</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> printerError <span class="keyword">as</span> <span class="type">PrinterError</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Printer error: <span class="subst">\(printerError)</span>."</span>)</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="handle-errors-is-to-use-try"><a href="#handle-errors-is-to-use-try" class="headerlink" title="handle errors is to use try?"></a>handle errors is to use <code>try?</code></h3><p>Another way to handle errors is to use try? to convert the result to an optional. If the function throws an error, the specific error is discarded and the result is nil. Otherwise, the result is an optional containing the value that the function returned.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> printerSuccess = <span class="keyword">try</span>? send(job: <span class="number">1884</span>, toPrinter: <span class="string">"Mergenthaler"</span>)</span><br><span class="line"><span class="keyword">let</span> printerFailure = <span class="keyword">try</span>? send(job: <span class="number">1885</span>, toPrinter: <span class="string">"Never Has Toner"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Defer"><a href="#Defer" class="headerlink" title="Defer"></a>Defer</h3><p>Use <code>defer</code> to write a block of code that is executed after all other code in the function, just before the function returns. The code is executed regardless of whether the function throws an error. You can use defer to write setup and cleanup code next to each other, even though they need to be executed at different times.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fridgeIsOpen = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> fridgeContent = [<span class="string">"milk"</span>, <span class="string">"eggs"</span>, <span class="string">"leftovers"</span>]</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fridgeContains</span><span class="params">(<span class="number">_</span> food: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    fridgeIsOpen = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">defer</span> &#123;</span><br><span class="line">        fridgeIsOpen = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> result = fridgeContent.<span class="built_in">contains</span>(food)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line">fridgeContains(<span class="string">"banana"</span>)</span><br><span class="line"><span class="built_in">print</span>(fridgeIsOpen)</span><br></pre></td></tr></table></figure>
+<h2 id="Generics"><a href="#Generics" class="headerlink" title="Generics"></a>Generics</h2><p>Write a name inside angle brackets to make a generic function or type.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeArray</span>&lt;Item&gt;<span class="params">(repeating item: Item, numberOfTimes: Int)</span></span> -&gt; [<span class="type">Item</span>] &#123;</span><br><span class="line">    <span class="keyword">var</span> result = [<span class="type">Item</span>]()</span><br><span class="line">    <span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">0</span>..&lt;numberOfTimes &#123;</span><br><span class="line">        result.append(item)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line">makeArray(repeating: <span class="string">"knock"</span>, numberOfTimes:<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>You can make generic forms of functions and methods, as well as classes, enumerations, and structures.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Reimplement the Swift standard library's optional type</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">OptionalValue</span>&lt;<span class="title">Wrapped</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">case</span> some(<span class="type">Wrapped</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> possibleInteger: <span class="type">OptionalValue</span>&lt;<span class="type">Int</span>&gt; = .<span class="keyword">none</span></span><br><span class="line">possibleInteger = .some(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>Use <code>where</code> right before the body to specify a list of requirements</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">anyCommonElements</span>&lt;T: Sequence, U: Sequence&gt;<span class="params">(<span class="number">_</span> lhs: T, <span class="number">_</span> rhs: U)</span></span> -&gt; <span class="type">Bool</span></span><br><span class="line">    <span class="keyword">where</span> <span class="type">T</span>.<span class="type">Iterator</span>.<span class="type">Element</span>: <span class="type">Equatable</span>, <span class="type">T</span>.<span class="type">Iterator</span>.<span class="type">Element</span> == <span class="type">U</span>.<span class="type">Iterator</span>.<span class="type">Element</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> lhsItem <span class="keyword">in</span> lhs &#123;</span><br><span class="line">            <span class="keyword">for</span> rhsItem <span class="keyword">in</span> rhs &#123;</span><br><span class="line">                <span class="keyword">if</span> lhsItem == rhsItem &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">anyCommonElements([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<p>Writing <code>&lt;T: Equatable&gt;</code> is the same as writing <code>&lt;T&gt; ... where T: Equatable&gt;</code>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift-3-0-1/" rel="tag"># swift_3.0.1</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/08/iOS-app-with-Rest-api/" rel="next" title="iOS-app-with-Rest-api">
+                <i class="fa fa-chevron-left"></i> iOS-app-with-Rest-api
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">114</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Simple-Values"><span class="nav-number">1.</span> <span class="nav-text">Simple Values</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Control-Flow"><span class="nav-number">1.1.</span> <span class="nav-text">Control Flow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#For-in"><span class="nav-number">1.1.1.</span> <span class="nav-text">For in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For-in-to-iterate-dictionary"><span class="nav-number">1.1.2.</span> <span class="nav-text">For-in to iterate  dictionary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#If-let-to-unwrap-optionals"><span class="nav-number">1.1.3.</span> <span class="nav-text">If - let to unwrap optionals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch-confusing……"><span class="nav-number">1.1.4.</span> <span class="nav-text">Switch (confusing……)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#While"><span class="nav-number">1.1.5.</span> <span class="nav-text">While</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-and-Closures"><span class="nav-number">1.2.</span> <span class="nav-text">Functions and Closures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Return-multiple-values-by-tuple"><span class="nav-number">1.2.1.</span> <span class="nav-text">Return multiple values by tuple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Take-a-variable-number-of-arguments"><span class="nav-number">1.2.2.</span> <span class="nav-text">Take a variable number of arguments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nested-functions"><span class="nav-number">1.2.3.</span> <span class="nav-text">Nested functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-as-variable"><span class="nav-number">1.2.4.</span> <span class="nav-text">Function as variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Closure-confusing…"><span class="nav-number">1.2.5.</span> <span class="nav-text">Closure (confusing…)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects-and-Classes"><span class="nav-number">1.3.</span> <span class="nav-text">Objects and Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Init"><span class="nav-number">1.3.1.</span> <span class="nav-text">Init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Subclasses"><span class="nav-number">1.3.2.</span> <span class="nav-text">Subclasses</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getter-and-a-setter-confusing…"><span class="nav-number">1.3.3.</span> <span class="nav-text">Getter and a setter (confusing…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WillSet-and-didSet-confusing…"><span class="nav-number">1.3.4.</span> <span class="nav-text">WillSet and didSet (confusing…)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enumerations-and-Structures"><span class="nav-number">1.4.</span> <span class="nav-text">Enumerations and Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Raw-value"><span class="nav-number">1.4.1.</span> <span class="nav-text">Raw value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init-rawValue"><span class="nav-number">1.4.2.</span> <span class="nav-text">init?(rawValue:)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#No-raw-value"><span class="nav-number">1.4.3.</span> <span class="nav-text">No raw value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associated-values-confusing……"><span class="nav-number">1.4.4.</span> <span class="nav-text">Associated values (confusing…….)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Struct"><span class="nav-number">1.4.5.</span> <span class="nav-text">Struct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thought-of-counfusing"><span class="nav-number">1.4.6.</span> <span class="nav-text">Thought of counfusing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Protocols-and-Extensions"><span class="nav-number">1.5.</span> <span class="nav-text">Protocols and Extensions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocols-mutating-confusting…"><span class="nav-number">1.5.1.</span> <span class="nav-text">Protocols (mutating confusting…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-type"><span class="nav-number">1.5.2.</span> <span class="nav-text">Protocol type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Extensions"><span class="nav-number">1.5.3.</span> <span class="nav-text">Extensions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-Handling"><span class="nav-number">1.6.</span> <span class="nav-text">Error Handling</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Do-catch-handle-error"><span class="nav-number">1.6.1.</span> <span class="nav-text">Do-catch handle error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiple-catch-blocks-that-handle-specific-errors-confusing…"><span class="nav-number">1.6.2.</span> <span class="nav-text">Multiple catch blocks that handle specific errors (confusing…)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handle-errors-is-to-use-try"><span class="nav-number">1.6.3.</span> <span class="nav-text">handle errors is to use try?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Defer"><span class="nav-number">1.6.4.</span> <span class="nav-text">Defer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generics"><span class="nav-number">1.7.</span> <span class="nav-text">Generics</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/12/27/1.A Swift Tour/';
+
+      var disqus_title = "1.A Swift Tour";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+
+</body>
+</html>
