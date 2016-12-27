@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://jackliu17.github.io/2016/09/26/The-Swift-Programming-Language-Swift3/</loc>
+    <loc>http://jackliu17.github.io/2016/12/08/iOS-app-with-Rest-api/</loc>
     
-    <lastmod>2016-11-10T01:05:17.000Z</lastmod>
+    <lastmod>2016-12-25T03:27:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/12/04/Front-end-development-FCC/</loc>
+    
+    <lastmod>2016-12-06T09:55:59.000Z</lastmod>
     
   </url>
   
