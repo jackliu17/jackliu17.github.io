@@ -1,0 +1,1025 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Properties
+
+
+Property
+Class
+Structure
+Enum
+Global
+Local
+Observer
+
+
+
+
+Stored
+varorlet
+varorlet
+-
+
+
+yes
+
+
+Computed
+var
+var
+var
+var
+var
+
+
+
+Lazy Stored
+var
+var
+-
+without lazy
+-
+no
+
+
+inherited
+
+
+
+
+
+yes
+
+
+n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11. Properties">
+<meta property="og:url" content="http://jackliu17.github.io/2017/01/04/11. Properties/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Properties
+
+
+Property
+Class
+Structure
+Enum
+Global
+Local
+Observer
+
+
+
+
+Stored
+varorlet
+varorlet
+-
+
+
+yes
+
+
+Computed
+var
+var
+var
+var
+var
+
+
+
+Lazy Stored
+var
+var
+-
+without lazy
+-
+no
+
+
+inherited
+
+
+
+
+
+yes
+
+
+n">
+<meta property="og:updated_time" content="2017-01-26T10:23:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11. Properties">
+<meta name="twitter:description" content="Properties
+
+
+Property
+Class
+Structure
+Enum
+Global
+Local
+Observer
+
+
+
+
+Stored
+varorlet
+varorlet
+-
+
+
+yes
+
+
+Computed
+var
+var
+var
+var
+var
+
+
+
+Lazy Stored
+var
+var
+-
+without lazy
+-
+no
+
+
+inherited
+
+
+
+
+
+yes
+
+
+n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jackliu17.github.io/2017/01/04/11. Properties/"/>
+
+
+
+
+
+  <title> 11. Properties | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2017/01/04/11. Properties/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                11. Properties
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-04T10:21:44+08:00">
+              2017-01-04
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-26T18:23:08+08:00">
+              2017-01-26
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/04/11. Properties/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/04/11. Properties/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">Class</th>
+<th style="text-align:center">Structure</th>
+<th style="text-align:center">Enum</th>
+<th style="text-align:center">Global</th>
+<th style="text-align:center">Local</th>
+<th style="text-align:center">Observer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Stored</td>
+<td style="text-align:center"><code>var</code>or<code>let</code></td>
+<td style="text-align:center"><code>var</code>or<code>let</code></td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">Computed</td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Lazy Stored</td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center"><code>var</code></td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">without <code>lazy</code></td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">inherited</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">yes</td>
+</tr>
+<tr>
+<td style="text-align:center">nonoerridden</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">no</td>
+</tr>
+<tr>
+<td style="text-align:center">Stored type</td>
+<td style="text-align:center"><code>static</code></td>
+<td style="text-align:center"><code>static</code></td>
+<td style="text-align:center"><code>static</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Computed type</td>
+<td style="text-align:center"><code>class</code></td>
+<td style="text-align:center"><code>static</code></td>
+<td style="text-align:center"><code>static</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">change property</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center"><code>mutating</code></td>
+<td style="text-align:center"><code>mutating</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>if instance is  <code>let</code>,property would not changed</li>
+</ul>
+<ul>
+<li>Observer can be used for global or local variable</li>
+</ul>
+<h1 id="Stored-Properties"><a href="#Stored-Properties" class="headerlink" title="Stored Properties"></a>Stored Properties</h1><p>Stored properties can be either <strong>variable</strong> stored properties or <strong>constant</strong> stored properties</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FixedLengthRange</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> firstValue: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">let</span> length: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rangeOfThreeItems = <span class="type">FixedLengthRange</span>(firstValue: <span class="number">0</span>, length: <span class="number">3</span>)</span><br><span class="line"><span class="comment">// the range represents integer values 0, 1, and 2</span></span><br><span class="line"></span><br><span class="line">rangeOfThreeItems.firstValue = <span class="number">6</span></span><br><span class="line"><span class="comment">// the range now represents integer values 6, 7, and 8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// this will report error as length is constant</span></span><br><span class="line">rangeOfThreeItems.length = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h2 id="Stored-Properties-of-Constant-Structure-Instances"><a href="#Stored-Properties-of-Constant-Structure-Instances" class="headerlink" title="Stored Properties of Constant Structure Instances"></a>Stored Properties of Constant Structure Instances</h2><p>When an instance of a value type is marked as a constant, so are all of its properties.</p>
+<p>If you create an instance of a structure and assign that instance to a constant, you cannot modify the instance’s properties, even if they were declared as variable properties:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> rangeOfFourItems = <span class="type">FixedLengthRange</span>(firstValue: <span class="number">0</span>, length: <span class="number">4</span>)</span><br><span class="line"><span class="comment">// this range represents integer values 0, 1, 2, and 3</span></span><br><span class="line"></span><br><span class="line">rangeOfFourItems.firstValue = <span class="number">6</span></span><br><span class="line"><span class="comment">// this will report an error, even though firstValue is a variable property</span></span><br></pre></td></tr></table></figure>
+<h2 id="Lazy-Stored-Properties"><a href="#Lazy-Stored-Properties" class="headerlink" title="Lazy Stored Properties"></a>Lazy Stored Properties</h2><h3 id="What-is-Lazy"><a href="#What-is-Lazy" class="headerlink" title="What is Lazy"></a>What is Lazy</h3><ul>
+<li>A <em>lazy stored property</em> is a property whose initial value is not calculated until the first time it is used. You indicate a lazy stored property by writing the lazy modifier before its declaration.</li>
+<li>You must always declare a <strong>lazy property as a variable</strong> (with the var keyword), because its initial value might not be retrieved until after instance initialization completes. Constant properties must always have a <strong>value before initialization completes</strong>, and therefore cannot be declared as lazy.</li>
+<li>If a property marked with the lazy modifier is accessed by multiple threads simultaneously and the property has not yet been initialized, there is no guarantee that the property will be initialized only once.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataImporter</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span><br><span class="line">     DataImporter is a class to import data from an external file.</span><br><span class="line">     The class is assumed to take a non-trivial amount of time to initialize.</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">var</span> fileName = <span class="string">"data.txt"</span></span><br><span class="line">    <span class="comment">// the DataImporter class would provide data importing functionality here</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataManager</span> </span>&#123;</span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> importer = <span class="type">DataImporter</span>()</span><br><span class="line">    <span class="keyword">var</span> data = [<span class="type">String</span>]()</span><br><span class="line">    <span class="comment">// the DataManager class would provide data management functionality here</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> manager = <span class="type">DataManager</span>()</span><br><span class="line">manager.data.append(<span class="string">"Some data"</span>)</span><br><span class="line">manager.data.append(<span class="string">"Some more data"</span>)</span><br><span class="line"><span class="comment">// the DataImporter instance for the importer property has not yet been created</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(manager.importer.fileName)</span><br><span class="line"><span class="comment">// the DataImporter instance for the importer property has now been created</span></span><br><span class="line"><span class="comment">// Prints "data.txt"</span></span><br></pre></td></tr></table></figure>
+<h3 id="When-to-use-Lazy"><a href="#When-to-use-Lazy" class="headerlink" title="When to use Lazy"></a>When to use Lazy</h3><ul>
+<li>when the initial value for a property is <strong>dependent on outside factors</strong> whose values are not known until after an instance’s initialization is complete. </li>
+<li>when the initial value for a property requires <strong>complex or computationally expensive setup</strong> that should not be performed unless or until it is needed.</li>
+<li>As above , It is possible for a DataManager instance to manage its data without ever importing data from a file</li>
+</ul>
+<h2 id="Stored-Properties-and-Instance-Variables"><a href="#Stored-Properties-and-Instance-Variables" class="headerlink" title="Stored Properties and Instance Variables"></a>Stored Properties and Instance Variables</h2><ul>
+<li>In Objective - C, it has properties and instance variables</li>
+<li>In Swift, it unifies these concepts into a single property declaration</li>
+</ul>
+<h1 id="Computed-Properties"><a href="#Computed-Properties" class="headerlink" title="Computed Properties"></a>Computed Properties</h1><ul>
+<li>do not actually store a value. Instead, they provide a <strong>getter and an optional setter</strong> to retrieve and set other properties and values indirectly.</li>
+<li>Declare computed properties as <code>var</code></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">    <span class="keyword">var</span> center: <span class="type">Point</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> centerX = origin.x + (size.width / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">let</span> centerY = origin.y + (size.height / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Point</span>(x: centerX, y: centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span>(newCenter) &#123;</span><br><span class="line">            origin.x = newCenter.x - (size.width / <span class="number">2</span>)</span><br><span class="line">            origin.y = newCenter.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> square = <span class="type">Rect</span>(origin: <span class="type">Point</span>(x: <span class="number">0.0</span>, y: <span class="number">0.0</span>),</span><br><span class="line">                  size: <span class="type">Size</span>(width: <span class="number">10.0</span>, height: <span class="number">10.0</span>))</span><br><span class="line"><span class="keyword">let</span> initialSquareCenter = square.center</span><br><span class="line"></span><br><span class="line">square.center = <span class="type">Point</span>(x: <span class="number">15.0</span>, y: <span class="number">15.0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"square.origin is now at (<span class="subst">\(square.origin.x)</span>, <span class="subst">\(square.origin.y)</span>)"</span>)</span><br><span class="line"><span class="comment">// Prints "square.origin is now at (10.0, 10.0)"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Shorthand-Setter-Declaration"><a href="#Shorthand-Setter-Declaration" class="headerlink" title="Shorthand Setter Declaration"></a>Shorthand Setter Declaration</h2><p>If a computed property’s setter does not define a name for the new value to be set, a default name of newValue is used.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AlternativeRect</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> center: <span class="type">Point</span> &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> centerX = origin.x + (size.width / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">let</span> centerY = origin.y + (size.height / <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="type">Point</span>(x: centerX, y: centerY)</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            origin.x = newValue.x - (size.width / <span class="number">2</span>)</span><br><span class="line">            origin.y = newValue.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Read-Only-Computed-Properties"><a href="#Read-Only-Computed-Properties" class="headerlink" title="Read-Only Computed Properties"></a>Read-Only Computed Properties</h2><p>A computed property with a getter but no setter is known as a <em>read-only computed property</em>.</p>
+<p>You can simplify the declaration of a read-only computed property by removing the get keyword and its braces:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Cuboid</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span>, depth = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> volume: <span class="type">Double</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> width * height * depth</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> fourByFiveByTwo = <span class="type">Cuboid</span>(width: <span class="number">4.0</span>, height: <span class="number">5.0</span>, depth: <span class="number">2.0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the volume of fourByFiveByTwo is <span class="subst">\(fourByFiveByTwo.volume)</span>"</span>)</span><br><span class="line"><span class="comment">// Prints "the volume of fourByFiveByTwo is 40.0"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Property-Observers"><a href="#Property-Observers" class="headerlink" title="Property Observers"></a>Property Observers</h1><p>Property observers observe and respond to changes in a property’s value. </p>
+<h3 id="What-is-it-for"><a href="#What-is-it-for" class="headerlink" title="What is it for"></a>What is it for</h3><ul>
+<li>stored properties  </li>
+<li>global or local variable</li>
+<li>inherited property (whether stored or computed) by overriding the property within a subclass. </li>
+</ul>
+<h3 id="What-is-not-for"><a href="#What-is-not-for" class="headerlink" title="What is not for"></a>What is not for</h3><ul>
+<li>not for lazy stored properties. </li>
+<li>not for nonoverridden computed properties, as it can be done by computed property’s setter. </li>
+</ul>
+<h3 id="willSet"><a href="#willSet" class="headerlink" title="willSet"></a>willSet</h3><ul>
+<li><code>willSet</code> is called just before the value is stored. </li>
+<li>passed the new property value as a constant parameter.</li>
+<li>specify a name for this parameter or default is <code>newValue</code></li>
+</ul>
+<h3 id="didSet"><a href="#didSet" class="headerlink" title="didSet"></a>didSet</h3><ul>
+<li><code>didSet</code> is called immediately after the new value is stored.</li>
+<li>passed a constant parameter containing the old property value.</li>
+<li>name the parameter or use the default parameter name of <code>oldValue</code></li>
+<li>can assign a value to a property</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StepCounter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> totalSteps: <span class="type">Int</span> = <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">willSet</span>(newTotalSteps) &#123;</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"About to set totalSteps to <span class="subst">\(newTotalSteps)</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">didSet</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> totalSteps &gt; oldValue  &#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"Added <span class="subst">\(totalSteps - oldValue)</span> steps"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stepCounter = <span class="type">StepCounter</span>()</span><br><span class="line">stepCounter.totalSteps = <span class="number">200</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 200</span></span><br><span class="line"><span class="comment">// Added 200 steps</span></span><br><span class="line">stepCounter.totalSteps = <span class="number">360</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 360</span></span><br><span class="line"><span class="comment">// Added 160 steps</span></span><br><span class="line">stepCounter.totalSteps = <span class="number">896</span></span><br><span class="line"><span class="comment">// About to set totalSteps to 896</span></span><br><span class="line"><span class="comment">// Added 536 steps</span></span><br></pre></td></tr></table></figure>
+<h1 id="Global-and-Local-Variables"><a href="#Global-and-Local-Variables" class="headerlink" title="Global and Local Variables"></a>Global and Local Variables</h1><ul>
+<li>computing and observing properties are also available to <em>global variables</em> and <em>local variables</em>. </li>
+<li>Global constants and variables are always computed lazily without <code>lazy</code> mark</li>
+<li>Local constants and variables are never computed lazily.</li>
+</ul>
+<h1 id="Type-Properties"><a href="#Type-Properties" class="headerlink" title="Type Properties"></a>Type Properties</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">var</th>
+<th style="text-align:center">let</th>
+<th style="text-align:center">default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Stored type</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">must</td>
+</tr>
+<tr>
+<td style="text-align:center">Computed type</td>
+<td style="text-align:center">yes</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Type properties are useful for defining values that are universal to <em>all</em> instances of a particular type,</li>
+<li>Stored type properties can be variables or constants. </li>
+<li>Computed type properties are always declared as variable properties</li>
+<li>Unlike stored instance properties, you must always give stored type properties a default value. This is because the type itself does not have an initializer that can assign a value to a stored type property at initialization time.</li>
+<li>Stored type properties are lazily initialized on their first access. They are guaranteed to be initialized only once, even when accessed by multiple threads simultaneously, and they do not need to be marked with the lazy modifier.</li>
+</ul>
+<h2 id="Type-Property-Syntax"><a href="#Type-Property-Syntax" class="headerlink" title="Type Property Syntax"></a>Type Property Syntax</h2><ul>
+<li>In C and Objective-C, you define static constants and variables associated with a type as <em>global</em> static variables</li>
+<li>In Swift, however, type properties are written as part of the type’s definition,</li>
+<li>For computed type properties for class types, you can use the <code>class</code> keyword instead to allow subclasses to override the superclass’s implementation</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SomeStructure</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">SomeEnumeration</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">6</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> storedTypeProperty = <span class="string">"Some value."</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> computedTypeProperty: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">27</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">overrideableComputedTypeProperty</span>: <span class="title">Int</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">107</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Querying-and-Setting-Type-Properties"><a href="#Querying-and-Setting-Type-Properties" class="headerlink" title="Querying and Setting Type Properties"></a>Querying and Setting Type Properties</h2><h3 id="Querying-syntax"><a href="#Querying-syntax" class="headerlink" title="Querying syntax"></a>Querying syntax</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)</span><br><span class="line"><span class="comment">// Prints "Some value."</span></span><br><span class="line"><span class="type">SomeStructure</span>.storedTypeProperty = <span class="string">"Another value."</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">SomeStructure</span>.storedTypeProperty)</span><br><span class="line"><span class="comment">// Prints "Another value."</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">SomeEnumeration</span>.computedTypeProperty)</span><br><span class="line"><span class="comment">// Prints "6"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">SomeClass</span>.computedTypeProperty)</span><br><span class="line"><span class="comment">// Prints "27"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AudioChannel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> thresholdLevel = <span class="number">10</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> maxInputLevelForAllChannels = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> currentLevel: <span class="type">Int</span> = <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">didSet</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; <span class="type">AudioChannel</span>.thresholdLevel &#123;</span><br><span class="line">                <span class="comment">// cap the new audio level to the threshold level</span></span><br><span class="line">                currentLevel = <span class="type">AudioChannel</span>.thresholdLevel</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> currentLevel &gt; <span class="type">AudioChannel</span>.maxInputLevelForAllChannels &#123;</span><br><span class="line">                <span class="comment">// store this as the new overall maximum input level</span></span><br><span class="line">                <span class="type">AudioChannel</span>.maxInputLevelForAllChannels = currentLevel</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> leftChannel = <span class="type">AudioChannel</span>()</span><br><span class="line"><span class="keyword">var</span> rightChannel = <span class="type">AudioChannel</span>()</span><br><span class="line"></span><br><span class="line">leftChannel.currentLevel = <span class="number">7</span></span><br><span class="line"><span class="built_in">print</span>(leftChannel.currentLevel)</span><br><span class="line"><span class="comment">// Prints "7"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">AudioChannel</span>.maxInputLevelForAllChannels)</span><br><span class="line"><span class="comment">// Prints "7"</span></span><br><span class="line"></span><br><span class="line">rightChannel.currentLevel = <span class="number">11</span></span><br><span class="line"><span class="built_in">print</span>(rightChannel.currentLevel)</span><br><span class="line"><span class="comment">// Prints "10"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">AudioChannel</span>.maxInputLevelForAllChannels)</span><br><span class="line"><span class="comment">// Prints "10"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/03/10. Classes and Structures/" rel="next" title="10. Classes and Structures">
+                <i class="fa fa-chevron-left"></i> 10. Classes and Structures
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/05/12. Method/" rel="prev" title="12. Method">
+                12. Method <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Properties"><span class="nav-number">1.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stored-Properties"><span class="nav-number">2.</span> <span class="nav-text">Stored Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-Properties-of-Constant-Structure-Instances"><span class="nav-number">2.1.</span> <span class="nav-text">Stored Properties of Constant Structure Instances</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lazy-Stored-Properties"><span class="nav-number">2.2.</span> <span class="nav-text">Lazy Stored Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Lazy"><span class="nav-number">2.2.1.</span> <span class="nav-text">What is Lazy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-to-use-Lazy"><span class="nav-number">2.2.2.</span> <span class="nav-text">When to use Lazy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stored-Properties-and-Instance-Variables"><span class="nav-number">2.3.</span> <span class="nav-text">Stored Properties and Instance Variables</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Computed-Properties"><span class="nav-number">3.</span> <span class="nav-text">Computed Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shorthand-Setter-Declaration"><span class="nav-number">3.1.</span> <span class="nav-text">Shorthand Setter Declaration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Read-Only-Computed-Properties"><span class="nav-number">3.2.</span> <span class="nav-text">Read-Only Computed Properties</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Property-Observers"><span class="nav-number">4.</span> <span class="nav-text">Property Observers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-it-for"><span class="nav-number">4.0.1.</span> <span class="nav-text">What is it for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-not-for"><span class="nav-number">4.0.2.</span> <span class="nav-text">What is not for</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#willSet"><span class="nav-number">4.0.3.</span> <span class="nav-text">willSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#didSet"><span class="nav-number">4.0.4.</span> <span class="nav-text">didSet</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Global-and-Local-Variables"><span class="nav-number">5.</span> <span class="nav-text">Global and Local Variables</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Type-Properties"><span class="nav-number">6.</span> <span class="nav-text">Type Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Property-Syntax"><span class="nav-number">6.1.</span> <span class="nav-text">Type Property Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Querying-and-Setting-Type-Properties"><span class="nav-number">6.2.</span> <span class="nav-text">Querying and Setting Type Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Querying-syntax"><span class="nav-number">6.2.1.</span> <span class="nav-text">Querying syntax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">6.2.2.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2017/01/04/11. Properties/';
+
+      var disqus_title = "11. Properties";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+
+</body>
+</html>

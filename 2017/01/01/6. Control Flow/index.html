@@ -1,0 +1,740 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="For-In LoopsClose range12345678for index in 1...5 &amp;#123;    print(&quot;\(index) times 5 is \(index * 5)&quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 25
+Ign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6. Control Flow">
+<meta property="og:url" content="http://jackliu17.github.io/2017/01/01/6. Control Flow/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="For-In LoopsClose range12345678for index in 1...5 &amp;#123;    print(&quot;\(index) times 5 is \(index * 5)&quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 25
+Ign">
+<meta property="og:updated_time" content="2017-01-26T10:24:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6. Control Flow">
+<meta name="twitter:description" content="For-In LoopsClose range12345678for index in 1...5 &amp;#123;    print(&quot;\(index) times 5 is \(index * 5)&quot;)&amp;#125;// 1 times 5 is 5// 2 times 5 is 10// 3 times 5 is 15// 4 times 5 is 20// 5 times 5 is 25
+Ign">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jackliu17.github.io/2017/01/01/6. Control Flow/"/>
+
+
+
+
+
+  <title> 6. Control Flow | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2017/01/01/6. Control Flow/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                6. Control Flow
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-01T14:02:25+08:00">
+              2017-01-01
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-26T18:24:15+08:00">
+              2017-01-26
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/01/6. Control Flow/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/01/6. Control Flow/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="For-In-Loops"><a href="#For-In-Loops" class="headerlink" title="For-In Loops"></a>For-In Loops</h1><h2 id="Close-range"><a href="#Close-range" class="headerlink" title="Close range"></a>Close range</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(index)</span> times 5 is <span class="subst">\(index * <span class="number">5</span>)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1 times 5 is 5</span></span><br><span class="line"><span class="comment">// 2 times 5 is 10</span></span><br><span class="line"><span class="comment">// 3 times 5 is 15</span></span><br><span class="line"><span class="comment">// 4 times 5 is 20</span></span><br><span class="line"><span class="comment">// 5 times 5 is 25</span></span><br></pre></td></tr></table></figure>
+<h2 id="Ignore-the-values"><a href="#Ignore-the-values" class="headerlink" title="Ignore the values"></a>Ignore the values</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  ignore the values by using an underscore</span></span><br><span class="line"><span class="keyword">let</span> base = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> power = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> answer = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> <span class="number">_</span> <span class="keyword">in</span> <span class="number">1</span>...power &#123;</span><br><span class="line">    answer *= base</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(base)</span> to the power of <span class="subst">\(power)</span> is <span class="subst">\(answer)</span>"</span>)</span><br><span class="line"><span class="comment">// Prints "3 to the power of 10 is 59049"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Iterate-an-array"><a href="#Iterate-an-array" class="headerlink" title="Iterate an array"></a>Iterate an array</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brian"</span>, <span class="string">"Jack"</span>]</span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello, <span class="subst">\(name)</span>!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Hello, Anna!</span></span><br><span class="line"><span class="comment">// Hello, Alex!</span></span><br><span class="line"><span class="comment">// Hello, Brian!</span></span><br><span class="line"><span class="comment">// Hello, Jack!</span></span><br></pre></td></tr></table></figure>
+<h2 id="Iterate-over-a-dictionary"><a href="#Iterate-over-a-dictionary" class="headerlink" title="Iterate over a dictionary"></a>Iterate over a dictionary</h2><p>Items in a Dictionary may not necessarily be iterated in the same order in which they were inserted</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numberOfLegs = [<span class="string">"spider"</span>: <span class="number">8</span>, <span class="string">"ant"</span>: <span class="number">6</span>, <span class="string">"cat"</span>: <span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> (animalName, legCount) <span class="keyword">in</span> numberOfLegs &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(animalName)</span>s have <span class="subst">\(legCount)</span> legs"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ants have 6 legs</span></span><br><span class="line"><span class="comment">// spiders have 8 legs</span></span><br><span class="line"><span class="comment">// cats have 4 legs</span></span><br></pre></td></tr></table></figure>
+<h1 id="While-Loops"><a href="#While-Loops" class="headerlink" title="While Loops"></a>While Loops</h1><h2 id="While"><a href="#While" class="headerlink" title="While"></a>While</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> condition &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Repeat-While"><a href="#Repeat-While" class="headerlink" title="Repeat-While"></a>Repeat-While</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">repeat</span> &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">while</span> condition</span><br></pre></td></tr></table></figure>
+<h1 id="Conditional-Statements"><a href="#Conditional-Statements" class="headerlink" title="Conditional Statements"></a>Conditional Statements</h1><h2 id="If"><a href="#If" class="headerlink" title="If"></a>If</h2><p>The final <code>else</code> clause is optional</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">temperatureInFahrenheit = <span class="number">90</span></span><br><span class="line"><span class="keyword">if</span> temperatureInFahrenheit &lt;= <span class="number">32</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's very cold. Consider wearing a scarf."</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> temperatureInFahrenheit &gt;= <span class="number">86</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's really warm. Don't forget to wear sunscreen."</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"It's not that cold. Wear a t-shirt."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "It's really warm. Don't forget to wear sunscreen."</span></span><br></pre></td></tr></table></figure>
+<h2 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h2><ul>
+<li>Every switch statement must be <em>exhaustive</em></li>
+<li>define a default case to cover</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someCharacter: <span class="type">Character</span> = <span class="string">"z"</span></span><br><span class="line"><span class="keyword">switch</span> someCharacter &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"a"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The first letter of the alphabet"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"z"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The last letter of the alphabet"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Some other character"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "The last letter of the alphabet"</span></span><br></pre></td></tr></table></figure>
+<h3 id="No-Implicit-Fallthrough"><a href="#No-Implicit-Fallthrough" class="headerlink" title="No Implicit Fallthrough"></a>No Implicit Fallthrough</h3><p>the entire switch statement finishes its execution as soon as the first matching switch case is completed, without requiring an explicit break statement.</p>
+<p>at least one executable statement</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anotherCharacter: <span class="type">Character</span> = <span class="string">"a"</span></span><br><span class="line"><span class="keyword">switch</span> anotherCharacter &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"a"</span>: <span class="comment">// Invalid, the case has an empty body</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"A"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The letter A"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Not the letter A"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// This will report a compile-time error.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Interval-Matching"><a href="#Interval-Matching" class="headerlink" title="Interval Matching"></a>Interval Matching</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> approximateCount = <span class="number">62</span></span><br><span class="line"><span class="keyword">let</span> countedThings = <span class="string">"moons orbiting Saturn"</span></span><br><span class="line"><span class="keyword">var</span> naturalCount: <span class="type">String</span></span><br><span class="line"><span class="keyword">switch</span> approximateCount &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    naturalCount = <span class="string">"no"</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>..&lt;<span class="number">5</span>:</span><br><span class="line">    naturalCount = <span class="string">"a few"</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">5</span>..&lt;<span class="number">12</span>:</span><br><span class="line">    naturalCount = <span class="string">"several"</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">12</span>..&lt;<span class="number">100</span>:</span><br><span class="line">    naturalCount = <span class="string">"dozens of"</span></span><br><span class="line"><span class="keyword">case</span> <span class="number">100</span>..&lt;<span class="number">1000</span>:</span><br><span class="line">    naturalCount = <span class="string">"hundreds of"</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    naturalCount = <span class="string">"many"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"There are <span class="subst">\(naturalCount)</span> <span class="subst">\(countedThings)</span>."</span>)</span><br><span class="line"><span class="comment">// Prints "There are dozens of moons orbiting Saturn."</span></span><br></pre></td></tr></table></figure>
+<h3 id="Tuples"><a href="#Tuples" class="headerlink" title="Tuples"></a>Tuples</h3><ul>
+<li>underscore character (_), also known as the wildcard pattern, to match any possible value.</li>
+<li>Unlike C, Swift allows multiple switch cases to consider the same value or values. </li>
+<li>the first matching,other matching cases would be ignored.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> somePoint = (<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">switch</span> somePoint &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="number">0</span>, <span class="number">0</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(0, 0) is at the origin"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="number">_</span>, <span class="number">0</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(somePoint.<span class="number">0</span>)</span>, 0) is on the x-axis"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="number">0</span>, <span class="number">_</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(0, <span class="subst">\(somePoint.<span class="number">1</span>)</span>) is on the y-axis"</span>)</span><br><span class="line"><span class="keyword">case</span> (-<span class="number">2</span>...<span class="number">2</span>, -<span class="number">2</span>...<span class="number">2</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(somePoint.<span class="number">0</span>)</span>, <span class="subst">\(somePoint.<span class="number">1</span>)</span>) is inside the box"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(somePoint.<span class="number">0</span>)</span>, <span class="subst">\(somePoint.<span class="number">1</span>)</span>) is outside of the box"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "(1, 1) is inside the box"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Value-Bindings"><a href="#Value-Bindings" class="headerlink" title="Value Bindings"></a>Value Bindings</h3><p>A switch case can bind the value or values it matches to temporary constants or variables</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> anotherPoint = (<span class="number">2</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">switch</span> anotherPoint &#123;</span><br><span class="line"><span class="keyword">case</span> (<span class="keyword">let</span> x, <span class="number">0</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"on the x-axis with an x value of <span class="subst">\(x)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> (<span class="number">0</span>, <span class="keyword">let</span> y):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"on the y-axis with a y value of <span class="subst">\(y)</span>"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"somewhere else at (<span class="subst">\(x)</span>, <span class="subst">\(y)</span>)"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "on the x-axis with an x value of 2"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Where"><a href="#Where" class="headerlink" title="Where"></a>Where</h3><ul>
+<li>A switch case can use a where clause to check for additional conditions.</li>
+<li>switch case matches the current value of point only if the where clause’s condition evaluates to true for that value.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> yetAnotherPoint = (<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line"><span class="keyword">switch</span> yetAnotherPoint &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y) <span class="keyword">where</span> x == y:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(x)</span>, <span class="subst">\(y)</span>) is on the line x == y"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y) <span class="keyword">where</span> x == -y:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(x)</span>, <span class="subst">\(y)</span>) is on the line x == -y"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">let</span> (x, y):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"(<span class="subst">\(x)</span>, <span class="subst">\(y)</span>) is just some arbitrary point"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "(1, -1) is on the line x == -y"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Compound-Cases"><a href="#Compound-Cases" class="headerlink" title="Compound Cases"></a>Compound Cases</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> someCharacter: <span class="type">Character</span> = <span class="string">"e"</span></span><br><span class="line"><span class="keyword">switch</span> someCharacter &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"a"</span>, <span class="string">"e"</span>, <span class="string">"i"</span>, <span class="string">"o"</span>, <span class="string">"u"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(someCharacter)</span> is a vowel"</span>)</span><br><span class="line"><span class="keyword">case</span> <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"f"</span>, <span class="string">"g"</span>, <span class="string">"h"</span>, <span class="string">"j"</span>, <span class="string">"k"</span>, <span class="string">"l"</span>, <span class="string">"m"</span>,</span><br><span class="line">     <span class="string">"n"</span>, <span class="string">"p"</span>, <span class="string">"q"</span>, <span class="string">"r"</span>, <span class="string">"s"</span>, <span class="string">"t"</span>, <span class="string">"v"</span>, <span class="string">"w"</span>, <span class="string">"x"</span>, <span class="string">"y"</span>, <span class="string">"z"</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(someCharacter)</span> is a consonant"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(someCharacter)</span> is not a vowel or a consonant"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "e is a vowel"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Compound-cases-value-bindings"><a href="#Compound-cases-value-bindings" class="headerlink" title="Compound cases + value bindings"></a>Compound cases + value bindings</h3><p>All of the patterns of a compound case have to include the same set of value bindings</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> stillAnotherPoint = (<span class="number">9</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">switch</span> stillAnotherPoint &#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Notice: Two tuple have the same constant "distance"</span></span><br><span class="line"><span class="keyword">case</span> (<span class="keyword">let</span> <span class="built_in">distance</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="keyword">let</span> <span class="built_in">distance</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"On an axis, <span class="subst">\(<span class="built_in">distance</span>)</span> from the origin"</span>)</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Not on an axis"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "On an axis, 9 from the origin"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Control-Transfer-Statements"><a href="#Control-Transfer-Statements" class="headerlink" title="Control Transfer Statements"></a>Control Transfer Statements</h1><h2 id="Continue"><a href="#Continue" class="headerlink" title="Continue"></a>Continue</h2><p>I am done with the current loop iteration,jump straight to the start of the next iteration</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> puzzleInput = <span class="string">"great minds think alike"</span></span><br><span class="line"><span class="keyword">var</span> puzzleOutput = <span class="string">""</span></span><br><span class="line"><span class="keyword">let</span> charactersToRemove: [<span class="type">Character</span>] = [<span class="string">"a"</span>, <span class="string">"e"</span>, <span class="string">"i"</span>, <span class="string">"o"</span>, <span class="string">"u"</span>, <span class="string">" "</span>]</span><br><span class="line"><span class="keyword">for</span> character <span class="keyword">in</span> puzzleInput.characters &#123;</span><br><span class="line">    <span class="keyword">if</span> charactersToRemove.<span class="built_in">contains</span>(character) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        puzzleOutput.append(character)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(puzzleOutput)</span><br><span class="line"><span class="comment">// Prints "grtmndsthnklk"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Break"><a href="#Break" class="headerlink" title="Break"></a>Break</h2><p>The break statement ends execution of an entire control flow statement immediately.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> numberSymbol: <span class="type">Character</span> = <span class="string">"三"</span>  <span class="comment">// Chinese symbol for the number 3</span></span><br><span class="line"><span class="keyword">var</span> possibleIntegerValue: <span class="type">Int</span>?</span><br><span class="line"><span class="keyword">switch</span> numberSymbol &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">"1"</span>, <span class="string">"١"</span>, <span class="string">"一"</span>, <span class="string">"๑"</span>:</span><br><span class="line">    possibleIntegerValue = <span class="number">1</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"2"</span>, <span class="string">"٢"</span>, <span class="string">"二"</span>, <span class="string">"๒"</span>:</span><br><span class="line">    possibleIntegerValue = <span class="number">2</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"3"</span>, <span class="string">"٣"</span>, <span class="string">"三"</span>, <span class="string">"๓"</span>:</span><br><span class="line">    possibleIntegerValue = <span class="number">3</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"4"</span>, <span class="string">"٤"</span>, <span class="string">"四"</span>, <span class="string">"๔"</span>:</span><br><span class="line">    possibleIntegerValue = <span class="number">4</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Fallthrough"><a href="#Fallthrough" class="headerlink" title="Fallthrough"></a>Fallthrough</h2><p>The fallthrough keyword does not check the case conditions for the switch case that it causes execution to fall into. The fallthrough keyword simply causes code execution to <strong>move directly to the statements inside the next case</strong> (or default case) block, as in C’s standard switch statement behavior.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> integerToDescribe = <span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> description = <span class="string">"The number <span class="subst">\(integerToDescribe)</span> is"</span></span><br><span class="line"><span class="keyword">switch</span> integerToDescribe &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">17</span>, <span class="number">19</span>:</span><br><span class="line">    description += <span class="string">" a prime number, and also"</span></span><br><span class="line">    <span class="keyword">fallthrough</span></span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    description += <span class="string">" an integer."</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(description)</span><br><span class="line"><span class="comment">// Prints "The number 5 is a prime number, and also an integer."</span></span><br></pre></td></tr></table></figure>
+<h2 id="Labeled-Statements"><a href="#Labeled-Statements" class="headerlink" title="Labeled Statements"></a>Labeled Statements</h2><ul>
+<li>In nested loop or conditional statement,explicit about which loop or conditional statement you want a break statement to terminate.</li>
+<li>Using the gameLoop label makes it clear which control statement should be terminated.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">label name: <span class="keyword">while</span> condition &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gameLoop: <span class="keyword">while</span> square != finalSquare &#123;</span><br><span class="line">    diceRoll += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> diceRoll == <span class="number">7</span> &#123; diceRoll = <span class="number">1</span> &#125;</span><br><span class="line">    <span class="keyword">switch</span> square + diceRoll &#123;</span><br><span class="line">    <span class="keyword">case</span> finalSquare:</span><br><span class="line">        <span class="comment">// diceRoll will move us to the final square, so the game is over</span></span><br><span class="line">        <span class="keyword">break</span> gameLoop</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> newSquare <span class="keyword">where</span> newSquare &gt; finalSquare:</span><br><span class="line">        <span class="comment">// diceRoll will move us beyond the final square, so roll again</span></span><br><span class="line">        <span class="keyword">continue</span> gameLoop</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">// this is a valid move, so find out its effect</span></span><br><span class="line">        square += diceRoll</span><br><span class="line">        square += board[square]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Game over!"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Early-Exit"><a href="#Early-Exit" class="headerlink" title="Early Exit"></a>Early Exit</h1><p>a condition must be true </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: [String: String])</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> name = person[<span class="string">"name"</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Hello <span class="subst">\(name)</span>!"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> location = person[<span class="string">"location"</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"I hope the weather is nice near you."</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"I hope the weather is nice in <span class="subst">\(location)</span>."</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">greet(person: [<span class="string">"name"</span>: <span class="string">"John"</span>])</span><br><span class="line"><span class="comment">// Prints "Hello John!"</span></span><br><span class="line"><span class="comment">// Prints "I hope the weather is nice near you."</span></span><br><span class="line">greet(person: [<span class="string">"name"</span>: <span class="string">"Jane"</span>, <span class="string">"location"</span>: <span class="string">"Cupertino"</span>])</span><br><span class="line"><span class="comment">// Prints "Hello Jane!"</span></span><br><span class="line"><span class="comment">// Prints "I hope the weather is nice in Cupertino."</span></span><br></pre></td></tr></table></figure>
+<h1 id="Checking-API-Availability"><a href="#Checking-API-Availability" class="headerlink" title="Checking API Availability"></a>Checking API Availability</h1><p>You use an <em>availability condition</em> in an if or guard statement to conditionally execute a block of code, depending on whether the APIs you want to use are available at runtime</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> #available(platform name version, ..., *) &#123;</span><br><span class="line">    statements to execute <span class="keyword">if</span> the <span class="type">APIs</span> are available</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    fallback statements to execute <span class="keyword">if</span> the <span class="type">APIs</span> are unavailable</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> #available(iOS <span class="number">10</span>, macOS <span class="number">10.12</span>, *) &#123;</span><br><span class="line">    <span class="comment">// Use iOS 10 APIs on iOS, and use macOS 10.12 APIs on macOS</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Fall back to earlier iOS and macOS APIs</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/31/5. Collection Types/" rel="next" title="5.Collection Types">
+                <i class="fa fa-chevron-left"></i> 5.Collection Types
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/02/7. Functions/" rel="prev" title="7. Functions">
+                7. Functions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#For-In-Loops"><span class="nav-number">1.</span> <span class="nav-text">For-In Loops</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Close-range"><span class="nav-number">1.1.</span> <span class="nav-text">Close range</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ignore-the-values"><span class="nav-number">1.2.</span> <span class="nav-text">Ignore the values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterate-an-array"><span class="nav-number">1.3.</span> <span class="nav-text">Iterate an array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterate-over-a-dictionary"><span class="nav-number">1.4.</span> <span class="nav-text">Iterate over a dictionary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#While-Loops"><span class="nav-number">2.</span> <span class="nav-text">While Loops</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#While"><span class="nav-number">2.1.</span> <span class="nav-text">While</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Repeat-While"><span class="nav-number">2.2.</span> <span class="nav-text">Repeat-While</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Conditional-Statements"><span class="nav-number">3.</span> <span class="nav-text">Conditional Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#If"><span class="nav-number">3.1.</span> <span class="nav-text">If</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Switch"><span class="nav-number">3.2.</span> <span class="nav-text">Switch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-Implicit-Fallthrough"><span class="nav-number">3.2.1.</span> <span class="nav-text">No Implicit Fallthrough</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interval-Matching"><span class="nav-number">3.2.2.</span> <span class="nav-text">Interval Matching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tuples"><span class="nav-number">3.2.3.</span> <span class="nav-text">Tuples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Value-Bindings"><span class="nav-number">3.2.4.</span> <span class="nav-text">Value Bindings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Where"><span class="nav-number">3.2.5.</span> <span class="nav-text">Where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compound-Cases"><span class="nav-number">3.2.6.</span> <span class="nav-text">Compound Cases</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compound-cases-value-bindings"><span class="nav-number">3.2.7.</span> <span class="nav-text">Compound cases + value bindings</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Control-Transfer-Statements"><span class="nav-number">4.</span> <span class="nav-text">Control Transfer Statements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Continue"><span class="nav-number">4.1.</span> <span class="nav-text">Continue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Break"><span class="nav-number">4.2.</span> <span class="nav-text">Break</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fallthrough"><span class="nav-number">4.3.</span> <span class="nav-text">Fallthrough</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Labeled-Statements"><span class="nav-number">4.4.</span> <span class="nav-text">Labeled Statements</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Early-Exit"><span class="nav-number">5.</span> <span class="nav-text">Early Exit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Checking-API-Availability"><span class="nav-number">6.</span> <span class="nav-text">Checking API Availability</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2017/01/01/6. Control Flow/';
+
+      var disqus_title = "6. Control Flow";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+
+</body>
+</html>

@@ -2,6 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jackliu17.github.io/2016/12/28/2.The%20Basics/</loc>
+    
+    <lastmod>2017-01-26T10:24:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/12/29/3.Basic%20Operators/</loc>
+    
+    <lastmod>2017-01-26T10:24:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/12/29/4%20Strings%20and%20Characters/</loc>
+    
+    <lastmod>2017-01-26T10:24:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/12/31/5.%20Collection%20Types/</loc>
+    
+    <lastmod>2017-01-26T10:24:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/01/6.%20Control%20Flow/</loc>
+    
+    <lastmod>2017-01-26T10:24:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/02/7.%20Functions/</loc>
+    
+    <lastmod>2017-01-26T10:24:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/02/8.%20Closures/</loc>
+    
+    <lastmod>2017-01-26T10:23:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/03/9.%20Enumerations/</loc>
+    
+    <lastmod>2017-01-26T10:23:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/03/10.%20Classes%20and%20Structures/</loc>
+    
+    <lastmod>2017-01-26T10:23:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/04/11.%20Properties/</loc>
+    
+    <lastmod>2017-01-26T10:23:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/05/12.%20Method/</loc>
+    
+    <lastmod>2017-01-26T10:22:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/06/13.%20Subscripts/</loc>
+    
+    <lastmod>2017-01-26T10:22:41.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/06/14.%20Inheritance/</loc>
+    
+    <lastmod>2017-01-26T10:22:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2017/01/06/15.%20Initialization/</loc>
+    
+    <lastmod>2017-01-26T10:22:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://jackliu17.github.io/2016/12/27/1.A%20Swift%20Tour/</loc>
+    
+    <lastmod>2017-01-26T10:21:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://jackliu17.github.io/2017/01/23/17.%20Optional%20Chaining/</loc>
     
     <lastmod>2017-01-26T09:06:03.000Z</lastmod>

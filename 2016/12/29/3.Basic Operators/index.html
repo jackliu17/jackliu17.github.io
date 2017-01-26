@@ -1,0 +1,729 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Assignment OperatorThe assignment operator (a = b) initializes or updates the value of a with the value of b:
+1234567let b = 10var a = 5a = b// a is now equal to 10let (x, y) = (1, 2)// x is equal to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3. Basic Operators">
+<meta property="og:url" content="http://jackliu17.github.io/2016/12/29/3.Basic Operators/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Assignment OperatorThe assignment operator (a = b) initializes or updates the value of a with the value of b:
+1234567let b = 10var a = 5a = b// a is now equal to 10let (x, y) = (1, 2)// x is equal to">
+<meta property="og:updated_time" content="2017-01-26T10:24:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3. Basic Operators">
+<meta name="twitter:description" content="Assignment OperatorThe assignment operator (a = b) initializes or updates the value of a with the value of b:
+1234567let b = 10var a = 5a = b// a is now equal to 10let (x, y) = (1, 2)// x is equal to">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jackliu17.github.io/2016/12/29/3.Basic Operators/"/>
+
+
+
+
+
+  <title> 3. Basic Operators | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/12/29/3.Basic Operators/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                3. Basic Operators
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-29T15:29:50+08:00">
+              2016-12-29
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-26T18:24:43+08:00">
+              2017-01-26
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/29/3.Basic Operators/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/29/3.Basic Operators/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Assignment-Operator"><a href="#Assignment-Operator" class="headerlink" title="Assignment Operator"></a>Assignment Operator</h1><p>The <em>assignment operator</em> (a = b) initializes or updates the value of a with the value of b:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">5</span></span><br><span class="line">a = b</span><br><span class="line"><span class="comment">// a is now equal to 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> (x, y) = (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment">// x is equal to 1, and y is equal to 2</span></span><br></pre></td></tr></table></figure>
+<p>Unlike the assignment operator in C and Objective-C, the assignment operator in Swift does not itself return a value.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x = y &#123;</span><br><span class="line">    <span class="comment">// This is not valid, because x = y does not return a value. should use  "=="</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Arithmetic-Operators"><a href="#Arithmetic-Operators" class="headerlink" title="Arithmetic Operators"></a>Arithmetic Operators</h1><p>Unlike the arithmetic operators in C and Objective-C, the Swift arithmetic operators do not allow values to overflow by default.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> + <span class="number">2</span>       <span class="comment">// equals 3</span></span><br><span class="line"><span class="number">5</span> - <span class="number">3</span>       <span class="comment">// equals 2</span></span><br><span class="line"><span class="number">2</span> * <span class="number">3</span>       <span class="comment">// equals 6</span></span><br><span class="line"><span class="number">10.0</span> / <span class="number">2.5</span>  <span class="comment">// equals 4.0</span></span><br><span class="line"></span><br><span class="line"><span class="number">9</span> % <span class="number">4</span>    <span class="comment">// equals 1</span></span><br><span class="line">-<span class="number">9</span> % <span class="number">4</span>   <span class="comment">// equals -1</span></span><br><span class="line"><span class="comment">// a % b and a % -b always give the same answer.</span></span><br></pre></td></tr></table></figure>
+<h1 id="Compound-Assignment-Operators"><a href="#Compound-Assignment-Operators" class="headerlink" title="Compound Assignment Operators"></a>Compound Assignment Operators</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">a += <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a is now equal to 3</span></span><br><span class="line"><span class="comment">//  a += 2 is shorthand for a = a + 2.</span></span><br></pre></td></tr></table></figure>
+<h1 id="Comparison-Operators"><a href="#Comparison-Operators" class="headerlink" title="Comparison Operators"></a>Comparison Operators</h1><ul>
+<li>Each of the comparison operators returns a Bool value to indicate whether or not the statement is true</li>
+<li>Swift also provides two <em>identity operators</em> (=== and !==), which you use to test whether two object references both refer to the same object instance</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="number">1</span>   <span class="comment">// true because 1 is equal to 1</span></span><br><span class="line"><span class="number">2</span> != <span class="number">1</span>   <span class="comment">// true because 2 is not equal to 1</span></span><br><span class="line"><span class="number">2</span> &gt; <span class="number">1</span>    <span class="comment">// true because 2 is greater than 1</span></span><br><span class="line"><span class="number">1</span> &lt; <span class="number">2</span>    <span class="comment">// true because 1 is less than 2</span></span><br><span class="line"><span class="number">1</span> &gt;= <span class="number">1</span>   <span class="comment">// true because 1 is greater than or equal to 1</span></span><br><span class="line"><span class="number">2</span> &lt;= <span class="number">1</span>   <span class="comment">// false because 2 is not less than or equal to 1</span></span><br></pre></td></tr></table></figure>
+<h2 id="Tuple-comparison"><a href="#Tuple-comparison" class="headerlink" title="Tuple comparison"></a>Tuple comparison</h2><ul>
+<li>The Swift standard library includes tuple comparison operators for tuples with fewer than seven elements. To compare tuples with seven or more elements, you must implement the comparison operators yourself.</li>
+<li>Tuples are compared from left to right, one value at a time, until the comparison finds two values that aren’t equal. </li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>, <span class="string">"zebra"</span>) &lt; (<span class="number">2</span>, <span class="string">"apple"</span>)   </span><br><span class="line"><span class="comment">// true because 1 is less than 2; "zebra" and "apple" are not compared</span></span><br><span class="line"></span><br><span class="line">(<span class="number">3</span>, <span class="string">"apple"</span>) &lt; (<span class="number">3</span>, <span class="string">"bird"</span>)    </span><br><span class="line"><span class="comment">// true because 3 is equal to 3, and "apple" is less than "bird"</span></span><br><span class="line"></span><br><span class="line">(<span class="number">4</span>, <span class="string">"dog"</span>) == (<span class="number">4</span>, <span class="string">"dog"</span>)     </span><br><span class="line"><span class="comment">// true because 4 is equal to 4, and "dog" is equal to "dog"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Ternary-Conditional-Operator"><a href="#Ternary-Conditional-Operator" class="headerlink" title="Ternary Conditional Operator"></a>Ternary Conditional Operator</h1><p>The ternary conditional operator is shorthand for the code below:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> question &#123;</span><br><span class="line">    answer1</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    answer2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>question ? answer1 : answer2</code> </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> contentHeight = <span class="number">40</span></span><br><span class="line"><span class="keyword">let</span> hasHeader = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> rowHeight = contentHeight + (hasHeader ? <span class="number">50</span> : <span class="number">20</span>)</span><br><span class="line"><span class="comment">// rowHeight is equal to 90</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//The preceding example is shorthand for the code below:</span></span><br><span class="line"><span class="keyword">let</span> contentHeight = <span class="number">40</span></span><br><span class="line"><span class="keyword">let</span> hasHeader = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> rowHeight: <span class="type">Int</span></span><br><span class="line"><span class="keyword">if</span> hasHeader &#123;</span><br><span class="line">    rowHeight = contentHeight + <span class="number">50</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    rowHeight = contentHeight + <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// rowHeight is equal to 90</span></span><br></pre></td></tr></table></figure>
+<h1 id="Nil-Coalescing-Operator"><a href="#Nil-Coalescing-Operator" class="headerlink" title="Nil-Coalescing Operator"></a>Nil-Coalescing Operator</h1><p>The nil-coalescing operator is shorthand for the code below:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a != <span class="literal">nil</span> ? a! : b</span><br></pre></td></tr></table></figure>
+<p>The <em>nil-coalescing operator</em> (a ?? b) unwraps an optional a if it contains a value, or returns a default value b if a is nil</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultColorName = <span class="string">"red"</span></span><br><span class="line"><span class="keyword">var</span> userDefinedColorName: <span class="type">String</span>?   <span class="comment">// defaults to nil</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> colorNameToUse = userDefinedColorName ?? defaultColorName</span><br><span class="line"><span class="comment">// userDefinedColorName is nil, so colorNameToUse is set to the default of "red"</span></span><br><span class="line"></span><br><span class="line">userDefinedColorName = <span class="string">"green"</span></span><br><span class="line">colorNameToUse = userDefinedColorName ?? defaultColorName</span><br><span class="line"><span class="comment">// userDefinedColorName is not nil, so colorNameToUse is set to "green"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Range-Operators"><a href="#Range-Operators" class="headerlink" title="Range Operators"></a>Range Operators</h1><h2 id="Closed-Range-Operator"><a href="#Closed-Range-Operator" class="headerlink" title="Closed Range Operator"></a>Closed Range Operator</h2><p>The <em>closed range operator</em> (a…b) defines a range that runs from a to b, and includes the values a and b. The value of a must not be greater than b.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">1</span>...<span class="number">5</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(index)</span> times 5 is <span class="subst">\(index * <span class="number">5</span>)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1 times 5 is 5</span></span><br><span class="line"><span class="comment">// 2 times 5 is 10</span></span><br><span class="line"><span class="comment">// 3 times 5 is 15</span></span><br><span class="line"><span class="comment">// 4 times 5 is 20</span></span><br><span class="line"><span class="comment">// 5 times 5 is 25</span></span><br></pre></td></tr></table></figure>
+<h2 id="Half-Open-Range-Operator"><a href="#Half-Open-Range-Operator" class="headerlink" title="Half-Open Range Operator"></a>Half-Open Range Operator</h2><p>The <em>half-open range operator</em> (a..&lt;b) defines a range that runs from a to b, but does not include b.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brian"</span>, <span class="string">"Jack"</span>]</span><br><span class="line"><span class="keyword">let</span> <span class="built_in">count</span> = names.<span class="built_in">count</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="built_in">count</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Person <span class="subst">\(i + <span class="number">1</span>)</span> is called <span class="subst">\(names[i])</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Person 1 is called Anna</span></span><br><span class="line"><span class="comment">// Person 2 is called Alex</span></span><br><span class="line"><span class="comment">// Person 3 is called Brian</span></span><br><span class="line"><span class="comment">// Person 4 is called Jack</span></span><br></pre></td></tr></table></figure>
+<h1 id="Logical-Operators"><a href="#Logical-Operators" class="headerlink" title="Logical Operators"></a>Logical Operators</h1><p>The <em>logical NOT operator</em> (!a)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> allowedEntry = <span class="literal">false</span></span><br><span class="line"><span class="keyword">if</span> !allowedEntry &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "ACCESS DENIED"</span></span><br></pre></td></tr></table></figure>
+<p>The  <em>logical AND operator</em> (a &amp;&amp; b) creates logical expressions where both values must be true for the overall expression to also be true.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> enteredDoorCode = <span class="literal">true</span></span><br><span class="line"><span class="keyword">let</span> passedRetinaScan = <span class="literal">false</span></span><br><span class="line"><span class="keyword">if</span> enteredDoorCode &amp;&amp; passedRetinaScan &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "ACCESS DENIED"</span></span><br></pre></td></tr></table></figure>
+<p>The <em>logical OR operator</em> (a || b)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hasDoorKey = <span class="literal">false</span></span><br><span class="line"><span class="keyword">let</span> knowsOverridePassword = <span class="literal">true</span></span><br><span class="line"><span class="keyword">if</span> hasDoorKey || knowsOverridePassword &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Welcome!"</span></span><br></pre></td></tr></table></figure>
+<p>The Swift logical operators &amp;&amp; and || are left-associative, meaning that compound expressions with multiple logical operators evaluate the leftmost subexpression first.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> enteredDoorCode &amp;&amp; passedRetinaScan || hasDoorKey || knowsOverridePassword &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Welcome!"</span></span><br></pre></td></tr></table></figure>
+<p>Explicit Parentheses</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (enteredDoorCode &amp;&amp; passedRetinaScan) || hasDoorKey || knowsOverridePassword &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Welcome!"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"ACCESS DENIED"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Welcome!"</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/28/2.The Basics/" rel="next" title="2.The Basics">
+                <i class="fa fa-chevron-left"></i> 2.The Basics
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/29/4 Strings and Characters/" rel="prev" title="4.Strings and Characters">
+                4.Strings and Characters <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Assignment-Operator"><span class="nav-number">1.</span> <span class="nav-text">Assignment Operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Arithmetic-Operators"><span class="nav-number">2.</span> <span class="nav-text">Arithmetic Operators</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Compound-Assignment-Operators"><span class="nav-number">3.</span> <span class="nav-text">Compound Assignment Operators</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparison-Operators"><span class="nav-number">4.</span> <span class="nav-text">Comparison Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuple-comparison"><span class="nav-number">4.1.</span> <span class="nav-text">Tuple comparison</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ternary-Conditional-Operator"><span class="nav-number">5.</span> <span class="nav-text">Ternary Conditional Operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nil-Coalescing-Operator"><span class="nav-number">6.</span> <span class="nav-text">Nil-Coalescing Operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Range-Operators"><span class="nav-number">7.</span> <span class="nav-text">Range Operators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-Range-Operator"><span class="nav-number">7.1.</span> <span class="nav-text">Closed Range Operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Half-Open-Range-Operator"><span class="nav-number">7.2.</span> <span class="nav-text">Half-Open Range Operator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logical-Operators"><span class="nav-number">8.</span> <span class="nav-text">Logical Operators</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2016/12/29/3.Basic Operators/';
+
+      var disqus_title = "3. Basic Operators";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+
+</body>
+</html>

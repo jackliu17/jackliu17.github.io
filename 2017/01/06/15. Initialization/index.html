@@ -1,0 +1,803 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="D3Af5_wNyfCxpGOmu04o8yJ6Y4au_48rBuja2NxHLOs" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Initialization
+Initialization is the process of preparing an instance of a class, structure, or enumeration for use.
+Unlike Objective-C initializers, Swift initializers do not return a value. Their pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15.Initialization & Deinitialization">
+<meta property="og:url" content="http://jackliu17.github.io/2017/01/06/15. Initialization/index.html">
+<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:description" content="Initialization
+Initialization is the process of preparing an instance of a class, structure, or enumeration for use.
+Unlike Objective-C initializers, Swift initializers do not return a value. Their pr">
+<meta property="og:image" content="http://jackliu17.github.io/Users/jackliu/Dropbox/blog/image/2017012601.png">
+<meta property="og:image" content="http://jackliu17.github.io/Users/jackliu/Dropbox/blog/image/2017012602.png">
+<meta property="og:image" content="http://jackliu17.github.io/Users/jackliu/Dropbox/blog/image/2017012603.png">
+<meta property="og:image" content="http://jackliu17.github.io/Users/jackliu/Dropbox/blog/image/2017012604.png">
+<meta property="og:updated_time" content="2017-01-26T10:22:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="15.Initialization & Deinitialization">
+<meta name="twitter:description" content="Initialization
+Initialization is the process of preparing an instance of a class, structure, or enumeration for use.
+Unlike Objective-C initializers, Swift initializers do not return a value. Their pr">
+<meta name="twitter:image" content="http://jackliu17.github.io/Users/jackliu/Dropbox/blog/image/2017012601.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://jackliu17.github.io/2017/01/06/15. Initialization/"/>
+
+
+
+
+
+  <title> 15.Initialization & Deinitialization | Cowboy Tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cowboy Tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">The best preparation for tomorrow is doing your best today</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2017/01/06/15. Initialization/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                15.Initialization & Deinitialization
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-06T20:16:33+08:00">
+              2017-01-06
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-26T18:22:05+08:00">
+              2017-01-26
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/06/15. Initialization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/06/15. Initialization/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h1><ul>
+<li><em>Initialization</em> is the process of preparing an instance of a class, structure, or enumeration for use.</li>
+<li>Unlike Objective-C initializers, Swift initializers do not return a value. Their primary role is to ensure that new instances of a type are correctly initialized before they are used for the first time.</li>
+</ul>
+<h1 id="Setting-Initial-Values-for-Stored-Properties"><a href="#Setting-Initial-Values-for-Stored-Properties" class="headerlink" title="Setting Initial Values for Stored Properties"></a>Setting Initial Values for Stored Properties</h1><ul>
+<li>Classes and structures <em>must</em> set all of their stored properties </li>
+<li>When you assign a default value to a stored property, or set its initial value within an initializer, the value of that property is set directly, without calling any property observers.</li>
+<li>set an initial value for a stored property within an initializer, or by assigning a default property value as part of the property’s definition. </li>
+</ul>
+<h2 id="Initializers"><a href="#Initializers" class="headerlink" title="Initializers"></a>Initializers</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">init</span>() &#123;</span><br><span class="line">    <span class="comment">// perform some initialization here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fahrenheit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temperature: <span class="type">Double</span></span><br><span class="line">    <span class="keyword">init</span>() &#123;</span><br><span class="line">        temperature = <span class="number">32.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = <span class="type">Fahrenheit</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The default temperature is <span class="subst">\(f.temperature)</span>° Fahrenheit"</span>)</span><br><span class="line"><span class="comment">// Prints "The default temperature is 32.0° Fahrenheit"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Default-Property-Values"><a href="#Default-Property-Values" class="headerlink" title="Default Property Values"></a>Default Property Values</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Fahrenheit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> temperature = <span class="number">32.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Customizing-Initialization"><a href="#Customizing-Initialization" class="headerlink" title="Customizing Initialization"></a>Customizing Initialization</h1><h2 id="Initialization-Parameters"><a href="#Initialization-Parameters" class="headerlink" title="Initialization Parameters"></a>Initialization Parameters</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Celsius</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> temperatureInCelsius: <span class="type">Double</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">init</span>(fromFahrenheit fahrenheit: <span class="type">Double</span>) &#123;</span><br><span class="line">        temperatureInCelsius = (fahrenheit - <span class="number">32.0</span>) / <span class="number">1.8</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(fromKelvin kelvin: <span class="type">Double</span>) &#123;</span><br><span class="line">        temperatureInCelsius = kelvin - <span class="number">273.15</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> boilingPointOfWater = <span class="type">Celsius</span>(fromFahrenheit: <span class="number">212.0</span>)</span><br><span class="line"><span class="comment">// boilingPointOfWater.temperatureInCelsius is 100.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> freezingPointOfWater = <span class="type">Celsius</span>(fromKelvin: <span class="number">273.15</span>)</span><br><span class="line"><span class="comment">// freezingPointOfWater.temperatureInCelsius is 0.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="Parameter-Names-and-Argument-Labels"><a href="#Parameter-Names-and-Argument-Labels" class="headerlink" title="Parameter Names and Argument Labels"></a>Parameter Names and Argument Labels</h2><p>Swift provides an automatic argument label for <em>every</em> parameter in an initializer if you don’t provide one.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Color</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> red, green, blue: <span class="type">Double</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">init</span>(red: <span class="type">Double</span>, green: <span class="type">Double</span>, blue: <span class="type">Double</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.red   = red</span><br><span class="line">        <span class="keyword">self</span>.green = green</span><br><span class="line">        <span class="keyword">self</span>.blue  = blue</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(white: <span class="type">Double</span>) &#123;</span><br><span class="line">        red   = white</span><br><span class="line">        green = white</span><br><span class="line">        blue  = white</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> magenta = <span class="type">Color</span>(red: <span class="number">1.0</span>, green: <span class="number">0.0</span>, blue: <span class="number">1.0</span>)</span><br><span class="line"><span class="keyword">let</span> halfGray = <span class="type">Color</span>(white: <span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> veryGreen = <span class="type">Color</span>(<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>)</span><br><span class="line"><span class="comment">// this reports a compile-time error - argument labels are required</span></span><br></pre></td></tr></table></figure>
+<h2 id="Initializer-Parameters-Without-Argument-Labels"><a href="#Initializer-Parameters-Without-Argument-Labels" class="headerlink" title="Initializer Parameters Without Argument Labels"></a>Initializer Parameters Without Argument Labels</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Celsius</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> temperatureInCelsius: <span class="type">Double</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(fromFahrenheit fahrenheit: <span class="type">Double</span>) &#123;</span><br><span class="line">        temperatureInCelsius = (fahrenheit - <span class="number">32.0</span>) / <span class="number">1.8</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(fromKelvin kelvin: <span class="type">Double</span>) &#123;</span><br><span class="line">        temperatureInCelsius = kelvin - <span class="number">273.15</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(<span class="number">_</span> celsius: <span class="type">Double</span>) &#123;</span><br><span class="line">        temperatureInCelsius = celsius</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bodyTemperature = <span class="type">Celsius</span>(<span class="number">37.0</span>)</span><br><span class="line"><span class="comment">// bodyTemperature.temperatureInCelsius is 37.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="Optional-Property-Types"><a href="#Optional-Property-Types" class="headerlink" title="Optional Property Types"></a>Optional Property Types</h2><ul>
+<li>stored property that is logically allowed to have “no value”</li>
+<li>Properties of optional type are automatically initialized with a value of nil, indicating that the property is deliberately intended to have “no value yet” during initialization.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SurveyQuestion</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> response: <span class="type">String</span>?</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">init</span>(text: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">ask</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cheeseQuestion = <span class="type">SurveyQuestion</span>(text: <span class="string">"Do you like cheese?"</span>)</span><br><span class="line"></span><br><span class="line">cheeseQuestion.ask()</span><br><span class="line"><span class="comment">// Prints "Do you like cheese?"</span></span><br><span class="line"></span><br><span class="line">cheeseQuestion.response = <span class="string">"Yes, I do like cheese."</span></span><br></pre></td></tr></table></figure>
+<h2 id="Assigning-Constant-Properties-During-Initialization"><a href="#Assigning-Constant-Properties-During-Initialization" class="headerlink" title="Assigning Constant Properties During Initialization"></a>Assigning Constant Properties During Initialization</h2><p>For class instances, a constant property can be modified during initialization only by the class that introduces it. It cannot be modified by a subclass.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SurveyQuestion</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> text: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> response: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(text: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.text = text</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">ask</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> beetsQuestion = <span class="type">SurveyQuestion</span>(text: <span class="string">"How about beets?"</span>)</span><br><span class="line"></span><br><span class="line">beetsQuestion.ask()</span><br><span class="line"><span class="comment">// Prints "How about beets?"</span></span><br><span class="line"></span><br><span class="line">beetsQuestion.response = <span class="string">"I also like beets. (But not with cheese.)"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Default-Initializers"><a href="#Default-Initializers" class="headerlink" title="Default Initializers"></a>Default Initializers</h1><ul>
+<li>Swift provides a <em>default initializer</em> for any structure or class that provides default values for all of its properties and does not provide at least one initializer itself. </li>
+<li>The default initializer simply creates a new instance with all of its properties set to their default values.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShoppingListItem</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> quantity = <span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> purchased = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> item = <span class="type">ShoppingListItem</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Memberwise-Initializers-for-Structure-Types"><a href="#Memberwise-Initializers-for-Structure-Types" class="headerlink" title="Memberwise Initializers for Structure Types"></a>Memberwise Initializers for Structure Types</h2><ul>
+<li>Structure types automatically receive a <em>memberwise initializer</em> if they do not define any of their own custom initializers. </li>
+<li>Unlike a default initializer, the structure receives a memberwise initializer even if it has stored properties that do not have default values.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> twoByTwo = <span class="type">Size</span>(width: <span class="number">2.0</span>, height: <span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Initializer-Delegation-for-Value-Types"><a href="#Initializer-Delegation-for-Value-Types" class="headerlink" title="Initializer Delegation for Value Types"></a>Initializer Delegation for Value Types</h1><ul>
+<li>Initializers can call other initializers to perform part of an instance’s initialization. This process, known as <em>initializer delegation</em></li>
+<li>Value types: initializer delegation is simple,they can only delegate to another initializer that they provide themselves.</li>
+<li>Classes: ensuring that all stored properties they inherit are assigned a suitable value during initialization.</li>
+<li>if you define a custom initializer for a value type, you will no longer have access to the default initializer .If you want your custom value type to be initializable with the default initializer and memberwise initializer, and also with your own custom initializers, write your custom initializers in an extension rather than as part of the value type’s original implementation.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Size</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0.0</span>, height = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// custom initializers</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Rect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> origin = <span class="type">Point</span>()</span><br><span class="line">    <span class="keyword">var</span> size = <span class="type">Size</span>()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(origin: <span class="type">Point</span>, size: <span class="type">Size</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.origin = origin</span><br><span class="line">        <span class="keyword">self</span>.size = size</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(center: <span class="type">Point</span>, size: <span class="type">Size</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> originX = center.x - (size.width / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">let</span> originY = center.y - (size.height / <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(origin: <span class="type">Point</span>(x: originX, y: originY), size: size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> basicRect = <span class="type">Rect</span>()</span><br><span class="line"><span class="comment">// basicRect's origin is (0.0, 0.0) and its size is (0.0, 0.0)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> originRect = <span class="type">Rect</span>(origin: <span class="type">Point</span>(x: <span class="number">2.0</span>, y: <span class="number">2.0</span>),</span><br><span class="line">                      size: <span class="type">Size</span>(width: <span class="number">5.0</span>, height: <span class="number">5.0</span>))</span><br><span class="line"><span class="comment">// originRect's origin is (2.0, 2.0) and its size is (5.0, 5.0)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> centerRect = <span class="type">Rect</span>(center: <span class="type">Point</span>(x: <span class="number">4.0</span>, y: <span class="number">4.0</span>),</span><br><span class="line">                      size: <span class="type">Size</span>(width: <span class="number">3.0</span>, height: <span class="number">3.0</span>))</span><br><span class="line"><span class="comment">// centerRect's origin is (2.5, 2.5) and its size is (3.0, 3.0)</span></span><br></pre></td></tr></table></figure>
+<h1 id="Class-Inheritance-and-Initialization"><a href="#Class-Inheritance-and-Initialization" class="headerlink" title="Class Inheritance and Initialization"></a>Class Inheritance and Initialization</h1><ul>
+<li>All of a class’s stored properties—including any properties the class inherits from its superclass—<em>must</em> be assigned an initial value during initialization.</li>
+<li>Swift defines two kinds of initializers for class types to help ensure all stored properties receive an initial value. These are known as designated initializers and convenience initializers.</li>
+</ul>
+<h2 id="Designated-Initializers-and-Convenience-Initializers"><a href="#Designated-Initializers-and-Convenience-Initializers" class="headerlink" title="Designated Initializers and Convenience Initializers"></a>Designated Initializers and Convenience Initializers</h2><h3 id="Designated-initialzer"><a href="#Designated-initialzer" class="headerlink" title="Designated initialzer"></a>Designated initialzer</h3><ul>
+<li><em>Designated initializers</em> are the primary initializers for a class. A designated initializer fully initializes all properties introduced by that class and calls an appropriate superclass initializer to continue the initialization process up the superclass chain.</li>
+<li>Must have one, normally one ,sometimes inherits one or more from superclass </li>
+</ul>
+<h3 id="Convenience-initializer"><a href="#Convenience-initializer" class="headerlink" title="Convenience initializer"></a>Convenience initializer</h3><ul>
+<li><em>Convenience initializers</em> are secondary, supporting initializers for a class.</li>
+<li>You do not have to provide convenience initializers if your class does not require them. </li>
+</ul>
+<h2 id="Syntax-for-Designated-and-Convenience-Initializers"><a href="#Syntax-for-Designated-and-Convenience-Initializers" class="headerlink" title="Syntax for Designated and Convenience Initializers"></a>Syntax for Designated and Convenience Initializers</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  Designated Initializers</span></span><br><span class="line"><span class="keyword">init</span>(parameters) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  Convenience Initializers</span></span><br><span class="line"><span class="keyword">convenience</span> <span class="keyword">init</span>(parameters) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Initializer-Delegation-for-Class-Types"><a href="#Initializer-Delegation-for-Class-Types" class="headerlink" title="Initializer Delegation for Class Types"></a>Initializer Delegation for Class Types</h2><p><strong>Rule 1</strong></p>
+<p>A designated initializer must call a designated initializer from its immediate superclass.</p>
+<p><strong>Rule 2</strong></p>
+<p>A convenience initializer must call another initializer from the <em>same</em> class.</p>
+<p><strong>Rule 3</strong></p>
+<p>A convenience initializer must ultimately call a designated initializer.</p>
+<p>A simple way to remember this is:</p>
+<ul>
+<li>Designated initializers must always delegate <em>up</em>. </li>
+<li>Convenience initializers must always delegate <em>across</em>.</li>
+</ul>
+<p><strong>Simple Example</strong></p>
+<p><img src="/Users/jackliu/Dropbox/blog/image/2017012601.png" alt="2017012601"></p>
+<p><strong>Complicated example</strong></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/Users/jackliu/Dropbox/blog/image/2017012602.png" alt="2017012602"></h2><h2 id="Two-Phase-Initialization"><a href="#Two-Phase-Initialization" class="headerlink" title="Two-Phase Initialization"></a>Two-Phase Initialization</h2><h3 id="Two-phase"><a href="#Two-phase" class="headerlink" title="Two phase"></a>Two phase</h3><p>Class initialization in Swift is a two-phase process.</p>
+<ol>
+<li>In the first phase, each stored property is assigned an initial value by the class that introduced it. </li>
+<li>each class is given the opportunity to customize its stored properties further </li>
+</ol>
+<h3 id="Swfit-amp-Objective-C"><a href="#Swfit-amp-Objective-C" class="headerlink" title="Swfit &amp; Objective-C"></a>Swfit &amp; Objective-C</h3><p>Swift’s two-phase initialization process is similar to initialization in Objective-C. The main difference is that during phase .Objective-C assigns zero or null values (such as 0 or nil) to every property. Swift’s initialization flow is more flexible in that it lets you set custom initial values, and can cope with types for which 0 or nil is not a valid default value.</p>
+<h3 id="Safety-check"><a href="#Safety-check" class="headerlink" title="Safety check"></a>Safety check</h3><p>Swift’s compiler performs four helpful safety-checks to make sure that two-phase initialization is completed without error:</p>
+<ol>
+<li>A designated initializer must ensure that all of the properties introduced by its class are initialized before it delegates up to a superclass initializer.(<strong>Stored property first then superclass</strong>)</li>
+<li>A designated initializer must delegate up to a superclass initializer before assigning a value to an inherited property. If it doesn’t, the new value the designated initializer assigns will be overwritten by the superclass as part of its own initialization.</li>
+<li>A convenience initializer must delegate to another initializer before assigning a value to <em>any</em> property (including properties defined by the same class). If it doesn’t, the new value the convenience initializer assigns will be overwritten by its own class’s designated initializer.</li>
+<li>An initializer cannot call any instance methods, read the values of any instance properties, or refer to self as a value until after the first phase of initialization is complete.</li>
+</ol>
+<h3 id="Phase-1"><a href="#Phase-1" class="headerlink" title="Phase 1"></a>Phase 1</h3><ul>
+<li>A designated or convenience initializer is called on a class. </li>
+<li>Memory for a new instance of that class is allocated. The memory is not yet initialized. </li>
+<li>A designated initializer for that class confirms that all stored properties introduced by that class have a value. The memory for these stored properties is now initialized. </li>
+<li>The designated initializer hands off to a superclass initializer to perform the same task for its own stored properties. </li>
+<li>This continues up the class inheritance chain until the top of the chain is reached. </li>
+<li>Once the top of the chain is reached, and the final class in the chain has ensured that all of its stored properties have a value, the instance’s memory is considered to be fully initialized, and phase 1 is complete.</li>
+</ul>
+<p><img src="/Users/jackliu/Dropbox/blog/image/2017012603.png" alt="2017012603"></p>
+<h3 id="Phase-2"><a href="#Phase-2" class="headerlink" title="Phase  2"></a>Phase  2</h3><ul>
+<li>Working back down from the top of the chain, each designated initializer in the chain has the option to customize the instance further. Initializers are now able to access self and can modify its properties, call its instance methods, and so on. </li>
+<li>Finally, any convenience initializers in the chain have the option to customize the instance and to work with self.</li>
+</ul>
+<p><img src="/Users/jackliu/Dropbox/blog/image/2017012604.png" alt="2017012604"></p>
+<h2 id="Initializer-Inheritance-and-Overriding"><a href="#Initializer-Inheritance-and-Overriding" class="headerlink" title="Initializer Inheritance and Overriding"></a>Initializer Inheritance and Overriding</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numberOfWheels = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"<span class="subst">\(numberOfWheels)</span> wheel(s)"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> vehicle = <span class="type">Vehicle</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Vehicle: <span class="subst">\(vehicle.description)</span>"</span>)</span><br><span class="line"><span class="comment">// Vehicle: 0 wheel(s)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bicycle</span>: <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        numberOfWheels = <span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bicycle = <span class="type">Bicycle</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Bicycle: <span class="subst">\(bicycle.description)</span>"</span>)</span><br><span class="line"><span class="comment">// Bicycle: 2 wheel(s)</span></span><br></pre></td></tr></table></figure>
+<h2 id="Automatic-Initializer-Inheritance"><a href="#Automatic-Initializer-Inheritance" class="headerlink" title="Automatic Initializer Inheritance"></a>Automatic Initializer Inheritance</h2><h2 id="Designated-and-Convenience-Initializers-in-Action"><a href="#Designated-and-Convenience-Initializers-in-Action" class="headerlink" title="Designated and Convenience Initializers in Action"></a>Designated and Convenience Initializers in Action</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">convenience</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(name: <span class="string">"[Unnamed]"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> namedMeat = <span class="type">Food</span>(name: <span class="string">"Bacon"</span>)</span><br><span class="line"><span class="comment">// namedMeat's name is "Bacon"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> mysteryMeat = <span class="type">Food</span>()</span><br><span class="line"><span class="comment">// mysteryMeat's name is "[Unnamed]"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecipeIngredient</span>: <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> quantity: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>, quantity: <span class="type">Int</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.quantity = quantity</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.<span class="keyword">init</span>(name: name, quantity: <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> oneMysteryItem = <span class="type">RecipeIngredient</span>()</span><br><span class="line"><span class="keyword">let</span> oneBacon = <span class="type">RecipeIngredient</span>(name: <span class="string">"Bacon"</span>)</span><br><span class="line"><span class="keyword">let</span> sixEggs = <span class="type">RecipeIngredient</span>(name: <span class="string">"Eggs"</span>, quantity: <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShoppingListItem</span>: <span class="title">RecipeIngredient</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> purchased = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> output = <span class="string">"<span class="subst">\(quantity)</span> x <span class="subst">\(name)</span>"</span></span><br><span class="line">        output += purchased ? <span class="string">" ✔"</span> : <span class="string">" ✘"</span></span><br><span class="line">        <span class="keyword">return</span> output</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> breakfastList = [</span><br><span class="line">    <span class="type">ShoppingListItem</span>(),</span><br><span class="line">    <span class="type">ShoppingListItem</span>(name: <span class="string">"Bacon"</span>),</span><br><span class="line">    <span class="type">ShoppingListItem</span>(name: <span class="string">"Eggs"</span>, quantity: <span class="number">6</span>),</span><br><span class="line">]</span><br><span class="line">breakfastList[<span class="number">0</span>].name = <span class="string">"Orange juice"</span></span><br><span class="line">breakfastList[<span class="number">0</span>].purchased = <span class="literal">true</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> breakfastList &#123;</span><br><span class="line">    <span class="built_in">print</span>(item.description)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1 x Orange juice ✔</span></span><br><span class="line"><span class="comment">// 1 x Bacon ✘</span></span><br><span class="line"><span class="comment">// 6 x Eggs ✘</span></span><br></pre></td></tr></table></figure>
+<h1 id="Failable-Initializers"><a href="#Failable-Initializers" class="headerlink" title="Failable Initializers"></a>Failable Initializers</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> species: <span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>?(species: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> species.isEmpty &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">        <span class="keyword">self</span>.species = species</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someCreature = <span class="type">Animal</span>(species: <span class="string">"Giraffe"</span>)</span><br><span class="line"><span class="comment">// someCreature is of type Animal?, not Animal</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> giraffe = someCreature &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"An animal was initialized with a species of <span class="subst">\(giraffe.species)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "An animal was initialized with a species of Giraffe"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> anonymousCreature = <span class="type">Animal</span>(species: <span class="string">""</span>)</span><br><span class="line"><span class="comment">// anonymousCreature is of type Animal?, not Animal</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> anonymousCreature == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"The anonymous creature could not be initialized"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "The anonymous creature could not be initialized"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Failable-Initializers-for-Enumerations"><a href="#Failable-Initializers-for-Enumerations" class="headerlink" title="Failable Initializers for Enumerations"></a>Failable Initializers for Enumerations</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TemperatureUnit</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> kelvin, celsius, fahrenheit</span><br><span class="line">    <span class="keyword">init</span>?(symbol: <span class="type">Character</span>) &#123;</span><br><span class="line">        <span class="keyword">switch</span> symbol &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"K"</span>:</span><br><span class="line">            <span class="keyword">self</span> = .kelvin</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"C"</span>:</span><br><span class="line">            <span class="keyword">self</span> = .celsius</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"F"</span>:</span><br><span class="line">            <span class="keyword">self</span> = .fahrenheit</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fahrenheitUnit = <span class="type">TemperatureUnit</span>(symbol: <span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> fahrenheitUnit != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is a defined temperature unit, so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "This is a defined temperature unit, so initialization succeeded."</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> unknownUnit = <span class="type">TemperatureUnit</span>(symbol: <span class="string">"X"</span>)</span><br><span class="line"><span class="keyword">if</span> unknownUnit == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is not a defined temperature unit, so initialization failed."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "This is not a defined temperature unit, so initialization failed."</span></span><br></pre></td></tr></table></figure>
+<h2 id="Failable-Initializers-for-Enumerations-with-Raw-Values"><a href="#Failable-Initializers-for-Enumerations-with-Raw-Values" class="headerlink" title="Failable Initializers for Enumerations with Raw Values"></a>Failable Initializers for Enumerations with Raw Values</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">TemperatureUnit</span>: <span class="title">Character</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> kelvin = <span class="string">"K"</span>, celsius = <span class="string">"C"</span>, fahrenheit = <span class="string">"F"</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> fahrenheitUnit = <span class="type">TemperatureUnit</span>(rawValue: <span class="string">"F"</span>)</span><br><span class="line"><span class="keyword">if</span> fahrenheitUnit != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is a defined temperature unit, so initialization succeeded."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "This is a defined temperature unit, so initialization succeeded."</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> unknownUnit = <span class="type">TemperatureUnit</span>(rawValue: <span class="string">"X"</span>)</span><br><span class="line"><span class="keyword">if</span> unknownUnit == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"This is not a defined temperature unit, so initialization failed."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "This is not a defined temperature unit, so initialization failed."</span></span><br></pre></td></tr></table></figure>
+<h2 id="Propagation-of-Initialization-Failure"><a href="#Propagation-of-Initialization-Failure" class="headerlink" title="Propagation of Initialization Failure"></a>Propagation of Initialization Failure</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CartItem</span>: <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> quantity: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>, quantity: <span class="type">Int</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> quantity &lt; <span class="number">1</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">        <span class="keyword">self</span>.quantity = quantity</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> twoSocks = <span class="type">CartItem</span>(name: <span class="string">"sock"</span>, quantity: <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Item: <span class="subst">\(twoSocks.name)</span>, quantity: <span class="subst">\(twoSocks.quantity)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Item: sock, quantity: 2"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> zeroShirts = <span class="type">CartItem</span>(name: <span class="string">"shirt"</span>, quantity: <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Item: <span class="subst">\(zeroShirts.name)</span>, quantity: <span class="subst">\(zeroShirts.quantity)</span>"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unable to initialize zero shirts"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Unable to initialize zero shirts"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> oneUnnamed = <span class="type">CartItem</span>(name: <span class="string">""</span>, quantity: <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Item: <span class="subst">\(oneUnnamed.name)</span>, quantity: <span class="subst">\(oneUnnamed.quantity)</span>"</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unable to initialize one unnamed product"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Unable to initialize one unnamed product"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Overriding-a-Failable-Initializer"><a href="#Overriding-a-Failable-Initializer" class="headerlink" title="Overriding a Failable Initializer"></a>Overriding a Failable Initializer</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">    <span class="comment">// this initializer creates a document with a nil name value</span></span><br><span class="line">    <span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">    <span class="comment">// this initializer creates a document with a nonempty name value</span></span><br><span class="line">    <span class="keyword">init</span>?(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line">        <span class="keyword">self</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutomaticallyNamedDocument</span>: <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="keyword">self</span>.name = <span class="string">"[Untitled]"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(name: <span class="type">String</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        <span class="keyword">if</span> name.isEmpty &#123;</span><br><span class="line">            <span class="keyword">self</span>.name = <span class="string">"[Untitled]"</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.name = name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UntitledDocument</span>: <span class="title">Document</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(name: <span class="string">"[Untitled]"</span>)!</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="The-init-Failable-Initializer"><a href="#The-init-Failable-Initializer" class="headerlink" title="The init! Failable Initializer"></a>The init! Failable Initializer</h2><h1 id="Required-Initializers"><a href="#Required-Initializers" class="headerlink" title="Required Initializers"></a>Required Initializers</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">// initializer implementation goes here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeSubclass</span>: <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">        <span class="comment">// subclass implementation of the required initializer goes here</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Setting-a-Default-Property-Value-with-a-Closure-or-Function"><a href="#Setting-a-Default-Property-Value-with-a-Closure-or-Function" class="headerlink" title="Setting a Default Property Value with a Closure or Function"></a>Setting a Default Property Value with a Closure or Function</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> someProperty: <span class="type">SomeType</span> = &#123;</span><br><span class="line">        <span class="comment">// create a default value for someProperty inside this closure</span></span><br><span class="line">        <span class="comment">// someValue must be of the same type as SomeType</span></span><br><span class="line">        <span class="keyword">return</span> someValue</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Chessboard</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> boardColors: [<span class="type">Bool</span>] = &#123;</span><br><span class="line">        <span class="keyword">var</span> temporaryBoard = [<span class="type">Bool</span>]()</span><br><span class="line">        <span class="keyword">var</span> isBlack = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">8</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>...<span class="number">8</span> &#123;</span><br><span class="line">                temporaryBoard.append(isBlack)</span><br><span class="line">                isBlack = !isBlack</span><br><span class="line">            &#125;</span><br><span class="line">            isBlack = !isBlack</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temporaryBoard</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">squareIsBlackAt</span><span class="params">(row: Int, column: Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> boardColors[(row * <span class="number">8</span>) + column]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> board = <span class="type">Chessboard</span>()</span><br><span class="line"><span class="built_in">print</span>(board.squareIsBlackAt(row: <span class="number">0</span>, column: <span class="number">1</span>))</span><br><span class="line"><span class="comment">// Prints "true"</span></span><br><span class="line"><span class="built_in">print</span>(board.squareIsBlackAt(row: <span class="number">7</span>, column: <span class="number">7</span>))</span><br><span class="line"><span class="comment">// Prints "false"</span></span><br></pre></td></tr></table></figure>
+<h1 id="Deinitialization"><a href="#Deinitialization" class="headerlink" title="Deinitialization"></a>Deinitialization</h1><h1 id="How-Deinitialization-Works"><a href="#How-Deinitialization-Works" class="headerlink" title="How Deinitialization Works"></a>How Deinitialization Works</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">deinit</span> &#123;</span><br><span class="line">    <span class="comment">// perform the deinitialization</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Deinitializers-in-Action"><a href="#Deinitializers-in-Action" class="headerlink" title="Deinitializers in Action"></a>Deinitializers in Action</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> coinsInBank = <span class="number">10_000</span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">distribute</span><span class="params">(coins numberOfCoinsRequested: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> numberOfCoinsToVend = <span class="built_in">min</span>(numberOfCoinsRequested, coinsInBank)</span><br><span class="line">        coinsInBank -= numberOfCoinsToVend</span><br><span class="line">        <span class="keyword">return</span> numberOfCoinsToVend</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">receive</span><span class="params">(coins: Int)</span></span> &#123;</span><br><span class="line">        coinsInBank += coins</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Player</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> coinsInPurse: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">init</span>(coins: <span class="type">Int</span>) &#123;</span><br><span class="line">        coinsInPurse = <span class="type">Bank</span>.distribute(coins: coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">win</span><span class="params">(coins: Int)</span></span> &#123;</span><br><span class="line">        coinsInPurse += <span class="type">Bank</span>.distribute(coins: coins)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">deinit</span> &#123;</span><br><span class="line">        <span class="type">Bank</span>.receive(coins: coinsInPurse)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> playerOne: <span class="type">Player</span>? = <span class="type">Player</span>(coins: <span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"A new player has joined the game with <span class="subst">\(playerOne!.coinsInPurse)</span> coins"</span>)</span><br><span class="line"><span class="comment">// Prints "A new player has joined the game with 100 coins"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"There are now <span class="subst">\(Bank.coinsInBank)</span> coins left in the bank"</span>)</span><br><span class="line"><span class="comment">// Prints "There are now 9900 coins left in the bank"</span></span><br><span class="line"></span><br><span class="line">playerOne!.win(coins: <span class="number">2_000</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"PlayerOne won 2000 coins &amp; now has <span class="subst">\(playerOne!.coinsInPurse)</span> coins"</span>)</span><br><span class="line"><span class="comment">// Prints "PlayerOne won 2000 coins &amp; now has 2100 coins"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The bank now only has <span class="subst">\(Bank.coinsInBank)</span> coins left"</span>)</span><br><span class="line"><span class="comment">// Prints "The bank now only has 7900 coins left"</span></span><br><span class="line"></span><br><span class="line">playerOne = <span class="literal">nil</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"PlayerOne has left the game"</span>)</span><br><span class="line"><span class="comment">// Prints "PlayerOne has left the game"</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"The bank now has <span class="subst">\(Bank.coinsInBank)</span> coins"</span>)</span><br><span class="line"><span class="comment">// Prints "The bank now has 10000 coins"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/06/14. Inheritance/" rel="next" title="14. Inheritance">
+                <i class="fa fa-chevron-left"></i> 14. Inheritance
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/23/17. Optional Chaining/" rel="prev" title="17.Optional Chaining">
+                17.Optional Chaining <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Jack Liu" />
+          <p class="site-author-name" itemprop="name">Jack Liu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Initialization"><span class="nav-number">1.</span> <span class="nav-text">Initialization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Setting-Initial-Values-for-Stored-Properties"><span class="nav-number">2.</span> <span class="nav-text">Setting Initial Values for Stored Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializers"><span class="nav-number">2.1.</span> <span class="nav-text">Initializers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Default-Property-Values"><span class="nav-number">2.2.</span> <span class="nav-text">Default Property Values</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Customizing-Initialization"><span class="nav-number">3.</span> <span class="nav-text">Customizing Initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Initialization-Parameters"><span class="nav-number">3.1.</span> <span class="nav-text">Initialization Parameters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parameter-Names-and-Argument-Labels"><span class="nav-number">3.2.</span> <span class="nav-text">Parameter Names and Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializer-Parameters-Without-Argument-Labels"><span class="nav-number">3.3.</span> <span class="nav-text">Initializer Parameters Without Argument Labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Property-Types"><span class="nav-number">3.4.</span> <span class="nav-text">Optional Property Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Assigning-Constant-Properties-During-Initialization"><span class="nav-number">3.5.</span> <span class="nav-text">Assigning Constant Properties During Initialization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Default-Initializers"><span class="nav-number">4.</span> <span class="nav-text">Default Initializers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Memberwise-Initializers-for-Structure-Types"><span class="nav-number">4.1.</span> <span class="nav-text">Memberwise Initializers for Structure Types</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Initializer-Delegation-for-Value-Types"><span class="nav-number">5.</span> <span class="nav-text">Initializer Delegation for Value Types</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Class-Inheritance-and-Initialization"><span class="nav-number">6.</span> <span class="nav-text">Class Inheritance and Initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Designated-Initializers-and-Convenience-Initializers"><span class="nav-number">6.1.</span> <span class="nav-text">Designated Initializers and Convenience Initializers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Designated-initialzer"><span class="nav-number">6.1.1.</span> <span class="nav-text">Designated initialzer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convenience-initializer"><span class="nav-number">6.1.2.</span> <span class="nav-text">Convenience initializer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax-for-Designated-and-Convenience-Initializers"><span class="nav-number">6.2.</span> <span class="nav-text">Syntax for Designated and Convenience Initializers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializer-Delegation-for-Class-Types"><span class="nav-number">6.3.</span> <span class="nav-text">Initializer Delegation for Class Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Phase-Initialization"><span class="nav-number">6.5.</span> <span class="nav-text">Two-Phase Initialization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-phase"><span class="nav-number">6.5.1.</span> <span class="nav-text">Two phase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swfit-amp-Objective-C"><span class="nav-number">6.5.2.</span> <span class="nav-text">Swfit & Objective-C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Safety-check"><span class="nav-number">6.5.3.</span> <span class="nav-text">Safety check</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-1"><span class="nav-number">6.5.4.</span> <span class="nav-text">Phase 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Phase-2"><span class="nav-number">6.5.5.</span> <span class="nav-text">Phase  2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializer-Inheritance-and-Overriding"><span class="nav-number">6.6.</span> <span class="nav-text">Initializer Inheritance and Overriding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Automatic-Initializer-Inheritance"><span class="nav-number">6.7.</span> <span class="nav-text">Automatic Initializer Inheritance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Designated-and-Convenience-Initializers-in-Action"><span class="nav-number">6.8.</span> <span class="nav-text">Designated and Convenience Initializers in Action</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Failable-Initializers"><span class="nav-number">7.</span> <span class="nav-text">Failable Initializers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Failable-Initializers-for-Enumerations"><span class="nav-number">7.1.</span> <span class="nav-text">Failable Initializers for Enumerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Failable-Initializers-for-Enumerations-with-Raw-Values"><span class="nav-number">7.2.</span> <span class="nav-text">Failable Initializers for Enumerations with Raw Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Propagation-of-Initialization-Failure"><span class="nav-number">7.3.</span> <span class="nav-text">Propagation of Initialization Failure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overriding-a-Failable-Initializer"><span class="nav-number">7.4.</span> <span class="nav-text">Overriding a Failable Initializer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-init-Failable-Initializer"><span class="nav-number">7.5.</span> <span class="nav-text">The init! Failable Initializer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Required-Initializers"><span class="nav-number">8.</span> <span class="nav-text">Required Initializers</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Setting-a-Default-Property-Value-with-a-Closure-or-Function"><span class="nav-number">9.</span> <span class="nav-text">Setting a Default Property Value with a Closure or Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deinitialization"><span class="nav-number">10.</span> <span class="nav-text">Deinitialization</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-Deinitialization-Works"><span class="nav-number">11.</span> <span class="nav-text">How Deinitialization Works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deinitializers-in-Action"><span class="nav-number">12.</span> <span class="nav-text">Deinitializers in Action</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jack Liu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'cowboyTech';
+      var disqus_identifier = '2017/01/06/15. Initialization/';
+
+      var disqus_title = "15.Initialization & Deinitialization";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  
+
+
+</body>
+</html>
