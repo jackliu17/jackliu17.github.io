@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="swift," />
 
 
 
@@ -88,15 +88,19 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cowboy Tech">
-<meta property="og:url" content="http://jackliu17.github.io/index.html">
+<meta name="description" content="Optional ChainingMultiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is nil.
+Optional Chaining as an Alternative to Forced UnwrappingA property tha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17">
+<meta property="og:url" content="http://jackliu17.github.io/2017/01/23/17. Optional Chaining/index.html">
 <meta property="og:site_name" content="Cowboy Tech">
-<meta property="og:description">
+<meta property="og:description" content="Optional ChainingMultiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is nil.
+Optional Chaining as an Alternative to Forced UnwrappingA property tha">
+<meta property="og:updated_time" content="2017-01-26T09:03:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cowboy Tech">
-<meta name="twitter:description">
+<meta name="twitter:title" content="17">
+<meta name="twitter:description" content="Optional ChainingMultiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is nil.
+Optional Chaining as an Alternative to Forced UnwrappingA property tha">
 
 
 
@@ -124,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://jackliu17.github.io/"/>
+  <link rel="canonical" href="http://jackliu17.github.io/2017/01/23/17. Optional Chaining/"/>
 
 
 
 
 
-  <title> Cowboy Tech </title>
+  <title> 17 | Cowboy Tech </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,9 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,9 +234,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -267,10 +269,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/01/23/17. Optional Chaining/" itemprop="url">
-                  17
-                </a>
+                17
               
             
           </h1>
@@ -349,9 +348,7 @@
       
 
       
-        
-          
-            <h1 id="Optional-Chaining"><a href="#Optional-Chaining" class="headerlink" title="Optional Chaining"></a>Optional Chaining</h1><p>Multiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is nil.</p>
+        <h1 id="Optional-Chaining"><a href="#Optional-Chaining" class="headerlink" title="Optional Chaining"></a>Optional Chaining</h1><p>Multiple queries can be chained together, and the entire chain fails gracefully if any link in the chain is nil.</p>
 <h1 id="Optional-Chaining-as-an-Alternative-to-Forced-Unwrapping"><a href="#Optional-Chaining-as-an-Alternative-to-Forced-Unwrapping" class="headerlink" title="Optional Chaining as an Alternative to Forced Unwrapping"></a>Optional Chaining as an Alternative to Forced Unwrapping</h1><p>A property that normally returns an Int will return an <code>Int?</code> when accessed through optional chaining.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> residence: <span class="type">Residence</span>?</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Residence</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> numberOfRooms = <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> john = <span class="type">Person</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> roomCount = john.residence!.numberOfRooms</span><br><span class="line"><span class="comment">// this triggers a runtime error</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> roomCount = john.residence?.numberOfRooms &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"John's residence has <span class="subst">\(roomCount)</span> room(s)."</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unable to retrieve the number of rooms."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "Unable to retrieve the number of rooms."</span></span><br><span class="line"></span><br><span class="line">john.residence = <span class="type">Residence</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> roomCount = john.residence?.numberOfRooms &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"John's residence has <span class="subst">\(roomCount)</span> room(s)."</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Unable to retrieve the number of rooms."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "John's residence has 1 room(s)."</span></span><br></pre></td></tr></table></figure>
 <h1 id="Defining-Model-Classes-for-Optional-Chaining"><a href="#Defining-Model-Classes-for-Optional-Chaining" class="headerlink" title="Defining Model Classes for Optional Chaining"></a>Defining Model Classes for Optional Chaining</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> residence: <span class="type">Residence</span>?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Residence</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rooms = [<span class="type">Room</span>]()</span><br><span class="line">    <span class="keyword">var</span> numberOfRooms: <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> rooms.<span class="built_in">count</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">subscript</span>(i: <span class="type">Int</span>) -&gt; <span class="type">Room</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> rooms[i]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            rooms[i] = newValue</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printNumberOfRooms</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"The number of rooms is <span class="subst">\(numberOfRooms)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> address: <span class="type">Address</span>?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Room</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">init</span>(name: <span class="type">String</span>) &#123; <span class="keyword">self</span>.name = name &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> buildingName: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> buildingNumber: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> street: <span class="type">String</span>?</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">buildingIdentifier</span><span class="params">()</span></span> -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">        <span class="keyword">if</span> buildingNumber != <span class="literal">nil</span> &amp;&amp; street != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"<span class="subst">\(buildingNumber)</span> <span class="subst">\(street)</span>"</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> buildingName != <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> buildingName</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -385,37 +382,46 @@
 <h1 id="Chaining-on-Methods-with-Optional-Return-Values"><a href="#Chaining-on-Methods-with-Optional-Return-Values" class="headerlink" title="Chaining on Methods with Optional Return Values"></a>Chaining on Methods with Optional Return Values</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> buildingIdentifier = john.residence?.address?.buildingIdentifier() &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"John's building identifier is <span class="subst">\(buildingIdentifier)</span>."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "John's building identifier is The Larches."</span></span><br></pre></td></tr></table></figure>
 <p>the optional value you are chaining on is the <code>buildingIdentifier()</code> method’s return value, and not the <code>buildingIdentifier()</code> method itself.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> beginsWithThe =</span><br><span class="line">    john.residence?.address?.buildingIdentifier()?.hasPrefix(<span class="string">"The"</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> beginsWithThe &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"John's building identifier begins with \"The\"."</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"John's building identifier does not begin with \"The\"."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Prints "John's building identifier begins with "The"."</span></span><br></pre></td></tr></table></figure>
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
       
 
       
+
       
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -423,6 +429,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -442,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -503,6 +529,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional-Chaining"><span class="nav-number">1.</span> <span class="nav-text">Optional Chaining</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional-Chaining-as-an-Alternative-to-Forced-Unwrapping"><span class="nav-number">2.</span> <span class="nav-text">Optional Chaining as an Alternative to Forced Unwrapping</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Defining-Model-Classes-for-Optional-Chaining"><span class="nav-number">3.</span> <span class="nav-text">Defining Model Classes for Optional Chaining</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Accessing-Properties-Through-Optional-Chaining"><span class="nav-number">4.</span> <span class="nav-text">Accessing Properties Through Optional Chaining</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Calling-Methods-Through-Optional-Chaining"><span class="nav-number">5.</span> <span class="nav-text">Calling Methods Through Optional Chaining</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Accessing-Subscripts-Through-Optional-Chaining"><span class="nav-number">6.</span> <span class="nav-text">Accessing Subscripts Through Optional Chaining</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessing-Subscripts-of-Optional-Type"><span class="nav-number">6.1.</span> <span class="nav-text">Accessing Subscripts of Optional Type</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linking-Multiple-Levels-of-Chaining"><span class="nav-number">7.</span> <span class="nav-text">Linking Multiple Levels of Chaining</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chaining-on-Methods-with-Optional-Return-Values"><span class="nav-number">8.</span> <span class="nav-text">Chaining on Methods with Optional Return Values</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -601,6 +643,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -617,9 +663,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'cowboyTech';
-      var disqus_identifier = 'index.html';
+      var disqus_identifier = '2017/01/23/17. Optional Chaining/';
 
-      var disqus_title = "";
+      var disqus_title = "17";
 
 
       function run_disqus_script(disqus_script) {
@@ -632,6 +678,8 @@
 
       run_disqus_script('count.js');
 
+      
+        run_disqus_script('embed.js');
       
 
     </script>
