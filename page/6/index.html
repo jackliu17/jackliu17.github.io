@@ -243,1423 +243,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/04/使用CocoaPods管理iOS库/" itemprop="url">
-                  使用CocoaPods管理iOS库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-04T14:17:13+08:00">
-              2016-08-04
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-04T19:18:29+08:00">
-              2016-08-04
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/04/使用CocoaPods管理iOS库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/04/使用CocoaPods管理iOS库/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="iOS库的介绍"><a href="#iOS库的介绍" class="headerlink" title="iOS库的介绍"></a>iOS库的介绍</h1><h2 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a>动态库和静态库</h2><ol>
-<li>动态库在运行时实时部署，静态库必须在编译时连接到代码</li>
-<li>动态库加载到内存后可以重复使用,静态库每次import都引入一次</li>
-<li>自定义的动态库只能部署在 iOS8 以上系统</li>
-<li>.a(静态库，只有代码，没有任何资源,图片xib文件等)</li>
-<li>.dylib (动态库，只有代码，没有任何资源)</li>
-<li>.framework 可以包含资源，分为两种：dynamic 和 static</li>
-<li>use_frameworks! 生成 dynamic framework</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1" alt=""></p>
-<h2 id="制作库"><a href="#制作库" class="headerlink" title="制作库"></a>制作库</h2><p>iOS 体系结构</p>
-<ol>
-<li>armv7： iPhone 4/4s</li>
-<li>armv7s：iPhone 5 和 iPhone 5C</li>
-<li>arm64：iPhone 5S+</li>
-<li>x86-64、i386：模拟器</li>
-<li>lipo –info – 查看库支持的体系结构</li>
-<li>lipo -create  -output  - 将模拟器和真机的库合成一个库</li>
-<li>Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包</li>
-</ol>
-<h3 id="设定系统为8-0以上才能部署自定义动态库"><a href="#设定系统为8-0以上才能部署自定义动态库" class="headerlink" title="设定系统为8.0以上才能部署自定义动态库"></a>设定系统为8.0以上才能部署自定义动态库</h3><p><img src="https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1" alt=""></p>
-<h3 id="创建一个库"><a href="#创建一个库" class="headerlink" title="创建一个库"></a>创建一个库</h3><p><img src="https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1" alt=""></p>
-<h3 id="MyFramework-swift"><a href="#MyFramework-swift" class="headerlink" title="MyFramework.swift"></a>MyFramework.swift</h3><pre><code>import UIKit
-
-public class MyFramework: NSObject {
-
-static let bundle = NSBundle(forClass: MyFramework.self)
-
-static let MyFrameworkStr = &quot;MyFramework&quot;
-
-public static func openVCFromStoryboard() {
-    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&quot;MyFrameworkViewController&quot;)
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-}
-
-public static func openVCFromXib() {
-    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
-    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-}
-
-public static func loadImage() -&gt; UIImage{
-    let image = UIImage(named: MyFrameworkStr + &quot;.png&quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
-    return image!
-}
-
-
-}
-</code></pre><h3 id="分别在真机和模拟下运行，Product下生成，在show-in-finder中打开"><a href="#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开" class="headerlink" title="分别在真机和模拟下运行，Product下生成，在show in finder中打开"></a>分别在真机和模拟下运行，Product下生成，在show in finder中打开</h3><p><img src="https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1" alt=""></p>
-<h3 id="找到xxx-framework目录下的MyFramework文件，如图所示"><a href="#找到xxx-framework目录下的MyFramework文件，如图所示" class="headerlink" title="找到xxx.framework目录下的MyFramework文件，如图所示"></a>找到xxx.framework目录下的MyFramework文件，如图所示</h3><p><img src="https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1" alt=""></p>
-<h3 id="合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径"><a href="#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径" class="headerlink" title="合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)"></a>合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)</h3><p><img src="https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1" alt=""></p>
-<h3 id="合并库中的module也要模拟器module-真机module"><a href="#合并库中的module也要模拟器module-真机module" class="headerlink" title="合并库中的module也要模拟器module + 真机module"></a>合并库中的module也要模拟器module + 真机module</h3><p><img src="https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1" alt=""></p>
-<h2 id="使用库"><a href="#使用库" class="headerlink" title="使用库"></a>使用库</h2><ol>
-<li>手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries</li>
-<li>使用 pod：use_frameworks!</li>
-</ol>
-<h2 id="利用-dynamic-库实时部署"><a href="#利用-dynamic-库实时部署" class="headerlink" title="利用 dynamic 库实时部署"></a>利用 dynamic 库实时部署</h2><pre><code>let libPath = &quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&quot;
-if let bundle = NSBundle(path: libPath) {
-do {
-    try bundle.loadAndReturnError()
-    if let myFramework = NSClassFromString(&quot;MyFramework&quot;) as? MyFramework.Type{
-        myFramework.init().whereIsFrom()
-    }
-} catch {
-    print(&quot;动态库加载失败&quot;)
-}
-}
-</code></pre><h1 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在Terminal输入以下安装命令</p>
-<pre><code>$ sudo gem install cocoapods
-</code></pre><p>出现以下报错</p>
-<pre><code>You don&apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
-</code></pre><p>再Terminal输入以下命令</p>
-<pre><code>$ sudo gem update
-</code></pre><p>还是出现以下报错</p>
-<pre><code>Operation not permitted - /usr/bin/xcodeproj
-</code></pre><p>参考官方文档<a href="https://github.com/CocoaPods/CocoaPods/issues/3692" target="_blank" rel="external">Operation not permitted</a>输入以下命令，成功</p>
-<pre><code>$ sudo gem install -n /usr/local/bin cocoapods
-</code></pre><h2 id="CocoaPods基础知识-—-使用步骤"><a href="#CocoaPods基础知识-—-使用步骤" class="headerlink" title="CocoaPods基础知识 — 使用步骤"></a>CocoaPods基础知识 — 使用步骤</h2><ol>
-<li>创建或打开 Xcode 项目</li>
-<li>命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)</li>
-<li>使用 pod init 创建 Podfile</li>
-<li>pod search Alamofire </li>
-<li>修改 Podfile</li>
-<li>pod install</li>
-<li>打开 pod 创建的 xcworkspace</li>
-</ol>
-<h2 id="CocoaPods基础知识-—-Podfile"><a href="#CocoaPods基础知识-—-Podfile" class="headerlink" title="CocoaPods基础知识 — Podfile"></a>CocoaPods基础知识 — Podfile</h2><pre><code>platform : ios &apos;9.0&apos;
-use_frameworks! (swift下必须使用)
-inhibit_all_warnings! (隐藏所有报错信息)
-target  &apos;PodTest&apos; do
-    pod &apos;AFNetworking&apos;,  &apos;~&gt; 3.0&apos;
-    pod &apos;FBSDKCoreKit&apos;, &apos;~&gt; 4.9&apos;
-end
-</code></pre><h2 id="Podfile-lock"><a href="#Podfile-lock" class="headerlink" title="Podfile.lock"></a>Podfile.lock</h2><ol>
-<li>第一次 pod install 时生成记录每个 Pod 版本</li>
-<li>Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本</li>
-<li>多人协作时防止第三方库升级时造成版本不一致</li>
-</ol>
-<h2 id="pod-install-和-pod-update"><a href="#pod-install-和-pod-update" class="headerlink" title="pod install 和 pod update"></a>pod install 和 pod update</h2><ol>
-<li>pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods</li>
-<li>pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本</li>
-<li>使用 pod update podName 来更新指定 pod 的版本</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/02/GCD编程/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/02/GCD编程/" itemprop="url">
-                  GCD编程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-02T21:01:19+08:00">
-              2016-08-02
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-10T19:25:34+08:00">
-              2016-08-10
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/02/GCD编程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/GCD编程/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="串行队列"><a href="#串行队列" class="headerlink" title="串行队列"></a>串行队列</h1><p>串行队列一次只执行一个线程，按照添加到队列的顺序依次执行</p>
-<pre><code>- (void)viewDidLoad {
-[self serailQueue];
-}
-
-
-//串行队列
-- (void)serailQueue {
-
-//创建出了队列
-GCDQueue *queue = [[GCDQueue alloc]initSerial];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;1&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;2&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;3&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;4&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;5&quot;);
-}];
-}
-</code></pre><h1 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h1><p>并发队列一次可以执行多个线程，线程的执行没有先后顺序</p>
-<pre><code>- (void)viewDidLoad {
-[self serailQueue];
-}
-
-//并发队列,5个线程同时执行
-- (void)initConcurrent{
-
-//创建出了队列
-GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;1&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;2&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;3&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;4&quot;);
-}];
-
-//执行队列中的线程
-[queue execute:^{
-    NSLog(@&quot;5&quot;);
-}];
-
-}
-</code></pre><h1 id="UI界面所在的线程队列是串行队列"><a href="#UI界面所在的线程队列是串行队列" class="headerlink" title="UI界面所在的线程队列是串行队列"></a>UI界面所在的线程队列是串行队列</h1><p>在子线程中处理业务逻辑，在主线程中更新UI</p>
-<pre><code>- (void)viewDidLoad {
-
-self.imageView        = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-self.imageView.center = self.view.center;
-[self.view addSubview:self.imageView];
-
-[GCDQueue executeInGlobalQueue:^{
-
-    //处理业务逻辑,下载操作
-
-    NSString *netUrlString = @&quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&quot;;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:netUrlString]];
-    NSData *picData = [NSURLConnection sendSynchronousRequest:request
-                                            returningResponse:nil
-                                                        error:nil];
-
-
-    [GCDQueue executeInMainQueue:^{
-
-        //更新UI
-        self.imageView.image = [[UIImage alloc] initWithData:picData];
-
-    }];
-
-}];
-
-}
-</code></pre><h1 id="延时操作"><a href="#延时操作" class="headerlink" title="延时操作"></a>延时操作</h1><h2 id="NSThread方式"><a href="#NSThread方式" class="headerlink" title="NSThread方式"></a>NSThread方式</h2><p>优点:时间比较精确，而且可以用方法取消。缺点:比较繁琐</p>
-<pre><code>- (void)viewDidLoad {
-
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-NSLog(@&quot;启动&quot;);
-
-//NSThread方式的延时执行操作
-[self performSelector:@selector(threadEvent:)
-           withObject:self
-           afterDelay:2.f];
-
-//取消延时执行操作
-[NSObject cancelPreviousPerformRequestsWithTarget:self];
-
-}
-
-- (void)threadEvent:(id)sender{
-NSLog(@&quot;线程事件&quot;);
-}
-</code></pre><h2 id="GCD方式"><a href="#GCD方式" class="headerlink" title="GCD方式"></a>GCD方式</h2><p>优点:简单快捷。缺点:时间不够精确，不能取消。</p>
-<pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-NSLog(@&quot;启动&quot;);
-//GCD方式的延时执行操作
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&quot;GCD线程事件&quot;);
-} afterDelaySecs:2.f];
-
-}
-</code></pre><h1 id="GCD线程组-管理线程"><a href="#GCD线程组-管理线程" class="headerlink" title="GCD线程组(管理线程)"></a>GCD线程组(管理线程)</h1><pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-//初始化线程组合
-GCDGroup *group = [[GCDGroup alloc]init];
-
-//创建一个线程队列
-GCDQueue *queue = [[GCDQueue alloc]initConcurrent];
-
-//让线程在group中执行线程1
-[queue execute:^{
-    sleep(1);
-    NSLog(@&quot;线程1执行完毕&quot;);
-} inGroup:group];
-
-//让线程在group中执行线程2
-[queue execute:^{
-     sleep(3);
-    NSLog(@&quot;线程2执行完毕&quot;);
-} inGroup:group];
-
-//监听线程组是否执行结束，然后执行线程3
-[queue notify:^{
-    NSLog(@&quot;线程3执行完毕&quot;);
-} inGroup:group];
-}
-</code></pre><h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><h2 id="GCD定时器"><a href="#GCD定时器" class="headerlink" title="GCD定时器"></a>GCD定时器</h2><pre><code>@interface ViewController ()
-@property (nonatomic, strong) GCDTimer *timer;
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.timer = [[GCDTimer alloc] initInQueue:[GCDQueue mainQueue]];
-[self.timer event:^{
-    NSLog(@&quot;GCD定时器&quot;);
-} timeInterval:NSEC_PER_SEC];
-
-[self.timer start];
-}
-
-@end
-</code></pre><h2 id="NSTimer定时器"><a href="#NSTimer定时器" class="headerlink" title="NSTimer定时器"></a>NSTimer定时器</h2><p>仅运行在当前runloop? 不能用于tableView?</p>
-<pre><code>@interface ViewController ()
-@property (nonatomic,strong)NSTimer *normalTimer;
-@end
-
-- (void)viewDidLoad {
-[super viewDidLoad];   
- self.normalTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                    target:self
-                                                  selector:@selector(timerEvent)
-                                                  userInfo:nil
-                                                   repeats:YES];
-}
-
-- (void)timerEvent{
-NSLog(@&quot;NSTimer定时器&quot;);
-}    
-</code></pre><h1 id="GCD信号量-异步线程转换为同步线程"><a href="#GCD信号量-异步线程转换为同步线程" class="headerlink" title="GCD信号量- 异步线程转换为同步线程"></a>GCD信号量- 异步线程转换为同步线程</h1><pre><code>- (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view, typically from a nib.
-
-//必须线程1先执行完，然后再执行完线程2
-
-//创建信号量, 可以将异步线程转化为同步线程
-GCDSemaphore * semaphore = [[GCDSemaphore alloc]init];
-
-
-//线程1 - 异步
-[GCDQueue executeInGlobalQueue:^{
-    NSLog(@&quot;线程1&quot;);
-
-    //发送信号
-    [semaphore signal];
-
-}];
-
-//线程2 - 异步
-[GCDQueue executeInGlobalQueue:^{
-
-    //等待信号，这时会堵塞住，不会往下执行，直到接收到信号
-    [semaphore wait];
-
-    NSLog(@&quot;线程2&quot;);
-}];
-
-}
-</code></pre><h1 id="综合使用-采用GCD逐一下载图片"><a href="#综合使用-采用GCD逐一下载图片" class="headerlink" title="综合使用:采用GCD逐一下载图片"></a>综合使用:采用GCD逐一下载图片</h1><pre><code>#import &quot;ViewController.h&quot;
-#import &quot;GCD.h&quot;
-
-@interface ViewController ()
-
-@property(nonatomic, strong) UIImageView *view1;
-@property(nonatomic, strong) UIImageView *view2;
-@property(nonatomic, strong) UIImageView *view3;
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-self.view1 = [self createImageViewWithFrame:CGRectMake(0, 0, 100, 100)];
-self.view2 = [self createImageViewWithFrame:CGRectMake(100, 0, 100, 100)];
-self.view3 = [self createImageViewWithFrame:CGRectMake(200, 0, 100, 100)];
-
-NSString *net1 = @&quot;http://pic.cnitblog.com/avatar/607542/20140226182241.png&quot;;
-NSString *net2 = @&quot;http://pic.cnitblog.com/avatar/708810/20141230105233.png&quot;;
-NSString *net3 = @&quot;http://pic.cnitblog.com/avatar/704178/20141216150843.png&quot;;
-
-//初始化信号量
-GCDSemaphore *semaphore = [[GCDSemaphore alloc]init];
-
-
-//图片1
-[GCDQueue executeInGlobalQueue:^{
-    UIImage *image1 = [self accessDataByNetString:net1];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view1.image = image1;
-            self.view1.alpha = 1.f;
-        } completion:^(BOOL finished) {
-
-            //发送信号
-            [semaphore signal];
-        }];
-    }];
-}];
-
-//图片2
-[GCDQueue executeInGlobalQueue:^{
-
-    UIImage *image2 = [self accessDataByNetString:net2];
-
-    [semaphore wait];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view2.image = image2;
-            self.view2.alpha = 1.f;
-        } completion:^(BOOL finished) {
-
-            //发送信号
-            [semaphore signal];
-
-        }];
-    }];
-}];
-
-//图片3
-[GCDQueue executeInGlobalQueue:^{
-
-    UIImage *image3 = [self accessDataByNetString:net3];
-
-    [semaphore wait];
-
-    [GCDQueue executeInMainQueue:^{
-
-        [UIView animateWithDuration:2.f animations:^{
-            self.view3.image = image3;
-            self.view3.alpha = 1.f;
-        } completion:^(BOOL finished) {
-            //发送信号
-            [semaphore signal];            }];
-    }];
-}];
-}
-
-//创建view
-- (UIImageView *)createImageViewWithFrame:(CGRect)frame {
-
-UIImageView *imageView = [[UIImageView alloc]initWithFrame:frame];
-imageView.alpha = 0.f;
-[self.view addSubview:imageView];
-
-return imageView;
-}
-
-//获取网络图片
-- (UIImage *)accessDataByNetString:(NSString *)string{
-
-NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:string]];
-
-NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                 returningResponse:nil
-                                             error:nil];
-
-return [UIImage imageWithData:data];
-}
-@end
-</code></pre><h1 id="GCD和NSOperationQueue的区别"><a href="#GCD和NSOperationQueue的区别" class="headerlink" title="GCD和NSOperationQueue的区别"></a>GCD和NSOperationQueue的区别</h1><ol>
-<li>GCD是纯C语言的API，NSOperationQueue是基于GCD的OC版本封装</li>
-<li>GCD只支持FIFO的队列，NSOperationQueue可以很方便的调整执行顺序，设置最大并发数量</li>
-<li>NSOperationQueue可以轻松在Operation间设置依赖关系，而GCD需要写很多的代码才能实现</li>
-<li>NSOperatinQueue支持KVO，可以监测operation是否正在执行(isExecuted)，是否结束(isFinished），是否取消(isCanceled)</li>
-<li>GCD的执行速度比NSOperationQueue快</li>
-</ol>
-<p>总结:</p>
-<ol>
-<li>任务之间不太互相依赖:GCD</li>
-<li>任务之间有依赖\或者要监听任务的执行情况:NSOperationQueue</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/02/Blocks/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/02/Blocks/" itemprop="url">
-                  Blocks
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-02T15:19:02+08:00">
-              2016-08-02
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-02T15:31:03+08:00">
-              2016-08-02
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/02/Blocks/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/02/Blocks/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原文链接:<a href="http://wiki.jikexueyuan.com/project/programming-with-objective-c/working-with-blocks.html" target="_blank" rel="external">working with block</a></p>
-<h1 id="什么是block"><a href="#什么是block" class="headerlink" title="什么是block"></a>什么是block</h1><ol>
-<li>块是添加在 c，object-c 和 c++ 语言中的语言级别的形式，它允许你编写一个独特的代码段，这个代码段能够在作为值方法和函数中传递。</li>
-<li>块是 object-c 的对象，这意味着他们能够被添加到像NASArray或是NSDictionary的集合中.</li>
-</ol>
-<h1 id="没有参数和返回值的块"><a href="#没有参数和返回值的块" class="headerlink" title="没有参数和返回值的块"></a>没有参数和返回值的块</h1><p>定义一个块</p>
-<pre><code>^{
-     NSLog(@&quot;This is a block&quot;);
-}
-</code></pre><p>声明块变量</p>
-<pre><code>void (^simpleBlock)(void);
-</code></pre><p>块变量赋值</p>
-<pre><code>void (^simpleBlock)(void) = ^{
-    NSLog(@&quot;This is a block&quot;);
-};
-</code></pre><p>块变量赋值的简约形式   </p>
-<pre><code>simpleBlock = ^{
-    NSLog(@&quot;This is a block&quot;);
-};
-</code></pre><p>调用块命令</p>
-<pre><code>simpleBlock();
-</code></pre><h1 id="有参数和返回值的块"><a href="#有参数和返回值的块" class="headerlink" title="有参数和返回值的块"></a>有参数和返回值的块</h1><p>定义一个块</p>
-<pre><code>//1.
-
-^ (double firstValue, double secondValue) {
-    return firstValue * secondValue;
-}
-
-//2.
-^ double (double firstValue, double secondValue) {
-    return firstValue * secondValue;
-}
-</code></pre><p>声明块变量</p>
-<pre><code>double (^multiplyTwoValues)(double, double);    
-</code></pre><p>调用块命令</p>
-<pre><code>double (^multiplyTwoValues)(double, double) =
-                          ^(double firstValue, double secondValue) {
-                              return firstValue * secondValue;
-                          };
-
-double result = multiplyTwoValues(2,4);
-
-NSLog(@&quot;The result is %f&quot;, result);
-</code></pre><h1 id="块的值域"><a href="#块的值域" class="headerlink" title="块的值域"></a>块的值域</h1><p>如果你在一个方法中声明了块，他可以捕捉到任何在方法域中可以访问到的值</p>
-<pre><code>- (void)testMethod {
-int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&quot;Integer is: %i&quot;, anInteger);
-};
-
-testBlock();
-}
-</code></pre><p>一旦捕获后，即使在捕获后和调用期间改变值，不受影响.块不能够改变初始变量的值，或者是被捕获的值  </p>
-<pre><code>int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&quot;Integer is: %i&quot;, anInteger);
-};
-
-anInteger = 84;
-
-testBlock();  
-
-//Integer is: 42 
-</code></pre><h1 id="block变量（块变量的改变）"><a href="#block变量（块变量的改变）" class="headerlink" title="__block变量（块变量的改变）"></a>__block变量（块变量的改变）</h1><p>变量和块共享存储空间。变量改变，块内的也改变</p>
-<pre><code>__block int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-NSLog(@&quot;Integer is: %i&quot;, anInteger);
-};
-
-anInteger = 84;
-testBlock(); 
-
-//Integer is：84
-</code></pre><p>变量可以在块内被改变</p>
-<pre><code>__block int anInteger = 42;
-
-void (^testBlock)(void) = ^{
-    NSLog(@&quot;Integer is: %i&quot;, anInteger);
-    anInteger = 100;
-};
-
-testBlock();
-NSLog(@&quot;Value of original variable is now: %i&quot;, anInteger); 
-
-//Integer is: 42
-//Value of original variable is now: 100  
-</code></pre><h1 id="块作为方法或函数的参数"><a href="#块作为方法或函数的参数" class="headerlink" title="块作为方法或函数的参数"></a>块作为方法或函数的参数</h1><pre><code>- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock;
-
-
-- (void)beginTaskWithCallbackBlock:(void (^)(void))callbackBlock {
-...
-callbackBlock();
-}
-
-- (void)doSomethingWithBlock:(void (^)(double, double))block {
-...
-block(21.0, 2.0);
-}
-</code></pre><p>块应该总是一个方法的最后一个参数</p>
-<pre><code>//声明
-- (void)beginTaskWithName:(NSString *)name completion:(void(^)(void))callback;
-
-//调用
-[self beginTaskWithName:@&quot;MyTask&quot; completion:^{
-    NSLog(@&quot;The task is complete&quot;);
-}];
-</code></pre><p>块也用于回调 — 定义了当一个任务结束时将被执行的代码</p>
-<pre><code>- (IBAction)fetchRemoteInformation:(id)sender {
-[self showProgressIndicator];
-
-XYZWebTask *task = ...
-
-[task beginTaskWithCallbackBlock:^{
-    [self hideProgressIndicator];
-}];
-}
-</code></pre><h1 id="定义块的数据类型"><a href="#定义块的数据类型" class="headerlink" title="定义块的数据类型"></a>定义块的数据类型</h1><pre><code>typedef void (^XYZSimpleBlock)(void);
-
-
-XYZSimpleBlock anotherBlock = ^{
-    ...
-};
-
-
-- (void)beginFetchWithCallbackBlock:(XYZSimpleBlock)callbackBlock {
-
-...
-callbackBlock();
-}
-</code></pre><p>该 complexBlock 变量是指一个块需要另一块作为一个参数（ABLOCK）并返回另一个块</p>
-<pre><code>void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
-...
-return ^{
-    ...
-};
-};
-</code></pre><p>重写代码使用类型定义使其可读性更高，将块定义成数据类型</p>
-<pre><code>XYZSimpleBlock (^betterBlock)(XYZSimpleBlock) = ^ (XYZSimpleBlock aBlock) {
-...
-return ^{
-    ...
-};
-};
-</code></pre><h1 id="定义块为属性"><a href="#定义块为属性" class="headerlink" title="定义块为属性"></a>定义块为属性</h1><pre><code>@interface XYZObject : NSObject
-@property (copy) void (^blockProperty)(void);  //通常使用copy,why?
-@end
-
-
-self.blockProperty = ^{
-    ...
-};
-self.blockProperty();
-
-
-使用块属性声明的类型定义
-
-typedef void (^XYZSimpleBlock)(void);
-
-@interface XYZObject : NSObject
-@property (copy) XYZSimpleBlock blockProperty;
-@end
-</code></pre><h1 id="Avoid-Strong-Reference-Cycles-when-Capturing-self"><a href="#Avoid-Strong-Reference-Cycles-when-Capturing-self" class="headerlink" title="Avoid Strong Reference Cycles when Capturing self"></a>Avoid Strong Reference Cycles when Capturing self</h1><p>Blocks maintain strong references to any captured objects, including self, which means that it’s easy to end up with a strong reference cycle。 block对任何捕获的对象是强引用。</p>
-<pre><code>@interface XYZBlockKeeper : NSObject
-@property (copy) void (^block)(void);
-@end
-
-@implementation XYZBlockKeeper
-- (void)configureBlock {
-self.block = ^{
-    [self doSomething];    // capturing a strong reference to self
-                           // creates a strong reference cycle
-};
-}
-...
-@end
-</code></pre><p>正确做法如下</p>
-<pre><code>- (void)configureBlock {
-XYZBlockKeeper * __weak weakSelf = self;
-self.block = ^{
-    [weakSelf doSomething];   // capture the weak reference
-                              // to avoid the reference cycle
-}
-}
-</code></pre><p>By capturing the weak pointer to self, the block won’t maintain a strong relationship back to the XYZBlockKeeper object. If that object is deallocated before the block is called, the weakSelf pointer will simply be set to nil.</p>
-<h1 id="块可以简化枚举-待阅"><a href="#块可以简化枚举-待阅" class="headerlink" title="块可以简化枚举 (待阅)"></a>块可以简化枚举 (待阅)</h1><h1 id="使用块操作与运行队列-待阅"><a href="#使用块操作与运行队列-待阅" class="headerlink" title="使用块操作与运行队列 (待阅)"></a>使用块操作与运行队列 (待阅)</h1><h1 id="用GCD技术在调度队列调度块-待阅"><a href="#用GCD技术在调度队列调度块-待阅" class="headerlink" title="用GCD技术在调度队列调度块 (待阅)"></a>用GCD技术在调度队列调度块 (待阅)</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/01/AFNetworking简介/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/01/AFNetworking简介/" itemprop="url">
-                  AFNetworking简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-01T17:25:21+08:00">
-              2016-08-01
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-03T19:12:49+08:00">
-              2016-08-03
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/01/AFNetworking简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/01/AFNetworking简介/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h1><pre><code>NSString *urlStr = @&quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&quot;;
-
-AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
-
-// 设置回复内容信息
-manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes
-                                                     setByAddingObject:@&quot;text/html&quot;];
-
-[manager GET:urlStr
-  parameters:nil
-
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-         //请求正文数据
-         //NSLog(@&quot;%@&quot;,responseObject);
-
-         //请求头部信息(我们执行网络请求的时候给服务器发送的信息)
-         //NSLog(@&quot;%@&quot;,operation.request.allHTTPHeaderFields);
-
-         //服务器返回的包的头部信息
-         NSLog(@&quot;%@&quot;,operation.response);
-     }
-     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-         NSLog(@&quot;%@&quot;,error);
-
-     }];
-</code></pre><h2 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h2><p>(GET、POST等)  </p>
-<p><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="external">Hypertext Transfer Protocol</a></p>
-<pre><code>// 执行POST请求，需要将参数写在parameter处，而不能如同get方法一样直接写在地址栏
-
-[manager POST:@&quot;http://webservice.webxml.com.cn/WebServices/MobileCodeWS.asmx/getMobileCodeInfo&quot;
-   parameters:@{@&quot;mobileCode&quot; : @&quot;15910514636&quot;,
-                @&quot;userID&quot;     : @&quot;&quot;}
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          NSLog(@&quot;%@&quot;, responseObject);
-
-      }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          NSLog(@&quot;%@&quot;, error);
-      }];
-</code></pre><h2 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h2><p>(HttpHeaderFields) </p>
-<p><a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields" target="_blank" rel="external">List of HTTP header fields</a></p>
-<pre><code>//请求头部信息(我们执行网络请求的时候给服务器发送的信息)
-NSLog(@&quot;%@&quot;,operation.request.allHTTPHeaderFields);
-</code></pre><h2 id="请求正文-数据"><a href="#请求正文-数据" class="headerlink" title="请求正文 (数据)"></a>请求正文 (数据)</h2><p>问号后的字符串，使用get方法是可以在地址栏中看见的</p>
-<pre><code>NSString *urlStr = @&quot;http://api.openweathermap.org/data/2.5/forecast/city?id=524901&amp;APPID=bf791ba9eeca14dd22823b4c21ce7e2d&quot;;            
-</code></pre><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>采用不同的序列化格式，得到不同的response结果</p>
-<pre><code>AFHTTPRequestOperationManager *manager            = [AFHTTPRequestOperationManager manager];
-
-// 请求的序列化
-manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-
-// 回复序列化
-
-//responseObject就变成二进制文件
-manager.responseSerializer[AFHTTPResponseSerializer serializer];
-
-//responseObject就变成JSON格式
-manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-//responseObject成为xml格式
-manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-</code></pre><h1 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h1><pre><code>// 获取数据
-UIImage *image  = [UIImage imageNamed:@&quot;demo&quot;];
-NSData *dataObj = UIImageJPEGRepresentation(image, 1.0);
-
-// 参数
-NSDictionary *paras = @{@&quot;ContactName&quot;        : @&quot;Lilis&quot;,
-                        @&quot;ContactPhoneNumber&quot; : @&quot;15910514635&quot;,
-                        @&quot;LoseDetail&quot;         : @&quot;...&quot;,
-                        @&quot;address&quot;            : @&quot;&quot;,
-                        @&quot;gender&quot;             : @&quot;2&quot;,
-                        @&quot;verify&quot;             : @&quot;012460&quot;};
-
-
-[Networking UploadDataWithUrlString:BASE_URL // 请更换网址
-                         parameters:paras
-                    timeoutInterval:nil
-                        requestType:HTTPRequestType
-                       responseType:JSONResponseType
-          constructingBodyWithBlock:^(id&lt;AFMultipartFormData&gt; formData) {
-              // 构造数据的地方
-              [formData appendPartWithFileData:dataObj name:@&quot;upload&quot; fileName:@&quot;image1.jpg&quot; mimeType:@&quot;&quot;];
-              [formData appendPartWithFileData:dataObj name:@&quot;upload&quot; fileName:@&quot;image2.jpg&quot; mimeType:@&quot;&quot;];
-          }
-                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-                                // 请求头
-                                NSLog(@&quot;%@&quot;, operation.request.allHTTPHeaderFields);
-
-                                // 服务器回复的头
-                                NSLog(@&quot;%@&quot;, operation.response);
-
-                                NSLog(@&quot;%@&quot;, responseObject);
-                            }
-                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-
-                            }];
-</code></pre><h1 id="断点下载"><a href="#断点下载" class="headerlink" title="断点下载"></a>断点下载</h1><pre><code>NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&quot;]];
-AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request
-                                                                             fileIdentifier:@&quot;fuck.jpg&quot;
-                                                                                 targetPath:[NSHomeDirectory() stringByAppendingPathComponent:@&quot;/Library/Caches/fuck.jpg&quot;]
-                                                                               shouldResume:YES];
-operation.shouldOverwrite = YES;
-
-
-// 开始下载
-[operation start];
-
-// 2s后暂停
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&quot;暂停&quot;);
-    [operation pause];
-} afterDelaySecs:2.f];
-
-// 4s后继续恢复
-[GCDQueue executeInMainQueue:^{
-    NSLog(@&quot;开始&quot;);
-    [operation resume];
-} afterDelaySecs:4.f];
-
-// 查看下载进度
-[operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-
-    CGFloat percent = (float)totalBytesReadForFile / (float)totalBytesExpectedToReadForFile;
-    NSLog(@&quot;百分比:%.3f%% %ld  %lld  %lld  %lld&quot;, percent * 100, (long)bytesRead, totalBytesRead, totalBytesReadForFile, totalBytesExpectedToReadForFile);
-}];
-
-// 结束block
-[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-
-    NSLog(@&quot;下载成功 %@&quot;, responseObject);
-
-} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-    NSLog(@&quot;下载失败 %@&quot;, error);
-
-}];
-</code></pre><h1 id="监听网络"><a href="#监听网络" class="headerlink" title="监听网络"></a>监听网络</h1><pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-// 开启网络指示器
-[[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-
-NSURL *url = [NSURL URLWithString:@&quot;http://baidu.com&quot;];
-
-AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
-NSOperationQueue *operationQueue       = manager.operationQueue;
-
-[manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-
-    switch (status) {
-        case AFNetworkReachabilityStatusReachableViaWWAN:
-        case AFNetworkReachabilityStatusReachableViaWiFi:
-
-            [operationQueue setSuspended:NO];
-
-            NSLog(@&quot;有网络&quot;);
-
-            break;
-
-        case AFNetworkReachabilityStatusNotReachable:
-        default:
-
-            [operationQueue setSuspended:YES];
-
-            NSLog(@&quot;无网络&quot;);
-
-            break;
-    }
-
-}];
-
-// 开始监听
-[manager.reachabilityManager startMonitoring];
-
-return YES;
-}
-</code></pre><h1 id="下载图片（Category）"><a href="#下载图片（Category）" class="headerlink" title="下载图片（Category）"></a>下载图片（Category）</h1><pre><code>#import &quot;ViewController.h&quot;
-#import &quot;AFNetworking.h&quot;
-#import &quot;UIKit+AFNetworking.h&quot;
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-[super viewDidLoad];
-
-UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-[self.view addSubview:imageView];
-
-// 加载图片
-[imageView setImageWithURL:[NSURL URLWithString:@&quot;http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec78e256df60d0f703908fc12e.jpg&quot;]
-          placeholderImage:nil];
-}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/07/29/手机屏幕图像尺寸说明/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1708,8 +291,8 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-15T14:23:18+08:00">
-              2016-08-15
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:08:17+08:00">
+              2017-01-27
             </time>
             
           </span>
@@ -1723,8 +306,8 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
                   </a>
                 </span>
 
@@ -1813,11 +396,758 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/04/26/Android-Studio相关操作/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/26/Android-Studio相关操作/" itemprop="url">
+                  Android_Studio相关操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-26T11:14:55+08:00">
+              2016-04-26
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:16:34+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/26/Android-Studio相关操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/26/Android-Studio相关操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="创建assest-folder"><a href="#创建assest-folder" class="headerlink" title="创建assest folder"></a>创建assest folder</h2><p><img src="https://www.dropbox.com/s/g3q7k5ao9oadsq2/android_asset_foldrer.png?dl=1" alt="assest"></p>
+<h2 id="导入jar文件"><a href="#导入jar文件" class="headerlink" title="导入jar文件"></a>导入jar文件</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p><img src="https://www.dropbox.com/s/wkjt9k2l2giwczw/importjar1.png?dl=1" alt=""></p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p><img src="https://www.dropbox.com/s/ishay0tlp9zgsl4/importjar2.png?dl=1" alt=""></p>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p><img src="https://www.dropbox.com/s/cwl5ay0mnodwqfx/importjar3.png?dl=1" alt=""></p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p><img src="https://www.dropbox.com/s/3toqjy5454kk23r/importjar4.png?dl=1" alt=""></p>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p><img src="https://www.dropbox.com/s/fk77tr7p7zn8eyf/importjar5.png?dl=1" alt=""></p>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><p><img src="https://www.dropbox.com/s/irxiq3kymbthpfr/importjar6.png?dl=1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/03/17/UIStoryboard的相关操作/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/17/UIStoryboard的相关操作/" itemprop="url">
+                  UIStoryboard的相关操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-17T13:18:16+08:00">
+              2016-03-17
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:09:59+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/UIStoryboard的相关操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/17/UIStoryboard的相关操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Xcode建立文件夹"><a href="#Xcode建立文件夹" class="headerlink" title="Xcode建立文件夹"></a>Xcode建立文件夹</h1><ol>
+<li>如果仅是在xcode里创建，那文件夹不会在存在finder里，实际上相关文件还是存在一个目录下</li>
+<li>需要在Xcode里左下角，”add new file to ….project” –&gt; create new folder –&gt; add,这样创建的文件夹可以存在finder里</li>
+</ol>
+<h1 id="指定启动视图"><a href="#指定启动视图" class="headerlink" title="指定启动视图"></a>指定启动视图</h1><h2 id="指定启动的storyboard"><a href="#指定启动的storyboard" class="headerlink" title="指定启动的storyboard"></a>指定启动的storyboard</h2><p>在info.plist文件中指定了所启动的storyboard是哪个。也可以另建新的storybord</p>
+<p><img src="https://www.dropbox.com/s/6uljxx341mzt2mn/UIStoryboard%20mainname.png?dl=1" alt="info.plist"></p>
+<h2 id="指定启动的视图控制器"><a href="#指定启动的视图控制器" class="headerlink" title="指定启动的视图控制器"></a>指定启动的视图控制器</h2><p>箭头指向</p>
+<p><img src="https://www.dropbox.com/s/mjzn0sxrkc3ycbi/UIStoryboard.png?dl=1" alt="箭头所指"></p>
+<p>配置属性</p>
+<p><img src="https://www.dropbox.com/s/x765we5l5uokjx1/initialViewController.png?dl=1" alt=""></p>
+<h1 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h1><h2 id="导航视图顶部自定义"><a href="#导航视图顶部自定义" class="headerlink" title="导航视图顶部自定义"></a>导航视图顶部自定义</h2><p>UINavigationItem + UIBarbuttonItem</p>
+<p><img src="https://www.dropbox.com/s/26w797d5zcij0uh/custom_bar_button_item.png?dl=1" alt="自定义标题栏"></p>
+<h1 id="UITablViewController"><a href="#UITablViewController" class="headerlink" title="UITablViewController"></a>UITablViewController</h1><h2 id="TableView视图连接的设置"><a href="#TableView视图连接的设置" class="headerlink" title="TableView视图连接的设置"></a>TableView视图连接的设置</h2><p><img src="https://www.dropbox.com/s/a6o75c2l3u190lk/tableViewDelegate.png?dl=1" alt="TableView的设置"></p>
+<p>也可以在左侧导航栏中，ctrl + drag tableview to the controller，进行连接datasource and delegate</p>
+<p><img src="https://www.dropbox.com/s/kh8b6khwwj8wov4/20160819_tableView.png?dl=1" alt=""></p>
+<h2 id="TableViewCell"><a href="#TableViewCell" class="headerlink" title="TableViewCell"></a>TableViewCell</h2><h3 id="设置静态tableViewCell（cell可以复制粘贴）"><a href="#设置静态tableViewCell（cell可以复制粘贴）" class="headerlink" title="设置静态tableViewCell（cell可以复制粘贴）"></a>设置静态tableViewCell（cell可以复制粘贴）</h3><p><img src="https://www.dropbox.com/s/s74e6tdm0a9en3m/staticCell.png?dl=1" alt=""></p>
+<h3 id="Static-TableViewCell"><a href="#Static-TableViewCell" class="headerlink" title="Static TableViewCell"></a>Static TableViewCell</h3><p><img src="https://www.dropbox.com/s/vawzuiw6usqf552/TableViewcellToViewController.png?dl=1" alt=""></p>
+<h3 id="Dynamic-TableViewCell"><a href="#Dynamic-TableViewCell" class="headerlink" title="Dynamic TableViewCell"></a>Dynamic TableViewCell</h3><p><img src="https://www.dropbox.com/s/b7o8d2a3t22pjru/tableViewCell.png?dl=1" alt="UITableView Cell"></p>
+<h1 id="UITabBarController"><a href="#UITabBarController" class="headerlink" title="UITabBarController"></a>UITabBarController</h1><h2 id="新建new-tab"><a href="#新建new-tab" class="headerlink" title="新建new tab"></a>新建new tab</h2><p>按住ctrl 键拖入到新的视图，选择 <strong>Relationship Segue — view controllers</strong></p>
+<p><img src="https://www.dropbox.com/s/vp7u28xmps5av2m/new%20tab.png?dl=1" alt="new tab"></p>
+<h1 id="视图的跳转和连接"><a href="#视图的跳转和连接" class="headerlink" title="视图的跳转和连接"></a>视图的跳转和连接</h1><h2 id="创建新的rootViewController"><a href="#创建新的rootViewController" class="headerlink" title="创建新的rootViewController"></a>创建新的rootViewController</h2><p><img src="https://www.dropbox.com/s/3qs7bc66ibfzyfz/new_root_controller.png?dl=1" alt="new root view controller"></p>
+<h2 id="视图跳转-模态视图"><a href="#视图跳转-模态视图" class="headerlink" title="视图跳转 - 模态视图"></a>视图跳转 - 模态视图</h2><h3 id="呈现使用present"><a href="#呈现使用present" class="headerlink" title="呈现使用present"></a>呈现使用present</h3><pre><code>[self presentViewController:modalVC animated:YES completion:nil];
+</code></pre><h3 id="退出使用dissmiss"><a href="#退出使用dissmiss" class="headerlink" title="退出使用dissmiss"></a>退出使用dissmiss</h3><pre><code>- (void)dismissAction{
+[self dismissViewControllerAnimated:YES completion:nil];
+}
+</code></pre><h2 id="视图跳转-push视图"><a href="#视图跳转-push视图" class="headerlink" title="视图跳转 - push视图"></a>视图跳转 - push视图</h2><h3 id="呈现用导航视图push-show"><a href="#呈现用导航视图push-show" class="headerlink" title="呈现用导航视图push/show"></a>呈现用导航视图push/show</h3><pre><code>- (void)pushAction{
+PushViewController *pushVC = [[PushViewController alloc] init];
+[self.navigationController pushViewController:pushVC animated:YES];
+//[self.navigationController showViewController:pushVC sender:nil];
+RootViewController *rootVC = (RootViewController *)self.tabBarController;
+[rootVC showTabBar:NO];
+}    
+</code></pre><h3 id="退出用pop-的三种方式"><a href="#退出用pop-的三种方式" class="headerlink" title="退出用pop 的三种方式"></a>退出用pop 的三种方式</h3><pre><code>- (void)popAction{
+
+    // 回到上级视图
+    [self.navigationController popViewControllerAnimated:YES];
+
+    // 跳转到某视图
+    //[self.navigationController popToViewController:&lt;#(nonnull UIViewController *)#&gt; animated:&lt;#(BOOL)#&gt;]
+
+    // 跳转到根视图
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+}
+</code></pre><h2 id="无Segue连接-StoryboardId"><a href="#无Segue连接-StoryboardId" class="headerlink" title="无Segue连接 - StoryboardId"></a>无Segue连接 - StoryboardId</h2><pre><code>let vc = storyboard!.instantiateViewControllerWithIdentifier(&quot;UserContent&quot;)as! UserContentViewController  
+vc.data = data  
+presentViewController(vc, animated: true, completion: nil)
+</code></pre><p><img src="https://www.dropbox.com/s/25z7bqqu1mh3yge/iOS_dataStorageCoredata03.png?dl=1" alt=""></p>
+<h2 id="Segue自动连接-button"><a href="#Segue自动连接-button" class="headerlink" title="Segue自动连接(button)"></a>Segue自动连接(button)</h2><ol>
+<li>点住Button or Cell,按住ctrl，向新的viewController拖动,选择segue模式,点击后不需任何方法，会自动跳转到目的视图</li>
+<li>可以在prepareForSegue中进行数据传递(optional)</li>
+<li>从新视图的返回，使用如下代码: </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.dismissModalViewControllerAnimated(true)</span><br></pre></td></tr></table></figure>
+<p>or </p>
+<pre><code>[self.navigationController popViewControllerAnimated:YES];
+</code></pre><h2 id="Segue手动连接-login"><a href="#Segue手动连接-login" class="headerlink" title="Segue手动连接(login)"></a>Segue手动连接(login)</h2><p><img src="https://www.dropbox.com/s/u41kx1hn50q13b7/%E7%99%BB%E5%BD%95%E5%90%8E%E6%89%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E9%A1%B5%E9%9D%A2.png?dl=1" alt=""></p>
+<pre><code>//一般在这里给下一个控制器传值这个sender是当初performSegueWithIdentifier方法传入的sender
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+UIViewController *contactVc = segue.destinationViewController;
+contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
+ }
+ .........
+
+ - (IBAction)loginAction {
+ [self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];}
+</code></pre><h1 id="视图中传值"><a href="#视图中传值" class="headerlink" title="视图中传值"></a>视图中传值</h1><h2 id="自动跳转传值"><a href="#自动跳转传值" class="headerlink" title="自动跳转传值"></a>自动跳转传值</h2><p><strong>在第一个视图中创建新视图的同时，就将其属性配置好</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@IBOutlet var input:UITextField</span><br><span class="line">@IBAction func nextBtn&#123;</span><br><span class="line">let vc = MyViewController(nibName:&quot;MyViewController&quot;,bundle:nil)</span><br><span class="line">vc.labelContent = input.text</span><br><span class="line">&#125;</span><br><span class="line">self.presentModalViewController(vc,animated:true)</span><br></pre></td></tr></table></figure></p>
+<p><strong>在第二个视图中</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var labelContent:String = &quot;&quot;</span><br><span class="line">func viewDidLoad()&#123;</span><br><span class="line">myLabel.text = labelContent</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>返回时传值:在第二个视图中，通过如下代码，访问到前一个视图</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.parentViewController</span><br></pre></td></tr></table></figure>
+<h2 id="Segue跳转传值"><a href="#Segue跳转传值" class="headerlink" title="Segue跳转传值"></a>Segue跳转传值</h2><pre><code>//一般在这里给下一个控制器传值这个sender是当初performSegueWithIdentifier方法传入的sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+//1.取得目标控制器
+UIViewController *contactVc = segue.destinationViewController;
+//2.设置标题（传值）
+contactVc.title = [NSString stringWithFormat:@&quot;%@的联系人列表&quot;,self.nameField.text];
+}
+.........
+
+- (IBAction)loginAction {
+[self performSegueWithIdentifier:@&quot;LoginToContact&quot; sender:nil];}
+</code></pre><h1 id="UI-Element"><a href="#UI-Element" class="headerlink" title="UI Element"></a>UI Element</h1><h2 id="UIButton"><a href="#UIButton" class="headerlink" title="UIButton"></a>UIButton</h2><p><img src="https://www.dropbox.com/s/epbhz54cfrpoln8/button_image.png?dl=1" alt="button_image"></p>
+<p><img src="https://www.dropbox.com/s/6cigkvmakkqp3v4/UIButton.png?dl=1" alt="UIButton"></p>
+<h2 id="UIBarbutton"><a href="#UIBarbutton" class="headerlink" title="UIBarbutton"></a>UIBarbutton</h2><p><img src="https://www.dropbox.com/s/tet5ufbrd9wdtys/Bar_button_item__.png?dl=1" alt=""></p>
+<h2 id="UITextfield"><a href="#UITextfield" class="headerlink" title="UITextfield"></a>UITextfield</h2><p><img src="https://www.dropbox.com/s/rtibuuta71l0pxk/TextField.png?dl=1" alt="TextField"></p>
+<h1 id="若干UI元素重合时的排序"><a href="#若干UI元素重合时的排序" class="headerlink" title="若干UI元素重合时的排序"></a>若干UI元素重合时的排序</h1><p><img src="https://www.dropbox.com/s/uusoo1syd4zp62q/20160819_ViewSemdBack.png?dl=1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/03/17/Keyboad快捷键/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/17/Keyboad快捷键/" itemprop="url">
+                  Keyboad快捷键
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-17T13:13:06+08:00">
+              2016-03-17
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:12:24+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/17/Keyboad快捷键/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/17/Keyboad快捷键/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h1><h3 id="显示某class的方法提示，在-后按esc键"><a href="#显示某class的方法提示，在-后按esc键" class="headerlink" title="显示某class的方法提示，在.后按esc键"></a>显示某class的方法提示，在.后按esc键</h3><blockquote>
+<p>Esc</p>
+</blockquote>
+<h3 id="Storyboard里放大缩小视图"><a href="#Storyboard里放大缩小视图" class="headerlink" title="Storyboard里放大缩小视图"></a>Storyboard里放大缩小视图</h3><blockquote>
+<p>触摸板上的手势</p>
+</blockquote>
+<h3 id="查看某class内部的详情"><a href="#查看某class内部的详情" class="headerlink" title="查看某class内部的详情"></a>查看某class内部的详情</h3><blockquote>
+<p>command + 点击</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/03/09/Git本地操作/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/09/Git本地操作/" itemprop="url">
+                  Git本地操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-09T09:34:11+08:00">
+              2016-03-09
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:14:08+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/09/Git本地操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/09/Git本地操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Git安装与简单配置"><a href="#Git安装与简单配置" class="headerlink" title="Git安装与简单配置"></a>Git安装与简单配置</h2><p>配置或者修改git用户名<br><code>$ git config --global user.name Jack</code> </p>
+<p>配置git用户邮箱<br><code>$ git config --global user.email XXXXXX@gmail.com</code></p>
+<p>查询git帮助<br><code>$ git config --help</code></p>
+<p>添加git用户<br><code>$ git config --global --add user.name eoe</code></p>
+<p>删除git用户<br><code>$ git config --global --unset user.name eoe</code></p>
+<p>查询git当前用户<br><code>$ git config user.name</code></p>
+<p>查询git当前所有用户信息<br><code>$ git config --list --global</code></p>
+<h2 id="Git基本的工作流程"><a href="#Git基本的工作流程" class="headerlink" title="Git基本的工作流程"></a>Git基本的工作流程</h2><p><img src="https://www.dropbox.com/s/66w0jiln6mxi4x0/Git1.png?dl=1" alt="1"><br><img src="https://www.dropbox.com/s/2fwut44f91on856/2.png?dl=1" alt="2"><br><img src="https://www.dropbox.com/s/pps792x4972tvta/3.png?dl=1" alt="3"></p>
+<p>创建仓库，有两个方法，如下  </p>
+<ul>
+<li><code>git init</code>  </li>
+<li><code>git clone</code></li>
+</ul>
+<p>Mac OSX 下创建两个文件<br><code>$ touch a</code><br><code>$ touch b</code></p>
+<p>工作区提交到暂存区<br><code>git add a b （只添加这两个文件）</code><br><code>git add -A   (添加整个工作区)</code></p>
+<p>查看暂存区<br><code>git status</code></p>
+<p>提交到历史记录区(m为所标注的信息)<br><code>git commit -m &quot;Initial commit&quot;</code></p>
+<p>删除工作区和暂存区<br><code>git rm a</code></p>
+<p>只删除暂存区，不删除工作区<br><code>git rm --cached a</code></p>
+<p>将文件a命名为文件c （一系列的组合，在工作区中操作，也在暂存区中修改）<br><code>git mv a c</code></p>
+<p>编写.gitignore文件，指出哪些文件是可以不用被git的<br>.gitignore (省略)</p>
+<h2 id="Git本地分支与合并"><a href="#Git本地分支与合并" class="headerlink" title="Git本地分支与合并"></a>Git本地分支与合并</h2><h3 id="简单的分支操作"><a href="#简单的分支操作" class="headerlink" title="简单的分支操作"></a>简单的分支操作</h3><p>添加test分支<br><code>git branch test</code></p>
+<p>切换到test分支<br><code>git checkout test</code></p>
+<p>查看在什么分支<br><code>git status</code></p>
+<h3 id="查看commit的情况"><a href="#查看commit的情况" class="headerlink" title="查看commit的情况"></a>查看commit的情况</h3><p>为查看长命令设置个短标识“lol”<br><code>git config --global alias.lol &quot;log --oneline --decorate --graph --all&quot;</code></p>
+<p>查看commit的情况<br><code>git  lol</code></p>
+<h3 id="查看tag的情况"><a href="#查看tag的情况" class="headerlink" title="查看tag的情况"></a>查看tag的情况</h3><p>为某个commit设置个标签<br><code>git tag &quot;v0&quot; c8f9030</code></p>
+<p>查看有什么标签<br><code>git tag</code></p>
+<p>查看某标签的具体情况<br><code>git show v0</code></p>
+<h3 id="有关checkout分支的详述"><a href="#有关checkout分支的详述" class="headerlink" title="有关checkout分支的详述"></a>有关checkout分支的详述</h3><p>以checkout进入某commit点，实际上是以该点重新分支fix_v0，<br><code>git checkout v0</code></p>
+<p>所以还有后续命令,以该点创建一个分支<br> <code>git checkout -b fix_v0</code></p>
+<h3 id="有关stash"><a href="#有关stash" class="headerlink" title="有关stash"></a>有关stash</h3><p>当checkout切换分支时，要先提交或者stash暂存区的东西,否则会被覆盖<br>将工作区和暂存区的东西先藏起来，以免切换分支的时候被覆盖<br><code>git stash save -a &quot;stash1&quot;</code></p>
+<p>查看有哪些stash<br><code>git stash list</code></p>
+<p>将stash的东西还原出来，根据索引号，同时stash list中会删除<br><code>git stash pop --index stash@{0}</code></p>
+<p>将stash的东西还原出来，根据索引号，同时stash list依然保存<br><code>git stash apply --index stash@{0}</code></p>
+<p>删除某个stash<br><code>git stash drop stash@{0}</code></p>
+<p>删除全部stash<br><code>git stash clear</code></p>
+<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><p>先切换到master分支下，再合并需要的分支<br><code>git master</code><br><code>git merge test_merge</code></p>
+<p>如果是fast-forward，那是不需要修改文件的合并，不重叠的融合  </p>
+<p><img src="https://www.dropbox.com/s/ds0rsf8kmuremrm/5.png?dl=1" alt="5"><br><img src="https://www.dropbox.com/s/vrw0thovsky8ud6/6.png?dl=1" alt="6"></p>
+<p>如果是有冲突的合并，用如下命令取消<br><code>git merge --abort</code></p>
+<p>或者是先编辑相冲突的内容，然后再add —&gt; commit,这个commit 是两个merge的commit<br><code>git add master.txt</code><br><code>git commit -m &quot;Test merge&quot;</code></p>
+<p><img src="https://www.dropbox.com/s/3o3293lgsdsvtw8/4.png?dl=1" alt="4"><br><img src="https://www.dropbox.com/s/14zlrlp9d6jd8c3/9.png?dl=1" alt="9"><br><img src="https://www.dropbox.com/s/x5wtqc3l8ow5dhl/7.png?dl=1" alt="7"><br><img src="https://www.dropbox.com/s/82ce0rs6che0zj2/8.png?dl=1" alt="8"></p>
+<h2 id="查看与对比历史记录"><a href="#查看与对比历史记录" class="headerlink" title="查看与对比历史记录"></a>查看与对比历史记录</h2><p>查看某个commit的详情<br><code>git show HEAD</code><br><code>git show 16e9e16</code></p>
+<p>如果某个commit是merge commit<br><code>git show master^</code>(显示merge中的两个commit中的第一副提交)<br><code>git show master^2</code> (显示merge中的两个commit中的第二副提交)</p>
+<p>用show可以显示commit ,tag 的相关信息，查看某标签的具体情况<br><code>git show v0</code></p>
+<p>查看历史详情，用键盘上下翻页，q退出<br><code>git log</code> （有很多参数）</p>
+<p>比较工作区和暂存区的差别<br><code>git diff</code></p>
+<p>比较历史记录区和暂存区的差别<br><code>git diff --cached</code></p>
+<p>比较哪个单词是差异，用颜色标注出来<br><code>git diff --color-words</code></p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>撤销工作区的修改，用暂存区的内容覆盖工作区的内容<br><code>git checkout -- master.txt</code></p>
+<p>用某个commit覆盖工作区和暂存区<br><code>git checkout INITIAL_COMMIT -- master.txt</code></p>
+<p>撤销暂存区的修改<br><code>git reset master.txt</code></p>
+<p>用某个commit覆盖暂存区，而不是工作区<br><code>git reset INITIAL_COMMIT -- master.txt</code></p>
+<p>撤销当前的提交,这也是一个新的提交<br><code>git revert HEAD</code></p>
+<p>指向某个commit，并用它还原工作区和暂存区<br><code>git reset --hard test</code></p>
+<p>指向某个commit，还原暂存区，不还原工作区<br><code>git reset --mixed test</code></p>
+<p>指向某个commit<br><code>git reset --soft test</code></p>
+<h2 id="Vim的编辑命令"><a href="#Vim的编辑命令" class="headerlink" title="Vim的编辑命令"></a>Vim的编辑命令</h2><p>编辑vim后，按esc键 + :wq 就是保存，不保存就不用加w</p>
+<h2 id="Mac-command-line"><a href="#Mac-command-line" class="headerlink" title="Mac command line"></a>Mac command line</h2><p><code>$ clear</code> (清楚屏幕上的所有东西)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
   </nav>
 
 
@@ -1858,7 +1188,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">114</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1866,7 +1196,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1875,7 +1205,7 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1921,8 +1251,8 @@ UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

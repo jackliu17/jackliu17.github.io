@@ -243,7 +243,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/11/iOS项目21聚合数据-车辆违章查询/">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jack Liu">
@@ -268,8 +268,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/11/iOS项目21聚合数据-车辆违章查询/" itemprop="url">
-                  iOS项目21聚合数据_车辆违章查询
+                <a class="post-title-link" href="/2016/10/07/App-Distribution-Guide/" itemprop="url">
+                  App_Distribution_Guide
                 </a>
               
             
@@ -282,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-11T19:40:42+08:00">
-              2016-08-11
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-07T18:05:27+08:00">
+              2016-10-07
             </time>
 
             &nbsp;|&nbsp;
@@ -291,8 +291,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-11T17:47:52+08:00">
-              2016-08-11
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:15:48+08:00">
+              2017-01-27
             </time>
             
           </span>
@@ -306,8 +306,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
                   </a>
                 </span>
 
@@ -322,8 +322,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/11/iOS项目21聚合数据-车辆违章查询/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/11/iOS项目21聚合数据-车辆违章查询/" itemprop="commentCount"></span>
+                <a href="/2016/10/07/App-Distribution-Guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/07/App-Distribution-Guide/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -351,13 +351,291 @@
       
         
           
-            <h3 id="添加聚合SDK和相关的library"><a href="#添加聚合SDK和相关的library" class="headerlink" title="添加聚合SDK和相关的library"></a>添加聚合SDK和相关的library</h3><p><img src="https://www.dropbox.com/s/dk2wx0luth9cohq/20160811_Juhe1.png?dl=1" alt=""></p>
-<h3 id="创建PCH-file"><a href="#创建PCH-file" class="headerlink" title="创建PCH file"></a>创建PCH file</h3><p><img src="https://www.dropbox.com/s/0ompd2wv2rn7n23/20160811_Juhe2.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/ug3ezce588an8gy/20160811_Juhe3.png?dl=1" alt=""></p>
-<h3 id="在新建的PCH-file中引入头文件"><a href="#在新建的PCH-file中引入头文件" class="headerlink" title="在新建的PCH file中引入头文件"></a>在新建的PCH file中引入头文件</h3><p><img src="https://www.dropbox.com/s/q62kc03zr5pfsdn/20160811_Juhe4.png?dl=1" alt=""></p>
-<h3 id="PCH文件预编译-YES"><a href="#PCH文件预编译-YES" class="headerlink" title="PCH文件预编译-YES"></a>PCH文件预编译-YES</h3><p><img src="https://www.dropbox.com/s/f8r7gaigk9a33hj/20160811_Juhe5.png?dl=1" alt=""></p>
-<h3 id="PCH文件设置路径"><a href="#PCH文件设置路径" class="headerlink" title="PCH文件设置路径"></a>PCH文件设置路径</h3><p><img src="https://www.dropbox.com/s/xckirmf934qn2vc/20160811_Juhe6.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/4un7afctulk5de4/20160811_Juhe7.png?dl=1" alt=""></p>
+            <h1 id="Maintaining-Your-Signing-Identities-and-Certificates"><a href="#Maintaining-Your-Signing-Identities-and-Certificates" class="headerlink" title="Maintaining Your Signing Identities and Certificates"></a>Maintaining Your Signing Identities and Certificates</h1><h2 id="About-Signing-Identities-and-Certificates"><a href="#About-Signing-Identities-and-Certificates" class="headerlink" title="About Signing Identities and Certificates"></a>About Signing Identities and Certificates</h2><p>Code signing your app lets users trust that your app has been created by a source known to Apple and that it hasn’t been tampered with.</p>
+<p>signing identities—stored in your keychain</p>
+<p>certificates—stored in your developer account</p>
+<p><img src="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1" alt=""></p>
+<h2 id="Viewing-Signing-Identities-and-Provisioning-Profiles"><a href="#Viewing-Signing-Identities-and-Provisioning-Profiles" class="headerlink" title="Viewing Signing Identities and Provisioning Profiles"></a>Viewing Signing Identities and Provisioning Profiles</h2><p>To view account details</p>
+<ol>
+<li>Choose Xcode &gt; Preferences.</li>
+<li>Click Accounts at the top of the window.</li>
+<li>Select the team you want to view, and click View Details.</li>
+</ol>
+<p>If a Create button appears next to a certificate, it hasn’t been created yet. If a Download button appears next to a provisioning profile, it’s not on your Mac.</p>
+<p><img src="https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1" alt=""></p>
+<h2 id="Creating-Signing-Identities"><a href="#Creating-Signing-Identities" class="headerlink" title="Creating Signing Identities"></a>Creating Signing Identities</h2><p>In the dialog that appears, click the Create button in the row of the type of certificate you want to create.<br>If the Create button is disabled, you are not allowed to create that type of signing identity.</p>
+<p><img src="https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1" alt=""></p>
+<h2 id="Verifying-Your-Steps"><a href="#Verifying-Your-Steps" class="headerlink" title="Verifying Your Steps"></a>Verifying Your Steps</h2><h3 id="Verifying-Using-Your-Developer-Account"><a href="#Verifying-Using-Your-Developer-Account" class="headerlink" title="Verifying Using Your Developer Account"></a>Verifying Using Your Developer Account</h3><ol>
+<li>Sign in to developer.apple.com/account, and click Certificates, IDs &amp; Profiles.</li>
+<li>In the Certificates section of the sidebar, select Development or Production depending on the type of certificate you want to verify.</li>
+<li>The type and expiration date of the certificate should <strong>match</strong> the information that you view in Keychain Access.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1" alt=""></p>
+<h2 id="Verifying-Using-Keychain-Access"><a href="#Verifying-Using-Keychain-Access" class="headerlink" title="Verifying Using Keychain Access"></a>Verifying Using Keychain Access</h2><p>When you create a development or distribution certificate using Xcode, the certificate is automatically installed in your login keychain.</p>
+<p>In the left pane, select “login” in the Keychains section and select Certificates in the Category section.</p>
+<p>The name of the development certificate begins with the text “iPhone Developer”</p>
+<p><img src="https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1" alt="11"></p>
+<p>If you click the disclosure triangle next to the certificate name, your private key appears. If the disclosure triangle doesn’t appear, you’re missing your private key</p>
+<p><img src="https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1" alt="12"></p>
+<h2 id="Installing-Missing-Intermediate-Certificate-Authorities"><a href="#Installing-Missing-Intermediate-Certificate-Authorities" class="headerlink" title="Installing Missing Intermediate Certificate Authorities"></a>Installing Missing Intermediate Certificate Authorities</h2><p>To use your certificates, the correct intermediate certificate needs to be in your keychain.</p>
+<p>An intermediate certificate ensures that your certificates were issued by a trusted source. </p>
+<p>The intermediate certificate, named Apple Worldwide Developer Relations Certification Authority, is installed in your system keychain when you install Xcode. </p>
+<p>First try downloading your provisioning profiles in Xcode to install missing intermediate certificates. If that doesn’t work for you, download and install the missing intermediate certificate.</p>
+<ol>
+<li>Go to <a href="http://www.apple.com/certificateauthority" target="_blank" rel="external">http://www.apple.com/certificateauthority</a>.</li>
+<li>Under Apple Intermediate Certificates, click the link for the intermediate certificate you’re missing.A certificate file, with a .cer extension, appears in your Downloads folder.</li>
+<li>Double-click the certificate file to install it in your system keychain.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1" alt="13"></p>
+<h2 id="Exporting-and-Importing-Certificates-and-Profiles"><a href="#Exporting-and-Importing-Certificates-and-Profiles" class="headerlink" title="Exporting and Importing Certificates and Profiles"></a>Exporting and Importing Certificates and Profiles</h2><p>After Xcode creates your certificates and profiles for you, export them to create a backup of all your assets. You do this to, for example, transfer your assets to another Mac you use for development or repair a certificate if the private key is missing.</p>
+<p>The export file, called a <strong>developer profile</strong>, contains the following team assets:</p>
+<ul>
+<li>Development certificates</li>
+<li>Distribution certificates</li>
+<li>Provisioning profiles</li>
+</ul>
+<p><img src="https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1" alt="17"></p>
+<p><img src="https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1" alt="18"></p>
+<h3 id="Exporting-Selected-Certificates"><a href="#Exporting-Selected-Certificates" class="headerlink" title="Exporting Selected Certificates"></a>Exporting Selected Certificates</h3><p><img src="https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1" alt="19"></p>
+<h3 id="Importing-Your-Developer-Profile"><a href="#Importing-Your-Developer-Profile" class="headerlink" title="Importing Your Developer Profile"></a>Importing Your Developer Profile</h3><p>You import your developer profile to restore missing private keys or when you want to switch to another Mac.</p>
+<p><img src="https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1" alt="20"></p>
+<h2 id="Removing-Signing-Identities-from-Your-Keychain"><a href="#Removing-Signing-Identities-from-Your-Keychain" class="headerlink" title="Removing Signing Identities from Your Keychain"></a>Removing Signing Identities from Your Keychain</h2><p>Delete in key category first , then delete them in My certificate category</p>
+<p><img src="https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1" alt="21"></p>
+<h2 id="Revoking-Certificates"><a href="#Revoking-Certificates" class="headerlink" title="Revoking Certificates"></a>Revoking Certificates</h2><p>If you’re a team admin for an organization, you may want to revoke development certificates of team members who no longer work on your project. </p>
+<p>Revoking certificates may invalidate provisioning profiles,</p>
+<p>Revoking development or distribution certificates doesn’t affect apps that you’ve submitted to the store nor does it affect your ability to update them</p>
+<h3 id="Resetting-Certificates-Using-Xcode"><a href="#Resetting-Certificates-Using-Xcode" class="headerlink" title="Resetting Certificates Using Xcode"></a>Resetting Certificates Using Xcode</h3><p>If Xcode displays a Create button, the signing identity doesn’t exist in your developer account or on your Mac. </p>
+<p>If Xcode displays a Reset button, the signing identity is not usable on your Mac—for example, it is missing the private key. </p>
+<p>If you click the Reset button, Xcode revokes and re-creates the corresponding certificate.</p>
+<p><img src="https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1" alt="22"></p>
+<h3 id="Revoking-Certificates-Using-the-Developer-Account"><a href="#Revoking-Certificates-Using-the-Developer-Account" class="headerlink" title="Revoking Certificates Using the Developer Account"></a>Revoking Certificates Using the Developer Account</h3><p><img src="https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1" alt="23"></p>
+<h2 id="Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles"><a href="#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles" class="headerlink" title="Re-Creating Certificates and Updating Related Provisioning Profiles"></a>Re-Creating Certificates and Updating Related Provisioning Profiles</h2><p>Revoke the certificates using your developer account</p>
+<p>Provisioning profiles containing a revoked certificate become invalid.</p>
+<p>If necessary, remove the signing identities for these certificates from your keychain</p>
+<p>Remove or regenerate other types of provisioning profiles that contain the revoked certificates,</p>
+<p><img src="https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1" alt="24"></p>
+<h1 id="Maintaining-Identifiers-Devices-and-Profiles"><a href="#Maintaining-Identifiers-Devices-and-Profiles" class="headerlink" title="Maintaining Identifiers, Devices, and Profiles"></a>Maintaining Identifiers, Devices, and Profiles</h1><h2 id="App-IDs-Registering-Editing-Deleting"><a href="#App-IDs-Registering-Editing-Deleting" class="headerlink" title="App IDs-Registering/Editing/Deleting"></a>App IDs-Registering/Editing/Deleting</h2><p><img src="https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1" alt="14"></p>
+<h2 id="Locating-Your-Team-ID"><a href="#Locating-Your-Team-ID" class="headerlink" title="Locating Your Team ID"></a>Locating Your Team ID</h2><p>Sign in to developer.apple.com/account, and click Membership in the sidebar.Your Team ID appears in the Membership Information section under the team name.</p>
+<h2 id="Provisioning-profiles"><a href="#Provisioning-profiles" class="headerlink" title="Provisioning profiles"></a>Provisioning profiles</h2><p><strong>A provisioning profile includes signing certificates, device identifiers, and an App ID.</strong> </p>
+<p>Development provisioning profiles are used to build and install versions of your app during the development cycle, </p>
+<p>Distribution provisioning profiles are used to submit your apps to the App Store and distribute them to beta testers.</p>
+<h3 id="Generate-Provisioning-Profiles-with-Xcode"><a href="#Generate-Provisioning-Profiles-with-Xcode" class="headerlink" title="Generate Provisioning Profiles with Xcode"></a>Generate Provisioning Profiles with Xcode</h3><ol>
+<li>Connect your device to your Mac and click Use for Development in Xcode’s Organizer window. </li>
+<li>Sign in with the Apple ID associated with your iOS Developer Program membership and Xcode will generate a provisioning profile containing your certificate and device identifier.</li>
+</ol>
+<h3 id="Creating-Provisioning-Profiles-Using-Your-Developer-Account-略"><a href="#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略" class="headerlink" title="Creating Provisioning Profiles Using Your Developer Account (略)"></a>Creating Provisioning Profiles Using Your Developer Account (略)</h3><h3 id="Downloading-Provisioning-Profiles-in-Xcode"><a href="#Downloading-Provisioning-Profiles-in-Xcode" class="headerlink" title="Downloading Provisioning Profiles in Xcode"></a>Downloading Provisioning Profiles in Xcode</h3><ol>
+<li>In the Xcode Preferences window, click Accounts.</li>
+<li>Select your team, and click View Details.</li>
+<li>In the dialog that appears, click the “Download all” button in the lower-left corner under the Provisioning Profiles table.</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1" alt="15"></p>
+<h3 id="Editing-Provisioning-Profiles-in-Your-Developer-Account"><a href="#Editing-Provisioning-Profiles-in-Your-Developer-Account" class="headerlink" title="Editing Provisioning Profiles in Your Developer Account"></a>Editing Provisioning Profiles in Your Developer Account</h3><p>After doing so, download provisioning profiles in Xcode</p>
+<p><img src="https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1" alt="16"></p>
+<h3 id="Renewing-Expired-Provisioning-Profiles"><a href="#Renewing-Expired-Provisioning-Profiles" class="headerlink" title="Renewing Expired Provisioning Profiles"></a>Renewing Expired Provisioning Profiles</h3><p>You don’t need to make any changes to the provisioning profile. Just scroll to the bottom of the Edit iOS Provisioning Profile or the Edit Mac Provisioning Profile page, and click Generate</p>
+<h1 id="Configuring-Your-Xcode-Project-for-Distribution"><a href="#Configuring-Your-Xcode-Project-for-Distribution" class="headerlink" title="Configuring Your Xcode Project for Distribution"></a>Configuring Your Xcode Project for Distribution</h1><h2 id="Configuring-Identity-and-Team-Settings"><a href="#Configuring-Identity-and-Team-Settings" class="headerlink" title="Configuring Identity and Team Settings"></a>Configuring Identity and Team Settings</h2><h3 id="About-Bundle-IDs"><a href="#About-Bundle-IDs" class="headerlink" title="About Bundle IDs"></a>About Bundle IDs</h3><p>A bundle ID precisely identifies a single app</p>
+<p>reverse-DNS format. com.Acme.Hello </p>
+<p>use an app’s bundle ID in many different places to identify the app</p>
+<p><img src="https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1" alt=""></p>
+<h3 id="App-ID"><a href="#App-ID" class="headerlink" title="App ID"></a>App ID</h3><p>app’s bundle ID needs to be unique. </p>
+<p>The string consists of a Team ID and a bundle ID search string</p>
+<p><img src="https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1" alt=""></p>
+<p>There are two types of App IDs:</p>
+<p>An Explicit App ID Matches a Single App</p>
+<p>Wildcard App IDs Match Multiple Apps</p>
+<h3 id="Setting-the-Bundle-ID"><a href="#Setting-the-Bundle-ID" class="headerlink" title="Setting the Bundle ID"></a>Setting the Bundle ID</h3><p><img src="https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1" alt=""></p>
+<h3 id="Assigning-the-Xcode-Project-to-a-Team"><a href="#Assigning-the-Xcode-Project-to-a-Team" class="headerlink" title="Assigning the Xcode Project to a Team"></a>Assigning the Xcode Project to a Team</h3><p><img src="https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1" alt="5"></p>
+<h2 id="Creating-the-Team-Provisioning-Profile"><a href="#Creating-the-Team-Provisioning-Profile" class="headerlink" title="Creating the Team Provisioning Profile"></a>Creating the Team Provisioning Profile</h2><p>After you select a team, <strong>Xcode attempts to create a specialized development provisioning profile</strong> called a team provisioning profile that it manages for you. </p>
+<p>A team provisioning profile allows an app to be signed and run by all team members on all their devices.</p>
+<h2 id="Setting-the-Version-Number-and-Build-String"><a href="#Setting-the-Version-Number-and-Build-String" class="headerlink" title="Setting the Version Number and Build String"></a>Setting the Version Number and Build String</h2><p>The version number is a two-period-separated list of positive integers, as in 4.5.2. </p>
+<p>The first integer represents a major revision, the second a minor revision, and the third a maintenance release. </p>
+<p>The version number is shown in the store</p>
+<p>The build string represents an iteration (released or unreleased) of the bundle and is also a two-period-separated list of positive integers, as in 1.2.3. </p>
+<h2 id="Setting-Deployment-Info"><a href="#Setting-Deployment-Info" class="headerlink" title="Setting Deployment Info"></a>Setting Deployment Info</h2><p>The deployment target setting specifies the lowest operating system version that your app can run on.</p>
+<p><img src="https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1" alt=""></p>
+<h2 id="Adding-App-Icons-and-a-Launch-Screen-File-略"><a href="#Adding-App-Icons-and-a-Launch-Screen-File-略" class="headerlink" title="Adding App Icons and a Launch Screen File (略)"></a>Adding App Icons and a Launch Screen File (略)</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/09/07/TableView with searchBr视图的构建/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Cowboy Tech">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/07/TableView with searchBr视图的构建/" itemprop="url">
+                  TableView with searchBr视图的构建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-07T11:21:42+08:00">
+              2016-09-07
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:10:54+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/07/TableView with searchBr视图的构建/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/07/TableView with searchBr视图的构建/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Table-View"><a href="#Table-View" class="headerlink" title="Table View"></a>Table View</h1><h2 id="TableView-创建"><a href="#TableView-创建" class="headerlink" title="TableView 创建"></a>TableView 创建</h2><p>在视图中拖入一个tableView,并设置约束</p>
+<p><img src="https://www.dropbox.com/s/816psmm80wngd9o/2016091201.png?dl=1" alt="1"></p>
+<h2 id="TableView的行高"><a href="#TableView的行高" class="headerlink" title="TableView的行高"></a>TableView的行高</h2><p><img src="https://www.dropbox.com/s/1gr7l5mac02az42/2016091203.png?dl=1" alt="3"></p>
+<h2 id="TableView的代理"><a href="#TableView的代理" class="headerlink" title="TableView的代理"></a>TableView的代理</h2><p>ctrl drag tableView to the controller</p>
+<p><img src="https://www.dropbox.com/s/ayu3maiwfsghw87/2016091204.png?dl=1" alt="4"></p>
+<h2 id="TableView-IBOutlet-in-controller"><a href="#TableView-IBOutlet-in-controller" class="headerlink" title="TableView IBOutlet in controller"></a>TableView IBOutlet in controller</h2><p><img src="https://www.dropbox.com/s/co4pzk3rpvkw894/2016091210.png?dl=1" alt="10"></p>
+<h2 id="ViewController-conforms-to-protocol"><a href="#ViewController-conforms-to-protocol" class="headerlink" title="ViewController conforms to protocol"></a>ViewController conforms to protocol</h2><p><img src="https://www.dropbox.com/s/w5qzdx3ul0l7p9e/2016091211.png?dl=1" alt="11"></p>
+<h1 id="Table-view-cell"><a href="#Table-view-cell" class="headerlink" title="Table view cell"></a>Table view cell</h1><h2 id="TableView中设置cell"><a href="#TableView中设置cell" class="headerlink" title="TableView中设置cell"></a>TableView中设置cell</h2><p><img src="https://www.dropbox.com/s/2mhplzoreycp3hn/2016091202.png?dl=1" alt="2"></p>
+<h2 id="TableViewCell-ID"><a href="#TableViewCell-ID" class="headerlink" title="TableViewCell ID"></a>TableViewCell ID</h2><p><img src="https://www.dropbox.com/s/9zhlhcqifo64m0y/2016091205.png?dl=1" alt="5"></p>
+<h2 id="TableViewCell-custom-class"><a href="#TableViewCell-custom-class" class="headerlink" title="TableViewCell custom class"></a>TableViewCell custom class</h2><p><img src="https://www.dropbox.com/s/sn53qqj3j38diib/2016091209.png?dl=1" alt="9"></p>
+<h2 id="TableViewCell取消分割线"><a href="#TableViewCell取消分割线" class="headerlink" title="TableViewCell取消分割线"></a>TableViewCell取消分割线</h2><p><img src="https://www.dropbox.com/s/7tdn4oxn6jptqeg/2016091212.png?dl=1" alt="12"></p>
+<h2 id="采用UIView作为分割线"><a href="#采用UIView作为分割线" class="headerlink" title="采用UIView作为分割线"></a>采用UIView作为分割线</h2><p><img src="https://www.dropbox.com/s/33hjj0qf66a1csq/2016091213.png?dl=1" alt="13"></p>
+<p>黑色，透明度2%</p>
+<p><img src="https://www.dropbox.com/s/gdvn98bqwqb2w2g/2016091214.png?dl=1" alt="14"></p>
+<h1 id="UIStoryBoard中的Constraints"><a href="#UIStoryBoard中的Constraints" class="headerlink" title="UIStoryBoard中的Constraints"></a>UIStoryBoard中的Constraints</h1><p>两者顶部对齐</p>
+<p><img src="https://www.dropbox.com/s/o3yxuzsv4t40sly/2016091206.png?dl=1" alt="6"></p>
+<p>两者底部对齐</p>
+<p><img src="https://www.dropbox.com/s/nl3h820ypcielce/2016091207.png?dl=1" alt="7"></p>
+<p>两者中线对齐</p>
+<p><img src="https://www.dropbox.com/s/1ocfn5c0u4l9m8y/2016091208.png?dl=1" alt="8"></p>
+<h1 id="View中的元素"><a href="#View中的元素" class="headerlink" title="View中的元素"></a>View中的元素</h1><h2 id="Lable内文字可以自动换行"><a href="#Lable内文字可以自动换行" class="headerlink" title="Lable内文字可以自动换行"></a>Lable内文字可以自动换行</h2><p>设为0</p>
+<p><img src="https://www.dropbox.com/s/7l8215vih3w5zw6/2016091215.png?dl=1" alt="15"></p>
+<h2 id="ImageView设为AspectFit"><a href="#ImageView设为AspectFit" class="headerlink" title="ImageView设为AspectFit"></a>ImageView设为AspectFit</h2><p><img src="https://www.dropbox.com/s/m9tgd7woh0qbdsf/2016091216.png?dl=1" alt="16"></p>
+<h1 id="Search-View"><a href="#Search-View" class="headerlink" title="Search View"></a>Search View</h1><h2 id="主视图中添加导航栏视图"><a href="#主视图中添加导航栏视图" class="headerlink" title="主视图中添加导航栏视图"></a>主视图中添加导航栏视图</h2><p>创建一个高度为64的导航栏视图，并将其底部与table view顶部相连接</p>
+<p><img src="https://www.dropbox.com/s/5pxhv35sqp1i979/2016091402.png?dl=1" alt="2"></p>
+<p><img src="https://www.dropbox.com/s/7vpj5w66dpc464a/2016091403.png?dl=1" alt="3"></p>
+<p><img src="https://www.dropbox.com/s/79zvuo5j4oixf0z/2016091406.png?dl=1" alt="6"></p>
+<h2 id="导航栏内嵌UIView-for-searchBar"><a href="#导航栏内嵌UIView-for-searchBar" class="headerlink" title="导航栏内嵌UIView for searchBar"></a>导航栏内嵌UIView for searchBar</h2><p>在导航栏中内嵌一个UIView 高度为44，透明</p>
+<p><img src="https://www.dropbox.com/s/5cjfu4g007l72hq/2016091407.png?dl=1" alt="7"></p>
+<p><img src="https://www.dropbox.com/s/nfsf4tfive1u0e6/2016091408.png?dl=1" alt="8"></p>
+<p><img src="https://www.dropbox.com/s/tog01z4o4zr458c/2016091409.png?dl=1" alt="9"></p>
+<h2 id="搜索结果界面创建"><a href="#搜索结果界面创建" class="headerlink" title="搜索结果界面创建"></a>搜索结果界面创建</h2><p>在storyboard中复制一个view controller scene 为search controller scene</p>
+<p><img src="https://www.dropbox.com/s/eg23hrkhohgqv7k/2016091401.png?dl=1" alt="1"></p>
+<p>搜索结果界面的导航栏和主视图的一致，内嵌view for searchbar, 不需要cell</p>
+<p><img src="https://www.dropbox.com/s/p2gr5uw6mrlrrxr/2016091410.png?dl=1" alt="10"></p>
+<p><img src="https://www.dropbox.com/s/4ub3sd8064j57tz/2016091412.png?dl=1" alt="12"></p>
+<h2 id="custom-class-和-storyboard-ID"><a href="#custom-class-和-storyboard-ID" class="headerlink" title="custom class 和 storyboard ID"></a>custom class 和 storyboard ID</h2><p><img src="https://www.dropbox.com/s/hl4qxhc0tsyp8sb/2016091413.png?dl=1" alt="13"></p>
 
           
         
@@ -444,8 +722,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-10T19:17:37+08:00">
-              2016-08-10
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:13:11+08:00">
+              2017-01-27
             </time>
             
           </span>
@@ -459,8 +737,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
                   </a>
                 </span>
 
@@ -586,160 +864,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/07/罗辑思维听后感/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/07/罗辑思维听后感/" itemprop="url">
-                  罗辑思维听后感
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-07T20:38:31+08:00">
-              2016-08-07
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-09-12T18:33:56+08:00">
-              2016-09-12
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/情感杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">情感杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/07/罗辑思维听后感/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/07/罗辑思维听后感/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是战略"><a href="#什么是战略" class="headerlink" title="什么是战略"></a>什么是战略</h1><p>战略是均势思维，注重找到势力的均衡点，并且稍强于对方。以此来推断目前该做些什么</p>
-<p>战术是你死我活的决斗，其状态必然不稳定。</p>
-<h1 id="黄执中-你如何听懂我说的话"><a href="#黄执中-你如何听懂我说的话" class="headerlink" title="黄执中:你如何听懂我说的话"></a>黄执中:你如何听懂我说的话</h1><p>黄执中是辩论界的大神，听他的课还是有些收获的。</p>
-<ol>
-<li>简单。尽可能精简自己的语句，用最生动的故事或例子来表达。比如肯尼迪对太空工业的表达”将人送上去，将人带回来”。太过于空洞的套话是无效传递。</li>
-<li>意外。一个人会对他人的言语表达下意识的进行预测，自身的意见会因为意外而产生反思，因为惊吓而会产生改变。例如: 我们顾客至上的理念的诠释:他来我们店里成功退货一条围巾，即使我们没有卖这种围巾。愤怒的时候，会让人自信，会对自身的论据信心满满，会很固执，但这样是说服不了别人的。要成功的说服别人，需要做到两点: 1. 要有另人意外的观点，能引起关注。2. 要让他有内在信服。(外在信服是大众公认的，内在信服是自身体验的，如NBA新星球员对艾滋病预防培训的案例)</li>
-<li>具体。具体的细节能让人产生深刻的印象。例如法庭上的两种证词: 妈妈很爱她，每晚陪她用小猫牙刷刷牙 / 每晚陪她刷牙。</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/07/AdaptiveLayout设计用户界面/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -788,8 +912,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-08-19T07:30:58+08:00">
-              2016-08-19
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:17:07+08:00">
+              2017-01-27
             </time>
             
           </span>
@@ -803,8 +927,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
                   </a>
                 </span>
 
@@ -1050,7 +1174,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/05/Alamofire简介/">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/08/04/使用CocoaPods管理iOS库/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Jack Liu">
@@ -1075,8 +1199,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
             
               
                 
-                <a class="post-title-link" href="/2016/08/05/Alamofire简介/" itemprop="url">
-                  Alamofire简介
+                <a class="post-title-link" href="/2016/08/04/使用CocoaPods管理iOS库/" itemprop="url">
+                  使用CocoaPods管理iOS库
                 </a>
               
             
@@ -1089,8 +1213,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-05T11:43:01+08:00">
-              2016-08-05
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-04T14:17:13+08:00">
+              2016-08-04
             </time>
 
             &nbsp;|&nbsp;
@@ -1098,8 +1222,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-check-o"></i>
             </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2016-10-24T15:06:21+08:00">
-              2016-10-24
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:09:18+08:00">
+              2017-01-27
             </time>
             
           </span>
@@ -1113,8 +1237,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index">
-                    <span itemprop="name">IT</span>
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
                   </a>
                 </span>
 
@@ -1129,8 +1253,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/05/Alamofire简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/05/Alamofire简介/" itemprop="commentCount"></span>
+                <a href="/2016/08/04/使用CocoaPods管理iOS库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/04/使用CocoaPods管理iOS库/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1158,15 +1282,108 @@ private func configureTraitOverrideForSize(size:CGSize) {
       
         
           
-            <h1 id="Making-a-Request"><a href="#Making-a-Request" class="headerlink" title="Making a Request"></a>Making a Request</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Alamofire</span><br><span class="line"><span class="type">Alamofire</span>.request(<span class="string">"https://httpbin.org/get"</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="Response-JSON-Handler"><a href="#Response-JSON-Handler" class="headerlink" title="Response JSON Handler"></a>Response JSON Handler</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Alamofire</span>.request(<span class="string">"https://httpbin.org/get"</span>).responseJSON &#123; response <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(response.request)  <span class="comment">// original URL request</span></span><br><span class="line">    <span class="built_in">print</span>(response.response) <span class="comment">// HTTP URL response</span></span><br><span class="line">    <span class="built_in">print</span>(response.data)     <span class="comment">// server data</span></span><br><span class="line">    <span class="built_in">print</span>(response.result)   <span class="comment">// result of response serialization</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> <span class="type">JSON</span> = response.result.value &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"JSON: <span class="subst">\(JSON)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Downloading-Data-to-a-File"><a href="#Downloading-Data-to-a-File" class="headerlink" title="Downloading Data to a File"></a>Downloading Data to a File</h1><h2 id="Download-data-to-a-temporary-file-on-disk"><a href="#Download-data-to-a-temporary-file-on-disk" class="headerlink" title="Download  data to a temporary file on-disk"></a>Download  data to a temporary file on-disk</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Alamofire</span>.download(<span class="string">"https://httpbin.org/image/png"</span>).responseData &#123; response <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data = response.result.value &#123;</span><br><span class="line">        <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: data)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Download-File-Destination"><a href="#Download-File-Destination" class="headerlink" title="Download File Destination"></a>Download File Destination</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> destination: <span class="type">DownloadRequest</span>.<span class="type">DownloadFileDestination</span> = &#123; <span class="number">_</span>, <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line"><span class="keyword">let</span> documentsURL = <span class="type">FileManager</span>.<span class="keyword">default</span>.urls(<span class="keyword">for</span>: .documentDirectory, <span class="keyword">in</span>: .userDomainMask)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">let</span> fileURL = documentsURL.appendPathComponent(<span class="string">"pig.png"</span>)</span><br><span class="line">    <span class="keyword">return</span> (fileURL, [.removePreviousFile, .createIntermediateDirectories])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">Alamofire</span>.download(urlString, to: destination).response &#123; response <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(response)</span><br><span class="line">    <span class="keyword">if</span> response.result.isSuccess, <span class="keyword">let</span> imagePath = response.destinationURL?.path &#123;</span><br><span class="line">        <span class="keyword">let</span> image = <span class="type">UIImage</span>(contentsOfFile: imagePath)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Suggested-download-destination"><a href="#Suggested-download-destination" class="headerlink" title="Suggested download destination"></a>Suggested download destination</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> destination = <span class="type">DownloadRequest</span>.suggestedDownloadDestination(directory: .documentDirectory)</span><br><span class="line"><span class="type">Alamofire</span>.download(<span class="string">"https://httpbin.org/image/png"</span>, to: destination)</span><br></pre></td></tr></table></figure>
-<h2 id="Download-Progress"><a href="#Download-Progress" class="headerlink" title="Download Progress"></a>Download Progress</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Alamofire</span>.download(<span class="string">"https://httpbin.org/image/png"</span>)</span><br><span class="line">    .downloadProgress &#123; progress <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Download Progress: <span class="subst">\(progress.fractionCompleted)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .responseData &#123; response <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> data = response.result.value &#123;</span><br><span class="line">            <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: data)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Download-Progress-with-dispatchQueue"><a href="#Download-Progress-with-dispatchQueue" class="headerlink" title="Download Progress with dispatchQueue"></a>Download Progress with dispatchQueue</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> utilityQueue = <span class="type">DispatchQueue</span>.global(qos: .utility)</span><br><span class="line"></span><br><span class="line"><span class="type">Alamofire</span>.download(<span class="string">"https://httpbin.org/image/png"</span>)</span><br><span class="line">    .downloadProgress(queue: utilityQueue) &#123; progress <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Download Progress: <span class="subst">\(progress.fractionCompleted)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .responseData &#123; response <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> data = response.result.value &#123;</span><br><span class="line">            <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: data)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Resuming-a-Download"><a href="#Resuming-a-Download" class="headerlink" title="Resuming a Download"></a>Resuming a Download</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImageRequestor</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> resumeData: <span class="type">Data</span>?</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> image: <span class="type">UIImage</span>?</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">fetchImage</span><span class="params">(completion: <span class="params">(UIImage?)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">        <span class="keyword">guard</span> image == <span class="literal">nil</span> <span class="keyword">else</span> &#123; completion(image) ; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> destination: <span class="type">DownloadRequest</span>.<span class="type">DownloadFileDestination</span> = &#123; <span class="number">_</span>, <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">let</span> documentsURL = <span class="type">FileManager</span>.<span class="keyword">default</span>.urls(<span class="keyword">for</span>: .documentDirectory, <span class="keyword">in</span>: .userDomainMask)[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">let</span> fileURL = documentsURL.appendPathComponent(<span class="string">"pig.png"</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> (fileURL, [.removePreviousFile, .createIntermediateDirectories])</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> request: <span class="type">DownloadRequest</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> resumeData = resumeData &#123;</span><br><span class="line">            request = <span class="type">Alamofire</span>.download(resumingWith: resumeData)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            request = <span class="type">Alamofire</span>.download(<span class="string">"https://httpbin.org/image/png"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        request.responseData &#123; response <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">switch</span> response.result &#123;</span><br><span class="line">            <span class="keyword">case</span> .success(<span class="keyword">let</span> data):</span><br><span class="line">                <span class="keyword">self</span>.image = <span class="type">UIImage</span>(data: data)</span><br><span class="line">            <span class="keyword">case</span> .failure:</span><br><span class="line">                <span class="keyword">self</span>.resumeData = response.resumeData</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Bug"><a href="#Bug" class="headerlink" title="Bug"></a>Bug</h1><p>Xcode的bug: 从cocoapods导入时，识别不了Alamofire。只要先Run一次，再import Alamofire就可以了</p>
+            <h1 id="iOS库的介绍"><a href="#iOS库的介绍" class="headerlink" title="iOS库的介绍"></a>iOS库的介绍</h1><h2 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a>动态库和静态库</h2><ol>
+<li>动态库在运行时实时部署，静态库必须在编译时连接到代码</li>
+<li>动态库加载到内存后可以重复使用,静态库每次import都引入一次</li>
+<li>自定义的动态库只能部署在 iOS8 以上系统</li>
+<li>.a(静态库，只有代码，没有任何资源,图片xib文件等)</li>
+<li>.dylib (动态库，只有代码，没有任何资源)</li>
+<li>.framework 可以包含资源，分为两种：dynamic 和 static</li>
+<li>use_frameworks! 生成 dynamic framework</li>
+</ol>
+<p><img src="https://www.dropbox.com/s/4avj4s13s02p584/20160804_dylib.png?dl=1" alt=""></p>
+<h2 id="制作库"><a href="#制作库" class="headerlink" title="制作库"></a>制作库</h2><p>iOS 体系结构</p>
+<ol>
+<li>armv7： iPhone 4/4s</li>
+<li>armv7s：iPhone 5 和 iPhone 5C</li>
+<li>arm64：iPhone 5S+</li>
+<li>x86-64、i386：模拟器</li>
+<li>lipo –info – 查看库支持的体系结构</li>
+<li>lipo -create  -output  - 将模拟器和真机的库合成一个库</li>
+<li>Build Active Architecture Only (Debug,Release) – 只编译当前设备体系结构的包</li>
+</ol>
+<h3 id="设定系统为8-0以上才能部署自定义动态库"><a href="#设定系统为8-0以上才能部署自定义动态库" class="headerlink" title="设定系统为8.0以上才能部署自定义动态库"></a>设定系统为8.0以上才能部署自定义动态库</h3><p><img src="https://www.dropbox.com/s/dpfrluxleicxjaq/20160804_dylib1.png?dl=1" alt=""></p>
+<h3 id="创建一个库"><a href="#创建一个库" class="headerlink" title="创建一个库"></a>创建一个库</h3><p><img src="https://www.dropbox.com/s/ih94n4pgrsh6ik9/20160804_dylib2.png?dl=1" alt=""></p>
+<h3 id="MyFramework-swift"><a href="#MyFramework-swift" class="headerlink" title="MyFramework.swift"></a>MyFramework.swift</h3><pre><code>import UIKit
+
+public class MyFramework: NSObject {
+
+static let bundle = NSBundle(forClass: MyFramework.self)
+
+static let MyFrameworkStr = &quot;MyFramework&quot;
+
+public static func openVCFromStoryboard() {
+    let vc  = UIStoryboard(name: MyFrameworkStr, bundle: bundle).instantiateViewControllerWithIdentifier(&quot;MyFrameworkViewController&quot;)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func openVCFromXib() {
+    let vc = MyFrameworkViewController(nibName: MyFrameworkStr, bundle: bundle)
+    UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+}
+
+public static func loadImage() -&gt; UIImage{
+    let image = UIImage(named: MyFrameworkStr + &quot;.png&quot;, inBundle: bundle, compatibleWithTraitCollection: nil)
+    return image!
+}
+
+
+}
+</code></pre><h3 id="分别在真机和模拟下运行，Product下生成，在show-in-finder中打开"><a href="#分别在真机和模拟下运行，Product下生成，在show-in-finder中打开" class="headerlink" title="分别在真机和模拟下运行，Product下生成，在show in finder中打开"></a>分别在真机和模拟下运行，Product下生成，在show in finder中打开</h3><p><img src="https://www.dropbox.com/s/51aymh1bamnxr95/20160804_dylib3.png?dl=1" alt=""></p>
+<h3 id="找到xxx-framework目录下的MyFramework文件，如图所示"><a href="#找到xxx-framework目录下的MyFramework文件，如图所示" class="headerlink" title="找到xxx.framework目录下的MyFramework文件，如图所示"></a>找到xxx.framework目录下的MyFramework文件，如图所示</h3><p><img src="https://www.dropbox.com/s/wc19di7fthutx26/20160804_dylib4.png?dl=1" alt=""></p>
+<h3 id="合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径"><a href="#合并真机和模拟器的动态库。将其拖入到“lipo-create”后-路径" class="headerlink" title="合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)"></a>合并真机和模拟器的动态库。将其拖入到“lipo -create”后(路径)</h3><p><img src="https://www.dropbox.com/s/se9l6dzpq9i5nth/20160804_dylib5.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/wj51h5qpx9zvjf5/20160804_dylib6.png?dl=1" alt=""></p>
+<h3 id="合并库中的module也要模拟器module-真机module"><a href="#合并库中的module也要模拟器module-真机module" class="headerlink" title="合并库中的module也要模拟器module + 真机module"></a>合并库中的module也要模拟器module + 真机module</h3><p><img src="https://www.dropbox.com/s/2m7pz7k1p3d69v7/20160804_dylib7.png?dl=1" alt=""></p>
+<h2 id="使用库"><a href="#使用库" class="headerlink" title="使用库"></a>使用库</h2><ol>
+<li>手动导入：Linked Frameworks and  Libraries 、 Embedded Binaries</li>
+<li>使用 pod：use_frameworks!</li>
+</ol>
+<h2 id="利用-dynamic-库实时部署"><a href="#利用-dynamic-库实时部署" class="headerlink" title="利用 dynamic 库实时部署"></a>利用 dynamic 库实时部署</h2><pre><code>let libPath = &quot;\(NSHomeDirectory())/Documents/MyFramework.framework/MyFramework&quot;
+if let bundle = NSBundle(path: libPath) {
+do {
+    try bundle.loadAndReturnError()
+    if let myFramework = NSClassFromString(&quot;MyFramework&quot;) as? MyFramework.Type{
+        myFramework.init().whereIsFrom()
+    }
+} catch {
+    print(&quot;动态库加载失败&quot;)
+}
+}
+</code></pre><h1 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在Terminal输入以下安装命令</p>
+<pre><code>$ sudo gem install cocoapods
+</code></pre><p>出现以下报错</p>
+<pre><code>You don&apos;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.
+</code></pre><p>再Terminal输入以下命令</p>
+<pre><code>$ sudo gem update
+</code></pre><p>还是出现以下报错</p>
+<pre><code>Operation not permitted - /usr/bin/xcodeproj
+</code></pre><p>参考官方文档<a href="https://github.com/CocoaPods/CocoaPods/issues/3692" target="_blank" rel="external">Operation not permitted</a>输入以下命令，成功<br>​<br>    $ sudo gem install -n /usr/local/bin cocoapods</p>
+<h2 id="CocoaPods基础知识-—-使用步骤"><a href="#CocoaPods基础知识-—-使用步骤" class="headerlink" title="CocoaPods基础知识 — 使用步骤"></a>CocoaPods基础知识 — 使用步骤</h2><ol>
+<li>创建或打开 Xcode 项目</li>
+<li>命令行 cd 到项目目录 (拖曳文件夹到cd后面就是路径)</li>
+<li>使用 pod init 创建 Podfile</li>
+<li>pod search Alamofire </li>
+<li>修改 Podfile</li>
+<li>pod install</li>
+<li>打开 pod 创建的 xcworkspace</li>
+</ol>
+<h2 id="CocoaPods基础知识-—-Podfile"><a href="#CocoaPods基础知识-—-Podfile" class="headerlink" title="CocoaPods基础知识 — Podfile"></a>CocoaPods基础知识 — Podfile</h2><pre><code>platform : ios &apos;9.0&apos;
+use_frameworks! (swift下必须使用)
+inhibit_all_warnings! (隐藏所有报错信息)
+target  &apos;PodTest&apos; do
+    pod &apos;AFNetworking&apos;,  &apos;~&gt; 3.0&apos;
+    pod &apos;FBSDKCoreKit&apos;, &apos;~&gt; 4.9&apos;
+end
+</code></pre><h2 id="Podfile-lock"><a href="#Podfile-lock" class="headerlink" title="Podfile.lock"></a>Podfile.lock</h2><ol>
+<li>第一次 pod install 时生成记录每个 Pod 版本</li>
+<li>Podfile.lock 锁定当前各依赖库的版本之后 pod install 不会更改版本pod update 才会改版本</li>
+<li>多人协作时防止第三方库升级时造成版本不一致</li>
+</ol>
+<h2 id="pod-install-和-pod-update"><a href="#pod-install-和-pod-update" class="headerlink" title="pod install 和 pod update"></a>pod install 和 pod update</h2><ol>
+<li>pod install: 每次安装Podfile.lock 中锁定的版本的pods 及 新的pods</li>
+<li>pod update: 会将指定的pod更新到最新版本或 podfile 中指定版本</li>
+<li>使用 pod update podName 来更新指定 pod 的版本</li>
+</ol>
 
           
         
@@ -1200,7 +1417,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1241,7 +1458,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">114</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1249,7 +1466,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -1258,7 +1475,7 @@ private func configureTraitOverrideForSize(size:CGSize) {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1304,8 +1521,8 @@ private func configureTraitOverrideForSize(size:CGSize) {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
