@@ -76,7 +76,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="忍者刘米米" type="application/atom+xml" />
 
 
 
@@ -90,12 +90,12 @@
 
 <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Cowboy Tech">
+<meta property="og:title" content="忍者刘米米">
 <meta property="og:url" content="http://jackliu17.github.io/index.html">
-<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:site_name" content="忍者刘米米">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cowboy Tech">
+<meta name="twitter:title" content="忍者刘米米">
 <meta name="twitter:description">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> Cowboy Tech </title>
+  <title> 忍者刘米米 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +163,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Cowboy Tech</span>
+      <span class="site-title">忍者刘米米</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -252,9 +252,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -355,7 +355,7 @@
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        </span><br><span class="line"><span class="comment">// configuration of using Parse code in heroku</span></span><br><span class="line"><span class="keyword">let</span> parseConfig = <span class="type">ParseClientConfiguration</span> &#123;(<span class="type">ParseMutableClientConfiguration</span>) <span class="keyword">in</span></span><br><span class="line">        </span><br><span class="line"><span class="comment">//accessing heroku app via id &amp; keys           </span></span><br><span class="line"><span class="type">ParseMutableClientConfiguration</span>.applicationId = <span class="string">"instagramlyh"</span></span><br><span class="line"><span class="type">ParseMutableClientConfiguration</span>.clientKey = <span class="string">"instagramhc"</span></span><br><span class="line"><span class="type">ParseMutableClientConfiguration</span>.server = <span class="string">"http://fakeinstagram.herokuapp.com/parse"</span>    </span><br><span class="line">&#125;    </span><br><span class="line"><span class="type">Parse</span>.initialize(with: parseConfig)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Override point for customization after application launch.</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Save-data-to-parse-server"><a href="#Save-data-to-parse-server" class="headerlink" title="Save data to parse server"></a>Save data to parse server</h1><p>viewController.swift</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Unwrap image file data from UIImageView</span></span><br><span class="line"><span class="keyword">let</span> data = <span class="type">UIImageJPEGRepresentation</span>(picture.image!, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Convert image to file</span></span><br><span class="line"><span class="keyword">let</span> file = <span class="type">PFFile</span>(name: <span class="string">"picture.jpg"</span>, data: data!)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a class in Heroku</span></span><br><span class="line"><span class="keyword">let</span> table = <span class="type">PFObject</span>(className: <span class="string">"messages"</span>)</span><br><span class="line">table[<span class="string">"sender"</span>] = <span class="string">"Akhmed"</span></span><br><span class="line">table[<span class="string">"receiver"</span>] = <span class="string">"Bob"</span></span><br><span class="line">table[<span class="string">"message"</span>] = <span class="string">"Hello Bob!"</span></span><br><span class="line">table[<span class="string">"picture"</span>] = file</span><br><span class="line"></span><br><span class="line">table.saveInBackground &#123; (success:<span class="type">Bool</span>, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line"><span class="keyword">if</span> success &#123;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Saved in server"</span>)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="built_in">print</span>(error!)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Get-data-from-parse-server"><a href="#Get-data-from-parse-server" class="headerlink" title="Get data from parse server"></a>Get data from parse server</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> information = <span class="type">PFQuery</span>(className: <span class="string">"messages"</span>)</span><br><span class="line">information.findObjectsInBackground &#123; (objects:[<span class="type">PFObject</span>]?, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">            <span class="comment">// if no error...</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//take each object from list of objects.</span></span><br><span class="line">                <span class="keyword">for</span> object <span class="keyword">in</span> objects!&#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">let</span> message = object[<span class="string">"message"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> receiver = object[<span class="string">"receiver"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> sender = object[<span class="string">"sender"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> picture = object[<span class="string">"picture"</span>] <span class="keyword">as</span>! <span class="type">PFFile</span></span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">self</span>.messageLbl.text = <span class="string">"Message:\(message)"</span></span><br><span class="line">                    <span class="keyword">self</span>.receiverLbl.text = <span class="string">"Receiver:\(receiver)"</span></span><br><span class="line">                    <span class="keyword">self</span>.senderLbl.text = <span class="string">"Sender:\(sender)"</span></span><br><span class="line">                    picture.getDataInBackground(block: &#123; (data:<span class="type">Data</span>?, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">                        </span><br><span class="line">                        <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;        </span><br><span class="line">                            <span class="keyword">if</span> data != <span class="literal">nil</span> &#123;</span><br><span class="line">                                <span class="keyword">self</span>.picture.image = <span class="type">UIImage</span>(data:data!) </span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="built_in">print</span>(error!)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;   </span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;   </span><br><span class="line">                    <span class="built_in">print</span>(error!)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Get-data-from-parse-server"><a href="#Get-data-from-parse-server" class="headerlink" title="Get data from parse server"></a>Get data from parse server</h1><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> information = <span class="type">PFQuery</span>(className: <span class="string">"messages"</span>)</span><br><span class="line">information.findObjectsInBackground &#123; (objects:[<span class="type">PFObject</span>]?, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">            <span class="comment">// if no error...</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">//take each object from list of objects.</span></span><br><span class="line">                <span class="keyword">for</span> object <span class="keyword">in</span> objects!&#123;</span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">let</span> message = object[<span class="string">"message"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> receiver = object[<span class="string">"receiver"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> sender = object[<span class="string">"sender"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">                    <span class="keyword">let</span> picture = object[<span class="string">"picture"</span>] <span class="keyword">as</span>! <span class="type">PFFile</span></span><br><span class="line">                    </span><br><span class="line">                    <span class="keyword">self</span>.messageLbl.text = <span class="string">"Message:<span class="subst">\(message)</span>"</span></span><br><span class="line">                    <span class="keyword">self</span>.receiverLbl.text = <span class="string">"Receiver:<span class="subst">\(receiver)</span>"</span></span><br><span class="line">                    <span class="keyword">self</span>.senderLbl.text = <span class="string">"Sender:<span class="subst">\(sender)</span>"</span></span><br><span class="line">                    picture.getDataInBackground(block: &#123; (data:<span class="type">Data</span>?, error:<span class="type">Error</span>?) <span class="keyword">in</span></span><br><span class="line">                        </span><br><span class="line">                        <span class="keyword">if</span> error == <span class="literal">nil</span> &#123;        </span><br><span class="line">                            <span class="keyword">if</span> data != <span class="literal">nil</span> &#123;</span><br><span class="line">                                <span class="keyword">self</span>.picture.image = <span class="type">UIImage</span>(data:data!) </span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="built_in">print</span>(error!)</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;   </span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;   </span><br><span class="line">                    <span class="built_in">print</span>(error!)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -403,9 +403,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -582,9 +582,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -832,9 +832,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -1036,9 +1036,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -1225,7 +1225,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

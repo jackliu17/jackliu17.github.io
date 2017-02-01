@@ -76,7 +76,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Cowboy Tech" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="忍者刘米米" type="application/atom+xml" />
 
 
 
@@ -90,12 +90,12 @@
 
 <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Cowboy Tech">
+<meta property="og:title" content="忍者刘米米">
 <meta property="og:url" content="http://jackliu17.github.io/page/5/index.html">
-<meta property="og:site_name" content="Cowboy Tech">
+<meta property="og:site_name" content="忍者刘米米">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cowboy Tech">
+<meta name="twitter:title" content="忍者刘米米">
 <meta name="twitter:description">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title> Cowboy Tech </title>
+  <title> 忍者刘米米 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -163,7 +163,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Cowboy Tech</span>
+      <span class="site-title">忍者刘米米</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -243,254 +243,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/10/07/App-Distribution-Guide/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Jack Liu">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/07/App-Distribution-Guide/" itemprop="url">
-                  App_Distribution_Guide
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-07T18:05:27+08:00">
-              2016-10-07
-            </time>
-
-            &nbsp;|&nbsp;
-
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-check-o"></i>
-            </span>
-            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:15:48+08:00">
-              2017-01-27
-            </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/07/App-Distribution-Guide/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/07/App-Distribution-Guide/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Maintaining-Your-Signing-Identities-and-Certificates"><a href="#Maintaining-Your-Signing-Identities-and-Certificates" class="headerlink" title="Maintaining Your Signing Identities and Certificates"></a>Maintaining Your Signing Identities and Certificates</h1><h2 id="About-Signing-Identities-and-Certificates"><a href="#About-Signing-Identities-and-Certificates" class="headerlink" title="About Signing Identities and Certificates"></a>About Signing Identities and Certificates</h2><p>Code signing your app lets users trust that your app has been created by a source known to Apple and that it hasn’t been tampered with.</p>
-<p>signing identities—stored in your keychain</p>
-<p>certificates—stored in your developer account</p>
-<p><img src="https://www.dropbox.com/s/l6jzxk1z8pvsumz/2016100610.png?dl=1" alt=""></p>
-<h2 id="Viewing-Signing-Identities-and-Provisioning-Profiles"><a href="#Viewing-Signing-Identities-and-Provisioning-Profiles" class="headerlink" title="Viewing Signing Identities and Provisioning Profiles"></a>Viewing Signing Identities and Provisioning Profiles</h2><p>To view account details</p>
-<ol>
-<li>Choose Xcode &gt; Preferences.</li>
-<li>Click Accounts at the top of the window.</li>
-<li>Select the team you want to view, and click View Details.</li>
-</ol>
-<p>If a Create button appears next to a certificate, it hasn’t been created yet. If a Download button appears next to a provisioning profile, it’s not on your Mac.</p>
-<p><img src="https://www.dropbox.com/s/twrmwfcv0i6famb/2016100607.png?dl=1" alt=""></p>
-<h2 id="Creating-Signing-Identities"><a href="#Creating-Signing-Identities" class="headerlink" title="Creating Signing Identities"></a>Creating Signing Identities</h2><p>In the dialog that appears, click the Create button in the row of the type of certificate you want to create.<br>If the Create button is disabled, you are not allowed to create that type of signing identity.</p>
-<p><img src="https://www.dropbox.com/s/up6kuyun7rk1ers/2016100608.png?dl=1" alt=""></p>
-<h2 id="Verifying-Your-Steps"><a href="#Verifying-Your-Steps" class="headerlink" title="Verifying Your Steps"></a>Verifying Your Steps</h2><h3 id="Verifying-Using-Your-Developer-Account"><a href="#Verifying-Using-Your-Developer-Account" class="headerlink" title="Verifying Using Your Developer Account"></a>Verifying Using Your Developer Account</h3><ol>
-<li>Sign in to developer.apple.com/account, and click Certificates, IDs &amp; Profiles.</li>
-<li>In the Certificates section of the sidebar, select Development or Production depending on the type of certificate you want to verify.</li>
-<li>The type and expiration date of the certificate should <strong>match</strong> the information that you view in Keychain Access.</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/aaxupfrzc7vu1ul/2016100609.png?dl=1" alt=""></p>
-<h2 id="Verifying-Using-Keychain-Access"><a href="#Verifying-Using-Keychain-Access" class="headerlink" title="Verifying Using Keychain Access"></a>Verifying Using Keychain Access</h2><p>When you create a development or distribution certificate using Xcode, the certificate is automatically installed in your login keychain.</p>
-<p>In the left pane, select “login” in the Keychains section and select Certificates in the Category section.</p>
-<p>The name of the development certificate begins with the text “iPhone Developer”</p>
-<p><img src="https://www.dropbox.com/s/bzk1l349jkq8n0f/2016100611.png?dl=1" alt="11"></p>
-<p>If you click the disclosure triangle next to the certificate name, your private key appears. If the disclosure triangle doesn’t appear, you’re missing your private key</p>
-<p><img src="https://www.dropbox.com/s/7opgx7g6jy022a4/2016100612.png?dl=1" alt="12"></p>
-<h2 id="Installing-Missing-Intermediate-Certificate-Authorities"><a href="#Installing-Missing-Intermediate-Certificate-Authorities" class="headerlink" title="Installing Missing Intermediate Certificate Authorities"></a>Installing Missing Intermediate Certificate Authorities</h2><p>To use your certificates, the correct intermediate certificate needs to be in your keychain.</p>
-<p>An intermediate certificate ensures that your certificates were issued by a trusted source. </p>
-<p>The intermediate certificate, named Apple Worldwide Developer Relations Certification Authority, is installed in your system keychain when you install Xcode. </p>
-<p>First try downloading your provisioning profiles in Xcode to install missing intermediate certificates. If that doesn’t work for you, download and install the missing intermediate certificate.</p>
-<ol>
-<li>Go to <a href="http://www.apple.com/certificateauthority" target="_blank" rel="external">http://www.apple.com/certificateauthority</a>.</li>
-<li>Under Apple Intermediate Certificates, click the link for the intermediate certificate you’re missing.A certificate file, with a .cer extension, appears in your Downloads folder.</li>
-<li>Double-click the certificate file to install it in your system keychain.</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/xq7ckol8gf1htdb/2016100613.png?dl=1" alt="13"></p>
-<h2 id="Exporting-and-Importing-Certificates-and-Profiles"><a href="#Exporting-and-Importing-Certificates-and-Profiles" class="headerlink" title="Exporting and Importing Certificates and Profiles"></a>Exporting and Importing Certificates and Profiles</h2><p>After Xcode creates your certificates and profiles for you, export them to create a backup of all your assets. You do this to, for example, transfer your assets to another Mac you use for development or repair a certificate if the private key is missing.</p>
-<p>The export file, called a <strong>developer profile</strong>, contains the following team assets:</p>
-<ul>
-<li>Development certificates</li>
-<li>Distribution certificates</li>
-<li>Provisioning profiles</li>
-</ul>
-<p><img src="https://www.dropbox.com/s/7u4hzq7xcrmpten/2016100617.png?dl=1" alt="17"></p>
-<p><img src="https://www.dropbox.com/s/y1vhmdjk23puiph/2016100618.png?dl=1" alt="18"></p>
-<h3 id="Exporting-Selected-Certificates"><a href="#Exporting-Selected-Certificates" class="headerlink" title="Exporting Selected Certificates"></a>Exporting Selected Certificates</h3><p><img src="https://www.dropbox.com/s/ikzdvukezaaco69/2016100619.png?dl=1" alt="19"></p>
-<h3 id="Importing-Your-Developer-Profile"><a href="#Importing-Your-Developer-Profile" class="headerlink" title="Importing Your Developer Profile"></a>Importing Your Developer Profile</h3><p>You import your developer profile to restore missing private keys or when you want to switch to another Mac.</p>
-<p><img src="https://www.dropbox.com/s/5eb2uz6e0mbenhz/2016100620.png?dl=1" alt="20"></p>
-<h2 id="Removing-Signing-Identities-from-Your-Keychain"><a href="#Removing-Signing-Identities-from-Your-Keychain" class="headerlink" title="Removing Signing Identities from Your Keychain"></a>Removing Signing Identities from Your Keychain</h2><p>Delete in key category first , then delete them in My certificate category</p>
-<p><img src="https://www.dropbox.com/s/nwjjl9lf3ky3p1k/2016100621.png?dl=1" alt="21"></p>
-<h2 id="Revoking-Certificates"><a href="#Revoking-Certificates" class="headerlink" title="Revoking Certificates"></a>Revoking Certificates</h2><p>If you’re a team admin for an organization, you may want to revoke development certificates of team members who no longer work on your project. </p>
-<p>Revoking certificates may invalidate provisioning profiles,</p>
-<p>Revoking development or distribution certificates doesn’t affect apps that you’ve submitted to the store nor does it affect your ability to update them</p>
-<h3 id="Resetting-Certificates-Using-Xcode"><a href="#Resetting-Certificates-Using-Xcode" class="headerlink" title="Resetting Certificates Using Xcode"></a>Resetting Certificates Using Xcode</h3><p>If Xcode displays a Create button, the signing identity doesn’t exist in your developer account or on your Mac. </p>
-<p>If Xcode displays a Reset button, the signing identity is not usable on your Mac—for example, it is missing the private key. </p>
-<p>If you click the Reset button, Xcode revokes and re-creates the corresponding certificate.</p>
-<p><img src="https://www.dropbox.com/s/gktgv656zbp8mhi/2016100622.png?dl=1" alt="22"></p>
-<h3 id="Revoking-Certificates-Using-the-Developer-Account"><a href="#Revoking-Certificates-Using-the-Developer-Account" class="headerlink" title="Revoking Certificates Using the Developer Account"></a>Revoking Certificates Using the Developer Account</h3><p><img src="https://www.dropbox.com/s/gvpk6c1lcioi5ad/2016100623.png?dl=1" alt="23"></p>
-<h2 id="Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles"><a href="#Re-Creating-Certificates-and-Updating-Related-Provisioning-Profiles" class="headerlink" title="Re-Creating Certificates and Updating Related Provisioning Profiles"></a>Re-Creating Certificates and Updating Related Provisioning Profiles</h2><p>Revoke the certificates using your developer account</p>
-<p>Provisioning profiles containing a revoked certificate become invalid.</p>
-<p>If necessary, remove the signing identities for these certificates from your keychain</p>
-<p>Remove or regenerate other types of provisioning profiles that contain the revoked certificates,</p>
-<p><img src="https://www.dropbox.com/s/27mdb06bipepa9j/2016100624.png?dl=1" alt="24"></p>
-<h1 id="Maintaining-Identifiers-Devices-and-Profiles"><a href="#Maintaining-Identifiers-Devices-and-Profiles" class="headerlink" title="Maintaining Identifiers, Devices, and Profiles"></a>Maintaining Identifiers, Devices, and Profiles</h1><h2 id="App-IDs-Registering-Editing-Deleting"><a href="#App-IDs-Registering-Editing-Deleting" class="headerlink" title="App IDs-Registering/Editing/Deleting"></a>App IDs-Registering/Editing/Deleting</h2><p><img src="https://www.dropbox.com/s/yzlzplj6if2gm51/2016100614.png?dl=1" alt="14"></p>
-<h2 id="Locating-Your-Team-ID"><a href="#Locating-Your-Team-ID" class="headerlink" title="Locating Your Team ID"></a>Locating Your Team ID</h2><p>Sign in to developer.apple.com/account, and click Membership in the sidebar.Your Team ID appears in the Membership Information section under the team name.</p>
-<h2 id="Provisioning-profiles"><a href="#Provisioning-profiles" class="headerlink" title="Provisioning profiles"></a>Provisioning profiles</h2><p><strong>A provisioning profile includes signing certificates, device identifiers, and an App ID.</strong> </p>
-<p>Development provisioning profiles are used to build and install versions of your app during the development cycle, </p>
-<p>Distribution provisioning profiles are used to submit your apps to the App Store and distribute them to beta testers.</p>
-<h3 id="Generate-Provisioning-Profiles-with-Xcode"><a href="#Generate-Provisioning-Profiles-with-Xcode" class="headerlink" title="Generate Provisioning Profiles with Xcode"></a>Generate Provisioning Profiles with Xcode</h3><ol>
-<li>Connect your device to your Mac and click Use for Development in Xcode’s Organizer window. </li>
-<li>Sign in with the Apple ID associated with your iOS Developer Program membership and Xcode will generate a provisioning profile containing your certificate and device identifier.</li>
-</ol>
-<h3 id="Creating-Provisioning-Profiles-Using-Your-Developer-Account-略"><a href="#Creating-Provisioning-Profiles-Using-Your-Developer-Account-略" class="headerlink" title="Creating Provisioning Profiles Using Your Developer Account (略)"></a>Creating Provisioning Profiles Using Your Developer Account (略)</h3><h3 id="Downloading-Provisioning-Profiles-in-Xcode"><a href="#Downloading-Provisioning-Profiles-in-Xcode" class="headerlink" title="Downloading Provisioning Profiles in Xcode"></a>Downloading Provisioning Profiles in Xcode</h3><ol>
-<li>In the Xcode Preferences window, click Accounts.</li>
-<li>Select your team, and click View Details.</li>
-<li>In the dialog that appears, click the “Download all” button in the lower-left corner under the Provisioning Profiles table.</li>
-</ol>
-<p><img src="https://www.dropbox.com/s/hln1s0d0s13k5f4/2016100615.png?dl=1" alt="15"></p>
-<h3 id="Editing-Provisioning-Profiles-in-Your-Developer-Account"><a href="#Editing-Provisioning-Profiles-in-Your-Developer-Account" class="headerlink" title="Editing Provisioning Profiles in Your Developer Account"></a>Editing Provisioning Profiles in Your Developer Account</h3><p>After doing so, download provisioning profiles in Xcode</p>
-<p><img src="https://www.dropbox.com/s/i6fgdjgfrqlgp8y/2016100616.png?dl=1" alt="16"></p>
-<h3 id="Renewing-Expired-Provisioning-Profiles"><a href="#Renewing-Expired-Provisioning-Profiles" class="headerlink" title="Renewing Expired Provisioning Profiles"></a>Renewing Expired Provisioning Profiles</h3><p>You don’t need to make any changes to the provisioning profile. Just scroll to the bottom of the Edit iOS Provisioning Profile or the Edit Mac Provisioning Profile page, and click Generate</p>
-<h1 id="Configuring-Your-Xcode-Project-for-Distribution"><a href="#Configuring-Your-Xcode-Project-for-Distribution" class="headerlink" title="Configuring Your Xcode Project for Distribution"></a>Configuring Your Xcode Project for Distribution</h1><h2 id="Configuring-Identity-and-Team-Settings"><a href="#Configuring-Identity-and-Team-Settings" class="headerlink" title="Configuring Identity and Team Settings"></a>Configuring Identity and Team Settings</h2><h3 id="About-Bundle-IDs"><a href="#About-Bundle-IDs" class="headerlink" title="About Bundle IDs"></a>About Bundle IDs</h3><p>A bundle ID precisely identifies a single app</p>
-<p>reverse-DNS format. com.Acme.Hello </p>
-<p>use an app’s bundle ID in many different places to identify the app</p>
-<p><img src="https://www.dropbox.com/s/ykiv7fvs9p7i199/2016100605.png?dl=1" alt=""></p>
-<h3 id="App-ID"><a href="#App-ID" class="headerlink" title="App ID"></a>App ID</h3><p>app’s bundle ID needs to be unique. </p>
-<p>The string consists of a Team ID and a bundle ID search string</p>
-<p><img src="https://www.dropbox.com/s/pnhwknamzfpy722/2016100606.png?dl=1" alt=""></p>
-<p>There are two types of App IDs:</p>
-<p>An Explicit App ID Matches a Single App</p>
-<p>Wildcard App IDs Match Multiple Apps</p>
-<h3 id="Setting-the-Bundle-ID"><a href="#Setting-the-Bundle-ID" class="headerlink" title="Setting the Bundle ID"></a>Setting the Bundle ID</h3><p><img src="https://www.dropbox.com/s/351v6om3lounzht/2016100602.png?dl=1" alt=""></p>
-<p><img src="https://www.dropbox.com/s/6img87h9jdfss6h/2016100603.png?dl=1" alt=""></p>
-<h3 id="Assigning-the-Xcode-Project-to-a-Team"><a href="#Assigning-the-Xcode-Project-to-a-Team" class="headerlink" title="Assigning the Xcode Project to a Team"></a>Assigning the Xcode Project to a Team</h3><p><img src="https://www.dropbox.com/s/974hoa80mz1zr9q/2016100604.png?dl=1" alt="5"></p>
-<h2 id="Creating-the-Team-Provisioning-Profile"><a href="#Creating-the-Team-Provisioning-Profile" class="headerlink" title="Creating the Team Provisioning Profile"></a>Creating the Team Provisioning Profile</h2><p>After you select a team, <strong>Xcode attempts to create a specialized development provisioning profile</strong> called a team provisioning profile that it manages for you. </p>
-<p>A team provisioning profile allows an app to be signed and run by all team members on all their devices.</p>
-<h2 id="Setting-the-Version-Number-and-Build-String"><a href="#Setting-the-Version-Number-and-Build-String" class="headerlink" title="Setting the Version Number and Build String"></a>Setting the Version Number and Build String</h2><p>The version number is a two-period-separated list of positive integers, as in 4.5.2. </p>
-<p>The first integer represents a major revision, the second a minor revision, and the third a maintenance release. </p>
-<p>The version number is shown in the store</p>
-<p>The build string represents an iteration (released or unreleased) of the bundle and is also a two-period-separated list of positive integers, as in 1.2.3. </p>
-<h2 id="Setting-Deployment-Info"><a href="#Setting-Deployment-Info" class="headerlink" title="Setting Deployment Info"></a>Setting Deployment Info</h2><p>The deployment target setting specifies the lowest operating system version that your app can run on.</p>
-<p><img src="https://www.dropbox.com/s/2zep1n66rshzfgz/2016100601.png?dl=1" alt=""></p>
-<h2 id="Adding-App-Icons-and-a-Launch-Screen-File-略"><a href="#Adding-App-Icons-and-a-Launch-Screen-File-略" class="headerlink" title="Adding App Icons and a Launch Screen File (略)"></a>Adding App Icons and a Launch Screen File (略)</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/09/07/TableView with searchBr视图的构建/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -500,9 +252,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -683,9 +435,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -873,9 +625,9 @@
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -1183,9 +935,9 @@ private func configureTraitOverrideForSize(size:CGSize) {
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Cowboy Tech">
+    <meta itemprop="name" content="忍者刘米米">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Cowboy Tech" src="">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
     </span>
   </span>
 
@@ -1413,6 +1165,168 @@ end
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://jackliu17.github.io/2016/07/29/手机屏幕图像尺寸说明/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jack Liu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="忍者刘米米">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="忍者刘米米" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/29/手机屏幕图像尺寸说明/" itemprop="url">
+                  手机屏幕图像尺寸说明
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-29T16:41:29+08:00">
+              2016-07-29
+            </time>
+
+            &nbsp;|&nbsp;
+
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-check-o"></i>
+            </span>
+            <time title="Post modified" itemprop="dateModified" datetime="2017-01-27T09:08:17+08:00">
+              2017-01-27
+            </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/notes/" itemprop="url" rel="index">
+                    <span itemprop="name">notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/29/手机屏幕图像尺寸说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/07/29/手机屏幕图像尺寸说明/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>其他都当放屁，只要记住一点，iphone设计稿以640<em>1136像素做（我一般使用750</em>1334），android设计稿以1080<em>1920像素做，余下的尺寸，开发会自己去做适配，不需要你再出设计稿。切图的话，需要切一份1倍和一份2倍的。设计稿上图形元素，如图标，线条，色块，全部用矢量图形的做，不要用像素位图，以免</em>2后模糊。</p>
+<h1 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h1><p><img src="https://www.dropbox.com/s/kv8kxm9prub5bsx/MobileImageSize1.png?dl=1" alt=""></p>
+<h1 id="屏幕尺寸"><a href="#屏幕尺寸" class="headerlink" title="屏幕尺寸"></a>屏幕尺寸</h1><p><img src="https://www.dropbox.com/s/prqfsl2tl84m01l/MobileImageSize2.png?dl=1" alt=""></p>
+<h1 id="像素密度"><a href="#像素密度" class="headerlink" title="像素密度"></a>像素密度</h1><p><img src="https://www.dropbox.com/s/ybjgllir4rb1xie/MobileImageSize3.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/x7jmtbnkqptdxhl/MobileImageSize4.png?dl=1" alt=""></p>
+<h1 id="逻辑像素与物理像素"><a href="#逻辑像素与物理像素" class="headerlink" title="逻辑像素与物理像素"></a>逻辑像素与物理像素</h1><p>苹果引进一个逻辑像素的概念(pt)</p>
+<p><img src="https://www.dropbox.com/s/vjhiwkcwwvjxbyv/MobileImageSize5.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/kve933ie18u0o04/MobileImageSize6.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/75nt73meb7zfica/MobileImageSize7.png?dl=1" alt=""></p>
+<h1 id="iPhone手机尺寸"><a href="#iPhone手机尺寸" class="headerlink" title="iPhone手机尺寸"></a>iPhone手机尺寸</h1><p><img src="https://www.dropbox.com/s/mgwnsz022fn7n1e/MobileImageSize8.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/b4zff1iwnm9jknd/MobileImageSize9.png?dl=1" alt=""></p>
+<h1 id="Android手机尺寸"><a href="#Android手机尺寸" class="headerlink" title="Android手机尺寸"></a>Android手机尺寸</h1><p>Android引进一个逻辑像素概念(dp)</p>
+<p><img src="https://www.dropbox.com/s/1r6tqvm5t0vp2sa/MobileImageSize10.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/bgoe3jpr14a9oh8/MobileImageSize11.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/lmrademl1wb6p1i/MobileImageSize12.png?dl=1" alt=""></p>
+<p><img src="https://www.dropbox.com/s/3sz0oyx2rmdo8ob/MobileImageSize13.png?dl=1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1458,7 +1372,7 @@ end
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
